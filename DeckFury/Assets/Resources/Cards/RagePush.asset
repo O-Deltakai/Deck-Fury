@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c923d00297c904c49922de3a336f1e5b, type: 3}
+  m_Name: RagePush
+  m_EditorClassIdentifier: 
+  <CardName>k__BackingField: Ground Slam
+  CardDescription: 'Slam the ground, dealing <b>BD</b> damage and pushing all enemies
+    adjacent to you away by <b>2</b> tiles, while also stunning them <b>1</b> second(s).
+
+
+'
+  BaseDamage: 35
+  <AttackElement>k__BackingField: 5
+  <CardType>k__BackingField: 0
+  <StatusEffect>k__BackingField: 1
+  <statusEffect>k__BackingField:
+    statusEffectType: 1
+    effectStrength: 1
+  <EnergyCost>k__BackingField: 0
+  CardTier: 1
+  <QuantifiableEffects>k__BackingField: []
+  CardImage: {fileID: 21300000, guid: fbb2ec52b7bbd7247b9d303370ec97d0, type: 3}
+  <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
+  <UsesAnimationEvent>k__BackingField: 1
+  <EffectPrefab>k__BackingField: {fileID: 1580134848682550175, guid: 71e61eea9b9148a4488de6e57000b5cf, type: 3}
+  <ObjectSummonList>k__BackingField: []
+  <ObjectSummonsArePooled>k__BackingField: 0
+  <UseTargetingReticle>k__BackingField: 1
+  <ReticleIsStatic>k__BackingField: 1
+  <TargetingReticle>k__BackingField: {fileID: 4445429055708467882, guid: 04737fcb2c3e53849979ce39e16a6767, type: 3}
+  <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}

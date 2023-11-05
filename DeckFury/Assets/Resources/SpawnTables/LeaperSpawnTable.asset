@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9edc173047f51f4bb1cb60f3667adca, type: 3}
+  m_Name: LeaperSpawnTable
+  m_EditorClassIdentifier: 
+  <WaveList>k__BackingField:
+  - <WaveName>k__BackingField: wave1
+    <NPCSpawns>k__BackingField:
+    - <NPCPrefab>k__BackingField: {fileID: 6652887402194902474, guid: 41294f2d4f6f1994693e5f58cf7f6244, type: 3}
+      <SpawnCount>k__BackingField: 2
+      <SpawnZone>k__BackingField: 0
+  - <WaveName>k__BackingField: wave2
+    <NPCSpawns>k__BackingField:
+    - <NPCPrefab>k__BackingField: {fileID: 6652887402194902474, guid: 41294f2d4f6f1994693e5f58cf7f6244, type: 3}
+      <SpawnCount>k__BackingField: 2
+      <SpawnZone>k__BackingField: 0
+    - <NPCPrefab>k__BackingField: {fileID: 1343928815800035990, guid: 3eedf9e46ea002c478c3d98d20c67a63, type: 3}
+      <SpawnCount>k__BackingField: 2
+      <SpawnZone>k__BackingField: 3
+  - <WaveName>k__BackingField: wave3
+    <NPCSpawns>k__BackingField:
+    - <NPCPrefab>k__BackingField: {fileID: 6652887402194902474, guid: 41294f2d4f6f1994693e5f58cf7f6244, type: 3}
+      <SpawnCount>k__BackingField: 2
+      <SpawnZone>k__BackingField: 3
+    - <NPCPrefab>k__BackingField: {fileID: 1343928815800035990, guid: 3eedf9e46ea002c478c3d98d20c67a63, type: 3}
+      <SpawnCount>k__BackingField: 3
+      <SpawnZone>k__BackingField: 3
+    - <NPCPrefab>k__BackingField: {fileID: 3044666074929763327, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
+      <SpawnCount>k__BackingField: 1
+      <SpawnZone>k__BackingField: 3

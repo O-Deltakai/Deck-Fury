@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c923d00297c904c49922de3a336f1e5b, type: 3}
+  m_Name: MarkingArrow
+  m_EditorClassIdentifier: 
+  <CardName>k__BackingField: Marking Arrow
+  CardDescription: Let off an arrow that deals <b>BD</b> damage which ignores enemy's
+    shields and resistances, <b>marking</b> the first enemy hit for death.
+  BaseDamage: 20
+  <AttackElement>k__BackingField: 6
+  <CardType>k__BackingField: 0
+  <StatusEffect>k__BackingField: 4
+  <statusEffect>k__BackingField:
+    statusEffectType: 0
+    effectStrength: 0
+  <EnergyCost>k__BackingField: 0
+  CardTier: 1
+  <QuantifiableEffects>k__BackingField: []
+  CardImage: {fileID: 21300000, guid: b96a55e579e1bb9468f658f85487abb5, type: 3}
+  <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
+  <UsesAnimationEvent>k__BackingField: 1
+  <EffectPrefab>k__BackingField: {fileID: 3125481600370001809, guid: 3b48751e36d7e304b924853079d9b1b9, type: 3}
+  <ObjectSummonList>k__BackingField:
+  - {fileID: 8612935382588771889, guid: f6218fcdcbe66b449b33f677a94449f6, type: 3}
+  <ObjectSummonsArePooled>k__BackingField: 0
+  <UseTargetingReticle>k__BackingField: 0
+  <ReticleIsStatic>k__BackingField: 0
+  <TargetingReticle>k__BackingField: {fileID: 0}
+  <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}

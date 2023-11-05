@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd91ae4e50ae7142b72cb36202d42c1, type: 3}
+  m_Name: CardSelectionTutorialDialogue
+  m_EditorClassIdentifier: 
+  HintList:
+  - 'This is the Card Selection Menu, where you to get choose from a selection of
+    cards that are drawn <b>randomly</b> from your <b>Deck</b>.
+
+
+    While the Card
+    Selection Menu is open, you are in the <b>Planning Phase</b>. During this phase,
+    time is <b>paused</b>, and neither you or your enemies will be able to move or
+    act.'
+  - 'You may <b>Left-Click</b> on any of the cards in the <b>Card Selection</b> area,
+    which will then be sent to your <b>Card Magazine</b>.
+
+
+    Your card magazine
+    is a <b>first-in-first-out queue</b> of cards, where you may only use the first
+    card within the magazine before being able to use the next.
+
+
+    Due to this,
+    <b>it is important to consider the order of your cards to make sure that you
+    are able to use the right card at the right time.</b>'
+  - "You may <b>Right-Click</b> any of the cards within the card selection panel
+    in order to <b>lock the description panel in place</b>. <b>Right-Click</b> any
+    card again to unlock it. \n\nHovering over some of the icons within the description
+    panel may give you additional information.\n\nBe sure to <b>read the description
+    of cards carefully</b> as understanding their effect is vital to your success!\n"
+  - "The button right underneath the card magazine is the <b>Preview Stage</b> button.
+    \n\nUse this button when you want to get a better look at the state of the stage
+    before finishing your <b>Planning Phase</b>. \n"
+  - When you're ready, click the big green tick box to load your card magazine, which
+    closes the card selection menu and ends the current <b>Planning Phase</b>.

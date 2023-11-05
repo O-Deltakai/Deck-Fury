@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9edc173047f51f4bb1cb60f3667adca, type: 3}
+  m_Name: TestingSpawnTable
+  m_EditorClassIdentifier: 
+  <WaveList>k__BackingField:
+  - <WaveName>k__BackingField: Boss
+    <NPCSpawns>k__BackingField:
+    - <NPCPrefab>k__BackingField: {fileID: 2503849447942824288, guid: a241bc591a4a6264084a80fdf3b99889, type: 3}
+      <SpawnCount>k__BackingField: 1
+      <SpawnZone>k__BackingField: 0
+      _specificSpawnLocation: {x: 0, y: 0, z: 0}

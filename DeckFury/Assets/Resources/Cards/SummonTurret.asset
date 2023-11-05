@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c923d00297c904c49922de3a336f1e5b, type: 3}
+  m_Name: SummonTurret
+  m_EditorClassIdentifier: 
+  <CardName>k__BackingField: Summon Turret
+  CardDescription: 'Summons a stationary turret that shoots at nearby enemies for
+    <b>BD</b> damage per shot.
+
+
+    Turret lasts for <b>Q0</b> seconds and fire
+    every <b>Q1</b> second(s).'
+  BaseDamage: 10
+  <AttackElement>k__BackingField: 0
+  <CardType>k__BackingField: 2
+  <StatusEffect>k__BackingField: 0
+  <EnergyCost>k__BackingField: 2
+  CardTier: 2
+  <QuantifiableEffects>k__BackingField:
+  - <EffectName>k__BackingField: Summon Duration
+    <IntegerQuantity>k__BackingField: 0
+    <FloatQuantity>k__BackingField: 10
+    <CanBeModified>k__BackingField: 0
+    <ModCoefficient>k__BackingField: 0
+  - <EffectName>k__BackingField: Turret Attack Speed
+    <IntegerQuantity>k__BackingField: 0
+    <FloatQuantity>k__BackingField: 0.5
+    <CanBeModified>k__BackingField: 0
+    <ModCoefficient>k__BackingField: 0
+  CardImage: {fileID: 21300000, guid: 5ba4f899fab1642489b4f961f97ec0f3, type: 3}
+  <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
+  <UsesAnimationEvent>k__BackingField: 1
+  <EffectPrefab>k__BackingField: {fileID: 163239309686340483, guid: 751bdac307e22d04e8718bf81bc31e86, type: 3}
+  <ObjectSummonList>k__BackingField:
+  - {fileID: 583723702644002033, guid: bf00e32581e88374c8e6fa876131f156, type: 3}
+  <ObjectSummonsArePooled>k__BackingField: 0
+  <UseTargetingReticle>k__BackingField: 1
+  <TargetingReticle>k__BackingField: {fileID: 4638606909580859982, guid: d361f42fe86b56049b8fc8aa8eae036c, type: 3}
+  <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}

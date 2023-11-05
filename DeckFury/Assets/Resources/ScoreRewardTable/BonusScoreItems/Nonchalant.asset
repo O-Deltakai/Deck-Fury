@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ecffd271d7455b47b69bb7babf61aae, type: 3}
+  m_Name: Nonchalant
+  m_EditorClassIdentifier: 
+  <RewardName>k__BackingField: Nonchalant
+  <BaseScore>k__BackingField: 200
+  <CompareValue>k__BackingField:
+    <UseCompareValue>k__BackingField: 1
+    ValueName: Number of Moves
+    valueType: 0
+    intValue: 40
+    floatValue: 0
+    doubleValue: 0
+    isGreaterThan: 0
+  rewardDescription: Move less than 40 times in this stage.
+  ConditionMethodName: CompareNumberOfMoves
+  firstActionFieldName: 
+  secondActionFieldName: 
+  <comparisonType>k__BackingField: 0

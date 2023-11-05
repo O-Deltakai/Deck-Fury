@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ecffd271d7455b47b69bb7babf61aae, type: 3}
+  m_Name: Improvisor
+  m_EditorClassIdentifier: 
+  <RewardName>k__BackingField: Improvisor
+  <BaseScore>k__BackingField: 300
+  <CompareValue>k__BackingField:
+    <UseCompareValue>k__BackingField: 1
+    ValueName: Enemies killed by Hazards
+    valueType: 0
+    intValue: 2
+    floatValue: 0
+    doubleValue: 0
+    isGreaterThan: 1
+  rewardDescription: Defeat more than 2 enemies using environmental hazards.
+  ConditionMethodName: CompareEnemiesKilledWithHazards
+  <RewardCondition>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1104614077685432683, guid: c13dc795912b1d54f96dc737f6d83dba, type: 3}
+        m_TargetAssemblyTypeName: RewardConditionChecks, Assembly-CSharp
+        m_MethodName: CompareEnemiesKilledWithHazards
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000}
+          m_ObjectArgumentAssemblyTypeName: BonusScoreItemSO, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  firstActionFieldName: 
+  secondActionFieldName: 
+  <comparisonType>k__BackingField: 0

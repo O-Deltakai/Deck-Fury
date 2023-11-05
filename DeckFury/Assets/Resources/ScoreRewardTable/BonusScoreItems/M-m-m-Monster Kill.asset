@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ecffd271d7455b47b69bb7babf61aae, type: 3}
+  m_Name: M-m-m-Monster Kill
+  m_EditorClassIdentifier: 
+  <RewardName>k__BackingField: M-M-M-Monster Kill
+  <BaseScore>k__BackingField: 500
+  <CompareValue>k__BackingField:
+    <UseCompareValue>k__BackingField: 1
+    ValueName: Highest Combo Kill
+    valueType: 0
+    intValue: 4
+    floatValue: 0
+    doubleValue: 0
+    isGreaterThan: 1
+  rewardDescription: Kill 5 or more enemies in quick succession.
+  ConditionMethodName: CompareHighestComboKill
+  <RewardCondition>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  firstActionFieldName: 
+  secondActionFieldName: 
+  <comparisonType>k__BackingField: 0

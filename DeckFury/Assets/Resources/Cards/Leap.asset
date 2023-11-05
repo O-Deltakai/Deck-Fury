@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c923d00297c904c49922de3a336f1e5b, type: 3}
+  m_Name: Leap
+  m_EditorClassIdentifier: 
+  <CardName>k__BackingField: Leap
+  CardDescription: 'You leap <b>Q0</b> tiles towards aim point, jumping over enemies
+    or objects. <b>You are Untargetable during the leap</b>.
+
+
+    <i>Attempting
+    to leap into solid obstacles may leave you with a bit of a bruise...</i>'
+  BaseDamage: 0
+  <AttackElement>k__BackingField: 0
+  <CardType>k__BackingField: 2
+  <StatusEffect>k__BackingField: 0
+  <EnergyCost>k__BackingField: 0
+  CardTier: 1
+  <QuantifiableEffects>k__BackingField:
+  - <EffectName>k__BackingField: Teleport Distance
+    <IntegerQuantity>k__BackingField: 3
+    <FloatQuantity>k__BackingField: 0
+    <CanBeModified>k__BackingField: 0
+    <ModCoefficient>k__BackingField: 0
+  CardImage: {fileID: 21300000, guid: 29c3a50441604714b9d9cefee19cab3a, type: 3}
+  <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: d0845d5cedb237e4ca64c0bcee392b58, type: 2}
+  <UsesAnimationEvent>k__BackingField: 0
+  <EffectPrefab>k__BackingField: {fileID: 7443828175484122623, guid: 1d4ce634dca52464899524619802a161, type: 3}
+  <ObjectSummonList>k__BackingField: []
+  <ObjectSummonsArePooled>k__BackingField: 0
+  <UseTargetingReticle>k__BackingField: 1
+  <TargetingReticle>k__BackingField: {fileID: 4638606909580859982, guid: d361f42fe86b56049b8fc8aa8eae036c, type: 3}
+  <TargetingReticleOffSet>k__BackingField: {x: 0, y: -2}
