@@ -16,6 +16,7 @@ public class ForceBlast : CardEffect
     {
         StartCoroutine(HardDisableTimer());
         aimpoint = player.aimpoint;
+        transform.position = player.worldTransform.position;
 
         FaceTowardsAimpoint(aimpoint);
 
