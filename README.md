@@ -1,2 +1,2 @@
 # Deck-Fury
-A Top-Down, Real-Time, Deck-Builder, Rogue-Like, Game
+A Top-down, real-time, deck-builder, rogue-like Game
