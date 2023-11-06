@@ -151,8 +151,11 @@ public class StageEntity : MonoBehaviour
 
         stageManager = GameErrorHandler.NullCheck(StageManager.Instance, "Stage Manager");
 
-        currentTilePosition.Set((int)worldTransform.position.x, (int)worldTransform.position.y, 0);
-        stageManager.SetTileEntity(this, currentTilePosition);
+        if(stageManager)
+        {
+            currentTilePosition.Set((int)worldTransform.position.x, (int)worldTransform.position.y, 0);
+            stageManager.SetTileEntity(this, currentTilePosition);
+        }
 
     }
 

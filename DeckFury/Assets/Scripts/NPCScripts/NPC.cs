@@ -25,12 +25,6 @@ public class NPC : StageEntity
     protected void InitializeNPCStartVariables()
     {
         player = GameErrorHandler.NullCheck(GameManager.Instance.player, "Player Controller");
-        // player = GameManager.Instance.player;
-        // if(player == null)
-        // {
-        //     player = FindObjectOfType<PlayerController>();
-        //     Debug.LogWarning("Player reference could not be found in GameManager instance, used FindObjectOfType to find PlayerController.");
-        // }
     }
 
     protected override void Awake()
@@ -49,7 +43,6 @@ public class NPC : StageEntity
     protected override void AdditionalDestructionEvents(AttackPayload? killingBlow = null)
     {
         base.AdditionalDestructionEvents(killingBlow);
-        print("Triggered OnNPCDefeat event");
         OnNPCDefeat?.Invoke(killingBlow, this);
     }
 

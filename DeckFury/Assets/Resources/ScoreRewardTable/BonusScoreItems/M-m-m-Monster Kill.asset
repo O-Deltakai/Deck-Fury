@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: M-m-m-Monster Kill
   m_EditorClassIdentifier: 
   <RewardName>k__BackingField: M-M-M-Monster Kill
-  <BaseScore>k__BackingField: 500
+  <BaseScore>k__BackingField: 750
   <CompareValue>k__BackingField:
     <UseCompareValue>k__BackingField: 1
     ValueName: Highest Combo Kill
@@ -24,9 +24,6 @@ MonoBehaviour:
     isGreaterThan: 1
   rewardDescription: Kill 5 or more enemies in quick succession.
   ConditionMethodName: CompareHighestComboKill
-  <RewardCondition>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
   firstActionFieldName: 
   secondActionFieldName: 
   <comparisonType>k__BackingField: 0

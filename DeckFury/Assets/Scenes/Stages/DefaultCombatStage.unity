@@ -200,6 +200,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a82ab911fa9fe42b9c6cc87f592866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &253418637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6412625587734996852, guid: a6c681a9d80ca4b4ea2ac6fc8c1a9b70, type: 3}
+  m_PrefabInstance: {fileID: 8238804234432040901}
+  m_PrefabAsset: {fileID: 0}
+--- !u!156049354 &253418638
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253418637}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 0
 --- !u!1 &421597491
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +333,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.9235573
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -390,7 +407,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 914633587189270801, guid: a6c681a9d80ca4b4ea2ac6fc8c1a9b70, type: 3}
   m_PrefabInstance: {fileID: 8238804234432040901}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 253418637}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 704048c8f6df47f44a5d45b638f03269, type: 3}

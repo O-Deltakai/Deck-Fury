@@ -587,6 +587,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3248767083550554047}
   - component: {fileID: 820024095548293756}
+  - component: {fileID: -5228127244993437563}
+  - component: {fileID: -174738491822923797}
   m_Layer: 0
   m_Name: MazeStage
   m_TagString: Untagged
@@ -610,6 +612,7 @@ Transform:
   - {fileID: 7989359549445947388}
   - {fileID: 7435005740549991996}
   - {fileID: 807060844572133339}
+  - {fileID: 9052421987226916377}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -629,6 +632,106 @@ MonoBehaviour:
   WallTilemap: {fileID: 2723098266727253003}
   <OuterSpawnZoneMap>k__BackingField: {fileID: 3344290359268109829}
   <InnerSpawnZoneMap>k__BackingField: {fileID: 9072275063706232432}
+--- !u!156049354 &-5228127244993437563
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852112933513828446}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 0
+--- !u!114 &-174738491822923797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852112933513828446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11cab17200e87614fbf3311ea25dfad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapCamera: {fileID: 4165491980915590061}
+  <MapPreviewRender>k__BackingField: {fileID: 8400000, guid: f69ec60fd3486504bbf444fbc9d31a7e, type: 2}
+--- !u!1 &2634184704930995251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9052421987226916377}
+  - component: {fileID: 4165491980915590061}
+  m_Layer: 0
+  m_Name: MapPreviewCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &9052421987226916377
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2634184704930995251}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3248767083550554047}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &4165491980915590061
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2634184704930995251}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.17799929, g: 0.18661171, b: 0.3018868, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 6
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 0
+  m_HDR: 1
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 0
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &2723098266727252999
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,7 +744,7 @@ GameObject:
   - component: {fileID: 2723098266727253003}
   - component: {fileID: 2723098266727253002}
   - component: {fileID: 2723098266727253001}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: WallTileMap
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1381,7 +1484,7 @@ GameObject:
   - component: {fileID: 2723098267729233933}
   - component: {fileID: 2723098267729233935}
   - component: {fileID: 2723098267729233934}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundTileMap
   m_TagString: Ground
   m_Icon: {fileID: 0}

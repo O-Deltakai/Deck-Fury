@@ -163,5 +163,15 @@ public class RewardConditionChecks : MonoBehaviour
         }
     }   
 
+    public void CompareNumberOfComboKills(BonusScoreItemSO bonusScoreItem)
+    {
+        int value = scoreManager.NumberOfComboKills;
+
+        if(bonusScoreItem.CompareValue.Compare(value))
+        {
+            OnBonusConditionMet?.Invoke(bonusScoreItem);
+        }
+    } 
+
 
 }

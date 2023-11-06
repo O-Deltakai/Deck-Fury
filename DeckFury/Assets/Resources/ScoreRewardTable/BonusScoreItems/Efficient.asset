@@ -23,22 +23,7 @@ MonoBehaviour:
     doubleValue: 0
     isGreaterThan: 1
   rewardDescription: Obtain more than <b>3</b> combo kills during this stage.
-  ConditionMethodName: CompareHighestComboKill
-  <RewardCondition>k__BackingField:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1104614077685432683, guid: c13dc795912b1d54f96dc737f6d83dba, type: 3}
-        m_TargetAssemblyTypeName: RewardConditionChecks, Assembly-CSharp
-        m_MethodName: CompareActions
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  ConditionMethodName: CompareNumberOfComboKills
   firstActionFieldName: 
   secondActionFieldName: 
   <comparisonType>k__BackingField: 0

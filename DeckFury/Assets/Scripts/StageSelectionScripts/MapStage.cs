@@ -11,6 +11,10 @@ public class MapStage : MonoBehaviour
     [field:SerializeField] public RectTransform LeftPoint {get; private set;}
     [field:SerializeField] public Button StageButton {get; private set;}
 
+    [SerializeField] GameObject mapPreviewPopup;
+    [SerializeField] Image mapPreviewImage;
+    public GameObject mapLayoutPrefab;
+
 
     public bool playerIsHere = false;
 
@@ -18,11 +22,11 @@ public class MapStage : MonoBehaviour
 
     public MapLevel mapLevel;
 
-    public GameObject mapLayoutPrefab; 
     public SpawnTableSO spawnTable;
     public SceneNames sceneToLoadName;
     SceneLoader sceneLoader;
     PersistentLevelController levelController;
+    StageSelectionManager stageSelectionManager;
     Image mapStageIcon;
 
 [Header("Stage Type Icons")]
@@ -36,6 +40,7 @@ public class MapStage : MonoBehaviour
 
 
     [field:SerializeField] public bool IsFinalStage { get; private set; } = false;
+    [SerializeField] bool IsMysteryStage;
 
     void Awake() 
     {
@@ -58,11 +63,39 @@ public class MapStage : MonoBehaviour
             }
         }
         levelController = GameErrorHandler.NullCheck(PersistentLevelController.Instance, "PersistentLevelController");
+        stageSelectionManager = GameErrorHandler.NullCheck(StageSelectionManager.Instance, "StageSelectionManager");
+
 
 
         SetStageType(TypeOfStage);
 
 
+    }
+
+    void CreateMapPreview()
+    {
+        if(mapPreviewImage.sprite != null){ return; }
+
+        GameObject mapInstance = Instantiate(mapLayoutPrefab, new Vector3(-50, 0, 0), Quaternion.identity);
+        MapPreviewGenerator previewGenerator = mapInstance.GetComponent<MapPreviewGenerator>();
+        mapPreviewImage.sprite = previewGenerator.GeneratePreviewSprite();
+        mapPreviewImage.preserveAspect = true;
+        Destroy(mapInstance);
+    }
+
+    public void ToggleMapPreview(bool toggle)
+    {
+        if(!mapLayoutPrefab) { return; }
+        if(IsMysteryStage){ return; }
+
+        if(toggle)
+        {
+            CreateMapPreview();
+            mapPreviewPopup.SetActive(true);
+        }else
+        {
+            mapPreviewPopup.SetActive(false);
+        }
     }
 
     //Dispatcher method that sets the stage and initializes required variables for that stage type
@@ -140,6 +173,7 @@ public class MapStage : MonoBehaviour
         int randomStageIndex = Random.Range(0, validStages.Length);
 
         TypeOfStage = validStages[randomStageIndex];
+        IsMysteryStage = true;
     }
     void SetBossStage()
     {
@@ -165,6 +199,22 @@ public class MapStage : MonoBehaviour
     public void SelectStageButton()
     {
         levelController.LoadMapStage(this);
+    }
+
+    public void DrawLineToThisStage()
+    {
+        if(stageSelectionManager)
+        {
+            stageSelectionManager.DrawLineBetweenPlayerAndStage(this);
+        }
+    }
+
+    public void DisableTravelIndicator()
+    {
+        if(stageSelectionManager)
+        {
+            stageSelectionManager.DisableTravelIndicator();
+        }
     }
 
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2064057963058460142}
   - component: {fileID: 2064057963058460143}
   - component: {fileID: 2064057963058460140}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: WallTileMap
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1960,7 +1960,7 @@ GameObject:
   - component: {fileID: 2064057964189415912}
   - component: {fileID: 2064057964189415914}
   - component: {fileID: 2064057964189415915}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundTileMap
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -5045,6 +5045,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2712548936466820999}
   - component: {fileID: 7080348430733068305}
+  - component: {fileID: -1830614791795647345}
+  - component: {fileID: -7903374853713338644}
   m_Layer: 0
   m_Name: TutorialLayout
   m_TagString: Untagged
@@ -5067,6 +5069,7 @@ Transform:
   - {fileID: 2064057963058460141}
   - {fileID: 4924147806103078786}
   - {fileID: 8660592992826869249}
+  - {fileID: 4979687348824501737}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5084,6 +5087,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GroundTilemap: {fileID: 2064057964189415914}
   WallTilemap: {fileID: 2064057963058460142}
+  <OuterSpawnZoneMap>k__BackingField: {fileID: 0}
+  <InnerSpawnZoneMap>k__BackingField: {fileID: 0}
+--- !u!156049354 &-1830614791795647345
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3894811015419684468}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 0
+--- !u!114 &-7903374853713338644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3894811015419684468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11cab17200e87614fbf3311ea25dfad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapCamera: {fileID: 4172949707036168130}
+  <MapPreviewRender>k__BackingField: {fileID: 8400000, guid: f69ec60fd3486504bbf444fbc9d31a7e, type: 2}
 --- !u!1 &4865140942524227110
 GameObject:
   m_ObjectHideFlags: 0
@@ -5114,6 +5145,80 @@ Transform:
   m_Father: {fileID: 2712548936466820999}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7235123938416649237
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4979687348824501737}
+  - component: {fileID: 4172949707036168130}
+  m_Layer: 0
+  m_Name: MapPreviewCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4979687348824501737
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7235123938416649237}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2712548936466820999}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &4172949707036168130
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7235123938416649237}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.17799929, g: 0.18661171, b: 0.3018868, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 6
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 0
+  m_HDR: 1
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 0
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &7355441693549307166
 GameObject:
   m_ObjectHideFlags: 0
