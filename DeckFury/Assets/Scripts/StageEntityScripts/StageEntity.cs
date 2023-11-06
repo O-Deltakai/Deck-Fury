@@ -705,7 +705,12 @@ public class StageEntity : MonoBehaviour
 
         stageManager.SetTileEntity(null, currentTilePosition);
 
-        OnDestructionEvent?.Invoke(this, currentTilePosition);
+        GameErrorHandler.ExecuteSafely(() =>
+        {
+            OnDestructionEvent?.Invoke(this, currentTilePosition);
+            return true;
+        });
+
 
         Destroy(transform.parent.gameObject);
         Destroy(gameObject);

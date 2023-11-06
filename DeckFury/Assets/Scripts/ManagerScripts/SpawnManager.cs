@@ -308,7 +308,7 @@ public class SpawnManager : MonoBehaviour
 
         print("Attempting to spawn npcs: " +npcSpawnData.NPCPrefab.name + " using spawn type: " + spawnType.ToString());
 
-        List<Vector3Int> actualSpawnZone = new List<Vector3Int>(20);
+        List<Vector3Int> actualSpawnZone = new List<Vector3Int>();
         int actualSpawnCount = ValidateSpawnCount(npcSpawnData);
 
         //Find valid positions around the player and add them to the actualSpawnZone
@@ -346,24 +346,19 @@ public class SpawnManager : MonoBehaviour
             }
         }        
 
+        if (actualSpawnZone.Count == 0)
+        {
+            Debug.LogWarning("No valid spawn positions were found around the player. Aborted spawning " + npcSpawnData.NPCPrefab.name);
+            return;
+        }
 
+        //Begin spawning in npcs in the actualSpawnZone
         for(int i = 0; i < actualSpawnCount; i++) 
         {
             int index = Random.Range(0, actualSpawnZone.Count);
             int retryCount = 0;
 
             Vector3Int spawnPosition = actualSpawnZone[index];
-            //GroundTileData randomTile;
-            // if(stageManager.groundTileDictionary.ContainsKey(spawnPosition))
-            // {
-            //     randomTile = stageManager.groundTileDictionary[spawnPosition];
-            // }else
-            // {
-            //     randomTile = null;
-            //     Debug.LogWarning("One of the spawn tiles for the" + spawnType.ToString() + " at position: " + spawnPosition +
-            //     " appears to not be on the GroundTileMap, which may indicate an issue with the spawning algorithm. Skipped spawning this npc.");
-            //     return;                
-            // }
 
             while(!stageManager.CheckValidTile(spawnPosition) && retryCount < 20)
             {
@@ -379,7 +374,7 @@ public class SpawnManager : MonoBehaviour
             {
                 for(int j = 0; j < actualSpawnZone.Count; j++) 
                 {
-                    spawnPosition = actualSpawnZone[index];
+                    spawnPosition = actualSpawnZone[j];
                     if(stageManager.CheckValidTile(spawnPosition))
                     {
                         break;
@@ -399,8 +394,6 @@ public class SpawnManager : MonoBehaviour
             SpawnNPCPrefab(npcSpawnData.NPCPrefab, spawnPosition);
                                       
         }
-
-
     }
 
     void SpawnNPCWithSpawnZone(NPCSpawnData npcSpawnData, SpawnType spawnZone)
@@ -523,33 +516,6 @@ public class SpawnManager : MonoBehaviour
 
         return actualSpawnPosition;
     }
-
-    // public StageEntity SpawnNPCPrefab(GameObject npcPrefab, Vector3Int position, bool safetyNet = true)
-    // {
-    //     Vector3Int actualSpawnPosition = PredictNPCSpawnPosition(position, safetyNet);
-        
-    //     if (npcPrefab.GetComponent<EntityWrapper>() == null)
-    //     {
-    //         Debug.LogWarning("The given npc prefab: " + npcPrefab.name + " does not have an EntityWrapper component on its root object. Aborted spawning.");
-    //         return null;
-    //     }
-
-    //     if (actualSpawnPosition == Vector3Int.zero)
-    //     {
-    //         Debug.LogWarning("The given npc prefab: " + npcPrefab.name + " could not find a valid spawn position.");
-    //         return null;
-    //     }
-
-
-    //     GameObject npcObject = Instantiate(npcPrefab, actualSpawnPosition, Quaternion.identity, SpawnObjectParent.transform);
-    //     StageEntity npcEntity = npcObject.GetComponent<EntityWrapper>().stageEntity;
-    //     currentActiveNPCS.Add(npcEntity);
-    //     npcEntity.OnDestructionEvent += RemoveNPCFromActiveList;
-    //     ActiveStageEntities = currentActiveNPCS;
-    //     return npcEntity;
-    // }
-
-
 
 
     //Spawns a given NPC prefab - this prefab must have an EntityWrapper component on the root object or it will abort spawning.
@@ -693,7 +659,13 @@ public class SpawnManager : MonoBehaviour
 
     public void RemoveNPCFromActiveList(StageEntity entity, Vector3Int deathPosition)
     {
-        currentActiveNPCS.Remove(entity);
+        bool removeSuccess;
+        removeSuccess = currentActiveNPCS.Remove(entity);
+        if(!removeSuccess)
+        {
+            Debug.LogWarning("Could not remove entity: " + entity.name + " from active npc list, entity does not exist in the list.", this);
+        }
+
         ActiveStageEntities = currentActiveNPCS;
         if(currentActiveNPCS.Count == 0)
         {

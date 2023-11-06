@@ -8,6 +8,8 @@ public class GlobalResourceManager : MonoBehaviour
     private static List<RuntimeBonusScoreItem> runtimeBonusScoreItems = new List<RuntimeBonusScoreItem>();
     public static List<RuntimeBonusScoreItem> BonusScoreItems{ get{ return runtimeBonusScoreItems; }}
 
+    [SerializeField] List<RuntimeBonusScoreItem> bonusScoreItems = new List<RuntimeBonusScoreItem>();
+
 
 
     private void Awake() 
@@ -36,6 +38,7 @@ public class GlobalResourceManager : MonoBehaviour
             runtimeBonusScoreItems.Add(scoreItem);
         }
 
+        bonusScoreItems = runtimeBonusScoreItems;
 
     }
 
