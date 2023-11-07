@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\StageSpecificScripts\PortalToStageSelect.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerCardManager.cs" />
+    <Compile Include="Assets\Scripts\StageSelectionScripts\ProceduralZoneGenerator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Scripts\StageSpecificScripts\TutorialController.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\SpawnManager.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets\Scripts\CardObjectReference.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\RightClickEventTrigger.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\CardMagazineIndicator.cs" />
+    <Compile Include="Assets\Scripts\StageSelectionScripts\MapPreviewGenerator.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\GameErrorHandler.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\TrophyEnding.cs" />
     <Compile Include="Assets\Scripts\StageSelectionScripts\StageSelectionManager.cs" />
@@ -111,6 +113,7 @@
     <Compile Include="Assets\Scripts\StageSelectionScripts\MapLevel.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\FreezeMine.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
+    <Compile Include="Assets\ScriptableObjects\MapPoolSO.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleSprite.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\TrainingDummy.cs" />
@@ -166,6 +169,7 @@
     <Compile Include="Assets\Scripts\ManagerScripts\RewardConditionChecks.cs" />
     <Compile Include="Assets\PropertyAttributes\RewardMethodSelectorAttribute.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
+    <Compile Include="Assets\Scripts\StageSelectionScripts\MapZone.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Vampire\VampireBomb.cs" />
     <Compile Include="Assets\Scripts\CardScripts\ThreeWaysDagger.cs" />
@@ -223,10 +227,6 @@
     <Compile Include="Assets\Scripts\ObjectScripts\ShieldBeacon.cs" />
     <Compile Include="Assets\ScriptableObjects\SpawnTableSO.cs" />
     <Compile Include="Assets\Scripts\StageEntityScripts\StageEntity.cs" />
-    <Compile Include="Assets\Scripts\StageSelectionScripts\MapPreviewGenerator.cs" />
-    <Compile Include="Assets\Scripts\StageSelectionScripts\MapZone.cs" />
-    <Compile Include="Assets\Scripts\StageSelectionScripts\ProceduralZoneGenerator.cs" />
-    <Compile Include="Assets\ScriptableObjects\MapPoolSO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -242,21 +242,29 @@
     <None Include="Assets\Sprites\Free Art Assets\Dungeon Crawl Stone Soup Full\README.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\Sounds\ButtonSFXPack3_HiTech_Circlerun\source.txt" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\ParameterPresetFolder\{c0d303b8-9419-4f51-8955-7dcfe585c9b0}.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Sprites\Free Art Assets\CraftPix_rpg_monster_sprites_OGA-BY3\source.txt" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\ProfilerFolder\{80c278a2-9c63-4e65-a584-04f3c10044fc}.xml" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Tags.xml" />
     <None Include="Assets\Sprites\Free Art Assets\CraftPix_cyberpunk_characters\Font.txt" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\EffectPresetFolder\{b9439793-9ba7-4c5a-a261-43852913ae16}.xml" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\BankFolder\{68c555d0-3a71-4287-a5c2-0ca33cdd34ce}.xml" />
     <None Include="Assets\Sprites\Free Art Assets\Cainos\Pixel Art Top Down - Basic\Shader\SH Sprite Shadow.shader" />
     <None Include="Assets\Sprites\stage_map\Cartography_Pack_Kenney_CC0\License.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\Sprites\Free Art Assets\CraftPix_halloween_characters\source.txt" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Workspace.xml" />
     <None Include="Assets\DOTween\DOTween.XML" />
     <None Include="Assets\Sprites\Free Art Assets\CraftPix_halloween_characters\Font.txt" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\EncodingSetting\{c8fdb9df-ee64-46df-82ac-785e90a63c4a}.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\Sprites\Free Art Assets\SimplePixelUI\fonts\Font1\license.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Mixer.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Sprites\Free Art Assets\CraftPix_cyberpunk_characters\source.txt" />
@@ -265,12 +273,17 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Sounds\UI_SFX_Set_Kenney\readme.txt" />
     <None Include="Assets\Sprites\Free Art Assets\Dungeon Crawl Stone Soup Full\LICENSE.txt" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Master.xml" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{3ecf0baa-ff82-448b-8700-33ca9125eaef}.xml" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\SandboxFolder\{a83fc5db-8344-49c8-bc4b-fc669560bbb1}.xml" />
     <None Include="Assets\Sprites\Free Art Assets\CraftPix_enemies_for_platformer_OGA-BY3\Font.txt" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\EventFolder\{1ce6c5d6-b30e-4b2c-a0a1-a2a58da8d504}.xml" />
     <None Include="Assets\Sprites\Free Art Assets\SimplePixelUI\fonts\Font1\readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Sprites\Free Art Assets\OccaSoftware_Crosshairs\Crosshairs\Readme.txt" />
     <None Include="Assets\Sounds\GUI_Sound_Effects_by_Lokif\source.txt" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Return\{4b4b747f-c7e9-4a35-ad3a-133a6ee45562}.xml" />
     <None Include="Assets\Sprites\Free Art Assets\SimplePixelUI\fonts\Font2\readme.txt" />
     <None Include="Assets\Sprites\Free Art Assets\CraftPix_enemies_for_platformer_OGA-BY3\source.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
@@ -284,8 +297,11 @@
     <None Include="Assets\Sprites\stage_map\BoardGameIcones_Kenney_CC0\License.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\Sounds\Casino_sound_package_Kenney\readme.txt" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Bank\{47dbf492-d841-4389-a583-8c920a216132}.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\SnapshotGroup\{3a2bfd99-22f3-4e1d-bcc3-55f591fef8b4}.xml" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Platform\{60cb9634-6236-4dc0-a71c-81a556131204}.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -1089,6 +1105,10 @@
     <ProjectReference Include="Unity.2D.SpriteShape.Editor.csproj" />
     <ProjectReference Include="Unity.2D.Common.Editor.csproj" />
     <ProjectReference Include="Unity.2D.SpriteShape.Runtime.csproj" />
+    <ProjectReference Include="FMODUnityResonanceEditor.csproj" />
+    <ProjectReference Include="FMODUnity.csproj" />
+    <ProjectReference Include="FMODUnityEditor.csproj" />
+    <ProjectReference Include="FMODUnityResonance.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>

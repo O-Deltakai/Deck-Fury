@@ -1668,6 +1668,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1638335204, guid: 0adb2a3a7f21e4a459884c885cf51f08, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.9577637
+      objectReference: {fileID: 0}
     - target: {fileID: 6903021188174652529, guid: 0adb2a3a7f21e4a459884c885cf51f08, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -4493,14 +4497,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1803204176
-AudioListener:
+--- !u!114 &1803204176
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1803204175}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!20 &1803204177
 Camera:
   m_ObjectHideFlags: 0
