@@ -65,12 +65,15 @@ public class MapStage : MonoBehaviour
         levelController = GameErrorHandler.NullCheck(PersistentLevelController.Instance, "PersistentLevelController");
         stageSelectionManager = GameErrorHandler.NullCheck(StageSelectionManager.Instance, "StageSelectionManager");
 
-
-
         SetStageType(TypeOfStage);
 
-
     }
+
+    public void GenerateStageValues()
+    {
+        int difficultyTier = mapLevel.LevelTier;
+    }
+
 
     void CreateMapPreview()
     {
@@ -85,6 +88,7 @@ public class MapStage : MonoBehaviour
 
     public void ToggleMapPreview(bool toggle)
     {
+        if(!StageButton.interactable) { return; }
         if(!mapLayoutPrefab) { return; }
         if(IsMysteryStage){ return; }
 
@@ -198,6 +202,7 @@ public class MapStage : MonoBehaviour
 
     public void SelectStageButton()
     {
+        ToggleMapPreview(false);
         levelController.LoadMapStage(this);
     }
 

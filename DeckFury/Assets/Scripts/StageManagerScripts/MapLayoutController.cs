@@ -5,6 +5,9 @@ using UnityEngine.Tilemaps;
 
 public class MapLayoutController : MonoBehaviour
 {
+    [SerializeField] GameObject _mapPrefab;
+    public GameObject MapPrefab {get { return _mapPrefab; }}
+
     [SerializeField] Tilemap GroundTilemap;
     [SerializeField] Tilemap WallTilemap;
 

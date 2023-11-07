@@ -29,6 +29,12 @@ public class WaveTable
 public class SpawnTableSO : ScriptableObject
 {
 
+[Tooltip("The difficulty variable for this spawn table which dictates when and where this spawn table will be placed on the stage select " +
+"as well as other elements like randomly generated hazards, the quality of rewards etc.")]
+    [Range(0, 10)]
+    [SerializeField] int _difficultyTier;
+    public int DifficultyTier{get { return _difficultyTier; }}
+
     [field:SerializeField] public List<WaveTable> WaveList {get; private set;}
 
 

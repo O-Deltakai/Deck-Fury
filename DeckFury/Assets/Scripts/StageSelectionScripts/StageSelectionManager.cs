@@ -36,6 +36,7 @@ public class StageSelectionManager : MonoBehaviour
         travelLineIndicator.SetActive(false);
         mapLevels = stageMap.GetComponentsInChildren<MapLevel>();
         InitializeMapLevels();
+        
         gameManager = GameErrorHandler.NullCheck(GameManager.Instance, "GameManager");
         levelController = GameErrorHandler.NullCheck( PersistentLevelController.Instance, "PersistentLevelController");
         levelController.PlayerData.OnPlayerDataModified += SetTotalScoreText;

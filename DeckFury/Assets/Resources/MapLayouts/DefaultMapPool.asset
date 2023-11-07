@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9613bc49b357c843934c6037e111958, type: 3}
+  m_Name: DefaultMapPool
+  m_EditorClassIdentifier: 
+  _mapPoolName: Default Map Pool
+  _standardMaps:
+  - {fileID: 820024095548293756, guid: 8e03e5e7a7c3fed4697dd5d2b03f4624, type: 3}
+  - {fileID: 914633587189270801, guid: a6c681a9d80ca4b4ea2ac6fc8c1a9b70, type: 3}
+  _intermediateMaps:
+  - {fileID: 914633587189270801, guid: 0f508bf3330c22846b2821abf017ec26, type: 3}
+  - {fileID: 820024095548293756, guid: fd1b22b9cfd2e8746b5ad099b7ba2b5b, type: 3}
+  _advancedMaps:
+  - {fileID: 820024095548293756, guid: 778e27b3407e65248a65f5eb56dc1c04, type: 3}
+  - {fileID: 914633587189270801, guid: 0f56c23610a7aef41bb07b1d1016f9f1, type: 3}
+  - {fileID: 820024095548293756, guid: edb5fe77989a5cb4a8d9141b7d173a51, type: 3}
