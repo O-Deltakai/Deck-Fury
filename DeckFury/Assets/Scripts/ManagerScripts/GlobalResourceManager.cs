@@ -4,23 +4,40 @@ using UnityEngine;
 
 public class GlobalResourceManager : MonoBehaviour
 {
+    static GlobalResourceManager _instance;
+    public GlobalResourceManager Instance {get { return _instance; }}
+
+
+
     [SerializeReference] ScoreRewardTableSO scoreRewardTable;
     private static List<RuntimeBonusScoreItem> runtimeBonusScoreItems = new List<RuntimeBonusScoreItem>();
     public static List<RuntimeBonusScoreItem> BonusScoreItems{ get{ return runtimeBonusScoreItems; }}
-
     [SerializeField] List<RuntimeBonusScoreItem> bonusScoreItems = new List<RuntimeBonusScoreItem>();
 
+
+    [SerializeReference] MapPoolSO _mapPool;
+    private static MapPoolSO gameMapPool;
+    public static MapPoolSO GameMapPool { get { return gameMapPool; }}
 
 
     private void Awake() 
     {
+
     }
 
     void Start()
     {
         InitializeBonusScoreItems();
-        
+        _instance = this;
     }
+
+
+
+    void InitializeMapPool()
+    {
+        gameMapPool = _mapPool;
+    }
+
 
     void InitializeBonusScoreItems()
     {

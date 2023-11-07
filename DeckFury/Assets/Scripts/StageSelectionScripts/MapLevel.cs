@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MapLevel : MonoBehaviour
 {
+    public MapZone mapZone;
     [SerializeField] List<MapStage> stages;
     [SerializeField] int _levelTier;
     public int LevelTier{get { return _levelTier; }}
@@ -17,6 +18,14 @@ public class MapLevel : MonoBehaviour
 
 
     }
+
+    public List<MapStage> GenerateMapStages()
+    {
+        List<MapStage> generatedStages = new List<MapStage>();
+
+
+        return generatedStages;
+    } 
 
     void GetStagesFromChildren()
     {

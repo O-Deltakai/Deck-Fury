@@ -149,7 +149,9 @@ public class StageEntity : MonoBehaviour
         OnShieldHPChanged += UpdateShieldValue;
         OnHPChanged += UpdateHPValue;
 
-        stageManager = GameErrorHandler.NullCheck(StageManager.Instance, "Stage Manager");
+        //stageManager = GameErrorHandler.NullCheck(StageManager.Instance, "Stage Manager");
+
+        stageManager = StageManager.Instance;
 
         if(stageManager)
         {
