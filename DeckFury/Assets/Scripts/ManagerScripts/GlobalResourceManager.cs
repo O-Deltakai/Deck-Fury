@@ -28,6 +28,7 @@ public class GlobalResourceManager : MonoBehaviour
     void Start()
     {
         InitializeBonusScoreItems();
+        InitializeMapPool();
         _instance = this;
     }
 
