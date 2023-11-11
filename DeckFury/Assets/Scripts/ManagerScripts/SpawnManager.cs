@@ -518,8 +518,15 @@ public class SpawnManager : MonoBehaviour
     }
 
 
-    //Spawns a given NPC prefab - this prefab must have an EntityWrapper component on the root object or it will abort spawning.
-    //If safetyNet is set to true (which it is by default), then method will try to find a valid position to spawn the npc in a 2 tile radius before aborting.
+
+    /// <summary>
+    /// Spawns a given NPC prefab - this prefab must have an EntityWrapper component on the root object or it will abort spawning.
+    /// If safetyNet is set to true (which it is by default), then method will try to find a valid position to spawn the npc in a 2 tile radius before aborting.
+    /// </summary>
+    /// <param name="npcPrefab"></param>
+    /// <param name="position"></param>
+    /// <param name="safetyNet"></param>
+    /// <returns></returns>
    public StageEntity SpawnNPCPrefab(GameObject npcPrefab, Vector3Int position, bool safetyNet = true)
         {
             Vector3Int actualSpawnPosition = position;
@@ -584,6 +591,7 @@ public class SpawnManager : MonoBehaviour
             int retryCount = 0;
             Vector3Int spawnPosition;
 
+            //Find a random position within the ground tile map
             while(!stageManager.CheckValidTile(stageManager.groundTileList[index].localCoordinates) && retryCount < 20)
             {
                 index = Random.Range(0, stageManager.groundTileList.Count);
@@ -607,12 +615,7 @@ public class SpawnManager : MonoBehaviour
             }    
 
             SpawnNPCPrefab(npcSpawnData.NPCPrefab, spawnPosition);
-
-
-
         }
-
-
     }
 
     //Initializes a round by getting a number of random tiles on the board and instantiating NPCs from the NPCSpawnTable on those random tiles.
@@ -672,10 +675,6 @@ public class SpawnManager : MonoBehaviour
             currentWaveCounter++;
             OnWaveEnd?.Invoke(currentWaveCounter);
         }
-    }
-    public void SubscribeNPCsToEvent(List<StageEntity> activeNPCs, EventArgs method)
-    {
-
     }
 
 
