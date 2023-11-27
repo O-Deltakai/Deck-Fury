@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using TMPro;
 using Color = UnityEngine.Color;
+using System.Collections.Generic;
 
 public enum ForceMoveMode
 {
@@ -19,8 +20,10 @@ public enum ForceMoveMode
 [RequireComponent(typeof(EntityUIElementAnimator))]
 public class StageEntity : MonoBehaviour
 {
-
     [SerializeField] protected Ease MovementEase;
+
+#region Events and Delegates
+
 
     public delegate void TweenMoveEventHandler(Vector3Int startPosition, Vector3Int destination);
     public event TweenMoveEventHandler OnTweenMove;
@@ -41,6 +44,9 @@ public class StageEntity : MonoBehaviour
 
     public delegate void CurrentHPChangedHandler(int oldValue, int newValue);
     public event CurrentHPChangedHandler OnHPChanged;
+
+#endregion
+
 
     //The anchor point of this entity on the world - should normally correspond to a valid tile position on the GroundTileMap
     //The transform that will be used when doing calculations/methods involving moving the entity from cell to cell.
@@ -111,15 +117,17 @@ public class StageEntity : MonoBehaviour
             }
         }
     }
-
-    [Range(0, 3)]
-    public int armorTier = 0;
     
 
-    [Range(0, 100)]
-    public int armor = 0;
-    [Range(0.1f, 10f)]
-    public double defense = 1;
+    [Range(0, 100)] public int armor = 0;
+    [Range(0.1f, 10f)] public double defense = 1;
+
+    [SerializeField] List<AttackElement> weaknesses; // What attack elements is this entity weak to (take bonus damage from)?
+    [SerializeField] double weaknessModifier = 1.5f;
+    [SerializeField] List<AttackElement> resistances; // What attack elements is this entity resistant to?
+    [SerializeField] double resistModifier = 0.5f;
+
+
 
     [SerializeField] protected TextMeshPro HPText;
     public Color DefaultHPTextColor {get; private set;}
@@ -611,7 +619,16 @@ public class StageEntity : MonoBehaviour
                     OnDamageTaken?.Invoke(damageAfterModifiers);
                 }                
             }
-
+            
+            //Check resist/weakness to attack element to calculate final damage
+            if(CheckWeakness(finalPayload.attackElement))
+            {
+                damageAfterModifiers = (int)(damageAfterModifiers * weaknessModifier);
+            }
+            if(CheckResistance(finalPayload.attackElement))
+            {
+                damageAfterModifiers = (int)(damageAfterModifiers * resistModifier);
+            }
 
             CurrentHP -= damageAfterModifiers;
             
@@ -659,8 +676,17 @@ public class StageEntity : MonoBehaviour
                 }
             }
             
+            //Check resist/weakness to attack element to calculate final damage
+            if(CheckWeakness(finalPayload.attackElement))
+            {
+                damageAfterModifiers = (int)(damageAfterModifiers * weaknessModifier);
+            }
+            if(CheckResistance(finalPayload.attackElement))
+            {
+                damageAfterModifiers = (int)(damageAfterModifiers * resistModifier);
+            }            
+
             CurrentHP -= damageAfterModifiers;
-            //OnDamageTaken?.Invoke(damageAfterModifiers);
             
         }
 
@@ -671,6 +697,32 @@ public class StageEntity : MonoBehaviour
             StartCoroutine(DestroyEntity(payload));
             OnCauseOfDeath?.Invoke(payload.causeOfDeathNote, payload, this);
         }
+    }
+
+    bool CheckWeakness(AttackElement attackElement)
+    {
+        foreach(AttackElement element in weaknesses)
+        {
+            if(attackElement == element)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    bool CheckResistance(AttackElement attackElement)
+    {
+        foreach(AttackElement element in resistances)
+        {
+            if(attackElement == element)
+            {
+                return true;
+            }
+        }
+
+        return false;        
     }
 
     //TODO: Method which calculates the final damage output of an attack payload given this entity's stats. Also handles the

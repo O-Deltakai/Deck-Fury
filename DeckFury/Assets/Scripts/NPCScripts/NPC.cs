@@ -8,6 +8,9 @@ public class NPC : StageEntity
     public delegate void NPCDefeatEventHandler(AttackPayload? killingBlow, NPC npc);
     public event NPCDefeatEventHandler OnNPCDefeat;
 
+    [SerializeField] EnemyDataSO enemyData;
+
+
     public PlayerController player;
     [Range(1, 8)]
     [SerializeField] int enemyTier = 1;
