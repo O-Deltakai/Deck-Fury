@@ -30,6 +30,21 @@ public class EnemyDataSO : ScriptableObject
     [SerializeField] List<AttackElement> _resistances;
     public List<AttackElement> Resistances{get{ return _resistances; }}
 
+[Header("Information")]
+    [SerializeField, TextArea(10, 20)] string _enemyDescription;
+    
+    [SerializeField, TextArea(5, 20)] string[] _notes;
+    
+    public string GetFormattedDescription()
+    {
+        return _enemyDescription;
+    }
+
+    public string[] GetFormattedNotes()
+    {
+        return _notes;
+    }
+
 
 
 

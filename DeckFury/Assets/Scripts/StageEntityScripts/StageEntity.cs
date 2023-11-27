@@ -45,6 +45,10 @@ public class StageEntity : MonoBehaviour
     public delegate void CurrentHPChangedHandler(int oldValue, int newValue);
     public event CurrentHPChangedHandler OnHPChanged;
 
+    public event Action OnTakeCritDamage;
+    public event Action OnResistDamage;
+
+
 #endregion
 
 
@@ -584,7 +588,7 @@ public class StageEntity : MonoBehaviour
         {
             int originalShieldHP = ShieldHP;
             bool wentThroughShields = false;
-            //Check shield damage - shields do not inherit armor or defense on entity so shields will always take normal/full damage from payload.
+            //Check shield damage - shields do not inherit armor or defense or weaknesses/resists on entity so shields will always take normal/full damage from payload.
             //However, breaking attacks deal damage to shields at 2x efficiency
             ShieldHP -= finalPayload.damage * 2;
             UIElementAnimator.AnimateShakeNumber(ShieldsText, finalPayload.damage * 2, DefaultShieldTextColor, Color.red);
@@ -619,15 +623,17 @@ public class StageEntity : MonoBehaviour
                     OnDamageTaken?.Invoke(damageAfterModifiers);
                 }                
             }
-            
+
             //Check resist/weakness to attack element to calculate final damage
             if(CheckWeakness(finalPayload.attackElement))
             {
                 damageAfterModifiers = (int)(damageAfterModifiers * weaknessModifier);
+                OnTakeCritDamage?.Invoke();
             }
             if(CheckResistance(finalPayload.attackElement))
             {
                 damageAfterModifiers = (int)(damageAfterModifiers * resistModifier);
+                OnResistDamage?.Invoke();
             }
 
             CurrentHP -= damageAfterModifiers;
@@ -680,10 +686,12 @@ public class StageEntity : MonoBehaviour
             if(CheckWeakness(finalPayload.attackElement))
             {
                 damageAfterModifiers = (int)(damageAfterModifiers * weaknessModifier);
+                OnTakeCritDamage?.Invoke();
             }
             if(CheckResistance(finalPayload.attackElement))
             {
                 damageAfterModifiers = (int)(damageAfterModifiers * resistModifier);
+                OnResistDamage?.Invoke();
             }            
 
             CurrentHP -= damageAfterModifiers;

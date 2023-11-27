@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71290df93db6db8489be3cf517e396e4, type: 3}
-  m_Name: Zombie
+  m_Name: Bandit
   m_EditorClassIdentifier: 
-  _enemyName: Zombie
-  _maxHP: 100
-  _shieldHP: 0
+  _enemyName: Bandit
+  _maxHP: 10
+  _shieldHP: 40
   _armor: 0
   _defense: 1
-  _weaknesses: 02000000
+  _weaknesses: 
   _resistances: 
-  _enemyDescription: 'Fairly basic enemy. Follows the player around and attempts
-    to attack them once adjacent to them. Weak against fire damage.
+  _enemyDescription: 'Basic enemy which shoots a bullet at the player at regular
+    intervals.
 
 
-    Not much
-    of a threat in small numbers or open areas, but can become problematic in large
-    numbers or tight spaces due to their relatively high health pool.'
-  _notes: []
+    Vulnerable against pure damage or other shield piercing effects
+    due to their low health pool.'
+  _notes:
+  - Vulnerable to shield-piercing damage/effects.
