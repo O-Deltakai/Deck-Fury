@@ -88,16 +88,12 @@ public class CardPoolManager : MonoBehaviour
         player = GameErrorHandler.NullCheck(GameManager.Instance.player, "Player from GameManager instance");
         TargetingReticlePoolParent = player.aimpoint.TargetingReticleAnchor;
 
-
-
         if(stageController != null && currentActiveDeck != null && currentActiveDeck.CardList != null && currentActiveDeck.CardList.Count > 0)
         {
 
             print("pooling objects from active game deck");
             PoolObjectsFromDeck(currentActiveDeck); 
             PoolReticlesFromDeck(currentActiveDeck);
-        
-
         }else
         {
             print("pooling objects from default deck");
@@ -105,8 +101,6 @@ public class CardPoolManager : MonoBehaviour
             PoolReticlesFromDeck(defaultDeck);
         }
         
-
-
         OnCompletePooling?.Invoke();        
     }
 
@@ -210,11 +204,9 @@ public class CardPoolManager : MonoBehaviour
                 cardSO = deckElement.card,
                 effectPrefab = effectPrefab.gameObject,
                 objectSummonPrefabs = effectPrefab.ObjectSummonList
-
             };
 
             CardObjectReferences.Add(cardObjectReference);
-
         }
 
 
