@@ -572,14 +572,14 @@ public class StageEntity : MonoBehaviour
             statusEffectManager.TriggerStatusEffect(statusEffect);
         }
 
-        // foreach(StatusEffect statusEffect in finalPayload.actualStatusEffects)
-        // {
-        //     if(statusEffect.statusEffectType == StatusEffectType.None)
-        //     {
-        //         continue;
-        //     }
-        //     statusEffectManager.TriggerStatusEffect(finalPayload, statusEffect);
-        // }
+        foreach(StatusEffect statusEffect in finalPayload.actualStatusEffects)
+        {
+            if(statusEffect.statusEffectType == StatusEffectType.None)
+            {
+                continue;
+            }
+            statusEffectManager.TriggerStatusEffect(finalPayload, statusEffect);
+        }
 
 
         int damageAfterModifiers;

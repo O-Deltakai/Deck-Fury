@@ -131,7 +131,8 @@ public class Vampire : NPC
 
 
     //movement priority (normal): spawn>ATK
-    void MovementModerator(){
+    void MovementModerator()
+    {
 
         if(totalZombiesSpawned < maxZombiesAllowed)
         {
@@ -157,23 +158,30 @@ public class Vampire : NPC
     }
 
     //fury>strong>low>move
-    void ATKModerator(){
-            if(canAttack)
-                {
-                    if(entityStatus == EntityStatus.Fury){
-                        StartCoroutine(FuryATK());
-                    }else{
-                        if(entityStatus == EntityStatus.Low && canStrongAttack){
-                            attackWindUpCoroutine = StartCoroutine(StrongATK());
-                        }
-                        else{
-                            attackWindUpCoroutine = StartCoroutine(NormalATK());
-                        }
-                    }
-                }
-            else{
-                WanderBehaviour();
+    void ATKModerator()
+    {
+        if(canAttack)
+        {
+            if(entityStatus == EntityStatus.Fury)
+            {
+                StartCoroutine(FuryATK());
             }
+            else
+            {
+                if(entityStatus == EntityStatus.Low && canStrongAttack)
+                {
+                    attackWindUpCoroutine = StartCoroutine(StrongATK());
+                }
+                else
+                {
+                    attackWindUpCoroutine = StartCoroutine(NormalATK());
+                }
+            }
+        }
+        else
+        {
+            WanderBehaviour();
+        }
     }
 
   
@@ -321,11 +329,12 @@ public class Vampire : NPC
         StartCoroutine(SpawnCooldown()); 
     }
 
-    void SummonZombie(){
+    void SummonZombie()
+    {
         
         ZombieAStar zombie = (ZombieAStar)spawnManager.SpawnNPCPrefab(zombiePrefab, currentTilePosition, true);
         zombie.CurrentHP = 50;
-        zombie.OnCauseOfDeath+=ZombieBombSetting;
+        zombie.OnCauseOfDeath += ZombieBombSetting;
         totalZombiesSpawned++;
     }
 
@@ -379,7 +388,8 @@ public class Vampire : NPC
     void FireBlood()
     {   
         List<Vector3Int> targetTiles = GetTilesCardinalAdjacentToTarget(player.currentTilePosition);
-        foreach(var tile in targetTiles){
+        foreach(var tile in targetTiles)
+        {
             
             Vector3 direction = tile - transform.position;
 
@@ -413,11 +423,13 @@ public class Vampire : NPC
 
         
         //reset status to normal or low
-        if(CurrentHP<=lowHP){
-            entityStatus=EntityStatus.Low;
+        if(CurrentHP <= lowHP)
+        {
+            entityStatus = EntityStatus.Low;
         }
-        else{
-            entityStatus=EntityStatus.Normal;
+        else
+        {
+            entityStatus= EntityStatus.Normal;
         }
 
         ShieldHP+=50;
@@ -444,7 +456,8 @@ public class Vampire : NPC
         entityAnimator.PlayOneShotAnimation(animation);
         yield return new WaitForSeconds(animationDuration);
 
-        for (int i =0; i < furyCount; i++){
+        for (int i = 0; i < furyCount; i++)
+        {
             int randomIndex = Random.Range(0, mapSize);
             FuryBlastSet(stageManager.groundTileList[randomIndex].localCoordinates);
             yield return new WaitForSeconds(0.1f);
@@ -466,13 +479,14 @@ public class Vampire : NPC
 
 
     //Instantiates fury object with necessary variables set
-    void FuryBlastSet(Vector3Int targetTile){
-            VampireBomb blast = Instantiate(furyATKPrefab, targetTile, transform.rotation).GetComponent<VampireBomb>();
-            stageManager.SetVFXTile(stageManager.DangerVFXTile, GetTilesAdjacentToTarget(targetTile), furyATKWindupDuration);
-            blast.explosionDelay=furyATKWindupDuration;
-            blast.attackPayload = furyATKPayload;
-            blast.attackPayload.damage *= aTKMultiplier;
-            blast.gameObject.SetActive(true);
+    void FuryBlastSet(Vector3Int targetTile)
+    {
+        VampireBomb blast = Instantiate(furyATKPrefab, targetTile, transform.rotation).GetComponent<VampireBomb>();
+        stageManager.SetVFXTile(stageManager.DangerVFXTile, GetTilesAdjacentToTarget(targetTile), furyATKWindupDuration);
+        blast.explosionDelay = furyATKWindupDuration;
+        blast.attackPayload = furyATKPayload;
+        blast.attackPayload.damage *= aTKMultiplier;
+        blast.gameObject.SetActive(true);
     }
 
     //copy from leaper

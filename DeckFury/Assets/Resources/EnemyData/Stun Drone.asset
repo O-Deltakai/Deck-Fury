@@ -19,5 +19,9 @@ MonoBehaviour:
   _defense: 1
   _weaknesses: 04000000
   _resistances: 
-  _enemyDescription: 
-  _notes: []
+  _enemyDescription: "Basic enemy. This drone flies towards a tile adjacent to the
+    player in an attempt to shock them with a stunning attack. \n\nVery dangerous
+    in groups of 2 - 4, as they can trap and stun-lock the player if caught. Make
+    good use of your dash in order to dodge their attacks should they surround you.\n"
+  _notes:
+  - Stun Drone's attacks stun the player.
