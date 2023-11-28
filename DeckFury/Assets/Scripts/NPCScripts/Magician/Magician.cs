@@ -13,12 +13,9 @@ public class Magician : NPC
     }
 
 //The current mood of the Magician defines what attacks they will do and how quickly they move.
-    enum Mood
-    {
-        Normal,
-        Angry,
-        Desperate
-    }
+    enum Mood {Normal, Angry, Desperate}
+
+    [SerializeField] Mood currentMood;
 
     //Percentage of starting hp before they enter Angry/Desperate mood.
     [SerializeField, Range(0, 1)] float angryThreshold;
@@ -27,18 +24,7 @@ public class Magician : NPC
     int startingHP;
 
 
-    // The Zombie prefab to spawn
-    [SerializeField] GameObject zombiePrefab;
-    [SerializeField] VampireBasicAttack BasicAttack;
-    [SerializeField] GameObject targetingReticle;
-    //zombie bomb prefab
-    [SerializeField] GameObject zombieBombPrefab;
-    //normal attack prefab
-    [SerializeField] GameObject darkOrbPrefab;
-    //strong attack prefab
-    [SerializeField] GameObject bloodBoltPrefab;
-    //fury attack prefab
-    [SerializeField] GameObject furyAttackPrefab;
+
 
 
 }
