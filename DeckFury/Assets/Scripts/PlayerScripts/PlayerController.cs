@@ -24,6 +24,8 @@ public class PlayerController : StageEntity
     [field:SerializeField] public AimpointController aimpoint{get;private set;}
     [SerializeField] GameObject basicShotProjectile;
     [SerializeField] int basicShotDamage;
+
+    PlayerDashController dashController;
     PlayerAnimationController animationController;
     PlayerCardManager cardManager;
 
@@ -47,6 +49,7 @@ public class PlayerController : StageEntity
         animationController = GetComponent<PlayerAnimationController>();
         cardManager = GetComponent<PlayerCardManager>();
         playerCollider = GetComponent<BoxCollider2D>();
+        dashController = GetComponent<PlayerDashController>();
 
         
         //implement for energy system
@@ -222,6 +225,35 @@ public class PlayerController : StageEntity
 
     }
 
+    public void Dash(InputAction.CallbackContext context)
+    {
+
+        if(context.performed)
+        {
+            if(!dashController.CanDash())
+            {
+                dashController.inputPressedDuringCooldown = true;
+                return;
+            }
+
+            dashController.DashReticle.SetActive(true);
+        }
+        else if(context.canceled)
+        {
+            if(dashController.inputPressedDuringCooldown)
+            {
+                dashController.inputPressedDuringCooldown = false;
+                return;
+            }
+
+            if(dashController.CanDash())
+            {
+                dashController.DashTowardsAim();
+                dashController.DashReticle.SetActive(false);
+            }
+
+        }
+    }
 
 
 #endregion

@@ -39,6 +39,9 @@ public class PlayerCardManager : MonoBehaviour
 
     public bool CanUseCards = true;
 
+    Coroutine CR_CardUseInProgress = null;
+    public Coroutine CardInUseCoroutine { get { return CR_CardUseInProgress; }}
+
     private void Awake()
     {
         animationController = GetComponent<PlayerAnimationController>();    

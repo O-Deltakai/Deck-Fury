@@ -13,9 +13,17 @@ public class PlayerDashController : MonoBehaviour
     [SerializeField] AnimationClip dashAnimation;
 
     [SerializeField] AimpointController aimpoint;
+    [SerializeField] GameObject _dashReticle;
+    public GameObject DashReticle {get { return _dashReticle; }}
+
+
+
+[Header("Dash Variables")]
     [SerializeField, Min(0)] int dashDistance = 3;
     [SerializeField, Min(0)] float dashSpeed = 0.15f;
     [SerializeField, Min(0)] float dashCooldown;
+
+    public bool inputPressedDuringCooldown = false;
 
     bool usedDash = false;
 
@@ -38,17 +46,18 @@ public class PlayerDashController : MonoBehaviour
 
         if(context.started)
         {
-            
+            _dashReticle.SetActive(true);
         }
 
         if(context.canceled)
         {
             DashTowardsAim();
+            _dashReticle.SetActive(false);
         }
 
     }
 
-    bool CanDash()
+    public bool CanDash()
     {
         if(usedDash)
         {
@@ -59,7 +68,7 @@ public class PlayerDashController : MonoBehaviour
     }
 
 
-    void DashTowardsAim()
+    public void DashTowardsAim()
     {
         int x = aimpoint.GetAimVector3Int().x * dashDistance;
         int y = aimpoint.GetAimVector3Int().y * dashDistance;
