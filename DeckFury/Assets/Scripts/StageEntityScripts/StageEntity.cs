@@ -126,10 +126,10 @@ public class StageEntity : MonoBehaviour
     [Range(0, 100)] public int armor = 0;
     [Range(0.1f, 10f)] public double defense = 1;
 
-    [SerializeField] List<AttackElement> weaknesses; // What attack elements is this entity weak to (take bonus damage from)?
-    [SerializeField] double weaknessModifier = 1.5f;
-    [SerializeField] List<AttackElement> resistances; // What attack elements is this entity resistant to?
-    [SerializeField] double resistModifier = 0.5f;
+    [SerializeField] protected List<AttackElement> weaknesses; // What attack elements is this entity weak to (take bonus damage from)?
+    [SerializeField] protected double weaknessModifier = 1.5f;
+    [SerializeField] protected List<AttackElement> resistances; // What attack elements is this entity resistant to?
+    [SerializeField] protected double resistModifier = 0.5f;
 
 
 

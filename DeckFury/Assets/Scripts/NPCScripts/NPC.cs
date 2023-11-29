@@ -22,7 +22,10 @@ public class NPC : StageEntity
 
     protected void InitializeNPCAwakeVariables()
     {
-
+        if(enemyData)
+        {
+            AssignData(enemyData);
+        }
     }
 
     protected void InitializeNPCStartVariables()
@@ -42,6 +45,20 @@ public class NPC : StageEntity
         base.Start();
 
     }
+
+    void AssignData(EnemyDataSO data)
+    {
+        foreach(AttackElement weakness in data.Weaknesses)
+        {
+            weaknesses.Add(weakness);
+        }
+        foreach(AttackElement resist in data.Resistances)
+        {
+            resistances.Add(resist);
+        }
+
+    }
+
 
     protected override void AdditionalDestructionEvents(AttackPayload? killingBlow = null)
     {

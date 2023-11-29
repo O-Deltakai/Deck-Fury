@@ -23,10 +23,11 @@ public class EnemyDataSO : ScriptableObject
     [SerializeField, Range(0.1f, 10f)] double _defense = 1;
     public double Defense {get { return _defense; }}
 
-
+[Tooltip("The list of attack elements this enemy will take bonus damage from.")]
     [SerializeField] List<AttackElement> _weaknesses;
     public List<AttackElement> Weaknesses{get{ return _weaknesses; }}
 
+[Tooltip("The list of attack elements this enemy will take reduced damage from.")]
     [SerializeField] List<AttackElement> _resistances;
     public List<AttackElement> Resistances{get{ return _resistances; }}
 
