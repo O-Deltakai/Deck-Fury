@@ -157,7 +157,7 @@ public class ZombieAStar : NPC
 
         BasicAttack.FaceTowardsAimpoint(aimDirection);
         
-        stageManager.SetVFXTile(stageManager.DangerVFXTile,
+        _stageManager.SetVFXTile(_stageManager.DangerVFXTile,
                                 BasicAttack.abilityData.AnchorRangeOfInfluenceToTilePosition(aimDirection, currentTilePosition), attackWindupDuration);
 
         attackWindUpCoroutine = StartCoroutine(AttackWindup());

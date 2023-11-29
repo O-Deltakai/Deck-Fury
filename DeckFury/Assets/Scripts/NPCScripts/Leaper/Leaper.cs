@@ -74,20 +74,20 @@ public class Leaper : NPC
             var ypos = tiles.Value.y;
             
 
-            stageManager.SetTileEntity(null, currentTilePosition);
+            _stageManager.SetTileEntity(null, currentTilePosition);
             Vector3Int destination = new Vector3Int(xpos, ypos, 0);
             currentTilePosition.Set(xpos, ypos, 0);
 
             //Gotta make sure to set the entity at the destination before you make the jump, otherwise if some entity moves into the tile
             //before they reach the destination, things break.
-            stageManager.SetTileEntity(this, destination);
+            _stageManager.SetTileEntity(this, destination);
 
 
             yield return worldTransform.DOMove(destination, 0.5f)
                  .SetEase(Ease.InOutExpo)
                  .OnComplete(() =>
                  {
-                     stageManager.SetTileEntity(this, currentTilePosition);
+                     _stageManager.SetTileEntity(this, currentTilePosition);
                  }).WaitForCompletion();
         }
         else
@@ -99,7 +99,7 @@ public class Leaper : NPC
    
     IEnumerator TelegraphAttack()
     {
-        stageManager.SetVFXTile(stageManager.DangerVFXTile, GetAdjacentTiles(), attackWindupDelay);
+        _stageManager.SetVFXTile(_stageManager.DangerVFXTile, GetAdjacentTiles(), attackWindupDelay);
         yield return new WaitForSeconds(attackWindupDelay);
         entityAnimator.PlayAnimationClip(entityAnimator.animationList[0]);
 
@@ -139,7 +139,7 @@ public class Leaper : NPC
         foreach (var direction in directionsIncludingCurrent)
         {
             var tileCheck = currentTilePosition + direction;
-            var tileData = stageManager.GetGroundTileData(tileCheck);
+            var tileData = _stageManager.GetGroundTileData(tileCheck);
           
 
             if (tileData != null && tileData.entity != null)
@@ -162,7 +162,7 @@ public class Leaper : NPC
         List<Vector3Int> validTiles = new List<Vector3Int>();
         foreach(var tile in adjacentTiles)
         {
-            if (stageManager.CheckValidTile(tile))
+            if (_stageManager.CheckValidTile(tile))
             {
                 validTiles.Add(tile);
             }

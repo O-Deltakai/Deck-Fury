@@ -61,7 +61,8 @@ public class StageEntity : MonoBehaviour
     //Use this when making movement-related methods to prevent rounding issues with using the real-time world position
     public Vector3Int currentTilePosition;
 
-    protected StageManager stageManager;
+    protected StageManager _stageManager;
+    public StageManager EntityStageManager{get { return _stageManager; }}
     protected EntityAnimationController entityAnimator;
     protected EntityStatusEffectManager statusEffectManager;
     protected EntityUIElementAnimator UIElementAnimator;
@@ -163,12 +164,12 @@ public class StageEntity : MonoBehaviour
 
         //stageManager = GameErrorHandler.NullCheck(StageManager.Instance, "Stage Manager");
 
-        stageManager = StageManager.Instance;
+        _stageManager = StageManager.Instance;
 
-        if(stageManager)
+        if(_stageManager)
         {
             currentTilePosition.Set((int)worldTransform.position.x, (int)worldTransform.position.y, 0);
-            stageManager.SetTileEntity(this, currentTilePosition);
+            _stageManager.SetTileEntity(this, currentTilePosition);
         }
 
     }
@@ -258,6 +259,11 @@ public class StageEntity : MonoBehaviour
         StartCoroutine(TweenMove(x, y, duration, ease, forceMoveMode));
     }
 
+    public void TweenMoveSetCoroutine(int x, int y, float duration, Ease ease = Ease.InExpo, ForceMoveMode forceMoveMode = ForceMoveMode.None)
+    {
+        MovingCoroutine = StartCoroutine(TweenMove(x, y, duration, ease, forceMoveMode));
+    }
+
     /// <summary>
     ///<para>Uses the DOTween library DOMove method to move the entity a specified amount of distance from its original location.
     ///The destinationCell is determined by adding on the given x and y value to the currentTilePosition x and y of the object.</para>
@@ -305,13 +311,13 @@ public class StageEntity : MonoBehaviour
         if(forceMoveMode == ForceMoveMode.None || Math.Abs(x) + Math.Abs(y) == 1 || Math.Abs(x) == 1 && Math.Abs(y) == 1)
         {
             //Checks if the destination is a valid tile to move to. If not valid, break operation
-            if(!stageManager.CheckValidTile(destination))
+            if(!_stageManager.CheckValidTile(destination))
             {yield break;}
         }else
         if(forceMoveMode == ForceMoveMode.Reverse)
         {
             
-            if(!stageManager.CheckValidTile(destination))
+            if(!_stageManager.CheckValidTile(destination))
             {
                 destination = FindValidDestinationReverseCheck(x, y, destination);
                 if(destination == currentTilePosition){yield break;}
@@ -331,9 +337,9 @@ public class StageEntity : MonoBehaviour
         //prevents issues where the player inputs a new movement too quickly, where using the real time tile position is wrong
         //because the player has not yet moved all the way to destination, causing the Vector3Int cast of the method to round to
         //the wrong value.
-        stageManager.SetTileEntity(null, currentTilePosition);
+        _stageManager.SetTileEntity(null, currentTilePosition);
         currentTilePosition.Set(destination.x, destination.y, 0);
-        stageManager.SetTileEntity(this, destination);
+        _stageManager.SetTileEntity(this, destination);
 
 
         worldTransform.DOMove(destination, duration).SetEase(ease);
@@ -361,7 +367,7 @@ public class StageEntity : MonoBehaviour
             {
                 while(currentlyCheckedTile != currentTilePosition)
                 {
-                    if(!stageManager.CheckValidTile(currentlyCheckedTile))
+                    if(!_stageManager.CheckValidTile(currentlyCheckedTile))
                     {
                         currentlyCheckedTile.x--;
                     }else
@@ -376,7 +382,7 @@ public class StageEntity : MonoBehaviour
             {  
                 while(currentlyCheckedTile != currentTilePosition)
                 {
-                    if(!stageManager.CheckValidTile(currentlyCheckedTile))
+                    if(!_stageManager.CheckValidTile(currentlyCheckedTile))
                     {
                         currentlyCheckedTile.x++;
                     }else
@@ -397,7 +403,7 @@ public class StageEntity : MonoBehaviour
             {
                 while(currentlyCheckedTile != currentTilePosition)
                 {
-                    if(!stageManager.CheckValidTile(currentlyCheckedTile))
+                    if(!_stageManager.CheckValidTile(currentlyCheckedTile))
                     {
                         currentlyCheckedTile.y--;
                     }else
@@ -412,7 +418,7 @@ public class StageEntity : MonoBehaviour
             {  
                 while(currentlyCheckedTile != currentTilePosition)
                 {
-                    if(!stageManager.CheckValidTile(currentlyCheckedTile))
+                    if(!_stageManager.CheckValidTile(currentlyCheckedTile))
                     {
                         currentlyCheckedTile.y++;
                     }else
@@ -450,7 +456,7 @@ public class StageEntity : MonoBehaviour
 
                 for(int i = 0; i < distance; i++) 
                 {
-                    if(!stageManager.CheckValidTile(currentlyCheckedTile))
+                    if(!_stageManager.CheckValidTile(currentlyCheckedTile))
                     {
                         currentlyCheckedTile.x--;
                         return currentlyCheckedTile;//Found a valid tile in the path that we can move to
@@ -467,7 +473,7 @@ public class StageEntity : MonoBehaviour
 
                 for(int i = 0; i < distance; i++) 
                 {
-                    if(!stageManager.CheckValidTile(currentlyCheckedTile))
+                    if(!_stageManager.CheckValidTile(currentlyCheckedTile))
                     {
                         currentlyCheckedTile.x++;
 
@@ -490,7 +496,7 @@ public class StageEntity : MonoBehaviour
 
                 for(int i = 0; i < distance; i++) 
                 {
-                    if(!stageManager.CheckValidTile(currentlyCheckedTile))
+                    if(!_stageManager.CheckValidTile(currentlyCheckedTile))
                     {
                         currentlyCheckedTile.y--;
 
@@ -509,7 +515,7 @@ public class StageEntity : MonoBehaviour
 
                 for(int i = 0; i < distance; i++) 
                 {
-                    if(!stageManager.CheckValidTile(currentlyCheckedTile))
+                    if(!_stageManager.CheckValidTile(currentlyCheckedTile))
                     {
                         currentlyCheckedTile.y++;
 
@@ -768,7 +774,7 @@ public class StageEntity : MonoBehaviour
             yield return new WaitForSeconds(entityAnimator.DefeatAnimation.length);
         }
 
-        stageManager.SetTileEntity(null, currentTilePosition);
+        _stageManager.SetTileEntity(null, currentTilePosition);
 
         GameErrorHandler.ExecuteSafely(() =>
         {

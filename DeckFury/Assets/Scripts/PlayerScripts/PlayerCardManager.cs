@@ -90,7 +90,7 @@ public class PlayerCardManager : MonoBehaviour
         }else
         {
             AnimationClip cardAnimation = cardToUse.cardSO.PlayerAnimation;
-            animationController.PlayAnimationClip(cardToUse.cardSO.PlayerAnimation);
+            animationController.PlayOneShotAnimationReturnIdle(cardToUse.cardSO.PlayerAnimation);
             CanUseCards = false;
 
             //The extra 0.05f is just a fail-safe to make sure that the player absolutely cannot use another card whilst the first animation
@@ -124,7 +124,7 @@ public class PlayerCardManager : MonoBehaviour
         //will trigger immediately
         if(cardToUse.cardSO.PlayerAnimation != null)
         {
-            animationController.PlayAnimationClip(cardToUse.cardSO.PlayerAnimation);
+            animationController.PlayOneShotAnimationReturnIdle(cardToUse.cardSO.PlayerAnimation);
             CanUseCards = false;
 
             StartCoroutine(CardUseCooldown(cardToUse.cardSO.PlayerAnimation.length + 0.05f));

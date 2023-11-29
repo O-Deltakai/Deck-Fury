@@ -126,7 +126,7 @@ public class AimpointController : MonoBehaviour
             {
                 if(!freezeAimpoint)
                 {
-                    transform.DORotate(new Vector3(0, 0, 90), 0.1f, RotateMode.Fast);
+                    transform.DORotate(new Vector3(0, 0, 90), 0.1f, RotateMode.Fast).SetUpdate(true);
                 }
 
                 currentAimDirection = AimDirection.Right;
@@ -135,7 +135,7 @@ public class AimpointController : MonoBehaviour
             {
                 if(!freezeAimpoint)
                 {
-                    transform.DORotate(new Vector3(0, 0, -90), 0.1f, RotateMode.Fast);
+                    transform.DORotate(new Vector3(0, 0, -90), 0.1f, RotateMode.Fast).SetUpdate(true);
                 }
                 currentAimDirection = AimDirection.Left;
             }
@@ -146,7 +146,7 @@ public class AimpointController : MonoBehaviour
             {
                 if(!freezeAimpoint)
                 {
-                    transform.DORotate(new Vector3(0, 0, 180), 0.1f, RotateMode.Fast);
+                    transform.DORotate(new Vector3(0, 0, 180), 0.1f, RotateMode.Fast).SetUpdate(true);
                 }                
                 currentAimDirection = AimDirection.Up;
             }
@@ -154,7 +154,7 @@ public class AimpointController : MonoBehaviour
             {
                 if(!freezeAimpoint)
                 {
-                    transform.DORotate(new Vector3(0, 0, 0), 0.1f, RotateMode.Fast);
+                    transform.DORotate(new Vector3(0, 0, 0), 0.1f, RotateMode.Fast).SetUpdate(true);
                 }                
                 currentAimDirection = AimDirection.Down;
             }

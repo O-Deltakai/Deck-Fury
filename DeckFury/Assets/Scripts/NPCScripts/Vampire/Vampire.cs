@@ -209,7 +209,7 @@ public class Vampire : NPC
         totalZombiesSpawned-=1;
         Debug.Log(totalZombiesSpawned);
         VampireBomb zombieB = Instantiate(zombieBombPrefab, entity.currentTilePosition, transform.rotation).GetComponent<VampireBomb>();
-        stageManager.SetVFXTile(stageManager.DangerVFXTile, GetBombAdjacentTiles(entity), bombATKWindupDuration);
+        _stageManager.SetVFXTile(_stageManager.DangerVFXTile, GetBombAdjacentTiles(entity), bombATKWindupDuration);
         zombieB.explosionDelay=bombATKWindupDuration;
         zombieB.attackPayload = zombieBATKPayload;
         zombieB.gameObject.SetActive(true);
@@ -264,7 +264,7 @@ public class Vampire : NPC
         VampireNATK normalATK = Instantiate(normalATKPrefab, player.currentTilePosition, transform.rotation).GetComponent<VampireNATK>();
         List<Vector3Int> tileList = new List<Vector3Int>();
         tileList.Add( player.currentTilePosition);
-        stageManager.SetVFXTile(stageManager.DangerVFXTile, tileList, normalATKWindupDuration);
+        _stageManager.SetVFXTile(_stageManager.DangerVFXTile, tileList, normalATKWindupDuration);
         normalATK.attackDelay=normalATKWindupDuration;
         normalATK.masterEntity = this;
         normalATK.attackPayload = normalATKPayload;
@@ -301,7 +301,7 @@ public class Vampire : NPC
             tileList.Add(predictedSpawnTile);
 
             // set vfx
-            stageManager.SetVFXTile(stageManager.DangerVFXTile, tileList, spawnWindupDuration);
+            _stageManager.SetVFXTile(_stageManager.DangerVFXTile, tileList, spawnWindupDuration);
             yield return new WaitForSeconds(spawnWindupDuration);
 
             entityAnimator.PlayOneShotAnimationReturnIdle(animation);
@@ -443,7 +443,7 @@ public class Vampire : NPC
         yield return new WaitForSeconds(furyCharge);
         
         //atk after charge
-        int mapSize = stageManager.groundTileDictionary.Count();
+        int mapSize = _stageManager.groundTileDictionary.Count();
         int furyCount = (int) (mapSize) /10;
 
         yield return StartCoroutine(LeapToPlayer()); // Wait for the jump movement to complete
@@ -459,7 +459,7 @@ public class Vampire : NPC
         for (int i = 0; i < furyCount; i++)
         {
             int randomIndex = Random.Range(0, mapSize);
-            FuryBlastSet(stageManager.groundTileList[randomIndex].localCoordinates);
+            FuryBlastSet(_stageManager.groundTileList[randomIndex].localCoordinates);
             yield return new WaitForSeconds(0.1f);
         }
 
@@ -482,7 +482,7 @@ public class Vampire : NPC
     void FuryBlastSet(Vector3Int targetTile)
     {
         VampireBomb blast = Instantiate(furyATKPrefab, targetTile, transform.rotation).GetComponent<VampireBomb>();
-        stageManager.SetVFXTile(stageManager.DangerVFXTile, GetTilesAdjacentToTarget(targetTile), furyATKWindupDuration);
+        _stageManager.SetVFXTile(_stageManager.DangerVFXTile, GetTilesAdjacentToTarget(targetTile), furyATKWindupDuration);
         blast.explosionDelay = furyATKWindupDuration;
         blast.attackPayload = furyATKPayload;
         blast.attackPayload.damage *= aTKMultiplier;
@@ -498,20 +498,20 @@ public class Vampire : NPC
             var ypos = tiles.Value.y;
             
 
-            stageManager.SetTileEntity(null, currentTilePosition);
+            _stageManager.SetTileEntity(null, currentTilePosition);
             Vector3Int destination = new Vector3Int(xpos, ypos, 0);
             currentTilePosition.Set(xpos, ypos, 0);
 
             //Gotta make sure to set the entity at the destination before you make the jump, otherwise if some entity moves into the tile
             //before they reach the destination, things break.
-            stageManager.SetTileEntity(this, destination);
+            _stageManager.SetTileEntity(this, destination);
 
 
             yield return worldTransform.DOMove(destination, 0.1f)
                  .SetEase(Ease.InOutExpo)
                  .OnComplete(() =>
                  {
-                     stageManager.SetTileEntity(this, currentTilePosition);
+                     _stageManager.SetTileEntity(this, currentTilePosition);
                  }).WaitForCompletion();
         }
         else
@@ -536,7 +536,7 @@ public class Vampire : NPC
         List<Vector3Int> validTiles = new List<Vector3Int>();
         foreach(var tile in adjacentTiles)
         {
-            if (stageManager.CheckValidTile(tile))
+            if (_stageManager.CheckValidTile(tile))
             {
                 validTiles.Add(tile);
             }

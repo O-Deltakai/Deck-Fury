@@ -765,7 +765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &922509055
 RectTransform:
   m_ObjectHideFlags: 0
@@ -775,7 +775,7 @@ RectTransform:
   m_GameObject: {fileID: 922509054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1833336010}
   - {fileID: 1386955540}
@@ -841,9 +841,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardSelectionMenu: {fileID: 0}
-  enemyData: {fileID: 11400000, guid: 3693ac877aada844a84c23bd494f1697, type: 2}
+  enemyData: {fileID: 11400000, guid: 8b52f0425dde5c14cbeb0ab6405d0921, type: 2}
   uiIcons: {fileID: 11400000, guid: 0c484baf4ab994a4bbc43b54190da929, type: 2}
   hoverSelectorButton: {fileID: 7076079198781728518}
+  enemyName: {fileID: 1833336011}
   armorPopout: {fileID: 360789172}
   armorTextValue: {fileID: 3813962081071402868}
   weaknessPopout: {fileID: 1068340733}
@@ -2976,13 +2977,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8440381246306402184}
-  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4755351755484593653}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -3054,7 +3055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -14,6 +14,9 @@ public class EnemyDescriptionPanel : MonoBehaviour
 
     [SerializeField] Button hoverSelectorButton;
 
+    [SerializeField] TextMeshProUGUI enemyName;
+
+
 [Header("Armor Popout Elements")]
     [SerializeField] GameObject armorPopout;
     [SerializeField] TextMeshProUGUI armorTextValue;
@@ -57,7 +60,9 @@ public class EnemyDescriptionPanel : MonoBehaviour
 
     void AssignDataToPanel(EnemyDataSO data)
     {
+
         armorTextValue.text = data.Armor.ToString();
+        enemyName.text = data.EnemyName;
 
     //Assign weakness icons
         if(data.Weaknesses.Count <= 0)
@@ -80,7 +85,13 @@ public class EnemyDescriptionPanel : MonoBehaviour
                 iconIndex++;
             }
 
-        }
+        }else
+        {
+            for (int i = 0; i < 3; i++) // Only a maximum of 3 icons will be displayed if enemy data contains more weaknesses.
+            {
+                weaknessIcons[i].sprite = uiIcons.GetElementIcon(data.Weaknesses[i]);
+            }
+        } 
 
     //Assign resistance icons
         if(data.Resistances.Count <= 0)
@@ -103,6 +114,12 @@ public class EnemyDescriptionPanel : MonoBehaviour
                 iconIndex++;
             }
 
+        }else
+        {
+            for (int i = 0; i < 3; i++) // Only a maximum of 3 icons will be displayed if enemy data contains more resistances.
+            {
+                resistIcons[i].sprite = uiIcons.GetElementIcon(data.Resistances[i]);
+            }
         }        
 
     }

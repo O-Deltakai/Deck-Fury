@@ -218,7 +218,7 @@ public class Shooter : NPC
 
         foreach(var possibleMove in VectorDirections.Vector3IntCardinal)
         {
-            if(stageManager.CheckValidTile(currentTilePosition + possibleMove ))
+            if(_stageManager.CheckValidTile(currentTilePosition + possibleMove ))
             {
                 moves.Add(possibleMove);
             }
