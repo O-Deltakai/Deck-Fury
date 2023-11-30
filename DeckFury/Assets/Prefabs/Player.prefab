@@ -365,7 +365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1693592267
 Transform:
   m_ObjectHideFlags: 0
@@ -1142,9 +1142,9 @@ MonoBehaviour:
     m_ActionName: PlayerDefault/OpenPauseMenu[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1755202098704932413}
-        m_TargetAssemblyTypeName: PlayerDashController, Assembly-CSharp
-        m_MethodName: DashInput
+      - m_Target: {fileID: 1755202097915902243}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Dash
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1259,9 +1259,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashAnimation: {fileID: 7400000, guid: d0845d5cedb237e4ca64c0bcee392b58, type: 2}
   aimpoint: {fileID: 1755202098436831234}
+  _dashReticle: {fileID: 1693592266}
   dashDistance: 3
   dashSpeed: 0.2
   dashCooldown: 1
+  inputPressedDuringCooldown: 0
 --- !u!1 &1755202098436831244
 GameObject:
   m_ObjectHideFlags: 0

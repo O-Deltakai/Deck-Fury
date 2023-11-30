@@ -7,6 +7,10 @@ using UnityEngine.InputSystem;
 //Script that handles functionality of the card selection menu
 public class CardSelectionMenu : MonoBehaviour
 {
+    static CardSelectionMenu _instance;
+    public static CardSelectionMenu Instance {get { return _instance; }}
+    
+
     public delegate void SelectSpecificCardEvent(CardSO card);
     public event SelectSpecificCardEvent OnSelectSpecificCard;
 
@@ -65,6 +69,8 @@ public class CardSelectionMenu : MonoBehaviour
 
     private void Awake() 
     {
+        _instance = this;
+
         if(!audioSource){ audioSource = GetComponent<AudioSource>(); }
 
         rectTransform = GetComponent<RectTransform>();
@@ -111,6 +117,11 @@ public class CardSelectionMenu : MonoBehaviour
                 PreviewButton();
             }        
         }
+    }
+
+    void OnDestroy()
+    {
+        _instance = null;
     }
 
     public void InitializeMenu()

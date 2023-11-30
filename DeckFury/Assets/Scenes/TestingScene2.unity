@@ -318,10 +318,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieAStar
       objectReference: {fileID: 0}
-    - target: {fileID: 3044666074929763327, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3385883509507052850, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -366,21 +362,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6949805563832619474, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9043754737011917841, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
-      propertyPath: currentHP
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 9043754737011917841, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
-      propertyPath: weaknesses.Array.size
+    - target: {fileID: 3497156931605132479, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
+      propertyPath: m_RaycastTarget
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 9043754737011917841, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
-      propertyPath: weaknesses.Array.data[0]
-      value: 2
+    - target: {fileID: 4331458583173985386, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368732863700691507, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
@@ -645,11 +637,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c083a860b6cae4789e2b2c34f29d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1693592266 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1693592266, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
-  m_PrefabInstance: {fileID: 1755202098704932411}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1722396191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,10 +1411,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1693592266, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1755202097491930492, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1476,18 +1459,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1755202097915902241, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1361045272}
-    - target: {fileID: 1755202097915902241, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Dash
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755202097915902241, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerController, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 1755202097915902243, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
       propertyPath: mainCamera
       value: 
@@ -1496,14 +1467,6 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 1755202098704932413, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
-      propertyPath: dashReticle
-      value: 
-      objectReference: {fileID: 1693592266}
-    - target: {fileID: 1755202098704932413, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
-      propertyPath: _dashReticle
-      value: 
-      objectReference: {fileID: 1693592266}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
 --- !u!1001 &5773231377854053022

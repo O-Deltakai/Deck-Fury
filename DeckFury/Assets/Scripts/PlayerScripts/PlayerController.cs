@@ -165,6 +165,16 @@ public class PlayerController : StageEntity
 //Place all methods that relate to the input action asset on the Player Input component here.
 #region Input Actions
 
+    //TODO: method to check if player input can be used for better modularity
+    bool CanUsePlayerInput()
+    {
+        if(GameManager.GameIsPaused){ return false; }
+        if(isDefeated){return false;}
+
+
+        return true;
+    }
+
     //Logic for when BasicShot input action is activated
     public void BasicShot(InputAction.CallbackContext context)
     {
@@ -227,6 +237,7 @@ public class PlayerController : StageEntity
 
     public void Dash(InputAction.CallbackContext context)
     {
+        if(!CanUsePlayerInput()) { return; }
 
         if(context.performed)
         {

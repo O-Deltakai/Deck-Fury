@@ -12,6 +12,7 @@ public class EnemyDescriptionPanel : MonoBehaviour
     public EnemyDataSO enemyData;
     [SerializeField] CardUIIconSO uiIcons;
 
+    [SerializeField] GameObject descriptionPanel;
     [SerializeField] Button hoverSelectorButton;
 
     [SerializeField] TextMeshProUGUI enemyName;
@@ -40,11 +41,12 @@ public class EnemyDescriptionPanel : MonoBehaviour
 
     void Awake()
     {
-        cardSelectionMenu = GameErrorHandler.NullCheck(cardSelectionMenu, "CardSelectionMenu");
+        DisableSelectorButton();
     }
 
     void Start()
     {
+        cardSelectionMenu = GameErrorHandler.NullCheck(CardSelectionMenu.Instance, "CardSelectionMenu");
         AssignEvents();
         AssignDataToPanel(enemyData);
     }
@@ -57,6 +59,15 @@ public class EnemyDescriptionPanel : MonoBehaviour
         cardSelectionMenu.OnMenuDisabled += DisableSelectorButton;
 
     }
+
+    void OnDestroy()
+    {
+        cardSelectionMenu.OnUnpreviewStage -= DisableSelectorButton;
+        cardSelectionMenu.OnPreviewStage -= EnableSelectorButton;
+
+        cardSelectionMenu.OnMenuDisabled -= DisableSelectorButton;        
+    }
+
 
     void AssignDataToPanel(EnemyDataSO data)
     {
@@ -181,12 +192,12 @@ public class EnemyDescriptionPanel : MonoBehaviour
 
         if(condition)
         {
-            gameObject.SetActive(true);
+            descriptionPanel.SetActive(true);
             panelIsOpen = true;
-            transform.DOScale(1, 0.2f).SetUpdate(true); //Expand panel
+            descriptionPanel.transform.DOScale(1, 0.2f).SetUpdate(true); //Expand panel
         }else
         {
-            if(gameObject.activeInHierarchy)
+            if(descriptionPanel.gameObject.activeInHierarchy)
             {
                 CR_DisablePanelCoroutine = StartCoroutine(DisableDescriptionPanelCoroutine(0.2f));
             }
@@ -196,9 +207,9 @@ public class EnemyDescriptionPanel : MonoBehaviour
     IEnumerator DisableDescriptionPanelCoroutine(float delay)
     {
         panelIsOpen = false;
-        transform.DOScale(0, 0.2f).SetUpdate(true); //Shrink panel
+        descriptionPanel.transform.DOScale(0, 0.2f).SetUpdate(true); //Shrink panel
         yield return new WaitForSecondsRealtime(delay);
-        gameObject.SetActive(false);
+        descriptionPanel.gameObject.SetActive(false);
 
         CR_DisablePanelCoroutine = null;
     }

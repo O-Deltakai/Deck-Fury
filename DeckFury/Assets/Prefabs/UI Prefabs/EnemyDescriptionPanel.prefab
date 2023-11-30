@@ -758,7 +758,6 @@ GameObject:
   - component: {fileID: 922509055}
   - component: {fileID: 922509057}
   - component: {fileID: 922509056}
-  - component: {fileID: 1434858880521460332}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
@@ -828,37 +827,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 232.8
---- !u!114 &1434858880521460332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 922509054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea2ba3bad0ee7654a8d842c05a03520c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardSelectionMenu: {fileID: 0}
-  enemyData: {fileID: 11400000, guid: 8b52f0425dde5c14cbeb0ab6405d0921, type: 2}
-  uiIcons: {fileID: 11400000, guid: 0c484baf4ab994a4bbc43b54190da929, type: 2}
-  hoverSelectorButton: {fileID: 7076079198781728518}
-  enemyName: {fileID: 1833336011}
-  armorPopout: {fileID: 360789172}
-  armorTextValue: {fileID: 3813962081071402868}
-  weaknessPopout: {fileID: 1068340733}
-  weaknessIcons:
-  - {fileID: 6704666548872831805}
-  - {fileID: 847055480675925425}
-  - {fileID: 528420248161156452}
-  noWeaknessIndicator: {fileID: 1337378778}
-  resistPopout: {fileID: 175688890}
-  resistIcons:
-  - {fileID: 4198047202202332134}
-  - {fileID: 5036557265778095176}
-  - {fileID: 2383580719255970937}
-  noResistsIndicator: {fileID: 883118359}
 --- !u!1 &1068340733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,7 +1330,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1434858880521460332}
+        - m_Target: {fileID: 2169492944214899990}
           m_TargetAssemblyTypeName: EnemyDescriptionPanel, Assembly-CSharp
           m_MethodName: ToggleArmorPopout
           m_Mode: 6
@@ -1378,7 +1346,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1434858880521460332}
+        - m_Target: {fileID: 2169492944214899990}
           m_TargetAssemblyTypeName: EnemyDescriptionPanel, Assembly-CSharp
           m_MethodName: ToggleArmorPopout
           m_Mode: 6
@@ -1744,7 +1712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1820,7 +1788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1987,7 +1955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2062,7 +2030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2137,7 +2105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2399,7 +2367,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1434858880521460332}
+        - m_Target: {fileID: 2169492944214899990}
           m_TargetAssemblyTypeName: EnemyDescriptionPanel, Assembly-CSharp
           m_MethodName: ToggleResistPopout
           m_Mode: 6
@@ -2415,7 +2383,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1434858880521460332}
+        - m_Target: {fileID: 2169492944214899990}
           m_TargetAssemblyTypeName: EnemyDescriptionPanel, Assembly-CSharp
           m_MethodName: ToggleResistPopout
           m_Mode: 6
@@ -2438,6 +2406,7 @@ GameObject:
   - component: {fileID: 4755351755484593653}
   - component: {fileID: 4349485481879179576}
   - component: {fileID: 1748480733}
+  - component: {fileID: 2169492944214899990}
   m_Layer: 0
   m_Name: EnemyDescriptionPanel
   m_TagString: Untagged
@@ -2504,6 +2473,38 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2169492944214899990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5583056211530357525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2ba3bad0ee7654a8d842c05a03520c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardSelectionMenu: {fileID: 0}
+  enemyData: {fileID: 11400000, guid: 8b52f0425dde5c14cbeb0ab6405d0921, type: 2}
+  uiIcons: {fileID: 11400000, guid: 0c484baf4ab994a4bbc43b54190da929, type: 2}
+  descriptionPanel: {fileID: 922509054}
+  hoverSelectorButton: {fileID: 7076079198781728518}
+  enemyName: {fileID: 1833336011}
+  armorPopout: {fileID: 360789172}
+  armorTextValue: {fileID: 3813962081071402868}
+  weaknessPopout: {fileID: 1068340733}
+  weaknessIcons:
+  - {fileID: 6704666548872831805}
+  - {fileID: 847055480675925425}
+  - {fileID: 528420248161156452}
+  noWeaknessIndicator: {fileID: 1337378778}
+  resistPopout: {fileID: 175688890}
+  resistIcons:
+  - {fileID: 4198047202202332134}
+  - {fileID: 5036557265778095176}
+  - {fileID: 2383580719255970937}
+  noResistsIndicator: {fileID: 883118359}
 --- !u!1 &6087217024599106321
 GameObject:
   m_ObjectHideFlags: 0
@@ -2564,7 +2565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2786,7 +2787,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1434858880521460332}
+        - m_Target: {fileID: 2169492944214899990}
           m_TargetAssemblyTypeName: EnemyDescriptionPanel, Assembly-CSharp
           m_MethodName: ToggleWeaknessPopout
           m_Mode: 6
@@ -2802,7 +2803,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1434858880521460332}
+        - m_Target: {fileID: 2169492944214899990}
           m_TargetAssemblyTypeName: EnemyDescriptionPanel, Assembly-CSharp
           m_MethodName: ToggleWeaknessPopout
           m_Mode: 6
@@ -2969,7 +2970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2082139253044088788
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3006,7 +3007,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1434858880521460332}
+        - m_Target: {fileID: 2169492944214899990}
           m_TargetAssemblyTypeName: EnemyDescriptionPanel, Assembly-CSharp
           m_MethodName: HoverOverSelector
           m_Mode: 1
@@ -3022,7 +3023,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1434858880521460332}
+        - m_Target: {fileID: 2169492944214899990}
           m_TargetAssemblyTypeName: EnemyDescriptionPanel, Assembly-CSharp
           m_MethodName: ExitHoverOverSelector
           m_Mode: 1
@@ -3116,7 +3117,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1434858880521460332}
+      - m_Target: {fileID: 2169492944214899990}
         m_TargetAssemblyTypeName: EnemyDescriptionPanel, Assembly-CSharp
         m_MethodName: OnClickSelectorButton
         m_Mode: 1
