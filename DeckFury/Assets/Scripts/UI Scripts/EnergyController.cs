@@ -5,12 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 
-enum EnergyChargeRate
-{
-    standard,
-    slow,
-    fast
-}
+
 
 public class EnergyController : MonoBehaviour
 {
@@ -58,6 +53,10 @@ public class EnergyController : MonoBehaviour
     [SerializeField] AudioClip energyFullSFX;
 
     bool canCharge = true;
+
+    Coroutine CR_EnergyNotFullTextFade = null;
+
+
 
     private void Awake() 
     {
@@ -231,16 +230,25 @@ public class EnergyController : MonoBehaviour
     {
         if(!fullCharge)
         {
-            StartCoroutine(FadeInOutEnergyNotFullText());
+            
+            energyNotFullText.DOFade(1, 0.1f).SetUpdate(false);
+            fadeoutTween.Kill();
+            if(CR_EnergyNotFullTextFade != null)
+            {
+                StopCoroutine(CR_EnergyNotFullTextFade);
+            }
+            CR_EnergyNotFullTextFade = StartCoroutine(FadeInOutEnergyNotFullText());
         }
         return fullCharge;
     }
 
+    Tween fadeoutTween;
     IEnumerator FadeInOutEnergyNotFullText()
     {
-        energyNotFullText.DOFade(1, 0.1f).SetUpdate(false);
-        yield return new WaitForSeconds(0.2f);
-        energyNotFullText.DOFade(0, 0.5f).SetUpdate(false);
+        
+        yield return new WaitForSeconds(0.5f);
+        fadeoutTween = energyNotFullText.DOFade(0, 0.2f).SetUpdate(false);
+        
 
 
     }
