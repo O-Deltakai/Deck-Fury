@@ -36,7 +36,7 @@ public class PlayerCardManager : MonoBehaviour
 
     [Tooltip("How long the player needs to wait before they can use a new card by default.")]
     [SerializeField] float defaultCooldown = 0.10f;
-
+    [SerializeField] bool useUnscaledTime;
     public bool CanUseCards = true;
 
     Coroutine CR_CardUseInProgress = null;
@@ -164,14 +164,27 @@ public class PlayerCardManager : MonoBehaviour
 
     IEnumerator CardUseCooldown(float duration)
     {
-        yield return new WaitForSeconds(duration);
+        if(useUnscaledTime)
+        {
+            yield return new WaitForSecondsRealtime(duration);
+        }else
+        {
+            yield return new WaitForSeconds(duration);
+        }
         CanUseCards = true;   
     }
 
     //Removes the given card from the magazine, can be given an optional duration to remove the card only after said duration
     IEnumerator RemoveCardFromMagazine(CardObjectReference card, float duration = 0)
     {
-        yield return new WaitForSeconds(duration);
+        if(useUnscaledTime)
+        {
+            yield return new WaitForSecondsRealtime(duration);
+        }else
+        {
+            yield return new WaitForSeconds(duration);
+        }
+        
         CardMagazine.Remove(card);
 
         //Invoke event if it is not null

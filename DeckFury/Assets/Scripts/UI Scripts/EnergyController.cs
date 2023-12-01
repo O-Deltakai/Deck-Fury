@@ -186,7 +186,8 @@ public class EnergyController : MonoBehaviour
         
     }
 
-    private void CalculateEnergy(){
+    private void CalculateEnergy()
+    {
         //currentTurnDuration = max - 4 * chargeTime - coolDown;
         //would replaced when cost system implemented in card selection menu, need public function to get consumed cost
         currentEnergyValue = 0;
@@ -212,7 +213,6 @@ public class EnergyController : MonoBehaviour
                 fullCharge = true;
 
                 if(pressTabText){ pressTabText.SetActive(true); }
-                audioSource.PlayOneShot(energyFullSFX);
 
             }
         }

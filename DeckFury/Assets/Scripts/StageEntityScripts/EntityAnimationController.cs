@@ -11,6 +11,9 @@ public class EntityAnimationController : MonoBehaviour
     
     [field:SerializeField] public List<AnimationClip> animationList {get; protected set;}
 
+    [SerializeField] bool useUnscaledTime;
+
+
     //Bool for checking if an animation is already playing (that is not the idle animation)
     public bool isAnimating;
     Coroutine returnToIdleCoroutine;
@@ -82,8 +85,15 @@ public class EntityAnimationController : MonoBehaviour
     //Waits the given duration in seconds and then plays the predefined idle animation clip
     IEnumerator ReturnToIdle(float duration)
     {
+        if(useUnscaledTime)
+        {
+            yield return new WaitForSecondsRealtime(duration);
+        }else
+        {
+            yield return new WaitForSeconds(duration);
+        }
 
-        yield return new WaitForSeconds(duration);
+
         isAnimating = false;
         animator.Play(IdleAnimation.name);
         returnToIdleCoroutine = null;
