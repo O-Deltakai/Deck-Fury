@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerDashController : MonoBehaviour
 {
@@ -15,6 +16,15 @@ public class PlayerDashController : MonoBehaviour
     [SerializeField] AimpointController aimpoint;
     [SerializeField] GameObject _dashReticle;
     public GameObject DashReticle {get { return _dashReticle; }}
+
+[Header("Dash Indicator")]
+    [SerializeField] GameObject dashIndicatorObject;
+    [SerializeField] Image dashIndicatorImage;
+    [SerializeField] SpriteRenderer dashIndicatorFrame;
+    [SerializeField] Color onCooldownFrameColor;
+    [SerializeField] Color dashReadyFrameColor;
+
+
 
 
 
@@ -144,7 +154,20 @@ public class PlayerDashController : MonoBehaviour
     IEnumerator DashCooldown()
     {
         usedDash = true;
-        yield return new WaitForSecondsRealtime(dashCooldown);
+
+        dashIndicatorImage.fillAmount = 0;
+        dashIndicatorFrame.color = onCooldownFrameColor;
+
+        dashIndicatorObject.SetActive(true);
+        dashIndicatorImage.DOFillAmount(1, dashCooldown).SetEase(Ease.Linear);
+
+
+        yield return new WaitForSeconds(dashCooldown - 0.2f);
+        dashIndicatorFrame.DOColor(dashReadyFrameColor, 0.2f); //Change frame color to indicate dash is ready
+        yield return new WaitForSeconds(0.2f);
+
+        dashIndicatorObject.SetActive(false);
+
         usedDash = false;
     }
 
