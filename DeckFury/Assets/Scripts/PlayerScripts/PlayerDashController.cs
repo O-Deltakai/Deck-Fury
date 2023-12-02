@@ -17,13 +17,15 @@ public class PlayerDashController : MonoBehaviour
     [SerializeField] GameObject _dashReticle;
     public GameObject DashReticle {get { return _dashReticle; }}
 
+    [SerializeField] TrailRenderer dashTrail;
+
 [Header("Dash Indicator")]
     [SerializeField] GameObject dashIndicatorObject;
     [SerializeField] Image dashIndicatorImage;
     [SerializeField] SpriteRenderer dashIndicatorFrame;
     [SerializeField] Color onCooldownFrameColor;
     [SerializeField] Color dashReadyFrameColor;
-
+    
 
 
 
@@ -95,6 +97,7 @@ public class PlayerDashController : MonoBehaviour
 
                 StartCoroutine(DisableHitboxTimer());
                 player.TweenMoveSetCoroutine(moveDistance.x, moveDistance.y, dashSpeed, Ease.OutBounce);
+                StartCoroutine(DashTrailTimer());
 
                 animationController.PlayAnimationClip(dashAnimation);
                 StartCoroutine(DashCooldown());
@@ -107,6 +110,8 @@ public class PlayerDashController : MonoBehaviour
  
                 StartCoroutine(DisableHitboxTimer());
                 player.TweenMoveSetCoroutine(moveDistance.x, moveDistance.y, dashSpeed, Ease.OutBounce);
+                StartCoroutine(DashTrailTimer());
+
 
                 animationController.PlayAnimationClip(dashAnimation);
                 StartCoroutine(DashCooldown());
@@ -124,6 +129,8 @@ public class PlayerDashController : MonoBehaviour
 
                     StartCoroutine(DisableHitboxTimer());
                     player.TweenMoveSetCoroutine(moveDistance.x, moveDistance.y, dashSpeed, Ease.OutBounce);
+                    StartCoroutine(DashTrailTimer());
+
                     
                     animationController.PlayAnimationClip(dashAnimation);
                     StartCoroutine(DashCooldown());
@@ -135,6 +142,8 @@ public class PlayerDashController : MonoBehaviour
         {
             animationController.PlayAnimationClip(dashAnimation);            
             player.TweenMoveSetCoroutine(x, y, dashSpeed, Ease.OutCubic);
+            StartCoroutine(DashTrailTimer());
+
             StartCoroutine(DisableHitboxTimer());
             StartCoroutine(DashCooldown());
 
@@ -150,6 +159,16 @@ public class PlayerDashController : MonoBehaviour
         yield return new WaitForSeconds(dashSpeed);
         player.playerCollider.enabled = true;        
     }
+
+    IEnumerator DashTrailTimer()
+    {
+        dashTrail.Clear();
+        dashTrail.enabled = true;
+        yield return new WaitForSeconds(dashSpeed);
+        dashTrail.enabled = false;
+
+    }
+
 
     IEnumerator DashCooldown()
     {

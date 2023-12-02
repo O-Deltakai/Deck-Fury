@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\HelperClasses\MapHelperFunctions.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\ObjectTags.cs" />
     <Compile Include="Assets\Scripts\AttackPayload.cs" />
+    <Compile Include="Assets\Scripts\NPCScripts\Magician\MagicianAttackController.cs" />
     <Compile Include="Assets\Scripts\CardObjectReference.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\RightClickEventTrigger.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\CardMagazineIndicator.cs" />
@@ -92,9 +93,11 @@
     <Compile Include="Assets\Scripts\ObjectScripts\Bullet.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\ScoreMenu\SpecialBonusSlot.cs" />
+    <Compile Include="Assets\Scripts\NPCScripts\Magician\Magician.cs" />
     <Compile Include="Assets\Scripts\PathfindingScripts\Behaviours\FleeAI.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\RewardMenu\RewardMenuController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Generic Systems\ResourceBar.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Scripts\CardScripts\CardEffect.cs" />
     <Compile Include="Assets\Scripts\CardScripts\SummonSentry.cs" />
@@ -134,6 +137,7 @@
     <Compile Include="Assets\Scripts\NPCScripts\ShooterFlee.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModulePhysics.cs" />
     <Compile Include="Assets\Scripts\StageEntityScripts\EntityStatusEffectManager.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\EnemyDescriptionPanel.cs" />
     <Compile Include="Assets\Scripts\Enums\StatusEffect.cs" />
     <Compile Include="Assets\Scripts\Enums\SceneNames.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
@@ -164,6 +168,7 @@
     <Compile Include="Assets\Scripts\CardScripts\RagePush.cs" />
     <Compile Include="Assets\ScriptableObjects\HintsContainerSO.cs" />
     <Compile Include="Assets\Scripts\Enums\CardType.cs" />
+    <Compile Include="Assets\Scripts\ManagerScripts\TimeManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Scripts\CardScripts\Teleport.cs" />
     <Compile Include="Assets\Scripts\StageSelectionScripts\MapPreviewGenerator.cs" />
@@ -186,9 +191,11 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\EntityUIElementAnimator.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\AnimationEventIntermediary.cs" />
+    <Compile Include="Assets\ScriptableObjects\EnemyDataSO.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\GameColors.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\StageManagerScripts\MapLayoutController.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\PlayerDashController.cs" />
     <Compile Include="Assets\Resources\Custom Tile Scripts\PrefabTile.cs" />
     <Compile Include="Assets\Scripts\CardScripts\SlashBoomerang.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
@@ -209,6 +216,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\HintController.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModulePhysics2D.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Shooter.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Generic Systems\ResourceMeter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
@@ -227,14 +235,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\ScriptableObjects\SpawnTableSO.cs" />
     <Compile Include="Assets\Scripts\StageEntityScripts\StageEntity.cs" />
-    <Compile Include="Assets\ScriptableObjects\EnemyDataSO.cs" />
-    <Compile Include="Assets\Scripts\NPCScripts\Magician\Magician.cs" />
-    <Compile Include="Assets\Scripts\NPCScripts\Magician\MagicianAttackController.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\EnemyDescriptionPanel.cs" />
-    <Compile Include="Assets\Scripts\PlayerScripts\PlayerDashController.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\Generic Systems\ResourceMeter.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\Generic Systems\ResourceBar.cs" />
-    <Compile Include="Assets\Scripts\ManagerScripts\TimeManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{110da1e8-43cf-4824-878a-3619be140b37}.xml" />
@@ -246,6 +246,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{f976a7e7-9102-499d-bd31-f227ea10ca9c}.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\DOTween\DOTween.dll" />
+    <None Include="Assets\Sprites\Craftpix\Freebies\Crystals-PixelArt\readme.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{f0e8725d-4948-4c20-826f-48023ded71fb}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{2d98709f-9e1c-4189-ae6e-90fb7f2cf871}.xml" />
     <None Include="Assets\SFX\yd-Sounds-CC0\readme.txt" />
@@ -258,6 +259,7 @@
     <None Include="Assets\Sprites\Craftpix\Freebies\Scifi-Antagonists-Pixel\License.txt" />
     <None Include="Assets\Sprites\stage_map\Cartography_Pack_Kenney_CC0\Spritesheet\spritesheet_retina.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\Sprites\Craftpix\Freebies\Underwater-Enemies-Pixel\License.txt" />
     <None Include="Assets\Sprites\Free Art Assets\SimplePixelUI\fonts\Font2\license.txt" />
     <None Include="Assets\Sprites\Free Art Assets\Cainos\Pixel Art Top Down - Basic\Changelog.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{3d2bf44a-ffa4-4393-a64a-1906cc4a233d}.xml" />
@@ -310,6 +312,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Mixer.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\Sprites\Craftpix\Freebies\Crystals-PixelArt\License.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{0d3551d3-95ed-43ad-9452-b23b0696ab32}.xml" />
     <None Include="Assets\Sprites\Free Art Assets\CraftPix_cyberpunk_characters\source.txt" />

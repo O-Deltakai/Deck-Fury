@@ -48,6 +48,17 @@ public class ZombieAStar : NPC
 
         if(!EnableAI){return;}
 
+        if(attackWindUpCoroutine == null)
+        {
+            FaceTowardsPlayer();
+        }
+
+
+        AttackPlayer();
+    }
+
+    void FaceTowardsPlayer()
+    {
         playerDistance = (Vector2Int)currentTilePosition - (Vector2Int)player.currentTilePosition;
 
         if(playerDistance.x > 0)
@@ -57,10 +68,8 @@ public class ZombieAStar : NPC
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
-
-
-        AttackPlayer();
     }
+
 
     protected override void AdditionalDestructionEvents(AttackPayload? killingBlow)
     {
@@ -150,6 +159,7 @@ public class ZombieAStar : NPC
     {
         if(!canAttack){return;}
         if(!CanAct){ return; }
+        if(attackWindUpCoroutine != null){ return; }
         canAttack = false;
         isAttacking = true;
         seekerAI.pauseAI = true;
@@ -162,6 +172,7 @@ public class ZombieAStar : NPC
 
         attackWindUpCoroutine = StartCoroutine(AttackWindup());
 
+
     }
 
     IEnumerator AttackWindup()
@@ -170,13 +181,13 @@ public class ZombieAStar : NPC
         entityAnimator.PlayAnimationClip(BasicAttack.abilityData.animationToUse);
         yield return new WaitForSeconds(BasicAttack.abilityData.animationToUse.length - 0.125f);
         BasicAttack.gameObject.SetActive(true);
-        attackWindUpCoroutine = null;
 
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
         isAttacking = false;
         seekerAI.pauseAI = false;
    
+        attackWindUpCoroutine = null;
     }
 
     void CancelAttack()

@@ -352,7 +352,18 @@ public class StageEntity : MonoBehaviour
 
     }
 
+    public void TeleportToLocation(int x, int y)
+    {
+        Vector3Int destination = new Vector3Int(x, y, 0);
+        
+        if(!_stageManager.CheckValidTile(destination)) { return; }
 
+        _stageManager.SetTileEntity(null, currentTilePosition);
+        currentTilePosition.Set(destination.x, destination.y, 0);
+        _stageManager.SetTileEntity(this, destination);
+
+        worldTransform.position = destination;
+    }
 
 
     //Tries to find a valid destination by counting backwards from the destination until finds the first valid position (currently untested)
