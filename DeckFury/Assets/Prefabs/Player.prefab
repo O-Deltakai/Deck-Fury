@@ -325,7 +325,7 @@ TrailRenderer:
   m_SortingLayerID: -1989676623
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Time: 0.1
+  m_Time: 0.15
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -355,7 +355,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.93333316, b: 1, a: 0.41568628}
+      key0: {r: 1, g: 0.912394, b: 0, a: 0.41568628}
       key1: {r: 1, g: 1, b: 1, a: 0.3764706}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -1351,7 +1351,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.026052207, y: -0.4885521}
+  m_Offset: {x: -0.03372422, y: -0.46809345}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.3125, y: 0.39583334}
@@ -1362,7 +1362,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.43379712, y: 0.3620863}
+  m_Size: {x: 0.3468479, y: 0.32116902}
   m_EdgeRadius: 0
 --- !u!114 &1755202097915902243
 MonoBehaviour:
@@ -1615,7 +1615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6cebf2c54d4a04183fa4116099b06d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashAnimation: {fileID: 7400000, guid: d0845d5cedb237e4ca64c0bcee392b58, type: 2}
+  dashAnimation: {fileID: 7400000, guid: f37e4a1759be2134ab38de8ca34cd30c, type: 2}
   aimpoint: {fileID: 1755202098436831234}
   _dashReticle: {fileID: 1693592266}
   dashTrail: {fileID: 737527620}

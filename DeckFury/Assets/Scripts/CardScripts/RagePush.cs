@@ -16,7 +16,6 @@ public class RagePush : CardEffect
     IEnumerator ExecuteAfterAnimation()
     {
 
-        yield return new WaitForSeconds(VFXAnimationClip.length * 0.5f);
 
         Vector3Int[] directions = VectorDirections.Vector3IntCardinal;
         var playerPos = player.currentTilePosition;
@@ -37,6 +36,8 @@ public class RagePush : CardEffect
 
         StartCoroutine(DisableEffectPrefab());
 
+        yield break;
+
     }
 
     protected override IEnumerator DisableEffectPrefab()
@@ -45,7 +46,7 @@ public class RagePush : CardEffect
         //animation events, the animation is the one which calls the card effect. If you disable your effect prefab before the player 
         //animation hits that event, the card won't work.
         yield return new WaitForSeconds(cardSO.PlayerAnimation.length + 0.05f);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     

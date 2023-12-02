@@ -18,7 +18,7 @@ public class ZombieAStar : NPC
 
     Vector2Int playerDistance;
 
-    Coroutine attackWindUpCoroutine;
+    Coroutine attackWindUpCoroutine = null;
 
     [SerializeField] float attackWindupDuration = 0.75f;
 
@@ -198,6 +198,8 @@ public class ZombieAStar : NPC
             canAttack = true;
             isAttacking = false;
             seekerAI.pauseAI = false;
+
+            attackWindUpCoroutine = null;
         }
     }
 
