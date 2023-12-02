@@ -131,7 +131,7 @@ public class PlayerCardManager : MonoBehaviour
             CanUseCards = false;
 
             StartCoroutine(CardUseCooldown(cardToUse.cardSO.PlayerAnimation.length + 0.05f));
-            StartCoroutine(RemoveCardFromMagazine(CardMagazine[0], cardToUse.cardSO.PlayerAnimation.length + 0.05f));  
+            StartCoroutine(RemoveCardFromMagazine(CardMagazine[0], cardToUse.cardSO.PlayerAnimation.length + 0.02f));  
 
             return; 
         }
@@ -184,7 +184,7 @@ public class PlayerCardManager : MonoBehaviour
         {
             yield return new WaitForSeconds(duration);
         }
-        
+
         CardMagazine.Remove(card);
 
         //Invoke event if it is not null
