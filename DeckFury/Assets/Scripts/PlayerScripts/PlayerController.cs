@@ -5,6 +5,7 @@ using DG.Tweening;
 using UnityEngine.InputSystem;
 using System;
 
+[RequireComponent(typeof(InputBufferHandler))]
 [RequireComponent(typeof(PlayerAnimationController))]
 [RequireComponent(typeof(PlayerCardManager))]
 public class PlayerController : StageEntity
@@ -35,6 +36,8 @@ public class PlayerController : StageEntity
     EnergyController energyController;
     //end for energy system
 
+    InputBufferHandler bufferHandler;
+
 
     Vector2 mousePosition;
     Vector2 screenPointPosition;
@@ -50,7 +53,7 @@ public class PlayerController : StageEntity
         cardManager = GetComponent<PlayerCardManager>();
         playerCollider = GetComponent<BoxCollider2D>();
         dashController = GetComponent<PlayerDashController>();
-
+        bufferHandler = GetComponent<InputBufferHandler>();
         
         //implement for energy system
         energyController = FindObjectOfType<EnergyController>();
@@ -187,8 +190,14 @@ public class PlayerController : StageEntity
 
         if(context.performed)
         {
-            animationController.PlayAnimationClip(animationController.basicShotAnimation);
+            //animationController.PlayAnimationClip(animationController.basicShotAnimation);
+            bufferHandler.BufferAction(new BufferedInput(ExecuteBasicShot, context.action, animationController.basicShotAnimation.length + 0.01f, Time.time));
         }
+    }
+
+    void ExecuteBasicShot()
+    {
+        animationController.PlayAnimationClip(animationController.basicShotAnimation);
     }
 
     //Logic for when UseCard input action is activated
@@ -206,6 +215,11 @@ public class PlayerController : StageEntity
             cardManager.TriggerCard();   
         }
 
+    }
+
+    void ExecuteUseCard()
+    {
+        
     }
 
     public void OpenCardSelectMenu(InputAction.CallbackContext context)

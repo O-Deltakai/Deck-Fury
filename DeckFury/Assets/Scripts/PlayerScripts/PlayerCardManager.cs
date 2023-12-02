@@ -99,7 +99,7 @@ public class PlayerCardManager : MonoBehaviour
             //The extra 0.05f is just a fail-safe to make sure that the player absolutely cannot use another card whilst the first animation
             //is still playing. Without this, its unlikely but possible for a player to click fast enough to play another card whilst first one is
             //still going due to float rounding issues.
-            StartCoroutine(CardUseCooldown(cardAnimation.length + 0.05f));
+            StartCoroutine(CardUseCooldown(cardAnimation.length + 0.01f));
             StartCoroutine(RemoveCardFromMagazine(CardMagazine[0], cardAnimation.length + 0.05f) );   
 
         }
