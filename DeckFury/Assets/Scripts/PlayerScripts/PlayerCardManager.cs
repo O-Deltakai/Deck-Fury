@@ -33,6 +33,8 @@ public class PlayerCardManager : MonoBehaviour
 
     //The list of cards the player can use in battle. Is loaded during the Card Selection Menu.
     [field:SerializeField] public List<CardObjectReference> CardMagazine{get; private set;} = new List<CardObjectReference>(); 
+    public CardObjectReference NextCard {get { return CardMagazine[0]; }}
+
 
     [Tooltip("How long the player needs to wait before they can use a new card by default.")]
     [SerializeField] float defaultCooldown = 0.10f;
@@ -82,14 +84,14 @@ public class PlayerCardManager : MonoBehaviour
     /// </summary>
     public void TriggerCard()
     {
-        if(!CanUseCards)
-        {return;}
+        if(!CanUseCards){ return; }
         CardObjectReference cardToUse = CardMagazine[0];
 
         //If cardToUse has UsesAnimationEvent set to true, use the animationController to play said animation, otherwise call the UseCardOneShot method.
         if(!cardToUse.cardSO.UsesAnimationEvent)
         {
             UseCardOneShot();
+
         }else
         {
             AnimationClip cardAnimation = cardToUse.cardSO.PlayerAnimation;
@@ -100,12 +102,15 @@ public class PlayerCardManager : MonoBehaviour
             //is still playing. Without this, its unlikely but possible for a player to click fast enough to play another card whilst first one is
             //still going due to float rounding issues.
             StartCoroutine(CardUseCooldown(cardAnimation.length + 0.01f));
-            StartCoroutine(RemoveCardFromMagazine(CardMagazine[0], cardAnimation.length + 0.05f) );   
+            StartCoroutine(RemoveCardFromMagazine(CardMagazine[0], cardAnimation.length + 0.005f) );
+
 
         }
 
+
         OnUseCard?.Invoke();
         OnUseSpecificCard?.Invoke(cardToUse);
+
 
     }
 

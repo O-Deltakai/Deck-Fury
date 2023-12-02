@@ -47,6 +47,11 @@ public class EntityAnimationController : MonoBehaviour
 
         animator.Play(animationClip.name);
         isAnimating = true;
+
+        if(returnToIdleCoroutine != null)
+        {
+            StopCoroutine(returnToIdleCoroutine);
+        }
         returnToIdleCoroutine = StartCoroutine(ReturnToIdle(animationClip.length));
     }
 

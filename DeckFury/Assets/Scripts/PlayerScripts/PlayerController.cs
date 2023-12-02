@@ -44,7 +44,9 @@ public class PlayerController : StageEntity
     Vector2 playerMouseDifference;
 
     bool isDefeated;
- 
+
+    [SerializeField] bool useInputSystemMovement;
+    [SerializeField] Vector2 currentInputVector;
 
     protected override void Awake()
     {
@@ -165,6 +167,8 @@ public class PlayerController : StageEntity
     }
 
 
+
+
 //Place all methods that relate to the input action asset on the Player Input component here.
 #region Input Actions
 
@@ -178,6 +182,16 @@ public class PlayerController : StageEntity
         return true;
     }
 
+    public void Movement(InputAction.CallbackContext context)
+    {
+        if(!useInputSystemMovement) { return; }
+
+        currentInputVector = context.ReadValue<Vector2>();
+        
+        
+    }
+
+
     //Logic for when BasicShot input action is activated
     public void BasicShot(InputAction.CallbackContext context)
     {
@@ -186,12 +200,11 @@ public class PlayerController : StageEntity
         if(!CanAct){return;}
         if(isDefeated){return;}
         if(GameManager.GameIsPaused){return;}
-        if(MovingCoroutine != null){return;}
 
         if(context.performed)
         {
             //animationController.PlayAnimationClip(animationController.basicShotAnimation);
-            bufferHandler.BufferAction(new BufferedInput(ExecuteBasicShot, context.action, animationController.basicShotAnimation.length + 0.01f, Time.time));
+            bufferHandler.BufferAction(new BufferedInput(ExecuteBasicShot, context.action, animationController.basicShotAnimation.length + 0.015f, Time.time));
         }
     }
 
@@ -207,19 +220,21 @@ public class PlayerController : StageEntity
         if(!CanAct){return;}
         if(isDefeated){return;}
         if(GameManager.GameIsPaused){return;}
-        if(!cardManager.CanUseCards){return;}
+        //if(!cardManager.CanUseCards){return;}
         if(cardManager.MagazineIsEmpty()){return;}//Check if magazine is empty
 
         if(context.performed)
         {
-            cardManager.TriggerCard();   
+            bufferHandler.BufferAction(new BufferedInput(ExecuteUseCard, context.action, cardManager.NextCard.cardSO.PlayerAnimation.length + 0.015f, Time.time));
+
+            //cardManager.TriggerCard();   
         }
 
     }
 
     void ExecuteUseCard()
     {
-        
+        cardManager.TriggerCard();   
     }
 
     public void OpenCardSelectMenu(InputAction.CallbackContext context)
@@ -278,6 +293,11 @@ public class PlayerController : StageEntity
             }
 
         }
+    }
+
+    void ExecuteDash()
+    {
+
     }
 
 
