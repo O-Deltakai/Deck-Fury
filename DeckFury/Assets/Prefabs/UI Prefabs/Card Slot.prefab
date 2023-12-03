@@ -253,9 +253,20 @@ MonoBehaviour:
   cardImage: {fileID: 2970550883651975098}
   popOutPanel: {fileID: 0}
   previousTransfererSlot: {fileID: 0}
-  audioSource: {fileID: 8383003031293857627}
-  onHoverSFX: {fileID: 8300000, guid: 8705967cc0ad08b439f9bbee6989fba8, type: 3}
-  onClickSFX: {fileID: 8300000, guid: 208c66ed33b201f469e4bc7addc12a6a, type: 3}
+  onHoverSFX:
+    Guid:
+      Data1: 427083241
+      Data2: 1152243681
+      Data3: 249787563
+      Data4: -216996842
+    Path: event:/UIEvents/UIHoverCard
+  onClickSFX:
+    Guid:
+      Data1: -1402921670
+      Data2: 1252174870
+      Data3: 1546873261
+      Data4: 915889600
+    Path: event:/UIEvents/UIClickCard
 --- !u!114 &4231607653784360945
 MonoBehaviour:
   m_ObjectHideFlags: 0

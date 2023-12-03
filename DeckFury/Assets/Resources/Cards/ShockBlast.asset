@@ -19,6 +19,9 @@ MonoBehaviour:
   <AttackElement>k__BackingField: 4
   <CardType>k__BackingField: 0
   <StatusEffect>k__BackingField: 0
+  <statusEffect>k__BackingField:
+    statusEffectType: 0
+    effectStrength: 0
   <EnergyCost>k__BackingField: 1
   CardTier: 1
   <QuantifiableEffects>k__BackingField: []
@@ -29,5 +32,13 @@ MonoBehaviour:
   <ObjectSummonList>k__BackingField: []
   <ObjectSummonsArePooled>k__BackingField: 0
   <UseTargetingReticle>k__BackingField: 1
+  <ReticleIsStatic>k__BackingField: 0
   <TargetingReticle>k__BackingField: {fileID: 7364548408100860759, guid: 2af39de2bf15a734897b26482d28b1d2, type: 3}
   <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}
+  _onActivationSFX:
+    Guid:
+      Data1: -1811734298
+      Data2: 1244857225
+      Data3: 1639111808
+      Data4: 362859394
+    Path: event:/CardSFX/ShockBlast

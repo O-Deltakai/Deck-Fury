@@ -34,6 +34,9 @@
 		<relationship name="parameters">
 			<destination>{1c0edc00-c285-4f4d-8ca8-7cdfc7382608}</destination>
 		</relationship>
+		<relationship name="banks">
+			<destination>{76da96eb-e15f-4ba9-810b-a2057b41ac09}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixer" id="{a6e79825-e14f-4cdf-afa1-54474c38f92e}">
 		<relationship name="masterBus">
@@ -77,6 +80,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{9c6e7dcc-6fd3-4222-8790-e1554814dbe1}">
+		<property name="volume">
+			<value>-12</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{ae2fd189-9fe5-49ad-b24e-5a354b6c6551}</destination>
 		</relationship>
@@ -120,7 +126,7 @@
 	<object class="MixerBusPanner" id="{71afe294-b36f-4b92-9623-25b1f72fc234}" />
 	<object class="SingleSound" id="{0282b37e-29bb-4faf-8bbb-7584a3a10e89}">
 		<property name="startOffset">
-			<value>12.5</value>
+			<value>15</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{78c0f724-742f-475e-87b1-ba189b84ec7e}</destination>

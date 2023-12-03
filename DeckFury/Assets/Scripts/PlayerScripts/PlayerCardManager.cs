@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 //Handles what cards the player has access to - what's in the player's card magazine
@@ -161,7 +162,9 @@ public class PlayerCardManager : MonoBehaviour
         CardEffect cardToUse = CardMagazine[0].effectPrefab.GetComponent<CardEffect>();
 
         cardToUse.gameObject.SetActive(true);
-        cardToUse.ActivateCardEffect(); 
+        cardToUse.ActivateCardEffect();
+
+        RuntimeManager.PlayOneShot(cardToUse.cardSO.OnActivationSFX, transform.position);
 
     }
 

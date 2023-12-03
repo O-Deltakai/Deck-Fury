@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.InputSystem;
+using FMODUnity;
 
 //Script that handles functionality of the card selection menu
 public class CardSelectionMenu : MonoBehaviour
@@ -58,9 +59,11 @@ public class CardSelectionMenu : MonoBehaviour
     [SerializeField] RectTransform PreviewArrowIcon;
     bool isPreviewing = false;
 
-    [Header("Audio Elements")]
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioClip clickOKSFX;
+    [Header("SFX")]
+    [SerializeField] EventReference activateMenuSFX;
+    [SerializeField] EventReference clickOKSFX;
+    [SerializeField] EventReference previewStageSFX;
+    [SerializeField] EventReference unpreviewStageSFX;
 
 
 
@@ -71,7 +74,6 @@ public class CardSelectionMenu : MonoBehaviour
     {
         _instance = this;
 
-        if(!audioSource){ audioSource = GetComponent<AudioSource>(); }
 
         rectTransform = GetComponent<RectTransform>();
 
@@ -316,7 +318,7 @@ public class CardSelectionMenu : MonoBehaviour
     public void OnClickOKButton()
     {
         PlayerCardManager.LoadCardMagazine(cardObjectReferencesInLoadPanel);
-        audioSource.PlayOneShot(clickOKSFX);
+        RuntimeManager.PlayOneShot(clickOKSFX);
         DisableMenu();
     }
 

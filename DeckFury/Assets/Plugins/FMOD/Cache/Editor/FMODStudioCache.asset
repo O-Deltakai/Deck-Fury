@@ -1,5 +1,180 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9149604104894475035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/UI.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/UI.bank
+  Name: UI
+  StudioPath: bank:/UI
+  lastModified: 638372327429944449
+  FileSizes:
+  - Name: Desktop
+    Value: 20992
+  Exists: 1
+--- !u!114 &-8983499300347524509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UIEvents/UIClick_1
+  m_EditorClassIdentifier: 
+  Path: event:/UIEvents/UIClick_1
+  Guid:
+    Data1: 1068972814
+    Data2: 1124855550
+    Data3: -1368565853
+    Data4: 2026942749
+  Banks:
+  - {fileID: -9149604104894475035}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-8042990687102530542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/CardEffects.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/CardEffects.bank
+  Name: CardEffects
+  StudioPath: bank:/CardEffects
+  lastModified: 638372327430484093
+  FileSizes:
+  - Name: Desktop
+    Value: 86656
+  Exists: 1
+--- !u!114 &-5381665975362957318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CardSFX/ShockBlast
+  m_EditorClassIdentifier: 
+  Path: event:/CardSFX/ShockBlast
+  Guid:
+    Data1: -1811734298
+    Data2: 1244857225
+    Data3: 1639111808
+    Data4: 362859394
+  Banks:
+  - {fileID: -8042990687102530542}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4641085551485077171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerDamaged
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerDamaged
+  Guid:
+    Data1: 370835583
+    Data2: 1319142353
+    Data3: 814437515
+    Data4: -1844868644
+  Banks:
+  - {fileID: 6534856402946505827}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4470837668451882450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UIEvents/UIEnergyFull
+  m_EditorClassIdentifier: 
+  Path: event:/UIEvents/UIEnergyFull
+  Guid:
+    Data1: 1769537412
+    Data2: 1178997601
+    Data3: -1532411713
+    Data4: 255512288
+  Banks:
+  - {fileID: -9149604104894475035}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2680782914909787530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CardSFX/FireBombThrow
+  m_EditorClassIdentifier: 
+  Path: event:/CardSFX/FireBombThrow
+  Guid:
+    Data1: 2144332776
+    Data2: 1122956936
+    Data3: -1305428821
+    Data4: 2008034022
+  Banks:
+  - {fileID: -8042990687102530542}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1199707550411595357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,11 +190,38 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638372112653379152
+  lastModified: 638372327429601533
   FileSizes:
   - Name: Desktop
     Value: 1036
   Exists: 1
+--- !u!114 &-72422992369310174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NPCDamaged3DPunch
+  m_EditorClassIdentifier: 
+  Path: event:/NPCDamaged3DPunch
+  Guid:
+    Data1: 1006074970
+    Data2: 1116370271
+    Data3: -118895988
+    Data4: -1259254039
+  Banks:
+  - {fileID: 6534856402946505827}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,14 +237,138 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 4950714686771268432}
   - {fileID: -1199707550411595357}
-  EditorEvents: []
+  - {fileID: -9149604104894475035}
+  - {fileID: 6534856402946505827}
+  - {fileID: -8042990687102530542}
+  EditorEvents:
+  - {fileID: -8983499300347524509}
+  - {fileID: 3948181976075278948}
+  - {fileID: 3246492519044014100}
+  - {fileID: 4207368418180942989}
+  - {fileID: -4470837668451882450}
+  - {fileID: -4641085551485077171}
+  - {fileID: 9172678833271174344}
+  - {fileID: 5960675850421423401}
+  - {fileID: -72422992369310174}
+  - {fileID: -5381665975362957318}
+  - {fileID: 1548841580800991409}
+  - {fileID: -2680782914909787530}
+  - {fileID: 5110348535214356016}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1199707550411595357}
   StringsBanks:
   - {fileID: 4950714686771268432}
-  cacheTime: 638372112653419264
+  cacheTime: 638372327430484093
   cacheVersion: 131608
+--- !u!114 &1548841580800991409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CardSFX/ForceBlast
+  m_EditorClassIdentifier: 
+  Path: event:/CardSFX/ForceBlast
+  Guid:
+    Data1: 224291490
+    Data2: 1160286595
+    Data3: -1625491054
+    Data4: 562775855
+  Banks:
+  - {fileID: -8042990687102530542}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3246492519044014100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UIEvents/UIHoverCard
+  m_EditorClassIdentifier: 
+  Path: event:/UIEvents/UIHoverCard
+  Guid:
+    Data1: 427083241
+    Data2: 1152243681
+    Data3: 249787563
+    Data4: -216996842
+  Banks:
+  - {fileID: -9149604104894475035}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3948181976075278948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UIEvents/UIClickCard
+  m_EditorClassIdentifier: 
+  Path: event:/UIEvents/UIClickCard
+  Guid:
+    Data1: -1402921670
+    Data2: 1252174870
+    Data3: 1546873261
+    Data4: 915889600
+  Banks:
+  - {fileID: -9149604104894475035}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4207368418180942989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UIEvents/UIOKButton
+  m_EditorClassIdentifier: 
+  Path: event:/UIEvents/UIOKButton
+  Guid:
+    Data1: 190842112
+    Data2: 1295256212
+    Data3: 239280048
+    Data4: 1374629191
+  Banks:
+  - {fileID: -9149604104894475035}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &4950714686771268432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,8 +384,109 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638372112653419264
+  lastModified: 638372327429641501
   FileSizes:
   - Name: Desktop
-    Value: 712
+    Value: 1472
   Exists: 1
+--- !u!114 &5110348535214356016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CardSFX/DaggerThrow
+  m_EditorClassIdentifier: 
+  Path: event:/CardSFX/DaggerThrow
+  Guid:
+    Data1: -1458326653
+    Data2: 1228424990
+    Data3: 977436305
+    Data4: 648307154
+  Banks:
+  - {fileID: -8042990687102530542}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5960675850421423401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NPCDamaged3D
+  m_EditorClassIdentifier: 
+  Path: event:/NPCDamaged3D
+  Guid:
+    Data1: 1398592592
+    Data2: 1090573863
+    Data3: -16131962
+    Data4: 105438896
+  Banks:
+  - {fileID: 6534856402946505827}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6534856402946505827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Characters.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Characters.bank
+  Name: Characters
+  StudioPath: bank:/Characters
+  lastModified: 638372327429542147
+  FileSizes:
+  - Name: Desktop
+    Value: 25024
+  Exists: 1
+--- !u!114 &9172678833271174344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NPCDamaged
+  m_EditorClassIdentifier: 
+  Path: event:/NPCDamaged
+  Guid:
+    Data1: 66717868
+    Data2: 1315884895
+    Data3: 290652569
+    Data4: 810247677
+  Banks:
+  - {fileID: 6534856402946505827}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0

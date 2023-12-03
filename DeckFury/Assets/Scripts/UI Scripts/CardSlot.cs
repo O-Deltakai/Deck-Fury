@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,9 +19,8 @@ public class CardSlot : MonoBehaviour
     public CardSlot previousTransfererSlot;
 
 [Header("Audio Clips")]
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioClip onHoverSFX;
-    [SerializeField] AudioClip onClickSFX;
+    [SerializeField] EventReference onHoverSFX;
+    [SerializeField] EventReference onClickSFX;
 
 
     private void Awake()
@@ -46,13 +46,14 @@ public class CardSlot : MonoBehaviour
     public void OnClick()
     {
 
-        audioSource.PlayOneShot(onClickSFX);
+        RuntimeManager.PlayOneShot(onClickSFX);
     }
 
     public void OnHover()
     {
 
-        audioSource.PlayOneShot(onHoverSFX);
+        RuntimeManager.PlayOneShot(onHoverSFX);
+
     }
 
 

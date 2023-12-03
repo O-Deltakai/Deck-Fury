@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using FMODUnity;
 
 
 
@@ -49,8 +50,8 @@ public class EnergyController : MonoBehaviour
 
     [SerializeField] Image arrowImage;
 
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioClip energyFullSFX;
+[Header("SFX")]
+    [SerializeField] EventReference energyFullSFX;
 
     bool canCharge = true;
 
@@ -60,11 +61,6 @@ public class EnergyController : MonoBehaviour
 
     private void Awake() 
     {
-        if(!audioSource)
-        {
-            audioSource = GetComponent<AudioSource>();
-        }
-            
         if(pressTabText){ pressTabText.SetActive(false); }
 
     }
@@ -213,7 +209,7 @@ public class EnergyController : MonoBehaviour
                 fullCharge = true;
 
                 if(pressTabText){ pressTabText.SetActive(true); }
-
+                RuntimeManager.PlayOneShot(energyFullSFX);
             }
         }
         barSlider.value = currentEnergyValue/max;
