@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 [System.Serializable]
@@ -87,7 +88,10 @@ public class CardSO : ScriptableObject
     [field:SerializeField] public GameObject TargetingReticle{get; private set;}
     [field:SerializeField] public Vector2Int TargetingReticleOffSet{get; private set;}
 
+    [Header("SFX")]
 
+    [SerializeField] EventReference _onActivationSFX;
+    public EventReference OnActivationSFX => _onActivationSFX;
 
     public int GetBaseDamage()
     {return BaseDamage;}

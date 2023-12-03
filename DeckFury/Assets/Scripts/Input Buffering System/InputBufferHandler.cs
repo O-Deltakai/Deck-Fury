@@ -40,7 +40,7 @@ public class InputBufferHandler : MonoBehaviour
         {
             BufferedInput action = buffer.Dequeue();
 
-            if(currentTime - lastActionTime >= action.actionLockoutDuration)
+            if(currentTime - lastActionTime > action.actionLockoutDuration)
             {
                 ExecuteAction(action);
                 lastActionTime = currentTime;

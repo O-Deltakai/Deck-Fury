@@ -164,6 +164,8 @@ public class PlayerController : StageEntity
             MovingCoroutine = StartCoroutine(TweenMove(0, -1, 0.1f, MovementEase));
         }
 
+
+
     }
 
 
@@ -225,7 +227,7 @@ public class PlayerController : StageEntity
 
         if(context.performed)
         {
-            bufferHandler.BufferAction(new BufferedInput(ExecuteUseCard, context.action, cardManager.NextCard.cardSO.PlayerAnimation.length + 0.015f, Time.time));
+            bufferHandler.BufferAction(new BufferedInput(ExecuteUseCard, context.action, cardManager.NextCard.cardSO.PlayerAnimation.length + 0.05f, Time.time));
 
             //cardManager.TriggerCard();   
         }
