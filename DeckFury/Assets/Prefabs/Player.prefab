@@ -1417,7 +1417,7 @@ MonoBehaviour:
       Data2: 1319142353
       Data3: 814437515
       Data4: -1844868644
-    Path: event:/PlayerDamaged
+    Path: event:/Player/PlayerDamaged
   OnDeathSFX:
     Guid:
       Data1: 0
@@ -1439,7 +1439,7 @@ MonoBehaviour:
       Data2: 1202210331
       Data3: 942117004
       Data4: 1756866879
-    Path: event:/PlayerBasicShot
+    Path: event:/Player/PlayerBasicShot
 --- !u!114 &1755202097915902242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1681,6 +1681,13 @@ MonoBehaviour:
   dashDistance: 3
   dashSpeed: 0.2
   dashCooldown: 1
+  dashSFX:
+    Guid:
+      Data1: -358635709
+      Data2: 1248417399
+      Data3: 799688105
+      Data4: -54161794
+    Path: event:/Player/PlayerDash
   inputPressedDuringCooldown: 0
 --- !u!114 &1017916818722181608
 MonoBehaviour:

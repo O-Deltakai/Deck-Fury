@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -34,6 +35,8 @@ public class PlayerDashController : MonoBehaviour
     [SerializeField, Min(0)] int dashDistance = 3;
     [SerializeField, Min(0)] float dashSpeed = 0.15f;
     [SerializeField, Min(0)] float dashCooldown;
+
+    [SerializeField] EventReference dashSFX;
 
     public bool inputPressedDuringCooldown = false;
 
@@ -101,6 +104,8 @@ public class PlayerDashController : MonoBehaviour
 
                 animationController.PlayAnimationClip(dashAnimation);
                 StartCoroutine(DashCooldown());
+
+                RuntimeManager.PlayOneShot(dashSFX, transform.position);
                 return;                        
             }else
             if(stageManager.CheckValidTile(destination - aimpoint.GetAimVector3Int()))
@@ -115,6 +120,7 @@ public class PlayerDashController : MonoBehaviour
 
                 animationController.PlayAnimationClip(dashAnimation);
                 StartCoroutine(DashCooldown());
+                RuntimeManager.PlayOneShot(dashSFX, transform.position);
 
                 return; 
             }
@@ -134,6 +140,7 @@ public class PlayerDashController : MonoBehaviour
                     
                     animationController.PlayAnimationClip(dashAnimation);
                     StartCoroutine(DashCooldown());
+                    RuntimeManager.PlayOneShot(dashSFX, transform.position);
 
                     return;
                 }
@@ -146,6 +153,7 @@ public class PlayerDashController : MonoBehaviour
 
             StartCoroutine(DisableHitboxTimer());
             StartCoroutine(DashCooldown());
+            RuntimeManager.PlayOneShot(dashSFX, transform.position);
 
         }
 

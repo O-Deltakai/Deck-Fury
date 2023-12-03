@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638372415249345004
+  lastModified: 638372515388382671
   FileSizes:
   - Name: Desktop
     Value: 77600
@@ -89,7 +89,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/CardEffects.bank
   Name: CardEffects
   StudioPath: bank:/CardEffects
-  lastModified: 638372415249693650
+  lastModified: 638372515388712670
   FileSizes:
   - Name: Desktop
     Value: 102944
@@ -148,33 +148,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-4641085551485077171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PlayerDamaged
-  m_EditorClassIdentifier: 
-  Path: event:/PlayerDamaged
-  Guid:
-    Data1: 370835583
-    Data2: 1319142353
-    Data3: 814437515
-    Data4: -1844868644
-  Banks:
-  - {fileID: 6534856402946505827}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-4470837668451882450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,10 +190,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 638372415249963601
+  lastModified: 638372515388983389
   FileSizes:
   - Name: Desktop
-    Value: 6336
+    Value: 13632
   Exists: 1
 --- !u!114 &-1199707550411595357
 MonoBehaviour:
@@ -237,7 +210,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638372415248700928
+  lastModified: 638372515387982680
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -294,26 +267,54 @@ MonoBehaviour:
   - {fileID: 3246492519044014100}
   - {fileID: 4207368418180942989}
   - {fileID: -4470837668451882450}
-  - {fileID: -4641085551485077171}
   - {fileID: 9172678833271174344}
   - {fileID: 5960675850421423401}
   - {fileID: -72422992369310174}
   - {fileID: -5381665975362957318}
   - {fileID: 1548841580800991409}
   - {fileID: 5110348535214356016}
-  - {fileID: 6330433711978553665}
   - {fileID: 6662470491220421297}
   - {fileID: -9055106115180510798}
   - {fileID: 3533506851888214869}
   - {fileID: 5211280980146522652}
   - {fileID: -7488637499274522576}
+  - {fileID: 791509316960225685}
+  - {fileID: 8214067188933517207}
+  - {fileID: 1562294042699414447}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1199707550411595357}
   StringsBanks:
   - {fileID: 4950714686771268432}
-  cacheTime: 638372415249963601
+  cacheTime: 638372515388983389
   cacheVersion: 131608
+--- !u!114 &791509316960225685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/PlayerDamaged
+  m_EditorClassIdentifier: 
+  Path: event:/Player/PlayerDamaged
+  Guid:
+    Data1: 370835583
+    Data2: 1319142353
+    Data3: 814437515
+    Data4: -1844868644
+  Banks:
+  - {fileID: 6534856402946505827}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &1548841580800991409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,6 +335,33 @@ MonoBehaviour:
     Data4: 562775855
   Banks:
   - {fileID: -8042990687102530542}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &1562294042699414447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/PlayerBasicShot
+  m_EditorClassIdentifier: 
+  Path: event:/Player/PlayerBasicShot
+  Guid:
+    Data1: 1768567994
+    Data2: 1202210331
+    Data3: 942117004
+    Data4: 1756866879
+  Banks:
+  - {fileID: -2926471139701150237}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -464,10 +492,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638372415248740921
+  lastModified: 638372515388032667
   FileSizes:
   - Name: Desktop
-    Value: 1770
+    Value: 1822
   Exists: 1
 --- !u!114 &5110348535214356016
 MonoBehaviour:
@@ -550,33 +578,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &6330433711978553665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PlayerBasicShot
-  m_EditorClassIdentifier: 
-  Path: event:/PlayerBasicShot
-  Guid:
-    Data1: 1768567994
-    Data2: 1202210331
-    Data3: 942117004
-    Data4: 1756866879
-  Banks:
-  - {fileID: -2926471139701150237}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &6534856402946505827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,7 +593,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Characters.bank
   Name: Characters
   StudioPath: bank:/Characters
-  lastModified: 638372415248640924
+  lastModified: 638372515387932668
   FileSizes:
   - Name: Desktop
     Value: 25024
@@ -619,6 +620,33 @@ MonoBehaviour:
   - {fileID: -9149604104894475035}
   IsStream: 0
   Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8214067188933517207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/PlayerDash
+  m_EditorClassIdentifier: 
+  Path: event:/Player/PlayerDash
+  Guid:
+    Data1: -358635709
+    Data2: 1248417399
+    Data3: 799688105
+    Data4: -54161794
+  Banks:
+  - {fileID: -2926471139701150237}
+  IsStream: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
