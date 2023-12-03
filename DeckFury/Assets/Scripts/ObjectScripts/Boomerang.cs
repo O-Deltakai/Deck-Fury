@@ -24,10 +24,10 @@ public class Boomerang : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         turningBack = false;
-        boomerangAnimator.Play("boomerangVFX", 0);
+        boomerangAnimator.Play(boomerangVFX.name, 0);
     }
 
-        void Start()
+    void Start()
     {
         StartCoroutine(TimedDestruction());
 

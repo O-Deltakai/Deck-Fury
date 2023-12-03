@@ -64,7 +64,7 @@ public class CardSelectionMenu : MonoBehaviour
     [SerializeField] EventReference clickOKSFX;
     [SerializeField] EventReference previewStageSFX;
     [SerializeField] EventReference unpreviewStageSFX;
-
+    [SerializeField] EventReference onClickValidCardSlotSFX;
 
 
     public bool isActive{get; private set;} = false;
@@ -168,6 +168,8 @@ public class CardSelectionMenu : MonoBehaviour
         isActive = true;
         OnMenuActivated?.Invoke();
 
+        RuntimeManager.PlayOneShot(activateMenuSFX);
+
         GameManager.PauseGame();
     }
 
@@ -187,10 +189,12 @@ public class CardSelectionMenu : MonoBehaviour
         if(!isPreviewing)
         {
             PreviewStage();
+            RuntimeManager.PlayOneShot(previewStageSFX);
             isPreviewing = true;
         }else
         {
             UnPreviewStage();
+            RuntimeManager.PlayOneShot(unpreviewStageSFX);
             isPreviewing = false;
         }
     }
@@ -280,6 +284,8 @@ public class CardSelectionMenu : MonoBehaviour
 
         }
 
+        RuntimeManager.PlayOneShot(onClickValidCardSlotSFX);
+
     }
 
     //Logic for what happens when clicking on a card slot in the cardLoadPanel
@@ -311,6 +317,8 @@ public class CardSelectionMenu : MonoBehaviour
             
            
         }
+
+        RuntimeManager.PlayOneShot(onClickValidCardSlotSFX);
 
     }
 

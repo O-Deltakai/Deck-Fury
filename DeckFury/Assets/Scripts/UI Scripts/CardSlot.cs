@@ -45,14 +45,15 @@ public class CardSlot : MonoBehaviour
 
     public void OnClick()
     {
-
-        RuntimeManager.PlayOneShot(onClickSFX);
+        
     }
 
     public void OnHover()
     {
-
-        RuntimeManager.PlayOneShot(onHoverSFX);
+        if(button.interactable)
+        {
+            RuntimeManager.PlayOneShot(onHoverSFX);
+        }
 
     }
 

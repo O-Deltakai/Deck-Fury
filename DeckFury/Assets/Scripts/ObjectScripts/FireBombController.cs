@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using FMODUnity;
 
 public class FireBombController : MonoBehaviour
 {
@@ -21,11 +22,15 @@ public class FireBombController : MonoBehaviour
     [SerializeField] Animator bombExplosionAnimator;
     [SerializeField] AnimationEventIntermediary bombExplosionAnimEventRelay;
 
+
+    [SerializeField] EventReference explosionSFX;
+
     public bool objectIsPooled;
     public Vector2Int impactPoint;
     public AttackPayload attackPayload;
 
     bool ThrowingInProgress;
+
 
     private void Awake() 
     {
@@ -162,6 +167,8 @@ public class FireBombController : MonoBehaviour
                 entityHit.HurtEntity(attackPayload);
             }             
         }
+
+        RuntimeManager.PlayOneShot(explosionSFX);
 
         StartCoroutine(ExplosionColliderDuration(0.2f));
     }

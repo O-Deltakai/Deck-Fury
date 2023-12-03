@@ -15,11 +15,38 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638372327429944449
+  lastModified: 638372415249345004
   FileSizes:
   - Name: Desktop
-    Value: 20992
+    Value: 77600
   Exists: 1
+--- !u!114 &-9055106115180510798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UIEvents/UnPreviewStage
+  m_EditorClassIdentifier: 
+  Path: event:/UIEvents/UnPreviewStage
+  Guid:
+    Data1: 184674221
+    Data2: 1217883428
+    Data3: -164752962
+    Data4: 1735160117
+  Banks:
+  - {fileID: -9149604104894475035}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-8983499300347524509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,11 +89,38 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/CardEffects.bank
   Name: CardEffects
   StudioPath: bank:/CardEffects
-  lastModified: 638372327430484093
+  lastModified: 638372415249693650
   FileSizes:
   - Name: Desktop
-    Value: 86656
+    Value: 102944
   Exists: 1
+--- !u!114 &-7488637499274522576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UIEvents/OpenCardSelect
+  m_EditorClassIdentifier: 
+  Path: event:/UIEvents/OpenCardSelect
+  Guid:
+    Data1: 1282027219
+    Data2: 1276351444
+    Data3: -1188050248
+    Data4: 1556259124
+  Banks:
+  - {fileID: -9149604104894475035}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-5381665975362957318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +202,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-2680782914909787530
+--- !u!114 &-2926471139701150237
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,24 +211,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/CardSFX/FireBombThrow
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Player.bank
   m_EditorClassIdentifier: 
-  Path: event:/CardSFX/FireBombThrow
-  Guid:
-    Data1: 2144332776
-    Data2: 1122956936
-    Data3: -1305428821
-    Data4: 2008034022
-  Banks:
-  - {fileID: -8042990687102530542}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
+  Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Player.bank
+  Name: Player
+  StudioPath: bank:/Player
+  lastModified: 638372415249963601
+  FileSizes:
+  - Name: Desktop
+    Value: 6336
+  Exists: 1
 --- !u!114 &-1199707550411595357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +237,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638372327429601533
+  lastModified: 638372415248700928
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -240,6 +287,7 @@ MonoBehaviour:
   - {fileID: -9149604104894475035}
   - {fileID: 6534856402946505827}
   - {fileID: -8042990687102530542}
+  - {fileID: -2926471139701150237}
   EditorEvents:
   - {fileID: -8983499300347524509}
   - {fileID: 3948181976075278948}
@@ -252,14 +300,19 @@ MonoBehaviour:
   - {fileID: -72422992369310174}
   - {fileID: -5381665975362957318}
   - {fileID: 1548841580800991409}
-  - {fileID: -2680782914909787530}
   - {fileID: 5110348535214356016}
+  - {fileID: 6330433711978553665}
+  - {fileID: 6662470491220421297}
+  - {fileID: -9055106115180510798}
+  - {fileID: 3533506851888214869}
+  - {fileID: 5211280980146522652}
+  - {fileID: -7488637499274522576}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1199707550411595357}
   StringsBanks:
   - {fileID: 4950714686771268432}
-  cacheTime: 638372327430484093
+  cacheTime: 638372415249963601
   cacheVersion: 131608
 --- !u!114 &1548841580800991409
 MonoBehaviour:
@@ -310,6 +363,33 @@ MonoBehaviour:
   - {fileID: -9149604104894475035}
   IsStream: 0
   Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3533506851888214869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CardSFX/FirebombExplosion
+  m_EditorClassIdentifier: 
+  Path: event:/CardSFX/FirebombExplosion
+  Guid:
+    Data1: 237647627
+    Data2: 1095221335
+    Data3: -1941579365
+    Data4: -931990142
+  Banks:
+  - {fileID: -8042990687102530542}
+  IsStream: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -384,10 +464,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638372327429641501
+  lastModified: 638372415248740921
   FileSizes:
   - Name: Desktop
-    Value: 1472
+    Value: 1770
   Exists: 1
 --- !u!114 &5110348535214356016
 MonoBehaviour:
@@ -407,6 +487,33 @@ MonoBehaviour:
     Data2: 1228424990
     Data3: 977436305
     Data4: 648307154
+  Banks:
+  - {fileID: -8042990687102530542}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5211280980146522652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CardSFX/FirebombThrow
+  m_EditorClassIdentifier: 
+  Path: event:/CardSFX/FirebombThrow
+  Guid:
+    Data1: 2144332776
+    Data2: 1122956936
+    Data3: -1305428821
+    Data4: 2008034022
   Banks:
   - {fileID: -8042990687102530542}
   IsStream: 0
@@ -443,6 +550,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &6330433711978553665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerBasicShot
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerBasicShot
+  Guid:
+    Data1: 1768567994
+    Data2: 1202210331
+    Data3: 942117004
+    Data4: 1756866879
+  Banks:
+  - {fileID: -2926471139701150237}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &6534856402946505827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,11 +592,38 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Characters.bank
   Name: Characters
   StudioPath: bank:/Characters
-  lastModified: 638372327429542147
+  lastModified: 638372415248640924
   FileSizes:
   - Name: Desktop
     Value: 25024
   Exists: 1
+--- !u!114 &6662470491220421297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UIEvents/PreviewStage
+  m_EditorClassIdentifier: 
+  Path: event:/UIEvents/PreviewStage
+  Guid:
+    Data1: -627952779
+    Data2: 1318125371
+    Data3: 526509707
+    Data4: 323784004
+  Banks:
+  - {fileID: -9149604104894475035}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &9172678833271174344
 MonoBehaviour:
   m_ObjectHideFlags: 0

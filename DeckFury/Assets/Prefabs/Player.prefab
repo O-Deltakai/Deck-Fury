@@ -1183,6 +1183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1755202097491930492}
   - component: {fileID: 1755202097491930483}
+  - component: {fileID: 880545760}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1225,6 +1226,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <stageEntity>k__BackingField: {fileID: 1755202097915902243}
+--- !u!114 &880545760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755202097491930493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &1755202097915902248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,6 +1259,7 @@ GameObject:
   - component: {fileID: 8764667573492651437}
   - component: {fileID: 219873213472195366}
   - component: {fileID: 1755202098704932413}
+  - component: {fileID: 1017916818722181608}
   m_Layer: 3
   m_Name: PlayerObject
   m_TagString: Player
@@ -1396,12 +1411,35 @@ MonoBehaviour:
   ShieldsText: {fileID: 1601399085}
   DoNotShowHP: 0
   entitySpriteRenderer: {fileID: 0}
+  OnDamagedSFX:
+    Guid:
+      Data1: 370835583
+      Data2: 1319142353
+      Data3: 814437515
+      Data4: -1844868644
+    Path: event:/PlayerDamaged
+  OnDeathSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   CanFireBasicShot: 1
   mainCamera: {fileID: 0}
   cardSelectionMenu: {fileID: 0}
   <aimpoint>k__BackingField: {fileID: 1755202098436831234}
   basicShotProjectile: {fileID: 4428352047079426778, guid: 1f50241f661a9854f87dc6e8473ea94d, type: 3}
   basicShotDamage: 10
+  useInputSystemMovement: 1
+  currentInputVector: {x: 0, y: 0}
+  basicShotSFX:
+    Guid:
+      Data1: 1768567994
+      Data2: 1202210331
+      Data3: 942117004
+      Data4: 1756866879
+    Path: event:/PlayerBasicShot
 --- !u!114 &1755202097915902242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1513,6 +1551,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b8e84224-a9fc-4569-8a51-2a0933ba8bef
     m_ActionName: PlayerDefault/Dash[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1755202097915902243}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Movement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c549339f-91cf-44e8-9bde-210dc5e3dcab
+    m_ActionName: PlayerDefault/Movement[/Keyboard/w,/Keyboard/a,/Keyboard/s,/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerDefault
@@ -1628,6 +1682,19 @@ MonoBehaviour:
   dashSpeed: 0.2
   dashCooldown: 1
   inputPressedDuringCooldown: 0
+--- !u!114 &1017916818722181608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755202097915902248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db38d92a54d063945841be1d90ac7bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bufferTime: 0.2
 --- !u!1 &1755202098436831244
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.InputSystem;
 using System;
+using FMODUnity;
 
 [RequireComponent(typeof(InputBufferHandler))]
 [RequireComponent(typeof(PlayerAnimationController))]
@@ -47,6 +48,9 @@ public class PlayerController : StageEntity
 
     [SerializeField] bool useInputSystemMovement;
     [SerializeField] Vector2 currentInputVector;
+
+[Header("Player SFX")]
+    [SerializeField] EventReference basicShotSFX;
 
     protected override void Awake()
     {
@@ -318,6 +322,9 @@ public class PlayerController : StageEntity
         bullet.attackPayload.damage = basicShotDamage;
         bullet.attackPayload.attacker = gameObject;
         bullet.speed = 45;
+
+        RuntimeManager.PlayOneShot(basicShotSFX, transform.position);
+
         OnBasicAttack?.Invoke();
 
         //Check the current aim direction of the aimpoint and modifies the bullet velocity so it flies in the

@@ -123,7 +123,11 @@
 			<destination>{ed1732f9-6885-49e9-9da0-24e2a3965f48}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{10af3869-90cb-49c6-a4c6-70e423cd225f}" />
+	<object class="MixerBusPanner" id="{10af3869-90cb-49c6-a4c6-70e423cd225f}">
+		<property name="stereoPan">
+			<value>8</value>
+		</property>
+	</object>
 	<object class="SingleSound" id="{946b0010-a5c2-42d3-9b6c-bf7d7f898d60}">
 		<property name="startOffset">
 			<value>15.5</value>
