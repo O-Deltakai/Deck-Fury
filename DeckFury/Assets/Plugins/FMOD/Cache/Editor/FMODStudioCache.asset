@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638372515388382671
+  lastModified: 638373163859394249
   FileSizes:
   - Name: Desktop
     Value: 77600
@@ -89,7 +89,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/CardEffects.bank
   Name: CardEffects
   StudioPath: bank:/CardEffects
-  lastModified: 638372515388712670
+  lastModified: 638373163859738701
   FileSizes:
   - Name: Desktop
     Value: 102944
@@ -175,6 +175,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-3910162642155353554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Objects/BarrelExplosion
+  m_EditorClassIdentifier: 
+  Path: event:/Objects/BarrelExplosion
+  Guid:
+    Data1: -12777727
+    Data2: 1206535698
+    Data3: -692765562
+    Data4: -2088509066
+  Banks:
+  - {fileID: 1581236416768238981}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2926471139701150237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,10 +217,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 638372515388983389
+  lastModified: 638373163860039687
   FileSizes:
   - Name: Desktop
-    Value: 13632
+    Value: 13792
   Exists: 1
 --- !u!114 &-1199707550411595357
 MonoBehaviour:
@@ -210,7 +237,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638372515387982680
+  lastModified: 638373163859009097
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -261,6 +288,7 @@ MonoBehaviour:
   - {fileID: 6534856402946505827}
   - {fileID: -8042990687102530542}
   - {fileID: -2926471139701150237}
+  - {fileID: 1581236416768238981}
   EditorEvents:
   - {fileID: -8983499300347524509}
   - {fileID: 3948181976075278948}
@@ -281,12 +309,13 @@ MonoBehaviour:
   - {fileID: 791509316960225685}
   - {fileID: 8214067188933517207}
   - {fileID: 1562294042699414447}
+  - {fileID: -3910162642155353554}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1199707550411595357}
   StringsBanks:
   - {fileID: 4950714686771268432}
-  cacheTime: 638372515388983389
+  cacheTime: 638373163860298202
   cacheVersion: 131608
 --- !u!114 &791509316960225685
 MonoBehaviour:
@@ -369,6 +398,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &1581236416768238981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Objects.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Objects.bank
+  Name: Objects
+  StudioPath: bank:/Objects
+  lastModified: 638373163860298202
+  FileSizes:
+  - Name: Desktop
+    Value: 32768
+  Exists: 1
 --- !u!114 &3246492519044014100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,10 +541,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638372515388032667
+  lastModified: 638373163859049068
   FileSizes:
   - Name: Desktop
-    Value: 1822
+    Value: 1914
   Exists: 1
 --- !u!114 &5110348535214356016
 MonoBehaviour:
@@ -593,7 +642,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Characters.bank
   Name: Characters
   StudioPath: bank:/Characters
-  lastModified: 638372515387932668
+  lastModified: 638373163858949056
   FileSizes:
   - Name: Desktop
     Value: 25024

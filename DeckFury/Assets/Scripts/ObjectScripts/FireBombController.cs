@@ -168,7 +168,7 @@ public class FireBombController : MonoBehaviour
             }             
         }
 
-        RuntimeManager.PlayOneShot(explosionSFX);
+        RuntimeManager.PlayOneShot(explosionSFX, transform.position);
 
         StartCoroutine(ExplosionColliderDuration(0.2f));
     }

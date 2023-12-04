@@ -28,7 +28,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>UNITY_2020_3_48;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_MANAGED_UNITYTLS;ENABLE_MONO_BDWGC;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_WEBGL;UNITY_WEBGL;UNITY_WEBGL_API;UNITY_DISABLE_WEB_VERIFICATION;UNITY_GFX_USE_PLATFORM_VSYNC;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_SPATIALTRACKING;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>UNITY_2020_3_48;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_MANAGED_UNITYTLS;ENABLE_MONO_BDWGC;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_WEBGL;UNITY_WEBGL;UNITY_WEBGL_API;UNITY_DISABLE_WEB_VERIFICATION;UNITY_GFX_USE_PLATFORM_VSYNC;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_SPATIALTRACKING;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;UNITY_POST_PROCESSING_STACK_V2;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169;USG0001</NoWarn>
@@ -237,6 +237,21 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\ScriptableObjects\SpawnTableSO.cs" />
     <Compile Include="Assets\Scripts\StageEntityScripts\StageEntity.cs" />
+    <Compile Include="Assets\Scripts\ObjectScripts\LaserTurret.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Ramps\Runtime\RampAsset.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCharacterMotor.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
+    <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\AdjustTimeScale.cs" />
+    <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CannonBehavior.cs" />
+    <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\ShotBehavior.cs" />
+    <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\VolumetricMultiLineBehavior.cs" />
+    <Compile Include="Assets\VolumetricLines\Scripts\VolumetricLineBehavior.cs" />
+    <Compile Include="Assets\VolumetricLines\Scripts\VolumetricLineStripBehavior.cs" />
+    <Compile Include="Assets\VolumetricLines\Scripts\VolumetricLineVertexData.cs" />
+    <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CreateSinShapedLineStrip.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{0b01e7ad-6d24-4897-be11-2ef635716c67}.xml" />
@@ -291,6 +306,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Assets\SFXPacks\yd-Sounds-CC0\readme.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{d4531bfb-4d2b-4a49-8027-c98820f42247}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{2528a9b6-ac55-409b-904d-f48061a35cf8}.xml" />
+    <None Include="Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_LineStripShader.cginc" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{f806a138-a0a5-4c43-b55c-5cba3a6a7b25}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{3d25ca2c-f032-4a95-b5b5-e3f1f1cf2d37}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{36a7875f-5bc3-4cef-be04-d2499b554e95}.xml" />
@@ -422,6 +438,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{853f2296-dbaf-444c-bd35-420729c36dcb}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{9a238d1d-bb8e-4bd8-98ef-7d5361e731b7}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{6fd3b4b5-3880-4b17-b45a-825743e611e9}.xml" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Prefabs\Readme_Dissolve_Respawn_.txt" />
     <None Include="Assets\Sprites\Free Art Assets\CraftPix_rpg_monster_sprites_OGA-BY3\source.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\ProfilerFolder\{80c278a2-9c63-4e65-a584-04f3c10044fc}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{f66e4bbf-902a-4683-90b1-9360610c48a4}.xml" />
@@ -539,8 +556,10 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{17e1cf5f-393b-4f5b-a457-c5aedfd706ab}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{ac611d3a-ac16-4aa2-ad69-335cc05d9736}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{671a8184-ba82-4854-bec5-b8496b88b12b}.xml" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Magic Effects\Shaders\Ice.shader" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{5086d04a-8519-4593-89b9-6d1544be3024}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{a306961a-3529-4f24-bcd8-9235ed889508}.xml" />
+    <None Include="Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\LineStrip-TextureAlphaBlended.shader" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{ab3e187d-57de-4963-8747-f498f3213241}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{4b78fcc8-ac90-4c77-ac82-1f5e075441f5}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\EncodingSetting\{c8fdb9df-ee64-46df-82ac-785e90a63c4a}.xml" />
@@ -554,6 +573,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{926d4531-df65-403a-8c76-79d1b6d18541}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{8362ba9d-c83f-4152-b537-5ad6a4230d43}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{4bf0f3e6-3c11-4a96-9e37-0d1c9861035e}.xml" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Shaders\Respawn.shader" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{4b70598f-8d74-49db-a5e8-c9decf12a793}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Bank\{55db71af-9a8a-4151-93d3-f4677c21e535}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{ef5b7268-4338-4108-a42b-8fec69d68cc1}.xml" />
@@ -567,6 +587,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{8cb2854e-aec7-4867-8644-c94ab8329f6d}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{1b28fb78-c379-41d8-891e-8fe7d392216b}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{e627105f-36fb-4fa4-9ff1-b9a1f0f8bb41}.xml" />
+    <None Include="Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\SingleLine-TextureAdditive.shader" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{5bfcb535-88db-491c-9c84-eef17be2c711}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{fd86cfad-f17b-4a1f-a7d3-fbecbbd42031}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{ceeb0295-2133-4739-a227-cd5d4da6c6d2}.xml" />
@@ -574,6 +595,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{1aa209f7-96c1-475b-9513-be08d41f62e5}.xml" />
     <None Include="Assets\Sprites\Craftpix\Freebies\Cyberpunk-Skill-Icons-32x32\License.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{56763e50-f55e-4c0a-a1d2-abbfe26375cf}.xml" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\EventFolder\{bba90b46-65f9-4d88-8c1d-d89f63cf10cc}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{8b4e96a1-f90a-4b6b-808a-4ebce6a8036c}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{9f6e7097-a29e-4468-9a16-dde2aa1081d8}.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
@@ -593,6 +615,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{f1974aaf-b528-42a1-b077-9de625e2e81f}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{5a8f6e97-6d47-4996-b4ad-475c2b3b050a}.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\Textures\source.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{6627521a-d0a8-44c7-b1f1-b1585a90bd82}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{0f41841f-e2f9-4dc8-a132-eaa2f2dff162}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{ba5fe78e-7f75-49cb-bc91-945f8e15af0e}.xml" />
@@ -610,7 +633,9 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{95381fb1-6074-45ec-8d93-ca2b50906638}.xml" />
     <None Include="Assets\Sprites\Craftpix\Freebies\Crystals-PixelArt\License.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_SingleLineShader.cginc" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{3eeb21f5-643f-4dc4-b630-fbf60d7152ca}.xml" />
+    <None Include="Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\LineStrip-TextureAdditive.shader" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{ca78de91-2669-4a67-93bb-e33ef33cc220}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{0d3551d3-95ed-43ad-9452-b23b0696ab32}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{3443fa55-833c-4398-af8d-b5c4df2dc422}.xml" />
@@ -719,6 +744,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{88653dc8-2a82-459d-9be7-0f0936b3cfbc}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{86c0b8f0-9a4c-4bf9-90dc-4dd999057834}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{156aa756-688b-41d9-a7e1-22034643f5d1}.xml" />
+    <None Include="Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\SingleLine-TextureAlphaBlended.shader" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{c3da1698-5d7b-4b92-b6a5-944942b5e020}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{8ab14e5d-6567-48b5-adde-6aa9a45d7805}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{04120c16-3ea6-43a5-bfd7-2cd6aacee4da}.xml" />
@@ -756,6 +782,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{1692eade-94fb-43c0-b0ea-6a4770370874}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{8c9ac740-347d-48ce-b534-2b0292788158}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\EventFolder\{1ce6c5d6-b30e-4b2c-a0a1-a2a58da8d504}.xml" />
+    <None Include="Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\LineStrip-LightSaber.shader" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{f80d4b21-ef83-4d90-994d-380e343a04ed}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{6d5cf7b6-4665-483a-95c0-a340edece867}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{f1b54584-e4c7-45a0-9fef-15c163d10ffb}.xml" />
@@ -774,6 +801,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{b7a74b11-747d-4da5-a1c6-6a8b6212710a}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{a6cfdf5d-665c-45a2-a1cc-6e5137903dfc}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{c0e5dff0-46c1-4707-8e40-e29fdc50296b}.xml" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Shaders\FireFly.shader" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{7168a1c3-7b1f-4f1d-837e-a3d34cadfff2}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{5e559b3c-feff-4993-b3e4-2a30f99c0ac1}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{af74a1c5-31a9-484f-b03a-f71dde9f4290}.xml" />
@@ -793,11 +821,13 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\DataFile\{8028112a-9b41-4fa2-bedf-6dad7f8558ca}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{c1799e5d-d4c8-4176-9230-a27941335427}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{3d3d2617-d96c-4c3f-bb6f-1c62aa57a5b4}.xml" />
+    <None Include="Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\SingleLine-LightSaber.shader" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{3bf77c5a-755f-428a-8cca-e9f8e94ef1b4}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{db2a8e74-c2a3-46b4-ae0d-42e8c6d2d0ea}.xml" />
     <None Include="Assets\Sprites\Craftpix\Freebies\Pixel-Magic_SpriteEffects\License.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{eb2af531-820f-4311-aaeb-e00a3fbcaf2b}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{75e56374-9888-4c02-8aa7-3e499cd4041a}.xml" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{ff3d0701-4612-47ea-863c-b5d676e18383}.xml" />
     <None Include="Assets\Sprites\Free Art Assets\SimplePixelUI\fonts\Font2\readme.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{7343f9b6-7a48-4dc8-95ba-e56e8279f85a}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{b0176691-57e9-457b-98bf-b47fda69fbab}.xml" />
@@ -876,6 +906,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{2b85b317-a33f-4b1a-b913-1475afac99c3}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{eecc6914-95f0-4cda-bffc-338bcb6f3cc3}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{4a0dc013-f676-43df-bb3f-fc4a4f0f1093}.xml" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Bank\{5dcb64ac-b3e2-4343-8b22-fcc01683325c}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{f184bc1a-805a-4f98-973a-243bf3d820ff}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{14af4115-5608-4725-83a1-75a03109e3fd}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{6dad5f0b-1271-4d9c-999c-bb6f44d742b7}.xml" />
@@ -883,6 +914,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{7f0b311f-2928-49fa-8592-a3c6941aad77}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{af380dcb-9d47-4e56-8439-f9d29269c1a3}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{3e724d4d-c4c5-461f-85a8-1bd859036adb}.xml" />
+    <None Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Shaders\Dissolve.shader" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{7b378691-1445-48ea-bbc7-31acb6fbabc1}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{d617f9cf-6224-4d8d-b7fe-9516814a7754}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{414035bd-5732-4e99-8512-99abc16ebc8c}.xml" />
@@ -1699,6 +1731,8 @@
     <ProjectReference Include="FMODUnityResonance.csproj" />
     <ProjectReference Include="Unity.2D.Common.Editor.csproj" />
     <ProjectReference Include="Unity.2D.SpriteShape.Runtime.csproj" />
+    <ProjectReference Include="Unity.Postprocessing.Editor.csproj" />
+    <ProjectReference Include="Unity.Postprocessing.Runtime.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>

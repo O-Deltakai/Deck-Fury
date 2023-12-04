@@ -664,6 +664,7 @@ MonoBehaviour:
   <IdleAnimation>k__BackingField: {fileID: 0}
   <DefeatAnimation>k__BackingField: {fileID: 7400000, guid: b732c6693b8e8a649be4fde230226bdb, type: 2}
   <animationList>k__BackingField: []
+  useUnscaledTime: 0
   isAnimating: 0
 --- !u!114 &2539600653842276782
 MonoBehaviour:
@@ -682,9 +683,12 @@ MonoBehaviour:
   CanBeAffectedByStatusEffects: 0
   CanBeStunned: 0
   CanBleed: 0
+  markedEffectObject: {fileID: 0}
+  bleedingEffectObject: {fileID: 0}
   MarkedForDeath: 0
   BaseStunDuration: 1.5
   BaseMarkedDuration: 3
+  bleedingColor: {r: 1, g: 0.47, b: 0.47, a: 1}
 --- !u!114 &2425774206881943470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,14 +812,31 @@ MonoBehaviour:
   <IsGrounded>k__BackingField: 0
   <CannotBeTargeted>k__BackingField: 0
   currentHP: 99999
-  shieldHP: 5
-  armorTier: 0
+  shieldHP: 0
   armor: 0
   defense: 1
+  weaknesses: 
+  weaknessModifier: 1.5
+  resistances: 
+  resistModifier: 0.5
   HPText: {fileID: 6460241605612620388}
   ShieldsText: {fileID: 3749037624143390339}
   DoNotShowHP: 1
   entitySpriteRenderer: {fileID: 0}
+  OnDamagedSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  OnDeathSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   explosionCollider: {fileID: 184111463}
   barrelCollider: {fileID: 1967806028}
   attackPayload:
@@ -829,6 +850,13 @@ MonoBehaviour:
     causeOfDeathNote: Explosive Barrel
   shadow: {fileID: 5419955227313714201}
   fuseTimer: 0.5
+  explosionSFX:
+    Guid:
+      Data1: -12777727
+      Data2: 1206535698
+      Data3: -692765562
+      Data4: -2088509066
+    Path: event:/Objects/BarrelExplosion
 --- !u!95 &7449680017644959595
 Animator:
   serializedVersion: 5

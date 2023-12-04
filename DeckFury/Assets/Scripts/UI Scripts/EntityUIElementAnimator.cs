@@ -23,8 +23,8 @@ public class EntityUIElementAnimator : MonoBehaviour
     [SerializeField] int thresholdForMediumShake = 50;
     [SerializeField] float multiplierForLightShake = 0.75f;
     [SerializeField] float multiplierForHeavyShake = 2f;
-    
 
+    Tween textShakeTween = null;
 
 
     void Start()
@@ -121,18 +121,23 @@ public class EntityUIElementAnimator : MonoBehaviour
     //Method to use when animating shaking for a text element.
     public void AnimateShakeNumber(TextMeshPro textElement, int amount, Color originalColor, Color transitionColor)
     {
+        if(textShakeTween != null)
+        {
+            textShakeTween.Complete();
+        }
+
         if(amount <= thresholdForLightShake)
         {
-            textElement.rectTransform.DOShakePosition(ShakeDuration, BaseShakeStrength*0.5f, ShakeVibrato).SetUpdate(true);
+            textShakeTween = textElement.rectTransform.DOShakePosition(ShakeDuration, BaseShakeStrength*0.5f, ShakeVibrato).SetUpdate(true);
             StartCoroutine(FadeTextInAndOutColor(textElement, originalColor, transitionColor, ShakeDuration * multiplierForLightShake));
 
         }else if(amount < thresholdForMediumShake)
         {
-            textElement.rectTransform.DOShakePosition(ShakeDuration*1.5f, BaseShakeStrength, ShakeVibrato).SetUpdate(true);
+            textShakeTween = textElement.rectTransform.DOShakePosition(ShakeDuration*1.5f, BaseShakeStrength, ShakeVibrato).SetUpdate(true);
             StartCoroutine(FadeTextInAndOutColor(textElement, originalColor, transitionColor, ShakeDuration));
         }else
         {
-            textElement.rectTransform.DOShakePosition(ShakeDuration*2f, BaseShakeStrength*2f, ShakeVibrato).SetUpdate(true);
+            textShakeTween = textElement.rectTransform.DOShakePosition(ShakeDuration*2f, BaseShakeStrength*2f, ShakeVibrato).SetUpdate(true);
 
             StartCoroutine(FadeTextInAndOutColor(textElement, originalColor, transitionColor, ShakeDuration * multiplierForHeavyShake));
         }

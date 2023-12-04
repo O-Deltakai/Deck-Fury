@@ -273,6 +273,11 @@ public class PlayerController : StageEntity
     public void Dash(InputAction.CallbackContext context)
     {
         if(!CanUsePlayerInput()) { return; }
+        if(MovingCoroutine != null) 
+        {
+            dashController.DashReticle.SetActive(false);
+            return; 
+        }
 
         if(context.performed)
         {

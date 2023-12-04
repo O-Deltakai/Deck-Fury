@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 public class ExplosiveBarrel : StageEntity
@@ -13,6 +14,9 @@ public class ExplosiveBarrel : StageEntity
 
     [SerializeField] GameObject shadow;
     [SerializeField] float fuseTimer = 0.5f;
+
+    [SerializeField] EventReference explosionSFX;
+
     bool isExploding = false;
 
     protected override void Awake()
@@ -20,7 +24,7 @@ public class ExplosiveBarrel : StageEntity
         base.Awake();
         barrelCollider = GetComponent<BoxCollider2D>();
         explosionCollider.enabled = false;
-        OnShieldHPChanged += ExplodeBarrel;
+        OnHPChanged += ExplodeBarrel;
     }
 
 
@@ -35,6 +39,9 @@ public class ExplosiveBarrel : StageEntity
     IEnumerator ExplosionTimer()
     {
         yield return new WaitForSeconds(fuseTimer+0.05f);
+
+        RuntimeManager.PlayOneShot(explosionSFX, transform.position);
+
         isExploding = true;
         explosionCollider.enabled = true;
         shadow.SetActive(false);

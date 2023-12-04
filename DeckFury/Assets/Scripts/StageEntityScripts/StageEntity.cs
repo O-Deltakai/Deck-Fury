@@ -562,7 +562,7 @@ public class StageEntity : MonoBehaviour
     protected virtual void AdditionalOnHurtEvents(AttackPayload? payload = null){}
 
     //Primary method used for dealing damage to the entity, uses the AttackPayload struct for damage calculations.
-    public virtual void HurtEntity(AttackPayload payload, Color? hitFlashColor = null)
+    public virtual void HurtEntity(AttackPayload payload, Color? hitFlashColor = null, EventReference? hitSFX = null)
     {
         if(CannotBeTargeted){return;}
         if(invincible){return;}
