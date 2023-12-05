@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 5721391474078714739}
   - component: {fileID: 1256992603309167065}
   - component: {fileID: 2536886372497882222}
+  - component: {fileID: 835854881217870154}
+  - component: {fileID: 3385056910237852564}
+  - component: {fileID: 6367795246974955720}
   m_Layer: 0
   m_Name: LaserTurret
   m_TagString: Untagged
@@ -96,6 +99,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41a3556b6d9d48343aba5b1f6c4b47d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovementEase: 0
+  <worldTransform>k__BackingField: {fileID: 5721391474078714739}
+  currentTilePosition: {x: 0, y: 0, z: 0}
+  CanInitiateMovementActions: 0
+  CanAct: 0
+  invincible: 1
+  <IsGrounded>k__BackingField: 0
+  <CannotBeTargeted>k__BackingField: 1
+  currentHP: 100
+  shieldHP: 0
+  armor: 0
+  defense: 1
+  weaknesses: 
+  weaknessModifier: 1.5
+  resistances: 
+  resistModifier: 0.5
+  HPText: {fileID: 0}
+  ShieldsText: {fileID: 0}
+  DoNotShowHP: 1
+  entitySpriteRenderer: {fileID: 0}
+  OnDamagedSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  OnDeathSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   aimDirection: 180
   lineBehavior: {fileID: 2536886370948128473}
   laserStartPosition: {fileID: 2536886370938200711}
@@ -112,7 +149,72 @@ MonoBehaviour:
     attacker: {fileID: 0}
     attackerSprite: {fileID: 0}
     causeOfDeathNote: 
-  damageCooldown: 0.2
+  damageCooldown: 0.16
+--- !u!114 &835854881217870154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3330350274229351320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e30b531e1c556f1488c7164fff4127d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IdleAnimation>k__BackingField: {fileID: 0}
+  <DefeatAnimation>k__BackingField: {fileID: 0}
+  <animationList>k__BackingField: []
+  useUnscaledTime: 0
+  isAnimating: 0
+--- !u!114 &3385056910237852564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3330350274229351320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a3e1d5c6b356f4a956795ac257c1d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SolidColorMaterial: {fileID: 0}
+  SpriteDefaultMaterial: {fileID: 0}
+  CanBeAffectedByStatusEffects: 0
+  CanBeStunned: 0
+  CanBleed: 0
+  markedEffectObject: {fileID: 0}
+  bleedingEffectObject: {fileID: 0}
+  MarkedForDeath: 0
+  BaseStunDuration: 1.5
+  BaseMarkedDuration: 3
+  bleedingColor: {r: 1, g: 0.47, b: 0.47, a: 1}
+--- !u!114 &6367795246974955720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3330350274229351320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faaa08fdb38507d4eb07a15ae568338e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countFPS: 24
+  countDuration: 0.12
+  thresholdForFastCount: 10
+  thresholdForSlowCount: 50
+  multiplierForFastCount: 0.5
+  multiplierForSlowCount: 1.25
+  ShakeDuration: 0.12
+  BaseShakeStrength: 0.2
+  ShakeVibrato: 1000
+  thresholdForLightShake: 10
+  thresholdForMediumShake: 50
+  multiplierForLightShake: 0.75
+  multiplierForHeavyShake: 2
 --- !u!1001 &2536886370938095071
 PrefabInstance:
   m_ObjectHideFlags: 0

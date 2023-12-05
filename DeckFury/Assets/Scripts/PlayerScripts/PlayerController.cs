@@ -27,6 +27,7 @@ public class PlayerController : StageEntity
     [SerializeField] GameObject basicShotProjectile;
     [SerializeField] int basicShotDamage;
 
+
     PlayerDashController dashController;
     PlayerAnimationController animationController;
     PlayerCardManager cardManager;
@@ -51,6 +52,11 @@ public class PlayerController : StageEntity
 
 [Header("Player SFX")]
     [SerializeField] EventReference basicShotSFX;
+
+
+    [SerializeField] float automoveCooldown = 0.2f;
+    [SerializeField] bool canAutoMove = true;
+    Coroutine CR_AutomoveTimer;
 
     protected override void Awake()
     {
@@ -147,29 +153,121 @@ public class PlayerController : StageEntity
     {
         if(!CanInitiateMovementActions){return;}
 
+        if(MovingCoroutine != null) { return; }
+
         if(Keyboard.current.dKey.wasPressedThisFrame)
         {
+            canAutoMove = false;
+            if(CR_AutomoveTimer != null)
+            {
+                StopCoroutine(CR_AutomoveTimer);
+                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.2f));
+            }else
+            {
+                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.2f));
+            }
+            
             //Move right
             MovingCoroutine = StartCoroutine(TweenMove(1, 0, 0.1f, MovementEase));
         }
         if(Keyboard.current.aKey.wasPressedThisFrame)
         {
+            canAutoMove = false;
+            if(CR_AutomoveTimer != null)
+            {
+                StopCoroutine(CR_AutomoveTimer);
+                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.2f));
+            }else
+            {
+                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.2f));
+            }
             //Move left
            MovingCoroutine = StartCoroutine(TweenMove(-1, 0, 0.1f, MovementEase)); 
         }
         if(Keyboard.current.wKey.wasPressedThisFrame)
         {
+            canAutoMove = false;
+            if(CR_AutomoveTimer != null)
+            {
+                StopCoroutine(CR_AutomoveTimer);
+                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.2f));
+            }else
+            {
+                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.2f));
+            }
             //Move up
             MovingCoroutine = StartCoroutine(TweenMove(0, 1, 0.1f, MovementEase));     
         }
         if(Keyboard.current.sKey.wasPressedThisFrame)
         {
+            canAutoMove = false;
+            if(CR_AutomoveTimer != null)
+            {
+                StopCoroutine(CR_AutomoveTimer);
+                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.2f));
+            }else
+            {
+                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.2f));
+            }
             //Move down
             MovingCoroutine = StartCoroutine(TweenMove(0, -1, 0.1f, MovementEase));
         }
 
 
 
+        if(canAutoMove)
+        {
+            if(Keyboard.current.dKey.isPressed)
+            {
+                if(CR_AutomoveTimer == null)
+                {
+                    CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown));
+                }
+
+                //Move right
+                MovingCoroutine = StartCoroutine(TweenMove(1, 0, 0.1f, MovementEase));
+            }
+            if(Keyboard.current.aKey.isPressed)
+            {
+                if(CR_AutomoveTimer == null)
+                {
+                    CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown));
+                }
+
+                //Move left
+                MovingCoroutine = StartCoroutine(TweenMove(-1, 0, 0.1f, MovementEase)); 
+            }
+            if(Keyboard.current.wKey.isPressed)
+            {
+                if(CR_AutomoveTimer == null)
+                {
+                    CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown));
+                }
+                //Move up
+                MovingCoroutine = StartCoroutine(TweenMove(0, 1, 0.1f, MovementEase));     
+            }
+            if(Keyboard.current.sKey.isPressed)
+            {
+                if(CR_AutomoveTimer == null)
+                {
+                    CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown));
+                }
+                //Move down
+                MovingCoroutine = StartCoroutine(TweenMove(0, -1, 0.1f, MovementEase));
+            }
+        }
+
+
+
+
+    }
+
+    IEnumerator AutomoveTimer(float duration)
+    {
+        canAutoMove = false;
+        yield return new WaitForSeconds(duration);
+        canAutoMove = true;
+        CR_AutomoveTimer = null;
     }
 
 

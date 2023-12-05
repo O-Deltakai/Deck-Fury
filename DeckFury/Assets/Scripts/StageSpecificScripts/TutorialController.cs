@@ -26,6 +26,8 @@ public class TutorialController : MonoBehaviour
 
     public List<float> cameraXPositionForPhase = new List<float>();
 
+    public List<Vector3> cameraPositionForPhase = new List<Vector3>();
+
     public List<BoxCollider2D> phaseTransitionTriggers = new List<BoxCollider2D>();
     public int currentPhase = 0;
 
@@ -52,6 +54,8 @@ public class TutorialController : MonoBehaviour
     [SerializeField] HintsContainerSO phase3Dialogue;
     [SerializeField] HintsContainerSO cardSelectionTutorialDialogue;
     [SerializeField] HintsContainerSO synergyTutorialDialogue;
+
+    [SerializeField] HintsContainerSO phase4Dialogue;
 
     [SerializeField] AimpointController playerAimpointController;
 
@@ -286,14 +290,6 @@ public class TutorialController : MonoBehaviour
         player.OnHPChanged += RegeneratePlayerHP;            
     }
 
-    void RegeneratePlayerHP(int beforeDamageValue, int afterDamageValue)
-    {
-        if(afterDamageValue <= 150)
-
-        player.ShieldHP = 500;   
-        player.CurrentHP = 500;
-    }
-
     void InitiateSynergyTutorial()//Synergy tutorial for phase 3
     {
         canCycleDialogue = false;
@@ -310,6 +306,7 @@ public class TutorialController : MonoBehaviour
         OnReachEndOfDialogue += EnableLoadMagazineButton;   
 
     }
+
 
     void CloseSynergyTutorial()
     {
@@ -329,19 +326,24 @@ public class TutorialController : MonoBehaviour
         PressEnterToContinue.SetActive(true);
         PressBackspaceToRewind.SetActive(false);
 
-        OnReachEndOfDialogue += DisableTutorialBox;
+        //OnReachEndOfDialogue += DisableTutorialBox;
     }
 
     void ClickedCardSynergyTutorial(CardSO card)
     {
         if(finishedTutorial){return;}
+
         cardSelectionMenu.canUsePreviewButton = true;
         previewStageButton.SetActive(true);
+
         HighLightPreviewStageButton();
+
         SetTutorialDialogue(1);
+
         TutorialDialogueBox.transform.DOLocalMove(
              new Vector3(belowMagazineAnchor.x, belowMagazineAnchor.y, 0),
-            0.5f).SetUpdate(true).SetEase(Ease.InOutSine);        
+            0.5f).SetUpdate(true).SetEase(Ease.InOutSine);      
+
         cardSelectionMenu.OnSelectSpecificCard -= ClickedCardSynergyTutorial;
     }
     void TalkAboutSynergy()
@@ -352,6 +354,30 @@ public class TutorialController : MonoBehaviour
         SetTutorialDialogue(2);
     }
 
+
+    void InitiatePhase_4() //Tutorial for dashing
+    {
+        cardSelectionMenu.OnMenuActivated -= InitiateSynergyTutorial;
+        cardSelectionMenu.OnMenuDisabled -= CloseSynergyTutorial;
+
+        cardSelectionMenu.OnSelectSpecificCard -= ClickedCardSynergyTutorial;
+        cardSelectionMenu.OnUnpreviewStage -= TalkAboutSynergy;
+
+        currentDialogueIndex = 0;
+        currentDialogue = phase4Dialogue;
+        tutorialDialogueText.text = currentDialogue.HintList[0];    
+
+    }
+
+
+
+    void RegeneratePlayerHP(int beforeDamageValue, int afterDamageValue)
+    {
+        if(afterDamageValue <= 150)
+
+        player.ShieldHP = 500;   
+        player.CurrentHP = 500;
+    }
     void DisableTutorialBox()
     {
         TutorialDialogueBox.gameObject.SetActive(false);
@@ -454,6 +480,10 @@ public class TutorialController : MonoBehaviour
                 InitiatePhase_3();
             break;
 
+            case 4:
+                InitiatePhase_4();
+            break;
+
             default :
                 
                 break;
@@ -487,26 +517,24 @@ public class TutorialController : MonoBehaviour
         
         currentPhase++;
 
-        if(currentPhase >= 4)
+        if(currentPhase >= 5)
         {
             sceneLoader.LoadScene(SceneNames.MainMenu.ToString());
             return;
         }
 
         print("trigger for phase: " + currentPhase);
+
         phaseTransitionTriggers[currentPhase].enabled = false;
         PressBackspaceToRewind.SetActive(false);
         PressEnterToContinue.SetActive(true);
 
         OnChangeTutorialPhase?.Invoke(currentPhase);
 
-        mainCamera.transform.DOMoveX(cameraXPositionForPhase[currentPhase], 1f).SetEase(Ease.InOutSine);   
+        mainCamera.transform.DOMove(cameraPositionForPhase[currentPhase], 1f).SetEase(Ease.InOutSine);
 
-    }
+        //mainCamera.transform.DOMoveX(cameraXPositionForPhase[currentPhase], 1f).SetEase(Ease.InOutSine);   
 
-    private void OnCollisionEnter2D(Collision2D other) 
-    {
-     
     }
 
 

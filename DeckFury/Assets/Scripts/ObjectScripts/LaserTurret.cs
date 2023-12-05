@@ -5,7 +5,7 @@ using VolumetricLines;
 
 
 
-public class LaserTurret : MonoBehaviour
+public class LaserTurret : StageEntity
 {
     [SerializeField] AimDirection aimDirection;
     [SerializeField] VolumetricLineBehavior lineBehavior;
@@ -22,10 +22,7 @@ public class LaserTurret : MonoBehaviour
 
     bool canDamage = true;
 
-    void Start()
-    {
-        
-    }
+
 
 
     void Update()

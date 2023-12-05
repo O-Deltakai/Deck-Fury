@@ -1095,6 +1095,7 @@ MonoBehaviour:
   <animationList>k__BackingField:
   - {fileID: 7400000, guid: c0bac757111bf104798680f16dc4d9df, type: 2}
   - {fileID: 7400000, guid: df7d962b83597654195a956e1d814a6c, type: 2}
+  useUnscaledTime: 0
   isAnimating: 0
 --- !u!114 &2998017032565343938
 MonoBehaviour:
@@ -1114,6 +1115,7 @@ MonoBehaviour:
   CanBeStunned: 1
   CanBleed: 1
   markedEffectObject: {fileID: 74185481044860896}
+  bleedingEffectObject: {fileID: 0}
   MarkedForDeath: 0
   BaseStunDuration: 1.5
   BaseMarkedDuration: 3
@@ -1165,13 +1167,31 @@ MonoBehaviour:
   <CannotBeTargeted>k__BackingField: 0
   currentHP: 100
   shieldHP: 0
-  armorTier: 0
   armor: 0
   defense: 1
+  weaknesses: 
+  weaknessModifier: 1.5
+  resistances: 
+  resistModifier: 0.5
   HPText: {fileID: 6186281624174535764}
   ShieldsText: {fileID: 6186281624601968108}
   DoNotShowHP: 0
   entitySpriteRenderer: {fileID: 0}
+  OnDamagedSFX:
+    Guid:
+      Data1: 2067571330
+      Data2: 1285352577
+      Data3: -1972169546
+      Data4: 1815344701
+    Path: event:/Characters/RobotDamaged
+  OnDeathSFX:
+    Guid:
+      Data1: -1074849151
+      Data2: 1244880388
+      Data3: 1078106512
+      Data4: -91266903
+    Path: event:/Characters/RobotDeath
+  enemyData: {fileID: 0}
   player: {fileID: 0}
   enemyTier: 1
   NPCAbilities: []

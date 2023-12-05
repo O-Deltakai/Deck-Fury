@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638373163859394249
+  lastModified: 638373822293021410
   FileSizes:
   - Name: Desktop
     Value: 77600
@@ -89,7 +89,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/CardEffects.bank
   Name: CardEffects
   StudioPath: bank:/CardEffects
-  lastModified: 638373163859738701
+  lastModified: 638373822293337092
   FileSizes:
   - Name: Desktop
     Value: 102944
@@ -217,11 +217,38 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 638373163860039687
+  lastModified: 638373822293583845
   FileSizes:
   - Name: Desktop
     Value: 13792
   Exists: 1
+--- !u!114 &-1921318354122018414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/RobotDamaged
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/RobotDamaged
+  Guid:
+    Data1: 2067571330
+    Data2: 1285352577
+    Data3: -1972169546
+    Data4: 1815344701
+  Banks:
+  - {fileID: 6534856402946505827}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1199707550411595357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,11 +264,38 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638373163859009097
+  lastModified: 638373822292671303
   FileSizes:
   - Name: Desktop
     Value: 1036
   Exists: 1
+--- !u!114 &-613441309849984276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/RobotDeath
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/RobotDeath
+  Guid:
+    Data1: -1074849151
+    Data2: 1244880388
+    Data3: 1078106512
+    Data4: -91266903
+  Banks:
+  - {fileID: 6534856402946505827}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-72422992369310174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,12 +364,14 @@ MonoBehaviour:
   - {fileID: 8214067188933517207}
   - {fileID: 1562294042699414447}
   - {fileID: -3910162642155353554}
+  - {fileID: -613441309849984276}
+  - {fileID: -1921318354122018414}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1199707550411595357}
   StringsBanks:
   - {fileID: 4950714686771268432}
-  cacheTime: 638373163860298202
+  cacheTime: 638373822293826482
   cacheVersion: 131608
 --- !u!114 &791509316960225685
 MonoBehaviour:
@@ -413,7 +469,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Objects.bank
   Name: Objects
   StudioPath: bank:/Objects
-  lastModified: 638373163860298202
+  lastModified: 638373822293826482
   FileSizes:
   - Name: Desktop
     Value: 32768
@@ -541,10 +597,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638373163859049068
+  lastModified: 638373822292711337
   FileSizes:
   - Name: Desktop
-    Value: 1914
+    Value: 2026
   Exists: 1
 --- !u!114 &5110348535214356016
 MonoBehaviour:
@@ -642,10 +698,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Characters.bank
   Name: Characters
   StudioPath: bank:/Characters
-  lastModified: 638373163858949056
+  lastModified: 638373822292621303
   FileSizes:
   - Name: Desktop
-    Value: 25024
+    Value: 63616
   Exists: 1
 --- !u!114 &6662470491220421297
 MonoBehaviour:
