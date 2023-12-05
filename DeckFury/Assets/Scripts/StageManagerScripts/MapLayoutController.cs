@@ -14,6 +14,8 @@ public class MapLayoutController : MonoBehaviour
     [field:SerializeField] public Tilemap OuterSpawnZoneMap{get; private set;}
     [field:SerializeField] public Tilemap InnerSpawnZoneMap{get; private set;}
 
+    [SerializeField] Vector3 _playerSpawnPosition;
+    public Vector3 PlayerSpawnPosition => _playerSpawnPosition;
 
     private void Awake() 
     {

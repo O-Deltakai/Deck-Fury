@@ -365,12 +365,44 @@ public class StageEntity : MonoBehaviour
         if(!_stageManager.CheckValidTile(destination)) { return; }
 
         _stageManager.SetTileEntity(null, currentTilePosition);
+
+        worldTransform.position = destination;
+        currentTilePosition.Set((int)worldTransform.position.x, (int)worldTransform.position.y, 0);
+
+        _stageManager.SetTileEntity(this, destination);
+
+    }
+
+    public void TeleportToLocation(Vector3 location)
+    {
+        Vector3Int destination = new Vector3Int((int)location.x, (int)location.y, (int)location.z);
+
+
+        if(!_stageManager.CheckValidTile(destination)) 
+        {
+            print("Invalid location at: + " + destination);
+            return; 
+        }
+
+        _stageManager.SetTileEntity(null, currentTilePosition);
+
+        worldTransform.position = destination;
+        currentTilePosition.Set((int)worldTransform.position.x, (int)worldTransform.position.y, 0);
+
+        _stageManager.SetTileEntity(this, destination);
+    }
+
+    public void TeleportToLocation(Vector3Int destination)
+    {
+        
+        if(!_stageManager.CheckValidTile(destination)) { return; }
+
+        _stageManager.SetTileEntity(null, currentTilePosition);
         currentTilePosition.Set(destination.x, destination.y, 0);
         _stageManager.SetTileEntity(this, destination);
 
         worldTransform.position = destination;
     }
-
 
     //Tries to find a valid destination by counting backwards from the destination until finds the first valid position (currently untested)
     Vector3Int FindValidDestinationReverseCheck(int x, int y, Vector3Int destination)

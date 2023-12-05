@@ -161,10 +161,10 @@ public class PlayerController : StageEntity
             if(CR_AutomoveTimer != null)
             {
                 StopCoroutine(CR_AutomoveTimer);
-                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.2f));
+                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
             }else
             {
-                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.2f));
+                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
             }
             
             //Move right
@@ -176,10 +176,10 @@ public class PlayerController : StageEntity
             if(CR_AutomoveTimer != null)
             {
                 StopCoroutine(CR_AutomoveTimer);
-                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.2f));
+                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
             }else
             {
-                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.2f));
+                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
             }
             //Move left
            MovingCoroutine = StartCoroutine(TweenMove(-1, 0, 0.1f, MovementEase)); 
@@ -190,10 +190,10 @@ public class PlayerController : StageEntity
             if(CR_AutomoveTimer != null)
             {
                 StopCoroutine(CR_AutomoveTimer);
-                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.2f));
+                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
             }else
             {
-                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.2f));
+                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
             }
             //Move up
             MovingCoroutine = StartCoroutine(TweenMove(0, 1, 0.1f, MovementEase));     
@@ -204,10 +204,10 @@ public class PlayerController : StageEntity
             if(CR_AutomoveTimer != null)
             {
                 StopCoroutine(CR_AutomoveTimer);
-                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.2f));
+                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
             }else
             {
-                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.2f));
+                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
             }
             //Move down
             MovingCoroutine = StartCoroutine(TweenMove(0, -1, 0.1f, MovementEase));
@@ -356,13 +356,16 @@ public class PlayerController : StageEntity
         if(context.performed)
         {
             
-        //implement for energy system
-                if(energyController!=null){
-                    if(!energyController.EnergyIsFull()){
-                        return;
-                    }
+            //implement for energy system
+            if(energyController != null)
+            {
+                if(!energyController.EnergyIsFull())
+                {
+                    return;
+                }
             }
-        //end for energy system
+            //end for energy system
+            
             cardSelectionMenu.ActivateMenu();
         }
 

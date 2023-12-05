@@ -360,6 +360,8 @@ public class TutorialController : MonoBehaviour
         cardSelectionMenu.OnMenuActivated -= InitiateSynergyTutorial;
         cardSelectionMenu.OnMenuDisabled -= CloseSynergyTutorial;
 
+        previewStageButton.SetActive(true);
+
         cardSelectionMenu.OnSelectSpecificCard -= ClickedCardSynergyTutorial;
         cardSelectionMenu.OnUnpreviewStage -= TalkAboutSynergy;
 

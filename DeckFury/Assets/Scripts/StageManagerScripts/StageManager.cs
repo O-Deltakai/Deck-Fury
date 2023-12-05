@@ -45,7 +45,9 @@ public class StageManager : MonoBehaviour
             mapLayout = GetComponentInChildren<MapLayoutController>();
             SetTilemapsToMapLayout(mapLayout);
         }
-        InitGroundTileData();    
+        InitGroundTileData();
+
+        
     }
 
 
@@ -66,6 +68,15 @@ public class StageManager : MonoBehaviour
         return mapLayout;
     }
 
+    void SetPlayerPosition()
+    {
+        print("Attempting to set play position to: " + mapLayout.PlayerSpawnPosition);
+        //GameManager.Instance.player.worldTransform.position = mapLayout.PlayerSpawnPosition;
+        GameManager.Instance.player.TeleportToLocation(mapLayout.PlayerSpawnPosition);
+
+        
+    }
+
     private void OnDestroy() 
     {
         _instance = null;    
@@ -74,7 +85,7 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
-        
+        SetPlayerPosition();
     }
 
 

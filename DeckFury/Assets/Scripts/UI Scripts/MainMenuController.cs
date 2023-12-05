@@ -31,7 +31,7 @@ public class MainMenuController : MonoBehaviour
 
     public void LoadTutorial()
     {
-        sceneLoader.LoadScene("TutorialStage");
+        sceneLoader.LoadScene(SceneNames.TutorialStage_New);
     }
 
     public void LoadDefaultBattleScene()

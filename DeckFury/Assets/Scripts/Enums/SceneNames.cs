@@ -12,5 +12,6 @@ public enum SceneNames
     CoinCombatStage,
     HourglassCombatStage,
     RestStage,
-    EndingStage
+    EndingStage,
+    TutorialStage_New,
 }
