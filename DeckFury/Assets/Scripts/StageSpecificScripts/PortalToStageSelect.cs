@@ -20,6 +20,13 @@ public class PortalToStageSelect : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if(!other.CompareTag("Player")){return;}
+        if(!StageStateController.Instance.SceneIsAdditive)
+        {
+            print("Current active scene was not loaded additively, cannot return to stage select.");
+            return;
+        }
+
+
         PlayerController player = GameManager.Instance.player;
         player.CanAct = false;
         player.CanInitiateMovementActions = false;

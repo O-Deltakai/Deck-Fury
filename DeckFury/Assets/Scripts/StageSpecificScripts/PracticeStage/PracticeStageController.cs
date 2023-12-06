@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class PracticeStageController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] GameObject trainingNPC;
+
+    [SerializeField] List<NPC> trainingNPCs = new List<NPC>();
+    [SerializeField] List<Vector3> respawnPositions = new List<Vector3>();
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    void SubscribeNPCs()
     {
-        
+
     }
+
+
+
+
 }

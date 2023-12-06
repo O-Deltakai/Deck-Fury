@@ -90,7 +90,7 @@ public class ForceBlast : CardEffect
 
     IEnumerator HardDisableTimer()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSecondsRealtime(0.75f);
         gameObject.SetActive(false);
     }
 

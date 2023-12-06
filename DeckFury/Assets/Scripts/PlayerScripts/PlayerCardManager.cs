@@ -102,8 +102,9 @@ public class PlayerCardManager : MonoBehaviour
             //The extra 0.05f is just a fail-safe to make sure that the player absolutely cannot use another card whilst the first animation
             //is still playing. Without this, its unlikely but possible for a player to click fast enough to play another card whilst first one is
             //still going due to float rounding issues.
+            CR_CardUseInProgress = StartCoroutine(CardInUseTimer(cardToUse.cardSO.PlayerAnimation.length + 0.01f));
             StartCoroutine(CardUseCooldown(cardAnimation.length + 0.01f));
-            StartCoroutine(RemoveCardFromMagazine(CardMagazine[0], cardAnimation.length + 0.005f) );
+            StartCoroutine(RemoveCardFromMagazine(CardMagazine[0], cardAnimation.length) );
 
 
         }
@@ -136,8 +137,9 @@ public class PlayerCardManager : MonoBehaviour
             animationController.PlayOneShotAnimationReturnIdle(cardToUse.cardSO.PlayerAnimation);
             CanUseCards = false;
 
-            StartCoroutine(CardUseCooldown(cardToUse.cardSO.PlayerAnimation.length + 0.05f));
-            StartCoroutine(RemoveCardFromMagazine(CardMagazine[0], cardToUse.cardSO.PlayerAnimation.length + 0.02f));  
+            CR_CardUseInProgress = StartCoroutine(CardInUseTimer(cardToUse.cardSO.PlayerAnimation.length + 0.01f));
+            StartCoroutine(CardUseCooldown(cardToUse.cardSO.PlayerAnimation.length + 0.01f));
+            StartCoroutine(RemoveCardFromMagazine(CardMagazine[0], cardToUse.cardSO.PlayerAnimation.length));  
 
             return; 
         }
@@ -168,7 +170,11 @@ public class PlayerCardManager : MonoBehaviour
 
     }
 
-
+    IEnumerator CardInUseTimer(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        CR_CardUseInProgress = null;
+    }
 
     IEnumerator CardUseCooldown(float duration)
     {

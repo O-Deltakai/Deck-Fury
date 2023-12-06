@@ -154,6 +154,7 @@ public class PlayerController : StageEntity
         if(!CanInitiateMovementActions){return;}
 
         if(MovingCoroutine != null) { return; }
+        if(cardManager.CardInUseCoroutine != null) { return; }
 
         if(Keyboard.current.dKey.wasPressedThisFrame)
         {
@@ -299,6 +300,7 @@ public class PlayerController : StageEntity
     //Logic for when BasicShot input action is activated
     public void BasicShot(InputAction.CallbackContext context)
     {
+        if(cardManager.CardInUseCoroutine != null) { return; }
         if(MovingCoroutine != null){return;}
         if(!CanFireBasicShot){return;}
         if(!CanAct){return;}
@@ -343,6 +345,7 @@ public class PlayerController : StageEntity
 
     public void OpenCardSelectMenu(InputAction.CallbackContext context)
     {
+        if(cardManager.CardInUseCoroutine != null) { return; }
         if(!CanAct){return;}
         if(isDefeated){return;}
         if(GameManager.GameIsPaused){return;}
@@ -371,8 +374,25 @@ public class PlayerController : StageEntity
 
     }
 
+    void ExecuteOpenCardSelect()
+    {
+        //implement for energy system
+        if(energyController != null)
+        {
+            if(!energyController.EnergyIsFull())
+            {
+                return;
+            }
+        }
+        //end for energy system
+        
+        cardSelectionMenu.ActivateMenu();        
+    }
+
+
     public void Dash(InputAction.CallbackContext context)
     {
+        if(cardManager.CardInUseCoroutine != null) { return; }
         if(!CanUsePlayerInput()) { return; }
         if(MovingCoroutine != null) 
         {

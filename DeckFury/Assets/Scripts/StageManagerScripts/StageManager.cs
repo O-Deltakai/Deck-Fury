@@ -70,6 +70,8 @@ public class StageManager : MonoBehaviour
 
     void SetPlayerPosition()
     {
+        if(!mapLayout.SetSpawnPosition) { return; }
+
         print("Attempting to set play position to: " + mapLayout.PlayerSpawnPosition);
         //GameManager.Instance.player.worldTransform.position = mapLayout.PlayerSpawnPosition;
         GameManager.Instance.player.TeleportToLocation(mapLayout.PlayerSpawnPosition);
