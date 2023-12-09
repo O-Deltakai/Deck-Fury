@@ -2008,6 +2008,7 @@ GameObject:
   - component: {fileID: 9052845689309580068}
   - component: {fileID: 2368940623862828011}
   - component: {fileID: 2501403657564188926}
+  - component: {fileID: 4974299352429533520}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2094,6 +2095,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ef8c1052cc726640b329a4707e458f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowMotionScale: 0.5
+  slowMotionDuration: 1.5
+  testButtonEnabled: 0
+  originalBackgroundColor: {r: 0, g: 0, b: 0, a: 0}
+  slowedTimeBackgroundColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &4974299352429533520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6903021188174652529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb720c43c4a8dc46a9b8a86fab97b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8267370092330404284
