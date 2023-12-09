@@ -754,7 +754,10 @@ public class StageEntity : MonoBehaviour
         }
 
         StartCoroutine(statusEffectManager.FlashColor(actualHitFlashColor, 0.025f, 0.025f));//Flash white to indicate being hit
-        RuntimeManager.PlayOneShot(OnDamagedSFX, transform.position);
+        if(!OnDamagedSFX.IsNull)
+        {
+            RuntimeManager.PlayOneShot(OnDamagedSFX, transform.position);
+        }
 
         if(currentHP <= 0) //Begin destruction once HP goes to at or below 0
         {
@@ -818,7 +821,11 @@ public class StageEntity : MonoBehaviour
         if(boxCollider2D != null){boxCollider2D.enabled = false;}
         HPText.enabled = false;
 
-        RuntimeManager.PlayOneShot(OnDeathSFX, transform.position);
+        if(!OnDeathSFX.IsNull)
+        {
+            RuntimeManager.PlayOneShot(OnDeathSFX, transform.position);
+        }
+
 
         if(entityAnimator.DefeatAnimation != null)
         {
