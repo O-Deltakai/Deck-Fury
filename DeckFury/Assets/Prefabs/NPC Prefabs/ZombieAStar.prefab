@@ -960,6 +960,20 @@ MonoBehaviour:
   ShieldsText: {fileID: 4224279778098736861}
   DoNotShowHP: 0
   entitySpriteRenderer: {fileID: 0}
+  OnDamagedSFX:
+    Guid:
+      Data1: 1006074970
+      Data2: 1116370271
+      Data3: -118895988
+      Data4: -1259254039
+    Path: event:/NPCDamaged3DPunch
+  OnDeathSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   enemyData: {fileID: 11400000, guid: 8b52f0425dde5c14cbeb0ab6405d0921, type: 2}
   player: {fileID: 0}
   enemyTier: 1

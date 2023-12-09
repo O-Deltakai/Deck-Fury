@@ -912,6 +912,7 @@ MonoBehaviour:
   <DefeatAnimation>k__BackingField: {fileID: 7400000, guid: 5b9cbe0eeeb1daf4684e5a04dac77206, type: 2}
   <animationList>k__BackingField:
   - {fileID: 7400000, guid: f6a8700ce07263a4da266fafd40c6f5a, type: 2}
+  useUnscaledTime: 0
   isAnimating: 0
 --- !u!114 &193011371479266687
 MonoBehaviour:
@@ -993,7 +994,21 @@ MonoBehaviour:
   ShieldsText: {fileID: 9145887351148121681}
   DoNotShowHP: 0
   entitySpriteRenderer: {fileID: 0}
-  enemyData: {fileID: 0}
+  OnDamagedSFX:
+    Guid:
+      Data1: 2067571330
+      Data2: 1285352577
+      Data3: -1972169546
+      Data4: 1815344701
+    Path: event:/Characters/RobotDamaged
+  OnDeathSFX:
+    Guid:
+      Data1: -1074849151
+      Data2: 1244880388
+      Data3: 1078106512
+      Data4: -91266903
+    Path: event:/Characters/RobotDeath
+  enemyData: {fileID: 11400000, guid: 52e12dc2367ceaa46bcadd1e55732149, type: 2}
   player: {fileID: 0}
   enemyTier: 2
   NPCAbilities: []

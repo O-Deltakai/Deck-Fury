@@ -170,6 +170,13 @@ public class StageEntity : MonoBehaviour
 
         //stageManager = GameErrorHandler.NullCheck(StageManager.Instance, "Stage Manager");
 
+
+
+    }
+
+    //Method to initialize all common starting states between StageEntities
+    protected virtual void InitializeStartingStates()
+    {
         _stageManager = StageManager.Instance;
 
         if(_stageManager)
@@ -177,13 +184,6 @@ public class StageEntity : MonoBehaviour
             currentTilePosition.Set((int)worldTransform.position.x, (int)worldTransform.position.y, 0);
             _stageManager.SetTileEntity(this, currentTilePosition);
         }
-
-    }
-
-    //Method to initialize all common starting states between StageEntities
-    protected virtual void InitializeStartingStates()
-    {
-
 
         if(!CannotBeTargeted || !DoNotShowHP)
         {

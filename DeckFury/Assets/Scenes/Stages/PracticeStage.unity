@@ -577,9 +577,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3bc587f51b99244ea45acbe4de50236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trainingNPC: {fileID: 0}
+  trainingNPC: {fileID: 8603392144972885623, guid: c265baa8c11e2e64ba69996692370faa, type: 3}
   trainingNPCs: []
-  respawnPositions: []
+  respawnPositions:
+  - {x: -4, y: 0, z: 0}
+  - {x: 4, y: 0, z: 0}
+  - {x: 0, y: 2, z: 0}
 --- !u!4 &1164934504
 Transform:
   m_ObjectHideFlags: 0
@@ -1109,6 +1112,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 819920718, guid: 6e654f40549c15349ab29236546e31ed, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341459440, guid: 6e654f40549c15349ab29236546e31ed, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341459440, guid: 6e654f40549c15349ab29236546e31ed, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341459440, guid: 6e654f40549c15349ab29236546e31ed, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341459440, guid: 6e654f40549c15349ab29236546e31ed, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1358040780, guid: 6e654f40549c15349ab29236546e31ed, type: 3}
@@ -1779,6 +1798,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 500666781, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
+      propertyPath: m_FillMethod
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1755202097491930492, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
       propertyPath: m_RootOrder
       value: 6

@@ -690,6 +690,7 @@ public class Vampire : NPC
 
     protected override void AdditionalDestructionEvents(AttackPayload? killingBlow = null)
     {
+        
         base.AdditionalDestructionEvents(killingBlow);
         EnableAI = false;
     }

@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 //Class that will manage all the tilemaps, systems related to tilemaps and methods to access/validate the tilemaps in various ways
 //Singleton object
+[RequireComponent(typeof(MapLoader))]
 public class StageManager : MonoBehaviour
 {
     //Singleton
@@ -34,15 +35,22 @@ public class StageManager : MonoBehaviour
     //in certain operations, like selecting a random tile on the board.
     public List<GroundTileData> groundTileList {get; private set;}
 
+    MapLoader mapLoader;
+
     private void Awake()
     {
         _instance = this;
-        if(mapLayout)
+        mapLoader = GetComponent<MapLoader>();
+
+        if(mapLayout && !mapLoader.UseMapLayoutPrefab)
         {
             SetTilemapsToMapLayout(mapLayout);
         }else
         {
-            mapLayout = GetComponentInChildren<MapLayoutController>();
+            //mapLayout = GetComponentInChildren<MapLayoutController>();
+            mapLayout = mapLoader.CurrentMap;
+
+
             SetTilemapsToMapLayout(mapLayout);
         }
         InitGroundTileData();
