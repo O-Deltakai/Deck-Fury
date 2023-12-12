@@ -1032,6 +1032,7 @@ MonoBehaviour:
   - {fileID: 7400000, guid: fb658884ea1d73042bc13593ec2787c4, type: 2}
   - {fileID: 7400000, guid: a28c3921ee22e714eaa4ce82ae548958, type: 2}
   - {fileID: 7400000, guid: 19999ed04ca70da4badcffe87ec7bacf, type: 2}
+  useUnscaledTime: 0
   isAnimating: 0
 --- !u!114 &8953453783316089301
 MonoBehaviour:
@@ -1113,6 +1114,20 @@ MonoBehaviour:
   ShieldsText: {fileID: 1361261307}
   DoNotShowHP: 0
   entitySpriteRenderer: {fileID: 0}
+  OnDamagedSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  OnDeathSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   enemyData: {fileID: 11400000, guid: 3693ac877aada844a84c23bd494f1697, type: 2}
   player: {fileID: 0}
   enemyTier: 5
@@ -1483,6 +1498,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2503849447942824291}
     m_Modifications:
+    - target: {fileID: 2169492944214899990, guid: 23f6f44c64a15ee46b568cd4cbf43128, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3693ac877aada844a84c23bd494f1697, type: 2}
     - target: {fileID: 4349485481879179576, guid: 23f6f44c64a15ee46b568cd4cbf43128, type: 3}
       propertyPath: m_Camera
       value: 

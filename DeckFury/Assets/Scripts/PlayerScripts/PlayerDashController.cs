@@ -52,7 +52,7 @@ public class PlayerDashController : MonoBehaviour
 
     void Start()
     {
-        stageManager = player.EntityStageManager;
+        
     }
 
     public void DashInput(InputAction.CallbackContext context)
@@ -85,11 +85,12 @@ public class PlayerDashController : MonoBehaviour
 
     public void DashTowardsAim()
     {
+        stageManager = player.EntityStageManager;
+        
         int x = aimpoint.GetAimVector3Int().x * dashDistance;
         int y = aimpoint.GetAimVector3Int().y * dashDistance;
 
         Vector3Int destination = new Vector3Int(player.currentTilePosition.x + x, player.currentTilePosition.y + y, 0); 
-
         if(!stageManager.CheckValidTile(destination))
         {
             //First check if the tile ahead that is in the same direction of the leap is free and go there first.

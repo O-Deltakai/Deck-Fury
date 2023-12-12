@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
+using FMODUnity;
 
 public class EnemyDescriptionPanel : MonoBehaviour
 {
@@ -32,7 +33,8 @@ public class EnemyDescriptionPanel : MonoBehaviour
     [SerializeField] List<Image> resistIcons;
     [SerializeField] GameObject noResistsIndicator; // Object that is shown if enemy has no resistances
 
-
+    [Header("SFX")]
+    [SerializeField] EventReference onClickSFX;
 
     bool panelIsOpen = false;
 
@@ -54,18 +56,26 @@ public class EnemyDescriptionPanel : MonoBehaviour
     void AssignEvents()
     {
         cardSelectionMenu.OnUnpreviewStage += DisableSelectorButton;
+        cardSelectionMenu.OnUnpreviewStage += ExitHoverOverSelector;
+
         cardSelectionMenu.OnPreviewStage += EnableSelectorButton;
 
         cardSelectionMenu.OnMenuDisabled += DisableSelectorButton;
+        cardSelectionMenu.OnMenuDisabled += ExitHoverOverSelector;
 
     }
 
     void OnDestroy()
     {
         cardSelectionMenu.OnUnpreviewStage -= DisableSelectorButton;
+        cardSelectionMenu.OnUnpreviewStage -= ExitHoverOverSelector;
+
         cardSelectionMenu.OnPreviewStage -= EnableSelectorButton;
 
+
         cardSelectionMenu.OnMenuDisabled -= DisableSelectorButton;        
+        cardSelectionMenu.OnMenuDisabled -= ExitHoverOverSelector;
+
     }
 
 
@@ -144,6 +154,8 @@ public class EnemyDescriptionPanel : MonoBehaviour
         {
             ToggleDescriptionPanel(true);
         }
+
+        RuntimeManager.PlayOneShot(onClickSFX);
     }
 
     void EnableSelectorButton()

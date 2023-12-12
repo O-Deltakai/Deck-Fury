@@ -47,8 +47,8 @@ public class StageManager : MonoBehaviour
             SetTilemapsToMapLayout(mapLayout);
         }else
         {
-            //mapLayout = GetComponentInChildren<MapLayoutController>();
-            mapLayout = mapLoader.CurrentMap;
+            mapLayout = GetComponentInChildren<MapLayoutController>();
+            //mapLayout = mapLoader.CurrentMap;
 
 
             SetTilemapsToMapLayout(mapLayout);
