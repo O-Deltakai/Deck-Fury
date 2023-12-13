@@ -303,10 +303,18 @@ public class TutorialController : MonoBehaviour
 
         cardSelectionMenu.OnSelectSpecificCard += ClickedCardSynergyTutorial;
         cardSelectionMenu.OnUnpreviewStage += TalkAboutSynergy;
+        cardSelectionMenu.OnPreviewStage += TalkAboutEnemyPanel;
         OnReachEndOfDialogue += EnableLoadMagazineButton;   
 
     }
 
+    void TalkAboutEnemyPanel()
+    {
+        TutorialDialogueBox.transform.DOLocalMove(
+             new Vector3(cardSelectTutorialBoxAnchorPoint.x, cardSelectTutorialBoxAnchorPoint.y, 0),
+            0.5f).SetUpdate(true).SetEase(Ease.InOutSine);          
+        SetTutorialDialogue(3);        
+    }
 
     void CloseSynergyTutorial()
     {

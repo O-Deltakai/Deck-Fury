@@ -547,7 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2503849447942824288, guid: a241bc591a4a6264084a80fdf3b99889, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2503849447942824291, guid: a241bc591a4a6264084a80fdf3b99889, type: 3}
       propertyPath: m_RootOrder
@@ -1634,6 +1634,26 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 6281481823548784645, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
+      propertyPath: playOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281481823548784645, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
+      propertyPath: afterImageColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281481823548784645, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
+      propertyPath: afterImageColor.b
+      value: 0.495283
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281481823548784645, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
+      propertyPath: afterImageColor.g
+      value: 0.94605106
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281481823548784645, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
+      propertyPath: afterImageColor.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
 --- !u!1001 &5773231377854053022
