@@ -159,7 +159,7 @@ public class SceneLoader : MonoBehaviour
         Scene additiveScene = SceneManager.GetSceneByName(sceneToAdd);
         SceneManager.SetActiveScene(additiveScene);  
 
-        DisableAllObjectsInScene("StageSelectionScene");
+        DisableAllObjectsInScene(SceneNames.StageSelectionScene.ToString());
 
 
 

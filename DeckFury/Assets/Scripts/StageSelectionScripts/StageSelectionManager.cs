@@ -74,6 +74,7 @@ public class StageSelectionManager : MonoBehaviour
     {
         MapLevel mapLevel = stage.mapLevel;
 
+        //Update interactable stage buttons on the stage map
         if(mapLevel.levelIndex < mapLevels.Length - 1)
         {
             foreach(MapStage mapStages in mapLevels[mapLevel.levelIndex + 1].GetStages())

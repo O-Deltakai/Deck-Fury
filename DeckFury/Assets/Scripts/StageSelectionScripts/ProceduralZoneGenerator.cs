@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class ProceduralZoneGenerator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] MapPoolSO _mapLayoutPool;
+    public MapPoolSO MapLayoutPool => _mapLayoutPool;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
 }

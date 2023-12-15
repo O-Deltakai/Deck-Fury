@@ -53,8 +53,10 @@ public class ZombieAStar : NPC
             FaceTowardsPlayer();
         }
 
-
-        AttackPlayer();
+        if(canAttack)
+        {
+            AttackPlayer();
+        }
     }
 
     void FaceTowardsPlayer()
@@ -180,12 +182,12 @@ public class ZombieAStar : NPC
         yield return new WaitForSeconds(attackWindupDuration);
         entityAnimator.PlayAnimationClip(BasicAttack.abilityData.animationToUse);
         yield return new WaitForSeconds(BasicAttack.abilityData.animationToUse.length - 0.125f);
-        BasicAttack.gameObject.SetActive(true);
+        //BasicAttack.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(attackCooldown);
-        canAttack = true;
+        yield return new WaitForSeconds(attackCooldown + BasicAttack.abilityData.animationToUse.length);
+        //canAttack = true;
         isAttacking = false;
-        seekerAI.pauseAI = false;
+        
    
         attackWindUpCoroutine = null;
     }
@@ -198,6 +200,7 @@ public class ZombieAStar : NPC
             canAttack = true;
             isAttacking = false;
             seekerAI.pauseAI = false;
+
 
             attackWindUpCoroutine = null;
         }
@@ -220,6 +223,7 @@ public class ZombieAStar : NPC
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
         isAttacking = false;        
+        seekerAI.pauseAI = false;
     }
 
     IEnumerator MovementCooldown()

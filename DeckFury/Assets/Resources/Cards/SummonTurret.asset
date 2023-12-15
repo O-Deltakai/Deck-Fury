@@ -23,6 +23,9 @@ MonoBehaviour:
   <AttackElement>k__BackingField: 0
   <CardType>k__BackingField: 2
   <StatusEffect>k__BackingField: 0
+  <statusEffect>k__BackingField:
+    statusEffectType: 0
+    effectStrength: 0
   <EnergyCost>k__BackingField: 2
   CardTier: 2
   <QuantifiableEffects>k__BackingField:
@@ -33,7 +36,7 @@ MonoBehaviour:
     <ModCoefficient>k__BackingField: 0
   - <EffectName>k__BackingField: Turret Attack Speed
     <IntegerQuantity>k__BackingField: 0
-    <FloatQuantity>k__BackingField: 0.5
+    <FloatQuantity>k__BackingField: 0.75
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
   CardImage: {fileID: 21300000, guid: 5ba4f899fab1642489b4f961f97ec0f3, type: 3}
@@ -44,5 +47,13 @@ MonoBehaviour:
   - {fileID: 583723702644002033, guid: bf00e32581e88374c8e6fa876131f156, type: 3}
   <ObjectSummonsArePooled>k__BackingField: 0
   <UseTargetingReticle>k__BackingField: 1
+  <ReticleIsStatic>k__BackingField: 0
   <TargetingReticle>k__BackingField: {fileID: 4638606909580859982, guid: d361f42fe86b56049b8fc8aa8eae036c, type: 3}
   <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}
+  _onActivationSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

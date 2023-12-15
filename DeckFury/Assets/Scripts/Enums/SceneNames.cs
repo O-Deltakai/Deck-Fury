@@ -4,7 +4,7 @@ public enum SceneNames
     DefaultBattleScene_DoNotModify,
     CircleStage,
     TutorialStage,
-    StageSelectionScene,
+    StageSelectionScene_Old,
     DefaultCombatStage,
     IslandsCombatStage,
     MazeCombatStage,
@@ -14,4 +14,6 @@ public enum SceneNames
     RestStage,
     EndingStage,
     TutorialStage_New,
+    PracticeStage,
+    StageSelectionScene,
 }

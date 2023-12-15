@@ -402,7 +402,7 @@ public class Vampire : NPC
             bullet.velocity = bulletVelocity;
             bullet.trailRenderer.time = 0.2f;
             bullet.attackPayload = strongATKPayload;
-            bullet.attackPayload.damage *= aTKMultiplier;
+            
 
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>()); // ensure it doesnt hit themselves
 
@@ -690,7 +690,7 @@ public class Vampire : NPC
 
     protected override void AdditionalDestructionEvents(AttackPayload? killingBlow = null)
     {
-        
+
         base.AdditionalDestructionEvents(killingBlow);
         EnableAI = false;
     }

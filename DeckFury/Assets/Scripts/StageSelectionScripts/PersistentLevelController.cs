@@ -69,7 +69,7 @@ public class PersistentLevelController : MonoBehaviour
         stageSelectionManager = FindObjectOfType<StageSelectionManager>();
     }
 
-    public void LoadMapStage(MapStage stage)
+    public void LoadMapStage(MapStage stage, bool setPlayerStage = true)
     {
         string sceneName = stage.sceneToLoadName.ToString();
         StageSpawnTable = stage.spawnTable;

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using FMODUnity;
 using UnityEngine;
 
 
@@ -38,6 +39,11 @@ public class Shooter : NPC
     [SerializeField] float aimWindupTime = 0.5f;
 
     [SerializeField] AttackPayload bulletPayload;
+
+    [SerializeField] EventReference prepareToFireSFX;
+    [SerializeField] EventReference fireBulletSFX;
+
+
 
     bool isPreparedToFire;
     bool isAiming;
@@ -147,6 +153,7 @@ public class Shooter : NPC
         canAttemptMove = false;//Shooter should not be able to move while aiming
         CanFire = false;
         entityAnimator.PlayOneShotAnimation(entityAnimator.animationList[(int)ShooterAnims.Shooter_Aim]);
+        RuntimeManager.PlayOneShotAttached(prepareToFireSFX, gameObject);
         if(MovementCooldownCoroutine != null)
         {
             StopCoroutine(MovementCooldownCoroutine);
@@ -177,6 +184,7 @@ public class Shooter : NPC
     //Instantiates a bullet with necessary variables set
     void FireBullet(Vector3 directionVector)
     {
+        RuntimeManager.PlayOneShotAttached(fireBulletSFX, gameObject);
 
         Bullet bullet = Instantiate(projectile, firePoint.position, transform.rotation).GetComponent<Bullet>();
 

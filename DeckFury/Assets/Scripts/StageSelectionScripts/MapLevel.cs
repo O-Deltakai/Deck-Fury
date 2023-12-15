@@ -5,6 +5,7 @@ using UnityEngine;
 public class MapLevel : MonoBehaviour
 {
     public MapZone mapZone;
+    [SerializeField] GameObject mapStagePrefab;
     [SerializeField] List<MapStage> stages;
     [SerializeField] int _levelTier;
     public int LevelTier{get { return _levelTier; }}
