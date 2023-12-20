@@ -34,7 +34,7 @@ public class LevelBlueprint
     List<StageBlueprint> _stageBlueprints;
     public IReadOnlyList<StageBlueprint> StageBlueprints => _stageBlueprints;
 
-    public void GenerateLevel(System.Random random)
+    public void GenerateLevel(System.Random random, ZoneBlueprint zone, int stagesInLevel)
     {
         NumberOfStages = random.Next(GeneratorValues.MIN_STAGES_PER_LEVEL, GeneratorValues.MAX_STAGES_PER_LEVEL);
 
@@ -43,7 +43,7 @@ public class LevelBlueprint
             StageBlueprint stage = new StageBlueprint();
             SetStageDetails(stage, random);
 
-            stage.GenerateStage(random);
+            stage.GenerateStage(random, zone);
 
             _stageBlueprints.Add(stage);
         }

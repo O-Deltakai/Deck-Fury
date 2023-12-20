@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 421597493}
   - component: {fileID: 421597492}
   - component: {fileID: 421597494}
+  - component: {fileID: 421597495}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -280,6 +281,20 @@ MonoBehaviour:
   wallTileMap: {fileID: 2138848043}
   <VFXTilemap>k__BackingField: {fileID: 1314768311}
   <DangerVFXTile>k__BackingField: {fileID: 11400000, guid: 3cfff61a457a45b49a3955355859c73c, type: 2}
+--- !u!114 &421597495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421597491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 708826d27ef018c498941b5c07c12b05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mapLayoutPrefab: {fileID: 0}
+  _useMapLayoutPrefab: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1469,7 +1484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1755202097491930492, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 1755202097491930492, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1926,7 +1941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6412625587734996852, guid: a6c681a9d80ca4b4ea2ac6fc8c1a9b70, type: 3}
       propertyPath: m_Name
-      value: DefaultMapLayout
+      value: CubeStage
       objectReference: {fileID: 0}
     - target: {fileID: 7250735982123638976, guid: a6c681a9d80ca4b4ea2ac6fc8c1a9b70, type: 3}
       propertyPath: m_SortingOrder

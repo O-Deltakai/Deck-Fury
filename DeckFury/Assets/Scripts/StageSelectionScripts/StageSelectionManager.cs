@@ -16,6 +16,10 @@ public class StageSelectionManager : MonoBehaviour
     [SerializeField] GameObject travelLineIndicator;
     [SerializeReference] GameObject stageMap;
     [SerializeReference] GameObject mapBackground;
+
+    [SerializeField] MapPoolSO mapPool;
+
+
     MapLevel[] mapLevels;
 
     public MapStage currentPlayerLocation;
