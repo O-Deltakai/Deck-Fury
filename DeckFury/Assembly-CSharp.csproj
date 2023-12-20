@@ -105,6 +105,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\Generic Systems\ResourceBar.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Scripts\CardScripts\CardEffect.cs" />
+    <Compile Include="Assets\Scripts\ManagerScripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\CardScripts\SummonSentry.cs" />
     <Compile Include="Assets\Scripts\StageSelectionScripts\PersistentLevelController.cs" />
     <Compile Include="Assets\ScriptableObjects\BonusScoreItemSO.cs" />
@@ -149,16 +150,19 @@
     <Compile Include="Assets\Scripts\Enums\StatusEffect.cs" />
     <Compile Include="Assets\Scripts\Enums\SceneNames.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
+    <Compile Include="Assets\Scripts\GeneralScripts\SelfDestructTimer.cs" />
     <Compile Include="Assets\Scripts\CardScripts\ShieldSteal.cs" />
     <Compile Include="Assets\Scripts\CardScripts\ShieldBash.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\GameManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\Boomerang.cs" />
+    <Compile Include="Assets\Scripts\GeneralScripts\GameObjectPool.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Zombie\Zombie.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\Scripts\StageEntityScripts\EntityAnimationController.cs" />
+    <Compile Include="Assets\Scripts\GeneralScripts\IPoolable.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\ShieldBeacon.cs" />
@@ -194,6 +198,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Scripts\StageSelectionScripts\MapLevel.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\FreezeMine.cs" />
+    <Compile Include="Assets\Scripts\ToolScripts\GameObjectToggler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\CardScripts\FireBomb.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\TutorialInfo\Scripts\Readme.cs" />
@@ -201,6 +206,7 @@
     <Compile Include="Assets\Scripts\CardScripts\SummonBeacon.cs" />
     <Compile Include="Assets\Scripts\Enums\StageType.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\NextCardIndicator.cs" />
+    <Compile Include="Assets\Scripts\StageManagerScripts\MapLoader.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\LaserTurret.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\EntityUIElementAnimator.cs" />
@@ -215,6 +221,7 @@
     <Compile Include="Assets\Scripts\CardScripts\SlashBoomerang.cs" />
     <Compile Include="Assets\VolumetricLines\Scripts\VolumetricLineBehavior.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
+    <Compile Include="Assets\Scripts\StageSelectionScripts\PracticeStageButton.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleUtils.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\StageStateController.cs" />
@@ -242,6 +249,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\Bazooka.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleUI.cs" />
+    <Compile Include="Assets\Scripts\GeneralScripts\AfterImageGenerator.cs" />
     <Compile Include="Assets\Scripts\CardScripts\Agni.cs" />
     <Compile Include="Assets\Scripts\StageEntityScripts\EntityWrapper.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
@@ -253,14 +261,12 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\ScriptableObjects\SpawnTableSO.cs" />
     <Compile Include="Assets\Scripts\StageEntityScripts\StageEntity.cs" />
-    <Compile Include="Assets\Scripts\StageManagerScripts\MapLoader.cs" />
-    <Compile Include="Assets\Scripts\ManagerScripts\AudioManager.cs" />
-    <Compile Include="Assets\Scripts\GeneralScripts\AfterImageGenerator.cs" />
-    <Compile Include="Assets\Scripts\GeneralScripts\SelfDestructTimer.cs" />
-    <Compile Include="Assets\Scripts\GeneralScripts\IPoolable.cs" />
-    <Compile Include="Assets\Scripts\GeneralScripts\GameObjectPool.cs" />
-    <Compile Include="Assets\Scripts\StageSelectionScripts\PracticeStageButton.cs" />
-    <Compile Include="Assets\Scripts\ToolScripts\GameObjectToggler.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\ZoneBlueprint.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\LevelBlueprint.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\StageBlueprint.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\ZoneModifier.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\StageModifier.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\GeneratorValues.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{0b01e7ad-6d24-4897-be11-2ef635716c67}.xml" />
