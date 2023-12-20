@@ -36,7 +36,7 @@ public class LevelBlueprint
 
     public void GenerateLevel(System.Random random, ZoneBlueprint zone, int stagesInLevel)
     {
-        NumberOfStages = random.Next(GeneratorValues.MIN_STAGES_PER_LEVEL, GeneratorValues.MAX_STAGES_PER_LEVEL);
+        NumberOfStages = stagesInLevel;
 
         for (int i = 0; i < NumberOfStages; i++)
         {

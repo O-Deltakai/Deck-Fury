@@ -28,20 +28,27 @@ public class StageBlueprint
 
     public SpawnTableSO spawnTable;
 
-    StageType[] validStages = new StageType[]
-    {
-        StageType.Combat,
-        StageType.EliteCombat,
-        StageType.Shop,
-        StageType.RestPoint,
-        StageType.Mystery
-    };
 
 
     public void GenerateStage(System.Random random, ZoneBlueprint zone)
     {
-        StageType chosenStage = validStages[random.Next(0, validStages.Count())];
 
+        List<StageType> availableStageTypes = zone.CurrentStageTypes;
+        StageType chosenStage;
+
+        if(availableStageTypes.Count - 1 >= 0)
+        {
+            chosenStage = availableStageTypes[availableStageTypes.Count - 1];
+            availableStageTypes.RemoveAt(availableStageTypes.Count - 1); 
+        }else
+        {
+            Debug.LogWarning("No more stage types found within the CurrentStageTypes of the current zone. Defaulted stage type to Combat." +
+            "This normally shouldn't happen - something may have gone wrong with the procedural generation algorithm.");
+            chosenStage = StageType.Combat;
+            
+        }
+
+        stageType = chosenStage;
 
     }
 

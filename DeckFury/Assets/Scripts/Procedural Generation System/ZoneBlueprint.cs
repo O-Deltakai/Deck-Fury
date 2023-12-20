@@ -67,8 +67,8 @@ public class ZoneBlueprint
     public int TotalNumberOfShops { get => _totalNumberOfShops; set => _totalNumberOfShops = value; }
     public int TotalNumberOfRests { get => _totalNumberOfRests; set => _totalNumberOfRests = value; }
 
-    List<StageType> _mandatoryStages = new List<StageType>();
-    public IReadOnlyList<StageType> MandatoryStages { get => _mandatoryStages; }
+    List<StageType> _currentStageTypes = new List<StageType>();
+    public List<StageType> CurrentStageTypes { get => _currentStageTypes; }
 
 
 
@@ -82,12 +82,12 @@ public class ZoneBlueprint
         NumberOfLevels = random.Next(GeneratorValues.MIN_LEVELS_PER_ZONE, GeneratorValues.MAX_LEVELS_PER_ZONE);
         _totalNumberOfStages = random.Next(minTotalStagesInZone, maxTotalStagesInZone + 1);
 
+        AllocateMandatoryStageTypes();
+        RandomlyDistributeStageTypes(random);
+
+
         List<int> stagesPerLevel = DistributeStagesAcrossLevels(random);
 
-
-        ExpectedNumberOfEliteStages = random.Next(GeneratorValues.MIN_ELITES_PER_ZONE, GeneratorValues.MAX_ELITES_PER_ZONE);
-        ExpectedNumberOfRests = random.Next(GeneratorValues.MIN_RESTS_PER_ZONE, GeneratorValues.MAX_RESTS_PER_ZONE);
-        ExpectedNumberOfShops = random.Next(GeneratorValues.MIN_SHOPS_PER_ZONE, GeneratorValues.MAX_SHOPS_PER_ZONE);
 
         for (int i = 0; i < NumberOfLevels; i++)
         {
@@ -103,6 +103,11 @@ public class ZoneBlueprint
 
     }
 
+/// <summary>
+/// Returns a randomly distributed list of ints which represent the number of stages per level
+/// </summary>
+/// <param name="random"></param>
+/// <returns></returns>
     List<int> DistributeStagesAcrossLevels(System.Random random)
     {
         List<int> stagesDistribution = new List<int>();
@@ -112,7 +117,7 @@ public class ZoneBlueprint
         {
             if(i == NumberOfLevels - 1)
             {
-                stagesDistribution.Add(remainingStages);
+                stagesDistribution.Add(remainingStages); //Add any remaining stages to the last level
             }else
             {
                 int maxStagesForThisLevel = Math.Min(GeneratorValues.MAX_STAGES_PER_LEVEL, remainingStages - (NumberOfLevels - i - 1) * GeneratorValues.MIN_STAGES_PER_LEVEL);
@@ -124,30 +129,43 @@ public class ZoneBlueprint
 
         }
 
-        return stagesDistribution;
+        return ShuffleIntList(stagesDistribution, random);
 
 
     }
 
 
-    void AllocateMandatoryStages()
+    void AllocateMandatoryStageTypes()
     {
         for(int i = 0; i < GeneratorValues.MIN_ELITES_PER_ZONE; i++)
         {
-            _mandatoryStages.Add(StageType.EliteCombat);
+            _currentStageTypes.Add(StageType.EliteCombat);
         }
 
         for(int i = 0; i < GeneratorValues.MIN_SHOPS_PER_ZONE; i++)
         {
-            _mandatoryStages.Add(StageType.Shop);
+            _currentStageTypes.Add(StageType.Shop);
         }
 
         for(int i = 0; i < GeneratorValues.MIN_RESTS_PER_ZONE; i++)
         {
-            _mandatoryStages.Add(StageType.RestPoint);
+            _currentStageTypes.Add(StageType.RestPoint);
+        }
+    }
+
+    void RandomlyDistributeStageTypes(System.Random random)
+    {
+        int remainingStages = _totalNumberOfStages - CurrentStageTypes.Count;
+
+        for (int i = 0; i < remainingStages; i++) 
+        {
+            StageType stageType = GetRandomStageType(random, _currentStageTypes);
+            _currentStageTypes.Add(stageType);
         }
 
+        ShuffleStageTypes(random, _currentStageTypes);
     }
+
 
     StageType GetRandomStageType(System.Random random, List<StageType> currentStages)
     {
@@ -159,7 +177,33 @@ public class ZoneBlueprint
         return possibleTypes[random.Next(0, possibleTypes.Count)];        
     }
 
+    List<int> ShuffleIntList(List<int> list, System.Random random)
+    {
+        for (int i = 0; i < list.Count; i++) 
+        {
+            int swapIndex = random.Next(i, list.Count);
+            int temp = list[i];
 
+            list[i] = list[swapIndex];
+            list[swapIndex] = temp;
+        }
+
+        return list;
+    }
+
+
+    List<StageType> ShuffleStageTypes(System.Random random, List<StageType> list)
+    {
+        for (int i = 0; i < list.Count; i++) 
+        {
+            int swapIndex = random.Next(i, list.Count);
+            StageType temp = list[i];
+            list[i] = list[swapIndex];
+            list[swapIndex] = temp;
+        }
+
+        return list;
+    }
 
     void SetLevelDetails(LevelBlueprint level, System.Random random)
     {
