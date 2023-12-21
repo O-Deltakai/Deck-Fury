@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638379803568735775
+  lastModified: 638387748549719350
   FileSizes:
   - Name: Desktop
     Value: 83616
@@ -89,10 +89,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/CardEffects.bank
   Name: CardEffects
   StudioPath: bank:/CardEffects
-  lastModified: 638379803567414425
+  lastModified: 638387748548309371
   FileSizes:
   - Name: Desktop
-    Value: 103104
+    Value: 145984
   Exists: 1
 --- !u!114 &-7488637499274522576
 MonoBehaviour:
@@ -217,7 +217,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 638379803568395781
+  lastModified: 638387748549339348
   FileSizes:
   - Name: Desktop
     Value: 13792
@@ -264,7 +264,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638379803567805773
+  lastModified: 638387748548729359
   FileSizes:
   - Name: Desktop
     Value: 1632
@@ -343,6 +343,7 @@ MonoBehaviour:
   - {fileID: -8042990687102530542}
   - {fileID: -2926471139701150237}
   - {fileID: 1581236416768238981}
+  - {fileID: 5649038211156017407}
   EditorEvents:
   - {fileID: -8983499300347524509}
   - {fileID: 3948181976075278948}
@@ -366,12 +367,14 @@ MonoBehaviour:
   - {fileID: -3910162642155353554}
   - {fileID: -613441309849984276}
   - {fileID: -1921318354122018414}
+  - {fileID: 8579196683561909647}
+  - {fileID: 1561902227455924562}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1199707550411595357}
   StringsBanks:
   - {fileID: 4950714686771268432}
-  cacheTime: 638379803568735775
+  cacheTime: 638387748549979378
   cacheVersion: 131608
 --- !u!114 &791509316960225685
 MonoBehaviour:
@@ -427,6 +430,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &1561902227455924562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CardSFX/TriggerMarkSFX
+  m_EditorClassIdentifier: 
+  Path: event:/CardSFX/TriggerMarkSFX
+  Guid:
+    Data1: 89470668
+    Data2: 1151230749
+    Data3: 1445076153
+    Data4: -441680986
+  Banks:
+  - {fileID: -8042990687102530542}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &1562294042699414447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,7 +499,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Objects.bank
   Name: Objects
   StudioPath: bank:/Objects
-  lastModified: 638379803568125802
+  lastModified: 638387748549049372
   FileSizes:
   - Name: Desktop
     Value: 32768
@@ -597,10 +627,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638379803567855767
+  lastModified: 638387748548779374
   FileSizes:
   - Name: Desktop
-    Value: 2170
+    Value: 2312
   Exists: 1
 --- !u!114 &5110348535214356016
 MonoBehaviour:
@@ -656,6 +686,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &5649038211156017407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Soundtracks.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Soundtracks.bank
+  Name: Soundtracks
+  StudioPath: bank:/Soundtracks
+  lastModified: 638387748549979378
+  FileSizes:
+  - Name: Desktop
+    Value: 1733408
+  Exists: 1
 --- !u!114 &5960675850421423401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,7 +748,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Characters.bank
   Name: Characters
   StudioPath: bank:/Characters
-  lastModified: 638379803567745776
+  lastModified: 638387748548669373
   FileSizes:
   - Name: Desktop
     Value: 63616
@@ -757,6 +807,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &8579196683561909647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Soundtracks/MainMenu-BGM
+  m_EditorClassIdentifier: 
+  Path: event:/Soundtracks/MainMenu-BGM
+  Guid:
+    Data1: -940112761
+    Data2: 1171821376
+    Data3: 897094025
+    Data4: 1638396321
+  Banks:
+  - {fileID: 5649038211156017407}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 106000
 --- !u!114 &9172678833271174344
 MonoBehaviour:
   m_ObjectHideFlags: 0

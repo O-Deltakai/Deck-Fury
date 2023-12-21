@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 public class EntityStatusEffectManager : MonoBehaviour
@@ -33,6 +34,11 @@ public class EntityStatusEffectManager : MonoBehaviour
 
     [SerializeField] Color bleedingColor = new Color(1, 0.47f, 0.47f);
 
+
+    [Header("SFX")]
+    [SerializeField] EventReference triggerMarkedSFX;
+    string defaultTriggerMarkedEventPath = "event:/CardSFX/TriggerMarkSFX";
+
     Coroutine MarkedForDeathCoroutine = null;
     Coroutine ColorFlashCoroutine;
 
@@ -41,6 +47,7 @@ public class EntityStatusEffectManager : MonoBehaviour
 
     void Start()
     {
+
         entity = GetComponent<StageEntity>();
         entitySpriteRenderer = GetComponent<SpriteRenderer>();      
     }
@@ -273,7 +280,8 @@ public class EntityStatusEffectManager : MonoBehaviour
             break;
 
             case AttackElement.Pure:
-            break;
+                return markedPayload;
+            
 
 
 
@@ -283,6 +291,13 @@ public class EntityStatusEffectManager : MonoBehaviour
         }
 
         CancelMarked();
+
+        if(triggerMarkedSFX.IsNull)
+        {
+            triggerMarkedSFX = EventReference.Find(defaultTriggerMarkedEventPath);
+        }
+        RuntimeManager.PlayOneShot(triggerMarkedSFX, transform.position);
+
 
         return markedPayload;
     }

@@ -325,8 +325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708826d27ef018c498941b5c07c12b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapLayoutPrefab: {fileID: 1852112933513828446, guid: 8e03e5e7a7c3fed4697dd5d2b03f4624, type: 3}
   _useMapLayoutPrefab: 1
+  _mapLayoutPrefab: {fileID: 1852112933513828446, guid: 8e03e5e7a7c3fed4697dd5d2b03f4624, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,6 +511,26 @@ PrefabInstance:
     - target: {fileID: 3385883509507052850, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454062004117181744, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
+      propertyPath: triggerMarkedSFX.Path
+      value: event:/CardSFX/TriggerMarkSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454062004117181744, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
+      propertyPath: triggerMarkedSFX.Guid.Data1
+      value: 89470668
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454062004117181744, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
+      propertyPath: triggerMarkedSFX.Guid.Data2
+      value: 1151230749
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454062004117181744, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
+      propertyPath: triggerMarkedSFX.Guid.Data3
+      value: 1445076153
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454062004117181744, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
+      propertyPath: triggerMarkedSFX.Guid.Data4
+      value: -441680986
       objectReference: {fileID: 0}
     - target: {fileID: 9043754737011917841, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
       propertyPath: OnDamagedSFX.Path

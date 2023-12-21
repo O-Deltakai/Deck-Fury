@@ -10,7 +10,10 @@ public class ProceduralGenerator : MonoBehaviour
 
 
 
-
+    void InitializeZone()
+    {
+        
+    }
 
 
 }
