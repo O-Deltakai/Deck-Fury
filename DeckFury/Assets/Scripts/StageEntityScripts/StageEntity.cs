@@ -171,12 +171,6 @@ public class StageEntity : MonoBehaviour
         //stageManager = GameErrorHandler.NullCheck(StageManager.Instance, "Stage Manager");
 
 
-
-    }
-
-    //Method to initialize all common starting states between StageEntities
-    protected virtual void InitializeStartingStates()
-    {
         _stageManager = StageManager.Instance;
 
         if(_stageManager)
@@ -184,6 +178,21 @@ public class StageEntity : MonoBehaviour
             currentTilePosition.Set((int)worldTransform.position.x, (int)worldTransform.position.y, 0);
             _stageManager.SetTileEntity(this, currentTilePosition);
         }
+
+    }
+
+    //Method to initialize all common starting states between StageEntities
+    protected virtual void InitializeStartingStates()
+    {
+
+        _stageManager = StageManager.Instance;
+
+        if(_stageManager)
+        {
+            currentTilePosition.Set((int)worldTransform.position.x, (int)worldTransform.position.y, 0);
+            _stageManager.SetTileEntity(this, currentTilePosition);
+        }
+
 
         if(!CannotBeTargeted || !DoNotShowHP)
         {
@@ -377,6 +386,9 @@ public class StageEntity : MonoBehaviour
     {
         Vector3Int destination = new Vector3Int((int)location.x, (int)location.y, (int)location.z);
 
+        print("destination: " + destination);
+
+        if(!_stageManager) { _stageManager = StageManager.Instance; }
 
         if(!_stageManager.CheckValidTile(destination)) 
         {

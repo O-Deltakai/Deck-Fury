@@ -16,4 +16,6 @@ public enum SceneNames
     TutorialStage_New,
     PracticeStage,
     StageSelectionScene,
+    ShopStage,
+    GenericCombatStage,
 }

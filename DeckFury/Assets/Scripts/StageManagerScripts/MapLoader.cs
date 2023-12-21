@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class MapLoader : MonoBehaviour
 {
-    [SerializeField] GameObject _mapLayoutPrefab;
     [SerializeField] bool _useMapLayoutPrefab = false;
     public bool UseMapLayoutPrefab => _useMapLayoutPrefab;
+
+    [SerializeField] GameObject _mapLayoutPrefab;
     public MapLayoutController CurrentMap { get; private set; }
+
+    StageStateController stageStateController;
+
 
     void Awake()
     {
+        stageStateController = StageStateController.Instance;
+
+        if(stageStateController && stageStateController.StageMapPrefab)
+        {
+            _mapLayoutPrefab = stageStateController.StageMapPrefab;
+        }
+
+
         if(_useMapLayoutPrefab && _mapLayoutPrefab)
         {
             InstantiateMapLayout(); 

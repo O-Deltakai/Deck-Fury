@@ -18,12 +18,22 @@ public class MapLayoutController : MonoBehaviour
     [SerializeField] bool _setSpawnPosition = false;
     public bool SetSpawnPosition => _setSpawnPosition;
 
-    [SerializeField] Vector3 _playerSpawnPosition;
-    public Vector3 PlayerSpawnPosition => _playerSpawnPosition;
+     
+    [SerializeField] Transform _playerSpawnPosition;
+    public Vector3 PlayerSpawnPosition => _playerSpawnPosition.position;
 
     private void Awake() 
     {
-            
+        if (!_playerSpawnPosition)
+        {
+            GameObject.FindGameObjectWithTag(TagNames.PlayerSpawnPosition.ToString());
+        }
+
+        if(_playerSpawnPosition)
+        {
+            SpriteRenderer spawnIndicator = _playerSpawnPosition.GetComponent<SpriteRenderer>();
+            spawnIndicator.enabled = false;
+        }
     }
 
 

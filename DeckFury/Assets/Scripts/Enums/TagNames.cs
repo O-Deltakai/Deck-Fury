@@ -11,4 +11,5 @@ public enum TagNames
     Wall,
     Ground,
     EnvironmentalHazard,
+    PlayerSpawnPosition,
 }

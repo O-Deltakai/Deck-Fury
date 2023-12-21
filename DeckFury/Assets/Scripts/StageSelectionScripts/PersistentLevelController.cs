@@ -25,6 +25,10 @@ public class PersistentLevelController : MonoBehaviour
 
     public bool playerIsAtFinalStage { get; private set; } = false ;
 
+    [SerializeField] GameObject _currentMapPrefab;
+    public GameObject CurrentMapPrefab => _currentMapPrefab;
+
+
     private void InitializePersistentSingleton()
     {
         if (_instance == null)
@@ -75,6 +79,8 @@ public class PersistentLevelController : MonoBehaviour
         StageSpawnTable = stage.spawnTable;
         StageType stageType = stage.TypeOfStage;
         playerIsAtFinalStage = stage.IsFinalStage;
+
+        _currentMapPrefab = stage.mapLayoutPrefab;
 
 
         stageSelectionManager.SetPlayerStage(stage);

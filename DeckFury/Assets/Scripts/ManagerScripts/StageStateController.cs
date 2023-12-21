@@ -18,7 +18,8 @@ public class StageStateController : MonoBehaviour
     public StageType stageType {get;}
     [field:SerializeField] public SpawnTableSO SpawnTable {get; private set;}
     [field:SerializeField] public PlayerDataContainer PlayerData {get; private set;}
-    public MapLayoutController mapLayout {get;}
+    GameObject _stageMapPrefab;
+    public GameObject StageMapPrefab => _stageMapPrefab;
 
     [SerializeField] PortalToStageSelect exitPortal;
 
@@ -42,6 +43,8 @@ public class StageStateController : MonoBehaviour
             UsingPLC = true;
             SceneIsAdditive = true;
             SpawnTable = levelController.StageSpawnTable;
+
+            _stageMapPrefab = PersistentLevelController.Instance.CurrentMapPrefab;
 
             isFinalStage = PersistentLevelController.Instance.playerIsAtFinalStage;
             //Remember that PlayerData is a class, not a struct, so any modifications made to the PlayerData here will be reflected
