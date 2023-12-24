@@ -26,13 +26,17 @@ public class MapLayoutController : MonoBehaviour
     {
         if (!_playerSpawnPosition)
         {
-            GameObject.FindGameObjectWithTag(TagNames.PlayerSpawnPosition.ToString());
+            Debug.LogWarning("Player Spawn Position was not set for this map layout, attempting to find it in scene.");
+            _playerSpawnPosition = GameObject.FindGameObjectWithTag(TagNames.PlayerSpawnPosition.ToString()).transform;
         }
 
         if(_playerSpawnPosition)
         {
             SpriteRenderer spawnIndicator = _playerSpawnPosition.GetComponent<SpriteRenderer>();
             spawnIndicator.enabled = false;
+        }else
+        {
+            Debug.LogError("Player Spawn Position could not be found within this map layout, player position may not be set correctly");
         }
     }
 

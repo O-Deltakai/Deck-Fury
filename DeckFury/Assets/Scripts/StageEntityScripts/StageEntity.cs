@@ -36,6 +36,12 @@ public class StageEntity : MonoBehaviour
     public delegate void DestructionEventHandler(StageEntity entity, Vector3Int tilePosition);
     public virtual event DestructionEventHandler OnDestructionEvent;
 
+    /// <summary>
+    /// A no parameter event for when the entity is destroyed.
+    /// </summary>
+    public event Action OnDestroyed;
+
+
     public delegate void DamageTakenEventHandler(int damageTaken);
     public event DamageTakenEventHandler OnDamageTaken;
 
@@ -853,6 +859,7 @@ public class StageEntity : MonoBehaviour
             return true;
         });
 
+        OnDestroyed?.Invoke();
 
         Destroy(transform.parent.gameObject);
         Destroy(gameObject);
