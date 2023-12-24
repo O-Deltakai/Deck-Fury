@@ -192,12 +192,12 @@ public class StageEntity : MonoBehaviour
     {
 
         _stageManager = StageManager.Instance;
-
         if(_stageManager)
         {
             currentTilePosition.Set((int)worldTransform.position.x, (int)worldTransform.position.y, 0);
             _stageManager.SetTileEntity(this, currentTilePosition);
         }
+        
 
 
         if(!CannotBeTargeted || !DoNotShowHP)

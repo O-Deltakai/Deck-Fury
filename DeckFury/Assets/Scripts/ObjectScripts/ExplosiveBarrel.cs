@@ -27,6 +27,20 @@ public class ExplosiveBarrel : StageEntity
         OnHPChanged += ExplodeBarrel;
     }
 
+    protected override void Start()
+    {
+        base.Start();
+        StartCoroutine(SetPositionTimer());
+    }
+
+    IEnumerator SetPositionTimer()
+    {
+        yield return new WaitForEndOfFrame();
+        _stageManager = StageManager.Instance;
+
+        currentTilePosition.Set((int)worldTransform.position.x, (int)worldTransform.position.y, 0);
+        _stageManager.SetTileEntity(this, currentTilePosition);
+    }
 
 
     void ExplodeBarrel(int oldValue, int newValue)

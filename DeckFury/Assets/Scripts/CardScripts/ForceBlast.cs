@@ -32,8 +32,7 @@ public class ForceBlast : CardEffect
 
         foreach(var collider2D in sortedEntities) 
         {
-            StageEntity entity = collider2D.attachedRigidbody.gameObject.GetComponent<StageEntity>();
-            if(entity == null)
+            if(!collider2D.attachedRigidbody.gameObject.TryGetComponent<StageEntity>(out var entity))
             {
                 print("collider did not have a StageEntity attached");
                 continue;
