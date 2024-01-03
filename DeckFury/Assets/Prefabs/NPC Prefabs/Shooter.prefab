@@ -677,6 +677,13 @@ MonoBehaviour:
   BaseStunDuration: 1.5
   BaseMarkedDuration: 3
   bleedingColor: {r: 1, g: 0.47, b: 0.47, a: 1}
+  triggerMarkedSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &8828695393433918312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,6 +877,20 @@ MonoBehaviour:
     attacker: {fileID: 3271430463877012518}
     attackerSprite: {fileID: 4723107735738678597, guid: f89c1690b861390458e754258101aa4b, type: 3}
     causeOfDeathNote: Bandit
+  prepareToFireSFX:
+    Guid:
+      Data1: 1792005856
+      Data2: 1248713273
+      Data3: -1239449429
+      Data4: 1454562623
+    Path: event:/Characters/BanditPrepare
+  fireBulletSFX:
+    Guid:
+      Data1: 1804523259
+      Data2: 1212690981
+      Data3: 1703113104
+      Data4: -742048082
+    Path: event:/Characters/BanditShot
 --- !u!95 &1586034818
 Animator:
   serializedVersion: 5

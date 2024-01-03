@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638388501415444260
+  lastModified: 638390991670055797
   FileSizes:
   - Name: Desktop
     Value: 83616
@@ -89,11 +89,38 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/CardEffects.bank
   Name: CardEffects
   StudioPath: bank:/CardEffects
-  lastModified: 638388501413404234
+  lastModified: 638390991668667571
   FileSizes:
   - Name: Desktop
     Value: 145984
   Exists: 1
+--- !u!114 &-7543710019174446486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/BanditShot
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/BanditShot
+  Guid:
+    Data1: 1804523259
+    Data2: 1212690981
+    Data3: 1703113104
+    Data4: -742048082
+  Banks:
+  - {fileID: 6534856402946505827}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-7488637499274522576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,7 +244,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 638388501414976261
+  lastModified: 638390991669687176
   FileSizes:
   - Name: Desktop
     Value: 13792
@@ -264,7 +291,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638388501413964506
+  lastModified: 638390991669127574
   FileSizes:
   - Name: Desktop
     Value: 1632
@@ -369,12 +396,14 @@ MonoBehaviour:
   - {fileID: -1921318354122018414}
   - {fileID: 8579196683561909647}
   - {fileID: 1561902227455924562}
+  - {fileID: 7237278758328179523}
+  - {fileID: -7543710019174446486}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1199707550411595357}
   StringsBanks:
   - {fileID: 4950714686771268432}
-  cacheTime: 638388501415791579
+  cacheTime: 638390991670305806
   cacheVersion: 131608
 --- !u!114 &791509316960225685
 MonoBehaviour:
@@ -499,7 +528,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Objects.bank
   Name: Objects
   StudioPath: bank:/Objects
-  lastModified: 638388501414507755
+  lastModified: 638390991669417547
   FileSizes:
   - Name: Desktop
     Value: 32768
@@ -627,10 +656,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638388501414029652
+  lastModified: 638390991669167567
   FileSizes:
   - Name: Desktop
-    Value: 2312
+    Value: 2416
   Exists: 1
 --- !u!114 &5110348535214356016
 MonoBehaviour:
@@ -701,7 +730,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Soundtracks.bank
   Name: Soundtracks
   StudioPath: bank:/Soundtracks
-  lastModified: 638388501415791579
+  lastModified: 638390991670305806
   FileSizes:
   - Name: Desktop
     Value: 1733408
@@ -748,10 +777,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Characters.bank
   Name: Characters
   StudioPath: bank:/Characters
-  lastModified: 638388501413868423
+  lastModified: 638390991669067568
   FileSizes:
   - Name: Desktop
-    Value: 63616
+    Value: 87168
   Exists: 1
 --- !u!114 &6662470491220421297
 MonoBehaviour:
@@ -775,6 +804,33 @@ MonoBehaviour:
   - {fileID: -9149604104894475035}
   IsStream: 0
   Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7237278758328179523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/BanditPrepare
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/BanditPrepare
+  Guid:
+    Data1: 1792005856
+    Data2: 1248713273
+    Data3: -1239449429
+    Data4: 1454562623
+  Banks:
+  - {fileID: 6534856402946505827}
+  IsStream: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
