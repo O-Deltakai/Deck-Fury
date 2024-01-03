@@ -682,7 +682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &397948876
 RectTransform:
   m_ObjectHideFlags: 0
@@ -702,8 +702,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.3454}
-  m_SizeDelta: {x: 950, y: 557.3978}
+  m_AnchoredPosition: {x: 0, y: 69.547}
+  m_SizeDelta: {x: 950, y: 388.5859}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &397948877
 MonoBehaviour:
@@ -1599,7 +1599,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015259, y: -210.07}
+  m_AnchoredPosition: {x: 0.00026977, y: -130}
   m_SizeDelta: {x: 325.0166, y: 66.4644}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &817993712
@@ -2936,8 +2936,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.8115901, y: 0.6179999}
-  m_AnchoredPosition: {x: 88.425995, y: 106.0849}
-  m_SizeDelta: {x: 62.1486, y: -18.3524}
+  m_AnchoredPosition: {x: 89.495, y: 85.739}
+  m_SizeDelta: {x: 103.8287, y: -60.032}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1546573505
 MonoBehaviour:
@@ -2959,14 +2959,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "The target audience for this game are people who have some experience/interest
-    in deck builders with a more tactical and strategic mind-set in general. \n\nIf
-    you feel you are not part of this target audience, that's OK!\n\nYou may struggle
-    a little at the beginning, but take things slow, consider your situation carefully,
-    pay close attention to the tutorial (if you haven't already done so) and you
-    will be sure to succeed eventually!\n\nREMEMBER: Open your card select with TAB
-    whenever you have the oppurtunity. Cards are your main source of damage and you
-    <u>WILL struggle without cards!</u>"
+  m_text: "Deck Fury is in beta and still under development. \n\nEverything you see
+    now may or may not represent the final product and you may encounter bugs or
+    issues."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2993,7 +2988,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.85
+  m_fontSize: 31.8
   m_fontSizeBase: 40.59
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3281,7 +3276,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22.967, y: 213.274}
+  m_AnchoredPosition: {x: 0.00002563, y: 140.87}
   m_SizeDelta: {x: 789.3621, y: 106.8485}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1588774038
@@ -3331,12 +3326,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
+  m_fontSize: 51.24
   m_fontSizeBase: 40.59
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 60
+  m_fontSizeMax: 51.24
   m_fontStyle: 3
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -3928,7 +3923,7 @@ MonoBehaviour:
     Path: event:/Soundtracks/MainMenu-BGM
   Event: 
   PlayEvent: 1
-  StopEvent: 0
+  StopEvent: 12
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
