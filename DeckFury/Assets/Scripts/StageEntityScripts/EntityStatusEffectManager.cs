@@ -294,7 +294,7 @@ public class EntityStatusEffectManager : MonoBehaviour
 
         if(triggerMarkedSFX.IsNull)
         {
-            triggerMarkedSFX = EventReference.Find(defaultTriggerMarkedEventPath);
+            triggerMarkedSFX = RuntimeManager.PathToEventReference(defaultTriggerMarkedEventPath);
         }
         RuntimeManager.PlayOneShot(triggerMarkedSFX, transform.position);
 
