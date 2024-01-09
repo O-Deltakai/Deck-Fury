@@ -82,10 +82,11 @@ public class AimpointController : MonoBehaviour
             if(_useRelativeAiming)
             {
                 Cursor.visible = false;
+                virtualCursorTransform.gameObject.SetActive(true);
                 FaceAimpointTowardsMouseRelative();
-                UpdateVirtualCursor();
             }else
             {
+                virtualCursorTransform.gameObject.SetActive(false);
                 FaceAimpointTowardsMouse();
             }
         }

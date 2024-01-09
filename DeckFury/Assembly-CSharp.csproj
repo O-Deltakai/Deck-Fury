@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\NPCScripts\ZombieAStar\ZombieAStar.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\StageModifier.cs" />
     <Compile Include="Assets\Scripts\StageSpecificScripts\PortalToStageSelect.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerCardManager.cs" />
     <Compile Include="Assets\Scripts\StageSpecificScripts\TutorialController.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Assets\Scripts\HelperClasses\GameErrorHandler.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CannonBehavior.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\TrophyEnding.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\ZoneModifier.cs" />
     <Compile Include="Assets\Scripts\PathfindingScripts\Node.cs" />
     <Compile Include="Assets\Scripts\Enums\EntityTeam.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
@@ -98,6 +100,7 @@
     <Compile Include="Assets\Scripts\Input Buffering System\InputBufferHandler.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\ScoreMenu\SpecialBonusSlot.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CreateSinShapedLineStrip.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\LevelBlueprint.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Magician\Magician.cs" />
     <Compile Include="Assets\Scripts\PathfindingScripts\Behaviours\FleeAI.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\RewardMenu\RewardMenuController.cs" />
@@ -106,6 +109,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Scripts\CardScripts\CardEffect.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\ZoneBlueprint.cs" />
     <Compile Include="Assets\Scripts\CardScripts\SummonSentry.cs" />
     <Compile Include="Assets\Scripts\StageSelectionScripts\PersistentLevelController.cs" />
     <Compile Include="Assets\ScriptableObjects\BonusScoreItemSO.cs" />
@@ -154,6 +158,7 @@
     <Compile Include="Assets\Scripts\CardScripts\ShieldSteal.cs" />
     <Compile Include="Assets\Scripts\CardScripts\ShieldBash.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\GameManager.cs" />
+    <Compile Include="Assets\ScriptableObjects\SpawnTablePoolSO.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\Boomerang.cs" />
@@ -173,6 +178,7 @@
     <Compile Include="Assets\Scripts\StageSelectionScripts\ProceduralGenerator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\ShotBehavior.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\StageBlueprint.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCharacterMotor.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerAnimationController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
@@ -252,6 +258,7 @@
     <Compile Include="Assets\Scripts\GeneralScripts\AfterImageGenerator.cs" />
     <Compile Include="Assets\Scripts\CardScripts\Agni.cs" />
     <Compile Include="Assets\Scripts\StageEntityScripts\EntityWrapper.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\GeneratorValues.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\SpikeTileHazard.cs" />
     <Compile Include="Assets\Scripts\StageSpecificScripts\ShopManager.cs" />
@@ -261,13 +268,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\ScriptableObjects\SpawnTableSO.cs" />
     <Compile Include="Assets\Scripts\StageEntityScripts\StageEntity.cs" />
-    <Compile Include="Assets\Scripts\Procedural Generation System\ZoneBlueprint.cs" />
-    <Compile Include="Assets\Scripts\Procedural Generation System\LevelBlueprint.cs" />
-    <Compile Include="Assets\Scripts\Procedural Generation System\StageBlueprint.cs" />
-    <Compile Include="Assets\Scripts\Procedural Generation System\ZoneModifier.cs" />
-    <Compile Include="Assets\Scripts\Procedural Generation System\StageModifier.cs" />
-    <Compile Include="Assets\Scripts\Procedural Generation System\GeneratorValues.cs" />
-    <Compile Include="Assets\ScriptableObjects\SpawnTablePoolSO.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Pause Menu\PauseMenuController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{0b01e7ad-6d24-4897-be11-2ef635716c67}.xml" />

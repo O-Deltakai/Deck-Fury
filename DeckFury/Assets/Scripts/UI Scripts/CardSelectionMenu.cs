@@ -171,6 +171,8 @@ public class CardSelectionMenu : MonoBehaviour
         RuntimeManager.PlayOneShot(activateMenuSFX);
 
         GameManager.PauseGame();
+
+        Cursor.visible = true;
     }
 
     //Moves the menu out of view so it cannot be interacted with
