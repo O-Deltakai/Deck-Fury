@@ -1643,10 +1643,6 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1755202097915902243, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
-      propertyPath: currentHP
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1755202097915902243, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420031}
@@ -1654,9 +1650,9 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 6281481823548784645, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
-      propertyPath: playOnStart
-      value: 0
+    - target: {fileID: 1755202098436831234, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
+      propertyPath: maxCursorDistance
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}

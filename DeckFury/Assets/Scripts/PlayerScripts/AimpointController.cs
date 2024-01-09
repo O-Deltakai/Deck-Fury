@@ -38,10 +38,29 @@ public class AimpointController : MonoBehaviour
 
     Vector2 mousePosition;
     Vector2 screenPointPosition;
-    Vector2 aimpointMouseDifference;
+    Vector2 lastMousePosition;
+    Vector2 screenCenter;
+
+    [SerializeField] bool useKeyboardAiming;
+    [SerializeField] bool _useRelativeAiming;
+    public bool UseRelativeAiming => _useRelativeAiming;
+
+
+    [SerializeField, Range(0.001f, 1)] float cursorSensitivity = 1;
+    [SerializeField, Min(1f)] float maxCursorDistance = 5f;
+    [SerializeField] Transform virtualCursorTransform;
+
+    [SerializeField] Vector2 _currentAimVector;
+    public Vector2 CurrentAimVector => _currentAimVector;
+    [SerializeField] Vector3 currentMouseDelta;
+
+    Vector3 cursorOffset;
 
     void Start()
     {
+        cursorOffset = virtualCursorTransform.position - transform.position;
+
+        screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
         mainCamera = GameManager.mainCamera;
 
 
@@ -58,11 +77,18 @@ public class AimpointController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!GameManager.GameIsPaused)
+        if(!GameManager.GameIsPaused && !useKeyboardAiming)
         {
-            FaceAimpointTowardsMouse();
+            if(_useRelativeAiming)
+            {
+                Cursor.visible = false;
+                FaceAimpointTowardsMouseRelative();
+                UpdateVirtualCursor();
+            }else
+            {
+                FaceAimpointTowardsMouse();
+            }
         }
-
 
     }
 
@@ -105,6 +131,52 @@ public class AimpointController : MonoBehaviour
             AimDirection.Right => new Vector3(0, 0, 90),
             _ => new Vector3(0, 0, 0),
         };        
+    }
+
+    public void AimTowardDirection(int x, int y)
+    {
+        if(x > 0 && y == 0)//Aim right
+        {
+            if(!freezeAimpoint)
+            {
+                transform.DORotate(new Vector3(0, 0, 90), 0.1f, RotateMode.Fast).SetUpdate(true);
+            }
+
+            currentAimDirection = AimDirection.Right;            
+        }
+
+        if(x < 0 && y == 0)//Aim left
+        {
+            if(!freezeAimpoint)
+            {
+                transform.DORotate(new Vector3(0, 0, -90), 0.1f, RotateMode.Fast).SetUpdate(true);
+            }
+
+            currentAimDirection = AimDirection.Left;            
+        }
+
+        if(x == 0 && y > 0)//Aim up
+        {
+            if(!freezeAimpoint)
+            {
+                transform.DORotate(new Vector3(0, 0, 180), 0.1f, RotateMode.Fast).SetUpdate(true);
+            }
+
+            currentAimDirection = AimDirection.Up;            
+        }
+
+        if(x == 0 && y < 0)//Aim down
+        {
+            if(!freezeAimpoint)
+            {
+                transform.DORotate(new Vector3(0, 0, 0), 0.1f, RotateMode.Fast).SetUpdate(true);
+            }
+
+            currentAimDirection = AimDirection.Down;            
+        }
+
+
+
     }
 
 
@@ -160,6 +232,78 @@ public class AimpointController : MonoBehaviour
             }
         }
         
+    }
+
+    void UpdateVirtualCursor()
+    {
+        Vector3 mouseDelta = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
+        currentMouseDelta = mouseDelta;
+
+        cursorOffset += mouseDelta * cursorSensitivity;
+
+        // Clamp the cursor offset to the maximum radius
+        if (cursorOffset.magnitude > maxCursorDistance)
+        {
+            cursorOffset = cursorOffset.normalized * maxCursorDistance;
+        }
+
+        virtualCursorTransform.position = transform.position + cursorOffset;
+    }
+
+    void FaceAimpointTowardsMouseRelative()
+    {
+
+        UpdateVirtualCursor();
+
+        Vector2 aimPointDirection = virtualCursorTransform.position - transform.position;
+
+        aimPointDirection.Normalize();
+
+        _currentAimVector = aimPointDirection;
+
+        if (Mathf.Abs(aimPointDirection.x) > Mathf.Abs(aimPointDirection.y)) //Mouse position is greater horizontally than vertically
+        {
+            if (aimPointDirection.x > 0)
+            {
+                if(!freezeAimpoint)
+                {
+                    transform.DORotate(new Vector3(0, 0, 90), 0.1f, RotateMode.Fast).SetUpdate(true);
+                }
+
+                currentAimDirection = AimDirection.Right;
+            }
+            else
+            {
+                if(!freezeAimpoint)
+                {
+                    transform.DORotate(new Vector3(0, 0, -90), 0.1f, RotateMode.Fast).SetUpdate(true);
+                }
+                currentAimDirection = AimDirection.Left;
+            }
+        }
+        else
+        {
+            if (aimPointDirection.y > 0)
+            {
+                if(!freezeAimpoint)
+                {
+                    transform.DORotate(new Vector3(0, 0, 180), 0.1f, RotateMode.Fast).SetUpdate(true);
+                }                
+                currentAimDirection = AimDirection.Up;
+            }
+            else
+            {
+                if(!freezeAimpoint)
+                {
+                    transform.DORotate(new Vector3(0, 0, 0), 0.1f, RotateMode.Fast).SetUpdate(true);
+                }                
+                currentAimDirection = AimDirection.Down;
+            }
+        }
+
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Confined;
+
     }
 
     

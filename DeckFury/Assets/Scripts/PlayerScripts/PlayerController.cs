@@ -32,6 +32,7 @@ public class PlayerController : StageEntity
     PlayerAnimationController animationController;
     PlayerCardManager cardManager;
 
+
     public BoxCollider2D playerCollider{get; private set;}
     //implement for energy system
     GameObject energyBar;
@@ -49,6 +50,7 @@ public class PlayerController : StageEntity
 
     [SerializeField] bool useInputSystemMovement;
     [SerializeField] Vector2 currentInputVector;
+    [SerializeField] Vector2 currentAimVector;
 
 [Header("Player SFX")]
     [SerializeField] EventReference basicShotSFX;
@@ -97,7 +99,15 @@ public class PlayerController : StageEntity
 
 
         SimpleMove();
-        FacePlayerTowardsMouse();
+
+        if(aimpoint.UseRelativeAiming)
+        {
+            FacePlayerTowardsCursor();
+        }else
+        {
+            FacePlayerTowardsMouse();
+        }
+
  
 
     }
@@ -142,6 +152,23 @@ public class PlayerController : StageEntity
             transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
             
         }
+    }
+
+    /// <summary>
+    /// Faces the player towards the virtual cursor if relative aiming is enabled
+    /// </summary>
+    void FacePlayerTowardsCursor()
+    {
+        if(!CanAct){return;}
+
+        if (aimpoint.CurrentAimVector.x > 0)
+        {
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        }else
+        {
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        }
+
     }
 
 
@@ -431,6 +458,15 @@ public class PlayerController : StageEntity
     {
 
     }
+
+    public void Aim(InputAction.CallbackContext context)
+    {
+        currentAimVector = context.ReadValue<Vector2>();
+        aimpoint.AimTowardDirection((int)currentAimVector.x, (int)currentAimVector.y);
+
+
+    }
+
 
 
 #endregion
