@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class LevelBlueprint
 {
     int _levelTier = 0;
@@ -31,7 +33,7 @@ public class LevelBlueprint
     public MapPoolSO mapPool;   
 
 
-    List<StageBlueprint> _stageBlueprints;
+    [SerializeField] List<StageBlueprint> _stageBlueprints = new List<StageBlueprint>();
     public IReadOnlyList<StageBlueprint> StageBlueprints => _stageBlueprints;
 
     public void GenerateLevel(System.Random random, ZoneBlueprint zone, int stagesInLevel)

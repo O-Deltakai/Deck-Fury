@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[Serializable]
 public class ZoneBlueprint
 {
     int _zoneTier;
@@ -32,8 +33,9 @@ public class ZoneBlueprint
 
     public int _numberOfStages;
 
+    public MapPoolSO mapLayoutPool;
 
-    List<LevelBlueprint> _levelBlueprints;
+    [SerializeField] List<LevelBlueprint> _levelBlueprints = new List<LevelBlueprint>();
     public IReadOnlyList<LevelBlueprint> LevelBlueprints => _levelBlueprints;
 
 
@@ -207,7 +209,7 @@ public class ZoneBlueprint
 
     void SetLevelDetails(LevelBlueprint level, System.Random random)
     {
-
+        level.mapPool = mapLayoutPool;
     }
 
 

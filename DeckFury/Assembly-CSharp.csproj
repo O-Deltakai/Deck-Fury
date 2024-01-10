@@ -175,7 +175,7 @@
     <Compile Include="Assets\Scripts\NPCScripts\Zombie\ZombieBasicAttack.cs" />
     <Compile Include="Assets\Scripts\Enums\SpawnType.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\StageSelectionScripts\ProceduralGenerator.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\ProceduralGenerator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\ShotBehavior.cs" />
     <Compile Include="Assets\Scripts\Procedural Generation System\StageBlueprint.cs" />
@@ -272,6 +272,9 @@
     <Compile Include="Assets\Scripts\UI Scripts\Pause Menu\OptionsMenuController.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\SettingsManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\BattleStageCanvasController.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\LevelConcrete.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\ZoneConcrete.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\StageConcrete.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{0b01e7ad-6d24-4897-be11-2ef635716c67}.xml" />

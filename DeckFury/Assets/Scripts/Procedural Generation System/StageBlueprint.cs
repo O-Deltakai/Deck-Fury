@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using UnityEngine;
 /// <summary>
 /// Used to set information required for a map stage on the stage selection scene to function.
 /// </summary>
+[Serializable]
 public class StageBlueprint
 {
     GameObject _mapLayoutPrefab;
@@ -62,6 +64,10 @@ public class StageBlueprint
             sceneToLoad = SceneNames.ShopStage;
         }
 
+        if(chosenStage == StageType.Combat || chosenStage == StageType.EliteCombat)
+        {
+            sceneToLoad = SceneNames.GenericCombatStage;
+        }
 
 
     }
