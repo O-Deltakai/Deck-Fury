@@ -8,25 +8,30 @@ public class SettingsManager : MonoBehaviour
     private static SettingsManager _instance;
     public static SettingsManager Instance => _instance;
 
-    public static event Action<bool> OnChangeAimingStyle; 
+    public static event Action<bool> OnChangeAimingStyle;
+    public static event Action<float> OnChangeSensitivity; 
 
-    private static bool _useRelativeAiming = true;
+
+    private static bool _useRelativeAiming = false;
     public static bool UseRelativeAiming{get{ return _useRelativeAiming; }
         set
         {
-            if(_useRelativeAiming == value)
-            {
-                return;
-            }else
-            {
-                _useRelativeAiming = value;
-                OnChangeAimingStyle?.Invoke(value);
-                print("Relative Aiming has been toggled to " + value);
-            }
+            _useRelativeAiming = value;
+            OnChangeAimingStyle?.Invoke(value);
+            print("Relative Aiming has been toggled to " + value);
         }
+    }
 
+    [Range(0.001f, 1)] static float _cursorSensitivity = 0.2f;
+    public static float CursorSensitivity{ get { return _cursorSensitivity; } 
+        set
+        {
+            _cursorSensitivity = value;
+            OnChangeSensitivity?.Invoke(value);
+        }
     
     }
+
 
 
 
@@ -50,12 +55,16 @@ public class SettingsManager : MonoBehaviour
     void OnDestroy()
     {
         _instance = null;
-        OnChangeAimingStyle = null;
     }
 
     public static void ToggleRelativeAiming(bool flag)
     {
         UseRelativeAiming = flag;
+    }
+
+    public static void SetCursorSensitivity(float value)
+    {
+        CursorSensitivity = value;
     }
 
 

@@ -64,9 +64,10 @@ public class MainMenuController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Options()
     {
-        
+        GameManager.Instance.PauseMenu.OpenOptionsExternal();
     }
+
+
 }

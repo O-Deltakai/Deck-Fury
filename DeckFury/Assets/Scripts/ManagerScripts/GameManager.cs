@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
     SceneLoader sceneLoader;
     public GlobalResourceManager ResourceManager{ get; private set; }
 
+    [SerializeField] PauseMenuController _pauseMenu;
+    public PauseMenuController PauseMenu => _pauseMenu;
+
+
     void Awake() 
     {
 

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,9 +15,13 @@ public class OptionsMenuController : MonoBehaviour
     [SerializeField] Button currentSelectedButton;
 
 
+
+    [SerializeField] Slider aimSensitivitySlider;
+    [SerializeField] TextMeshProUGUI sensitivtyTooltip;
+
     void Start()
     {
-        
+        sensitivtyTooltip.text = Math.Round(aimSensitivitySlider.value, 3).ToString();
     }
 
     // Update is called once per frame
@@ -83,6 +89,17 @@ public class OptionsMenuController : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+/// <summary>
+/// Used to set the number above the slider handle to allow players to more accurately adjust sensitivty
+/// </summary>
+/// <param name="value"></param>
+    public void SetSensitivtyTooltip(float value)
+    {
+        float roundedValue = (float)Math.Round(value, 3);
+        sensitivtyTooltip.text = roundedValue.ToString();
+    }
+
 
 
 

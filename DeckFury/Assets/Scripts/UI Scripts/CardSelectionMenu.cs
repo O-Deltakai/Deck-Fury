@@ -174,6 +174,7 @@ public class CardSelectionMenu : MonoBehaviour
         StageStateController.currentGameState = StageStateController.GameState.InMenu;
 
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     //Moves the menu out of view so it cannot be interacted with

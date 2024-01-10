@@ -6,7 +6,14 @@ using UnityEngine.UI;
 
 public class PauseMenuController : MonoBehaviour
 {
+
+    private static bool _isOpen = false;
+    public static bool IsOpen => _isOpen;
+
+
     public event Action OnOpenPauseMenu;
+    public event Action OnClosePauseMenu;
+    public event Action OnOpenOptionsMenu;
 
     [SerializeField] Canvas menuScreenCanvas;
 
@@ -16,10 +23,7 @@ public class PauseMenuController : MonoBehaviour
 
     [SerializeField] GameObject mainMenuConfirmPopup;
 
-    void Start()
-    {
-        
-    }
+
 
 
 
@@ -34,7 +38,11 @@ public class PauseMenuController : MonoBehaviour
         menuScreenCanvas.GetComponent<GraphicRaycaster>().enabled = true;
 
         GameManager.PauseGame();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        _isOpen = true;
 
+        OnOpenPauseMenu?.Invoke();
     }
 
 #region Menu Button Methods
@@ -49,12 +57,28 @@ public class PauseMenuController : MonoBehaviour
             GameManager.UnpauseGame();
         }
 
+        _isOpen = false;
+        OnClosePauseMenu?.Invoke();
 
     }
 
+/// <summary>
+/// Opens the options menu
+/// </summary>
     public void Options()
     {
         optionsMenu.SetActive(true);
+        OnOpenOptionsMenu?.Invoke();
+    }
+
+/// <summary>
+/// Opens the option menu without needin to open the pause menu
+/// </summary>
+    public void OpenOptionsExternal()
+    {
+        menuScreenCanvas.GetComponent<GraphicRaycaster>().enabled = true;
+        optionsMenu.SetActive(true);
+        OnOpenOptionsMenu?.Invoke();
     }
 
 

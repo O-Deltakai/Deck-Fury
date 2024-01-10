@@ -57,18 +57,27 @@ public class AimpointController : MonoBehaviour
     Vector3 cursorOffset;
 
 
-    void Awake()
-    {
-        SettingsManager.OnChangeAimingStyle += AimingStyleToggle;
-    }
 
     void AimingStyleToggle(bool flag)
     {
         _useRelativeAiming = flag;
     }
 
+    void SetCursorSensitivity(float value)
+    {
+        cursorSensitivity = value;
+    }
+
+
     void Start()
     {
+        AimingStyleToggle(SettingsManager.UseRelativeAiming);
+        SettingsManager.OnChangeAimingStyle += AimingStyleToggle;
+
+        SetCursorSensitivity(SettingsManager.CursorSensitivity);
+        SettingsManager.OnChangeSensitivity += SetCursorSensitivity;
+
+
         cursorOffset = virtualCursorTransform.position - transform.position;
 
         screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
@@ -319,7 +328,7 @@ public class AimpointController : MonoBehaviour
         }
 
         //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Confined;
 
     }
 

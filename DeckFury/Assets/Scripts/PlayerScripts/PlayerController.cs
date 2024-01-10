@@ -467,6 +467,19 @@ public class PlayerController : StageEntity
 
     }
 
+    public void OpenPauseMenu(InputAction.CallbackContext context)
+    {
+        if(isDefeated) { return; }
+
+        if (PauseMenuController.IsOpen){ return; }
+
+        if(context.started)
+        {
+            GameManager.Instance.PauseMenu.OpenPauseMenu();
+        }
+
+    }
+
 
 
 #endregion

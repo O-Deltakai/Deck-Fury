@@ -29,8 +29,8 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        //AssignBuses();
-        //SetInitialVolumes();
+        AssignBuses();
+        SetInitialVolumes();
     }
 
     void AssignBuses()
