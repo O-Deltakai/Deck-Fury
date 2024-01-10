@@ -45,6 +45,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] PauseMenuController _pauseMenu;
     public PauseMenuController PauseMenu => _pauseMenu;
 
+    public enum GameState
+    {
+        Realtime,
+        Slowmotion,
+        InMenu
+    }
+
+/// <summary>
+/// Used by the pause menu to decide whether or not to unpause the game (setting time-scale to 1). If the game state is currently in menu (in card select) then
+/// the pause menu won't unpause the game.
+/// </summary>
+    public static GameState currentGameState = GameState.Realtime;
+
+
+
 
     void Awake() 
     {
@@ -265,7 +280,9 @@ public class GameManager : MonoBehaviour
         {
             button.GetComponent<RectTransform>().ForceUpdateRectTransforms();
         }
-        
+
+        UnpauseGame();
+
     }
 
 

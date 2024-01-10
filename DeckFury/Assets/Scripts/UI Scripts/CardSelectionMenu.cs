@@ -171,7 +171,7 @@ public class CardSelectionMenu : MonoBehaviour
         RuntimeManager.PlayOneShot(activateMenuSFX);
 
         GameManager.PauseGame();
-        StageStateController.currentGameState = StageStateController.GameState.InMenu;
+        GameManager.currentGameState = GameManager.GameState.InMenu;
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -186,7 +186,7 @@ public class CardSelectionMenu : MonoBehaviour
         OnMenuDisabled?.Invoke();
 
         GameManager.UnpauseGame();
-        StageStateController.currentGameState = StageStateController.GameState.Realtime;
+        GameManager.currentGameState = GameManager.GameState.Realtime;
     }
 
     public void PreviewButton()

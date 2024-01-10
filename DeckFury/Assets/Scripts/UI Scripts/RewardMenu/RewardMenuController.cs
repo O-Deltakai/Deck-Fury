@@ -56,7 +56,7 @@ public class RewardMenuController : MonoBehaviour
             cardSelectionMenu.CanBeOpened = false;
         }
 
-        StageStateController.currentGameState = StageStateController.GameState.InMenu;
+        GameManager.currentGameState = GameManager.GameState.InMenu;
         Cursor.visible = true;
     }
 
@@ -64,7 +64,7 @@ public class RewardMenuController : MonoBehaviour
     {
         rectTransform.DOLocalMove(OutOfViewAnchor, 0.25f).SetUpdate(true);
 
-        StageStateController.currentGameState = StageStateController.GameState.Realtime;
+        GameManager.currentGameState = GameManager.GameState.Realtime;
 
 
         cardSelectionMenu.CanBeOpened = true;

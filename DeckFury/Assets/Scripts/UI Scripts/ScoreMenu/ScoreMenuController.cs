@@ -92,12 +92,14 @@ public class ScoreMenuController : MonoBehaviour
     {
         scoringPanel.transform.DOLocalMove(InViewAnchor, 0.25f).SetUpdate(true);
         Invoke(nameof(StartScorePresentation), 0.25f);
+        GameManager.currentGameState = GameManager.GameState.InMenu;
+        Cursor.visible = true;
     }
 
     public void MoveOutOfView()
     {
         scoringPanel.transform.DOLocalMove(OutOfViewAnchor, 0.25f).SetUpdate(true);
-
+        
     }
 
 

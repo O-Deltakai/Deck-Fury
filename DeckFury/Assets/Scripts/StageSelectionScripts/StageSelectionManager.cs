@@ -152,4 +152,9 @@ public class StageSelectionManager : MonoBehaviour
         GameManager.Instance.MainMenuButton();
     }
 
+    public void OpenOptionsMenu()
+    {
+        GameManager.Instance.PauseMenu.OpenOptionsExternal();
+    }
+
 }

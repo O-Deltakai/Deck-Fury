@@ -29,7 +29,7 @@ public class PauseMenuController : MonoBehaviour
 
     public void OpenPauseMenu()
     {
-        if(StageStateController.currentGameState == StageStateController.GameState.Slowmotion)
+        if(GameManager.currentGameState == GameManager.GameState.Slowmotion)
         {
             return;
         }
@@ -52,7 +52,7 @@ public class PauseMenuController : MonoBehaviour
         gameObject.SetActive(false);
         menuScreenCanvas.GetComponent<GraphicRaycaster>().enabled = false;
 
-        if(StageStateController.currentGameState != StageStateController.GameState.InMenu)
+        if(GameManager.currentGameState != GameManager.GameState.InMenu)
         {
             GameManager.UnpauseGame();
         }
