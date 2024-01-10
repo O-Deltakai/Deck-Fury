@@ -97,7 +97,7 @@ public class AimpointController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!GameManager.GameIsPaused && !useKeyboardAiming)
+        if(!GameManager.GameIsPaused && StageStateController.currentGameState != StageStateController.GameState.InMenu)
         {
             if(_useRelativeAiming)
             {

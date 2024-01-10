@@ -8,6 +8,7 @@ public class StageStateController : MonoBehaviour
     private static StageStateController _instance;
     public static StageStateController Instance {get{return _instance;}}
 
+    CardSelectionMenu cardSelectionMenu; 
     RewardMenuController rewardMenuController;
     ScoreManager scoreManager;
     PersistentLevelController levelController;
@@ -76,6 +77,8 @@ public class StageStateController : MonoBehaviour
         {
             scoreManager = FindObjectOfType<ScoreManager>();
         }
+        cardSelectionMenu = FindObjectOfType<CardSelectionMenu>();
+
 
     }
 
@@ -103,6 +106,7 @@ public class StageStateController : MonoBehaviour
 
     public void CompleteStage()
     {
+        cardSelectionMenu.CanBeOpened = false;
         StartCoroutine(CompleteStageTimer(1));
         rewardMenuController.OnSelectReward += OpenPortal;
     }
