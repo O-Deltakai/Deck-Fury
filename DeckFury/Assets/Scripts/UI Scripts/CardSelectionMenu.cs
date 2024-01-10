@@ -171,6 +171,7 @@ public class CardSelectionMenu : MonoBehaviour
         RuntimeManager.PlayOneShot(activateMenuSFX);
 
         GameManager.PauseGame();
+        StageStateController.currentGameState = StageStateController.GameState.InMenu;
 
         Cursor.visible = true;
     }
@@ -184,6 +185,7 @@ public class CardSelectionMenu : MonoBehaviour
         OnMenuDisabled?.Invoke();
 
         GameManager.UnpauseGame();
+        StageStateController.currentGameState = StageStateController.GameState.Realtime;
     }
 
     public void PreviewButton()
@@ -210,7 +212,7 @@ public class CardSelectionMenu : MonoBehaviour
         OnPreviewStage?.Invoke();
     }
 
-    //Move menu back down minto view to see card select
+    //Move menu back down into view to see card select
     void UnPreviewStage()
     {
         rectTransform.DOLocalMoveY(PreviewInViewYAnchor, 0.25f).SetUpdate(true);

@@ -27,7 +27,11 @@ public class OptionsMenuController : MonoBehaviour
 
     public void SwitchLayout(GameObject layout)
     {
-        if(currentLayout == layout) { return; }
+        if(currentLayout != null)
+        {
+            if(currentLayout == layout) { return; }
+        }
+
 
         if(!menuLayouts.Contains(layout)) 
         {
@@ -35,8 +39,16 @@ public class OptionsMenuController : MonoBehaviour
             return; 
         }
 
-        currentLayout.SetActive(false);
-        currentLayout = layout;
+        if(currentLayout == null)
+        {
+            currentLayout = layout;
+        }else
+        {
+            currentLayout.SetActive(false);
+            currentLayout = layout;
+        }
+
+
         currentLayout.SetActive(true);
     }
 
@@ -64,7 +76,14 @@ public class OptionsMenuController : MonoBehaviour
 
         currentSelectedButton.interactable = false;
 
+
     }
+
+    public void OKButton()
+    {
+        gameObject.SetActive(false);
+    }
+
 
 
 }

@@ -56,6 +56,17 @@ public class AimpointController : MonoBehaviour
 
     Vector3 cursorOffset;
 
+
+    void Awake()
+    {
+        SettingsManager.OnChangeAimingStyle += AimingStyleToggle;
+    }
+
+    void AimingStyleToggle(bool flag)
+    {
+        _useRelativeAiming = flag;
+    }
+
     void Start()
     {
         cursorOffset = virtualCursorTransform.position - transform.position;
@@ -91,6 +102,11 @@ public class AimpointController : MonoBehaviour
             }
         }
 
+    }
+
+    void OnDestroy()
+    {
+        SettingsManager.OnChangeAimingStyle -= AimingStyleToggle;
     }
 
     void DisableAimpoint()
@@ -189,9 +205,9 @@ public class AimpointController : MonoBehaviour
         
         mousePosition = Input.mousePosition;
         screenPointPosition = mainCamera.ScreenToWorldPoint(mousePosition);
+        //virtualCursorTransform.position = screenPointPosition;
         
         Vector2 aimPointDirection = (screenPointPosition - (Vector2)worldTransform.position).normalized;
-        
 
         if (Mathf.Abs(aimPointDirection.x) > Mathf.Abs(aimPointDirection.y)) //Mouse position is greater horizontally than vertically
         {
@@ -235,7 +251,7 @@ public class AimpointController : MonoBehaviour
         
     }
 
-    void UpdateVirtualCursor()
+    void UpdateVirtualCursorRelative()
     {
         Vector3 mouseDelta = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0);
         currentMouseDelta = mouseDelta;
@@ -254,7 +270,7 @@ public class AimpointController : MonoBehaviour
     void FaceAimpointTowardsMouseRelative()
     {
 
-        UpdateVirtualCursor();
+        UpdateVirtualCursorRelative();
 
         Vector2 aimPointDirection = virtualCursorTransform.position - transform.position;
 

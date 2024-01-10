@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// A singleton object that is used by stages to set stage variables/states like the Spawn Table to use, the player's stats and
-/// the map layout (dynamic map layouts not implemented at the moment). This object should only exist once the player has started
+/// the map layout. This object should only exist once the player has started
 /// a run and begins in the StageSelectionScene.
 /// </summary>
 public class PersistentLevelController : MonoBehaviour

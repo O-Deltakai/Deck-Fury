@@ -10,6 +10,11 @@ public class PauseMenuController : MonoBehaviour
 
     [SerializeField] Canvas menuScreenCanvas;
 
+    [SerializeField] GameObject optionsMenu;
+
+    [SerializeField] GameObject menuButtonsParent;
+
+    [SerializeField] GameObject mainMenuConfirmPopup;
 
     void Start()
     {
@@ -20,9 +25,15 @@ public class PauseMenuController : MonoBehaviour
 
     public void OpenPauseMenu()
     {
+        if(StageStateController.currentGameState == StageStateController.GameState.Slowmotion)
+        {
+            return;
+        }
+
         gameObject.SetActive(true);
         menuScreenCanvas.GetComponent<GraphicRaycaster>().enabled = true;
 
+        GameManager.PauseGame();
 
     }
 
@@ -30,20 +41,34 @@ public class PauseMenuController : MonoBehaviour
 
     public void Resume()
     {
+        gameObject.SetActive(false);
+        menuScreenCanvas.GetComponent<GraphicRaycaster>().enabled = false;
+
+        if(StageStateController.currentGameState != StageStateController.GameState.InMenu)
+        {
+            GameManager.UnpauseGame();
+        }
+
 
     }
 
     public void Options()
     {
-
+        optionsMenu.SetActive(true);
     }
 
 
     public void MainMenu()
     {
-        
+        mainMenuConfirmPopup.SetActive(true);
+        menuButtonsParent.SetActive(false);
     }
 
+    public void DisableConfirmPopup()
+    {
+        mainMenuConfirmPopup.SetActive(false);
+        menuButtonsParent.SetActive(true);
+    }
 
 #endregion
 
