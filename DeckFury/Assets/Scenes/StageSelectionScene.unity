@@ -5625,6 +5625,7 @@ GameObject:
   - component: {fileID: 1771847015}
   - component: {fileID: 1771847014}
   - component: {fileID: 1771847016}
+  - component: {fileID: 1771847017}
   m_Layer: 0
   m_Name: StageSelectionManager
   m_TagString: Untagged
@@ -5677,10 +5678,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mapLayoutPool: {fileID: 11400000, guid: 776025cfa18c2dc41aeca981d6d645cb, type: 2}
+  savedSeed: 0
   zoneBlueprint:
-    _numberOfStages: 0
-    mapLayoutPool: {fileID: 0}
-    _levelBlueprints: []
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
+--- !u!114 &1771847017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771847013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8970ed34ca5043341b294e79ef989465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxLevelsPerZone: 0
+  _minLevelsPerZone: 0
+  _maxStagesPerLevel: 0
+  _minStagesPerLevel: 0
+  _maxElitesPerZone: 0
+  _minElitesPerZone: 0
+  _maxShopsPerZone: 0
+  _minShopsPerZone: 0
+  _maxRestsPerZone: 0
+  _minRestsPerZone: 0
 --- !u!1 &1803204175
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,6 +34,7 @@ public class ZoneBlueprint
     public int _numberOfStages;
 
     public MapPoolSO mapLayoutPool;
+    public List<MapLayoutController> allMaps;
 
     [SerializeField] List<LevelBlueprint> _levelBlueprints = new List<LevelBlueprint>();
     public IReadOnlyList<LevelBlueprint> LevelBlueprints => _levelBlueprints;
@@ -78,6 +79,9 @@ public class ZoneBlueprint
     {
         int minTotalStagesInZone = GeneratorValues.MIN_LEVELS_PER_ZONE * GeneratorValues.MIN_STAGES_PER_LEVEL;
         int maxTotalStagesInZone = GeneratorValues.MAX_LEVELS_PER_ZONE * GeneratorValues.MAX_STAGES_PER_LEVEL;
+
+        //Placeholder for now - zone and levels just generate using all available maps from the map pool with no regard to difficulty
+        allMaps = mapLayoutPool.GetAllMaps();
 
 
         //Randomise expected values
@@ -210,6 +214,8 @@ public class ZoneBlueprint
     void SetLevelDetails(LevelBlueprint level, System.Random random)
     {
         level.mapPool = mapLayoutPool;
+        level.parentZone = this;
+
     }
 
 

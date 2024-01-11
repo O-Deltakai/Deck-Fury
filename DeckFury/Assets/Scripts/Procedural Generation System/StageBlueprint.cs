@@ -10,7 +10,10 @@ using UnityEngine;
 [Serializable]
 public class StageBlueprint
 {
-    GameObject _mapLayoutPrefab;
+    [SerializeReference] public LevelBlueprint parentLevel;
+
+
+    [SerializeField] GameObject _mapLayoutPrefab;
     public GameObject MapLayoutPrefab { get { return _mapLayoutPrefab; }
         set
         {

@@ -8,6 +8,8 @@ public class LevelBlueprint
 {
     int _levelTier = 0;
 
+    [SerializeReference] public ZoneBlueprint parentZone;
+
 
     int _numberOfStages = 3;
     public int NumberOfStages {get { return _numberOfStages; }
@@ -55,7 +57,8 @@ public class LevelBlueprint
 
     void SetStageDetails(StageBlueprint stage, System.Random random)
     {
-
+        stage.MapLayoutPrefab = parentZone.allMaps[random.Next(0, parentZone.allMaps.Count)].gameObject;
+        stage.parentLevel = this;
     }
 
 

@@ -7,10 +7,10 @@ public class ProceduralGenerator : MonoBehaviour
     [SerializeField] MapPoolSO _mapLayoutPool;
     public MapPoolSO MapLayoutPool => _mapLayoutPool;
 
-    int savedSeed;
+    [SerializeField] int savedSeed;
     System.Random random;
 
-    [SerializeField] ZoneBlueprint zoneBlueprint;
+    [SerializeReference] ZoneBlueprint zoneBlueprint;
 
     void Start()
     {
