@@ -20,7 +20,7 @@ public class StageSelectionManager : MonoBehaviour
     [SerializeField] MapPoolSO mapPool;
 
 
-    MapLevel[] mapLevels;
+    [SerializeField] MapLevel[] mapLevels;
 
     public MapStage currentPlayerLocation;
 

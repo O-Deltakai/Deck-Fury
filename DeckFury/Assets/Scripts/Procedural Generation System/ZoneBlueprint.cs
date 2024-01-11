@@ -35,6 +35,8 @@ public class ZoneBlueprint
 
     public MapPoolSO mapLayoutPool;
     public List<MapLayoutController> allMaps;
+    public SpawnTablePoolSO spawnTablePool;
+
 
     [SerializeField] List<LevelBlueprint> _levelBlueprints = new List<LevelBlueprint>();
     public IReadOnlyList<LevelBlueprint> LevelBlueprints => _levelBlueprints;

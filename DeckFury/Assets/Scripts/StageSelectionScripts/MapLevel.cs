@@ -15,13 +15,20 @@ public class MapLevel : MonoBehaviour
 
     private void Awake() 
     {
-        GetStagesFromChildren();
 
+
+    }
+
+    void Start()
+    {
+        GetStagesFromChildren();
 
     }
 
     void GetStagesFromChildren()
     {
+        stages.Clear();
+
         foreach(MapStage stage in GetComponentsInChildren<MapStage>()) 
         {
             stage.mapLevel = this;
