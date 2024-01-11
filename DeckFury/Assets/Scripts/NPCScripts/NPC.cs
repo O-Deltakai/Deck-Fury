@@ -16,6 +16,8 @@ public class NPC : StageEntity
     [SerializeField] int enemyTier = 1;
     public int EnemyTier{get{return enemyTier;}}
 
+    public int spawnPointCost {get { return enemyTier * 10; }}
+
     [SerializeField] protected List<AbilityData> NPCAbilities = new List<AbilityData>();
 
     [field:SerializeField] public Vector2 DistanceFromPlayer{get; private set;}

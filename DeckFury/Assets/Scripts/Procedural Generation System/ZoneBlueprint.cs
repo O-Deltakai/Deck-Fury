@@ -177,6 +177,12 @@ public class ZoneBlueprint
         {
             _currentStageTypes.Add(StageType.RestPoint);
         }
+
+        for(int i = 0; i < GeneratorValues.MIN_MYSTERIES_PER_ZONE; i++)
+        {
+            _currentStageTypes.Add(StageType.Mystery);
+        }
+
     }
 
     void RandomlyDistributeStageTypes(System.Random random)
@@ -195,10 +201,12 @@ public class ZoneBlueprint
 
     StageType GetRandomStageType(System.Random random, List<StageType> currentStages)
     {
-        List<StageType> possibleTypes = new List<StageType> { StageType.Combat, StageType.Mystery };
+        List<StageType> possibleTypes = new List<StageType> { StageType.Combat };
         if (currentStages.Count(s => s == StageType.EliteCombat) < GeneratorValues.MAX_ELITES_PER_ZONE) possibleTypes.Add(StageType.EliteCombat);
         if (currentStages.Count(s => s == StageType.Shop) < GeneratorValues.MAX_SHOPS_PER_ZONE) possibleTypes.Add(StageType.Shop);
         if (currentStages.Count(s => s == StageType.RestPoint) < GeneratorValues.MAX_RESTS_PER_ZONE) possibleTypes.Add(StageType.RestPoint);
+        if (currentStages.Count(s => s == StageType.Mystery) < GeneratorValues.MAX_MYSTERIES_PER_ZONE) possibleTypes.Add(StageType.Mystery);
+
 
         return possibleTypes[random.Next(0, possibleTypes.Count)];        
     }

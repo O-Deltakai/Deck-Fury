@@ -67,7 +67,8 @@ public class StageBlueprint
             sceneToLoad = SceneNames.ShopStage;
         }
 
-        if(chosenStage == StageType.Combat || chosenStage == StageType.EliteCombat)
+        //For now mystery stages will only go to the generic combat stage - events are unimplimented at the moment.
+        if(chosenStage == StageType.Combat || chosenStage == StageType.EliteCombat || chosenStage == StageType.Mystery)
         {
             sceneToLoad = SceneNames.GenericCombatStage;
         }

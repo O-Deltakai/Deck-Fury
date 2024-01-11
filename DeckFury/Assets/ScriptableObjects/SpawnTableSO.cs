@@ -35,7 +35,32 @@ public class SpawnTableSO : ScriptableObject
     [SerializeField] int _difficultyTier;
     public int DifficultyTier{get { return _difficultyTier; }}
 
+    public int DifficultyScore{ get; private set; }
+
+
     [field:SerializeField] public List<WaveTable> WaveList {get; private set;}
+
+
+    public int CalculateDifficultyScore()
+    {
+        DifficultyScore = 0;
+
+        foreach(var wave in WaveList)
+        {
+            foreach(var npcSpawn in wave.NPCSpawns)
+            {
+                if(npcSpawn.NPCPrefab.TryGetComponent<EntityWrapper>(out var entityWrapper))
+                {
+                    NPC npcComponent = (NPC)entityWrapper.stageEntity;
+
+                    DifficultyScore += npcComponent.spawnPointCost * npcSpawn.SpawnCount;
+                }
+            }
+        }
+
+        return DifficultyScore;
+
+    }
 
 
 
