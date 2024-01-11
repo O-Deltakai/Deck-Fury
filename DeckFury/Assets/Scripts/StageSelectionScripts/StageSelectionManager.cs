@@ -47,10 +47,10 @@ public class StageSelectionManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        SetTotalScoreText();   
+        SetTotalScoreText();//Crude way to set the total score but works for now and doesn't really impact performance   
     }
 
     void InitializeMapLevels()

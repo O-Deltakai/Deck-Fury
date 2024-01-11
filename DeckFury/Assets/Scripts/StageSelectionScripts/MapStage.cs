@@ -91,6 +91,7 @@ public class MapStage : MonoBehaviour
         if(!StageButton.interactable) { return; }
         if(!mapLayoutPrefab) { return; }
         if(IsMysteryStage){ return; }
+        if(TypeOfStage == StageType.RestPoint) { return; }
 
         if(toggle)
         {

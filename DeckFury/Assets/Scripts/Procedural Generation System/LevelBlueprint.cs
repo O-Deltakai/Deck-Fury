@@ -20,9 +20,9 @@ public class LevelBlueprint
                 Debug.LogWarning("Number of stages set below minimum value, set actual value to minimum value of " + GeneratorValues.MIN_STAGES_PER_LEVEL);
                 _numberOfStages = GeneratorValues.MIN_STAGES_PER_LEVEL;
             }else
-            if(value > GeneratorValues.MAX_STAGES_PER_LEVEL)
+            if(value > GeneratorValues.MAX_STAGES_PER_LEVEL + 1)
             {
-                Debug.LogWarning("Number of stages set above max value, set actual value to max value of " + GeneratorValues.MAX_STAGES_PER_LEVEL);
+                Debug.LogWarning("Number of stages: "  + value + " is above max value, set actual value to max value of " + GeneratorValues.MAX_STAGES_PER_LEVEL);
                 _numberOfStages = GeneratorValues.MAX_STAGES_PER_LEVEL;
             }else
             {

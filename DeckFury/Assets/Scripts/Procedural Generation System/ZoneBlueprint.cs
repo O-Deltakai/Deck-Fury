@@ -39,6 +39,7 @@ public class ZoneBlueprint
     [SerializeField] List<LevelBlueprint> _levelBlueprints = new List<LevelBlueprint>();
     public IReadOnlyList<LevelBlueprint> LevelBlueprints => _levelBlueprints;
 
+    [SerializeField] List<int> stageDistribution;
 
     //Expected zone values
     int _expectedNumberOfCombatStages;
@@ -78,7 +79,7 @@ public class ZoneBlueprint
     public void GenerateZone(System.Random random)
     {
         int minTotalStagesInZone = GeneratorValues.MIN_LEVELS_PER_ZONE * GeneratorValues.MIN_STAGES_PER_LEVEL;
-        int maxTotalStagesInZone = GeneratorValues.MAX_LEVELS_PER_ZONE * GeneratorValues.MAX_STAGES_PER_LEVEL;
+        int maxTotalStagesInZone = GeneratorValues.MAX_LEVELS_PER_ZONE * GeneratorValues.MAX_STAGES_PER_LEVEL - 1;
 
         //Placeholder for now - zone and levels just generate using all available maps from the map pool with no regard to difficulty
         allMaps = mapLayoutPool.GetAllMaps();
@@ -86,7 +87,12 @@ public class ZoneBlueprint
 
         //Randomise expected values
         NumberOfLevels = random.Next(GeneratorValues.MIN_LEVELS_PER_ZONE, GeneratorValues.MAX_LEVELS_PER_ZONE);
-        _totalNumberOfStages = random.Next(minTotalStagesInZone, maxTotalStagesInZone + 1);
+        //_totalNumberOfStages = GenerateAverageWeightedRandomInt(random, minTotalStagesInZone, maxTotalStagesInZone, 30);
+        _totalNumberOfStages = GenerateSkewedWeightedRandom(random, minTotalStagesInZone, maxTotalStagesInZone, 17, 23, 20, 0.5);
+        _numberOfStages = _totalNumberOfStages;
+
+        //SimulateWeightingAlgorithm(random, minTotalStagesInZone, maxTotalStagesInZone, 20);
+
 
         AllocateMandatoryStageTypes();
         RandomlyDistributeStageTypes(random);
@@ -110,34 +116,48 @@ public class ZoneBlueprint
     }
 
 /// <summary>
-/// Returns a randomly distributed list of ints which represent the number of stages per level
+/// Returns a randomly distributed list of ints that respect minimum and maximum values which represent the number of stages per level
 /// </summary>
 /// <param name="random"></param>
 /// <returns></returns>
-    List<int> DistributeStagesAcrossLevels(System.Random random)
+    List<int> DistributeStagesAcrossLevels(System.Random random) 
     {
         List<int> stagesDistribution = new List<int>();
-        int remainingStages = _totalNumberOfStages;
+        int totalAssignedStages = 0;
 
-        for (int i = 0; i < NumberOfLevels; i++)
+        //1: Assign the min number of stages to each level
+        for(int i = 0; i< NumberOfLevels; i++)
         {
-            if(i == NumberOfLevels - 1)
-            {
-                stagesDistribution.Add(remainingStages); //Add any remaining stages to the last level
-            }else
-            {
-                int maxStagesForThisLevel = Math.Min(GeneratorValues.MAX_STAGES_PER_LEVEL, remainingStages - (NumberOfLevels - i - 1) * GeneratorValues.MIN_STAGES_PER_LEVEL);
-                int stagesInThisLevel = random.Next(GeneratorValues.MIN_STAGES_PER_LEVEL, maxStagesForThisLevel + 1);
-
-                stagesDistribution.Add(stagesInThisLevel);
-                remainingStages -= stagesInThisLevel;                
-            }
-
+            stagesDistribution.Add(GeneratorValues.MIN_STAGES_PER_LEVEL);
+            totalAssignedStages += GeneratorValues.MIN_STAGES_PER_LEVEL;
         }
 
-        return ShuffleIntList(stagesDistribution, random);
+        //2: Distribute remaining stages
+        int remainingStages = _totalNumberOfStages - totalAssignedStages;
 
+        int retryCap = 300;
 
+        while(remainingStages > 0 && retryCap > 0)
+        {
+            int levelIndex = random.Next(0, NumberOfLevels);
+            if(stagesDistribution[levelIndex] < GeneratorValues.MAX_STAGES_PER_LEVEL)
+            {
+                stagesDistribution[levelIndex]++;
+                remainingStages--;
+            }
+
+            retryCap--;
+        }
+
+        if(retryCap <= 0)
+        {
+            Debug.LogError("Retry cap for distribution reached, something has gone wrong.");
+        }
+
+        stagesDistribution = ShuffleIntList(stagesDistribution, random);
+        stageDistribution = stagesDistribution;
+
+        return stagesDistribution;
     }
 
 
@@ -218,6 +238,88 @@ public class ZoneBlueprint
 
     }
 
+/// <summary>
+/// Generates a weighted random value which is skewed towards the average value of the given min and max value.
+/// skewStrength dictates how strongly the returned value will be skewed towards the average, with higher skewStrength
+/// giving a greater chance of returning an average value.
+/// </summary>
+/// <param name="random"></param>
+/// <param name="min"></param>
+/// <param name="max"></param>
+/// <param name="skewStrength"></param>
+/// <returns></returns>
+    int GenerateAverageWeightedRandomInt(System.Random random, int min, int max, int skewStrength)
+    {
+        int total = 0;
+        for (int i = 0; i < skewStrength; i++) {
+            total += random.Next(min, max + 1);
+        }
+        return total / skewStrength;
+    }
+
+/// <summary>
+/// Test method that simulates the weighting algorithm and the probability of getting a value within a range given a number of samples
+/// for the GenerateAverageWeightedRandomInt method.
+/// </summary>
+/// <param name="random"></param>
+/// <param name="min"></param>
+/// <param name="max"></param>
+/// <param name="numberOfSamples"></param>
+    void SimulateWeightingAlgorithm(System.Random random, int min, int max, int numberOfSamples)
+    {
+        int simulations = 100000; // Number of simulations
+        int countInRange = 0;
+        int desiredMin = 18; // Your desired range minimum
+        int desiredMax = 23; // Your desired range maximum
+
+        for (int i = 0; i < simulations; i++) 
+        {
+            int result = GenerateAverageWeightedRandomInt(random, min, max, numberOfSamples);
+            if (result >= desiredMin && result <= desiredMax) 
+            {
+                countInRange++;
+            }
+        }
+
+        double probability = (double)countInRange / simulations;
+        Debug.Log($"Probability of getting a value in the range [{desiredMin}, {desiredMax}] with number of samples [{numberOfSamples}]: {probability}");        
+    }
+
+/// <summary>
+/// Generates a random int that is skewed towards the given range of skewMin and skewMax. numberOfSamples dictates how smooth the distribution is
+/// and skewProportion (0 - 1) dictates how strong the skew effect is, with higher proportion meaning more numbers will come from the skew range.
+/// </summary>
+/// <param name="random"></param>
+/// <param name="min"></param>
+/// <param name="max"></param>
+/// <param name="skewMin"></param>
+/// <param name="skewMax"></param>
+/// <param name="numberOfSamples"></param>
+/// <param name="skewProportion"></param>
+/// <returns></returns>
+    int GenerateSkewedWeightedRandom(System.Random random, int min, int max, int skewMin, int skewMax, int numberOfSamples, double skewProportion) 
+    {
+        if (skewProportion < 0) skewProportion = 0;
+        else if (skewProportion > 1) skewProportion = 1;
+
+        int total = 0;
+        int skewedSamples = (int)(numberOfSamples * skewProportion);
+        int normalSamples = numberOfSamples - skewedSamples;
+
+        // Generate skewed samples
+        for (int i = 0; i < skewedSamples; i++) 
+        {
+            total += random.Next(skewMin, skewMax + 1);
+        }
+
+        // Generate normal samples
+        for (int i = 0; i < normalSamples; i++) 
+        {
+            total += random.Next(min, max + 1);
+        }
+
+        return total / numberOfSamples;
+    }
 
 
 }

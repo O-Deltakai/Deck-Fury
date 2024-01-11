@@ -20,14 +20,6 @@ public class MapLevel : MonoBehaviour
 
     }
 
-    public List<MapStage> GenerateMapStages()
-    {
-        List<MapStage> generatedStages = new List<MapStage>();
-
-
-        return generatedStages;
-    } 
-
     void GetStagesFromChildren()
     {
         foreach(MapStage stage in GetComponentsInChildren<MapStage>()) 
