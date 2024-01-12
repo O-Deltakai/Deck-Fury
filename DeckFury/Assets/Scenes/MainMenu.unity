@@ -1835,6 +1835,7 @@ GameObject:
   - component: {fileID: 814620669}
   - component: {fileID: 814620671}
   - component: {fileID: 814620670}
+  - component: {fileID: 814620672}
   m_Layer: 5
   m_Name: Version Number
   m_TagString: Untagged
@@ -1881,7 +1882,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: V 1.0.0-alpha
+  m_text: VX.X.X-Stage
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e48463e3180208346814a9086766650b, type: 2}
   m_sharedMaterial: {fileID: -8995054446084175832, guid: e48463e3180208346814a9086766650b, type: 2}
@@ -1958,6 +1959,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814620668}
   m_CullTransparentMesh: 1
+--- !u!114 &814620672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814620668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a44d7de11fc87149ab540d0818d10f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &817993710
 GameObject:
   m_ObjectHideFlags: 0

@@ -103,6 +103,7 @@ public class SceneLoader : MonoBehaviour
         loadingBar.gameObject.SetActive(false);
         yield return new WaitForSecondsRealtime(fadeToBlackTime);
         FadeToTransparent();
+        GameManager.currentGameState = GameManager.GameState.Realtime;
     }
     IEnumerator LoadSceneAsynchronously(string sceneName)
     {
@@ -128,6 +129,8 @@ public class SceneLoader : MonoBehaviour
         loadingBar.gameObject.SetActive(false);
         yield return new WaitForSecondsRealtime(fadeToBlackTime);
         FadeToTransparent();
+        GameManager.currentGameState = GameManager.GameState.Realtime;
+
     }
 
     IEnumerator LoadSceneAsyncAdditive(string sceneToAdd)
@@ -166,6 +169,7 @@ public class SceneLoader : MonoBehaviour
         loadingBar.gameObject.SetActive(false);
         yield return new WaitForSecondsRealtime(fadeToBlackTime);
         FadeToTransparent();
+        GameManager.currentGameState = GameManager.GameState.Realtime;
 
     }
 

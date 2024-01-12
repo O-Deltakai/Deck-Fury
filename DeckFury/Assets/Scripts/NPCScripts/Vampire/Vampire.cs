@@ -402,7 +402,7 @@ public class Vampire : NPC
             bullet.team = EntityTeam.Enemy;
             bullet.velocity = bulletVelocity;
             bullet.trailRenderer.time = 0.2f;
-            bullet.attackPayload.damage = 30;
+            bullet.attackPayload.damage = 10;
             
 
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>()); // ensure it doesnt hit themselves
