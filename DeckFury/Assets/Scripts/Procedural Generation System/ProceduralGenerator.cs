@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class ProceduralGenerator : MonoBehaviour
@@ -17,6 +18,8 @@ public class ProceduralGenerator : MonoBehaviour
     [SerializeField] GameObject stageMap;
 
     [SerializeField] string stringSeed;
+    [SerializeField] TextMeshProUGUI mapSeedText;
+
 
     /// <summary>
     /// Used as the seed for randomization purposes. Will be derived from the stringSeed.
@@ -56,6 +59,7 @@ public class ProceduralGenerator : MonoBehaviour
     {
         stringSeed = GenerateRandomString(10);
         savedSeed = DJB2Hash(stringSeed);
+        mapSeedText.text = "Map Seed: " + stringSeed;
     }
 
     string GenerateRandomString(int length)
@@ -80,6 +84,7 @@ public class ProceduralGenerator : MonoBehaviour
             }
 
             savedSeed = DJB2Hash(stringSeed);
+            mapSeedText.text = "Map Seed: " + stringSeed;
         }
         random = new System.Random(savedSeed);
 
