@@ -471,7 +471,7 @@ public class PlayerController : StageEntity
     {
         if(isDefeated) { return; }
 
-        if (PauseMenuController.IsOpen){ return; }
+        if (GameManager.Instance.PauseMenu.IsOpen){ return; }
 
         if(context.started)
         {

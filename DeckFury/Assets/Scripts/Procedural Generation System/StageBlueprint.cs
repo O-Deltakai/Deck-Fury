@@ -33,7 +33,7 @@ public class StageBlueprint
 
     public SpawnTableSO spawnTable;
 
-
+    public bool IsFinalStage = false;
 
     public void GenerateStage(System.Random random, ZoneBlueprint zone)
     {

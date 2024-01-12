@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: LeaperSpawnTable
   m_EditorClassIdentifier: 
   _difficultyTier: 3
+  _isElite: 0
   <WaveList>k__BackingField:
   - <WaveName>k__BackingField: wave1
     <NPCSpawns>k__BackingField:
@@ -37,7 +38,7 @@ MonoBehaviour:
       <SpawnZone>k__BackingField: 3
       _specificSpawnLocation: {x: 0, y: 0, z: 0}
     - <NPCPrefab>k__BackingField: {fileID: 1343928815800035990, guid: 3eedf9e46ea002c478c3d98d20c67a63, type: 3}
-      <SpawnCount>k__BackingField: 3
+      <SpawnCount>k__BackingField: 2
       <SpawnZone>k__BackingField: 3
       _specificSpawnLocation: {x: 0, y: 0, z: 0}
     - <NPCPrefab>k__BackingField: {fileID: 3044666074929763327, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}

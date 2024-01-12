@@ -39,7 +39,7 @@ public class MapStage : MonoBehaviour
     [SerializeReference] Sprite restIcon;
 
 
-    [field:SerializeField] public bool IsFinalStage { get; private set; } = false;
+    [field:SerializeField] public bool IsFinalStage { get; set; } = false;
     [SerializeField] bool IsMysteryStage;
 
     void Awake() 

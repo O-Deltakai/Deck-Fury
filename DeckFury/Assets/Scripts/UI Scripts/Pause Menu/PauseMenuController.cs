@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class PauseMenuController : MonoBehaviour
 {
 
-    private static bool _isOpen = false;
-    public static bool IsOpen => _isOpen;
+    private bool _isOpen = false;
+    public bool IsOpen => _isOpen;
 
 
     public event Action OnOpenPauseMenu;

@@ -24,9 +24,14 @@ public class StageSelectionManager : MonoBehaviour
 
     public MapStage currentPlayerLocation;
 
+    ProceduralGenerator proceduralGenerator;
+
+
     private void Awake() 
     {
-        _instance = this;    
+        _instance = this;
+        proceduralGenerator = GetComponent<ProceduralGenerator>();
+        proceduralGenerator.OnCompleteGeneration += InitializeMapLevels;
     }
 
     private void OnDestroy() 

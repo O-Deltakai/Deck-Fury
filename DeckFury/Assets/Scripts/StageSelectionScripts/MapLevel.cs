@@ -40,6 +40,7 @@ public class MapLevel : MonoBehaviour
 
     public List<MapStage> GetStages()
     {
+        GetStagesFromChildren();
         return stages;
     }
 

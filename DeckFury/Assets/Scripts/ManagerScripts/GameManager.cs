@@ -208,6 +208,8 @@ public class GameManager : MonoBehaviour
         }
 
         menuScreenCanvas.GetComponent<GraphicRaycaster>().enabled = false;
+        currentGameState = GameState.Realtime;
+
     }
 
 
@@ -282,6 +284,7 @@ public class GameManager : MonoBehaviour
         }
 
         UnpauseGame();
+        currentGameState = GameState.Realtime;
 
     }
 

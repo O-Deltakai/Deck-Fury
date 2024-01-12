@@ -144,6 +144,7 @@ public class ZoneBlueprint
         bossStage.stageType = StageType.Boss;
         bossStage.spawnTable = spawnTablePool.BossSpawnTables[0];
         bossStage.MapLayoutPrefab = allMaps[random.Next(0, allMaps.Count - 1)].gameObject;
+        bossStage.IsFinalStage = true;
     }
 
 /// <summary>

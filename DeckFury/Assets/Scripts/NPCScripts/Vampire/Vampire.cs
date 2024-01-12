@@ -260,7 +260,8 @@ public class Vampire : NPC
 
     }
 
-    void SummonSnapThunder(){
+    void SummonSnapThunder()
+    {
         VampireNATK normalATK = Instantiate(normalATKPrefab, player.currentTilePosition, transform.rotation).GetComponent<VampireNATK>();
         List<Vector3Int> tileList = new List<Vector3Int>();
         tileList.Add( player.currentTilePosition);
@@ -401,7 +402,7 @@ public class Vampire : NPC
             bullet.team = EntityTeam.Enemy;
             bullet.velocity = bulletVelocity;
             bullet.trailRenderer.time = 0.2f;
-            bullet.attackPayload = strongATKPayload;
+            bullet.attackPayload.damage = 30;
             
 
             Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>()); // ensure it doesnt hit themselves

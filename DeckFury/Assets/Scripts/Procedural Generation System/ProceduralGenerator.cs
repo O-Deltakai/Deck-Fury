@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class ProceduralGenerator : MonoBehaviour
 {
+    public event Action OnCompleteGeneration;
+
     [SerializeField] MapPoolSO _mapLayoutPool;
     public MapPoolSO MapLayoutPool => _mapLayoutPool;
 
@@ -40,13 +42,13 @@ public class ProceduralGenerator : MonoBehaviour
         {
             InitializeZoneBlueprint();
             GenerateStageMap(zoneBlueprint);
-
+            
         }
     }
 
     void Start()
     {
-
+        OnCompleteGeneration?.Invoke();
     }
 
 
@@ -106,6 +108,7 @@ public class ProceduralGenerator : MonoBehaviour
                 mapStage.sceneToLoadName = stageBlueprint.sceneToLoad;
 
                 mapStage.spawnTable = stageBlueprint.spawnTable;
+                mapStage.IsFinalStage = stageBlueprint.IsFinalStage;
             }
 
         }
