@@ -43,18 +43,23 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadScene(int levelIndex)
     {
+        GameManager.currentGameState = GameManager.GameState.Realtime;
         StartCoroutine(LoadSceneAsynchronously(levelIndex));
     }
     public void LoadScene(string sceneName)
     {
+        GameManager.currentGameState = GameManager.GameState.Realtime;
         StartCoroutine(LoadSceneAsynchronously(sceneName));
     }
     public void LoadScene(SceneNames sceneName)
     {
+        GameManager.currentGameState = GameManager.GameState.Realtime;
         StartCoroutine(LoadSceneAsynchronously(sceneName.ToString()));
+
     }
     public void LoadSceneAdditive(string sceneName)
     {
+        GameManager.currentGameState = GameManager.GameState.Realtime;
         StartCoroutine(LoadSceneAsyncAdditive(sceneName));
     }
 
@@ -103,7 +108,6 @@ public class SceneLoader : MonoBehaviour
         loadingBar.gameObject.SetActive(false);
         yield return new WaitForSecondsRealtime(fadeToBlackTime);
         FadeToTransparent();
-        GameManager.currentGameState = GameManager.GameState.Realtime;
     }
     IEnumerator LoadSceneAsynchronously(string sceneName)
     {
@@ -129,7 +133,6 @@ public class SceneLoader : MonoBehaviour
         loadingBar.gameObject.SetActive(false);
         yield return new WaitForSecondsRealtime(fadeToBlackTime);
         FadeToTransparent();
-        GameManager.currentGameState = GameManager.GameState.Realtime;
 
     }
 
@@ -169,7 +172,7 @@ public class SceneLoader : MonoBehaviour
         loadingBar.gameObject.SetActive(false);
         yield return new WaitForSecondsRealtime(fadeToBlackTime);
         FadeToTransparent();
-        GameManager.currentGameState = GameManager.GameState.Realtime;
+
 
     }
 
