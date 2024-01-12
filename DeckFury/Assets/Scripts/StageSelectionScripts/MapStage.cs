@@ -92,6 +92,7 @@ public class MapStage : MonoBehaviour
         if(!mapLayoutPrefab) { return; }
         if(IsMysteryStage){ return; }
         if(TypeOfStage == StageType.RestPoint) { return; }
+        if(TypeOfStage == StageType.Shop) { return; }
 
         if(toggle)
         {

@@ -53,7 +53,7 @@ public class ProceduralGenerator : MonoBehaviour
     void GenerateSeed()
     {
         stringSeed = GenerateRandomString(10);
-        savedSeed = Math.Abs(DJB2Hash(stringSeed));
+        savedSeed = DJB2Hash(stringSeed);
     }
 
     string GenerateRandomString(int length)
@@ -77,7 +77,7 @@ public class ProceduralGenerator : MonoBehaviour
                 stringSeed = GenerateRandomString(10);
             }
 
-            savedSeed = Math.Abs(DJB2Hash(stringSeed));
+            savedSeed = DJB2Hash(stringSeed);
         }
         random = new System.Random(savedSeed);
 
@@ -114,7 +114,7 @@ public class ProceduralGenerator : MonoBehaviour
     }
 
 /// <summary>
-/// Returns a deterministically generated integer using the DJB2 hash function
+/// Returns a deterministically generated integer with a given string using the DJB2 hash function
 /// </summary>
 /// <param name="str"></param>
 /// <returns></returns>

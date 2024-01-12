@@ -37,6 +37,8 @@ public class SpawnTableSO : ScriptableObject
 
     public int DifficultyScore{ get; private set; }
 
+    [SerializeField] bool _isElite;
+    public bool IsElite => _isElite;
 
     [field:SerializeField] public List<WaveTable> WaveList {get; private set;}
 

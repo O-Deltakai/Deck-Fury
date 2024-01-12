@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class LevelBlueprint
 {
-    int _levelTier = 0;
+    public int tier = 0;
 
     [SerializeReference] public ZoneBlueprint parentZone;
 
@@ -54,6 +54,22 @@ public class LevelBlueprint
 
 
     }
+
+    public void InitializeBlankLevel(ZoneBlueprint zone, int stagesInLevel)
+    {
+        NumberOfStages = stagesInLevel;
+        parentZone = zone;
+
+        for (int i = 0; i < stagesInLevel; i++)
+        {
+            StageBlueprint stage = new StageBlueprint();
+            stage.parentLevel = this;
+            _stageBlueprints.Add(stage);
+        }
+
+
+    }
+
 
     void SetStageDetails(StageBlueprint stage, System.Random random)
     {

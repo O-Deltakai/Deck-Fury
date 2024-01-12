@@ -109,12 +109,41 @@ public class ZoneBlueprint
             SetLevelDetails(level, random);
 
             level.GenerateLevel(random, this, stagesPerLevel[i]);
-
-
+            level.tier = i;
 
             _levelBlueprints.Add(level);
         }
 
+        GenerateLastLevels(random);
+
+    }
+
+/// <summary>
+/// Generate the last two levels which will always be a rest stage and then the boss stage
+/// </summary>
+/// <param name="random"></param>
+    void GenerateLastLevels(System.Random random)
+    {
+        //Create rest point
+        LevelBlueprint restLevel = new LevelBlueprint();
+        restLevel.InitializeBlankLevel(this, 1);
+        _levelBlueprints.Add(restLevel);
+
+        StageBlueprint restStage = restLevel.StageBlueprints[0];
+        restStage.sceneToLoad = SceneNames.RestStage;
+        restStage.stageType = StageType.RestPoint;
+
+
+        //Create boss stage
+        LevelBlueprint bossLevel = new LevelBlueprint();
+        bossLevel.InitializeBlankLevel(this, 1);
+        _levelBlueprints.Add(bossLevel);
+
+        StageBlueprint bossStage = bossLevel.StageBlueprints[0];
+        bossStage.sceneToLoad = SceneNames.GenericCombatStage;
+        bossStage.stageType = StageType.Boss;
+        bossStage.spawnTable = spawnTablePool.BossSpawnTables[0];
+        bossStage.MapLayoutPrefab = allMaps[random.Next(0, allMaps.Count - 1)].gameObject;
     }
 
 /// <summary>
@@ -137,7 +166,7 @@ public class ZoneBlueprint
         //2: Distribute remaining stages
         int remainingStages = _totalNumberOfStages - totalAssignedStages;
 
-        int retryCap = 300;
+        int retryCap = 1000;
 
         while(remainingStages > 0 && retryCap > 0)
         {

@@ -59,7 +59,7 @@
     <UnityVersion>2020.3.48f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\Matthew Qiu\.vscode\extensions\visualstudiotoolsforunity.vstuc-0.9.3\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\Matthew Qiu\.vscode\extensions\visualstudiotoolsforunity.vstuc-0.9.4\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\NPCScripts\ZombieAStar\ZombieAStar.cs" />
@@ -100,8 +100,10 @@
     <Compile Include="Assets\Scripts\Input Buffering System\InputBufferHandler.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\ScoreMenu\SpecialBonusSlot.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CreateSinShapedLineStrip.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\StageConcrete.cs" />
     <Compile Include="Assets\Scripts\Procedural Generation System\LevelBlueprint.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Magician\Magician.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\LevelConcrete.cs" />
     <Compile Include="Assets\Scripts\PathfindingScripts\Behaviours\FleeAI.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\RewardMenu\RewardMenuController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
@@ -110,9 +112,11 @@
     <Compile Include="Assets\Scripts\CardScripts\CardEffect.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Procedural Generation System\ZoneBlueprint.cs" />
+    <Compile Include="Assets\Scripts\ManagerScripts\SettingsManager.cs" />
     <Compile Include="Assets\Scripts\CardScripts\SummonSentry.cs" />
     <Compile Include="Assets\Scripts\StageSelectionScripts\PersistentLevelController.cs" />
     <Compile Include="Assets\ScriptableObjects\BonusScoreItemSO.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\BattleStageCanvasController.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\VectorDirections.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\SentryGun.cs" />
     <Compile Include="Assets\PropertyAttributes\ScoreManagerFieldSelectorAttribute.cs" />
@@ -230,6 +234,7 @@
     <Compile Include="Assets\Scripts\StageSelectionScripts\PracticeStageButton.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleUtils.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Pause Menu\OptionsMenuController.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\StageStateController.cs" />
     <Compile Include="Assets\ScriptableObjects\CardUIIconSO.cs" />
     <Compile Include="Assets\Scripts\PathfindingScripts\AStarPathfinder.cs" />
@@ -248,11 +253,13 @@
     <Compile Include="Assets\Scripts\NPCScripts\Shooter.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Generic Systems\ResourceMeter.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Pause Menu\PauseMenuController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\Scripts\ObjectPoolManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
+    <Compile Include="Assets\Scripts\Procedural Generation System\ZoneConcrete.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\Bazooka.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleUI.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\AfterImageGenerator.cs" />
@@ -268,13 +275,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\ScriptableObjects\SpawnTableSO.cs" />
     <Compile Include="Assets\Scripts\StageEntityScripts\StageEntity.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\Pause Menu\PauseMenuController.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\Pause Menu\OptionsMenuController.cs" />
-    <Compile Include="Assets\Scripts\ManagerScripts\SettingsManager.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\BattleStageCanvasController.cs" />
-    <Compile Include="Assets\Scripts\Procedural Generation System\LevelConcrete.cs" />
-    <Compile Include="Assets\Scripts\Procedural Generation System\ZoneConcrete.cs" />
-    <Compile Include="Assets\Scripts\Procedural Generation System\StageConcrete.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{0b01e7ad-6d24-4897-be11-2ef635716c67}.xml" />

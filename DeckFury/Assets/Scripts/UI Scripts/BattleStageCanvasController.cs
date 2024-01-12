@@ -18,15 +18,22 @@ public class BattleStageCanvasController : MonoBehaviour
                 
     }
 
+    void OnDestroy()
+    {
+        GameManager.Instance.PauseMenu.OnOpenPauseMenu -= DisableGraphicRayCaster;
+        GameManager.Instance.PauseMenu.OnClosePauseMenu -= EnableGraphicRayCaster;        
+    }
 
     void DisableGraphicRayCaster()
     {
+        graphicRaycaster = GetComponent<GraphicRaycaster>();
         graphicRaycaster.enabled = false;
     }
 
 
     void EnableGraphicRayCaster()
     {
+        graphicRaycaster = GetComponent<GraphicRaycaster>();
         graphicRaycaster.enabled = true;
     }
 

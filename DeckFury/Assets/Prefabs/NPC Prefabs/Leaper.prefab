@@ -932,11 +932,18 @@ MonoBehaviour:
   CanBeStunned: 1
   CanBleed: 1
   markedEffectObject: {fileID: 5528440534566088292}
-  bleedingEffectObject: {fileID: 0}
+  bleedingEffectObject: {fileID: 2469206749861529210}
   MarkedForDeath: 0
   BaseStunDuration: 1.5
   BaseMarkedDuration: 3
   bleedingColor: {r: 1, g: 0.47, b: 0.47, a: 1}
+  triggerMarkedSFX:
+    Guid:
+      Data1: 89470668
+      Data2: 1151230749
+      Data3: 1445076153
+      Data4: -441680986
+    Path: event:/CardSFX/TriggerMarkSFX
 --- !u!114 &1822853394068859523
 MonoBehaviour:
   m_ObjectHideFlags: 0

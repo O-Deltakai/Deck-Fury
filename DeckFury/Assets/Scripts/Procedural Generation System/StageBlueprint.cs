@@ -73,6 +73,16 @@ public class StageBlueprint
             sceneToLoad = SceneNames.GenericCombatStage;
         }
 
+        if(chosenStage == StageType.EliteCombat)
+        {
+            spawnTable = zone.spawnTablePool.EliteSpawnTables[random.Next(0, zone.spawnTablePool.EliteSpawnTables.Count)];
+        }
+
+        if(chosenStage == StageType.Combat || chosenStage == StageType.Mystery)
+        {
+            spawnTable = zone.spawnTablePool.RegularSpawnTables[random.Next(0, zone.spawnTablePool.RegularSpawnTables.Count)];
+        }
+
 
     }
 
