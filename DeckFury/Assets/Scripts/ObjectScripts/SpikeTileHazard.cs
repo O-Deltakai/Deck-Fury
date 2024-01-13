@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using FMODUnity;
 using UnityEngine;
 
 public class SpikeTileHazard : MonoBehaviour
 {
 
-    const string SPIKETRAP_ANIM_NAME = "SpikeTrapAnimation";
-    const string SPIKETRAPREVERSE_ANIM_NAME = "SpikeTrapAnimationReverse";
+    const string SPIKETRAP_EXTEND_ANIM = "SpikeTrapAnimation";
+    const string SPIKETRAP_REVERSE_ANIM = "SpikeTrapAnimationReverse";
 
 
     BoxCollider2D spikesCollider;
@@ -16,6 +17,14 @@ public class SpikeTileHazard : MonoBehaviour
     [SerializeField] AttackPayload attackPayload;
 
     bool hasAttacked = false;
+
+    [Header("SFX")]
+    [SerializeField] EventReference spikesExtendSFX;
+    [SerializeField] EventReference spikesRetractSFX;
+    [SerializeField] EventReference spikesHitSFX;
+
+
+
 
     private void Awake() 
     {
@@ -46,7 +55,8 @@ public class SpikeTileHazard : MonoBehaviour
 
         if (entityHit != null)
         {
-            PlayTrapAnimation(SPIKETRAP_ANIM_NAME);
+            PlayTrapAnimation(SPIKETRAP_EXTEND_ANIM);
+            RuntimeManager.PlayOneShotAttached(spikesExtendSFX, gameObject);
             hasAttacked = true;
 
             entityHit.HurtEntity(attackPayload);
@@ -62,8 +72,9 @@ public class SpikeTileHazard : MonoBehaviour
     IEnumerator ReverseSpike()
     {
         yield return new WaitForSeconds(spikesAnimator.GetCurrentAnimatorStateInfo(0).length);
-        PlayTrapAnimation(SPIKETRAPREVERSE_ANIM_NAME);
-        
+        PlayTrapAnimation(SPIKETRAP_REVERSE_ANIM);
+        RuntimeManager.PlayOneShotAttached(spikesRetractSFX, gameObject);
+
         yield return new WaitForSeconds(spikesAnimator.GetCurrentAnimatorStateInfo(0).length);
         hasAttacked = false;
     }

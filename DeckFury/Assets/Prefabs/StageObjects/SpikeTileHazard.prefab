@@ -241,6 +241,27 @@ MonoBehaviour:
     attacker: {fileID: 5053901426496533753}
     attackerSprite: {fileID: -6980197499262107866, guid: 690110cb959714446a1d8a4edd1927e7, type: 3}
     causeOfDeathNote: Spike Trap
+  spikesExtendSFX:
+    Guid:
+      Data1: -828076299
+      Data2: 1303417388
+      Data3: 1198695823
+      Data4: -177092572
+    Path: event:/Objects/SpikesRetract
+  spikesRetractSFX:
+    Guid:
+      Data1: -828076299
+      Data2: 1303417388
+      Data3: 1198695823
+      Data4: -177092572
+    Path: event:/Objects/SpikesRetract
+  spikesHitSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!61 &1368449809
 BoxCollider2D:
   m_ObjectHideFlags: 0
