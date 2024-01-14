@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67bdf40430eebf44bba6f4bb68e0f79f, type: 3}
-  m_Name: HolyMantle
+  m_Name: DashReset
   m_EditorClassIdentifier: 
-  _itemName: HolyMantle
-  _itemDescription: Grants a <b>buffer</b> that blocks a single attack. The buffer
-    regnerates every time your energy reaches full.
-  _value: 100
-  _rarity: 2
+  _itemName: DashReset
+  _itemDescription: Killing an enemy immediately refreshes your dash.
+  _value: 0
+  _rarity: 1
   _quantifiableEffects: []
   _itemImage: {fileID: 0}
   _itemPrefab: {fileID: 0}

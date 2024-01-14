@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shield+10
   m_EditorClassIdentifier: 
   _itemName: Shield+10
-  _itemDescription: Increases your passive shield HP by <b>+Q0</b>
+  _itemDescription: Increases your <b><color=#6DEDFF>Shields</color></b> by <b>+Q0</b>
   _value: 0
   _rarity: 1
   _quantifiableEffects:
@@ -24,5 +24,5 @@ MonoBehaviour:
     <ModCoefficient>k__BackingField: 0
   _itemImage: {fileID: 0}
   _itemPrefab: {fileID: 0}
-  _hasEffectOutsideBattle: 0
-  _oneTimeEffect: 0
+  _hasEffectOutsideBattle: 1
+  _oneTimeEffect: 1
