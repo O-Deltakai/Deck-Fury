@@ -7,15 +7,18 @@ using UnityEngine;
 /// </summary>
 public abstract class ItemBase : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    
+    public StageManager stageManager;
+    public PlayerController player;
+    public ItemSO itemSO;
+
+    protected virtual void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+    public abstract void ActivateEffect();
+
+
 }

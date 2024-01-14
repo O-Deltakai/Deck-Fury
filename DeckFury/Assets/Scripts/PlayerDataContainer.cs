@@ -36,6 +36,14 @@ public class PlayerDataContainer
     [field:SerializeField] public double BaseDefense{get; private set;} = 1;
     [field:SerializeField] public int MaxHP{get; private set;} = 200;
 
+    [SerializeField] List<ItemSO> _items = new List<ItemSO>();
+    public IReadOnlyList<ItemSO> Items => _items;
+
+
+    public void AddItem(ItemSO item, int amount)
+    {
+        
+    }
 
     public DeckElement AddCardToDeck(CardSO card, int cardCount)
     {

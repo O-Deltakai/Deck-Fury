@@ -1427,6 +1427,7 @@ GameObject:
   - component: {fileID: 1755202098704932413}
   - component: {fileID: 1017916818722181608}
   - component: {fileID: 6281481823548784645}
+  - component: {fileID: 5978173093845493249}
   m_Layer: 3
   m_Name: PlayerObject
   m_TagString: Player
@@ -1997,6 +1998,18 @@ MonoBehaviour:
   lifeTime: 0.5
   fadeDuration: 0.5
   afterImageColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &5978173093845493249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755202097915902248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeecfcaf095629f4984f1c7c55530769, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1755202098436831244
 GameObject:
   m_ObjectHideFlags: 0

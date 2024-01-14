@@ -278,6 +278,8 @@
     <Compile Include="Assets\Scripts\UI Scripts\VersionNumberController.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\ItemBase.cs" />
     <Compile Include="Assets\Scripts\Shop System\ShopItemSlot.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\PlayerItemController.cs" />
+    <Compile Include="Assets\ScriptableObjects\ItemSO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{0b01e7ad-6d24-4897-be11-2ef635716c67}.xml" />
@@ -435,6 +437,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{c964c210-e61e-42e5-b261-93bcb1f35770}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{8cd4ada6-f97a-4c70-aa9c-6055c436dffd}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{808830fd-358e-4b81-add1-5bcfc6039240}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Freebies\40-Loot-Icons-PixelArt\Icons_name.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{00479d0c-0127-4cc9-8988-c1cdf874a396}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{f1f47b97-4314-4922-be9a-d49c7401e063}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{b2fe0f4f-92ea-48f9-8b34-1994fcaa545a}.xml" />
@@ -637,6 +640,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{c7ae92cb-b970-4d14-88fa-c73fe37961ea}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{ea6d624c-ca93-4b22-bb8a-6e6e4655342a}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{b2b1592d-b8b5-4168-85f4-3447a7f5a099}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Freebies\IndustrialZone-Tileset-Pixel\license.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{43dfc9a2-0cb6-432b-825b-f0123e98e4d0}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{284dcc16-be7b-47f5-902a-79ffa8c3c89a}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{db48a351-3ead-47ac-8a7a-058892616aac}.xml" />
@@ -991,6 +995,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{615fa7bf-009d-45d7-b70f-bc7c301087a6}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{4aec31ec-d657-454e-b9b0-fb5eba77e4d2}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{b855f495-7315-47c7-ab59-4434451b81fc}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Freebies\Pixel-Art-Icons-For-Mine\Font.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{746145fb-3fea-4b00-8a64-4dc26460237d}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{cfe187b6-7e49-4978-8b8f-d1f2814eb16d}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{b22d85eb-c2fd-4f21-b635-fdac2dba3da7}.xml" />
@@ -1566,6 +1571,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{21115ddc-e09d-482b-a143-b784124e8d78}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{25e998fc-59aa-4999-976b-7626012b2b31}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{b8215836-c5d8-4bab-8d9e-07eb044632ea}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Freebies\40-Loot-Icons-PixelArt\License.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{7fa85f76-4f9b-4da8-9f8b-41e2a3418a9a}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{779c371b-deed-4e62-8b66-e7fb2897da7d}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{4d6e77a3-5a66-4828-a7b4-101aca19f342}.xml" />
@@ -1662,6 +1668,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{b4aa28c0-b45f-4c1b-b749-dab3ad9ca431}.xml" />
     <None Include="Assets\Sprites\Free Art Assets\CraftPix_enemies_for_platformer_OGA-BY3\source.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{777e1ad4-fdb8-46b8-91e7-cf7f82fadaa5}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Freebies\IndustrialZone-Tileset-Pixel\Font.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{424d207d-838b-4463-bf63-be93c5e6e0ed}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{7bc5e93d-c8e6-4c5f-a321-55b834cea54c}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{535cd450-d627-4100-86d8-09ffb0de4806}.xml" />
@@ -1673,12 +1680,14 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{2831645c-50f7-40fd-a7ad-e3b34bde0833}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{6ea5e0e8-b71a-42bf-8c37-3457bd27f695}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{e5339f9c-a254-4b08-a242-e59ca55213b0}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Freebies\Pixel-Art-Icons-For-Mine\Icons_name.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{cbbc5b00-5732-4e0e-b2cb-c51e6b32d890}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{0a3dbbb1-77bd-456b-879b-192ac51b58f7}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{a2b3f864-33e3-4613-9299-373f49a325a1}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{9c78d229-0158-4f2f-8323-36caff075a16}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\DataFile\{de230070-de7d-4081-b8ec-ae498cb70151}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{4fadf996-aadb-44c8-a1d5-d83338e594a0}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Freebies\Pixel-Art-Icons-For-Mine\License.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{441c7f08-3860-4b1a-9ffe-aba75372c705}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{2cf86fe1-edc4-447c-bd3d-51aaf33aeddd}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{9c92c39b-11bc-45b6-b20a-b6ac80c04a9c}.xml" />
@@ -1690,6 +1699,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{217b5292-cf4d-4cb8-90ff-29f412c653b9}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{737bb67e-fa16-4521-a69d-c24d02305ca9}.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\Sprites\Craftpix\Freebies\40-Loot-Icons-PixelArt\Font.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{3796eddc-b118-47e1-855e-97e9aeb71e30}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{f4474959-6acf-40c7-9564-1680d9acfc82}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{113472f1-9558-428b-9169-9600bb980d10}.xml" />
