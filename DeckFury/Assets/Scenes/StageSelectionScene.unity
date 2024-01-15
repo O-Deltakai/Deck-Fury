@@ -3281,7 +3281,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: :200
+  m_text: :100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e48463e3180208346814a9086766650b, type: 2}
   m_sharedMaterial: {fileID: -8995054446084175832, guid: e48463e3180208346814a9086766650b, type: 2}
@@ -4605,7 +4605,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -16.15, y: 2.9}
+  m_AnchoredPosition: {x: -16.15, y: 1.6}
   m_SizeDelta: {x: 232.3, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1432046828
@@ -4665,7 +4665,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 5
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -5897,7 +5897,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: :20
+  m_text: :10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e48463e3180208346814a9086766650b, type: 2}
   m_sharedMaterial: {fileID: -8995054446084175832, guid: e48463e3180208346814a9086766650b, type: 2}
@@ -7526,13 +7526,15 @@ MonoBehaviour:
     CurrentMoney: 0
     CurrentScore: 0
     CurrentStageLevelIndex: 0
-    <BaseShieldHP>k__BackingField: 20
-    <BaseArmor>k__BackingField: 0
-    <BaseDefense>k__BackingField: 1
-    <MaxHP>k__BackingField: 200
+    _baseShieldHP: 20
+    _baseArmor: 0
+    _baseDefense: 1
+    _maxHP: 200
     _items: []
   <StageSpawnTable>k__BackingField: {fileID: 11400000, guid: d312d360e31b18841a0d8333689a0b0d, type: 2}
   _currentMapPrefab: {fileID: 0}
+  hpText: {fileID: 1070677233}
+  shieldsText: {fileID: 1683215288}
 --- !u!1001 &6135313500849868749
 PrefabInstance:
   m_ObjectHideFlags: 0

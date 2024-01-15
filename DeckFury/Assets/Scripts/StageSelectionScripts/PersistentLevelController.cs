@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// A singleton object that is used by stages to set stage variables/states like the Spawn Table to use, the player's stats and
@@ -29,6 +31,11 @@ public class PersistentLevelController : MonoBehaviour
     public GameObject CurrentMapPrefab => _currentMapPrefab;
 
 
+    //References to the hp/shields numbers on the stage selection screen
+    [SerializeField] TextMeshProUGUI hpText;
+    [SerializeField] TextMeshProUGUI shieldsText;
+
+
     private void InitializePersistentSingleton()
     {
         if (_instance == null)
@@ -45,7 +52,8 @@ public class PersistentLevelController : MonoBehaviour
 
     private void OnDestroy() 
     {
-        _instance = null;    
+        _instance = null;
+        PlayerData.OnPlayerDataModified -= SetHpShieldText;
     }
 
     private void InitializeAwakeStates()
@@ -71,7 +79,16 @@ public class PersistentLevelController : MonoBehaviour
     private void Start() 
     {
         stageSelectionManager = FindObjectOfType<StageSelectionManager>();
+        PlayerData.OnPlayerDataModified += SetHpShieldText;
+        SetHpShieldText();
     }
+
+    void SetHpShieldText()
+    {
+        hpText.text = ":" + PlayerData.CurrentHP.ToString();
+        shieldsText.text = ":" + PlayerData.BaseShieldHP.ToString();
+    }
+
 
     public void LoadMapStage(MapStage stage, bool setPlayerStage = true)
     {

@@ -4,8 +4,26 @@ using UnityEngine;
 
 public class BatteryItem : ItemBase
 {
-    public override void Proc()
+
+    public override void Initialize()
     {
-        throw new System.NotImplementedException();
+        if(_initialized){ return; }
+
+        base.Initialize();
+        EnergyController energyController = EnergyController.Instance;
+        energyController.chargeRateModifier += itemSO.QuantifiableEffects[0].FloatQuantity * 0.01f;
+
+        stageManager = StageManager.Instance;
+
+        _initialized = true;
     }
+
+
+    public override void Deactivate()
+    {
+        base.Deactivate();
+
+        _initialized = false;
+    }
+
 }

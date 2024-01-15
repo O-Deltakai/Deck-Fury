@@ -13,7 +13,17 @@ public class PlayerDataContainer
     public event DataModifiedEventHandler OnPlayerDataModified;
 
     //Current values can change during and after battle, and will remain persistent across stages.
-    public int CurrentHP = 200;
+    [SerializeField] int _currentHP = 200;
+    public int CurrentHP{get{ return _currentHP; }
+        set
+        {
+            _currentHP = value;
+            OnPlayerDataModified?.Invoke();
+        }
+    
+    }
+
+
     public GameDeck CurrentDeck;
     public int CurrentMoney = 0;
     public int CurrentScore = 0;
@@ -31,10 +41,20 @@ public class PlayerDataContainer
     public int CurrentStageLevelIndex = 0;
 
     //These Player stats are set base values that can be increased or decreased during battle, but get reset to these base values after the stage
-    [field:SerializeField] public int BaseShieldHP{get; private set;} = 20;
-    [field:SerializeField] public int BaseArmor{get; private set;} = 0;
-    [field:SerializeField] public double BaseDefense{get; private set;} = 1;
-    [field:SerializeField] public int MaxHP{get; private set;} = 200;
+    [SerializeField] int _baseShieldHP = 20;
+    public int BaseShieldHP => _baseShieldHP;
+
+
+    [SerializeField] int _baseArmor = 0;
+    public int BaseArmor => _baseArmor;
+
+
+    [SerializeField] double _baseDefense= 1;
+    public double BaseDefense => _baseDefense;
+
+
+    [SerializeField] int _maxHP = 200;
+    public int MaxHP => _maxHP;
 
     [SerializeField] List<ItemSO> _items = new List<ItemSO>();
     public IReadOnlyList<ItemSO> Items => _items;
@@ -59,21 +79,27 @@ public class PlayerDataContainer
 
     public void SetBaseShieldHP(int value)
     {
-        BaseShieldHP = value;
+        _baseShieldHP = value;
         OnPlayerDataModified?.Invoke();
 
     }
     public void SetBaseArmor(int value)
     {
-        BaseArmor = value;
+        _baseArmor = value;
+        OnPlayerDataModified?.Invoke();
+
     }
     public void SetBaseDefense(double value)
     {
-        BaseDefense = value;
+        _baseDefense = value;
+        OnPlayerDataModified?.Invoke();
+
     }
     public void SetMaxHP(int value)
     {
-        MaxHP = value;
+        _maxHP = value;
+        OnPlayerDataModified?.Invoke();
+
     }
 
 }

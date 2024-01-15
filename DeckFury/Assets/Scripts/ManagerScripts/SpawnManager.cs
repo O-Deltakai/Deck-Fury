@@ -44,8 +44,9 @@ public class SpawnManager : MonoBehaviour
     public int currentWaveCounter = 0;
 
     [SerializeField] GameObject SpawnObjectParent;
-    static List<StageEntity> currentActiveNPCS = new List<StageEntity>();
-    public static int ActiveNPCCount{get {return currentActiveNPCS.Count;}}
+    static List<StageEntity> _currentActiveNPCS = new List<StageEntity>();
+    public static IReadOnlyList<StageEntity> CurrentActiveNPCs => _currentActiveNPCS;
+    public static int ActiveNPCCount{get {return _currentActiveNPCS.Count;}}
     [SerializeReference] List<StageEntity> ActiveStageEntities = new List<StageEntity>();
 
 
@@ -69,7 +70,7 @@ public class SpawnManager : MonoBehaviour
 
     public static List<StageEntity> GetActiveStageEntities()
     {
-        return currentActiveNPCS;   
+        return _currentActiveNPCS;   
     }
 
     void Start()
@@ -145,7 +146,7 @@ public class SpawnManager : MonoBehaviour
     private void OnDestroy() 
     {
         _instance = null;
-        currentActiveNPCS.Clear();    
+        _currentActiveNPCS.Clear();    
         ActiveStageEntities.Clear();
     }
 
@@ -153,7 +154,7 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
 
-        if(!StopRandomSpawning && currentActiveNPCS.Count == 0)
+        if(!StopRandomSpawning && _currentActiveNPCS.Count == 0)
         {
             if(roundNumber >= maxRoundNumber)
             {
@@ -256,7 +257,7 @@ public class SpawnManager : MonoBehaviour
                 break;
             }
         }
-        OnSpawnNewWave?.Invoke(currentActiveNPCS);
+        OnSpawnNewWave?.Invoke(_currentActiveNPCS);
     }
 
     Vector3Int? FindValidPosition(List<Vector3Int> positions)
@@ -568,9 +569,9 @@ public class SpawnManager : MonoBehaviour
 
             GameObject npcObject = Instantiate(npcPrefab, actualSpawnPosition, Quaternion.identity, SpawnObjectParent.transform);
             StageEntity npcEntity = npcObject.GetComponent<EntityWrapper>().stageEntity;
-            currentActiveNPCS.Add(npcEntity);
+            _currentActiveNPCS.Add(npcEntity);
             npcEntity.OnDestructionEvent += RemoveNPCFromActiveList;
-            ActiveStageEntities = currentActiveNPCS;
+            ActiveStageEntities = _currentActiveNPCS;
             return npcEntity;
 
         }
@@ -641,12 +642,12 @@ public class SpawnManager : MonoBehaviour
             int randomIndex = Random.Range(0, NPCSpawnTable.Count);
             GameObject npcObject = Instantiate(NPCSpawnTable[randomIndex], randomTile.localCoordinates, Quaternion.identity, SpawnObjectParent.transform);
 
-            currentActiveNPCS.Add(npcObject.GetComponent<EntityWrapper>().stageEntity);
-            ActiveStageEntities = currentActiveNPCS;
+            _currentActiveNPCS.Add(npcObject.GetComponent<EntityWrapper>().stageEntity);
+            ActiveStageEntities = _currentActiveNPCS;
         }
 
         //Subscribing the DeathEvent on all active NPCs to the RemoveNPCFromActiveList method.
-        foreach(StageEntity npc in currentActiveNPCS)
+        foreach(StageEntity npc in _currentActiveNPCS)
         {
             npc.OnDestructionEvent += RemoveNPCFromActiveList;
         }
@@ -663,14 +664,14 @@ public class SpawnManager : MonoBehaviour
     public void RemoveNPCFromActiveList(StageEntity entity, Vector3Int deathPosition)
     {
         bool removeSuccess;
-        removeSuccess = currentActiveNPCS.Remove(entity);
+        removeSuccess = _currentActiveNPCS.Remove(entity);
         if(!removeSuccess)
         {
             Debug.LogWarning("Could not remove entity: " + entity.name + " from active npc list, entity does not exist in the list.", this);
         }
 
-        ActiveStageEntities = currentActiveNPCS;
-        if(currentActiveNPCS.Count == 0)
+        ActiveStageEntities = _currentActiveNPCS;
+        if(_currentActiveNPCS.Count == 0)
         {
             currentWaveCounter++;
             OnWaveEnd?.Invoke(currentWaveCounter);

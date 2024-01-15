@@ -11,6 +11,9 @@ using FMODUnity;
 public class EnergyController : MonoBehaviour
 {
 
+    private static EnergyController _instance;
+    public static EnergyController Instance => _instance; 
+
     //set variable
     //max value of enery bar
     [SerializeField] float max;
@@ -26,6 +29,7 @@ public class EnergyController : MonoBehaviour
     [SerializeField] bool fullCharge = false;
     //charge for each frame
     [SerializeField] float chargeRate = 2.0f;
+    [Min(0.01f)] public float chargeRateModifier = 1f;
 
     [SerializeField] float yAnchorPosition;
 
@@ -63,8 +67,14 @@ public class EnergyController : MonoBehaviour
     {
         if(pressTabText){ pressTabText.SetActive(false); }
 
+        _instance = this;
+
     }
 
+    void OnDestroy()
+    {
+        _instance = null;
+    }
 
     private void InitializeStartVariables(){
 
@@ -200,7 +210,7 @@ public class EnergyController : MonoBehaviour
         if(fullCharge){return;}
         if(currentEnergyValue < max + 0.5f)
         {
-            currentEnergyValue += Time.deltaTime*chargeRate;
+            currentEnergyValue += Time.deltaTime * chargeRate * chargeRateModifier;
 
             if(currentEnergyValue > max)
             {
