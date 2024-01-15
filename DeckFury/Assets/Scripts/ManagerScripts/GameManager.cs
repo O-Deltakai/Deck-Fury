@@ -45,6 +45,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] PauseMenuController _pauseMenu;
     public PauseMenuController PauseMenu => _pauseMenu;
 
+    [SerializeField] string _customMapSeed;
+    public string CustomMapSeed => _customMapSeed;
+
+
     public enum GameState
     {
         Realtime,
@@ -285,7 +289,7 @@ public class GameManager : MonoBehaviour
 
         UnpauseGame();
         currentGameState = GameState.Realtime;
-
+        _customMapSeed = "";
     }
 
 
@@ -295,6 +299,10 @@ public class GameManager : MonoBehaviour
         menuScreenCanvas.GetComponent<GraphicRaycaster>().enabled = false;
     }
     
+    public void SetCustomMapSeed(string seed)
+    {
+        _customMapSeed = seed;
+    }
 
 
 }

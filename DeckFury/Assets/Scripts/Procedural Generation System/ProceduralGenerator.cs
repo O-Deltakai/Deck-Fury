@@ -57,9 +57,16 @@ public class ProceduralGenerator : MonoBehaviour
 
     void GenerateSeed()
     {
-        stringSeed = GenerateRandomString(10);
+        if(!string.IsNullOrEmpty(GameManager.Instance.CustomMapSeed))
+        {
+            stringSeed = GameManager.Instance.CustomMapSeed;
+        }else
+        {
+            stringSeed = GenerateRandomString(10);
+        }
+
         savedSeed = DJB2Hash(stringSeed);
-        mapSeedText.text = "Map Seed: " + stringSeed;
+        mapSeedText.text = stringSeed;
     }
 
     string GenerateRandomString(int length)
@@ -84,7 +91,7 @@ public class ProceduralGenerator : MonoBehaviour
             }
 
             savedSeed = DJB2Hash(stringSeed);
-            mapSeedText.text = "Map Seed: " + stringSeed;
+            mapSeedText.text = stringSeed;
         }
         random = new System.Random(savedSeed);
 
