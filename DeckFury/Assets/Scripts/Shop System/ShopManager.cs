@@ -32,4 +32,17 @@ public class ShopManager : MonoBehaviour
     {
         
     }
+
+    public void PurchaseCard(WorldShopCard shopCard)
+    {
+
+    }
+
+    public void PurchaseItem(WorldShopItem shopItem)
+    {
+        
+    }
+
+
+
 }

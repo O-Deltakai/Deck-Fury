@@ -363,7 +363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6186281624174535765
 RectTransform:
   m_ObjectHideFlags: 0
@@ -615,7 +615,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6186281624601968106
 RectTransform:
   m_ObjectHideFlags: 0
@@ -938,7 +938,7 @@ GameObject:
   - component: {fileID: 3637428331803564350}
   - component: {fileID: 2603598690643224100}
   m_Layer: 3
-  m_Name: TrainingRobotObject
+  m_Name: ShopKeeperObject
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1010,7 +1010,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &8603392145581742680
 Animator:
   serializedVersion: 5
@@ -1183,7 +1183,7 @@ MonoBehaviour:
   resistModifier: 0.5
   HPText: {fileID: 6186281624174535764}
   ShieldsText: {fileID: 6186281624601968108}
-  DoNotShowHP: 0
+  DoNotShowHP: 1
   entitySpriteRenderer: {fileID: 0}
   OnDamagedSFX:
     Guid:

@@ -7,4 +7,10 @@ public class WorldShopCard : ShopPurchasable
     [SerializeField] CardSO card;
 
 
+
+    public override void Purchase()
+    {
+        shopManager.PurchaseCard(this);
+    }
+
 }
