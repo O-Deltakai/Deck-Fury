@@ -45,6 +45,10 @@ public class PlayerCardManager : MonoBehaviour
     Coroutine CR_CardUseInProgress = null;
     public Coroutine CardInUseCoroutine { get { return CR_CardUseInProgress; }}
 
+    [SerializeField] int _maxCards = 5;
+    public int MaxCards => _maxCards;
+
+
     private void Awake()
     {
         animationController = GetComponent<PlayerAnimationController>();    
@@ -75,7 +79,7 @@ public class PlayerCardManager : MonoBehaviour
     //Loads a single card into the bottom of the magazine - returns if the card magazine is already full
     public void LoadOneCard(CardObjectReference card)
     {
-        if(CardMagazine.Count >= 5){return;}
+        if(CardMagazine.Count >= _maxCards){return;}
         CardMagazine.Add(card);
         OnLoadMagazine?.Invoke();
     }

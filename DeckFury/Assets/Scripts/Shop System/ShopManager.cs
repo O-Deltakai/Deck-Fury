@@ -4,7 +4,24 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private static ShopManager _instance;
+    public static ShopManager Instance => _instance;
+
+    [SerializeField] List<ShopPurchasable> _purchasables = new List<ShopPurchasable>();
+    public IReadOnlyList<ShopPurchasable> Purchasables => _purchasables;
+
+    void Awake()
+    {
+        _instance = this;
+    }
+
+
+    void InitializeShop()
+    {
+
+    }
+
+
     void Start()
     {
         

@@ -82,6 +82,10 @@ public class AimpointController : MonoBehaviour
 
         screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
         mainCamera = GameManager.mainCamera;
+        if(mainCamera == null)
+        {
+            mainCamera = Camera.main;
+        }
 
 
         cardPoolManager = CardPoolManager.Instance; 
