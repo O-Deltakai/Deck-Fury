@@ -5,7 +5,14 @@ using UnityEngine;
 
 public class WorldShopCard : ShopPurchasable
 {
-    [SerializeField] CardSO card;
+    [SerializeField] CardSO _card;
+    public CardSO Card {get{ return _card; } 
+        set
+        {
+            Card = value;
+        }
+    
+    }
 
 
     [SerializeField] CardDescriptionPanel cardDescriptionPanel;
@@ -47,6 +54,8 @@ public class WorldShopCard : ShopPurchasable
     {
         shopManager.PurchaseCard(this);
     }
+
+
 
 
     IEnumerator ToggleDescriptionPanel(bool toggle)

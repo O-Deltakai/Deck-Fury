@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// This class controls all of the dynamic systems and elements of a stage like the map prefab, the player's stats etc.
+/// and also takes care of completing the stage and setting necessary persistent values for the PLC like player stats.
+/// </summary>
 public class StageStateController : MonoBehaviour
 {
     private static StageStateController _instance;

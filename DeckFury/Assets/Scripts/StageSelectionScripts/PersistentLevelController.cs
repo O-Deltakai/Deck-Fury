@@ -31,9 +31,10 @@ public class PersistentLevelController : MonoBehaviour
     public GameObject CurrentMapPrefab => _currentMapPrefab;
 
 
-    //References to the hp/shields numbers on the stage selection screen
+    //References to the player stat numbers on the stage selection screen
     [SerializeField] TextMeshProUGUI hpText;
     [SerializeField] TextMeshProUGUI shieldsText;
+    [SerializeField] TextMeshProUGUI moneyText;
 
 
     private void InitializePersistentSingleton()
@@ -53,7 +54,7 @@ public class PersistentLevelController : MonoBehaviour
     private void OnDestroy() 
     {
         _instance = null;
-        PlayerData.OnPlayerDataModified -= SetHpShieldText;
+        PlayerData.OnPlayerDataModified -= SetPlayerStatText;
     }
 
     private void InitializeAwakeStates()
@@ -79,14 +80,15 @@ public class PersistentLevelController : MonoBehaviour
     private void Start() 
     {
         stageSelectionManager = FindObjectOfType<StageSelectionManager>();
-        PlayerData.OnPlayerDataModified += SetHpShieldText;
-        SetHpShieldText();
+        PlayerData.OnPlayerDataModified += SetPlayerStatText;
+        SetPlayerStatText();
     }
 
-    void SetHpShieldText()
+    void SetPlayerStatText()
     {
         hpText.text = ":" + PlayerData.CurrentHP.ToString();
         shieldsText.text = ":" + PlayerData.BaseShieldHP.ToString();
+        moneyText.text = "$:" + PlayerData.CurrentMoney.ToString();
     }
 
 

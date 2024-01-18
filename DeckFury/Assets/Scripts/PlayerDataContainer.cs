@@ -25,7 +25,16 @@ public class PlayerDataContainer
 
 
     public GameDeck CurrentDeck;
-    public int CurrentMoney = 0;
+    [SerializeField] int _currentMoney = 0;
+    public int CurrentMoney{get{ return _currentMoney; }
+        set
+        {
+            _currentMoney = value;
+            OnPlayerDataModified?.Invoke();
+        }
+    }
+
+
     public int CurrentScore = 0;
     // public int CurrentScore 
     // {

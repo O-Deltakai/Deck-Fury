@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -7,8 +8,18 @@ using UnityEngine.InputSystem;
 
 public abstract class ShopPurchasable : MonoBehaviour
 {
+    public event Action<int> OnSetPrice;
+
     public ShopManager shopManager;
-    public int _price;
+    [SerializeField] int _price;
+    public int Price {get { return _price; }
+        set
+        {
+            _price = value;
+            OnSetPrice?.Invoke(value);
+        }
+    
+    }
 
 
 
@@ -18,6 +29,9 @@ public abstract class ShopPurchasable : MonoBehaviour
 
     [SerializeField] protected TextMeshProUGUI _priceTagText;
     public TextMeshProUGUI PriceTagText => _priceTagText;
+    [SerializeField] protected TextMeshPro _worldPriceTag;
+    public TextMeshPro WorldPriceTag => _worldPriceTag;
+
 
     [SerializeField] protected GameObject contextPopup;
 
@@ -40,6 +54,11 @@ public abstract class ShopPurchasable : MonoBehaviour
     [SerializeField] protected float selectedExpandSpeed = 0.5f;
     [SerializeField] protected float selectedScaleMultiplier = 1f;
     Vector3 spriteObjectOriginalScale;
+
+    void Awake()
+    {
+        OnSetPrice += SetPriceTag;
+    }
 
     protected virtual void Start()
     {
@@ -125,5 +144,12 @@ public abstract class ShopPurchasable : MonoBehaviour
             contextPopup.SetActive(true);
         }
     }
+
+    void SetPriceTag(int value)
+    {
+        PriceTagText.text = "$:" + value;
+        WorldPriceTag.text = "$" + value;
+    }
+
 
 }

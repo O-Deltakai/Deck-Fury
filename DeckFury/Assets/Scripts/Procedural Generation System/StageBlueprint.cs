@@ -64,7 +64,7 @@ public class StageBlueprint
         }else
         if(chosenStage == StageType.Shop)
         {
-            sceneToLoad = SceneNames.RestStage;//Placeholder - shops for now will just go to the rest stage because shops havent been implemented yet
+            sceneToLoad = SceneNames.ShopStage;
         }
 
         //For now mystery stages will only go to the generic combat stage - events are unimplimented at the moment.

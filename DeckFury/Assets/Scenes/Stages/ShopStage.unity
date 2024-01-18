@@ -134,6 +134,18 @@ PrefabInstance:
       propertyPath: exitPortal
       value: 
       objectReference: {fileID: 1071477156166165188}
+    - target: {fileID: 1958020995, guid: 482e4e8c6d7f163449ef1234332504b9, type: 3}
+      propertyPath: <PlayerData>k__BackingField._currentHP
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958020995, guid: 482e4e8c6d7f163449ef1234332504b9, type: 3}
+      propertyPath: <PlayerData>k__BackingField.CurrentMoney
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958020995, guid: 482e4e8c6d7f163449ef1234332504b9, type: 3}
+      propertyPath: <PlayerData>k__BackingField._baseShieldHP
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8862930421723193505, guid: 482e4e8c6d7f163449ef1234332504b9, type: 3}
       propertyPath: m_Name
       value: StageStateController
@@ -632,6 +644,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   purchasablesParentObject: {fileID: 859714853}
   _purchasables: []
+  _cardPriceBase: 50
+  _cardPriceMaxMultiplier: 1.5
+  _cardPriceMinMultiplier: 1.2
 --- !u!4 &728271331
 Transform:
   m_ObjectHideFlags: 0
