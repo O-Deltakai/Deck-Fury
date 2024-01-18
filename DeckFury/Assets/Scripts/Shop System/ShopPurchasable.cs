@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public abstract class ShopPurchasable : MonoBehaviour
 {
@@ -14,6 +16,20 @@ public abstract class ShopPurchasable : MonoBehaviour
     [SerializeField] protected GameObject shadowSprite;
     [SerializeField] protected SpriteRenderer shopObjectSpriteRenderer;
 
+    [SerializeField] protected TextMeshProUGUI _priceTagText;
+    public TextMeshProUGUI PriceTagText => _priceTagText;
+
+    [SerializeField] protected GameObject contextPopup;
+
+    [SerializeField] protected GameObject descriptionPanelCanvas;
+
+    [SerializeField] bool _playerInRange = false;
+    public bool PlayerInRange => _playerInRange;
+
+    [SerializeField] protected bool _selected = false;
+    public bool Selected => _selected;
+
+
 
 [Header("Object Animation Properties")]
     [SerializeField, Min(0.1f)] protected float floatSpeed = 0.5f;
@@ -25,13 +41,39 @@ public abstract class ShopPurchasable : MonoBehaviour
     [SerializeField] protected float selectedScaleMultiplier = 1f;
     Vector3 spriteObjectOriginalScale;
 
-    void Start()
+    protected virtual void Start()
     {
         spriteObjectOriginalScale = spriteObject.transform.localScale; 
+        contextPopup.SetActive(false);
+
+        
 
         StartCoroutine(FloatObject());
     }
 
+    void Update()
+    {
+        if(_playerInRange)
+        {
+            if(Keyboard.current.eKey.wasPressedThisFrame)
+            {
+                if(_selected)
+                {
+                    Deselect();
+                    _selected = false;
+                }else
+                {
+                    Select();
+                    _selected = true;
+                }
+                
+            }
+        }
+    }
+
+
+    public virtual void Select(){}
+    public virtual void Deselect(){}
     public virtual void Purchase(){}
 
 
@@ -59,6 +101,7 @@ public abstract class ShopPurchasable : MonoBehaviour
         if(collider.CompareTag(TagNames.Player.ToString()))
         {
             spriteObject.transform.DOScale(spriteObjectOriginalScale * selectedScaleMultiplier, selectedExpandSpeed);
+            _playerInRange = true;
         }
 
     } 
@@ -68,7 +111,19 @@ public abstract class ShopPurchasable : MonoBehaviour
         if(collider.CompareTag(TagNames.Player.ToString()))
         {
             spriteObject.transform.DOScale(spriteObjectOriginalScale, selectedExpandSpeed);
+            _playerInRange = false;
+            contextPopup.SetActive(false);
+            Deselect();
+            _selected = false;
         }
     } 
+
+    protected virtual void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.CompareTag(TagNames.Player.ToString()))
+        {
+            contextPopup.SetActive(true);
+        }
+    }
 
 }

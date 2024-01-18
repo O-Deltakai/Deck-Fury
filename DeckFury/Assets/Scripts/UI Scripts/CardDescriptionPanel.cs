@@ -53,6 +53,8 @@ public class CardDescriptionPanel : MonoBehaviour
             if(CurrentlyViewedCardSO)
             {
                 UpdateDescription(CurrentlyViewedCardSO);
+                if(lockedIcon) lockedIcon.enabled = false;
+
             }
         }
     }
