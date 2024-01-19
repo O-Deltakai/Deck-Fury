@@ -50,6 +50,7 @@ public class ShopManager : MonoBehaviour
     [Header("SFX")]
     [SerializeField] EventReference buyCardSFX;
     [SerializeField] EventReference buyItemSFX;
+    [SerializeField] EventReference denyPurchaseSFX;
 
     void Awake()
     {
@@ -155,6 +156,7 @@ public class ShopManager : MonoBehaviour
             if(shopCard.Price > stageStateController.PlayerData.CurrentMoney)
             {
                 NotifyInsufficientFunds();
+                RuntimeManager.PlayOneShot(denyPurchaseSFX);
                 return;
             }
 

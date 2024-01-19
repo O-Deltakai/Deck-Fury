@@ -73,7 +73,6 @@ public class WorldShopCard : ShopPurchasable
 
         CR_ToggleDescriptionPanel = StartCoroutine(ToggleDescriptionPanel(false));
         _selected = false;
-        RuntimeManager.PlayOneShot(deselectSFX);
         
     }
 
