@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using FMODUnity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -57,6 +58,12 @@ public abstract class ShopPurchasable : MonoBehaviour
     [SerializeField] protected float selectedScaleMultiplier = 1f;
     Vector3 spriteObjectOriginalScale;
 
+    [Header("SFX")]
+    [SerializeField] protected EventReference selectSFX;
+    [SerializeField] protected EventReference deselectSFX;
+
+
+
     protected virtual void Awake()
     {
         OnSetPrice += SetPriceTag;
@@ -88,6 +95,14 @@ public abstract class ShopPurchasable : MonoBehaviour
                     _selected = true;
                 }
                 
+            }
+
+            if(Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                if(_selected)
+                {
+                    Purchase();
+                }
             }
         }
     }

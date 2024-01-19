@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using FMODUnity;
 using TMPro;
 using UnityEngine;
 
@@ -46,17 +47,25 @@ public class ShopManager : MonoBehaviour
     [SerializeField] int shakeMoneyTextVibrato;
 
 
+    [Header("SFX")]
+    [SerializeField] EventReference buyCardSFX;
+    [SerializeField] EventReference buyItemSFX;
+
     void Awake()
     {
         _instance = this;
         stageStateController = StageStateController.Instance;
         stageStateController.PlayerData.OnPlayerDataModified += SetMoneyText;
+
+
         originalMoneyTextColor = playerCurrentMoneyText.color;
     }
 
     void Start()
     {
         InitializeShop();
+        SetMoneyText();
+
     }
 
     void OnDestroy()
@@ -84,10 +93,9 @@ public class ShopManager : MonoBehaviour
             purchasable.shopManager = this;
         }
 
-        foreach(WorldShopCard shopCard in _purchasables.Cast<WorldShopCard>())
+        foreach(WorldShopCard shopCard in _purchasables.OfType<WorldShopCard>())
         {
             //Randomize card
-            
             shopCard.Card = cardPool[random.Next(0, cardPool.Count() - 1)];
 
             double randomDouble = random.NextDouble();
@@ -142,8 +150,6 @@ public class ShopManager : MonoBehaviour
     public void PurchaseCard(WorldShopCard shopCard)
     {
 
-
-
         if(StageStateController.Instance && CardPoolManager.Instance)
         {
             if(shopCard.Price > stageStateController.PlayerData.CurrentMoney)
@@ -157,14 +163,14 @@ public class ShopManager : MonoBehaviour
             CardPoolManager.Instance.AddDeckElementToPool(deckElement);
             stageStateController.PlayerData.CurrentMoney -= shopCard.Price;
             Destroy(shopCard.gameObject);
+
+            RuntimeManager.PlayOneShot(buyCardSFX);
+
         }
         else
         {
             Debug.LogError("Nowhere to send bought card to.", this);
         }
-
-
-
 
     }
 

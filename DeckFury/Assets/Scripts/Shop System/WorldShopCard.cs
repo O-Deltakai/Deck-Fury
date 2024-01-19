@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -62,6 +63,8 @@ public class WorldShopCard : ShopPurchasable
 
         CR_ToggleDescriptionPanel = StartCoroutine(ToggleDescriptionPanel(true));
         _selected = true;
+
+        RuntimeManager.PlayOneShot(selectSFX);
     }
 
     public override void Deselect()
@@ -70,6 +73,7 @@ public class WorldShopCard : ShopPurchasable
 
         CR_ToggleDescriptionPanel = StartCoroutine(ToggleDescriptionPanel(false));
         _selected = false;
+        RuntimeManager.PlayOneShot(deselectSFX);
         
     }
 
