@@ -43,6 +43,8 @@ public abstract class ShopPurchasable : MonoBehaviour
     [SerializeField] protected bool _selected = false;
     public bool Selected => _selected;
 
+    public bool onSale;
+    [SerializeField] Color onSaleTextColor;
 
 
 [Header("Object Animation Properties")]
@@ -55,7 +57,7 @@ public abstract class ShopPurchasable : MonoBehaviour
     [SerializeField] protected float selectedScaleMultiplier = 1f;
     Vector3 spriteObjectOriginalScale;
 
-    void Awake()
+    protected virtual void Awake()
     {
         OnSetPrice += SetPriceTag;
     }
@@ -95,6 +97,15 @@ public abstract class ShopPurchasable : MonoBehaviour
     public virtual void Deselect(){}
     public virtual void Purchase(){}
 
+    public void SetOnSale(bool condtion)
+    {
+        if(condtion)
+        {
+            onSale = true;
+            PriceTagText.color = onSaleTextColor;
+            PriceTagText.text += "!";
+        }
+    }
 
     IEnumerator FloatObject()
     {
@@ -147,8 +158,18 @@ public abstract class ShopPurchasable : MonoBehaviour
 
     void SetPriceTag(int value)
     {
-        PriceTagText.text = "$:" + value;
-        WorldPriceTag.text = "$" + value;
+        if(onSale)
+        {
+            PriceTagText.color = onSaleTextColor;
+            PriceTagText.text = "$:" + value + "!";
+            WorldPriceTag.color = onSaleTextColor;
+            WorldPriceTag.text = "$" + value + "!";        
+        }else
+        {
+            PriceTagText.text = "$:" + value;
+            WorldPriceTag.text = "$" + value;
+        }
+
     }
 
 

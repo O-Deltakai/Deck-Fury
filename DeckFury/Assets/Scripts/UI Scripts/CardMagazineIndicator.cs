@@ -16,6 +16,7 @@ public class CardMagazineIndicator : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI firstCardText;
 
+    Tween movementTween;
 
     private void Start()
     {
@@ -33,13 +34,22 @@ public class CardMagazineIndicator : MonoBehaviour
 
 
     public void MoveIntoView()
-    {
-        anchorPoint.DOLocalMoveY(0, 0.45f).SetUpdate(true);
+    {   
+        if(movementTween.IsActive())
+        {
+            movementTween.Kill();
+        }
+        movementTween = anchorPoint.DOLocalMoveY(0, 0.45f).SetUpdate(true);
     }
 
     public void MoveOutOfView()
     {
-        anchorPoint.DOLocalMoveY(-1000, 0.15f).SetUpdate(true);
+        if(movementTween.IsActive())
+        {
+            movementTween.Kill();
+        }
+
+        movementTween = anchorPoint.DOLocalMoveY(-1000, 0.15f).SetUpdate(true);
     }
 
 

@@ -1,21 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WorldShopCard : ShopPurchasable
 {
+    event Action<CardSO> OnChangeCard;
+
     [SerializeField] CardSO _card;
     public CardSO Card {get{ return _card; } 
         set
         {
-            Card = value;
+            _card = value;
+            OnChangeCard?.Invoke(value);
         }
     
     }
 
 
     [SerializeField] CardDescriptionPanel cardDescriptionPanel;
+
+
+
 
     [Header("Animate Opening Description Panel Settings")]
     [SerializeField] float expandSpeed = 0.5f;
@@ -25,17 +33,32 @@ public class WorldShopCard : ShopPurchasable
 
     Coroutine CR_ToggleDescriptionPanel = null;
 
+
+    protected override void Awake()
+    {
+        base.Awake();
+        OnChangeCard += SetCard;
+    }
+
     protected override void Start()
     {
         base.Start();
+
         originalDescriptionPanelScale = cardDescriptionPanel.gameObject.transform.localScale;
         cardDescriptionPanel.transform.localScale = Vector3.zero;
+        
+        if(Card)
+        {
+            shopObjectSpriteRenderer.sprite = Card.GetCardImage();
+        }
+
     }
 
 
     public override void Select()
     {
         if(CR_ToggleDescriptionPanel != null) { return; }
+        if(Card) cardDescriptionPanel.UpdateDescription(Card);
 
         CR_ToggleDescriptionPanel = StartCoroutine(ToggleDescriptionPanel(true));
         _selected = true;
@@ -55,7 +78,11 @@ public class WorldShopCard : ShopPurchasable
         shopManager.PurchaseCard(this);
     }
 
-
+    void SetCard(CardSO otherCard)
+    {
+        _card = otherCard;
+        shopObjectSpriteRenderer.sprite = _card.GetCardImage();
+    }
 
 
     IEnumerator ToggleDescriptionPanel(bool toggle)

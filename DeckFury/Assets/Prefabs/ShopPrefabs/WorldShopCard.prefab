@@ -116,7 +116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.018, y: 0.353}
+  m_AnchoredPosition: {x: -0.018, y: 0.361}
   m_SizeDelta: {x: 0.575, y: 0.2243}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &204268354
@@ -2612,7 +2612,7 @@ MonoBehaviour:
   m_text: $:999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e48463e3180208346814a9086766650b, type: 2}
-  m_sharedMaterial: {fileID: -8995054446084175832, guid: e48463e3180208346814a9086766650b, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: e9a34abf65dd11d4e9722e670bbb0e5c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3790,6 +3790,8 @@ MonoBehaviour:
   descriptionPanelCanvas: {fileID: 1207636955}
   _playerInRange: 0
   _selected: 0
+  onSale: 0
+  onSaleTextColor: {r: 1, g: 0.9054849, b: 0.1745283, a: 1}
   floatSpeed: 0.5
   floatHeight: 0.1
   shadowScaleTweenStrength: 1.02

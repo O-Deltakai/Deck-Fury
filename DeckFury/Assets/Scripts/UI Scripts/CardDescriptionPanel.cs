@@ -67,6 +67,11 @@ public class CardDescriptionPanel : MonoBehaviour
 
     public void ChangeColorBasedOnCardTier(int cardTier)
     {
+        if(!descriptionPanelImage) 
+        {
+            descriptionPanelImage = GetComponent<Image>();    
+        }
+
         descriptionPanelImage.color = cardTier switch
         {
             1 => Color.grey,
@@ -117,19 +122,19 @@ public class CardDescriptionPanel : MonoBehaviour
         }
         gameObject.SetActive(true);
     }
-    //Overload for taking in just a specific CardSO - not used at all at the moment but might be useful in the future
+    //Overload for taking in just a specific CardSO
     public void UpdateDescription(CardSO cardSO)
     {
 
         CurrentlyViewedCardSO = cardSO;
 
         //Set values for main panel
-        textDescription.text = cardSO.GetFormattedDescription();
-        cardName.text = cardSO.CardName;
-        cardImage.sprite = cardSO.GetCardImage();
-        elementIcon.sprite = cardUIIcons.GetElementIcon(cardSO.AttackElement);
-        statusIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.StatusEffect);
-        ChangeColorBasedOnCardTier(cardSO.GetCardTier());
+        textDescription.text = CurrentlyViewedCardSO.GetFormattedDescription();
+        cardName.text = CurrentlyViewedCardSO.CardName;
+        cardImage.sprite = CurrentlyViewedCardSO.GetCardImage();
+        elementIcon.sprite = cardUIIcons.GetElementIcon(CurrentlyViewedCardSO.AttackElement);
+        statusIcon.sprite = cardUIIcons.GetStatusIcon(CurrentlyViewedCardSO.StatusEffect);
+        ChangeColorBasedOnCardTier(CurrentlyViewedCardSO.GetCardTier());
 
     //Set values for popout panels
 

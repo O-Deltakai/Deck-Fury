@@ -51,6 +51,10 @@ public class ProceduralGenerator : MonoBehaviour
 
     void Start()
     {
+        if(PersistentLevelController.Instance)
+        {
+            PersistentLevelController.Instance.runRandomGenerator = random;
+        }
         OnCompleteGeneration?.Invoke();
     }
 

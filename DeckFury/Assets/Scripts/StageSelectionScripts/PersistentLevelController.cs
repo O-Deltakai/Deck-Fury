@@ -14,6 +14,10 @@ public class PersistentLevelController : MonoBehaviour
 
     private static PersistentLevelController _instance;
     public static PersistentLevelController Instance{get{return _instance;}}
+
+    public System.Random runRandomGenerator;
+
+
     SceneLoader sceneLoader;
     GameManager gameManager;
     StageSelectionManager stageSelectionManager;
