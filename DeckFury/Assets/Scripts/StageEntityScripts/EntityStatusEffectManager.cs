@@ -45,11 +45,16 @@ public class EntityStatusEffectManager : MonoBehaviour
 
     List<Coroutine> currentBleedingStacks = new List<Coroutine>();
 
+    void Awake()
+    {
+        entity = GetComponent<StageEntity>();
+        entitySpriteRenderer = GetComponent<SpriteRenderer>();      
+
+    }
+
     void Start()
     {
 
-        entity = GetComponent<StageEntity>();
-        entitySpriteRenderer = GetComponent<SpriteRenderer>();      
     }
 
 
@@ -320,8 +325,8 @@ public class EntityStatusEffectManager : MonoBehaviour
     {
         float gracePeriod = duration;
 
-        while (gracePeriod>=0){
-            
+        while (gracePeriod>=0)
+        {    
 
             SetSolidColor(color);
             gracePeriod -= tickrate;

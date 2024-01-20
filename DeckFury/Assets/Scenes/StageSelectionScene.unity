@@ -6586,7 +6586,7 @@ MonoBehaviour:
   mapStagePrefab: {fileID: 1448825447259953787, guid: 8d352fe5b6cb83b4fbb70b8f83fa7178, type: 3}
   mapLevelPrefab: {fileID: 291890619682089367, guid: c260085dbd1ef494ea5439fc8cba28a5, type: 3}
   testGeneration: 1
-  generateUsingGivenStringSeed: 1
+  generateUsingGivenStringSeed: 0
   zoneBlueprint:
     id: 0
   references:
@@ -7730,6 +7730,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingDeck: {fileID: 11400000, guid: 61c69329317e42947b952d5090e2318d, type: 2}
+  _currentMapPrefab: {fileID: 0}
+  _stageType: 0
   <PlayerData>k__BackingField:
     _currentHP: 200
     CurrentDeck:
@@ -7743,7 +7745,6 @@ MonoBehaviour:
     _maxHP: 200
     _items: []
   <StageSpawnTable>k__BackingField: {fileID: 11400000, guid: d312d360e31b18841a0d8333689a0b0d, type: 2}
-  _currentMapPrefab: {fileID: 0}
   hpText: {fileID: 1070677233}
   shieldsText: {fileID: 1683215288}
   moneyText: {fileID: 791981075}

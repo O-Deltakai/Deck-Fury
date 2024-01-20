@@ -26,15 +26,20 @@ public class PersistentLevelController : MonoBehaviour
     //The starting deck shouldn't actually be modified.
     [SerializeField] DeckSO startingDeck;
 
+[Header("Stage Details")]
+    [SerializeField] GameObject _currentMapPrefab;
+    public GameObject CurrentMapPrefab => _currentMapPrefab;
+    [SerializeField] StageType _stageType;
+    public StageType StageType => _stageType;
+    
+
     [field:SerializeField] public PlayerDataContainer PlayerData{get ; private set;}
     [field:SerializeField] public SpawnTableSO StageSpawnTable{get; private set;}
 
     public bool playerIsAtFinalStage { get; private set; } = false ;
 
-    [SerializeField] GameObject _currentMapPrefab;
-    public GameObject CurrentMapPrefab => _currentMapPrefab;
 
-
+[Header("Stage Select UI Elements")]
     //References to the player stat numbers on the stage selection screen
     [SerializeField] TextMeshProUGUI hpText;
     [SerializeField] TextMeshProUGUI shieldsText;
@@ -100,7 +105,7 @@ public class PersistentLevelController : MonoBehaviour
     {
         string sceneName = stage.sceneToLoadName.ToString();
         StageSpawnTable = stage.spawnTable;
-        StageType stageType = stage.TypeOfStage;
+        _stageType = stage.TypeOfStage;
         playerIsAtFinalStage = stage.IsFinalStage;
 
         _currentMapPrefab = stage.mapLayoutPrefab;

@@ -6,6 +6,9 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Manages tracking and calculation of score rewards as well as monetary rewards
+/// </summary>
 [RequireComponent(typeof(RewardConditionChecks))]
 public class ScoreManager : MonoBehaviour
 {
@@ -377,7 +380,15 @@ public class ScoreManager : MonoBehaviour
         OnCalculatedFinalScore?.Invoke();
     }
 
+    public int CalculateMoneyEarned(int score)
+    {
+        if(StageStateController.Instance._stageType == StageType.EliteCombat)
+        {
+            return (int)(score * 0.01f * 2f);
+        }
 
+        return (int)(score * 0.01f);
+    }
 
     public void AddBonusRewardsToScore()
     {

@@ -45,6 +45,9 @@ public class ScoreMenuController : MonoBehaviour
     [SerializeField] GameObject totalScoreElement;
     [SerializeField] TextMeshProUGUI totalScoreValue;
 
+[Header("Money Earned Elements")]
+    [SerializeField] GameObject moneyEarnedElement;
+    [SerializeField] TextMeshProUGUI moneyEarnedValue;
 
 [Header("Special Bonuses Elements")]
     [SerializeField] GameObject specialBonusesPanel;
@@ -72,7 +75,7 @@ public class ScoreMenuController : MonoBehaviour
 
         totalScoreElement.SetActive(false);
 
-
+        moneyEarnedElement.SetActive(false);
     }
 
 
@@ -141,10 +144,19 @@ public class ScoreMenuController : MonoBehaviour
             SetTotalScoreText(StageStateController.Instance.PlayerData.CurrentScore);
             totalScoreElement.SetActive(true);
 
+
+            SetMoneyEarnedText(scoreManager.CalculateMoneyEarned(scoreManager.StageScoreTotal));
+            moneyEarnedElement.SetActive(true);
+
+
             bonusPanelIsOpen = false;
             
         }else
         {
+            
+
+            StageStateController.Instance.PlayerData.CurrentMoney += scoreManager.CalculateMoneyEarned(scoreManager.StageScoreTotal);
+
             if(StageStateController.Instance.isFinalStage)
             {
                 StageStateController.Instance.GoToEndingStage();
@@ -153,7 +165,6 @@ public class ScoreMenuController : MonoBehaviour
                 StageStateController.Instance.ReturnToStageSelect();
             }
         }
-
 
 
     }
@@ -215,6 +226,10 @@ public class ScoreMenuController : MonoBehaviour
             scoreManager.AddScoreToPlayerData(StageStateController.Instance.PlayerData);
             SetTotalScoreText(StageStateController.Instance.PlayerData.CurrentScore);
             totalScoreElement.SetActive(true);
+
+            SetMoneyEarnedText(scoreManager.CalculateMoneyEarned(scoreManager.StageScoreTotal));
+            moneyEarnedElement.SetActive(true);
+
         }
 
         finishedPresentingScore = true;
@@ -305,6 +320,12 @@ public class ScoreMenuController : MonoBehaviour
     {
         totalScoreValue.text = scoreValue.ToString();
     }
+
+    public void SetMoneyEarnedText(int moneyValue)
+    {
+        moneyEarnedValue.text = "+$" + moneyValue.ToString();
+    }
+
     public void EnableTotalScoreText()
     {
         totalScoreElement.SetActive(true);
