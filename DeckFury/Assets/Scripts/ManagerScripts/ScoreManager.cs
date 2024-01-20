@@ -94,9 +94,17 @@ public class ScoreManager : MonoBehaviour
         _instance = this;
 
         spawnManager = FindObjectOfType<SpawnManager>();
-        spawnManager.OnSpawnNewWave += SubscribeEnemiesToEvents;
-        spawnManager.OnAllWavesCleared += CalculateFinalStageScore;
-        spawnManager.OnAllWavesCleared += UnsubscribePlayerToEvents;
+
+        if(spawnManager)
+        {
+            spawnManager.OnSpawnNewWave += SubscribeEnemiesToEvents;
+            spawnManager.OnAllWavesCleared += CalculateFinalStageScore;
+            spawnManager.OnAllWavesCleared += UnsubscribePlayerToEvents;
+        }else
+        {
+            print("Spawnmanager is missing or has been disabled. ScoreManager will not function.");
+        }
+
 
 
         rewardConditionChecks = GetComponent<RewardConditionChecks>();

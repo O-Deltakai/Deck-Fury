@@ -1116,6 +1116,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 30825215, guid: 6e654f40549c15349ab29236546e31ed, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 30825215, guid: 6e654f40549c15349ab29236546e31ed, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 30825215, guid: 6e654f40549c15349ab29236546e31ed, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 30825215, guid: 6e654f40549c15349ab29236546e31ed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 274496984, guid: 6e654f40549c15349ab29236546e31ed, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 274496984, guid: 6e654f40549c15349ab29236546e31ed, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 274496984, guid: 6e654f40549c15349ab29236546e31ed, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 274496984, guid: 6e654f40549c15349ab29236546e31ed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 333126762, guid: 6e654f40549c15349ab29236546e31ed, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2167,6 +2199,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6594578219302708170, guid: a9a7ebeeff38c194a90e2acbe8cb6f09, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6594578219302708171, guid: a9a7ebeeff38c194a90e2acbe8cb6f09, type: 3}
       propertyPath: StopSpawning
       value: 0
@@ -2185,6 +2221,10 @@ PrefabInstance:
       objectReference: {fileID: 1388264036183939611}
     - target: {fileID: 6594578219302708171, guid: a9a7ebeeff38c194a90e2acbe8cb6f09, type: 3}
       propertyPath: DisableAllSpawning
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594578219302708171, guid: a9a7ebeeff38c194a90e2acbe8cb6f09, type: 3}
+      propertyPath: StopRandomSpawning
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

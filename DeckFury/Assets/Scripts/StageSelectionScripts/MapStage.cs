@@ -172,7 +172,7 @@ public class MapStage : MonoBehaviour
         StageType[] validStages = new StageType[]
         {
             StageType.Combat,
-            StageType.EliteCombat,
+            //StageType.EliteCombat,
             StageType.Shop,
             StageType.RestPoint
         };
