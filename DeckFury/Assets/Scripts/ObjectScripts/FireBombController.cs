@@ -145,7 +145,7 @@ public class FireBombController : MonoBehaviour
     {
         bombExplosionCollider.enabled = true;
 
-        int stageEntitiesLayer = LayerMask.NameToLayer("StageEntities");
+        int stageEntitiesLayer = LayerMask.NameToLayer(LayerNames.StageEntities.ToString());
         LayerMask stageEntitiesMask = 1 << stageEntitiesLayer;
 
         Collider2D[] hits = Physics2D.OverlapBoxAll(bombExplosionCollider.transform.position, bombExplosionCollider.size, 0, stageEntitiesMask);
@@ -162,7 +162,7 @@ public class FireBombController : MonoBehaviour
             }
 
 
-            if(entityHit.CompareTag("Enemy") || entityHit.CompareTag("EnvironmentalHazard"))
+            if(entityHit.CompareTag(TagNames.Enemy.ToString()) || entityHit.CompareTag(TagNames.EnvironmentalHazard.ToString()))
             {
                 entityHit.HurtEntity(attackPayload);
             }             

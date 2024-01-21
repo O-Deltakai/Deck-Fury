@@ -8,7 +8,8 @@ public class NPC : StageEntity
     public delegate void NPCDefeatEventHandler(AttackPayload? killingBlow, NPC npc);
     public event NPCDefeatEventHandler OnNPCDefeat;
 
-    [SerializeField] EnemyDataSO enemyData;
+    [SerializeField] EnemyDataSO _enemyData;
+    public EnemyDataSO EnemyData => _enemyData;
 
 
     public PlayerController player;
@@ -24,9 +25,9 @@ public class NPC : StageEntity
 
     protected void InitializeNPCAwakeVariables()
     {
-        if(enemyData)
+        if(_enemyData)
         {
-            AssignData(enemyData);
+            AssignData(_enemyData);
         }
     }
 
@@ -58,6 +59,11 @@ public class NPC : StageEntity
         {
             resistances.Add(resist);
         }
+
+        CurrentHP = _enemyData.MaxHP;
+        ShieldHP = _enemyData.ShieldHP;
+        Armor = _enemyData.Armor;
+        defense = _enemyData.Defense;
 
     }
 

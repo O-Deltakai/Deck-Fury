@@ -52,6 +52,8 @@ public class StageEntity : MonoBehaviour
     public delegate void CurrentHPChangedHandler(int oldValue, int newValue);
     public event CurrentHPChangedHandler OnHPChanged;
 
+    public event Action<int> OnArmorChanged;
+
     public event Action OnTakeCritDamage;
     public event Action OnResistDamage;
 
@@ -131,7 +133,25 @@ public class StageEntity : MonoBehaviour
     }
     
 
-    [Range(0, 100)] public int armor = 0;
+    [Range(0, 100)] int _armor = 0;
+    public int Armor {get { return _armor; } 
+        set
+        {
+            if(value < 0)
+            {
+                _armor = 0;
+            }else 
+            if(value > 100)
+            {
+                _armor = 100;
+            }else
+            {
+                _armor = value;
+            }
+            OnArmorChanged?.Invoke(value);
+        }
+    }
+
     [Range(0.1f, 10f)] public double defense = 1;
 
     [SerializeField] protected List<AttackElement> weaknesses; // What attack elements is this entity weak to (take bonus damage from)?
@@ -140,11 +160,15 @@ public class StageEntity : MonoBehaviour
     [SerializeField] protected double resistModifier = 0.5f;
 
 
-
+[Header("Entity Stat UI Elements")]
     [SerializeField] protected TextMeshPro HPText;
     public Color DefaultHPTextColor {get; private set;}
     [SerializeField] protected TextMeshPro ShieldsText;
     public Color DefaultShieldTextColor {get; private set;}
+
+    [SerializeField] protected SpriteRenderer _armorIcon;
+    public SpriteRenderer ArmorIcon => _armorIcon;
+
 
     //Variable meant to indicate what direction the entity is facing. Normally used for aiming NPC attacks.    
     public AimDirection FacingDirection {get;private set;}
@@ -216,6 +240,15 @@ public class StageEntity : MonoBehaviour
                 {
                     ShieldsText.gameObject.SetActive(false);
                 }
+            }
+
+        }
+
+        if(_armorIcon)
+        {
+            if(Armor <= 0)
+            {
+                _armorIcon.gameObject.SetActive(false);
             }
         }
 
@@ -635,24 +668,33 @@ public class StageEntity : MonoBehaviour
             actualHitFlashColor = Color.white;
         }
 
-        //Iterate over all status effects in the attack payload and trigger each status effect sequentially
-        foreach(StatusEffectType statusEffect in finalPayload.statusEffectType)
+        if(finalPayload.statusEffectType != null)
         {
-            if(statusEffect == StatusEffectType.None)
+            //Iterate over all status effects in the attack payload and trigger each status effect sequentially
+            foreach(StatusEffectType statusEffect in finalPayload.statusEffectType)
             {
-                continue;
+                if(statusEffect == StatusEffectType.None)
+                {
+                    continue;
+                }
+                statusEffectManager.TriggerStatusEffect(statusEffect);
             }
-            statusEffectManager.TriggerStatusEffect(statusEffect);
+
         }
 
-        foreach(StatusEffect statusEffect in finalPayload.actualStatusEffects)
+        if(finalPayload.actualStatusEffects != null)
         {
-            if(statusEffect.statusEffectType == StatusEffectType.None)
+            foreach(StatusEffect statusEffect in finalPayload.actualStatusEffects)
             {
-                continue;
+                if(statusEffect.statusEffectType == StatusEffectType.None)
+                {
+                    continue;
+                }
+                statusEffectManager.TriggerStatusEffect(finalPayload, statusEffect);
             }
-            statusEffectManager.TriggerStatusEffect(finalPayload, statusEffect);
         }
+
+
 
 
         int damageAfterModifiers;
@@ -744,7 +786,7 @@ public class StageEntity : MonoBehaviour
 
             if(damageAfterModifiers != 0)
             {
-                damageAfterModifiers = (int)(damageAfterModifiers * ((100 - armor) * 0.01) * defense);
+                damageAfterModifiers = (int)(damageAfterModifiers * ((100 - Armor) * 0.01) * defense);
                 UIElementAnimator.AnimateShakeNumber(HPText, damageAfterModifiers, DefaultHPTextColor, Color.red);
                 if(wentThroughShields)
                 {

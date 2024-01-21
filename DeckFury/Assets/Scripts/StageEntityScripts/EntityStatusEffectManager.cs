@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using FMODUnity;
 using UnityEngine;
 
+
 public class EntityStatusEffectManager : MonoBehaviour
 {
     public delegate void StunnedEventHandler();
@@ -16,21 +17,32 @@ public class EntityStatusEffectManager : MonoBehaviour
     SpriteRenderer entitySpriteRenderer;
     StageEntity entity;
 
+[Header("Can Be Affected By")]
     [SerializeField] bool CanBeAffectedByStatusEffects = true;
     [SerializeField] bool CanBeStunned = true;
     [SerializeField] bool CanBleed = true;
+    [SerializeField] bool CanBeArmorBroken = true;
 
-    [Header("Effect Objects")]
+[Header("Effect Objects")]
     [SerializeField] GameObject markedEffectObject;
     [SerializeField] GameObject bleedingEffectObject;
-
-
+    [SerializeField] GameObject armorbreakEffectObject;
+    [SerializeField] GameObject fireExplosionPrefab;
 
     public bool MarkedForDeath = false; 
 
-    [Header("Default Status Values")]
+[Header("Default Status Values")]
     [SerializeField] float BaseStunDuration = 1.5f;
     [SerializeField] float BaseMarkedDuration = 3f;
+    [SerializeField] float BaseArmorbreakDuration = 10f;
+
+[Header("Status Strength Modifiers")]
+    [SerializeField, Range(0, 10)] float stunStrengthMod = 1;
+    [SerializeField, Range(0, 10)] float markedStrengthMod = 1;
+    [SerializeField, Range(0, 10)] float armorbreakStrengthMod = 1;
+    [SerializeField, Range(0, 10)] float bleedStrengthMod = 1;
+
+
 
     [SerializeField] Color bleedingColor = new Color(1, 0.47f, 0.47f);
 
@@ -45,6 +57,12 @@ public class EntityStatusEffectManager : MonoBehaviour
 
     List<Coroutine> currentBleedingStacks = new List<Coroutine>();
 
+
+    Coroutine CR_ArmorbreakCoroutine = null;
+
+    int _originalArmorValue;
+
+
     void Awake()
     {
         entity = GetComponent<StageEntity>();
@@ -54,7 +72,7 @@ public class EntityStatusEffectManager : MonoBehaviour
 
     void Start()
     {
-
+        _originalArmorValue = entity.Armor;
     }
 
 
@@ -212,7 +230,27 @@ public class EntityStatusEffectManager : MonoBehaviour
 
     void ArmorBreakEffect(float strength = 1)
     {
+        if (_originalArmorValue <= 0) { return; }
 
+        if(CR_ArmorbreakCoroutine != null)
+        {
+            StopCoroutine(CR_ArmorbreakCoroutine);
+        }
+
+        CR_ArmorbreakCoroutine = StartCoroutine(ArmorBreakDuration(BaseArmorbreakDuration, strength));
+    }
+
+    IEnumerator ArmorBreakDuration(float duration, float strength)
+    {
+        entity.Armor = 0;
+        armorbreakEffectObject.SetActive(true);
+
+        yield return new WaitForSeconds(duration * strength);
+
+        entity.Armor = _originalArmorValue;
+        armorbreakEffectObject.SetActive(false);
+
+        CR_ArmorbreakCoroutine = null;
     }
 
     void MarkedForDeathEffect(float strength = 1, float duration = 0)
@@ -271,6 +309,7 @@ public class EntityStatusEffectManager : MonoBehaviour
             break;
 
             case AttackElement.Fire:
+            TriggerFireExplosion(payload);
             break;
 
             case AttackElement.Water:
@@ -343,6 +382,29 @@ public class EntityStatusEffectManager : MonoBehaviour
     {
         StopCoroutine(ColorFlashCoroutine);
         SetNormalSprite();
+    }
+
+    void TriggerFireExplosion(AttackPayload attackPayload)
+    {
+        if(!fireExplosionPrefab)
+        {
+            Debug.LogWarning("Fire explosion prefab has not been set, cannot trigger marked effect for fire.", this);
+            return;
+        }
+
+        MarkedFireExplosion fireExplosion = Instantiate(fireExplosionPrefab, entity.worldTransform.position, Quaternion.identity)
+                                                        .GetComponent<MarkedFireExplosion>();
+        AttackPayload modifiedPayload = new AttackPayload
+        {
+            damage = attackPayload.damage / 2,
+            attackElement = AttackElement.Fire,
+            canTriggerMark = false
+        };
+
+        entity.HurtEntity(modifiedPayload);
+
+        fireExplosion.Trigger(modifiedPayload);                                                
+
     }
 
 

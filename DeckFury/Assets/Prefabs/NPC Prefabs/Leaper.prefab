@@ -931,11 +931,19 @@ MonoBehaviour:
   CanBeAffectedByStatusEffects: 1
   CanBeStunned: 1
   CanBleed: 1
+  CanBeArmorBroken: 1
   markedEffectObject: {fileID: 5528440534566088292}
   bleedingEffectObject: {fileID: 2469206749861529210}
+  armorbreakEffectObject: {fileID: 7228508647698221306}
+  fireExplosionPrefab: {fileID: 3983791032476274815, guid: df027b999d3ae624da77ed34b70eee8d, type: 3}
   MarkedForDeath: 0
   BaseStunDuration: 1.5
   BaseMarkedDuration: 3
+  BaseArmorbreakDuration: 10
+  stunStrengthMod: 1
+  markedStrengthMod: 1
+  armorbreakStrengthMod: 1
+  bleedStrengthMod: 1
   bleedingColor: {r: 1, g: 0.47, b: 0.47, a: 1}
   triggerMarkedSFX:
     Guid:
@@ -991,7 +999,6 @@ MonoBehaviour:
   <CannotBeTargeted>k__BackingField: 0
   currentHP: 20
   shieldHP: 40
-  armor: 50
   defense: 1
   weaknesses: 
   weaknessModifier: 1.5
@@ -999,8 +1006,9 @@ MonoBehaviour:
   resistModifier: 0.5
   HPText: {fileID: 9145887351593113577}
   ShieldsText: {fileID: 9145887351148121681}
+  _armorIcon: {fileID: 4804256953418466600}
   DoNotShowHP: 0
-  entitySpriteRenderer: {fileID: 0}
+  entitySpriteRenderer: {fileID: 6652887403877378532}
   OnDamagedSFX:
     Guid:
       Data1: 2067571330
@@ -1015,7 +1023,7 @@ MonoBehaviour:
       Data3: 1078106512
       Data4: -91266903
     Path: event:/Characters/RobotDeath
-  enemyData: {fileID: 11400000, guid: 52e12dc2367ceaa46bcadd1e55732149, type: 2}
+  _enemyData: {fileID: 11400000, guid: 52e12dc2367ceaa46bcadd1e55732149, type: 2}
   player: {fileID: 0}
   enemyTier: 2
   NPCAbilities: []
@@ -1077,7 +1085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &575987912518567345
 Transform:
   m_ObjectHideFlags: 0
@@ -1086,8 +1094,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7228508647698221306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.45, y: 0.33, z: 0}
+  m_LocalScale: {x: 0.4253, y: 0.4253, z: 0.4253}
   m_Children: []
   m_Father: {fileID: 8679031375972802796}
   m_RootOrder: 2
@@ -1129,18 +1137,18 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1444239793
-  m_SortingLayer: 2
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_SortingLayerID: -1257485985
+  m_SortingLayer: 3
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 267e1e963bd2d63429e2fbca5e3c664d, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.6392157}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &4911928267462476421
@@ -1181,7 +1189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &436821343245638815
 Transform:
   m_ObjectHideFlags: 0
@@ -1422,7 +1430,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -164165500861538823, guid: 8aa55909cf4c9784b9305cb3b9fd9475, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.90588236, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

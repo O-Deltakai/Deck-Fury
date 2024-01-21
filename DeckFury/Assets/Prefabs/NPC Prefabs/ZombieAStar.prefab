@@ -897,12 +897,27 @@ MonoBehaviour:
   CanBeAffectedByStatusEffects: 1
   CanBeStunned: 1
   CanBleed: 1
+  CanBeArmorBroken: 1
   markedEffectObject: {fileID: 1745381194}
   bleedingEffectObject: {fileID: 1163518772}
+  armorbreakEffectObject: {fileID: 0}
+  fireExplosionPrefab: {fileID: 3983791032476274815, guid: df027b999d3ae624da77ed34b70eee8d, type: 3}
   MarkedForDeath: 0
   BaseStunDuration: 1.5
   BaseMarkedDuration: 4
+  BaseArmorbreakDuration: 10
+  stunStrengthMod: 1
+  markedStrengthMod: 1
+  armorbreakStrengthMod: 1
+  bleedStrengthMod: 1
   bleedingColor: {r: 1, g: 0.47058824, b: 0.47058824, a: 1}
+  triggerMarkedSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &4884873642080620682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -950,7 +965,6 @@ MonoBehaviour:
   <CannotBeTargeted>k__BackingField: 0
   currentHP: 100
   shieldHP: 0
-  armor: 0
   defense: 1
   weaknesses: 
   weaknessModifier: 1.5
@@ -958,6 +972,7 @@ MonoBehaviour:
   resistModifier: 0.5
   HPText: {fileID: 8947612404291860518}
   ShieldsText: {fileID: 4224279778098736861}
+  _armorIcon: {fileID: 0}
   DoNotShowHP: 0
   entitySpriteRenderer: {fileID: 0}
   OnDamagedSFX:
@@ -974,7 +989,7 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
-  enemyData: {fileID: 11400000, guid: 8b52f0425dde5c14cbeb0ab6405d0921, type: 2}
+  _enemyData: {fileID: 11400000, guid: 8b52f0425dde5c14cbeb0ab6405d0921, type: 2}
   player: {fileID: 0}
   enemyTier: 1
   NPCAbilities:
