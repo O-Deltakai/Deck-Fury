@@ -11,6 +11,7 @@ public class MarkedFireExplosion : MonoBehaviour
 
     public AttackPayload attackPayload;
 
+    [SerializeField] float triggerDelay = 0.05f;
     [SerializeField] float lifetime;
 
     bool _triggered = false;
@@ -49,11 +50,19 @@ public class MarkedFireExplosion : MonoBehaviour
 
         this.attackPayload = attackPayload;
 
+        StartCoroutine(TriggerDelay());
+        StartCoroutine(SelfDestructTimer(lifetime));        
+
+    }
+
+    IEnumerator TriggerDelay()
+    {
+        yield return new WaitForSeconds(triggerDelay);
         RuntimeManager.PlayOneShotAttached(explosionSFX, gameObject);
 
         EnableExplosions();
         ActivateExplosionColliders();
-        StartCoroutine(SelfDestructTimer(lifetime));
+        
     }
 
     void EnableExplosions()

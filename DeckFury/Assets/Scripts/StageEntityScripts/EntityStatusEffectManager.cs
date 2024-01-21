@@ -169,11 +169,11 @@ public class EntityStatusEffectManager : MonoBehaviour
         entity.CanInitiateMovementActions = true;        
     }
 
-
+    
     void BleedingEffect(int baseDamage, double strength = 1, double totalDuration = 3, double tickrate = 0.25f)
     {
         if(!CanBleed){return;}
-        int totalDamage = (int)(baseDamage * 2 * strength);
+        int totalDamage = (int)(baseDamage * 1.5 * strength);
 
         entitySpriteRenderer.color = bleedingColor;
 
