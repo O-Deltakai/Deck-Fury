@@ -72,6 +72,16 @@ public class NPC : StageEntity
     {
         base.AdditionalDestructionEvents(killingBlow);
         OnNPCDefeat?.Invoke(killingBlow, this);
+
+        if(killingBlow.HasValue && killingBlow.Value.attacker != null)
+        {
+            print("Killing blow has value, attacker: " + killingBlow.Value.attacker.name);
+            if(killingBlow.Value.attacker.CompareTag(TagNames.Player.ToString()))
+            {
+                player.KillEnemyTrigger(this);
+            }
+        }
+
     }
 
 

@@ -52,6 +52,12 @@ public class PlayerDashController : MonoBehaviour
     public Vector2 EndPosition { get; private set; }
 
 
+    Coroutine CR_DashCooldown = null;
+    Coroutine CR_RefreshCoroutine = null;
+
+    Tween dashIndicatorImageFillTween = null;
+    Tween dashIndicatorImageColorTween = null;
+
     void Awake()
     {
         player = GetComponent<PlayerController>();
@@ -74,6 +80,11 @@ public class PlayerDashController : MonoBehaviour
 
         if(context.canceled)
         {
+            if(CR_RefreshCoroutine != null)
+            {
+                StopCoroutine(CR_RefreshCoroutine);
+            }
+
             DashTowardsAim();
             _dashReticle.SetActive(false);
         }
@@ -114,7 +125,7 @@ public class PlayerDashController : MonoBehaviour
                 StartCoroutine(DashTrailTimer());
 
                 animationController.PlayAnimationClip(dashAnimation);
-                StartCoroutine(DashCooldown());
+                CR_DashCooldown = StartCoroutine(DashCooldown());
 
                 RuntimeManager.PlayOneShot(dashSFX, transform.position);
 
@@ -133,7 +144,7 @@ public class PlayerDashController : MonoBehaviour
 
 
                 animationController.PlayAnimationClip(dashAnimation);
-                StartCoroutine(DashCooldown());
+                CR_DashCooldown = StartCoroutine(DashCooldown());
                 RuntimeManager.PlayOneShot(dashSFX, transform.position);
 
                 EndPosition = new Vector2(validPosition.x, validPosition.y);
@@ -156,7 +167,7 @@ public class PlayerDashController : MonoBehaviour
 
                     
                     animationController.PlayAnimationClip(dashAnimation);
-                    StartCoroutine(DashCooldown());
+                    CR_DashCooldown = StartCoroutine(DashCooldown());
                     RuntimeManager.PlayOneShot(dashSFX, transform.position);
 
                     EndPosition = new Vector2(validPosition.x, validPosition.y);
@@ -172,7 +183,7 @@ public class PlayerDashController : MonoBehaviour
             StartCoroutine(DashTrailTimer());
 
             StartCoroutine(DisableHitboxTimer());
-            StartCoroutine(DashCooldown());
+            CR_DashCooldown = StartCoroutine(DashCooldown());
             RuntimeManager.PlayOneShot(dashSFX, transform.position);
             EndPosition = new Vector2(destination.x, destination.y);
 
@@ -209,16 +220,48 @@ public class PlayerDashController : MonoBehaviour
         dashIndicatorFrame.color = onCooldownFrameColor;
 
         dashIndicatorObject.SetActive(true);
-        dashIndicatorImage.DOFillAmount(1, dashCooldown).SetEase(Ease.Linear);
+        dashIndicatorImageFillTween = dashIndicatorImage.DOFillAmount(1, dashCooldown).SetEase(Ease.Linear);
 
 
         yield return new WaitForSeconds(dashCooldown - 0.2f);
-        dashIndicatorFrame.DOColor(dashReadyFrameColor, 0.2f); //Change frame color to indicate dash is ready
+        dashIndicatorImageColorTween = dashIndicatorFrame.DOColor(dashReadyFrameColor, 0.2f); //Change frame color to indicate dash is ready
         yield return new WaitForSeconds(0.2f);
 
         dashIndicatorObject.SetActive(false);
 
         usedDash = false;
+        CR_DashCooldown = null;
+    }
+
+    public void RefreshCooldown()
+    {
+        if(CR_DashCooldown == null) { return; }
+        
+        if(CR_RefreshCoroutine != null)
+        {
+            StopCoroutine(CR_RefreshCoroutine);
+        }
+
+        StopCoroutine(CR_DashCooldown);
+        dashIndicatorImageColorTween.Kill();
+        dashIndicatorImageFillTween.Kill();
+
+        CR_RefreshCoroutine = StartCoroutine(RefreshCoroutine());
+
+    }
+
+    IEnumerator RefreshCoroutine()
+    {
+        dashIndicatorImage.fillAmount = 1;
+        dashIndicatorFrame.color = dashReadyFrameColor; //Change frame color to indicate dash is ready
+        usedDash = false;
+
+        yield return new WaitForSeconds(0.2f);
+        
+        dashIndicatorObject.SetActive(false);
+
+        CR_RefreshCoroutine = null;
+
     }
 
 }

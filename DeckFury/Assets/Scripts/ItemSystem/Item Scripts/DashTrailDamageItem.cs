@@ -26,6 +26,7 @@ public class DashTrailDamageItem : ItemBase
         stageManager = StageManager.Instance;
         player.DashController.DashTrail.colorGradient = dashTrailColorOverride;
         player.DashController.OnDash += Proc;
+        dashAttackPayload.attacker = player.gameObject;
     }
 
 

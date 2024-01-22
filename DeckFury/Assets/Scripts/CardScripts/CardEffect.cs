@@ -51,6 +51,11 @@ public abstract class CardEffect : MonoBehaviour
     //All card effects should begin anchored on the world transform of the player
     protected void InitializeStartingStates()
     {
+        if(player != null)
+        {
+            attackPayload.attacker = player.gameObject;
+            attackPayload.attackerSprite = player.gameObject.GetComponent<SpriteRenderer>().sprite;
+        }        
         transform.position = player.worldTransform.position;
     }
 

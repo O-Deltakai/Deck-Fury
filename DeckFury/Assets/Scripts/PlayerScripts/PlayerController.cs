@@ -12,6 +12,9 @@ using FMODUnity;
 public class PlayerController : StageEntity
 {
 
+    public delegate void KillEnemyEventHandler();
+    public event KillEnemyEventHandler OnKillEnemy;
+
     public delegate void BasicAttackEventHandler();
     public event BasicAttackEventHandler OnBasicAttack;
 
@@ -92,6 +95,11 @@ public class PlayerController : StageEntity
 
     }
 
+    public void KillEnemyTrigger(NPC enemy)
+    {
+        print("Player killed: " + enemy.name);
+        OnKillEnemy?.Invoke();
+    }
 
     void Update()
     {

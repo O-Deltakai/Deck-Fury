@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67bdf40430eebf44bba6f4bb68e0f79f, type: 3}
-  m_Name: DashReset
+  m_Name: DashResetOnKill
   m_EditorClassIdentifier: 
-  _itemName: DashReset
+  _itemName: Dash Reset On Kill
+  _shortDescription: 
   _itemDescription: Killing an enemy immediately refreshes your dash.
-  _value: 0
-  _rarity: 1
+  _value: 100
+  _rarity: 2
   _quantifiableEffects: []
   _itemImage: {fileID: 0}
   _itemPrefab: {fileID: 0}
