@@ -297,6 +297,7 @@ GameObject:
   - component: {fileID: 9021787420508626668}
   - component: {fileID: 8153345067395762281}
   - component: {fileID: 802350797783341540}
+  - component: {fileID: 3945925794979642286}
   m_Layer: 5
   m_Name: Reward Slot
   m_TagString: Untagged
@@ -398,6 +399,7 @@ MonoBehaviour:
   statusName: {fileID: 8952430219410749626}
   statusPopoutIcon: {fileID: 5783173577952655998}
   <CurrentlyViewedCardSO>k__BackingField: {fileID: 11400000, guid: fd0cf271a4e7afa4ab4d45665d9ab63f, type: 2}
+  fadeoutDuration: 2
 --- !u!114 &802350797783341540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,6 +456,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!225 &3945925794979642286
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685966683158613712}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1738387938651410843
 GameObject:
   m_ObjectHideFlags: 0

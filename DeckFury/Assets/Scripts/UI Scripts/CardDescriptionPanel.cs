@@ -224,6 +224,7 @@ public class CardDescriptionPanel : MonoBehaviour
 
     public void BeginFadeOut()
     {
+        if(!gameObject.activeInHierarchy) { return; }
         if(lockedInPlace) { return; }
         if(CR_FadeoutTimer != null) { return; }
 
