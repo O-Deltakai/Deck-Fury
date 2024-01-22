@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!96 &8642038 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 737527620, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
+  m_PrefabInstance: {fileID: 1755202098704932411}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &95659827 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1755202097491930492, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
@@ -501,7 +506,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b5387d3c2ba98fc44a0f5744f94ce48c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2054,7 +2059,7 @@ PrefabInstance:
     - target: {fileID: 1755202098704932413, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
       propertyPath: dashTrail
       value: 
-      objectReference: {fileID: 1082366036}
+      objectReference: {fileID: 8642038}
     - target: {fileID: 5978173093845493249, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
       propertyPath: itemList.Array.size
       value: 2

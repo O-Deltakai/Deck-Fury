@@ -5,27 +5,26 @@ using UnityEngine;
 public class DashTrailDamageItem : ItemBase
 {
 
-
     [SerializeField] AttackPayload dashAttackPayload;
-
     [SerializeField] LayerMask targetLayer;
 
+    [SerializeField] Gradient dashTrailColorOverride;
 
     protected override void Awake()
     {
         base.Awake();
+        dashAttackPayload = new AttackPayload(itemSO.QuantifiableEffects[0].IntegerQuantity)
+        {
+            attackElement = AttackElement.Neutral,
+            canTriggerMark = false
+        };
     }
-
-    void FixedUpdate()
-    {
-        transform.position = player.worldTransform.position;
-    }
-
 
     public override void Initialize()
     {
         base.Initialize();
         stageManager = StageManager.Instance;
+        player.DashController.DashTrail.colorGradient = dashTrailColorOverride;
         player.DashController.OnDash += Proc;
     }
 

@@ -23,6 +23,7 @@ public class PlayerDashController : MonoBehaviour
     public GameObject DashReticle {get { return _dashReticle; }}
 
     [SerializeField] TrailRenderer dashTrail;
+    public TrailRenderer DashTrail => dashTrail;
 
 [Header("Dash Indicator")]
     [SerializeField] GameObject dashIndicatorObject;
