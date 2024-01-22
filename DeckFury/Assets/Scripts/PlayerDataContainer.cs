@@ -58,7 +58,7 @@ public class PlayerDataContainer
     public int BaseArmor => _baseArmor;
 
 
-    [SerializeField] double _baseDefense= 1;
+    [SerializeField] double _baseDefense = 1;
     public double BaseDefense => _baseDefense;
 
 

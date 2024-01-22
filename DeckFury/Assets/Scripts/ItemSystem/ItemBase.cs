@@ -21,6 +21,11 @@ public abstract class ItemBase : MonoBehaviour
     protected bool _initialized = false;
     public bool Initialized => _initialized;
 
+    protected virtual void Awake()
+    {
+
+    }
+
     protected virtual void Start()
     {
         
@@ -33,6 +38,7 @@ public abstract class ItemBase : MonoBehaviour
     public virtual void Initialize()
     {
         OnInitialize?.Invoke(this);
+        _initialized = true;
     } 
 
 /// <summary>

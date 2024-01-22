@@ -28,7 +28,8 @@ public class PlayerController : StageEntity
     [SerializeField] int basicShotDamage;
 
 
-    PlayerDashController dashController;
+    PlayerDashController _dashController;
+    public PlayerDashController DashController => _dashController;
     PlayerAnimationController animationController;
     PlayerCardManager cardManager;
 
@@ -66,7 +67,7 @@ public class PlayerController : StageEntity
         animationController = GetComponent<PlayerAnimationController>();
         cardManager = GetComponent<PlayerCardManager>();
         playerCollider = GetComponent<BoxCollider2D>();
-        dashController = GetComponent<PlayerDashController>();
+        _dashController = GetComponent<PlayerDashController>();
         bufferHandler = GetComponent<InputBufferHandler>();
         
         //implement for energy system
@@ -423,32 +424,32 @@ public class PlayerController : StageEntity
         if(!CanUsePlayerInput()) { return; }
         if(MovingCoroutine != null) 
         {
-            dashController.DashReticle.SetActive(false);
+            _dashController.DashReticle.SetActive(false);
             return; 
         }
 
         if(context.performed)
         {
-            if(!dashController.CanDash())
+            if(!_dashController.CanDash())
             {
-                dashController.inputPressedDuringCooldown = true;
+                _dashController.inputPressedDuringCooldown = true;
                 return;
             }
 
-            dashController.DashReticle.SetActive(true);
+            _dashController.DashReticle.SetActive(true);
         }
         else if(context.canceled)
         {
-            if(dashController.inputPressedDuringCooldown)
+            if(_dashController.inputPressedDuringCooldown)
             {
-                dashController.inputPressedDuringCooldown = false;
+                _dashController.inputPressedDuringCooldown = false;
                 return;
             }
 
-            if(dashController.CanDash())
+            if(_dashController.CanDash())
             {
-                dashController.DashTowardsAim();
-                dashController.DashReticle.SetActive(false);
+                _dashController.DashTowardsAim();
+                _dashController.DashReticle.SetActive(false);
             }
 
         }

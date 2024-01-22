@@ -18,8 +18,8 @@ public class PlayerItemController : MonoBehaviour
     {
         foreach(var item in itemList)
         {
-            item.Initialize();
             item.player = GetComponent<PlayerController>();
+            item.Initialize();
         }
     }
 

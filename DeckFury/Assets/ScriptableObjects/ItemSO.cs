@@ -8,6 +8,10 @@ public class ItemSO : ScriptableObject
     [SerializeField] string _itemName;
     public string ItemName => _itemName;
 
+    [SerializeField, TextArea(5, 10)] string _shortDescription;
+    public string ShortDescription => _shortDescription;
+
+
     [SerializeField, TextArea(10, 20)] string _itemDescription;
     /// <summary>
     /// The unformatted string description of the item.
@@ -51,6 +55,19 @@ public class ItemSO : ScriptableObject
 
         return formattedDescription;
     }    
+
+    public string GetFormattedShortDescription()
+    {
+        string formattedDescription = ShortDescription;
+
+        for(int i = 0; i < QuantifiableEffects.Count ; i++) 
+        {
+            string qEffect = "Q" + i;
+            formattedDescription = formattedDescription.Replace(qEffect, QuantifiableEffects[i].GetValueDynamic().ToString());
+        }
+
+        return formattedDescription;
+    } 
 
 
 }

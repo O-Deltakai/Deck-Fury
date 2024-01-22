@@ -10,25 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67bdf40430eebf44bba6f4bb68e0f79f, type: 3}
-  m_Name: HPToShieldConverter
+  m_Name: StunVulnerablility
   m_EditorClassIdentifier: 
-  _itemName: HPToShieldConverter
+  _itemName: Stun Vulnerability
   _shortDescription: 
-  _itemDescription: 'Converts <b>Q0%</b> of your max HP to <b><color=#6DEDFF>Shields</color></b>.
-
-
-    Shields
-    regenerate outside of combat but are unaffected by armor, and can be bypassed
-    by certain attacks.'
-  _value: 300
-  _rarity: 3
+  _itemDescription: Stunning an enemy makes them vulnerable for the stun duration,
+    taking <b>Q0x</b> more damage from all sources
+  _value: 50
+  _rarity: 1
   _quantifiableEffects:
-  - <EffectName>k__BackingField: HP To Shields Conversion Rate
+  - <EffectName>k__BackingField: Vulnerability Damage Amp
     <IntegerQuantity>k__BackingField: 0
-    <FloatQuantity>k__BackingField: 50
+    <FloatQuantity>k__BackingField: 1.25
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
   _itemImage: {fileID: 0}
   _itemPrefab: {fileID: 0}
-  _hasEffectOutsideBattle: 1
-  _oneTimeEffect: 1
+  _hasEffectOutsideBattle: 0
+  _oneTimeEffect: 0

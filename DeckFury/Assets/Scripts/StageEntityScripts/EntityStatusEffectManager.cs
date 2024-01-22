@@ -294,6 +294,7 @@ public class EntityStatusEffectManager : MonoBehaviour
 
     public AttackPayload TriggerMarkEffect(AttackPayload payload)
     {
+        CancelMarked();
         //if(!MarkedForDeath){return payload;}
         AttackPayload markedPayload = payload;
 
@@ -334,7 +335,6 @@ public class EntityStatusEffectManager : MonoBehaviour
             break;
         }
 
-        CancelMarked();
 
         if(triggerMarkedSFX.IsNull)
         {

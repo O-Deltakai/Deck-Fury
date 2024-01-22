@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -8,6 +9,9 @@ using UnityEngine.UI;
 
 public class PlayerDashController : MonoBehaviour
 {
+    public event Action OnDash;
+
+
     PlayerController player;
     StageManager stageManager;
     PlayerAnimationController animationController;
@@ -34,6 +38,7 @@ public class PlayerDashController : MonoBehaviour
 [Header("Dash Variables")]
     [SerializeField, Min(0)] int dashDistance = 3;
     [SerializeField, Min(0)] float dashSpeed = 0.15f;
+    public float DashSpeed => dashSpeed;
     [SerializeField, Min(0)] float dashCooldown;
 
     [SerializeField] EventReference dashSFX;
@@ -42,6 +47,8 @@ public class PlayerDashController : MonoBehaviour
 
     bool usedDash = false;
 
+    public Vector2 StartPosition { get; private set; }
+    public Vector2 EndPosition { get; private set; }
 
 
     void Awake()
@@ -85,6 +92,8 @@ public class PlayerDashController : MonoBehaviour
 
     public void DashTowardsAim()
     {
+        StartPosition = player.worldTransform.position;
+
         stageManager = player.EntityStageManager;
         
         int x = aimpoint.GetAimVector3Int().x * dashDistance;
@@ -107,6 +116,9 @@ public class PlayerDashController : MonoBehaviour
                 StartCoroutine(DashCooldown());
 
                 RuntimeManager.PlayOneShot(dashSFX, transform.position);
+
+                EndPosition = new Vector2(validPosition.x, validPosition.y);
+                OnDash?.Invoke();
                 return;                        
             }else
             if(stageManager.CheckValidTile(destination - aimpoint.GetAimVector3Int()))
@@ -122,6 +134,9 @@ public class PlayerDashController : MonoBehaviour
                 animationController.PlayAnimationClip(dashAnimation);
                 StartCoroutine(DashCooldown());
                 RuntimeManager.PlayOneShot(dashSFX, transform.position);
+
+                EndPosition = new Vector2(validPosition.x, validPosition.y);
+                OnDash?.Invoke();
 
                 return; 
             }
@@ -143,6 +158,9 @@ public class PlayerDashController : MonoBehaviour
                     StartCoroutine(DashCooldown());
                     RuntimeManager.PlayOneShot(dashSFX, transform.position);
 
+                    EndPosition = new Vector2(validPosition.x, validPosition.y);
+                    OnDash?.Invoke();
+
                     return;
                 }
             }
@@ -155,6 +173,9 @@ public class PlayerDashController : MonoBehaviour
             StartCoroutine(DisableHitboxTimer());
             StartCoroutine(DashCooldown());
             RuntimeManager.PlayOneShot(dashSFX, transform.position);
+            EndPosition = new Vector2(destination.x, destination.y);
+
+            OnDash?.Invoke();
 
         }
 
