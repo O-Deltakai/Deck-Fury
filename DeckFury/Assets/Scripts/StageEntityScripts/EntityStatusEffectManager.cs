@@ -139,7 +139,35 @@ public class EntityStatusEffectManager : MonoBehaviour
         }
     }
 
+    public void TriggerStatusEffect(AttackPayload payload, StatusEffectType statusEffect)
+    {
+        if(!CanBeAffectedByStatusEffects){return;}
+        switch (statusEffect) 
+        {
+            case StatusEffectType.None :
+                break;
 
+            case StatusEffectType.Stunned :
+                StunnedEffect(BaseStunDuration, 1);
+                break;
+
+            case StatusEffectType.Bleeding :
+                BleedingEffect(payload.damage, 1);
+                break;
+
+            case StatusEffectType.ArmorBreak:
+                ArmorBreakEffect(1);
+                break;
+
+            case StatusEffectType.Marked:
+                MarkedForDeathEffect(1);
+                break;
+
+
+            default :
+                break;
+        }
+    }
 
     void StunnedEffect(float duration = 0, float strength = 1)
     {

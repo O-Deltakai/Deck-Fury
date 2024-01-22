@@ -129,6 +129,21 @@ public class CardSelectionMenu : MonoBehaviour
     public void InitializeMenu()
     {
 
+        if(selectableCardSlots.Count == 0)
+        {
+            foreach (var cardSlot in cardSelectPanel.GetComponentsInChildren<CardSlot>())
+            {
+                selectableCardSlots.Add(cardSlot);
+            }
+        }
+
+        if(cardLoadSlots.Count == 0)
+        {
+            foreach (var cardSlot in cardLoadPanel.GetComponentsInChildren<CardSlot>())
+            {
+                cardLoadSlots.Add(cardSlot);
+            }            
+        }
 
         for(int i = 0; i < selectableCardSlots.Count ; i++)
         {

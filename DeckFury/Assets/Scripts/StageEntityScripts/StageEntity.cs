@@ -677,7 +677,7 @@ public class StageEntity : MonoBehaviour
                 {
                     continue;
                 }
-                statusEffectManager.TriggerStatusEffect(statusEffect);
+                statusEffectManager.TriggerStatusEffect(finalPayload, statusEffect);
             }
 
         }

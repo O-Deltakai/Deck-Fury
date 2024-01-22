@@ -59,8 +59,10 @@ MonoBehaviour:
   NoneDescription: This card has no status effect associated with it.
   StunnedDescription: <b><color=yellow>Stunned</color></b> enemies are unable to
     <b>move</b> or <b>act</b>.
-  BleedingDescription: <b>Bleeding</b> enemies take additional damage over time based,
-    dealing <b>Base Damage * 2 over 3 seconds.</b>
+  BleedingDescription: '<color=red><b>Bleeding</b></color> enemies take additional
+    damage over time, dealing <b>Base Damage * 1.5 over 3 seconds.</b>
+
+'
   ArmorBreakDescription: <b>Armor Broken</b> enemies have their armor stripped off
     of them for the next <b>2</b> rounds.
   MarkedForDeathDescription: <b>Marked</b> enemies suffer an additional effect based

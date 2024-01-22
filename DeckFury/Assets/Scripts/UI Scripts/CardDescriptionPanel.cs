@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,8 +37,17 @@ public class CardDescriptionPanel : MonoBehaviour
     CardSlot currentlyViewedSlot;
     [field:SerializeField] public CardSO CurrentlyViewedCardSO{get; private set;}
 
+    CanvasGroup _canvasGroup;
+
+    [SerializeField] float fadeoutDuration = 2f;
+    bool pointerIsOnPanel = false;
+    Tween fadeoutTween;
+    Coroutine CR_FadeoutTimer = null;
+
+
     private void Awake() 
     {
+        _canvasGroup = GetComponent<CanvasGroup>();
         descriptionPanelImage = GetComponent<Image>();    
     }
 
@@ -120,6 +130,7 @@ public class CardDescriptionPanel : MonoBehaviour
         {
             damageText.text = cardSO.GetBaseDamage().ToString();
         }
+        RefreshFadeOut();
         gameObject.SetActive(true);
     }
     //Overload for taking in just a specific CardSO
@@ -156,6 +167,7 @@ public class CardDescriptionPanel : MonoBehaviour
         {
             damageText.text = cardSO.GetBaseDamage().ToString();
         }
+        RefreshFadeOut();
         gameObject.SetActive(true);
     }
 
@@ -196,5 +208,35 @@ public class CardDescriptionPanel : MonoBehaviour
         statusDescriptionPanel.gameObject.SetActive(condition);
     }
 
+    public void RefreshFadeOut()
+    {
+        if(CR_FadeoutTimer != null)
+        {
+            StopCoroutine(CR_FadeoutTimer);
+            CR_FadeoutTimer = null;
+        }
+        if(fadeoutTween.IsActive())
+        {
+            fadeoutTween.Kill();
+        }
+        _canvasGroup.alpha = 1;
+    }
+
+    public void BeginFadeOut()
+    {
+        if(lockedInPlace) { return; }
+        if(CR_FadeoutTimer != null) { return; }
+
+        CR_FadeoutTimer = StartCoroutine(FadeoutTimer());
+
+    }
+
+    IEnumerator FadeoutTimer()
+    {
+        fadeoutTween = _canvasGroup.DOFade(0, fadeoutDuration).SetUpdate(true);
+        yield return new WaitForSecondsRealtime(fadeoutDuration);
+        DisablePanel();
+        CR_FadeoutTimer = null;
+    }
 
 }
