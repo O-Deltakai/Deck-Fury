@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638414526029421160
+  lastModified: 638418020396057076
   FileSizes:
   - Name: Desktop
     Value: 83616
@@ -89,7 +89,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/CardEffects.bank
   Name: CardEffects
   StudioPath: bank:/CardEffects
-  lastModified: 638414526027443252
+  lastModified: 638418020392384513
   FileSizes:
   - Name: Desktop
     Value: 177056
@@ -168,6 +168,33 @@ MonoBehaviour:
     Data4: 362859394
   Banks:
   - {fileID: -8042990687102530542}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5070310861771299814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/PlayerDash-Stronger
+  m_EditorClassIdentifier: 
+  Path: event:/Player/PlayerDash-Stronger
+  Guid:
+    Data1: 1959015069
+    Data2: 1245077995
+    Data3: -1766083952
+    Data4: -753308286
+  Banks:
+  - {fileID: -2926471139701150237}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -271,10 +298,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 638414526028671164
+  lastModified: 638418020394362797
   FileSizes:
   - Name: Desktop
-    Value: 13792
+    Value: 44224
   Exists: 1
 --- !u!114 &-1921318354122018414
 MonoBehaviour:
@@ -318,7 +345,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638414526027931916
+  lastModified: 638418020393294855
   FileSizes:
   - Name: Desktop
     Value: 1632
@@ -486,12 +513,13 @@ MonoBehaviour:
   - {fileID: -333579002089560619}
   - {fileID: 6702064157428086154}
   - {fileID: 6989964212092700649}
+  - {fileID: -5070310861771299814}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1199707550411595357}
   StringsBanks:
   - {fileID: 4950714686771268432}
-  cacheTime: 638414526029771168
+  cacheTime: 638418020396057076
   cacheVersion: 131608
 --- !u!114 &791509316960225685
 MonoBehaviour:
@@ -616,7 +644,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Shop.bank
   Name: Shop
   StudioPath: bank:/Shop
-  lastModified: 638414526029771168
+  lastModified: 638418020394820975
   FileSizes:
   - Name: Desktop
     Value: 31936
@@ -636,7 +664,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Objects.bank
   Name: Objects
   StudioPath: bank:/Objects
-  lastModified: 638414526028351182
+  lastModified: 638418020394056495
   FileSizes:
   - Name: Desktop
     Value: 50752
@@ -791,10 +819,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638414526028011771
+  lastModified: 638418020393344848
   FileSizes:
   - Name: Desktop
-    Value: 2768
+    Value: 2818
   Exists: 1
 --- !u!114 &5110348535214356016
 MonoBehaviour:
@@ -865,7 +893,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Soundtracks.bank
   Name: Soundtracks
   StudioPath: bank:/Soundtracks
-  lastModified: 638414526028981153
+  lastModified: 638418020395310189
   FileSizes:
   - Name: Desktop
     Value: 2806464
@@ -912,7 +940,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Characters.bank
   Name: Characters
   StudioPath: bank:/Characters
-  lastModified: 638414526027862519
+  lastModified: 638418020393234858
   FileSizes:
   - Name: Desktop
     Value: 87168

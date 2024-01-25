@@ -42,7 +42,7 @@ public class PlayerDashController : MonoBehaviour
     public float DashSpeed => dashSpeed;
     [SerializeField, Min(0)] float dashCooldown;
 
-    [SerializeField] EventReference dashSFX;
+    public EventReference dashSFX;
 
     public bool inputPressedDuringCooldown = false;
 
