@@ -36,17 +36,7 @@ public class PlayerDataContainer
 
 
     public int CurrentScore = 0;
-    // public int CurrentScore 
-    // {
-    //     get{return CurrentScore;}
-    //     set
-    //     {
-    //         CurrentScore = value;
-    //         OnPlayerDataModified?.Invoke();
-            
-    //     }
 
-    // }
     public int CurrentStageLevelIndex = 0;
 
     //These Player stats are set base values that can be increased or decreased during battle, but get reset to these base values after the stage

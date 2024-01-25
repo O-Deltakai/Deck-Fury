@@ -14,21 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: HPToShieldConverter
   _shortDescription: 
-  _itemDescription: 'Converts <b>Q0%</b> of your max HP to <b><color=#6DEDFF>Shields</color></b>.
+  _itemDescription: 'Increases your <b><color=#6DEDFF>Shields</color></b> by <b>%Q0</b>
+    of your max HP, but you lose <b>%Q1</b> of your current HP during battle.
 
 
     Shields
-    regenerate outside of combat but are unaffected by armor, and can be bypassed
+    regenerate outside of combat but is unaffected by armor, and can be bypassed
     by certain attacks.'
   _value: 300
   _rarity: 3
   _quantifiableEffects:
   - <EffectName>k__BackingField: HP To Shields Conversion Rate
     <IntegerQuantity>k__BackingField: 0
+    <FloatQuantity>k__BackingField: 33
+    <CanBeModified>k__BackingField: 0
+    <ModCoefficient>k__BackingField: 0
+  - <EffectName>k__BackingField: HP Loss Amount
+    <IntegerQuantity>k__BackingField: 0
     <FloatQuantity>k__BackingField: 50
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
   _itemImage: {fileID: 0}
   _itemPrefab: {fileID: 0}
-  _hasEffectOutsideBattle: 1
-  _oneTimeEffect: 1
+  _hasEffectOutsideBattle: 0
+  _oneTimeEffect: 0

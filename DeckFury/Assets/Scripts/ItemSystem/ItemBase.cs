@@ -7,6 +7,10 @@ using UnityEngine;
 /// </summary>
 public abstract class ItemBase : MonoBehaviour
 {
+
+    public delegate void PersistentInitializeEventHandler(ItemBase item);
+    public event PersistentInitializeEventHandler OnPersistentInitialize;
+
     public delegate void InitializeEventHandler(ItemBase item);
     public event InitializeEventHandler OnInitialize;
 
@@ -17,6 +21,10 @@ public abstract class ItemBase : MonoBehaviour
     public StageManager stageManager;
     public PlayerController player;
     public ItemSO itemSO;
+
+    protected bool _persistentInitialized = false;
+    public bool PersistentInitialized => _persistentInitialized;
+
 
     protected bool _initialized = false;
     public bool Initialized => _initialized;
@@ -29,6 +37,16 @@ public abstract class ItemBase : MonoBehaviour
     protected virtual void Start()
     {
         
+    }
+
+/// <summary>
+/// PersistentInitialize will only get called once within the item's lifetime and is used to set persistent states an item
+/// may have.
+/// </summary>
+    public virtual void PersistentInitialize()
+    {
+        OnPersistentInitialize?.Invoke(this);
+        _persistentInitialized = true;
     }
 
 /// <summary>
@@ -53,7 +71,10 @@ public abstract class ItemBase : MonoBehaviour
 /// <summary>
 /// Method that is called when exiting battle
 /// </summary>
-    public virtual void Deactivate(){}
+    public virtual void Deactivate()
+    {
+        _initialized = false;
+    }
 
 
 }
