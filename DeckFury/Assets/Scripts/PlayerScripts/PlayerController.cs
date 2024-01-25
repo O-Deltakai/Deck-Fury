@@ -12,8 +12,14 @@ using FMODUnity;
 public class PlayerController : StageEntity
 {
 
-    public delegate void KillEnemyEventHandler();
-    public event KillEnemyEventHandler OnKillEnemy;
+    public delegate void KillEnemyEventHandler(NPC enemy);
+    public event KillEnemyEventHandler OnKillSpecificEnemy;
+
+    public delegate void KillEnemyPayloadEventHandler(NPC enemy, AttackPayload attackPayload);
+    public event KillEnemyPayloadEventHandler OnKillEnemyWithPayload;
+
+
+    public event Action OnKillEnemy;
 
     public delegate void BasicAttackEventHandler();
     public event BasicAttackEventHandler OnBasicAttack;
@@ -95,10 +101,17 @@ public class PlayerController : StageEntity
 
     }
 
-    public void KillEnemyTrigger(NPC enemy)
+    public void KillEnemyTrigger(NPC enemy, AttackPayload? attackPayload = null)
     {
         print("Player killed: " + enemy.name);
         OnKillEnemy?.Invoke();
+        OnKillSpecificEnemy?.Invoke(enemy);
+
+        if(attackPayload.HasValue)
+        {
+            OnKillEnemyWithPayload?.Invoke(enemy, attackPayload.Value);
+        }
+
     }
 
     void Update()

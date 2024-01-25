@@ -16,12 +16,16 @@ MonoBehaviour:
   _shortDescription: Killing an enemy with a fire attack causes them to explode in
     a fire explosion, dealing additional damage to all adjacent targets.
   _itemDescription: "Killing an enemy with a fire attack causes them to explode in
-    a fire explosion, dealing the attack's damage * 0.5 to all adjacent targets.
-    \n\nThis can trigger a chain reaction if an enemy is killed by the fire explosion
-    itself."
+    a fire explosion, dealing <b>Q0</b> damage to all adjacent targets. \n\nThis
+    can trigger a chain reaction if an enemy is killed by the fire explosion itself."
   _value: 0
-  _rarity: 1
-  _quantifiableEffects: []
+  _rarity: 2
+  _quantifiableEffects:
+  - <EffectName>k__BackingField: Explosion Damage
+    <IntegerQuantity>k__BackingField: 50
+    <FloatQuantity>k__BackingField: 0
+    <CanBeModified>k__BackingField: 0
+    <ModCoefficient>k__BackingField: 0
   _itemImage: {fileID: 0}
   _itemPrefab: {fileID: 0}
   _hasEffectOutsideBattle: 0

@@ -23,7 +23,7 @@ public class ItemSO : ScriptableObject
     public int Value => _value;
 
     [Tooltip("Base rarity of the item, which dictates how common the item will be in elite rewards or shops.")]
-    [SerializeField, Range(1, 3)] int _rarity = 1;
+    [SerializeField, Range(1, 4)] int _rarity = 1;
     public int Rarity => _rarity;
 
     [SerializeField] List<QuantifiableEffect> _quantifiableEffects;

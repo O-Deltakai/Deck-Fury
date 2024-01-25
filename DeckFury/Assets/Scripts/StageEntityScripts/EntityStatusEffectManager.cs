@@ -81,7 +81,7 @@ public class EntityStatusEffectManager : MonoBehaviour
         
     }
 
-    public void TriggerStatusEffect(StatusEffectType statusEffect, int damage = 0, float duration = 0)
+    public void TriggerStatusEffect(StatusEffectType statusEffect, AttackPayload payload, float duration = 0)
     {
         if(!CanBeAffectedByStatusEffects){return;}
         switch (statusEffect) {
@@ -93,7 +93,7 @@ public class EntityStatusEffectManager : MonoBehaviour
                 break;
 
             case StatusEffectType.Bleeding :
-                BleedingEffect(damage, duration);
+                BleedingEffect(payload, duration);
                 break;
 
             case StatusEffectType.ArmorBreak:
@@ -122,7 +122,7 @@ public class EntityStatusEffectManager : MonoBehaviour
                 break;
 
             case StatusEffectType.Bleeding :
-                BleedingEffect(payload.damage, statusEffect.effectStrength);
+                BleedingEffect(payload, statusEffect.effectStrength);
                 break;
 
             case StatusEffectType.ArmorBreak:
@@ -152,7 +152,7 @@ public class EntityStatusEffectManager : MonoBehaviour
                 break;
 
             case StatusEffectType.Bleeding :
-                BleedingEffect(payload.damage, 1);
+                BleedingEffect(payload, 1);
                 break;
 
             case StatusEffectType.ArmorBreak:
@@ -198,14 +198,14 @@ public class EntityStatusEffectManager : MonoBehaviour
     }
 
     
-    void BleedingEffect(int baseDamage, double strength = 1, double totalDuration = 3, double tickrate = 0.25f)
+    void BleedingEffect(AttackPayload payload, double strength = 1, double totalDuration = 3, double tickrate = 0.25f)
     {
         if(!CanBleed){return;}
-        int totalDamage = (int)(baseDamage * 1.5 * strength);
+        int totalDamage = (int)(payload.damage * 1.5 * strength);
 
         entitySpriteRenderer.color = bleedingColor;
 
-        Coroutine bleedStack = StartCoroutine(BleedOverTime(totalDamage, (float)totalDuration, (float)tickrate));
+        Coroutine bleedStack = StartCoroutine(BleedOverTime(payload, totalDamage, (float)totalDuration, (float)tickrate));
         currentBleedingStacks.Add(bleedStack);
         StartCoroutine(RemoveBleedStackTimer(bleedStack, (float)totalDuration));
         
@@ -214,7 +214,7 @@ public class EntityStatusEffectManager : MonoBehaviour
 
     }
 
-    IEnumerator BleedOverTime(int totalDamage, float duration, float tickRate)
+    IEnumerator BleedOverTime(AttackPayload payload, int totalDamage, float duration, float tickRate)
     {
         
         double damagePerTick = totalDamage / (duration / tickRate);
@@ -231,8 +231,12 @@ public class EntityStatusEffectManager : MonoBehaviour
 
             // Apply the integer part of the accumulated damage to health
             int damageToApply = (int)Mathf.Floor((float)accumulatedDamage);
-            AttackPayload bleedDamage = new AttackPayload(damageToApply);
-            bleedDamage.attackElement = AttackElement.Pure;
+            AttackPayload bleedDamage = new AttackPayload(damageToApply)
+            {
+                attackElement = AttackElement.Pure,
+                attacker = payload.attacker,
+                canTriggerMark = false
+            };
             entity.HurtEntity(bleedDamage, Color.red);
 
             // Reduce the accumulated damage by the applied amount
@@ -334,7 +338,7 @@ public class EntityStatusEffectManager : MonoBehaviour
             break;
 
             case AttackElement.Blade:
-            BleedingEffect(payload.damage);
+            BleedingEffect(payload);
             break;
 
             case AttackElement.Fire:
