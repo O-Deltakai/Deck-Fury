@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,8 @@ public abstract class ItemBase : MonoBehaviour
     public event InitializeEventHandler OnInitialize;
 
     public delegate void ProcEventHandler(ItemBase item);
-    public event ProcEventHandler OnProc;
+    public event ProcEventHandler OnProcItem;
+    public event Action OnProc;
 
 
     public StageManager stageManager;
@@ -65,7 +67,8 @@ public abstract class ItemBase : MonoBehaviour
 /// </summary>
     public virtual void Proc()
     {
-        OnProc?.Invoke(this);
+        OnProc?.Invoke();
+        OnProcItem?.Invoke(this);
     }
 
 /// <summary>

@@ -70,7 +70,7 @@
     <Compile Include="Assets\Scripts\Enums\LayerNames.cs" />
     <Compile Include="Assets\Scripts\StageSpecificScripts\TutorialController.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\SpawnManager.cs" />
-    <Compile Include="Assets\Scripts\ItemSystem\ItemUISlot.cs" />
+    <Compile Include="Assets\Scripts\ItemSystem\UI Elements\ItemUISlot.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\Scripts\CardScripts\BazookaLauncher.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Vampire\Vampire.cs" />
@@ -298,6 +298,10 @@
     <Compile Include="Assets\Scripts\StageEntityScripts\StageEntity.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\HPToShieldConverterItem.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\FireExplosionOnKillItem.cs" />
+    <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\DamageBufferOnFullEnergy.cs" />
+    <Compile Include="Assets\Scripts\GeneralScripts\DamageBuffer.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\UIBoxScreenBoundsChecker.cs" />
+    <Compile Include="Assets\Scripts\ItemSystem\UI Elements\BattleStageItemPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{0b01e7ad-6d24-4897-be11-2ef635716c67}.xml" />

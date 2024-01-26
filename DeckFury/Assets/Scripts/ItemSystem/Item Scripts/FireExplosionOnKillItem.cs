@@ -12,29 +12,38 @@ public class FireExplosionOnKillItem : ItemBase
     {
         base.Initialize();
 
-        player.OnKillSpecificEnemy += ProcEvent;
+        player.OnKillEnemyWithPayload += ProcEvent;
 
 
     }
 
-    void ProcEvent(NPC enemy)
+    void ProcEvent(NPC enemy, AttackPayload payload)
     {
+        if(payload.attackElement != AttackElement.Fire) { return; }
 
-        MarkedFireExplosion fireExplosion = Instantiate(fireExplosionPrefab, enemy.worldTransform.position, Quaternion.identity)
+        Vector3 explosionPosition = enemy.worldTransform.position;
+
+        StartCoroutine(ProcTimer(enemy, explosionPosition));
+
+
+    }
+
+    IEnumerator ProcTimer(NPC enemy, Vector3 worldPosition)
+    {
+        yield return new WaitForSeconds(0.15f);
+        MarkedFireExplosion fireExplosion = Instantiate(fireExplosionPrefab, worldPosition, Quaternion.identity)
                                                         .GetComponent<MarkedFireExplosion>();
         AttackPayload explosionPayload = new AttackPayload
         {
             damage = itemSO.QuantifiableEffects[0].IntegerQuantity,
             attackElement = AttackElement.Fire,
+            attacker = player.gameObject,
             canTriggerMark = false
         };
         fireExplosion.Trigger(explosionPayload);
 
         Proc();
-
-
     }
-
 
 
 

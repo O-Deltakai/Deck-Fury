@@ -57,6 +57,8 @@ public class StageEntity : MonoBehaviour
     public event Action OnTakeCritDamage;
     public event Action OnResistDamage;
 
+    public event Action OnBreakBuffer;
+    public event Action OnChangeBufferCount;
 
 #endregion
 
@@ -153,6 +155,12 @@ public class StageEntity : MonoBehaviour
     }
 
     [Range(0.1f, 10f)] public double defense = 1;
+
+/// <summary>
+/// Buffers nullify a single instance of damage per buffer
+/// </summary>
+    [SerializeReference] DamageBufferList _bufferList = new DamageBufferList();
+    public DamageBufferList BufferList => _bufferList;
 
     [SerializeField] protected List<AttackElement> weaknesses; // What attack elements is this entity weak to (take bonus damage from)?
     [SerializeField] protected double weaknessModifier = 1.5f;
@@ -649,6 +657,11 @@ public class StageEntity : MonoBehaviour
     {
         if(CannotBeTargeted){return;}
         if(invincible){return;}
+        if(_bufferList.DamageBuffers.Count > 0)
+        {
+            _bufferList.Remove(_bufferList.DamageBuffers[0]);
+            return;
+        }
 
         AdditionalOnHurtEvents(payload);
 

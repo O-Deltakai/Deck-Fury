@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67bdf40430eebf44bba6f4bb68e0f79f, type: 3}
-  m_Name: FireExplosionOnDeath
+  m_Name: FireExplosionOnKill
   m_EditorClassIdentifier: 
-  _itemName: Fire Explosion On Death
+  _itemName: Volatile Gem
   _shortDescription: Killing an enemy with a fire attack causes them to explode in
     a fire explosion, dealing additional damage to all adjacent targets.
-  _itemDescription: "Killing an enemy with a fire attack causes them to explode in
-    a fire explosion, dealing <b>Q0</b> damage to all adjacent targets. \n\nThis
-    can trigger a chain reaction if an enemy is killed by the fire explosion itself."
+  _itemDescription: "Killing an enemy with a <color=red><b>fire</b></color> attack
+    causes them to explode, dealing <b>Q0</b> <color=red><b>fire</b></color> damage
+    to all adjacent targets. \n\nThis can trigger a chain reaction if an enemy is
+    killed by the fire explosion itself."
   _value: 0
   _rarity: 2
   _quantifiableEffects:
@@ -26,7 +27,7 @@ MonoBehaviour:
     <FloatQuantity>k__BackingField: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
-  _itemImage: {fileID: 0}
-  _itemPrefab: {fileID: 0}
+  _itemImage: {fileID: 21300000, guid: 8e64e4a9a5a3b9840b22eeb3caffaaa9, type: 3}
+  _itemPrefab: {fileID: 7563336778692090187, guid: 6571ae264777ab94085a09a662fdb57e, type: 3}
   _hasEffectOutsideBattle: 0
   _oneTimeEffect: 0

@@ -81,8 +81,12 @@
 	</object>
 	<object class="EventMixerMaster" id="{53ce1d30-4670-42c3-be0a-5f277c29a82b}">
 		<property name="volume">
-			<value>-7</value>
+			<value>-6</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{acb541af-0d49-467f-b15b-b26c93fddc8f}</destination>
+			<destination>{b2fa24bf-c11f-4707-b1e6-983e85139c78}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{306976d6-af5c-42b1-ad27-105b8f58565a}</destination>
 		</relationship>
@@ -122,6 +126,22 @@
 			<destination>{53ce1d30-4670-42c3-be0a-5f277c29a82b}</destination>
 		</relationship>
 	</object>
+	<object class="RandomizerModulator" id="{acb541af-0d49-467f-b15b-b26c93fddc8f}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="amount">
+			<value>1.5</value>
+		</property>
+	</object>
+	<object class="RandomizerModulator" id="{b2fa24bf-c11f-4707-b1e6-983e85139c78}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>3.5</value>
+		</property>
+	</object>
 	<object class="MixerBusEffectChain" id="{306976d6-af5c-42b1-ad27-105b8f58565a}">
 		<relationship name="effects">
 			<destination>{e627056f-cfd8-4e4d-adb2-fbd2ffc9f1ee}</destination>
@@ -145,10 +165,10 @@
 	</object>
 	<object class="SingleSound" id="{8150e5cd-b50d-4dc6-985c-cd2bb3d6517f}">
 		<property name="volume">
-			<value>-20.5</value>
+			<value>-15.5</value>
 		</property>
 		<property name="pitch">
-			<value>-2.4000001</value>
+			<value>-0.800000012</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{58c0ee05-42a2-47c7-bcca-6e9d4aabd79b}</destination>
@@ -181,7 +201,7 @@
 			<value>pitch</value>
 		</property>
 		<property name="amount">
-			<value>4.5</value>
+			<value>7</value>
 		</property>
 	</object>
 	<object class="RandomizerModulator" id="{58c0ee05-42a2-47c7-bcca-6e9d4aabd79b}">
@@ -189,7 +209,7 @@
 			<value>pitch</value>
 		</property>
 		<property name="amount">
-			<value>4.5</value>
+			<value>7</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{15acc37b-5a3a-408d-9c2f-21c43a65bda4}" />

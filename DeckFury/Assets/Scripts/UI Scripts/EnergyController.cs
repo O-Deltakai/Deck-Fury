@@ -5,11 +5,14 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 using FMODUnity;
+using System;
 
 
 
 public class EnergyController : MonoBehaviour
 {
+    public event Action OnFullCharge;
+
 
     private static EnergyController _instance;
     public static EnergyController Instance => _instance; 
@@ -130,6 +133,7 @@ public class EnergyController : MonoBehaviour
             StartCoroutine(FlashBarColorWhileFull());
             highlighterBox.DOFade(1f, 0.1f);
             fullChargeEventTrigger = false;
+            OnFullCharge?.Invoke();
         }
 
         if(canCharge)

@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67bdf40430eebf44bba6f4bb68e0f79f, type: 3}
-  m_Name: HolyMantle
+  m_Name: BufferOnFullEnergy
   m_EditorClassIdentifier: 
   _itemName: HolyMantle
+  _shortDescription: 
   _itemDescription: Grants a <b>buffer</b> that blocks a single attack. The buffer
     regnerates every time your energy reaches full.
   _value: 100
-  _rarity: 2
+  _rarity: 3
   _quantifiableEffects: []
   _itemImage: {fileID: 0}
-  _itemPrefab: {fileID: 0}
+  _itemPrefab: {fileID: 4555852936100321051, guid: 7eca3434a339dd7408cf12f1fd37e8f2, type: 3}
   _hasEffectOutsideBattle: 0
   _oneTimeEffect: 0
