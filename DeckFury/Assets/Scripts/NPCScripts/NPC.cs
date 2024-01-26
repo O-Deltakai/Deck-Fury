@@ -67,6 +67,21 @@ public class NPC : StageEntity
 
     }
 
+    protected override void AdditionalOnHurtEvents(AttackPayload? payload = null)
+    {
+        base.AdditionalOnHurtEvents(payload);
+        if(payload.HasValue)
+        {
+            if(payload.Value.attacker != null)
+            {
+                if(payload.Value.attacker.GetComponent<PlayerController>())
+                {
+                    PlayerController player = payload.Value.attacker.GetComponent<PlayerController>();
+                    player.HurtEnemyTrigger(this, payload);
+                }
+            }        
+        }
+    }
 
     protected override void AdditionalDestructionEvents(AttackPayload? killingBlow = null)
     {

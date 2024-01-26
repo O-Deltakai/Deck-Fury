@@ -23,6 +23,8 @@ public class EntityStatusEffectManager : MonoBehaviour
     [SerializeField] bool CanBleed = true;
     [SerializeField] bool CanBeArmorBroken = true;
 
+    
+
 [Header("Effect Objects")]
     [SerializeField] GameObject markedEffectObject;
     [SerializeField] GameObject bleedingEffectObject;
@@ -324,7 +326,7 @@ public class EntityStatusEffectManager : MonoBehaviour
     }
 
 
-    public AttackPayload TriggerMarkEffect(AttackPayload payload)
+    public AttackPayload TriggerMarkEffect(AttackPayload payload, bool greaterMarked = false)
     {
         CancelMarked();
         //if(!MarkedForDeath){return payload;}

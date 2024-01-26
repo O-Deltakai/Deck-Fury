@@ -18,8 +18,11 @@ public class PlayerController : StageEntity
     public delegate void KillEnemyPayloadEventHandler(NPC enemy, AttackPayload attackPayload);
     public event KillEnemyPayloadEventHandler OnKillEnemyWithPayload;
 
-
     public event Action OnKillEnemy;
+
+
+    public delegate void HurtEnemyEventHandler(NPC enemy, AttackPayload attackPayload);
+    public event HurtEnemyEventHandler OnHurtEnemyWithPayload;
 
     public delegate void BasicAttackEventHandler();
     public event BasicAttackEventHandler OnBasicAttack;
@@ -112,6 +115,11 @@ public class PlayerController : StageEntity
             OnKillEnemyWithPayload?.Invoke(enemy, attackPayload.Value);
         }
 
+    }
+
+    public void HurtEnemyTrigger(NPC enemy, AttackPayload? attackPayload = null)
+    {
+        
     }
 
     void Update()

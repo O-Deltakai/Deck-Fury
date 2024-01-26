@@ -43,6 +43,10 @@ public class ItemSO : ScriptableObject
     [SerializeField] bool _oneTimeEffect;
     public bool OneTimeEffect => _oneTimeEffect;
 
+    [SerializeField] bool _playerCanOnlyHaveOne = false;
+    public bool PlayerCanOnlyHaveOne => _playerCanOnlyHaveOne;
+
+
     public string GetFormattedDescription()
     {
         string formattedDescription = ItemDescription;
