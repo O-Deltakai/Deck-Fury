@@ -90,7 +90,7 @@ public class StageStateController : MonoBehaviour
         player.CurrentHP = playerData.CurrentHP;
         player.ShieldHP = playerData.BaseShieldHP;
         player.Armor = playerData.BaseArmor;
-        player.defense = playerData.BaseDefense;
+        player._defense = playerData.BaseDefense;
 
 
 

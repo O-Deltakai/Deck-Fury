@@ -301,7 +301,10 @@
     <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\DamageBufferOnFullEnergy.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\DamageBuffer.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\UIBoxScreenBoundsChecker.cs" />
-    <Compile Include="Assets\Scripts\ItemSystem\UI Elements\BattleStageItemPanel.cs" />
+    <Compile Include="Assets\Scripts\ItemSystem\UI Elements\StageItemPanelUIController.cs" />
+    <Compile Include="Assets\ScriptableObjects\ItemPoolSO.cs" />
+    <Compile Include="Assets\Scripts\ToolScripts\SpriteScaler.cs" />
+    <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\GenericStatModItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{1a3543b7-299b-427a-98a3-e96ed31447ad}.xml" />
@@ -556,6 +559,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{6a429b65-5915-40b2-90db-68b764c4bc00}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{177d6584-0d0d-4661-880a-c61b8cfbcca6}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{943ffc83-1437-4c64-83bf-e20f4c30fcfd}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Freebies\Topdown-Pixel-Rocks&amp;Stones\readme.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{938d27b7-6ef9-42a6-bbde-37b9928cac7c}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{e5110cc5-077a-4bfc-8608-cda3ee9e1171}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{5ad41b87-27c4-475e-913d-3823dc6b4f16}.xml" />
@@ -938,6 +942,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{3d8e3cdd-5bb6-4228-a9b8-04546a946447}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\EventFolder\{feb1f28b-05d7-451b-b35d-584740dff92f}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{884a2736-bba4-46eb-b349-020dedf6fbb2}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Freebies\Cyberpunk-ProtectiveGear-Radiation-Icons\Font.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{15cf2667-c1bb-49cf-8db7-049c0f09ffed}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{2efebbb1-9eb2-4366-aaf2-84bb0fc4d923}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{973589dc-0e89-4db0-8eaf-9e9d4be4925d}.xml" />
@@ -993,6 +998,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{52a2fe73-0bf9-4ee7-bd39-523856670346}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{8537f3a5-82d8-4589-943a-4136df52e2e6}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{f3693937-275e-4cf7-8a27-2d58d7e6d44f}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Freebies\Cyberpunk-ProtectiveGear-Radiation-Icons\License.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{0a935b2b-403b-495a-91df-f979eb947c69}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{276a7152-79e4-4a25-a153-7ac66a8e8003}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{1ea53a06-a5c1-46f7-bc97-11e004b37cb7}.xml" />
@@ -1723,6 +1729,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{ee4fe9ef-5bd0-4020-b7d7-29d7d85a0d62}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\DataFile\{24f1b47d-6926-446e-9a0f-2f15f1d35299}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{bb0692a2-4ec0-4aeb-b0ab-0cd1335f98f6}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Freebies\Topdown-Pixel-Rocks&amp;Stones\License.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{713372bc-73ce-4e92-a89b-842227c19334}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{63814554-fd82-40fa-9b6f-375cb0a1aa2d}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{0e3d78f2-7c52-48ce-9a09-6387804504e7}.xml" />

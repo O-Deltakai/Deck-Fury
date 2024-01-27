@@ -12,18 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67bdf40430eebf44bba6f4bb68e0f79f, type: 3}
   m_Name: Armor+15
   m_EditorClassIdentifier: 
-  _itemName: Armor+15
-  _itemDescription: Increases your <b>Armor</b> by <b>+Q0</b>, which reduces all
-    non-armorbreaking damage to HP.
+  _itemName: Armored Suit
+  _shortDescription: 
+  _itemDescription: 'Increases your <b>Armor</b> by <b>+Q0</b>.
+
+
+    <i><b>Armor</b>
+    reduces most types of damage by a percentage amount equal to the armor value
+    to HP</i>.'
   _value: 0
   _rarity: 1
   _quantifiableEffects:
   - <EffectName>k__BackingField: Armor Increase Amount
-    <IntegerQuantity>k__BackingField: 0
-    <FloatQuantity>k__BackingField: 15
+    <IntegerQuantity>k__BackingField: 15
+    <FloatQuantity>k__BackingField: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
-  _itemImage: {fileID: 0}
+  _itemImage: {fileID: 21300000, guid: 8683e22025063c2418b0a02ff1f36f11, type: 3}
   _itemPrefab: {fileID: 0}
   _hasEffectOutsideBattle: 0
   _oneTimeEffect: 0
+  _playerCanOnlyHaveOne: 0

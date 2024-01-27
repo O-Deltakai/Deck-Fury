@@ -15,8 +15,8 @@ MonoBehaviour:
   _itemName: Volatile Gem
   _shortDescription: Killing an enemy with a fire attack causes them to explode in
     a fire explosion, dealing additional damage to all adjacent targets.
-  _itemDescription: "Killing an enemy with a <color=red><b>fire</b></color> attack
-    causes them to explode, dealing <b>Q0</b> <color=red><b>fire</b></color> damage
+  _itemDescription: "Killing an enemy with a <color=orange><b>fire</b></color> attack
+    causes them to explode, dealing <b>Q0</b> <color=orange><b>fire</b></color> damage
     to all adjacent targets. \n\nThis can trigger a chain reaction if an enemy is
     killed by the fire explosion itself."
   _value: 0
@@ -31,3 +31,4 @@ MonoBehaviour:
   _itemPrefab: {fileID: 7563336778692090187, guid: 6571ae264777ab94085a09a662fdb57e, type: 3}
   _hasEffectOutsideBattle: 0
   _oneTimeEffect: 0
+  _playerCanOnlyHaveOne: 0

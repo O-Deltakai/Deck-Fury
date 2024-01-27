@@ -13,7 +13,8 @@ public class ProceduralGenerator : MonoBehaviour
     public MapPoolSO MapLayoutPool => _mapLayoutPool;
 
     [SerializeField] SpawnTablePoolSO spawnTablePool;
-
+    [SerializeField] ItemPoolSO _runItemPoolSO;
+    public ItemPoolSO RunItemPoolSO => _runItemPoolSO;
 
     [SerializeField] GameObject stageMap;
 

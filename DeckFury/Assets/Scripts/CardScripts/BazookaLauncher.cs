@@ -26,38 +26,39 @@ public class BazookaLauncher : CardEffect
 
 
     //set position and rotation for object
-    protected void AssignVariable(Bazooka bazooka){
-            bazooka.transform.position = player.currentTilePosition;
-            bazooka.attackPayload = attackPayload;
-            //bazooka.speed = 10;
+    protected void AssignVariable(Bazooka bazooka)
+    {
+        bazooka.transform.position = player.currentTilePosition;
+        bazooka.attackPayload = attackPayload;
+        //bazooka.speed = 10;
 
-            switch (player.aimpoint.currentAimDirection) 
-            {
-                case AimDirection.Up:
-                    bazooka.transform.rotation = Quaternion.Euler(0, 0, -90);
-                    bazooka.velocity.x = 0 ;
-                    bazooka.velocity.y = 1;
-                    break;
+        switch (player.aimpoint.currentAimDirection) 
+        {
+            case AimDirection.Up:
+                bazooka.transform.rotation = Quaternion.Euler(0, 0, -90);
+                bazooka.velocity.x = 0 ;
+                bazooka.velocity.y = 1;
+                break;
 
-                case AimDirection.Down:
-                    bazooka.transform.rotation = Quaternion.Euler(0, 0, 90);
-                    bazooka.velocity.x = 0 ;
-                    bazooka.velocity.y = -1;
-                    break; 
-                case AimDirection.Left:
-                    bazooka.transform.rotation = Quaternion.Euler(0, 0, 0);
-                    bazooka.velocity.x = -1;
-                    bazooka.velocity.y = 0 ;
-                    break;
+            case AimDirection.Down:
+                bazooka.transform.rotation = Quaternion.Euler(0, 0, 90);
+                bazooka.velocity.x = 0 ;
+                bazooka.velocity.y = -1;
+                break; 
+            case AimDirection.Left:
+                bazooka.transform.rotation = Quaternion.Euler(0, 0, 0);
+                bazooka.velocity.x = -1;
+                bazooka.velocity.y = 0 ;
+                break;
 
-                case AimDirection.Right:
-                    bazooka.transform.rotation = Quaternion.Euler(0, 0, 180);
-                    bazooka.velocity.x = 1;
-                    bazooka.velocity.y = 0 ;
-                    break;
-            }
-            
-            bazooka.gameObject.SetActive(true);
+            case AimDirection.Right:
+                bazooka.transform.rotation = Quaternion.Euler(0, 0, 180);
+                bazooka.velocity.x = 1;
+                bazooka.velocity.y = 0 ;
+                break;
+        }
+        
+        bazooka.gameObject.SetActive(true);
     }
 
     protected override IEnumerator DisableEffectPrefab()

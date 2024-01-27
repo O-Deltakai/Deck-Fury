@@ -41,6 +41,16 @@ public class ItemUISlot : MonoBehaviour
     [SerializeField] float blinkSpeed = 0.3f;
     [SerializeField] Vector3 blinkerImageMaxScale = new Vector3(1.5f, 1.5f);
 
+    [Header("Rarity Colors")]
+    [SerializeField] Color commonColor;
+    [SerializeField] Color uncommonColor;
+    [SerializeField] Color rareColor;
+    [SerializeField] Color veryRareColor;
+
+
+
+
+
     Tween blinkImageScaleTween = null;
     Tween blinkFadeTween = null;
 
@@ -77,7 +87,12 @@ public class ItemUISlot : MonoBehaviour
     }
 
     public void SetItem(ItemBase item)
-    {
+    {   //If UI Item Slot already has an item set, unsubscribe the current item from BlinkImageOnce
+        if(_itemObjectRef)
+        {
+            _itemObjectRef.OnProc -= BlinkImageOnce;
+        }
+
         _itemObjectRef = item;
         _itemSO = item.itemSO;
 
@@ -87,7 +102,38 @@ public class ItemUISlot : MonoBehaviour
 
         itemDescriptionText.text = _itemSO.GetFormattedDescription();
         itemNameText.text = _itemSO.ItemName;
+
+        SetPanelColorBasedOnItem(_itemSO);
     }
+
+    void SetPanelColorBasedOnItem(ItemSO itemSO)
+    {
+        Image panelImage = itemDescriptionPanel.GetComponent<Image>();
+        switch (itemSO.Rarity)
+        {
+            case 1:
+                panelImage.color = commonColor;
+                break;
+
+            case 2:
+                panelImage.color = uncommonColor;
+                break;
+
+            case 3:
+                panelImage.color = rareColor;
+                break;
+
+            case 4:
+                panelImage.color = veryRareColor;
+                break;
+
+            default:
+                break;
+
+
+        }
+    }
+
 
     public void OnPointerEnter()
     {

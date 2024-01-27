@@ -65,6 +65,39 @@ public class PlayerController : StageEntity
     [SerializeField] Vector2 currentInputVector;
     [SerializeField] Vector2 currentAimVector;
 
+/// <summary>
+/// _globalDamageMultiplier affects all outgoing damage from the player.
+/// </summary>
+    [SerializeField, Min(0)] float _globalDamageMultiplier = 1;
+    public float GlobalDamageMultiplier {get{ return _globalDamageMultiplier; }
+        set
+        {
+            if(value < 0)
+            {
+                _globalDamageMultiplier = 0;
+            }else
+            {
+                _globalDamageMultiplier = value;
+            }
+        }
+    
+    }
+
+    [SerializeField] float _cardDamageMultiplier = 1;
+    public float CardDamageMultiplier {get{ return _cardDamageMultiplier; }
+        set
+        {
+            if(value < 0)
+            {
+                _cardDamageMultiplier = 0;
+            }else
+            {
+                _cardDamageMultiplier = value;
+            }
+        }
+    
+    }
+
 [Header("Player SFX")]
     [SerializeField] EventReference basicShotSFX;
 
@@ -119,7 +152,7 @@ public class PlayerController : StageEntity
 
     public void HurtEnemyTrigger(NPC enemy, AttackPayload? attackPayload = null)
     {
-        
+
     }
 
     void Update()
@@ -151,7 +184,7 @@ public class PlayerController : StageEntity
         CurrentHP = givenPlayerData.CurrentHP;
         ShieldHP = givenPlayerData.BaseShieldHP;
 
-        defense = givenPlayerData.BaseDefense;
+        _defense = givenPlayerData.BaseDefense;
         Armor = givenPlayerData.BaseArmor;
 
         playerData = givenPlayerData;
@@ -524,7 +557,7 @@ public class PlayerController : StageEntity
         Bullet bullet = Instantiate(basicShotProjectile,
                                     worldTransform.position, 
                                     aimpoint.transform.rotation).GetComponent<Bullet>();
-        bullet.attackPayload.damage = basicShotDamage;
+        bullet.attackPayload.damage = (int)(basicShotDamage * GlobalDamageMultiplier);
         bullet.attackPayload.attacker = gameObject;
         bullet.speed = 45;
 

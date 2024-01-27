@@ -17,7 +17,7 @@ MonoBehaviour:
   _itemDescription: Increases <b><color=yellow>Energy</b></color> charge rate by
     <b>+Q0%</b>
   _value: 100
-  _rarity: 2
+  _rarity: 1
   _quantifiableEffects:
   - <EffectName>k__BackingField: Increased Energy Charge Rate
     <IntegerQuantity>k__BackingField: 0
@@ -28,3 +28,4 @@ MonoBehaviour:
   _itemPrefab: {fileID: 4172585167034207504, guid: 0e0fddd1a5fa43f4386e56479c8db3e6, type: 3}
   _hasEffectOutsideBattle: 0
   _oneTimeEffect: 0
+  _playerCanOnlyHaveOne: 0

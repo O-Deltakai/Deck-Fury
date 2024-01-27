@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: DashDamageAmp
   m_EditorClassIdentifier: 
   _itemName: Dash Damage Amp
-  _itemDescription: After dashing, your next damage dealing card deals 1.5x more
-    damage. The buff expires after 3 seconds if no card is used.
+  _shortDescription: 
+  _itemDescription: After dashing, your next card deals 1.5x more damage. The buff
+    expires after 3 seconds if no card is used.
   _value: 100
   _rarity: 2
   _quantifiableEffects: []
@@ -22,3 +23,4 @@ MonoBehaviour:
   _itemPrefab: {fileID: 0}
   _hasEffectOutsideBattle: 0
   _oneTimeEffect: 0
+  _playerCanOnlyHaveOne: 0

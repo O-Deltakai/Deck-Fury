@@ -24,6 +24,8 @@ public class DamageBufferOnFullEnergy : ItemBase
     [SerializeField] EventReference breakBufferSFX;
     [SerializeField] EventReference regenerateBufferSFX;
 
+    Tween rotateVFXTween;
+
     void Update()
     {
         if(bufferActive)
@@ -50,6 +52,7 @@ public class DamageBufferOnFullEnergy : ItemBase
         base.Initialize();
     }
 
+
     public override void Proc()
     {
         if(bufferActive){ return; }
@@ -69,6 +72,11 @@ public class DamageBufferOnFullEnergy : ItemBase
         bufferVFXObject.SetActive(true);
         bufferVFXObject.transform.DOScale(originalVFXScale, dissipateSpeed);
         bufferSpriteRenderer.DOFade(1, dissipateSpeed);
+
+        if(!rotateVFXTween.IsActive())
+        {
+            rotateVFXTween = bufferVFXObject.transform.DORotate(new Vector3(0, 0, 360), 2f, RotateMode.FastBeyond360).SetLoops(-1).SetEase(Ease.Linear);
+        }
     }
 
     void BreakBuffer()

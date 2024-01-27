@@ -210,6 +210,7 @@ public class CardDescriptionPanel : MonoBehaviour
 
     public void RefreshFadeOut()
     {
+        if(!cardSelectionMenu){ return; }
         if(CR_FadeoutTimer != null)
         {
             StopCoroutine(CR_FadeoutTimer);
@@ -224,6 +225,8 @@ public class CardDescriptionPanel : MonoBehaviour
 
     public void BeginFadeOut()
     {
+        if(!cardSelectionMenu){ return; }
+
         if(!gameObject.activeInHierarchy) { return; }
         if(lockedInPlace) { return; }
         if(CR_FadeoutTimer != null) { return; }

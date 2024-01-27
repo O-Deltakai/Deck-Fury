@@ -46,6 +46,8 @@ public class TutorialController : MonoBehaviour
     [SerializeField] Vector2 tutorialBoxStartingAnchor = new Vector2(-670, 157);
     [SerializeField] Vector2 belowMagazineAnchor;
     [SerializeField] Vector2 belowMagazineAnchorLeft;
+    [SerializeField] Vector2 previewEnemyAnchor;
+    [SerializeField] Vector2 dashTutorialAnchor = new Vector2(607, 376);
 
 [Header("Dialogue Text")]
     [SerializeField] HintsContainerSO phase0Dialogue;
@@ -303,15 +305,15 @@ public class TutorialController : MonoBehaviour
 
         cardSelectionMenu.OnSelectSpecificCard += ClickedCardSynergyTutorial;
         cardSelectionMenu.OnUnpreviewStage += TalkAboutSynergy;
-        cardSelectionMenu.OnPreviewStage += TalkAboutEnemyPanel;
+        cardSelectionMenu.OnPreviewStage += TalkAboutEnemyDescriptionPanel;
         OnReachEndOfDialogue += EnableLoadMagazineButton;   
 
     }
 
-    void TalkAboutEnemyPanel()
+    void TalkAboutEnemyDescriptionPanel()
     {
         TutorialDialogueBox.transform.DOLocalMove(
-             new Vector3(cardSelectTutorialBoxAnchorPoint.x, cardSelectTutorialBoxAnchorPoint.y, 0),
+             new Vector3(previewEnemyAnchor.x, previewEnemyAnchor.y, 0),
             0.5f).SetUpdate(true).SetEase(Ease.InOutSine);          
         SetTutorialDialogue(3);        
     }
@@ -376,6 +378,10 @@ public class TutorialController : MonoBehaviour
         currentDialogueIndex = 0;
         currentDialogue = phase4Dialogue;
         tutorialDialogueText.text = currentDialogue.HintList[0];    
+
+        TutorialDialogueBox.transform.DOLocalMove(
+             new Vector3(dashTutorialAnchor.x, dashTutorialAnchor.y, 0),
+            0.5f).SetUpdate(true).SetEase(Ease.InOutSine);          
 
     }
 

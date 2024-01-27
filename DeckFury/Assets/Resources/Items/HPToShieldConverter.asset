@@ -18,9 +18,9 @@ MonoBehaviour:
     of your max HP, but you lose <b>%Q1</b> of your current HP during battle.
 
 
-    Shields
+    <i><b><color=#6DEDFF>Shields</color></b>
     regenerate outside of combat but is unaffected by armor, and can be bypassed
-    by certain attacks.'
+    by certain attacks</i>.'
   _value: 300
   _rarity: 3
   _quantifiableEffects:
@@ -38,3 +38,4 @@ MonoBehaviour:
   _itemPrefab: {fileID: 6495256824899366723, guid: c8976b6609b68d643800b45272185c4c, type: 3}
   _hasEffectOutsideBattle: 0
   _oneTimeEffect: 0
+  _playerCanOnlyHaveOne: 1

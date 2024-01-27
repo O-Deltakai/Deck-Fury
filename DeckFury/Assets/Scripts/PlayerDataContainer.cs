@@ -55,13 +55,17 @@ public class PlayerDataContainer
     [SerializeField] int _maxHP = 200;
     public int MaxHP => _maxHP;
 
-    [SerializeField] List<ItemSO> _items = new List<ItemSO>();
-    public IReadOnlyList<ItemSO> Items => _items;
+    [SerializeField] List<ItemBase> _items = new List<ItemBase>();
+    public IReadOnlyList<ItemBase> Items => _items;
 
-
-    public void AddItem(ItemSO item, int amount)
+    public List<ItemBase> GetItemList()
     {
-        
+        return _items;
+    }
+
+    public void AddItem(ItemBase item)
+    {
+        _items.Add(item);
     }
 
     public DeckElement AddCardToDeck(CardSO card, int cardCount)

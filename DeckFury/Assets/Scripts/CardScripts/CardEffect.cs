@@ -63,7 +63,8 @@ public abstract class CardEffect : MonoBehaviour
     {
         if(player != null)
         {
-            attackPayload.attacker = player.gameObject;           
+            attackPayload.attacker = player.gameObject;
+            attackPayload.damage = (int)(attackPayload.damage * player.GlobalDamageMultiplier * player.CardDamageMultiplier);
             transform.position = player.worldTransform.position;   
         }
     }

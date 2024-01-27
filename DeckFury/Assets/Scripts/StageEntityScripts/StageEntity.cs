@@ -135,7 +135,7 @@ public class StageEntity : MonoBehaviour
     }
     
 
-    [Range(0, 100)] int _armor = 0;
+    [SerializeField, Range(0, 100)] int _armor = 0;
     public int Armor {get { return _armor; } 
         set
         {
@@ -154,7 +154,23 @@ public class StageEntity : MonoBehaviour
         }
     }
 
-    [Range(0.1f, 10f)] public double defense = 1;
+    [Range(0.1f, 10f)] public double _defense = 1;
+    public double Defense {get{ return _defense; }
+        set
+        {
+            if(value < 0.1)
+            {
+                _defense = 0.1;
+            }else
+            if(value > 10)
+            {
+                _defense = 10;
+            }else
+            {
+                _defense = value;
+            }
+        }
+    }
 
 /// <summary>
 /// Buffers nullify a single instance of damage per buffer
@@ -741,7 +757,7 @@ public class StageEntity : MonoBehaviour
 
             if(damageAfterModifiers != 0)
             {
-                damageAfterModifiers = (int)(damageAfterModifiers/defense);
+                damageAfterModifiers = (int)(damageAfterModifiers/_defense);
                 UIElementAnimator.AnimateShakeNumber(HPText, damageAfterModifiers, DefaultHPTextColor, Color.red);
                 if(wentThroughShields)
                 {
@@ -799,7 +815,7 @@ public class StageEntity : MonoBehaviour
 
             if(damageAfterModifiers != 0)
             {
-                damageAfterModifiers = (int)(damageAfterModifiers * ((100 - Armor) * 0.01) * defense);
+                damageAfterModifiers = (int)(damageAfterModifiers * ((100 - Armor) * 0.01) * _defense);
                 UIElementAnimator.AnimateShakeNumber(HPText, damageAfterModifiers, DefaultHPTextColor, Color.red);
                 if(wentThroughShields)
                 {

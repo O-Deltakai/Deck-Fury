@@ -29,13 +29,22 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    [SerializeField] int _itemBasePrice = 100; // Multiplied by item rarity to get actual price
+
+[Header("Card Price Multipliers")]
     [SerializeField] float _cardPriceMaxMultiplier = 1.2f;
     [SerializeField] float _cardPriceMinMultiplier = 1.1f;
     [SerializeField] float _cardPriceSaleMinMultiplier = 0.5f;
     [SerializeField] float _cardPriceSaleMaxMultiplier = 0.7f;
 
+[Header("Item Price Multipliers")]
+    [SerializeField] float _itemPriceMinMultiplier = 1.5f;
+    [SerializeField] float _itemPriceMaxMultiplier = 1.8f;
+    [SerializeField] float _itemPriceSaleMinMultiplier = 1.1f;
+    [SerializeField] float _itemPriceSaleMaxMultiplier = 1.4f;
 
-    [SerializeField, Range(0, 1)] double saleChance = 0.1; 
+    [SerializeField, Range(0, 1)] double itemSaleChance = 0.05;
+    [SerializeField, Range(0, 1)] double cardSaleChance = 0.15; 
 
 [Header("Shop UI Elements")]
     [SerializeField] TextMeshProUGUI playerCurrentMoneyText;
@@ -103,7 +112,7 @@ public class ShopManager : MonoBehaviour
             
 
             //Determine if on sale
-            if(randomDouble <= saleChance)
+            if(randomDouble <= cardSaleChance)
             {
                 shopCard.onSale = true;
                 shopCard.Price = (int)(shopCard.Card.GetCardTier() * _cardPriceBase * RandomFloat(_cardPriceSaleMinMultiplier, _cardPriceSaleMaxMultiplier));

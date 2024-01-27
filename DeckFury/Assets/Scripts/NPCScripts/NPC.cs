@@ -63,7 +63,7 @@ public class NPC : StageEntity
         CurrentHP = _enemyData.MaxHP;
         ShieldHP = _enemyData.ShieldHP;
         Armor = _enemyData.Armor;
-        defense = _enemyData.Defense;
+        _defense = _enemyData.Defense;
 
     }
 
