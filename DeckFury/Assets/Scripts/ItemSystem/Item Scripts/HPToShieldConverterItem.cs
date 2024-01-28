@@ -6,9 +6,8 @@ public class HPToShieldConverterItem : ItemBase
 {
     public PlayerDataContainer playerData = new PlayerDataContainer();
 
-    public override void Initialize()
+    public override void PersistentInitialize()
     {
-        base.Initialize();
         if(PersistentLevelController.Instance)
         {
             playerData = PersistentLevelController.Instance.PlayerData;
@@ -22,8 +21,24 @@ public class HPToShieldConverterItem : ItemBase
             
         }
 
+        playerData.SetMaxHP(DivideAndRoundUp(playerData.MaxHP, (int)(1f / (itemSO.QuantifiableEffects[1].FloatQuantity * 0.01f))));
+
+        if(player)
+        {
+            if(player.CurrentHP > playerData.MaxHP)
+            {
+                player.CurrentHP = playerData.MaxHP;
+            }
+        }
+
+        base.PersistentInitialize();
+    }
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
         player.ShieldHP += (int)(playerData.MaxHP * (itemSO.QuantifiableEffects[0].FloatQuantity * 0.01f));
-        player.CurrentHP = DivideAndRoundUp(player.CurrentHP, (int)(1f / (itemSO.QuantifiableEffects[1].FloatQuantity * 0.01f)));
         
     }
 

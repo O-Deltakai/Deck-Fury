@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Floppy Disk
   m_EditorClassIdentifier: 
   _itemName: Floppy Disk
+  _shortDescription: 
   _itemDescription: Increases your card magazine capacity by <b>+Q0</b>.
   _value: 100
   _rarity: 2
@@ -24,5 +25,7 @@ MonoBehaviour:
     <ModCoefficient>k__BackingField: 0
   _itemImage: {fileID: 21300000, guid: 28d1ac9d6c6e9754c97be3f8a75593a7, type: 3}
   _itemPrefab: {fileID: 0}
+  _itemColorPalette: {fileID: 11400000, guid: eb9e9f6a13ee5004abc9ae082a092069, type: 2}
   _hasEffectOutsideBattle: 0
   _oneTimeEffect: 0
+  _playerCanOnlyHaveOne: 0

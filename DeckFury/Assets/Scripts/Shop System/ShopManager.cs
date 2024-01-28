@@ -87,6 +87,8 @@ public class ShopManager : MonoBehaviour
     {
         //Placeholder for now - just gets all the cards available from the Resources folder
         CardSO[] cardPool = GetCardsFromResources("Cards");
+        //Placeholder for now - just gets all the items available from the Resources folder
+        ItemSO[] itemPool = GetItemsFromResources("Items");
 
 
         if(PersistentLevelController.Instance)
@@ -103,6 +105,7 @@ public class ShopManager : MonoBehaviour
             purchasable.shopManager = this;
         }
 
+        //Initialize purchasable cards
         foreach(WorldShopCard shopCard in _purchasables.OfType<WorldShopCard>())
         {
             //Randomize card
@@ -122,6 +125,35 @@ public class ShopManager : MonoBehaviour
             }
             
         }
+
+        //Initialize purchasable items
+        foreach(WorldShopItem shopItem in _purchasables.OfType<WorldShopItem>())
+        {
+            //Randomize item
+
+            shopItem.ItemSO = itemPool[random.Next(0, itemPool.Count() - 1)];
+
+            while(shopItem.ItemSO.ItemPrefab == null)
+            {
+                shopItem.ItemSO = itemPool[random.Next(0, itemPool.Count() - 1)];
+            }
+
+            print("ItemPool count: " + itemPool.Count());
+            double randomDouble = random.NextDouble();
+            
+
+            //Determine if on sale
+            if(randomDouble <= itemSaleChance)
+            {
+                shopItem.onSale = true;
+                shopItem.Price = (int)(shopItem.ItemSO.Rarity * _itemBasePrice * RandomFloat(_itemPriceSaleMinMultiplier, _itemPriceSaleMaxMultiplier) * shopItem.ItemSO.ValueMultiplier);
+            }else
+            {
+                shopItem.Price = (int)(shopItem.ItemSO.Rarity * _itemBasePrice * RandomFloat(_itemPriceMinMultiplier, _itemPriceMaxMultiplier) * shopItem.ItemSO.ValueMultiplier);
+            }
+            
+        }
+
 
     }
 
@@ -148,6 +180,12 @@ public class ShopManager : MonoBehaviour
     {
         CardSO[] cardResources = Resources.LoadAll<CardSO>(path);
         return cardResources;
+    }
+
+    ItemSO[] GetItemsFromResources(string path)
+    {
+        ItemSO[] itemResources = Resources.LoadAll<ItemSO>(path);
+        return itemResources;
     }
 
 
@@ -187,7 +225,43 @@ public class ShopManager : MonoBehaviour
 
     public void PurchaseItem(WorldShopItem shopItem)
     {
+        if(stageStateController)
+        {
+            if(shopItem.Price > stageStateController.PlayerData.CurrentMoney)
+            {
+                NotifyInsufficientFunds();
+                RuntimeManager.PlayOneShot(denyPurchaseSFX);
+                return;
+            }
+        }
 
+        if(PersistentItemController.Instance)
+        {
+            ItemBase addedItem = PersistentItemController.Instance.AddItemToPlayerData(shopItem.ItemSO);
+            PlayerItemController playerItemController = GameManager.Instance.player.GetComponent<PlayerItemController>();
+            playerItemController.GiveItemInstanceToPlayer(addedItem);
+
+            stageStateController.PlayerData.CurrentMoney -= shopItem.Price;
+            Destroy(shopItem.gameObject);
+
+            RuntimeManager.PlayOneShot(buyCardSFX);
+
+        }else
+        if(GameManager.Instance.player)
+        {
+            PlayerItemController playerItemController = GameManager.Instance.player.GetComponent<PlayerItemController>();
+            playerItemController.InstantiateAndGiveItemToPlayer(shopItem.ItemSO);
+
+            stageStateController.PlayerData.CurrentMoney -= shopItem.Price;
+            Destroy(shopItem.gameObject);
+
+            RuntimeManager.PlayOneShot(buyCardSFX);
+
+        }
+        else
+        {
+            Debug.LogError("Nowhere to send bought card to.", this);
+        }
     }
 
     void SetMoneyText()

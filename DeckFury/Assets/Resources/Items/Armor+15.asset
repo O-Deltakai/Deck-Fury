@@ -20,7 +20,7 @@ MonoBehaviour:
     <i><b>Armor</b>
     reduces most types of damage by a percentage amount equal to the armor value
     to HP</i>.'
-  _value: 0
+  _valueMultiplier: 1
   _rarity: 1
   _quantifiableEffects:
   - <EffectName>k__BackingField: Armor Increase Amount
@@ -29,7 +29,8 @@ MonoBehaviour:
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
   _itemImage: {fileID: 21300000, guid: 8683e22025063c2418b0a02ff1f36f11, type: 3}
-  _itemPrefab: {fileID: 0}
+  _itemPrefab: {fileID: 7955951993640163194, guid: c87842cc6c4d9a145afc5c566139f77e, type: 3}
+  _itemColorPalette: {fileID: 11400000, guid: eb9e9f6a13ee5004abc9ae082a092069, type: 2}
   _hasEffectOutsideBattle: 0
   _oneTimeEffect: 0
   _playerCanOnlyHaveOne: 0

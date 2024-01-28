@@ -19,5 +19,10 @@ public class DashResetOnKillItem : ItemBase
         playerDashController.RefreshCooldown();
     }
 
+    public override void Deactivate()
+    {
+        base.Deactivate();
+        player.OnKillEnemy -= Proc;
+    }
 
 }

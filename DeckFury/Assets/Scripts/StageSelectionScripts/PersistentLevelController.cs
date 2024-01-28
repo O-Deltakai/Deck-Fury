@@ -95,7 +95,7 @@ public class PersistentLevelController : MonoBehaviour
 
     void SetPlayerStatText()
     {
-        hpText.text = ":" + PlayerData.CurrentHP.ToString();
+        hpText.text = ":" + PlayerData.CurrentHP + "/" + PlayerData.MaxHP;
         shieldsText.text = ":" + PlayerData.BaseShieldHP.ToString();
         moneyText.text = "$:" + PlayerData.CurrentMoney.ToString();
     }

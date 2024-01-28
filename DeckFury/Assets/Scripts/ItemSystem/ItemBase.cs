@@ -77,6 +77,7 @@ public abstract class ItemBase : MonoBehaviour
     public virtual void Deactivate()
     {
         _initialized = false;
+        
     }
 
 

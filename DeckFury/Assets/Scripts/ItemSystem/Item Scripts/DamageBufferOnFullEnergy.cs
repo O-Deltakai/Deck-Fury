@@ -87,4 +87,11 @@ public class DamageBufferOnFullEnergy : ItemBase
         RuntimeManager.PlayOneShotAttached(breakBufferSFX, player.gameObject);
     }
 
+    public override void Deactivate()
+    {
+        base.Deactivate();
+        energyController.OnFullCharge -= Proc;
+    }
+
+
 }

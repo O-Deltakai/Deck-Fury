@@ -6,6 +6,7 @@ using FMODUnity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public abstract class ShopPurchasable : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public abstract class ShopPurchasable : MonoBehaviour
     [SerializeField] protected GameObject spriteObject;
     [SerializeField] protected GameObject shadowSprite;
     [SerializeField] protected SpriteRenderer shopObjectSpriteRenderer;
+    [SerializeField] protected Image shopObjectImage;
+
 
     [SerializeField] protected TextMeshProUGUI _priceTagText;
     public TextMeshProUGUI PriceTagText => _priceTagText;

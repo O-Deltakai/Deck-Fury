@@ -89,5 +89,11 @@ public class DashTrailDamageItem : ItemBase
         }
     }
 
+    public override void Deactivate()
+    {
+        base.Deactivate();
+        player.DashController.OnDash += Proc;
+
+    }
 
 }

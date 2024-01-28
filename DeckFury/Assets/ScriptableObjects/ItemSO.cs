@@ -18,9 +18,10 @@ public class ItemSO : ScriptableObject
     /// </summary>
     public string ItemDescription => _itemDescription;
 
-    [Tooltip("The base value of this item which defines how much it will cost when purchasing it from the shop.")]
-    [SerializeField, Min(0)] int _value;
-    public int Value => _value;
+    [Tooltip("The value multiplier is used when calculating shop prices and acts as a custom modifier to allow for " + 
+    "more granular control over an item's actual value beyond rarity.")]
+    [SerializeField, Min(0)] float _valueMultiplier = 1;
+    public float ValueMultiplier => _valueMultiplier;
 
     [Tooltip("Base rarity of the item, which dictates how common the item will be in elite rewards or shops.")]
     [SerializeField, Range(1, 4)] int _rarity = 1;
@@ -35,6 +36,10 @@ public class ItemSO : ScriptableObject
 
     [SerializeField] GameObject _itemPrefab;
     public GameObject ItemPrefab => _itemPrefab;
+
+    [SerializeField] ItemColorPaletteSO _itemColorPalette;
+    public ItemColorPaletteSO ItemColorPalette => _itemColorPalette;
+
 
     [Header("Advanced Properties")]
     [SerializeField] bool _hasEffectOutsideBattle;

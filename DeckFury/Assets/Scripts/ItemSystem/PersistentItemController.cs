@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -43,15 +44,53 @@ public class PersistentItemController : MonoBehaviour
 
 /// <summary>
 /// Instantiates the item prefab assosciated with the given ItemSO and adds it to the item list within the player data.
+/// Also returns the instantiated item prefab.
 /// </summary>
 /// <param name="itemSO"></param>
-    public void AddItemToPlayer(ItemSO itemSO)
+    public ItemBase AddItemToPlayerData(ItemSO itemSO)
     {
         ItemBase itemPrefab = Instantiate(itemSO.ItemPrefab, itemObjectParent.transform).GetComponent<ItemBase>();
         itemObjectsList.Add(itemPrefab);
         playerData.AddItem(itemPrefab);
+
+        if(GameManager.Instance.player)
+        {
+            itemPrefab.player = GameManager.Instance.player;
+        }
+
+
+        itemPrefab.PersistentInitialize();
+
+        return itemPrefab;
     }
 
+/// <summary>
+/// Destroys the given item instance if it is exists in the itemObjectList.
+/// </summary>
+/// <param name="item"></param>
+/// <returns></returns>
+    public bool DestroyItemInstance(ItemBase item)
+    {
+        if(itemObjectsList.Contains(item))
+        {
+            itemObjectsList.Remove(item);
+            Destroy(item);
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool RemoveItemInstanceFromPlayer(ItemBase item)
+    {
+        if(playerData.RemoveItem(item))
+        {
+            DestroyItemInstance(item);
+            return true;
+        }
+
+        return false;
+    }
 
 
 }

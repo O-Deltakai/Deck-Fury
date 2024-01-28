@@ -45,6 +45,11 @@ public class FireExplosionOnKillItem : ItemBase
         Proc();
     }
 
+    public override void Deactivate()
+    {
+        base.Deactivate();
+        player.OnKillEnemyWithPayload += ProcEvent;
 
+    }
 
 }
