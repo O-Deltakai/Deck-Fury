@@ -72,7 +72,7 @@ public class PlayerItemController : MonoBehaviour
             ItemBase existingItem = itemList.FirstOrDefault(itemElement => itemElement.itemSO == item.itemSO);
             if(existingItem)
             {
-                print("Given item is unique - player cannot have more than one.");
+                print("Given item is unique - player cannot have more than one.  Item was not initialized");
                 return;
             }
         }
