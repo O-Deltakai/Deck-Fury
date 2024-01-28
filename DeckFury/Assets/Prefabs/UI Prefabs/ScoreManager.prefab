@@ -2613,6 +2613,10 @@ MonoBehaviour:
   StopRecordingEvents: 0
   killEnemyReward: 50
   noHPLostReward: 500
+  doubleKillReward: 50
+  tripleKillReward: 100
+  quadraKillReward: 200
+  quadraPlusKillReward: 500
   parTimeBaseScore: 300
   stageParTime: 45
   numberOfMoves: 0
@@ -2625,6 +2629,8 @@ MonoBehaviour:
   <TripleKills>k__BackingField: 0
   <QuadraKills>k__BackingField: 0
   <QuadraPlusKills>k__BackingField: 0
+  <HighestComboKill>k__BackingField: 0
+  <NumberOfComboKills>k__BackingField: 0
   <EnemiesKilledWithHazards>k__BackingField: 0
   <DamageDealtToEnemies>k__BackingField: 0
   <TotalDamageTaken>k__BackingField: 0
@@ -2654,6 +2660,27 @@ MonoBehaviour:
   - {fileID: 241959839947126325}
   delayBetweenShowingScores: 0.4
   delayBetweenShowingBonuses: 0.2
+  showScoreSFX:
+    Guid:
+      Data1: -1573731638
+      Data2: 1338454088
+      Data3: -1720425053
+      Data4: 1501324722
+    Path: event:/UIEvents/ScoreRevealSFX
+  showSpecialBonusSFX:
+    Guid:
+      Data1: 1475116266
+      Data2: 1208883632
+      Data3: -1010889082
+      Data4: 1136032677
+    Path: event:/UIEvents/ScoreRevealSFX_Stronger
+  showMoneySFX:
+    Guid:
+      Data1: -372665338
+      Data2: 1221637724
+      Data3: 529620388
+      Data4: -1963097512
+    Path: event:/UIEvents/MoneyEarnedSFX
   damageTakenElement: {fileID: 5439771210947061755}
   damageTakenValue: {fileID: 341745158439136520}
   damageTakenScore: {fileID: 1061540293576790515}
@@ -2667,6 +2694,8 @@ MonoBehaviour:
   stageScoreValue: {fileID: 789573596941434202}
   totalScoreElement: {fileID: 241959839947126325}
   totalScoreValue: {fileID: 2781930392044264318}
+  moneyEarnedElement: {fileID: 0}
+  moneyEarnedValue: {fileID: 0}
   specialBonusesPanel: {fileID: 4749542562966317813}
   bonusRewardsParent: {fileID: 2486054920926021453}
   bonusSlotPrefab: {fileID: 4390253076938964483, guid: 3fb6c9bbfbfe18c488fe1f229d58d54e, type: 3}
