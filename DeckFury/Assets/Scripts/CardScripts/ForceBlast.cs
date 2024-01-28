@@ -25,27 +25,41 @@ public class ForceBlast : CardEffect
 
         Collider2D[] hits = Physics2D.OverlapBoxAll(effectCollider.transform.position, effectCollider.size, effectCollider.transform.eulerAngles.z, stageEntitiesMask);
         if(hits.Length == 0){return;}
-
+        if(hits == null) { return; }
 
         var sortedEntities = hits.OrderBy(h => -Vector2.Distance(h.transform.position, transform.position)).ToList();
         
 
         foreach(var collider2D in sortedEntities) 
         {
-            if(!collider2D.attachedRigidbody.gameObject.TryGetComponent<StageEntity>(out var entity))
+            StageEntity entity;
+            if(collider2D.attachedRigidbody != null)
             {
-                print("collider did not have a StageEntity attached");
-                continue;
+                if(!collider2D.attachedRigidbody.gameObject.TryGetComponent<StageEntity>(out entity))
+                {
+                    print("collider did not have a StageEntity attached");
+                    continue;
+                }
+
+            }else
+            {
+                collider2D.gameObject.TryGetComponent<StageEntity>(out entity);
             }
             //if(!entity.CompareTag("Enemy") || !entity.CompareTag("EnvironmentalHazard")){continue;}
-
-            if(entity.CompareTag("Enemy") || entity.CompareTag("EnvironmentalHazard"))
+            if(entity == null)
             {
-                entity.HurtEntity(attackPayload);
-                Vector2Int shoveDirection = aimpoint.GetAimVector2Int() * (int)cardSO.QuantifiableEffects[0].GetValueDynamic();
+                continue;
+            }else
+            {
+                if(entity.CompareTag("Enemy") || entity.CompareTag("EnvironmentalHazard"))
+                {
+                    entity.HurtEntity(attackPayload);
+                    Vector2Int shoveDirection = aimpoint.GetAimVector2Int() * (int)cardSO.QuantifiableEffects[0].GetValueDynamic();
 
-                entity.AttemptMovement(shoveDirection.x, shoveDirection.y, 0.15f, DG.Tweening.Ease.OutQuart, ForceMoveMode.Forward);         
+                    entity.AttemptMovement(shoveDirection.x, shoveDirection.y, 0.15f, DG.Tweening.Ease.OutQuart, ForceMoveMode.Forward);         
+                }
             }
+
 
 
         }
