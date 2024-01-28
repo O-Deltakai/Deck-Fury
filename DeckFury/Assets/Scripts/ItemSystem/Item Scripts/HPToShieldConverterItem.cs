@@ -8,6 +8,8 @@ public class HPToShieldConverterItem : ItemBase
 
     public override void PersistentInitialize()
     {
+        if(PersistentInitialized) { return; }
+
         if(PersistentLevelController.Instance)
         {
             playerData = PersistentLevelController.Instance.PlayerData;
@@ -21,10 +23,13 @@ public class HPToShieldConverterItem : ItemBase
             
         }
 
+        playerData.SetBaseShieldHP(playerData.BaseShieldHP + (int)(playerData.MaxHP * (itemSO.QuantifiableEffects[0].FloatQuantity * 0.01f)));
         playerData.SetMaxHP(DivideAndRoundUp(playerData.MaxHP, (int)(1f / (itemSO.QuantifiableEffects[1].FloatQuantity * 0.01f))));
 
         if(player)
         {
+            player.ShieldHP += playerData.BaseShieldHP;
+
             if(player.CurrentHP > playerData.MaxHP)
             {
                 player.CurrentHP = playerData.MaxHP;
@@ -38,7 +43,6 @@ public class HPToShieldConverterItem : ItemBase
     {
         base.Initialize();
 
-        player.ShieldHP += (int)(playerData.MaxHP * (itemSO.QuantifiableEffects[0].FloatQuantity * 0.01f));
         
     }
 

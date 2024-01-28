@@ -7765,18 +7765,19 @@ MonoBehaviour:
   startingDeck: {fileID: 11400000, guid: 61c69329317e42947b952d5090e2318d, type: 2}
   _currentMapPrefab: {fileID: 0}
   _stageType: 0
+  _basePlayerDataSO: {fileID: 11400000, guid: 4866baa0ac022fc46ac8cdc6ec60c577, type: 2}
   <PlayerData>k__BackingField:
     _currentHP: 200
     CurrentDeck:
       <CardList>k__BackingField: []
     _currentMoney: 1000
-    CurrentScore: 0
-    CurrentStageLevelIndex: 0
     _baseShieldHP: 20
     _baseArmor: 0
     _armorHardCap: 80
     _baseDefense: 1
     _maxHP: 200
+    CurrentScore: 0
+    CurrentStageLevelIndex: 0
     _items: []
   <StageSpawnTable>k__BackingField: {fileID: 11400000, guid: d312d360e31b18841a0d8333689a0b0d, type: 2}
   hpText: {fileID: 1070677233}

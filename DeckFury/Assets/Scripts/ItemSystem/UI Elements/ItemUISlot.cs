@@ -86,6 +86,11 @@ public class ItemUISlot : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        _itemObjectRef.OnProc -= BlinkImageOnce;
+    }
+
     public void SetItem(ItemBase item)
     {   //If UI Item Slot already has an item set, unsubscribe the current item from BlinkImageOnce
         if(_itemObjectRef)

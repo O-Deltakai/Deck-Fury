@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -60,12 +61,27 @@ public class PlayerItemController : MonoBehaviour
 /// <param name="item"></param>
     public void GiveItemInstanceToPlayer(ItemBase item)
     {
+        
+
         itemList.Add(item);
         item.player = GetComponent<PlayerController>();
+        OnAddItemToPlayer?.Invoke(item);
+
+        if(item.itemSO.PlayerCanOnlyHaveOne)
+        {
+            ItemBase existingItem = itemList.FirstOrDefault(itemElement => itemElement.itemSO == item.itemSO);
+            if(existingItem)
+            {
+                print("Given item is unique - player cannot have more than one.");
+                return;
+            }
+        }
+
+
+
         item.PersistentInitialize();
         item.Initialize();
 
-        OnAddItemToPlayer?.Invoke(item);
     }
 
 /// <summary>

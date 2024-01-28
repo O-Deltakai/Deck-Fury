@@ -19,7 +19,7 @@ MonoBehaviour:
     causes them to explode, dealing <b>Q0</b> <color=orange><b>fire</b></color> damage
     to all adjacent targets. \n\nThis can trigger a chain reaction if an enemy is
     killed by the fire explosion itself."
-  _value: 0
+  _valueMultiplier: 1
   _rarity: 2
   _quantifiableEffects:
   - <EffectName>k__BackingField: Explosion Damage

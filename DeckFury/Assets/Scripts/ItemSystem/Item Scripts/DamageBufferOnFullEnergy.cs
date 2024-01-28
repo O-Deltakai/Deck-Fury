@@ -28,6 +28,7 @@ public class DamageBufferOnFullEnergy : ItemBase
 
     void Update()
     {
+        if(!Initialized) {return;}
         if(bufferActive)
         {
             transform.position = player.worldTransform.position;
@@ -90,6 +91,8 @@ public class DamageBufferOnFullEnergy : ItemBase
     public override void Deactivate()
     {
         base.Deactivate();
+        bufferVFXObject.SetActive(false);
+        bufferActive = false;
         energyController.OnFullCharge -= Proc;
     }
 

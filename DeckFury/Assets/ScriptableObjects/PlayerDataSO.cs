@@ -21,8 +21,10 @@ public class PlayerDataSO : ScriptableObject
     public int StartingMoney => _startingMoney;
 
     [SerializeField] DeckSO _startingDeck;
-    [SerializeField] List<ItemSO> _startingItems;
+    public DeckSO StartingDeck => _startingDeck;
 
+    [SerializeField] List<ItemSO> _startingItems;
+    public List<ItemSO> StartingItems => _startingItems;
 
 
 

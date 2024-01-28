@@ -46,7 +46,7 @@ public abstract class ItemBase : MonoBehaviour
 /// may have.
 /// </summary>
     public virtual void PersistentInitialize()
-    {
+    {   
         OnPersistentInitialize?.Invoke(this);
         _persistentInitialized = true;
     }
@@ -77,7 +77,7 @@ public abstract class ItemBase : MonoBehaviour
     public virtual void Deactivate()
     {
         _initialized = false;
-        
+
     }
 
 

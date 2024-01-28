@@ -21,6 +21,8 @@ public class PersistentLevelController : MonoBehaviour
     SceneLoader sceneLoader;
     GameManager gameManager;
     StageSelectionManager stageSelectionManager;
+    PersistentItemController persistentItemController;
+
 
     //The starting deck is the actual scriptable object deck that the game uses as the base-line deck for the player's GameDeck.
     //The starting deck shouldn't actually be modified.
@@ -31,7 +33,9 @@ public class PersistentLevelController : MonoBehaviour
     public GameObject CurrentMapPrefab => _currentMapPrefab;
     [SerializeField] StageType _stageType;
     public StageType StageType => _stageType;
-    
+
+    [SerializeField] PlayerDataSO _basePlayerDataSO;
+    public PlayerDataSO BasePlayerDataSO => _basePlayerDataSO;
 
     [field:SerializeField] public PlayerDataContainer PlayerData{get ; private set;}
     [field:SerializeField] public SpawnTableSO StageSpawnTable{get; private set;}
@@ -69,15 +73,42 @@ public class PersistentLevelController : MonoBehaviour
     private void InitializeAwakeStates()
     {
         //Intialize player's game deck using the startindDeck
-        foreach(DeckElement deckElement in startingDeck.CardList)
-        {
-            PlayerData.CurrentDeck.CardList.Add(deckElement);
-        }
+        // foreach(DeckElement deckElement in startingDeck.CardList)
+        // {
+        //     PlayerData.CurrentDeck.CardList.Add(deckElement);
+        // }
 
+        InitializePlayerData(_basePlayerDataSO);
+
+        persistentItemController = GetComponent<PersistentItemController>();
         gameManager = GameErrorHandler.NullCheck(GameManager.Instance, "Game Manager");
         sceneLoader = GameErrorHandler.NullCheck(GameManager.Instance.GetComponent<SceneLoader>(), "Scene Loader");
 
     }
+
+    void InitializePlayerData(PlayerDataSO playerDataSO)
+    {
+        PlayerData.SetMaxHP(playerDataSO.MaxHP);
+        PlayerData.SetBaseShieldHP(playerDataSO.BaseShields);
+        PlayerData.SetBaseArmor(playerDataSO.BaseArmor);
+        PlayerData.SetBaseDefense(playerDataSO.BaseDefense);
+        PlayerData.CurrentHP = playerDataSO.MaxHP;
+        PlayerData.CurrentMoney = playerDataSO.StartingMoney;
+
+        foreach(DeckElement deckElement in playerDataSO.StartingDeck.CardList)
+        {
+            PlayerData.CurrentDeck.CardList.Add(deckElement);
+        }        
+
+        foreach(ItemSO itemSO in playerDataSO.StartingItems)
+        {
+            persistentItemController.AddItemToPlayerData(itemSO);
+        }
+
+        
+        
+    }
+
 
     private void Awake() 
     {

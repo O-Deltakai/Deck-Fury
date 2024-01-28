@@ -15,13 +15,13 @@ MonoBehaviour:
   _itemName: Voltaic Catalyst
   _shortDescription: 
   _itemDescription: 'Increases your <b><color=#6DEDFF>Shields</color></b> by <b>%Q0</b>
-    of your max HP, but you lose <b>%Q1</b> of your current HP during battle.
+    of your max HP, but you lose <b>%Q1</b> of your max HP.
 
 
     <i><b><color=#6DEDFF>Shields</color></b>
     regenerate outside of combat but is unaffected by armor, and can be bypassed
     by certain attacks</i>.'
-  _value: 300
+  _valueMultiplier: 1
   _rarity: 3
   _quantifiableEffects:
   - <EffectName>k__BackingField: HP To Shields Conversion Rate

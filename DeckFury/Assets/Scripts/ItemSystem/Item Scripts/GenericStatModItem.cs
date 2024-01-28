@@ -30,6 +30,7 @@ public class GenericStatModItem : ItemBase
 
         if(player)
         {
+            player.CurrentHP += _currentHPMod;
             player.ShieldHP += _shieldMod;
             player.Armor += _armorMod;
             player.Defense += _defenseMod;
