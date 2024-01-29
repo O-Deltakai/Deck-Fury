@@ -3,45 +3,112 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using System.Linq;
 
 public class RewardMenuController : MonoBehaviour
 {
+    static RewardMenuController _instance;
+    public RewardMenuController Instance => _instance;
+
     public delegate void FinishSelectRewardEvent();
-    public event FinishSelectRewardEvent OnSelectReward;
+    public event FinishSelectRewardEvent OnFinishSelectingReward;
 
 
     [SerializeField] Vector3 OutOfViewAnchor;
     [SerializeField] Vector3 InViewAnchor;
+    [SerializeField] Vector3 AdditionalRewardsInViewAnchor;
+    [SerializeField] Vector3 AdditionalRewardsOutOfViewAnchor;
+
 
     CardSelectionMenu cardSelectionMenu; 
 
     RectTransform rectTransform;
-
     [SerializeField] List<CardDescriptionPanel> rewardSlots;
+
+    [Header("Additional Rewards Panel")]
+    [SerializeField] GameObject additionalRewardsListParent;
+    [SerializeField] GameObject genericRewardSlotPrefab;
+    [SerializeField] Sprite moneyRewardSprite;
+
+    [SerializeField] List<RewardableElement> additionalRewards = new List<RewardableElement>();
+
+    System.Random random;
 
     private void Awake() 
     {
+        if(_instance != null)
+        {
+            Debug.LogError("There is more than one RewardMenuController within the scene which should not be happening.");
+        }
+
+        _instance = this;
         rectTransform = GetComponent<RectTransform>();    
         cardSelectionMenu = FindObjectOfType<CardSelectionMenu>();
     }
 
     void Start()
     {
-        GenerateRewards();
+        if(PersistentLevelController.Instance)
+        {
+            random = PersistentLevelController.Instance.runRandomGenerator;
+        }else
+        {
+            random = new System.Random();
+        }
+        GenerateCardRewards();
+
+        if(StageStateController.Instance)
+        {
+            if(StageStateController.Instance._stageType == StageType.EliteCombat)
+            {
+                CreateItemReward(GetRandomItemFromResources(random));
+            }
+        }
+
     }
 
-    void GenerateRewards()
+    void OnDestroy()
+    {
+        _instance = null;
+    }
+
+
+    void GenerateCardRewards()
     {
         int numberOfCardRewards = rewardSlots.Count;
         CardSO[] cardPool = GetCardsFromResources("Cards");
         for(int i = 0; i < numberOfCardRewards; i++) 
         {
-            int randomInt = Random.Range(0, cardPool.Length);
+            int randomInt = random.Next(0, cardPool.Length);
             rewardSlots[i].UpdateDescription(cardPool[randomInt]); 
 
         }
     }
 
+    ItemSO GetRandomItemFromResources(System.Random random)
+    {
+        ItemSO[] itemPool = Resources.LoadAll<ItemSO>("Items");
+        ItemSO randomItem = itemPool[random.Next(0, itemPool.Count())];
+
+        while(randomItem.ItemPrefab == null)
+        {
+            randomItem = itemPool[random.Next(0, itemPool.Count())];
+        }
+
+        return randomItem;
+        
+
+    }
+
+    void GenerateAdditionalRewards(List<RewardableElement> rewardList)
+    {
+
+
+
+    }
+
+
+    //Placeholder for now - just grabs all the cards from the resources folder
     CardSO[] GetCardsFromResources(string path)
     {
         CardSO[] cardResources = Resources.LoadAll<CardSO>(path);
@@ -71,6 +138,18 @@ public class RewardMenuController : MonoBehaviour
 
     }
 
+    void MoveAdditionalRewardsIntoView()
+    {
+        rectTransform.DOLocalMove(AdditionalRewardsInViewAnchor, 0.25f).SetUpdate(true);
+    }
+
+    void MoveAdditionalRewardsOutOfView()
+    {
+        rectTransform.DOLocalMove(AdditionalRewardsOutOfViewAnchor, 0.25f).SetUpdate(true);
+        GameManager.currentGameState = GameManager.GameState.Realtime;
+        cardSelectionMenu.CanBeOpened = true;        
+    }
+
     public void ClickRewardButton(CardDescriptionPanel rewardSlot)
     {
         SendRewardToDeck(rewardSlot.CurrentlyViewedCardSO);
@@ -80,10 +159,36 @@ public class RewardMenuController : MonoBehaviour
             slot.GetComponent<Button>().interactable = false;
         }
 
-        MoveOutOfView();
-        OnSelectReward?.Invoke();
+        if(additionalRewards.Count == 0)
+        {
+            MoveOutOfView();
+            OnFinishSelectingReward?.Invoke();
+        }else
+        {
+            MoveAdditionalRewardsIntoView();
+        }
+
 
     }
+
+    public void SkipCardReward()
+    {
+        if(additionalRewards.Count == 0)
+        {
+            MoveOutOfView();
+            OnFinishSelectingReward?.Invoke();
+        }else
+        {
+            MoveAdditionalRewardsIntoView();
+        }
+    }
+
+    public void ContinueButton()
+    {
+        MoveAdditionalRewardsOutOfView();
+        OnFinishSelectingReward?.Invoke();
+    }
+
 
     void SendRewardToDeck(CardSO card)
     {
@@ -100,6 +205,49 @@ public class RewardMenuController : MonoBehaviour
             Debug.LogError("There is nowhere to send the reward to - the RewardMenuCanvas prefab may be in the wrong place.");
         }
 
+    }
+
+    void CreateAdditionalReward(RewardableElement rewardableElement)
+    {
+
+    }
+
+    void CreateCardReward(CardSO cardSO)
+    {
+        
+    }
+
+    void CreateItemReward(ItemSO itemSO)
+    {
+        ItemReward itemReward = new ItemReward
+        {
+            rewardItemSO = itemSO, 
+            rewardName = itemSO.ItemName,
+            rewardSprite = itemSO.ItemImage,
+            rewardType = RewardType.Item
+        };
+
+        additionalRewards.Add(itemReward);
+
+        GenericRewardSlot genericRewardSlot = Instantiate(genericRewardSlotPrefab, additionalRewardsListParent.transform).GetComponent<GenericRewardSlot>();
+        genericRewardSlot.RewardElement = itemReward;
+        genericRewardSlot.Initialize();
+    }
+
+    void CreateMoneyReward(int amount)
+    {
+        MoneyReward moneyReward = new MoneyReward
+        {
+            rewardName = "+$" + amount,
+            rewardSprite = moneyRewardSprite,
+            rewardType = RewardType.Money
+        };
+
+        additionalRewards.Add(moneyReward);
+
+        GenericRewardSlot genericRewardSlot = Instantiate(genericRewardSlotPrefab, additionalRewardsListParent.transform).GetComponent<GenericRewardSlot>();
+        genericRewardSlot.RewardElement = moneyReward;
+        genericRewardSlot.Initialize();
     }
 
 }

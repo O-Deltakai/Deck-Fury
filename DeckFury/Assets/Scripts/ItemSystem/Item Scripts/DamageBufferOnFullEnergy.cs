@@ -93,7 +93,10 @@ public class DamageBufferOnFullEnergy : ItemBase
         base.Deactivate();
         bufferVFXObject.SetActive(false);
         bufferActive = false;
-        energyController.OnFullCharge -= Proc;
+        if(energyController)
+        {
+            energyController.OnFullCharge -= Proc;
+        }
     }
 
 

@@ -101,7 +101,7 @@ public class StageStateController : MonoBehaviour
         GameManager.Instance.player.invincible = true;
         cardSelectionMenu.CanBeOpened = false;
         StartCoroutine(CompleteStageTimer(1));
-        rewardMenuController.OnSelectReward += OpenPortal;
+        rewardMenuController.OnFinishSelectingReward += OpenPortal;
     }
 
     IEnumerator CompleteStageTimer(float duration)

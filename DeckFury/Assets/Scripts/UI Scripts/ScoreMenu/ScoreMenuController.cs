@@ -227,7 +227,7 @@ public class ScoreMenuController : MonoBehaviour
 
     IEnumerator ShowScoresInOrder(float delay)
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.4f);
         foreach(GameObject uiElement in orderOfElementsToShow)
         {
             RuntimeManager.PlayOneShot(showScoreSFX);

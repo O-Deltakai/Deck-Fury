@@ -8,21 +8,22 @@ public class DashResetOnKillItem : ItemBase
 
     public override void Initialize()
     {
-        base.Initialize();
         playerDashController = player.DashController;
         player.OnKillEnemy += Proc;
+        base.Initialize();
     }
 
     public override void Proc()
     {
-        base.Proc();
+        print("Procced DashResetOnKillItem");
         playerDashController.RefreshCooldown();
+        base.Proc();
     }
 
     public override void Deactivate()
     {
-        base.Deactivate();
         player.OnKillEnemy -= Proc;
+        base.Deactivate();
     }
 
 }

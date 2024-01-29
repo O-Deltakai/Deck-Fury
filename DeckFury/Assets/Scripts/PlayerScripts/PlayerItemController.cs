@@ -62,11 +62,6 @@ public class PlayerItemController : MonoBehaviour
     public void GiveItemInstanceToPlayer(ItemBase item)
     {
         
-
-        itemList.Add(item);
-        item.player = GetComponent<PlayerController>();
-        OnAddItemToPlayer?.Invoke(item);
-
         if(item.itemSO.PlayerCanOnlyHaveOne)
         {
             ItemBase existingItem = itemList.FirstOrDefault(itemElement => itemElement.itemSO == item.itemSO);
@@ -77,7 +72,9 @@ public class PlayerItemController : MonoBehaviour
             }
         }
 
-
+        itemList.Add(item);
+        item.player = GetComponent<PlayerController>();
+        OnAddItemToPlayer?.Invoke(item);
 
         item.PersistentInitialize();
         item.Initialize();
