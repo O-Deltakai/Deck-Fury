@@ -19,9 +19,13 @@ public class OptionsMenuController : MonoBehaviour
     [SerializeField] Slider aimSensitivitySlider;
     [SerializeField] TextMeshProUGUI sensitivtyTooltip;
 
+    [SerializeField] Slider cameraShakeSlider;
+    [SerializeField] TextMeshProUGUI cameraShakeTooltip;
+
     void Start()
     {
         sensitivtyTooltip.text = Math.Round(aimSensitivitySlider.value, 3).ToString();
+        cameraShakeTooltip.text = Math.Round(cameraShakeSlider.value, 2).ToString() + "x";
     }
 
     // Update is called once per frame
@@ -100,7 +104,11 @@ public class OptionsMenuController : MonoBehaviour
         sensitivtyTooltip.text = roundedValue.ToString();
     }
 
-
+    public void SetCameraShakeTooltip(float value)
+    {
+        float roundedValue = (float)Math.Round(value, 2);
+        cameraShakeTooltip.text = roundedValue.ToString() + "x";
+    }
 
 
 }

@@ -29,7 +29,7 @@ public class ForceBlast : CardEffect
 
         if(impulseSource)
         {
-            impulseSource.GenerateImpulse();
+            impulseSource.GenerateImpulseWithVelocity(impulseSource.m_DefaultVelocity * SettingsManager.GlobalCameraShakeMultiplier);
         }
 
         FaceTowardsAimpoint(aimpoint);

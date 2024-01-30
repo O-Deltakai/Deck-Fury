@@ -65,7 +65,7 @@ public class MarkedFireExplosion : MonoBehaviour
     {
         yield return new WaitForSeconds(triggerDelay);
         RuntimeManager.PlayOneShotAttached(explosionSFX, gameObject);
-        impulseSourceHelper.ShakeCameraRandomCircle(cameraShakeVelocity, 0.25f, 0.9f);
+        impulseSourceHelper.ShakeCameraRandomCircle(cameraShakeVelocity * SettingsManager.GlobalCameraShakeMultiplier, 0.25f, 0.9f);
 
         EnableExplosions();
         ActivateExplosionColliders();

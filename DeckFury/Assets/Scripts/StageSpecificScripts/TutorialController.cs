@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class TutorialController : MonoBehaviour
 {
-    Camera mainCamera;
+    GameObject mainCameraObject;
 
     SceneLoader sceneLoader;
 
@@ -85,12 +85,12 @@ public class TutorialController : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.25f);
         sceneLoader = GameManager.Instance.GetComponent<SceneLoader>();
+        mainCameraObject = Cinemachine.CinemachineCore.Instance.GetActiveBrain(0).ActiveVirtualCamera.VirtualCameraGameObject;
+        mainCameraObject.transform.position = new Vector3(0, 0.05f, -10);
     }
 
     private void Start() 
     {
-        mainCamera = Camera.main;
-        mainCamera.transform.position = new Vector3(0, 0.05f, -10);
 
         currentDialogue = phase0Dialogue;   
         tutorialDialogueText.text = currentDialogue.HintList[0];
@@ -547,7 +547,7 @@ public class TutorialController : MonoBehaviour
 
         OnChangeTutorialPhase?.Invoke(currentPhase);
 
-        mainCamera.transform.DOMove(cameraPositionForPhase[currentPhase], 1f).SetEase(Ease.InOutSine);
+        mainCameraObject.transform.DOMove(cameraPositionForPhase[currentPhase], 1f).SetEase(Ease.InOutSine);
 
         //mainCamera.transform.DOMoveX(cameraXPositionForPhase[currentPhase], 1f).SetEase(Ease.InOutSine);   
 

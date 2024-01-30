@@ -11,6 +11,13 @@ public class SettingsManager : MonoBehaviour
     public static event Action<bool> OnChangeAimingStyle;
     public static event Action<float> OnChangeSensitivity; 
 
+    static float _globalCameraShakeMultiplier = 1.0f;
+    public static float GlobalCameraShakeMultiplier{get{ return _globalCameraShakeMultiplier; } 
+        set
+        {
+            _globalCameraShakeMultiplier = value;
+        }
+    }
 
     private static bool _useRelativeAiming = false;
     public static bool UseRelativeAiming{get{ return _useRelativeAiming; }
@@ -67,5 +74,9 @@ public class SettingsManager : MonoBehaviour
         CursorSensitivity = value;
     }
 
+    public static void SetGlobalCameraShakeMultiplier(float value)
+    {
+        GlobalCameraShakeMultiplier = value;
+    }
 
 }

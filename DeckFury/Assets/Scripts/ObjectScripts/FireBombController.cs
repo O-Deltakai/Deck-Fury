@@ -180,7 +180,7 @@ public class FireBombController : MonoBehaviour
 
         if(impulseSourceHelper)
         {
-            impulseSourceHelper.ShakeCameraRandomCircle(cameraShakeVelocity, 0.25f, 1);
+            impulseSourceHelper.ShakeCameraRandomCircle(cameraShakeVelocity * SettingsManager.GlobalCameraShakeMultiplier, 0.25f, 1);
         }
 
         StartCoroutine(ExplosionColliderDuration(0.2f));
@@ -201,23 +201,6 @@ public class FireBombController : MonoBehaviour
         DisableObject();
     }
     
-
-    private void OnTriggerEnter2D(Collider2D other) 
-    {
-        // Collider2D[] hits = Physics2D.OverlapBoxAll(bombExplosionCollider.transform.position, bombExplosionCollider.size,0);
-        // print("number of hits in fire bomb explosion: " + hits.Length);
-
-        // foreach(Collider2D collider2D in hits) 
-        // {
-        //     StageEntity entityHit = collider2D.gameObject.GetComponent<StageEntity>();
-        //     if(entityHit != null && entityHit.CompareTag("Enemy"))
-        //     {
-        //         entityHit.HurtEntity(attackPayload);
-        //     }             
-        // }
-
-  
-    }
 
     void DisableObject()
     {

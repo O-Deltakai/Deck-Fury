@@ -213,6 +213,8 @@ public class GameManager : MonoBehaviour
 
         menuScreenCanvas.GetComponent<GraphicRaycaster>().enabled = false;
         currentGameState = GameState.Realtime;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
     }
 
@@ -290,6 +292,8 @@ public class GameManager : MonoBehaviour
         UnpauseGame();
         currentGameState = GameState.Realtime;
         _customMapSeed = "";
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;        
     }
 
 

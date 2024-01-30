@@ -120,6 +120,8 @@ public class AimpointController : MonoBehaviour
     void OnDestroy()
     {
         SettingsManager.OnChangeAimingStyle -= AimingStyleToggle;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     void DisableAimpoint()

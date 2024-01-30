@@ -22,7 +22,7 @@ public class ShotgunBlast : CardEffect
 
         if(impulseSource)
         {
-            impulseSource.GenerateImpulse();
+            impulseSource.GenerateImpulseWithVelocity(impulseSource.m_DefaultVelocity * SettingsManager.GlobalCameraShakeMultiplier);
         }
 
 

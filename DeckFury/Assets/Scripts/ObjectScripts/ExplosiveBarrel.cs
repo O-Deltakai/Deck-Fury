@@ -63,7 +63,7 @@ public class ExplosiveBarrel : StageEntity
 
         RuntimeManager.PlayOneShot(explosionSFX, transform.position);
 
-        impulseSourceHelper.ShakeCameraRandomCircle(cameraShakeVelocity, 0.3f, 1.05f);
+        impulseSourceHelper.ShakeCameraRandomCircle(cameraShakeVelocity * SettingsManager.GlobalCameraShakeMultiplier, 0.3f, 1.05f);
 
         isExploding = true;
         explosionCollider.enabled = true;
