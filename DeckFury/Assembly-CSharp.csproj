@@ -313,6 +313,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\RewardMenu\CardReward.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\RewardMenu\MoneyReward.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Tooltips\ItemToolTip.cs" />
+    <Compile Include="Assets\Scripts\ToolScripts\CinemachineImpulseSourceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{1a3543b7-299b-427a-98a3-e96ed31447ad}.xml" />
@@ -3245,6 +3246,7 @@
     <ProjectReference Include="FMODUnityResonance.csproj" />
     <ProjectReference Include="Unity.2D.Common.Editor.csproj" />
     <ProjectReference Include="Unity.2D.SpriteShape.Runtime.csproj" />
+    <ProjectReference Include="com.unity.quicksearch.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>

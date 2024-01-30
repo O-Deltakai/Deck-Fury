@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class LongSword : CardEffect
 {
+    CinemachineImpulseSource impulseSource;
+
     [SerializeField] AnimationClip VFXAnimationClip;
     [SerializeField] LayerMask targetLayer;
     [SerializeField] BoxCollider2D hitBox;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
 
     public override void ActivateCardEffect()
     {
@@ -16,6 +25,7 @@ public class LongSword : CardEffect
         FaceTowardsAimpoint(aimpoint);
 
         TriggerHitbox();
+
 
         StartCoroutine(DisableEffectPrefab());
     }
@@ -35,6 +45,7 @@ public class LongSword : CardEffect
                 continue;
             }
 
+            impulseSource.GenerateImpulse();
 
             if(entityHit.CompareTag(TagNames.Enemy.ToString()) || entityHit.CompareTag(TagNames.EnvironmentalHazard.ToString()))
             {

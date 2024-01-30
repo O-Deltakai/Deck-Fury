@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class MarkedFireExplosion : MonoBehaviour
 {
+    CinemachineImpulseSourceHelper impulseSourceHelper;
+
     [SerializeField] GameObject explosionParent;
     [SerializeField] List<BoxCollider2D> explosionColliders;
     [SerializeField] LayerMask targetLayer;
@@ -18,8 +20,12 @@ public class MarkedFireExplosion : MonoBehaviour
 
     [SerializeField] EventReference explosionSFX;
 
+    [SerializeField] Vector2 cameraShakeVelocity;
+
     void Awake()
     {
+        impulseSourceHelper = GetComponent<CinemachineImpulseSourceHelper>();
+
         if(explosionColliders.Count == 0)
         {
             Debug.LogWarning("Explosion colliders for marked fire explosion is empty, attempting to find them in children.", this);
@@ -59,6 +65,7 @@ public class MarkedFireExplosion : MonoBehaviour
     {
         yield return new WaitForSeconds(triggerDelay);
         RuntimeManager.PlayOneShotAttached(explosionSFX, gameObject);
+        impulseSourceHelper.ShakeCameraRandomCircle(cameraShakeVelocity, 0.25f, 0.9f);
 
         EnableExplosions();
         ActivateExplosionColliders();
@@ -72,6 +79,7 @@ public class MarkedFireExplosion : MonoBehaviour
 
     void ActivateExplosionColliders()
     {
+
 
         foreach (var boxCollider in explosionColliders)
         {

@@ -3,20 +3,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Cinemachine;
 
 public class ForceBlast : CardEffect
 {
+    CinemachineImpulseSource impulseSource;
+
+
     [SerializeField] AnimationClip VFXAnimationClip;
     [SerializeField] BoxCollider2D effectCollider;
 
     AimpointController aimpoint;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
 
     public override void ActivateCardEffect()
     {
         StartCoroutine(HardDisableTimer());
         aimpoint = player.aimpoint;
         transform.position = player.worldTransform.position;
+
+        if(impulseSource)
+        {
+            impulseSource.GenerateImpulse();
+        }
 
         FaceTowardsAimpoint(aimpoint);
 

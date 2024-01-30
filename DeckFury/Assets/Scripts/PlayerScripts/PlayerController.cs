@@ -5,12 +5,15 @@ using DG.Tweening;
 using UnityEngine.InputSystem;
 using System;
 using FMODUnity;
+using Cinemachine;
 
 [RequireComponent(typeof(InputBufferHandler))]
 [RequireComponent(typeof(PlayerAnimationController))]
 [RequireComponent(typeof(PlayerCardManager))]
 public class PlayerController : StageEntity
 {
+    CinemachineImpulseSource impulseSource;
+
 
     public delegate void KillEnemyEventHandler(NPC enemy);
     public event KillEnemyEventHandler OnKillSpecificEnemy;
@@ -109,6 +112,7 @@ public class PlayerController : StageEntity
     protected override void Awake()
     {
         base.Awake();
+        impulseSource = GetComponent<CinemachineImpulseSource>(); 
         animationController = GetComponent<PlayerAnimationController>();
         cardManager = GetComponent<PlayerCardManager>();
         playerCollider = GetComponent<BoxCollider2D>();
@@ -591,7 +595,25 @@ public class PlayerController : StageEntity
 
     }
 
-#endregion
+    #endregion
+
+    protected override void AdditionalOnHurtEvents(AttackPayload? payload = null)
+    {
+        base.AdditionalOnHurtEvents(payload);
+    }
+
+    protected override void AdditionalAfterHurtEvents(AttackPayload? payload = null)
+    {
+        base.AdditionalAfterHurtEvents(payload);
+        if(ShieldHP > 0)
+        {   //If player still has shields after hurt, generate a smaller impulse
+            impulseSource.GenerateImpulseWithVelocity(impulseSource.m_DefaultVelocity * 0.1f);
+        }else
+        {
+            impulseSource.GenerateImpulse();
+        }
+    }
+
 
     //Custom DestroyEntity coroutine for the player 
     public override IEnumerator DestroyEntity(AttackPayload? killingBlow = null)

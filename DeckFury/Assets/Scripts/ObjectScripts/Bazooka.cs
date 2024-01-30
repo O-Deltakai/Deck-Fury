@@ -49,7 +49,8 @@ public class Bazooka : Bullet
     }
 
     //activate when rocket hit
-    private void ExplosionImpact(){
+    private void ExplosionImpact()
+    {
         speed = 0.0f;
         impacted=true;
         //disable rocket itself and make explosion active

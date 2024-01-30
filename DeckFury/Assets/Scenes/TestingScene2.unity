@@ -1373,7 +1373,10 @@ MonoBehaviour:
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
+    ModeOverride: 0
     LensShift: {x: 0, y: 0}
+    GateFit: 2
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1394,9 +1397,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ApplyAfter: 1
   m_ChannelMask: 1
   m_Gain: 1
   m_Use2DDistance: 1
+  m_UseCameraSpace: 0
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    m_AmplitudeGain: 0
+    m_FrequencyGain: 0
+    m_Duration: 0
+    m_NoiseOffsets: {x: -102.37036, y: -988.41113, z: -638.9823}
 --- !u!4 &1476125852 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5773231379121326703, guid: ea6fdaff1c799994489cb08186057774, type: 3}
@@ -1516,7 +1527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8603392144972885620, guid: c265baa8c11e2e64ba69996692370faa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 8603392144972885620, guid: c265baa8c11e2e64ba69996692370faa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2913,6 +2924,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1755202097915902243, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
+      propertyPath: shieldHP
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1755202097915902243, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420031}
@@ -2924,6 +2939,10 @@ PrefabInstance:
       propertyPath: dashTrail
       value: 
       objectReference: {fileID: 8642038}
+    - target: {fileID: 2021088723547532855, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
+      propertyPath: m_DefaultVelocity.x
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 5978173093845493249, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
       propertyPath: itemList.Array.size
       value: 2
@@ -3083,6 +3102,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1194817536166736961, guid: 8a3b4549bcc8ee447ae04c82c77e4b7d, type: 3}
+      propertyPath: m_DefaultVelocity.y
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194817536166736961, guid: 8a3b4549bcc8ee447ae04c82c77e4b7d, type: 3}
+      propertyPath: m_ImpulseDefinition.m_ImpulseShape
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194817536166736961, guid: 8a3b4549bcc8ee447ae04c82c77e4b7d, type: 3}
+      propertyPath: m_ImpulseDefinition.m_ImpulseDuration
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 5462300724236939182, guid: 8a3b4549bcc8ee447ae04c82c77e4b7d, type: 3}
       propertyPath: m_RootOrder
       value: 10

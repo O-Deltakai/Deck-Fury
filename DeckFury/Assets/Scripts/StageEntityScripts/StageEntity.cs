@@ -668,6 +668,15 @@ public class StageEntity : MonoBehaviour
     //before the generic HurtEntity method calculates damage.
     protected virtual void AdditionalOnHurtEvents(AttackPayload? payload = null){}
 
+/// <summary>
+/// Empty virtual method which is called after all damage calculations have been completed. Can be overridden if the entity has specific operations
+/// that need to be completed after the generic HurtEntity method calculates damage.
+/// </summary>
+/// <param name="payload"></param>
+    protected virtual void AdditionalAfterHurtEvents(AttackPayload? payload = null){}
+
+
+
     //Primary method used for dealing damage to the entity, uses the AttackPayload struct for damage calculations.
     public virtual void HurtEntity(AttackPayload payload, Color? hitFlashColor = null, EventReference? hitSFX = null)
     {
@@ -847,6 +856,8 @@ public class StageEntity : MonoBehaviour
         {
             RuntimeManager.PlayOneShot(OnDamagedSFX, transform.position);
         }
+
+        AdditionalAfterHurtEvents(payload);
 
         if(currentHP <= 0) //Begin destruction once HP goes to at or below 0
         {

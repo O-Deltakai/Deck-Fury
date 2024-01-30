@@ -1,17 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class ShotgunBlast : CardEffect
 {
-
+    CinemachineImpulseSource impulseSource;
     [SerializeField] AnimationClip VFXAnimationClip;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        impulseSource = GetComponent<CinemachineImpulseSource>(); 
+    }
 
 
     public override void ActivateCardEffect()
     {
         AimpointController aimpoint = player.aimpoint;
         FaceTowardsAimpoint(aimpoint);
+
+        if(impulseSource)
+        {
+            impulseSource.GenerateImpulse();
+        }
 
 
         StartCoroutine(DisableEffectPrefab());

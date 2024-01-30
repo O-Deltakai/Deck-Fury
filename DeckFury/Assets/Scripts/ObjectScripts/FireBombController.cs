@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using FMODUnity;
+using Cinemachine;
 
 public class FireBombController : MonoBehaviour
 {
+
+    CinemachineImpulseSourceHelper impulseSourceHelper;
+
+
     StageManager stageManager;
     public AimDirection aimDirection;
     [SerializeField] AnimationClip throwMotionAnimation;
@@ -24,6 +29,9 @@ public class FireBombController : MonoBehaviour
 
 
     [SerializeField] EventReference explosionSFX;
+
+    [Header("Camera Shake")]
+    [SerializeField] Vector2 cameraShakeVelocity;
 
     public bool objectIsPooled;
     public Vector2Int impactPoint;
@@ -44,7 +52,7 @@ public class FireBombController : MonoBehaviour
 
         bombExplosionAnimEventRelay.OnAnimationEvent += ActivateExplosionCollider;
 
-
+        impulseSourceHelper = GetComponent<CinemachineImpulseSourceHelper>();
     }
 
     void Start()
@@ -170,6 +178,11 @@ public class FireBombController : MonoBehaviour
 
         RuntimeManager.PlayOneShot(explosionSFX, transform.position);
 
+        if(impulseSourceHelper)
+        {
+            impulseSourceHelper.ShakeCameraRandomCircle(cameraShakeVelocity, 0.25f, 1);
+        }
+
         StartCoroutine(ExplosionColliderDuration(0.2f));
     }
 
@@ -236,5 +249,9 @@ public class FireBombController : MonoBehaviour
         shadowSprite.transform.position = new Vector3(0,0,0);
 
     }
+
+
+
+
 
 }

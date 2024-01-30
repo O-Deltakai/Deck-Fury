@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class ExplosiveBarrel : StageEntity
 {
+    CinemachineImpulseSourceHelper impulseSourceHelper;
+
 
     [SerializeField] BoxCollider2D explosionCollider;
     [SerializeField] BoxCollider2D barrelCollider;
@@ -17,6 +19,9 @@ public class ExplosiveBarrel : StageEntity
 
     [SerializeField] EventReference explosionSFX;
 
+    [SerializeField] Vector2 cameraShakeVelocity;
+
+
     bool isExploding = false;
 
     protected override void Awake()
@@ -25,6 +30,8 @@ public class ExplosiveBarrel : StageEntity
         barrelCollider = GetComponent<BoxCollider2D>();
         explosionCollider.enabled = false;
         OnHPChanged += ExplodeBarrel;
+
+        impulseSourceHelper = GetComponent<CinemachineImpulseSourceHelper>();
     }
 
     protected override void Start()
@@ -52,9 +59,11 @@ public class ExplosiveBarrel : StageEntity
 
     IEnumerator ExplosionTimer()
     {
-        yield return new WaitForSeconds(fuseTimer+0.05f);
+        yield return new WaitForSeconds(fuseTimer + 0.05f);
 
         RuntimeManager.PlayOneShot(explosionSFX, transform.position);
+
+        impulseSourceHelper.ShakeCameraRandomCircle(cameraShakeVelocity, 0.3f, 1.05f);
 
         isExploding = true;
         explosionCollider.enabled = true;
