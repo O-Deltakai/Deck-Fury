@@ -8,10 +8,16 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerController))]
 public class PlayerItemController : MonoBehaviour
 {
+    public event Action OnFinishInitialization;
     public event Action<ItemBase> OnAddItemToPlayer;
 
     [SerializeField] List<ItemBase> itemList = new List<ItemBase>();
     public IReadOnlyList<ItemBase> ItemList => itemList;
+
+    void Awake()
+    {
+
+    }
 
 
     void Start()
@@ -42,6 +48,7 @@ public class PlayerItemController : MonoBehaviour
             item.PersistentInitialize();
             item.Initialize();
         }
+        OnFinishInitialization?.Invoke();
     }
 
     void DeactivateItems()
@@ -74,11 +81,11 @@ public class PlayerItemController : MonoBehaviour
 
         itemList.Add(item);
         item.player = GetComponent<PlayerController>();
-        OnAddItemToPlayer?.Invoke(item);
 
         item.PersistentInitialize();
         item.Initialize();
 
+        OnAddItemToPlayer?.Invoke(item);
     }
 
 /// <summary>

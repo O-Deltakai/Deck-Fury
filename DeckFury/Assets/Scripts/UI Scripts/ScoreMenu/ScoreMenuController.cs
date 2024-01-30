@@ -145,10 +145,9 @@ public class ScoreMenuController : MonoBehaviour
             RuntimeManager.PlayOneShot(showMoneySFX);
             specialBonusesPanel.SetActive(false);
             scoreManager.AddBonusRewardsToScore();
+            scoreManager.AddScoreToPlayerData(StageStateController.Instance.PlayerData);
 
             SetStageScoreText(scoreManager.StageScoreTotal);
-
-            scoreManager.AddScoreToPlayerData(StageStateController.Instance.PlayerData);
 
             SetTotalScoreText(StageStateController.Instance.PlayerData.CurrentScore);
             totalScoreElement.SetActive(true);
@@ -192,7 +191,20 @@ public class ScoreMenuController : MonoBehaviour
         }            
         finishedPresentingScore = true;
 
+        if(specialBonusSlots.Count == 0)
+        {
+            RuntimeManager.PlayOneShot(showMoneySFX);
 
+            SetStageScoreText(scoreManager.StageScoreTotal);
+
+            SetTotalScoreText(StageStateController.Instance.PlayerData.CurrentScore);
+            totalScoreElement.SetActive(true);
+
+
+            SetMoneyEarnedText(scoreManager.CalculateMoneyEarned(scoreManager.StageScoreTotal));
+            moneyEarnedElement.SetActive(true);
+
+        }
 
 
 

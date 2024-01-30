@@ -53,9 +53,12 @@ MonoBehaviour:
   attackPayload:
     damage: 0
     attackElement: 0
-    statusEffects: 
+    statusEffectType: 
+    actualStatusEffects: []
     canTriggerMark: 0
     attacker: {fileID: 0}
+    attackerSprite: {fileID: 0}
+    causeOfDeathNote: 
   VFXAnimationClip: {fileID: 7400000, guid: 9542d13c7b921fe4d8a8bf2bcd607bea, type: 2}
 --- !u!61 &8811257038889489166
 BoxCollider2D:

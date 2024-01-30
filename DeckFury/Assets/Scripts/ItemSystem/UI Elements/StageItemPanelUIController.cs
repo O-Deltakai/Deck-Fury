@@ -9,27 +9,45 @@ public class StageItemPanelUIController : MonoBehaviour
 
     void Awake()
     {
-
+        PlayerItemController playerItemController = FindObjectOfType<PlayerItemController>();     
+        playerItemController.OnAddItemToPlayer += AddItemToPanel;
+         
 
     }
 
     void Start()
     {
-        if(PersistentLevelController.Instance)
-        {
-            InitializeItemList(PersistentLevelController.Instance.PlayerData.GetItemList());
-            PlayerItemController playerItemController = GameManager.Instance.player.GetComponent<PlayerItemController>();
-            playerItemController.OnAddItemToPlayer += AddItemToPanel;            
-        }else
+        if(!PersistentLevelController.Instance)
         {
             PlayerItemController playerItemController = GameManager.Instance.player.GetComponent<PlayerItemController>();
-            InitializeItemList(playerItemController.ItemList);
-            playerItemController.OnAddItemToPlayer += AddItemToPanel;
+            InitializeItemList(playerItemController.ItemList);            
         }
 
+
+        // if(PersistentLevelController.Instance)
+        // {
+        //     InitializeItemList(PersistentLevelController.Instance.PlayerData.GetItemList());
+        //     PlayerItemController playerItemController = GameManager.Instance.player.GetComponent<PlayerItemController>();
+        // }else
+        // {
+        //     PlayerItemController playerItemController = GameManager.Instance.player.GetComponent<PlayerItemController>();
+        //     InitializeItemList(playerItemController.ItemList);
+        //     playerItemController.OnFinishInitialization += SubscribeToPlayer;            
+
+        // }
           
+        // PlayerItemController playerItemController = GameManager.Instance.player.GetComponent<PlayerItemController>();
+        // InitializeItemList(playerItemController.ItemList);
+
+
+
     }
 
+    void SubscribeToPlayer()
+    {
+        PlayerItemController playerItemController = GameManager.Instance.player.GetComponent<PlayerItemController>();
+        playerItemController.OnAddItemToPlayer += AddItemToPanel;
+    }
 
     void InitializeItemList(IReadOnlyList<ItemBase> items)
     {
