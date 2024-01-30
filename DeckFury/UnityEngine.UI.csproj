@@ -65,9 +65,9 @@
     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\ContentSizeFitter.cs" />
     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\HorizontalLayoutGroup.cs" />
     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\VerticalLayoutGroup.cs" />
+    <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Button.cs" />
     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Dropdown.cs" />
     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\CanvasScaler.cs" />
-    <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Button.cs" />
     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Layout\LayoutElement.cs" />
     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Image.cs" />
     <Compile Include="Library\PackageCache\com.unity.ugui@1.0.0\Runtime\UI\Core\Selectable.cs" />
@@ -478,6 +478,10 @@
     </Reference>
     <Reference Include="unityplastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@2.0.4\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory">
+      <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.10.1\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">

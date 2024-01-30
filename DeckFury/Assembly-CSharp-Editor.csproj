@@ -65,11 +65,11 @@
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Ramps\Editor\RampAssetEditor.cs" />
     <Compile Include="Assets\Editor\TagNameGenerator.cs" />
     <Compile Include="Assets\Editor\SceneNameGenerator.cs" />
+    <Compile Include="Assets\Editor\LayerNameGenerator.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
     <Compile Include="Assets\Editor\ScoreManagerFieldSelectorDrawer.cs" />
-    <Compile Include="Assets\Editor\RewardMethodSelectorDrawer.cs" />
     <Compile Include="Assets\Editor\SpawnTableEditor.cs" />
-    <Compile Include="Assets\Editor\LayerNameGenerator.cs" />
+    <Compile Include="Assets\Editor\RewardMethodSelectorDrawer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DOTween\Editor\DOTweenEditor.XML" />
@@ -418,6 +418,10 @@
     </Reference>
     <Reference Include="unityplastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@2.0.4\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory">
+      <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.10.1\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework">
@@ -934,6 +938,11 @@
     <ProjectReference Include="FMODUnityResonance.csproj" />
     <ProjectReference Include="Unity.2D.Common.Editor.csproj" />
     <ProjectReference Include="Unity.2D.SpriteShape.Runtime.csproj" />
+    <ProjectReference Include="com.unity.quicksearch.csproj" />
+    <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.csproj" />
+    <ProjectReference Include="Unity.RenderPipelines.Core.Runtime.csproj" />
+    <ProjectReference Include="Unity.RenderPipelines.Core.Editor.csproj" />
+    <ProjectReference Include="UnityUtils.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>
