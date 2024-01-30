@@ -18,13 +18,14 @@ public class CardDescriptionPanel : MonoBehaviour
     [SerializeField] Image elementIcon;
     [SerializeField] Image statusIcon;
     [SerializeField] Image lockedIcon;
-    [Header("Element Popout Panel")]
+
+[Header("Element Popout Panel")]
     [SerializeField] GameObject elementDescriptionPanel;
     [SerializeField] TextMeshProUGUI elementDescription;
     [SerializeField] TextMeshProUGUI elementName;
     [SerializeField] Image elementPopoutIcon;
 
-    [Header("StatusEffect Popout Panel")]
+[Header("Status Effect Popout Panel")]
     [SerializeField] GameObject statusDescriptionPanel;
     [SerializeField] TextMeshProUGUI statusDescription;
     [SerializeField] TextMeshProUGUI statusName;

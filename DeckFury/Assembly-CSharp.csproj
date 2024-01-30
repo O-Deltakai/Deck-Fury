@@ -86,7 +86,7 @@
     <Compile Include="Assets\Scripts\NPCScripts\Magician\MagicianAttackController.cs" />
     <Compile Include="Assets\Scripts\CardObjectReference.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\RightClickEventTrigger.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\CardMagazineIndicator.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Card Selection System\CardMagazineIndicator.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\GameErrorHandler.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CannonBehavior.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\ItemBase.cs" />
@@ -216,7 +216,7 @@
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleAudio.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\EnergyController.cs" />
     <Compile Include="Assets\Scripts\StageManagerScripts\GroundTileData.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\CardSlot.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Card Selection System\CardSlot.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Leaper\Leaper.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Scripts\StageSelectionScripts\MapLevel.cs" />
@@ -265,7 +265,7 @@
     <Compile Include="Assets\Scripts\PathfindingScripts\Pathfinder.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleEPOOutline.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\MainMenuController.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\CardDescriptionPanel.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Card Selection System\CardDescriptionPanel.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\HintController.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModulePhysics2D.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Shooter.cs" />
@@ -291,7 +291,7 @@
     <Compile Include="Assets\Scripts\Shop System\ShopManager.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\AbilityData.cs" />
     <Compile Include="Assets\ScriptableObjects\ScoreRewardTableSO.cs" />
-    <Compile Include="Assets\Scripts\UI Scripts\CardSelectionMenu.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Card Selection System\CardSelectionMenu.cs" />
     <Compile Include="Assets\Scripts\ToolScripts\TriggerCollider2DRelay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\ScriptableObjects\SpawnTableSO.cs" />
@@ -314,6 +314,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\RewardMenu\MoneyReward.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Tooltips\ItemToolTip.cs" />
     <Compile Include="Assets\Scripts\ToolScripts\CinemachineImpulseSourceHelper.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Card Selection System\EntireDeckViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{1a3543b7-299b-427a-98a3-e96ed31447ad}.xml" />

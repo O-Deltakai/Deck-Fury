@@ -11,10 +11,10 @@ public class CardSelectionMenu : MonoBehaviour
     static CardSelectionMenu _instance;
     public static CardSelectionMenu Instance {get { return _instance; }}
     
+#region Events
 
     public delegate void SelectSpecificCardEvent(CardSO card);
     public event SelectSpecificCardEvent OnSelectSpecificCard;
-
 
     public delegate void PreviewingStageEvent();
     public event PreviewingStageEvent OnPreviewStage;
@@ -29,6 +29,8 @@ public class CardSelectionMenu : MonoBehaviour
     //Event for when the menu is disabled
     public delegate void DisableMenuEvent();
     public event DisableMenuEvent OnMenuDisabled;
+
+#endregion
 
 [Tooltip("If set to true, the Card Selection Menu will open immediately on starting the game.")]
     public bool BeginActivated = true;
