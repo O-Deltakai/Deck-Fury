@@ -13,7 +13,7 @@ public class CardSlot : MonoBehaviour
     public CardObjectReference cardObjectReference;
 
     [SerializeField] Image cardImage;
-    [SerializeField] GameObject popOutPanel;
+
 
     public Button button {get; private set;}
     public CardSlot previousTransfererSlot;
@@ -36,6 +36,11 @@ public class CardSlot : MonoBehaviour
             button.interactable = false;    
         }
 
+    }
+
+    public void Initialize(CardObjectReference card)
+    {
+        ChangeCard(card);
     }
 
     void Update()
