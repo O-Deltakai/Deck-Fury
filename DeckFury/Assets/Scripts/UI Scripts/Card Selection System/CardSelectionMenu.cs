@@ -40,6 +40,9 @@ public class CardSelectionMenu : MonoBehaviour
     [field:SerializeField] public CardPoolManager CardPoolManager{get; private set;} //Should be set in inspector to improve performance
     [field:SerializeField] public PlayerCardManager PlayerCardManager {get;private set;} //Should be set in inspector to improve performance
 
+    [SerializeField] GameObject deckViewPanel; //Must be set in inspector
+    [SerializeField] Vector3 originalDeckViewPanelPosition;
+
     [SerializeField] GameObject cardSelectPanel; //Must be set in inspector
     [SerializeField] GameObject cardLoadPanel; //Must be set in inspector
 
@@ -80,6 +83,8 @@ public class CardSelectionMenu : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
 
         CardPoolManager = GameErrorHandler.NullCheck(CardPoolManager, "CardPoolManager");
+
+        originalDeckViewPanelPosition = deckViewPanel.transform.localPosition;
 
     }
 
@@ -221,6 +226,15 @@ public class CardSelectionMenu : MonoBehaviour
         }
     }
 
+    public void OpenDeckView()
+    {
+        deckViewPanel.transform.DOLocalMove(Vector3.zero, 0.2f).SetUpdate(true);
+    }
+
+    public void CloseDeckView()
+    {
+        deckViewPanel.transform.DOLocalMove(originalDeckViewPanelPosition, 0.2f).SetUpdate(true);
+    }
 
     //Move menu upwards out of view when previewing stage
     void PreviewStage()

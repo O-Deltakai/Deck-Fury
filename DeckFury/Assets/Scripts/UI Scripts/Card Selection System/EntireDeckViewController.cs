@@ -39,8 +39,16 @@ public class EntireDeckViewController : MonoBehaviour
 
             cardSlotButton.onClick.AddListener(TestMethod);
 
+            //Dynamically add event triggers to the card slot
             EventTrigger cardSlotEventTrigger = cardSlot.GetComponent<EventTrigger>();
-            cardSlotEventTrigger.triggers.Add(new EventTrigger.Entry{eventID = EventTriggerType.PointerEnter, callback = new EventTrigger.TriggerEvent()});
+            EventTrigger.Entry pointerEnterEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+            pointerEnterEntry.callback.AddListener((data) => { cardDescriptionPanel.UpdateDescription(cardSlot); });
+            cardSlotEventTrigger.triggers.Add(pointerEnterEntry);
+
+            EventTrigger.Entry pointerExitEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+            pointerExitEntry.callback.AddListener((data) => { cardDescriptionPanel.BeginFadeOut();});
+            cardSlotEventTrigger.triggers.Add(pointerExitEntry);
+
 
 
             cardSlots.Add(cardSlot);
