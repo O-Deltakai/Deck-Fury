@@ -92,10 +92,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -134,6 +136,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -146,6 +149,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -158,6 +162,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -170,6 +175,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -182,6 +188,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -701,9 +721,33 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      Effect_BloodImpact_1_69x60_0: -4326374102688624062
+      Effect_BloodImpact_1_69x60_1: 2574668345274877621
+      Effect_BloodImpact_1_69x60_10: 4253231431888049231
+      Effect_BloodImpact_1_69x60_11: -4003301471956819741
+      Effect_BloodImpact_1_69x60_12: -657048861150267854
+      Effect_BloodImpact_1_69x60_13: -9152613762589885287
+      Effect_BloodImpact_1_69x60_14: -2431233755810695464
+      Effect_BloodImpact_1_69x60_15: -6581049182516862709
+      Effect_BloodImpact_1_69x60_16: 637487026971963039
+      Effect_BloodImpact_1_69x60_17: -102281556827726503
+      Effect_BloodImpact_1_69x60_18: -935679979677820800
+      Effect_BloodImpact_1_69x60_19: 3399931096593078419
+      Effect_BloodImpact_1_69x60_2: 7867086982294022757
+      Effect_BloodImpact_1_69x60_20: -3476484925722539812
+      Effect_BloodImpact_1_69x60_21: -2513657710615856947
+      Effect_BloodImpact_1_69x60_22: -5497198162903072702
+      Effect_BloodImpact_1_69x60_23: 2214326484165680969
+      Effect_BloodImpact_1_69x60_3: -8202958608020927694
+      Effect_BloodImpact_1_69x60_4: 5715052756364632920
+      Effect_BloodImpact_1_69x60_5: -3014154660257254992
+      Effect_BloodImpact_1_69x60_6: -8875049452307168894
+      Effect_BloodImpact_1_69x60_7: -2186118105049691031
+      Effect_BloodImpact_1_69x60_8: -6657470250019955863
+      Effect_BloodImpact_1_69x60_9: 5121930536720779716
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

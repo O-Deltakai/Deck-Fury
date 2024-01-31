@@ -68,10 +68,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -110,6 +112,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -122,6 +125,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -134,6 +138,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -146,6 +151,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -158,6 +164,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -509,9 +529,25 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      portalsSpriteSheet_RodHakGames_CC0_0: -6782946813320179078
+      portalsSpriteSheet_RodHakGames_CC0_1: -2512180464276075730
+      portalsSpriteSheet_RodHakGames_CC0_10: 2544364404231275535
+      portalsSpriteSheet_RodHakGames_CC0_11: 1493882810591223704
+      portalsSpriteSheet_RodHakGames_CC0_12: 2983051115299268346
+      portalsSpriteSheet_RodHakGames_CC0_13: 7596628410578746282
+      portalsSpriteSheet_RodHakGames_CC0_14: -7814430580781502028
+      portalsSpriteSheet_RodHakGames_CC0_15: 1043259862871142400
+      portalsSpriteSheet_RodHakGames_CC0_2: 824232602280759209
+      portalsSpriteSheet_RodHakGames_CC0_3: -688197460215731193
+      portalsSpriteSheet_RodHakGames_CC0_4: -8465790917468021035
+      portalsSpriteSheet_RodHakGames_CC0_5: 598657971315037926
+      portalsSpriteSheet_RodHakGames_CC0_6: 4032033231461830526
+      portalsSpriteSheet_RodHakGames_CC0_7: 2017955467040743895
+      portalsSpriteSheet_RodHakGames_CC0_8: -1348676756530936548
+      portalsSpriteSheet_RodHakGames_CC0_9: 69659968854504885
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

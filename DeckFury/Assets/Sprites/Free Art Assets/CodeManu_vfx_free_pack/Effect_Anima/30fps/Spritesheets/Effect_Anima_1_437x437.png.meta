@@ -110,10 +110,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -152,6 +154,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -164,6 +167,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -176,6 +180,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -188,6 +193,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -200,6 +206,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -845,9 +865,39 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      Effect_Anima_1_437x437_0: 5260025524129002241
+      Effect_Anima_1_437x437_1: 3200005636997830131
+      Effect_Anima_1_437x437_10: 8428090878045945806
+      Effect_Anima_1_437x437_11: -2910904226490485190
+      Effect_Anima_1_437x437_12: 5368256334346371845
+      Effect_Anima_1_437x437_13: 283397671661658259
+      Effect_Anima_1_437x437_14: -75697153258848804
+      Effect_Anima_1_437x437_15: -1328579887891111031
+      Effect_Anima_1_437x437_16: -2523312926274138915
+      Effect_Anima_1_437x437_17: 7186377884020609747
+      Effect_Anima_1_437x437_18: 6508366683396636399
+      Effect_Anima_1_437x437_19: -4834942707526524717
+      Effect_Anima_1_437x437_2: -5986711070250326978
+      Effect_Anima_1_437x437_20: -8098507968678929626
+      Effect_Anima_1_437x437_21: 3043018388120121642
+      Effect_Anima_1_437x437_22: -7820889412297265493
+      Effect_Anima_1_437x437_23: 6783008606677653136
+      Effect_Anima_1_437x437_24: -355068613618985011
+      Effect_Anima_1_437x437_25: 2995617228730154141
+      Effect_Anima_1_437x437_26: 8867676464563758063
+      Effect_Anima_1_437x437_27: -4419371812678118344
+      Effect_Anima_1_437x437_28: 3374389334033043337
+      Effect_Anima_1_437x437_29: -863228909846759609
+      Effect_Anima_1_437x437_3: -3163220647812309538
+      Effect_Anima_1_437x437_4: -8501917826491492604
+      Effect_Anima_1_437x437_5: 8860943375880781386
+      Effect_Anima_1_437x437_6: 6575634487962127770
+      Effect_Anima_1_437x437_7: 8456671997706053656
+      Effect_Anima_1_437x437_8: -348680246679215571
+      Effect_Anima_1_437x437_9: 6074774847329405518
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

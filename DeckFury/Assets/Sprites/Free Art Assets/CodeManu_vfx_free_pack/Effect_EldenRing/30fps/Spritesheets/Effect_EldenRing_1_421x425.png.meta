@@ -110,10 +110,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -152,6 +154,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -164,6 +167,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -176,6 +180,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -188,6 +193,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -200,6 +206,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -845,9 +865,39 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      Effect_EldenRing_1_421x425_0: -9103803497612262810
+      Effect_EldenRing_1_421x425_1: -2477562709273849088
+      Effect_EldenRing_1_421x425_10: -6391818902925847452
+      Effect_EldenRing_1_421x425_11: -5248844148861047037
+      Effect_EldenRing_1_421x425_12: -1739505133126028727
+      Effect_EldenRing_1_421x425_13: -7960912430740019809
+      Effect_EldenRing_1_421x425_14: -9193900073415780995
+      Effect_EldenRing_1_421x425_15: 8631402760889128767
+      Effect_EldenRing_1_421x425_16: 7974730084281104227
+      Effect_EldenRing_1_421x425_17: 1195478948691989108
+      Effect_EldenRing_1_421x425_18: 4986699131941406878
+      Effect_EldenRing_1_421x425_19: 9206211052908727332
+      Effect_EldenRing_1_421x425_2: -7753320522955537402
+      Effect_EldenRing_1_421x425_20: -5136476240215294586
+      Effect_EldenRing_1_421x425_21: 2910711668524863758
+      Effect_EldenRing_1_421x425_22: -995264052089181061
+      Effect_EldenRing_1_421x425_23: -2536460713731262266
+      Effect_EldenRing_1_421x425_24: 6460411251534317723
+      Effect_EldenRing_1_421x425_25: -3694822947317588058
+      Effect_EldenRing_1_421x425_26: -1497176774378166943
+      Effect_EldenRing_1_421x425_27: -3395546149272247544
+      Effect_EldenRing_1_421x425_28: -8490580336901397471
+      Effect_EldenRing_1_421x425_29: -151777634366632049
+      Effect_EldenRing_1_421x425_3: 8141112612889445064
+      Effect_EldenRing_1_421x425_4: -6374443833733764516
+      Effect_EldenRing_1_421x425_5: 4310563432317316164
+      Effect_EldenRing_1_421x425_6: 1885806366319517569
+      Effect_EldenRing_1_421x425_7: -7804531650475982120
+      Effect_EldenRing_1_421x425_8: -8905702353047110064
+      Effect_EldenRing_1_421x425_9: -7784568452877405642
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

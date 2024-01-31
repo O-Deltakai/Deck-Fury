@@ -77,10 +77,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -119,6 +121,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -131,6 +134,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -143,6 +147,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -155,6 +160,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -167,6 +173,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -230,7 +250,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 89534032af9da9cf0800000000000000
-      internalID: -244643561385740904
+      internalID: 615031637715415239
       vertices: []
       indices: 
       edges: []
@@ -581,9 +601,28 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      ArmorBreak_Icon: -3798769192531860051
+      Armor_Icon: -164165500861538823
+      BladeElement_Icon: 9036628743152861294
+      BleedingV2_Icon: -3297917877087699709
+      Bleeding_Icon: -3004717309702472475
+      BreakingElement_Icon: 615031637715415239
+      ElectricElement_Icon: -8621526846360995387
+      FireElement_Icon: -5402853969886485558
+      HighlighterBox: 5057334531956047239
+      MarkV2_Icon: -4966659193822332378
+      MarkedForDeath_Icon: -2570359404244797465
+      NeutralElement_Icon: 6491006205740584935
+      PureElement_Icon: 7752026636156593468
+      QuestionMark_Icon: -916472627869292162
+      Stunned_Icon: 9125289457278207555
+      Trophy_1: -4232235055312387474
+      Trophy_2: -5422974610065366531
+      Trophy_3: 4415110671093970575
+      WaterElement_Icon: 2457443597314901036
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

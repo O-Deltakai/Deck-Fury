@@ -620,10 +620,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -662,6 +664,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -674,6 +677,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -686,6 +690,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -698,6 +703,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -710,6 +716,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -4925,9 +4945,209 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      crosshairs_tilesheet_white@2_0: 528910309998686812
+      crosshairs_tilesheet_white@2_1: -587917379513268454
+      crosshairs_tilesheet_white@2_10: 7350138824548703760
+      crosshairs_tilesheet_white@2_100: -1100213402748900454
+      crosshairs_tilesheet_white@2_101: -357474560178456053
+      crosshairs_tilesheet_white@2_102: 4718612075425358862
+      crosshairs_tilesheet_white@2_103: -6675154399238855530
+      crosshairs_tilesheet_white@2_104: -4157448291164981186
+      crosshairs_tilesheet_white@2_105: -1795179841549426649
+      crosshairs_tilesheet_white@2_106: -7513596893590816204
+      crosshairs_tilesheet_white@2_107: -7634196384115356982
+      crosshairs_tilesheet_white@2_108: -9020420613779916413
+      crosshairs_tilesheet_white@2_109: -7885085633173069664
+      crosshairs_tilesheet_white@2_11: -2679571338785332851
+      crosshairs_tilesheet_white@2_110: 1194916208939470979
+      crosshairs_tilesheet_white@2_111: -7251461425214809161
+      crosshairs_tilesheet_white@2_112: 3718077785569635438
+      crosshairs_tilesheet_white@2_113: -7018362012388290932
+      crosshairs_tilesheet_white@2_114: 2863483992646778643
+      crosshairs_tilesheet_white@2_115: -3238427172830421497
+      crosshairs_tilesheet_white@2_116: -6203333746582888350
+      crosshairs_tilesheet_white@2_117: 858259703356712756
+      crosshairs_tilesheet_white@2_118: -2495369484359104821
+      crosshairs_tilesheet_white@2_119: 630233808131632761
+      crosshairs_tilesheet_white@2_12: -8622908795702062482
+      crosshairs_tilesheet_white@2_120: 4289152669060439466
+      crosshairs_tilesheet_white@2_121: -1889823730388039810
+      crosshairs_tilesheet_white@2_122: 8773849204138533397
+      crosshairs_tilesheet_white@2_123: 7133115848148725977
+      crosshairs_tilesheet_white@2_124: 7556448655823638854
+      crosshairs_tilesheet_white@2_125: 1886844195907279089
+      crosshairs_tilesheet_white@2_126: -1908700308124628354
+      crosshairs_tilesheet_white@2_127: 2106630123097493540
+      crosshairs_tilesheet_white@2_128: -1429959163607398916
+      crosshairs_tilesheet_white@2_129: -4568529857716364950
+      crosshairs_tilesheet_white@2_13: 5540303376576569214
+      crosshairs_tilesheet_white@2_130: -7782281328912397186
+      crosshairs_tilesheet_white@2_131: 1084864105533764798
+      crosshairs_tilesheet_white@2_132: -4642916851265464299
+      crosshairs_tilesheet_white@2_133: -5115378524322301242
+      crosshairs_tilesheet_white@2_134: -7327630597310831953
+      crosshairs_tilesheet_white@2_135: -4809753821220919203
+      crosshairs_tilesheet_white@2_136: -2858150346866557794
+      crosshairs_tilesheet_white@2_137: -272327529305315778
+      crosshairs_tilesheet_white@2_138: 5986771632510201590
+      crosshairs_tilesheet_white@2_139: 3588056833868286035
+      crosshairs_tilesheet_white@2_14: 4438140765504164991
+      crosshairs_tilesheet_white@2_140: -5921974469918503083
+      crosshairs_tilesheet_white@2_141: 2699121182864446290
+      crosshairs_tilesheet_white@2_142: 5155951814527349796
+      crosshairs_tilesheet_white@2_143: -6223772648341267137
+      crosshairs_tilesheet_white@2_144: -8160778364279312225
+      crosshairs_tilesheet_white@2_145: 7389560893381845005
+      crosshairs_tilesheet_white@2_146: 3103373808914560660
+      crosshairs_tilesheet_white@2_147: -8431210285709950439
+      crosshairs_tilesheet_white@2_148: 3369405331379307360
+      crosshairs_tilesheet_white@2_149: 6341944960255151250
+      crosshairs_tilesheet_white@2_15: 2132752601642460210
+      crosshairs_tilesheet_white@2_150: 2495478492710761870
+      crosshairs_tilesheet_white@2_151: 6435779397671695843
+      crosshairs_tilesheet_white@2_152: 78301405134543833
+      crosshairs_tilesheet_white@2_153: 1286953687762532499
+      crosshairs_tilesheet_white@2_154: 3460549364802000625
+      crosshairs_tilesheet_white@2_155: -6333745016932210288
+      crosshairs_tilesheet_white@2_156: -5969295086437046428
+      crosshairs_tilesheet_white@2_157: -6378094398216434973
+      crosshairs_tilesheet_white@2_158: 2101952712447865108
+      crosshairs_tilesheet_white@2_159: -2057452548940863094
+      crosshairs_tilesheet_white@2_16: 7915631057620784706
+      crosshairs_tilesheet_white@2_160: -5016200650718267107
+      crosshairs_tilesheet_white@2_161: -6098829072149968796
+      crosshairs_tilesheet_white@2_162: 7164936760776124824
+      crosshairs_tilesheet_white@2_163: -5863785736389493707
+      crosshairs_tilesheet_white@2_164: -8652075540476442045
+      crosshairs_tilesheet_white@2_165: 8510885272266599538
+      crosshairs_tilesheet_white@2_166: -8091423563676902018
+      crosshairs_tilesheet_white@2_167: -5071805229756125146
+      crosshairs_tilesheet_white@2_168: 6090482670952155053
+      crosshairs_tilesheet_white@2_169: -3605862602016263488
+      crosshairs_tilesheet_white@2_17: -3548422835301073083
+      crosshairs_tilesheet_white@2_170: 4448135877315792207
+      crosshairs_tilesheet_white@2_171: -8976711629807244835
+      crosshairs_tilesheet_white@2_172: 7338927071707378672
+      crosshairs_tilesheet_white@2_173: 6676095045247481843
+      crosshairs_tilesheet_white@2_174: 5889198853280489143
+      crosshairs_tilesheet_white@2_175: 4091093347990342306
+      crosshairs_tilesheet_white@2_176: 4558732484374198120
+      crosshairs_tilesheet_white@2_177: 7503265001548413985
+      crosshairs_tilesheet_white@2_178: 7057610374602767471
+      crosshairs_tilesheet_white@2_179: -2669435805213793185
+      crosshairs_tilesheet_white@2_18: 2174502722179048509
+      crosshairs_tilesheet_white@2_180: 8216470822904859271
+      crosshairs_tilesheet_white@2_181: 8024792924507277724
+      crosshairs_tilesheet_white@2_182: 3436777560455250900
+      crosshairs_tilesheet_white@2_183: 8209007709342086484
+      crosshairs_tilesheet_white@2_184: -6949356554746255884
+      crosshairs_tilesheet_white@2_185: -6164060053297537285
+      crosshairs_tilesheet_white@2_186: -41693584545412955
+      crosshairs_tilesheet_white@2_187: 8098779537974666122
+      crosshairs_tilesheet_white@2_188: 3744287190596518785
+      crosshairs_tilesheet_white@2_189: 4582924477496493537
+      crosshairs_tilesheet_white@2_19: 6495282836080113541
+      crosshairs_tilesheet_white@2_190: 968520732549816108
+      crosshairs_tilesheet_white@2_191: -5205128945847803631
+      crosshairs_tilesheet_white@2_192: 1256591769393099716
+      crosshairs_tilesheet_white@2_193: -1406901626315883833
+      crosshairs_tilesheet_white@2_194: 9009687128935187864
+      crosshairs_tilesheet_white@2_195: 2802451210961159004
+      crosshairs_tilesheet_white@2_196: -1668110308733238383
+      crosshairs_tilesheet_white@2_197: -4269358136271270550
+      crosshairs_tilesheet_white@2_198: -3765568935672160908
+      crosshairs_tilesheet_white@2_199: -4580221166916941348
+      crosshairs_tilesheet_white@2_2: -3312807332211626428
+      crosshairs_tilesheet_white@2_20: -4692289464475243357
+      crosshairs_tilesheet_white@2_21: 1863458905247812557
+      crosshairs_tilesheet_white@2_22: -4149929298098473301
+      crosshairs_tilesheet_white@2_23: -441911724947170499
+      crosshairs_tilesheet_white@2_24: -8292128766927384561
+      crosshairs_tilesheet_white@2_25: 5535880580243276513
+      crosshairs_tilesheet_white@2_26: -2969090392398502078
+      crosshairs_tilesheet_white@2_27: 9172309467991503091
+      crosshairs_tilesheet_white@2_28: -1585942101541909372
+      crosshairs_tilesheet_white@2_29: 3368965826255252943
+      crosshairs_tilesheet_white@2_3: -3754570849801538967
+      crosshairs_tilesheet_white@2_30: 1361063997318191139
+      crosshairs_tilesheet_white@2_31: -7534292415662754367
+      crosshairs_tilesheet_white@2_32: 2675542095933210509
+      crosshairs_tilesheet_white@2_33: 8043642028463420434
+      crosshairs_tilesheet_white@2_34: 3736208216589451355
+      crosshairs_tilesheet_white@2_35: 2503070977165665113
+      crosshairs_tilesheet_white@2_36: 3572199747145670660
+      crosshairs_tilesheet_white@2_37: 1341484351498477658
+      crosshairs_tilesheet_white@2_38: -8865529404124732130
+      crosshairs_tilesheet_white@2_39: -1715439034795541441
+      crosshairs_tilesheet_white@2_4: 2097321760594909626
+      crosshairs_tilesheet_white@2_40: -810478621788118804
+      crosshairs_tilesheet_white@2_41: 3780514320063663552
+      crosshairs_tilesheet_white@2_42: -8572865647058797741
+      crosshairs_tilesheet_white@2_43: -9067969497073595901
+      crosshairs_tilesheet_white@2_44: -7643332034037093650
+      crosshairs_tilesheet_white@2_45: -4467512240149209346
+      crosshairs_tilesheet_white@2_46: -7213470663232955711
+      crosshairs_tilesheet_white@2_47: 1396648572098652639
+      crosshairs_tilesheet_white@2_48: -5677739488334074939
+      crosshairs_tilesheet_white@2_49: 3231114416023804132
+      crosshairs_tilesheet_white@2_5: 1153300463411994836
+      crosshairs_tilesheet_white@2_50: -2946631237322528490
+      crosshairs_tilesheet_white@2_51: -1688335718058138572
+      crosshairs_tilesheet_white@2_52: 6992610109634322746
+      crosshairs_tilesheet_white@2_53: -6243659388763829204
+      crosshairs_tilesheet_white@2_54: -3328999876683095394
+      crosshairs_tilesheet_white@2_55: 7343473396292251178
+      crosshairs_tilesheet_white@2_56: -4179572777851576415
+      crosshairs_tilesheet_white@2_57: 6854573099649954247
+      crosshairs_tilesheet_white@2_58: 3451650663056870389
+      crosshairs_tilesheet_white@2_59: -6788537879439596100
+      crosshairs_tilesheet_white@2_6: 3877494061209157804
+      crosshairs_tilesheet_white@2_60: -2781043328653498032
+      crosshairs_tilesheet_white@2_61: -5606941974626773430
+      crosshairs_tilesheet_white@2_62: 3263044536486985618
+      crosshairs_tilesheet_white@2_63: 9032976168502216603
+      crosshairs_tilesheet_white@2_64: -3656194295129503016
+      crosshairs_tilesheet_white@2_65: -3927215407945103374
+      crosshairs_tilesheet_white@2_66: 8811614183876038504
+      crosshairs_tilesheet_white@2_67: -3035322080159931466
+      crosshairs_tilesheet_white@2_68: 7927224672339124696
+      crosshairs_tilesheet_white@2_69: -8770588321070600676
+      crosshairs_tilesheet_white@2_7: -5951258188133444110
+      crosshairs_tilesheet_white@2_70: 6248650022934093567
+      crosshairs_tilesheet_white@2_71: 7038647815216127841
+      crosshairs_tilesheet_white@2_72: -233825488086522329
+      crosshairs_tilesheet_white@2_73: 9187249136058827315
+      crosshairs_tilesheet_white@2_74: -8767446466039784630
+      crosshairs_tilesheet_white@2_75: -2427428863459819485
+      crosshairs_tilesheet_white@2_76: -5372858016989404669
+      crosshairs_tilesheet_white@2_77: -8611275351580178169
+      crosshairs_tilesheet_white@2_78: -3302989251388151552
+      crosshairs_tilesheet_white@2_79: 4607948453805523284
+      crosshairs_tilesheet_white@2_8: -5321963298143732788
+      crosshairs_tilesheet_white@2_80: -2633274948060863914
+      crosshairs_tilesheet_white@2_81: -9152566409981013863
+      crosshairs_tilesheet_white@2_82: -6516064003665235378
+      crosshairs_tilesheet_white@2_83: -7063659535989725947
+      crosshairs_tilesheet_white@2_84: 3197793231577876114
+      crosshairs_tilesheet_white@2_85: -2498820978164149463
+      crosshairs_tilesheet_white@2_86: -8670734014570447490
+      crosshairs_tilesheet_white@2_87: -7529975261839585359
+      crosshairs_tilesheet_white@2_88: -251971573780441411
+      crosshairs_tilesheet_white@2_89: 5432296353065877222
+      crosshairs_tilesheet_white@2_9: 520264184982114130
+      crosshairs_tilesheet_white@2_90: -859378728689285804
+      crosshairs_tilesheet_white@2_91: -1644002721235174870
+      crosshairs_tilesheet_white@2_92: -8883395777137385523
+      crosshairs_tilesheet_white@2_93: -1946799721571010341
+      crosshairs_tilesheet_white@2_94: 2571553412020174259
+      crosshairs_tilesheet_white@2_95: 2266892587490709115
+      crosshairs_tilesheet_white@2_96: 1979946947065695867
+      crosshairs_tilesheet_white@2_97: 625486608327949111
+      crosshairs_tilesheet_white@2_98: -1715096388770340229
+      crosshairs_tilesheet_white@2_99: 5532477561959472603
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

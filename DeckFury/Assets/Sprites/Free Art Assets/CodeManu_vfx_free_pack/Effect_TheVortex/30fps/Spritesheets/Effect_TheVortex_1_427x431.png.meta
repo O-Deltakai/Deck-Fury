@@ -92,10 +92,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -134,6 +136,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -146,6 +149,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -158,6 +162,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -170,6 +175,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -182,6 +188,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -701,9 +721,33 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      Effect_TheVortex_1_427x431_0: -163162439605777169
+      Effect_TheVortex_1_427x431_1: 8433736748243666537
+      Effect_TheVortex_1_427x431_10: 8922283655269409545
+      Effect_TheVortex_1_427x431_11: 6662451415131525259
+      Effect_TheVortex_1_427x431_12: 2234812359593234636
+      Effect_TheVortex_1_427x431_13: -3377469636688855161
+      Effect_TheVortex_1_427x431_14: 3101512874446923182
+      Effect_TheVortex_1_427x431_15: 5883241259028825394
+      Effect_TheVortex_1_427x431_16: -1306117998669086587
+      Effect_TheVortex_1_427x431_17: 4131464093045025380
+      Effect_TheVortex_1_427x431_18: 18912883338162054
+      Effect_TheVortex_1_427x431_19: 9063664589025867813
+      Effect_TheVortex_1_427x431_2: -3967769148867013894
+      Effect_TheVortex_1_427x431_20: -5299954089916670839
+      Effect_TheVortex_1_427x431_21: -7389288844845544645
+      Effect_TheVortex_1_427x431_22: 7761959167159204081
+      Effect_TheVortex_1_427x431_23: 5388604604536175663
+      Effect_TheVortex_1_427x431_3: -3028559098995421251
+      Effect_TheVortex_1_427x431_4: 6564976865923452068
+      Effect_TheVortex_1_427x431_5: 7544131403561540850
+      Effect_TheVortex_1_427x431_6: -6467047110218893636
+      Effect_TheVortex_1_427x431_7: 3128404052274843170
+      Effect_TheVortex_1_427x431_8: 171115067092127079
+      Effect_TheVortex_1_427x431_9: 973358700388622289
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

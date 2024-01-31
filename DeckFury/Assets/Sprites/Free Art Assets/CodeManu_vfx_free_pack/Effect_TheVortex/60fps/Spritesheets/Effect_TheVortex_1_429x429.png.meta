@@ -158,10 +158,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -200,6 +202,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -212,6 +215,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -224,6 +228,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -236,6 +241,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -248,6 +254,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -1229,9 +1249,55 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      Effect_TheVortex_1_429x429_0: -2723098233466242401
+      Effect_TheVortex_1_429x429_1: -503603732362418726
+      Effect_TheVortex_1_429x429_10: 4930045723723783685
+      Effect_TheVortex_1_429x429_11: 2836302856089990152
+      Effect_TheVortex_1_429x429_12: -1368804616549794898
+      Effect_TheVortex_1_429x429_13: -6210343908714103204
+      Effect_TheVortex_1_429x429_14: 2156295997782431986
+      Effect_TheVortex_1_429x429_15: -7367967356077049720
+      Effect_TheVortex_1_429x429_16: -8165125147466716198
+      Effect_TheVortex_1_429x429_17: 1719763687097572245
+      Effect_TheVortex_1_429x429_18: 4360736653857564895
+      Effect_TheVortex_1_429x429_19: -5018428452919963160
+      Effect_TheVortex_1_429x429_2: 6397250538681126735
+      Effect_TheVortex_1_429x429_20: 5720097669033813250
+      Effect_TheVortex_1_429x429_21: 4836258064828931541
+      Effect_TheVortex_1_429x429_22: 1116485129887257541
+      Effect_TheVortex_1_429x429_23: -3207389854657558179
+      Effect_TheVortex_1_429x429_24: 6493610605965475346
+      Effect_TheVortex_1_429x429_25: -8929901778860098743
+      Effect_TheVortex_1_429x429_26: 737218289704032765
+      Effect_TheVortex_1_429x429_27: 5289903215525334240
+      Effect_TheVortex_1_429x429_28: 4887538889894126465
+      Effect_TheVortex_1_429x429_29: 6108197048276735797
+      Effect_TheVortex_1_429x429_3: 1038558510543717980
+      Effect_TheVortex_1_429x429_30: -8360890788241006057
+      Effect_TheVortex_1_429x429_31: -8434931752621265801
+      Effect_TheVortex_1_429x429_32: 6135503777713223426
+      Effect_TheVortex_1_429x429_33: 3847063318755936954
+      Effect_TheVortex_1_429x429_34: 4469598344208621710
+      Effect_TheVortex_1_429x429_35: -5184428815238252359
+      Effect_TheVortex_1_429x429_36: -7955790261421586747
+      Effect_TheVortex_1_429x429_37: 2335967947683598688
+      Effect_TheVortex_1_429x429_38: -6802372903258841871
+      Effect_TheVortex_1_429x429_39: -1086431714070942950
+      Effect_TheVortex_1_429x429_4: -7010805925529772713
+      Effect_TheVortex_1_429x429_40: 7821501667730109135
+      Effect_TheVortex_1_429x429_41: 292495260756123358
+      Effect_TheVortex_1_429x429_42: 707935624288683069
+      Effect_TheVortex_1_429x429_43: 8967383807136013641
+      Effect_TheVortex_1_429x429_44: -8689372730605539086
+      Effect_TheVortex_1_429x429_45: -4961432354788054778
+      Effect_TheVortex_1_429x429_5: 175791647545754403
+      Effect_TheVortex_1_429x429_6: -1818489205239551440
+      Effect_TheVortex_1_429x429_7: 1940020831677549730
+      Effect_TheVortex_1_429x429_8: 9096985320951051400
+      Effect_TheVortex_1_429x429_9: -6626489880233556075
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
