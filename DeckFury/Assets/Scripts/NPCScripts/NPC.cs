@@ -97,6 +97,8 @@ public class NPC : StageEntity
             }
         }
 
+        EventBus<NPCKilledEvent>.Raise(new NPCKilledEvent {killingBlow = killingBlow.Value, npc = this, positionAtDeath = worldTransform.position});
+
     }
 
 

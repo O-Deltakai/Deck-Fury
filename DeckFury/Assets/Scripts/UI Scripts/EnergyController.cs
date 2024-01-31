@@ -20,6 +20,7 @@ public class EnergyController : MonoBehaviour
     //set variable
     //max value of enery bar
     [SerializeField] float max;
+    public float MaxEnergy => max;
     //duration for 1 energy charge
     [SerializeField] float chargeTime = 2.0f;
     //default energy
@@ -27,7 +28,24 @@ public class EnergyController : MonoBehaviour
     //cool down
     [SerializeField] float coolDown = 3.0f;
     //charge time for this turn
-    [SerializeField] float currentEnergyValue=0;
+    [SerializeField] float currentEnergyValue = 0;
+    public float CurrentEnergy
+    {
+        get => currentEnergyValue;
+        set
+        {
+            currentEnergyValue = value;
+            if (currentEnergyValue > max)
+            {
+                currentEnergyValue = max;
+            }
+            else
+            if (currentEnergyValue < 0)
+            {
+                currentEnergyValue = 0;
+            }
+        }
+    }
     //full charge, true when energy bar full
     [SerializeField] bool fullCharge = false;
     //charge for each frame

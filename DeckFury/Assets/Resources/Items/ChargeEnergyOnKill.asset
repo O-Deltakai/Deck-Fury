@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: Amber Pearl
   _shortDescription: 
-  _itemDescription: Killing an enemy restores <b>%Q0</b> of your <b><color=yellow>Energy</color></b>.
+  _itemDescription: Killing an enemy restores <b>Q0%</b> of your <b><color=yellow>Energy</color></b>.
   _valueMultiplier: 1
   _rarity: 2
   _quantifiableEffects:
   - <EffectName>k__BackingField: Charge Refund Amount On Kill
     <IntegerQuantity>k__BackingField: 0
-    <FloatQuantity>k__BackingField: 0.1
+    <FloatQuantity>k__BackingField: 10
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
   _itemImage: {fileID: 21300000, guid: 4e8da023597cf8442baa17acb6d516b9, type: 3}
-  _itemPrefab: {fileID: 0}
+  _itemPrefab: {fileID: 5617695453958351643, guid: e1f608434c816f4438df6a6540093d56, type: 3}
   _itemColorPalette: {fileID: 11400000, guid: eb9e9f6a13ee5004abc9ae082a092069, type: 2}
   _hasEffectOutsideBattle: 0
   _oneTimeEffect: 0
