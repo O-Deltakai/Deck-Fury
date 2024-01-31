@@ -1975,6 +1975,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{9568839d-4fcd-4ed6-9480-4d9f4d1fc466}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{6ac2e3ec-07b2-4a34-9961-99eaf6aa65ec}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{c15f1bff-a3e6-44d6-ac6e-d1935ffe3445}.xml" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\EncodingSetting\{6ecb8973-6c36-437b-8ee5-659079110bd0}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{d9333b92-9e69-4363-86a6-74823a23423f}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{c1e63d0e-157b-4832-85d4-b5c20f75fabe}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{1d5b063a-132d-4e55-8345-050d7831b2f2}.xml" />
@@ -2263,6 +2264,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{eef336cc-f7cb-4bee-90cb-1f391c507808}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{8bcb8b99-7066-4ee6-a7cd-dbda2b425e32}.xml" />
     <None Include="Assets\Sprites\Free Art Assets\CraftPix_rpg_monster_sprites_OGA-BY3\readme.txt" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\EncodingSetting\{4fe8e1af-95ac-4fbd-8e9f-c1a367054890}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{71a42972-88ec-46a6-9be9-516d7d77d283}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\DataFile\{f91d5530-8f08-4099-8be3-f13502bf9d70}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{c480edee-9617-45d3-b83a-5b32398c9527}.xml" />
@@ -3310,6 +3312,9 @@
     <ProjectReference Include="Unity.TextMeshPro.csproj" />
     <ProjectReference Include="Unity.AI.Navigation.Editor.ConversionSystem.csproj" />
     <ProjectReference Include="Unity.VSCode.Editor.csproj" />
+    <ProjectReference Include="Unity.MemoryProfiler.csproj" />
+    <ProjectReference Include="Unity.EditorCoroutines.Editor.csproj" />
+    <ProjectReference Include="Unity.MemoryProfiler.Editor.MemoryProfilerModule.csproj" />
     <ProjectReference Include="PsdPlugin.csproj" />
     <ProjectReference Include="Unity.PlasticSCM.Editor.csproj" />
     <ProjectReference Include="Unity.Burst.csproj" />
@@ -3324,6 +3329,7 @@
     <ProjectReference Include="Unity.Timeline.csproj" />
     <ProjectReference Include="Unity.InputSystem.csproj" />
     <ProjectReference Include="Unity.InputSystem.ForUI.csproj" />
+    <ProjectReference Include="Unity.MemoryProfiler.Editor.csproj" />
     <ProjectReference Include="Unity.InternalAPIEditorBridge.001.csproj" />
     <ProjectReference Include="Unity.2D.Psdimporter.Editor.csproj" />
     <ProjectReference Include="Unity.AI.Navigation.Updater.csproj" />
