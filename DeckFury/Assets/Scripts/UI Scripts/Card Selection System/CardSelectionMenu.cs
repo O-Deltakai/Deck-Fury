@@ -42,6 +42,7 @@ public class CardSelectionMenu : MonoBehaviour
 
     [SerializeField] GameObject deckViewPanel; //Must be set in inspector
     [SerializeField] Vector3 originalDeckViewPanelPosition;
+    Tween deckViewPanelTween;
 
     [SerializeField] GameObject cardSelectPanel; //Must be set in inspector
     [SerializeField] GameObject cardLoadPanel; //Must be set in inspector
@@ -228,12 +229,18 @@ public class CardSelectionMenu : MonoBehaviour
 
     public void OpenDeckView()
     {
-        deckViewPanel.transform.DOLocalMove(Vector3.zero, 0.2f).SetUpdate(true);
+        if(deckViewPanelTween.IsActive())
+        {
+            return;
+        }
+        deckViewPanel.SetActive(true);
+        deckViewPanelTween = deckViewPanel.transform.DOLocalMove(Vector3.zero, 0.2f).SetUpdate(true).OnComplete(() => {deckViewPanelTween = null;});
     }
 
-    public void CloseDeckView()
+    public async void CloseDeckView()
     {
-        deckViewPanel.transform.DOLocalMove(originalDeckViewPanelPosition, 0.2f).SetUpdate(true);
+        await deckViewPanel.transform.DOLocalMove(originalDeckViewPanelPosition, 0.2f).SetUpdate(true).AsyncWaitForCompletion();
+        deckViewPanel.SetActive(false);
     }
 
     //Move menu upwards out of view when previewing stage

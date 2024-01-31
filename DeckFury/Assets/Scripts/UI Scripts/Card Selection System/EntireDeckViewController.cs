@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class EntireDeckViewController : MonoBehaviour
 {
+    event Action OnFinishInitialization;
+
     [SerializeField] CardDescriptionPanel cardDescriptionPanel;
     [SerializeField] GameObject cardSlotPrefab;
     [SerializeField] GameObject cardSlotsParent;
@@ -18,6 +20,7 @@ public class EntireDeckViewController : MonoBehaviour
     void Awake()
     {
         cardPoolManager = CardPoolManager.Instance;
+        OnFinishInitialization += () => gameObject.SetActive(false);
         cardPoolManager.OnCompletePooling += InitializeCardSlots;
     }
 
@@ -52,7 +55,8 @@ public class EntireDeckViewController : MonoBehaviour
 
 
             cardSlots.Add(cardSlot);
-        }        
+        }
+        OnFinishInitialization?.Invoke();        
     }
 
     void TestMethod()
