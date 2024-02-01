@@ -115,7 +115,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\Scripts\Enums\SceneNames.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
-    <Compile Include="Assets\Scripts\NPCScripts\ShieldGuy.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CreateSinShapedLineStrip.cs" />
     <Compile Include="Assets\Scripts\Procedural Generation System\StageConcrete.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
@@ -279,6 +278,7 @@
     <Compile Include="Assets\VolumetricLines\Scripts\VolumetricLineBehavior.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Singleton\Singleton.cs" />
     <Compile Include="Assets\Scripts\CardScripts\SlashBoomerang.cs" />
+    <Compile Include="Assets\Scripts\NPCScripts\ShieldGuy\ShieldGuy.cs" />
     <Compile Include="Assets\Scripts\CardScripts\LongSword.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\CustomList.cs" />
     <Compile Include="Assets\Scripts\Event Bus Systems\Events.cs" />
@@ -1093,6 +1093,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{c611a1c8-552c-4634-8320-8ff806a1788e}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{27bb83d7-ab0a-4558-a939-9924f081e1ff}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{32bac140-6254-4489-879c-a41e59df71bc}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Premium\Icons\Cyberpunk Artifact Icons 32x32 Pixel\License.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{b70a4f1d-29d5-4d86-977d-e5aae4b1381d}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{bd703629-4667-43b8-9ab3-53a364d1a4e4}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{61c7a7eb-0ee9-4846-bd6d-13e6f275243b}.xml" />
@@ -1431,6 +1432,7 @@
     <None Include="Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\SingleLine-TextureAdditive.shader" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{310c956c-5f3c-481a-8ca6-0c64c5d96ec1}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{ae3864f6-9cca-4415-af63-ed2a12993a03}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Premium\Icons\Cyberpunk Armor 32x32 Pixel Icons\License.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{3b782776-20e9-4fbb-95e9-4fcada8f57a3}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{41a3502b-af34-4dd1-bf94-6cfd833bd931}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{366b92e5-7c2c-47b6-b59a-9b7e65834c68}.xml" />
@@ -1763,6 +1765,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{4b5cd85a-e652-4ded-91f2-f6221c63c0ef}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{a5a1a01e-fa32-4891-92eb-33d574bcbc7d}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{134a6dc8-0196-49bc-952c-95ca45c487a5}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Premium\Icons\Cyberpunk Artifact Icons 32x32 Pixel\Font.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{deb17b57-f912-41fe-bf98-ff65909d614a}.xml" />
     <None Include="Assets\Sprites\Free Art Assets\Dungeon Crawl Stone Soup Full\LICENSE.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{e325521b-370b-49eb-b4dd-6fe71698efbe}.xml" />
@@ -1842,6 +1845,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{b6732513-240b-478c-a3c2-5e79ca8b0bd6}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{4cce491a-e492-470e-9b07-2467d01a1487}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{23096437-d512-4cfc-814a-758eafd8a51a}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Premium\Icons\Cyberpunk Armor 32x32 Pixel Icons\Font.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{444640cd-6fb3-4238-bc25-2ec711a08276}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{96f7fd66-dbb7-46e8-8036-3141079b55d5}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{405321b1-6ae6-4cc0-8591-acedd96dc0ce}.xml" />

@@ -12,14 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67bdf40430eebf44bba6f4bb68e0f79f, type: 3}
   m_Name: DashDamageAmp
   m_EditorClassIdentifier: 
-  _itemName: Dash Damage Amp
+  _itemName: Spiked Bracelet
   _shortDescription: 
-  _itemDescription: After dashing, your next card deals 1.5x more damage. The buff
-    expires after 3 seconds if no card is used.
-  _value: 100
+  _itemDescription: After dashing, your next card deals <b>Q0x</b> more damage. The
+    buff expires after 2 seconds if no card is used.
+  _valueMultiplier: 1
   _rarity: 2
-  _quantifiableEffects: []
-  _itemImage: {fileID: 0}
+  _quantifiableEffects:
+  - <EffectName>k__BackingField: Card Damage Multiplier
+    <IntegerQuantity>k__BackingField: 0
+    <FloatQuantity>k__BackingField: 1.5
+    <CanBeModified>k__BackingField: 0
+    <ModCoefficient>k__BackingField: 0
+  _itemImage: {fileID: 21300000, guid: b8c01768c0f2eb340ae3a8142134861f, type: 3}
   _itemPrefab: {fileID: 0}
   _itemColorPalette: {fileID: 11400000, guid: eb9e9f6a13ee5004abc9ae082a092069, type: 2}
   _hasEffectOutsideBattle: 0

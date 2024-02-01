@@ -868,9 +868,9 @@ public class StageEntity : MonoBehaviour
 
     bool CheckWeakness(AttackElement attackElement)
     {
-        foreach(AttackElement element in weaknesses)
+        for (int i = 0; i < weaknesses.Count; i++)
         {
-            if(attackElement == element)
+            if(attackElement == weaknesses[i])
             {
                 return true;
             }
@@ -881,9 +881,9 @@ public class StageEntity : MonoBehaviour
 
     bool CheckResistance(AttackElement attackElement)
     {
-        foreach(AttackElement element in resistances)
+        for (int i = 0; i < resistances.Count; i++)
         {
-            if(attackElement == element)
+            if(attackElement == resistances[i])
             {
                 return true;
             }
