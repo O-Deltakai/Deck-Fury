@@ -2,17 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageAmpOnDash : MonoBehaviour
+public class DamageAmpOnDash : ItemBase
 {
-    // Start is called before the first frame update
-    void Start()
+    PlayerDashController playerDashController;
+    EventBinding<UseCardEvent> useCardEvent;
+
+    public override void Initialize()
     {
-        
+        useCardEvent = new EventBinding<UseCardEvent>(RemoveBuff);
+        EventBus<UseCardEvent>.Register(new EventBinding<UseCardEvent>(RemoveBuff));
+
+        playerDashController = player.DashController;
+        player.DashController.OnDash += Proc;
+        base.Initialize();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public override void Proc()
     {
-        
+        base.Proc();
     }
+
+    void RemoveBuff()
+    {
+
+    }
+
+    public override void Deactivate()
+    {
+        EventBus<UseCardEvent>.Deregister(useCardEvent);
+        player.DashController.OnDash -= Proc;
+        base.Deactivate();
+    }
+
 }

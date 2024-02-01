@@ -78,7 +78,7 @@ public abstract class CardEffect : MonoBehaviour
     //to make the card work.
     public virtual void ActivateCardEffect()
     {
-
+        
     }
 
 

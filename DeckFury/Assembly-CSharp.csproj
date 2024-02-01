@@ -115,6 +115,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\Scripts\Enums\SceneNames.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
+    <Compile Include="Assets\Scripts\NPCScripts\ShieldGuy.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CreateSinShapedLineStrip.cs" />
     <Compile Include="Assets\Scripts\Procedural Generation System\StageConcrete.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\Card Selection System\CardSelectionMenu.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CannonBehavior.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerAnimationController.cs" />
+    <Compile Include="Assets\Scripts\Finite State Machine\IState.cs" />
     <Compile Include="Assets\ScriptableObjects\StageEntityVariablesSO.cs" />
     <Compile Include="Assets\Scripts\StageSpecificScripts\TutorialController.cs" />
     <Compile Include="Assets\Scripts\Procedural Generation System\LevelBlueprint.cs" />
@@ -147,13 +149,16 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\Vector2Extensions.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
+    <Compile Include="Assets\Scripts\Finite State Machine\IPredicate.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\TimeManager.cs" />
     <Compile Include="Assets\Scripts\Enums\TagNames.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerItemController.cs" />
+    <Compile Include="Assets\Scripts\Finite State Machine\Transition.cs" />
     <Compile Include="Assets\Scripts\ToolScripts\TriggerCollider2DRelay.cs" />
     <Compile Include="Assets\Scripts\Enums\LayerNames.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\HintController.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
+    <Compile Include="Assets\Scripts\Finite State Machine\BaseState.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\GameErrorHandler.cs" />
     <Compile Include="Assets\Scripts\CardScripts\ShieldBash.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Ramps\Runtime\RampAsset.cs" />
@@ -244,6 +249,7 @@
     <Compile Include="Assets\Scripts\StageManagerScripts\GroundTileData.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
     <Compile Include="Assets\Scripts\Shop System\ShopItemType.cs" />
+    <Compile Include="Assets\Scripts\Finite State Machine\FuncPredicate.cs" />
     <Compile Include="Assets\Scripts\StageSelectionScripts\MapLevel.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\ObjectTags.cs" />
     <Compile Include="Assets\Scripts\StageManagerScripts\MapLoader.cs" />
@@ -308,6 +314,7 @@
     <Compile Include="Assets\Scripts\StageSelectionScripts\StageSelectionManager.cs" />
     <Compile Include="Assets\Scripts\CardScripts\SummonSentry.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\MapHelperFunctions.cs" />
+    <Compile Include="Assets\Scripts\Finite State Machine\ITransition.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleEPOOutline.cs" />
     <Compile Include="Assets\Scripts\ToolScripts\CinemachineImpulseSourceHelper.cs" />
     <Compile Include="Assets\Scripts\StageSelectionScripts\MapStage.cs" />
@@ -319,6 +326,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\ScoreMenu\RuntimeBonusScoreItem.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\ShieldBeacon.cs" />
     <Compile Include="Assets\Scripts\ToolScripts\GameObjectToggler.cs" />
+    <Compile Include="Assets\Scripts\Finite State Machine\StateMachine.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\AimpointController.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
     <Compile Include="Assets\ScriptableObjects\ItemColorPaletteSO.cs" />
