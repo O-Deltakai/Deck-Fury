@@ -16,3 +16,9 @@ public struct NPCKilledEvent : IEvent
     public AttackPayload killingBlow;
     public Vector3 positionAtDeath;
 }
+
+public struct UseCardEvent : IEvent
+{
+    public CardObjectReference card;
+    public CardSO cardSO;
+}

@@ -76,7 +76,10 @@ public abstract class CardEffect : MonoBehaviour
 
     //The main method that gets called whenever the card is used. Should contain all necessary statements and calls
     //to make the card work.
-    public abstract void ActivateCardEffect();
+    public virtual void ActivateCardEffect()
+    {
+
+    }
 
 
     //Method to call when it is time to disable the effect prefab
