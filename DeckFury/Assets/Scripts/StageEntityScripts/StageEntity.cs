@@ -735,7 +735,7 @@ public class StageEntity : MonoBehaviour
 
 
 
-        int damageAfterModifiers;
+        int damageAfterModifiers = 0;
         //Do damage calculations for if AttackElement is breaking
         if(finalPayload.attackElement == AttackElement.Breaking)
         {
@@ -850,8 +850,12 @@ public class StageEntity : MonoBehaviour
             CurrentHP -= damageAfterModifiers;
             
         }
+        if(damageAfterModifiers >= 1)
+        {
+            StartCoroutine(statusEffectManager.FlashColor(actualHitFlashColor, 0.025f, 0.025f));//Flash white to indicate being hit
+        }
 
-        StartCoroutine(statusEffectManager.FlashColor(actualHitFlashColor, 0.025f, 0.025f));//Flash white to indicate being hit
+
         if(!OnDamagedSFX.IsNull)
         {
             RuntimeManager.PlayOneShot(OnDamagedSFX, transform.position);
