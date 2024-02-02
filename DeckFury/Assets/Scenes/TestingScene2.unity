@@ -827,11 +827,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
---- !u!1 &1052837184 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7109490504627534214, guid: 460e812064f29174588f7cbcea22cfa0, type: 3}
-  m_PrefabInstance: {fileID: 1144200170970073091}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1084227706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1943,14 +1938,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 144242304015738641, guid: 460e812064f29174588f7cbcea22cfa0, type: 3}
-      propertyPath: attackHitboxAnchor
-      value: 
-      objectReference: {fileID: 1052837184}
-    - target: {fileID: 246136323341909884, guid: 460e812064f29174588f7cbcea22cfa0, type: 3}
-      propertyPath: m_ImpulseDefinition.m_ImpulseDuration
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 8332432971722015144, guid: 460e812064f29174588f7cbcea22cfa0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1

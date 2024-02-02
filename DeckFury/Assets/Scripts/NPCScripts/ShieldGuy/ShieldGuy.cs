@@ -68,6 +68,9 @@ public class ShieldGuy : NPC
     [SerializeField] Collider2D shieldCollider;
     [SerializeField] LayerMask shieldLayer;
 
+    [SerializeField] GameObject shieldBlockHitVFX;
+
+
     [Header("Attack Settings")]
     [SerializeField] float prepareAttackTime = 1f;
     [SerializeField] float attackCooldown = 1f;
@@ -82,6 +85,7 @@ public class ShieldGuy : NPC
 
     Coroutine CR_PrepareAttack;
     Coroutine CR_ShieldBash;
+    Coroutine CR_ShieldBlockHitVFX;
 
     AimDirection currentAimDirection;
 
@@ -116,6 +120,8 @@ public class ShieldGuy : NPC
 
     void Update()
     {
+        if(!CanAct) { return; }
+
         if(playerInRangeChecker.InRange)
         {
             if(CR_PrepareAttack == null)
@@ -173,8 +179,8 @@ public class ShieldGuy : NPC
         shieldCollider.enabled = true;
         entityAnimator.PlayOneShotAnimation(entityAnimator.animationList[4]);
         shieldHitboxObject.transform.localScale = normalShieldScale;
-        shieldHitboxObject.GetComponent<SpriteRenderer>().color = shieldColor;
-        shieldHitboxObject.transform.localPosition = Vector3.zero;
+        shieldHitboxObject.GetComponent<SpriteRenderer>().DOColor(shieldColor, 0.1f).SetEase(Ease.InOutSine);
+        shieldHitboxObject.transform.DOLocalMove(Vector3.zero, 0.1f).SetEase(Ease.InOutSine);
 
         //Armor = 100;       
     }
@@ -182,9 +188,16 @@ public class ShieldGuy : NPC
     void ShieldsDown()
     {
         _shieldsUp = false;
-        Armor = EnemyData.Armor;
+        shieldCollider.enabled = false;
+
         entityAnimator.PlayOneShotAnimation(entityAnimator.animationList[2]);
     }
+
+    void OnStunned()
+    {
+        ShieldsDown();
+    }
+
 
     void TriggerShieldBashAnimation()
     {
@@ -198,6 +211,7 @@ public class ShieldGuy : NPC
         {
             if(CheckShieldBlock(payload))
             {
+                BlockHitVFX();
                 StartCoroutine(FlashShieldCoroutine());
                 payload.damage = 0;
             }
@@ -211,30 +225,31 @@ public class ShieldGuy : NPC
         {
             RaycastHit2D hit = Physics2D.Raycast(payload.attacker.transform.position, (worldTransform.position - payload.attacker.transform.position).normalized, Mathf.Infinity, shieldLayer);
 
-            // Visualize the raycast
-            if (hit.collider != null)
-            {
-                // If the raycast hit a collider, draw a red line to the hit point
-                Debug.DrawLine(payload.attacker.transform.position, hit.point, Color.red);
-                Debug.Log("Raycast hit a collider on the target layer: " + hit.collider.gameObject.name);
-            }
-            else
-            {
-                // If the raycast did not hit, draw a green line for the length of the ray
-                Debug.DrawLine(payload.attacker.transform.position, (worldTransform.position - payload.attacker.transform.position).normalized * 20, Color.green);
-            }
-
             if(hit.collider == shieldCollider)
             {
-                print("Attack hit shield");
                 return true;
-            }else
-            {
-                print("Attack did not hit shield");
             }
         }
 
         return false;
+    }
+
+    void BlockHitVFX()
+    {
+        if(CR_ShieldBlockHitVFX != null)
+        {
+            StopCoroutine(CR_ShieldBlockHitVFX);
+            shieldBlockHitVFX.SetActive(false);
+        }
+        CR_ShieldBlockHitVFX = StartCoroutine(BlockHitVFXCoroutine());
+    }
+
+    IEnumerator BlockHitVFXCoroutine()
+    {
+        shieldBlockHitVFX.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        shieldBlockHitVFX.SetActive(false);
+        CR_ShieldBlockHitVFX = null;
     }
 
     public override void HurtEntity(AttackPayload payload, Color? hitFlashColor = null, EventReference? hitSFX = null)
@@ -251,9 +266,8 @@ public class ShieldGuy : NPC
     IEnumerator FlashShieldCoroutine()
     {
         yield return shieldHitboxObject.GetComponent<SpriteRenderer>().DOColor(hitShieldColor, shieldFlashDuration).SetEase(shieldFlashEase).WaitForCompletion();
+
         yield return shieldHitboxObject.GetComponent<SpriteRenderer>().DOColor(shieldColor, shieldFlashDuration).SetEase(shieldFlashEase).WaitForCompletion();
-
-
     }
 
     IEnumerator ShieldBashCoroutine()
@@ -282,6 +296,9 @@ public class ShieldGuy : NPC
     {
         Vector2Int playerDistance = (Vector2Int)GameManager.Instance.player.currentTilePosition - (Vector2Int)currentTilePosition;
         AimDirection aimDirection = CardinalAimSystem.GetClosestAimDirectionByVector(playerDistance);
+
+        if(currentAimDirection == AimDirection.Right) {transform.localScale = new Vector3(1, 1, 1);}
+        else if(currentAimDirection == AimDirection.Left) {transform.localScale = new Vector3(-1, 1, 1);}
 
         if(currentAimDirection == aimDirection) { return; }
 
@@ -316,7 +333,7 @@ public class ShieldGuy : NPC
             {
                 collider2D.gameObject.TryGetComponent<StageEntity>(out entity);
             }
-            //if(!entity.CompareTag("Enemy") || !entity.CompareTag("EnvironmentalHazard")){continue;}
+
             if(entity == null)
             {
                 continue;
@@ -333,27 +350,6 @@ public class ShieldGuy : NPC
 
 
         }
-
-
-        // foreach(Collider2D collider2D in hits) 
-        // {
-        //     StageEntity entityHit = collider2D.gameObject.GetComponent<StageEntity>();
-
-        //     if (entityHit == null)
-        //     {
-        //         print("collider did not have a StageEntity attached");
-        //         continue;
-        //     }
-
-        //     //impulseSource.GenerateImpulse();
-
-        //     if (entityHit.CompareTag(TagNames.Player.ToString()) || entityHit.CompareTag(TagNames.EnvironmentalHazard.ToString()))
-        //     {
-        //         entityHit.HurtEntity(NPCAbilities[0].attackPayload);
-        //         Vector2Int shoveDirection = Vector2Int.RoundToInt(CardinalAimSystem.GetVector3WithAimDirection(currentAimDirection)) * 2;
-        //         entityHit.AttemptMovement(shoveDirection.x, shoveDirection.y, 0.15f, Ease.OutQuart, ForceMoveMode.Forward);    
-        //     }
-        // }
            
     }
 
