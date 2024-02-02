@@ -1938,6 +1938,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 144242304015738641, guid: 460e812064f29174588f7cbcea22cfa0, type: 3}
+      propertyPath: attackCooldown
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8332432971722015144, guid: 460e812064f29174588f7cbcea22cfa0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
@@ -1981,6 +1985,18 @@ PrefabInstance:
     - target: {fileID: 8583719126703540069, guid: 460e812064f29174588f7cbcea22cfa0, type: 3}
       propertyPath: m_Name
       value: ShieldGuy
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091922457114956808, guid: 460e812064f29174588f7cbcea22cfa0, type: 3}
+      propertyPath: waitTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091922457114956808, guid: 460e812064f29174588f7cbcea22cfa0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091922457114956808, guid: 460e812064f29174588f7cbcea22cfa0, type: 3}
+      propertyPath: movementTime
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

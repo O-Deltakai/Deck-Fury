@@ -122,6 +122,7 @@ public class ShieldGuy : NPC
     {
         if(!CanAct) { return; }
 
+
         if(playerInRangeChecker.InRange)
         {
             if(CR_PrepareAttack == null)
@@ -141,6 +142,7 @@ public class ShieldGuy : NPC
 
     IEnumerator PrepareAttackCoroutine()
     {
+        seekerAI.pauseAI = true;
         preparingAttack = true;
         AbilityData shieldBash = NPCAbilities[0];
 
@@ -158,8 +160,13 @@ public class ShieldGuy : NPC
         InitiateAttack();
         yield return new WaitForSeconds(attackCooldown);
         preparingAttack = false;
-        CR_PrepareAttack = null;
         ShieldsUp();
+
+        yield return new WaitForSeconds(attackCooldown * 0.5f);
+
+        CR_PrepareAttack = null;
+        seekerAI.pauseAI = false;
+
     }
 
     void PrepareAttack()
