@@ -198,7 +198,7 @@ public class PlayerDashController : MonoBehaviour
     IEnumerator DisableHitboxTimer()
     {
         player.playerCollider.enabled = false;
-        yield return new WaitForSeconds(dashSpeed);
+        yield return new WaitForSeconds(dashSpeed * 0.9f);
         player.playerCollider.enabled = true;        
     }
 

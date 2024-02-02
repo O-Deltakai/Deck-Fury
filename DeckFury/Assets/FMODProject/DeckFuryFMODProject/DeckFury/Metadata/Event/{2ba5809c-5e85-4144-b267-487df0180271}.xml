@@ -81,7 +81,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{b5a7d135-19d8-409e-8c5b-7a0c1243fcfa}">
 		<property name="volume">
-			<value>-19</value>
+			<value>-17.5</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{a72c83c1-a45a-4103-81a7-5d796e6692d8}</destination>
@@ -225,7 +225,14 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{1e8c4d09-87df-4ee7-9a98-fd64c36d9313}" />
-	<object class="ThreeEQEffect" id="{8d1db3f0-255d-4794-8338-c774f434c46f}" />
+	<object class="ThreeEQEffect" id="{8d1db3f0-255d-4794-8338-c774f434c46f}">
+		<property name="midGain">
+			<value>-1.5</value>
+		</property>
+		<property name="highGain">
+			<value>3</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{d78753b4-7352-4f4e-bc94-cc0c220d889c}" />
 	<object class="SpatialiserEffect" id="{bf0945ea-1baf-4ce0-8668-a78626b75345}">
 		<property name="extentMode">
@@ -240,7 +247,7 @@
 	</object>
 	<object class="DistortionEffect" id="{28f65998-d175-4c1a-8dec-c95440c66841}">
 		<property name="level">
-			<value>0.379999995</value>
+			<value>0.104999997</value>
 		</property>
 	</object>
 	<object class="DistortionEffect" id="{593c1081-318e-45df-b403-27e88e7bf841}" />

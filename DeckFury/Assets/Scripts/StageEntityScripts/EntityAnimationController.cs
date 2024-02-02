@@ -18,6 +18,8 @@ public class EntityAnimationController : MonoBehaviour
     public bool isAnimating;
     Coroutine returnToIdleCoroutine;
 
+    AnimationClip currentAnimation => animator.GetCurrentAnimatorClipInfo(0)[0].clip;
+
     void Awake()
     {
         animator = GetComponent<Animator>();

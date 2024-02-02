@@ -121,10 +121,12 @@ public class EntityUIElementAnimator : MonoBehaviour
     //Method to use when animating shaking for a text element.
     public void AnimateShakeNumber(TextMeshPro textElement, int amount, Color originalColor, Color transitionColor)
     {
+        if(amount <= 0) { return; }
         if(textShakeTween != null)
         {
             textShakeTween.Complete();
         }
+
 
         if(amount <= thresholdForLightShake)
         {

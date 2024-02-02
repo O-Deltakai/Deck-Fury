@@ -204,6 +204,10 @@ public class EntityStatusEffectManager : MonoBehaviour
     {
         if(!CanBleed){return;}
         int totalDamage = (int)(payload.damage * 1.5 * strength);
+        if(totalDamage <= 0)
+        {
+            return;
+        }
 
         entitySpriteRenderer.color = bleedingColor;
 

@@ -669,6 +669,17 @@ public class StageEntity : MonoBehaviour
     protected virtual void AdditionalOnHurtEvents(AttackPayload? payload = null){}
 
 /// <summary>
+/// Empty virtual method which is called before any payload calculations are completed. Can be overridden if the entity has specific operations
+/// it wants to apply to an incoming payload calculation.
+/// </summary>
+/// <param name="payload"></param>
+/// <returns></returns>
+    protected virtual AttackPayload PrefixDamageCalculations(AttackPayload payload)
+    {
+        return payload;
+    }
+
+/// <summary>
 /// Empty virtual method which is called after all damage calculations have been completed. Can be overridden if the entity has specific operations
 /// that need to be completed after the generic HurtEntity method calculates damage.
 /// </summary>
@@ -690,7 +701,7 @@ public class StageEntity : MonoBehaviour
 
         AdditionalOnHurtEvents(payload);
 
-        AttackPayload finalPayload = payload;
+        AttackPayload finalPayload = PrefixDamageCalculations(payload);
 
         if(statusEffectManager.MarkedForDeath && payload.canTriggerMark)
         {
@@ -855,11 +866,17 @@ public class StageEntity : MonoBehaviour
             StartCoroutine(statusEffectManager.FlashColor(actualHitFlashColor, 0.025f, 0.025f));//Flash white to indicate being hit
         }
 
-
-        if(!OnDamagedSFX.IsNull)
+        if(hitSFX.HasValue)
         {
-            RuntimeManager.PlayOneShot(OnDamagedSFX, transform.position);
+            RuntimeManager.PlayOneShot(hitSFX.Value, transform.position);
+        }else
+        {
+            if(!OnDamagedSFX.IsNull)
+            {
+                RuntimeManager.PlayOneShot(OnDamagedSFX, transform.position);
+            }
         }
+
 
         AdditionalAfterHurtEvents(payload);
 

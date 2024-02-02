@@ -156,8 +156,8 @@
     <Compile Include="Assets\Scripts\ToolScripts\TriggerCollider2DRelay.cs" />
     <Compile Include="Assets\Scripts\Enums\LayerNames.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\HintController.cs" />
-    <Compile Include="Assets\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
     <Compile Include="Assets\Scripts\Finite State Machine\BaseState.cs" />
+    <Compile Include="Assets\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\GameErrorHandler.cs" />
     <Compile Include="Assets\Scripts\CardScripts\ShieldBash.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Ramps\Runtime\RampAsset.cs" />
@@ -274,6 +274,7 @@
     <Compile Include="Assets\Scripts\ObjectScripts\AnimationEventIntermediary.cs" />
     <Compile Include="Assets\Scripts\StageSpecificScripts\PracticeStage\PracticeStageController.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\HelperClasses\CardinalAimSystem.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\RewardConditionChecks.cs" />
     <Compile Include="Assets\VolumetricLines\Scripts\VolumetricLineBehavior.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Singleton\Singleton.cs" />
@@ -328,6 +329,7 @@
     <Compile Include="Assets\Scripts\ToolScripts\GameObjectToggler.cs" />
     <Compile Include="Assets\Scripts\Finite State Machine\StateMachine.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\AimpointController.cs" />
+    <Compile Include="Assets\Scripts\NPCScripts\ShieldGuy\PlayerInRangeChecker.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
     <Compile Include="Assets\ScriptableObjects\ItemColorPaletteSO.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Pause Menu\OptionsMenuController.cs" />
@@ -810,6 +812,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{b7187489-d610-46ec-9378-5e215aaf8627}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{21f3b826-dacf-4e08-87f7-907b2eb378e3}.xml" />
     <None Include="Assets\Sprites\Free Art Assets\Dungeon Crawl Stone Soup Full\README.txt" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{73d8f52f-cd8d-4ccd-8c1d-0c6f88ec42ea}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{026116c7-1178-41ff-92c1-cf74f0de767e}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{af627350-4ac7-4b4f-b96b-654bf7b158a7}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{14b225b2-e874-45af-b91c-82d179184833}.xml" />
@@ -1448,6 +1451,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{ae3864f6-9cca-4415-af63-ed2a12993a03}.xml" />
     <None Include="Assets\Sprites\Craftpix\Premium\Icons\Cyberpunk Armor 32x32 Pixel Icons\License.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{3b782776-20e9-4fbb-95e9-4fcada8f57a3}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Premium\Cyberpunk-Skills Pixel Art 32x32 2\License.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{41a3502b-af34-4dd1-bf94-6cfd833bd931}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{366b92e5-7c2c-47b6-b59a-9b7e65834c68}.xml" />
     <None Include="Assets\Sprites\Craftpix\Freebies\RPG-Belt-PixelArt-Icons\License.txt" />
@@ -1607,6 +1611,7 @@
     <None Include="Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\LineStrip-TextureAdditive.shader" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{ca78de91-2669-4a67-93bb-e33ef33cc220}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{0d3551d3-95ed-43ad-9452-b23b0696ab32}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Premium\Cyberpunk-Skills Pixel Art 32x32 2\Font.txt" />
     <None Include="Assets\Sprites\CC0\Auras-Kutejnikov\1&amp;2\ReadMe.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{7cfea3e9-5a4e-4a14-b266-2bf1179106ab}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{0a7cc9e2-8a17-4665-96c1-b47b33feb132}.xml" />
@@ -1805,6 +1810,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{bf53acd5-9fe4-4141-bbe7-2a2c63b18eac}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{e85fd4a7-fc47-4df0-86cf-f6d85f901cf4}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{f8d84ead-2a18-417b-99a6-4e5ac65df4da}.xml" />
+    <None Include="Assets\Kenney\Particle samples\License.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{6fb89fbd-bcc8-47ce-b07a-8932742f5414}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{d2340a12-cb0a-4d9a-9de9-a7e962667d73}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{44cf610e-30b1-4b5d-a956-27c94ca6579e}.xml" />

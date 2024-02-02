@@ -242,6 +242,14 @@ public class StageManager : MonoBehaviour
         StartCoroutine(SetVFXTileCoroutine(tile, positions, duration));
     }
 
+    public void SetWarningTiles(List<Vector3Int> positions, float duration)
+    {
+        StartCoroutine(SetVFXTileCoroutine(DangerVFXTile, positions, duration));
+    }
+    public void SetWarningTiles(List<Vector2Int> positions, float duration)
+    {
+        StartCoroutine(SetVFXTileCoroutine(DangerVFXTile, positions, duration));
+    }
 
     //Sets a tile position on the VFXTilemap to the given tile for a duration before removing the tile after said duration
     public IEnumerator SetVFXTileCoroutine(TileBase tile, Vector3Int position, float duration)
@@ -253,34 +261,37 @@ public class StageManager : MonoBehaviour
 
     public IEnumerator SetVFXTileCoroutine(TileBase tile, List<Vector3Int> positions, float duration)
     {
-        foreach(Vector3Int pos in positions)
+        for (int i = 0; i < positions.Count; i++)
         {
+            Vector3Int pos = positions[i];
             VFXTilemap.SetTile(pos, tile);
         }
 
         yield return new WaitForSeconds(duration);
 
-        foreach(Vector3Int pos in positions)
+        for (int i = 0; i < positions.Count; i++)
         {
+            Vector3Int pos = positions[i];
             VFXTilemap.SetTile(pos, null);
         }
     }
+
     public IEnumerator SetVFXTileCoroutine(TileBase tile, List<Vector2Int> positions, float duration)
     {
-        foreach(Vector2Int pos in positions)
+        for (int i = 0; i < positions.Count; i++)
         {
+            Vector2Int pos = positions[i];
             VFXTilemap.SetTile(new Vector3Int(pos.x, pos.y, 0), tile);
         }
 
         yield return new WaitForSeconds(duration);
 
-        foreach(Vector2Int pos in positions)
+        for (int i = 0; i < positions.Count; i++)
         {
+            Vector2Int pos = positions[i];
             VFXTilemap.SetTile(new Vector3Int(pos.x, pos.y, 0), null);
         }
-
     }
-
 
 
 }
