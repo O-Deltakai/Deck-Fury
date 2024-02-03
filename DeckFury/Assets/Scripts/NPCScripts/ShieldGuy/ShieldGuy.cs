@@ -333,6 +333,7 @@ public class ShieldGuy : NPC
 
     protected override void AdditionalDestructionEvents(AttackPayload? killingBlow = null)
     {
+        entityAnimator.StopAllCoroutines();
         CanAct = false;
         CanInitiateMovementActions = false;
         if(CR_PrepareAttack != null)

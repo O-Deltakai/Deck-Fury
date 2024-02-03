@@ -87,6 +87,7 @@ public class EntityAnimationController : MonoBehaviour
         returnToIdleCoroutine = StartCoroutine(ReturnToIdle(animationClip.length));
     }
 
+    
 
 
     //Waits the given duration in seconds and then plays the predefined idle animation clip
