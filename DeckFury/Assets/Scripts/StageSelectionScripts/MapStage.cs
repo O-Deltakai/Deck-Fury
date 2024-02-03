@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using UnityEngine;
 using System;
 using Random = UnityEngine.Random;
+using DG.Tweening;
+using FMODUnity;
 
 public class MapStage : MonoBehaviour
 {
@@ -39,10 +41,14 @@ public class MapStage : MonoBehaviour
     [SerializeReference] Sprite bossIcon;
     [SerializeReference] Sprite restIcon;
 
+    [SerializeField] Image buttonIcon;
+    [SerializeField] Image whiteDropShadow;
 
     [field:SerializeField] public bool IsFinalStage { get; set; } = false;
     [SerializeField] bool IsMysteryStage;
 
+    [Header("SFX")]
+    [SerializeField] EventReference hoverSFX;
     void Awake() 
     {
         mapStageIcon = GetComponent<Image>();
@@ -121,45 +127,50 @@ public class MapStage : MonoBehaviour
         switch (stageType) 
         {
             case StageType.StartingPoint:
-            mapStageIcon.sprite = startingPointIcon;
+            buttonIcon.sprite = startingPointIcon;
+            whiteDropShadow.sprite = startingPointIcon;
             SetStartingPoint();
             break;
 
             case StageType.Combat:
-            mapStageIcon.sprite = combatIcon;
+            buttonIcon.sprite = combatIcon;
+            whiteDropShadow.sprite = combatIcon;
             SetCombatStage();
             break;
 
             case StageType.EliteCombat:
-            mapStageIcon.sprite = eliteCombatIcon;
+            buttonIcon.sprite = eliteCombatIcon;
+            whiteDropShadow.sprite = eliteCombatIcon;
             SetEliteCombatStage();
             break;
 
             case StageType.Shop:
-            mapStageIcon.sprite = shopIcon;
+            buttonIcon.sprite = shopIcon;
+            whiteDropShadow.sprite = shopIcon;
             SetShopStage();
             break;
 
             case StageType.Mystery:
-            mapStageIcon.sprite = mysteryIcon;
+            buttonIcon.sprite = mysteryIcon;
+            whiteDropShadow.sprite = mysteryIcon;
             SetMysteryStage();
             break;
             
             case StageType.Boss:
-            mapStageIcon.sprite = bossIcon;
+            buttonIcon.sprite = bossIcon;
+            whiteDropShadow.sprite = bossIcon;
             SetBossStage();
             break;
 
             case StageType.RestPoint:
-            mapStageIcon.sprite = restIcon;
+            buttonIcon.sprite = restIcon;
+            whiteDropShadow.sprite = restIcon;
             SetRestStage();
             break;
 
             default :
                 break;
         }
-
-
     }
     void SetStartingPoint()
     {
@@ -198,6 +209,24 @@ public class MapStage : MonoBehaviour
     void SetRestStage()
     {
         TypeOfStage = StageType.RestPoint;
+    }
+
+    public void OnHover()
+    {
+        if(!StageButton.interactable) { return; }
+        whiteDropShadow.gameObject.SetActive(true);
+        buttonIcon.transform.DOScale(1.2f, 0.1f);
+        whiteDropShadow.transform.DOScale(1.2f, 0.1f);
+        RuntimeManager.PlayOneShot(hoverSFX);
+    }
+
+    public void ExitHover()
+    {
+        if(!StageButton.interactable) { return; }
+        whiteDropShadow.gameObject.SetActive(false);
+        buttonIcon.transform.DOScale(1f, 0.1f);
+        whiteDropShadow.transform.DOScale(1f, 0.1f);
+
     }
 
     public void LoadStageButton()

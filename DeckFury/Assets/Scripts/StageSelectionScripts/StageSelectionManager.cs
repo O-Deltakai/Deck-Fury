@@ -22,6 +22,8 @@ public class StageSelectionManager : MonoBehaviour
 
     [SerializeField] MapLevel[] mapLevels;
 
+    [SerializeField] Transform travelIndicatorTransform;
+
     public MapStage currentPlayerLocation;
 
     ProceduralGenerator proceduralGenerator;
@@ -148,7 +150,7 @@ public class StageSelectionManager : MonoBehaviour
 
     void DuplicateTravelIndicator()
     {
-        Instantiate(travelLineIndicator, mapBackground.transform);
+        Instantiate(travelLineIndicator, travelIndicatorTransform);
     }
 
 
