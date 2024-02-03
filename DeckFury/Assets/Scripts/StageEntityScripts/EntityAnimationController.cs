@@ -16,6 +16,9 @@ public class EntityAnimationController : MonoBehaviour
 
     //Bool for checking if an animation is already playing (that is not the idle animation)
     public bool isAnimating;
+    bool _locked = false;
+    public bool Locked => _locked;
+
     Coroutine returnToIdleCoroutine;
 
     AnimationClip currentAnimation => animator.GetCurrentAnimatorClipInfo(0)[0].clip;
@@ -45,6 +48,7 @@ public class EntityAnimationController : MonoBehaviour
     /// <param name="animationClip"></param>
     public void PlayAnimationClip(AnimationClip animationClip)
     {
+        if(_locked){return;}
         if(isAnimating){return;}
 
         animator.Play(animationClip.name);
@@ -64,6 +68,7 @@ public class EntityAnimationController : MonoBehaviour
     /// <param name="animationClip"></param>
     public void PlayOneShotAnimation(AnimationClip animationClip)
     {
+        if(_locked){return;}
         if(returnToIdleCoroutine != null)
         {
             StopCoroutine(returnToIdleCoroutine);
@@ -72,6 +77,26 @@ public class EntityAnimationController : MonoBehaviour
         animator.Play(animationClip.name);   
     }
 
+/// <summary>
+/// Plays an animation that locks the animator and prevents any other animation from being played until
+/// the entity animator is unlocked
+/// </summary>
+/// <param name="animationClip"></param>
+    public void PlayLockedAnimation(AnimationClip animationClip)
+    {
+        _locked = true;
+        if(returnToIdleCoroutine != null)
+        {
+            StopCoroutine(returnToIdleCoroutine);
+        }
+        
+        animator.Play(animationClip.name);         
+    }
+
+    public void Unlock()
+    {
+        _locked = false;
+    }
 
     /// <summary>
     /// Plays an animation clip that ignores isAnimating bool and then returns to idle.
@@ -79,6 +104,8 @@ public class EntityAnimationController : MonoBehaviour
     /// <param name="animationClip"></param>
     public void PlayOneShotAnimationReturnIdle(AnimationClip animationClip)
     {
+        if(_locked){return;}
+
         if(returnToIdleCoroutine != null)
         {
             StopCoroutine(returnToIdleCoroutine);
@@ -87,7 +114,7 @@ public class EntityAnimationController : MonoBehaviour
         returnToIdleCoroutine = StartCoroutine(ReturnToIdle(animationClip.length));
     }
 
-    
+
 
 
     //Waits the given duration in seconds and then plays the predefined idle animation clip

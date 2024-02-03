@@ -346,7 +346,7 @@ public class ShieldGuy : NPC
             StopCoroutine(CR_ShieldBash);
             CR_ShieldBash = null;
         }
-        entityAnimator.PlayOneShotAnimation(entityAnimator.animationList[2]);
+        //entityAnimator.PlayOneShotAnimation(entityAnimator.animationList[2]);
         shieldCollider.enabled = false;
         shieldHitboxObject.GetComponent<SpriteRenderer>().DOFade(0, 0.1f).SetEase(Ease.Linear);
         base.AdditionalDestructionEvents(killingBlow);

@@ -882,6 +882,9 @@ public class StageEntity : MonoBehaviour
 
         if(currentHP <= 0) //Begin destruction once HP goes to at or below 0
         {
+            CanInitiateMovementActions = false;
+            CanAct = false;
+            entityAnimator.StopAllCoroutines();
             StartCoroutine(DestroyEntity(payload));
             OnCauseOfDeath?.Invoke(payload.causeOfDeathNote, payload, this);
         }
@@ -950,7 +953,7 @@ public class StageEntity : MonoBehaviour
 
         if(entityAnimator.DefeatAnimation != null)
         {
-            entityAnimator.PlayOneShotAnimation(entityAnimator.DefeatAnimation); //Play defeat animation
+            entityAnimator.PlayLockedAnimation(entityAnimator.DefeatAnimation); //Play defeat animation
             yield return new WaitForSeconds(entityAnimator.DefeatAnimation.length);
         }
 
