@@ -23,6 +23,7 @@ public class MapStage : MonoBehaviour
     public MapLevel mapLevel;
 
     public SpawnTableSO spawnTable;
+    [SerializeField] EnemyCountPreviewController enemyCountPreviewController;
     public SceneNames sceneToLoadName;
     SceneLoader sceneLoader;
     PersistentLevelController levelController;
@@ -97,10 +98,19 @@ public class MapStage : MonoBehaviour
         if(toggle)
         {
             CreateMapPreview();
+            AssignPreviewElements();
             mapPreviewPopup.SetActive(true);
         }else
         {
             mapPreviewPopup.SetActive(false);
+        }
+    }
+
+    void AssignPreviewElements()
+    { 
+        if(enemyCountPreviewController)
+        {
+            enemyCountPreviewController.SetPreviewBySpawnTable(spawnTable);
         }
     }
 

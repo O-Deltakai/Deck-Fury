@@ -16,16 +16,14 @@ public class SpawnTablePoolSO : ScriptableObject
     [SerializeField] List<SpawnTableSO> _bossSpawnTables = new List<SpawnTableSO>();
     public IReadOnlyList<SpawnTableSO> BossSpawnTables => _bossSpawnTables;
 
-/// <summary>
-/// Given a difficulty score range, return a randomly selected spawn table that is within that difficulty range.
-/// Can be given a System.Random for seeded pseudorandom values.
-/// </summary>
-/// <param name="minDifficulty"></param>
-/// <param name="maxDifficulty"></param>
-/// <param name="random"></param>
-/// <returns></returns>
-    public SpawnTableSO GetSpawnTableByDifficulty(int minDifficulty, int maxDifficulty, System.Random random = null)
+    public SpawnTableSO GetSpawnTableByDifficulty(int minDifficulty, int maxDifficulty, System.Random random = null, bool findClosestToMax = false)
     {
+        if (_regularSpawnTables.Count == 0)
+        {
+            Debug.LogWarning("RegularSpawnTables is empty. Returning null.");
+            return null;
+        }
+
         System.Random randomizer;
 
         // Filter the spawn tables to those within the difficulty range
@@ -34,24 +32,37 @@ public class SpawnTablePoolSO : ScriptableObject
         // Check if there are any tables in the filtered list
         if (filteredTables.Count == 0)
         {
-            return null; // Or handle this case as needed
+            // Find the closest table to maxDifficulty
+            var closestToMax = _regularSpawnTables.OrderBy(table => Mathf.Abs(table.DifficultyScore - maxDifficulty)).FirstOrDefault();
+
+            // Find the closest table to minDifficulty
+            var closestToMin = _regularSpawnTables.OrderBy(table => Mathf.Abs(table.DifficultyScore - minDifficulty)).FirstOrDefault();
+
+            // Choose the closest table based on the difference from maxDifficulty and minDifficulty
+            if (findClosestToMax)
+            {
+                return closestToMax;
+            }
+            else
+            {
+                return closestToMin;
+            }
         }
 
         // Randomly select and return one of the filtered tables
-
-        if(random == null)
+        if (random == null)
         {
             randomizer = new System.Random();
-        }else
+        }
+        else
         {
             randomizer = random;
         }
 
         int randomIndex = randomizer.Next(filteredTables.Count);
         return filteredTables[randomIndex];
-
-
-
     }
+
+
 
 }

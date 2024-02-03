@@ -35,6 +35,8 @@ public class EnemyDataSO : ScriptableObject
     [SerializeField, Range(0, 100)] int _enemyTier;
     public int EnemyTier{get{return _enemyTier;}}
 
+    [SerializeField] Sprite _previewSprite;
+    public Sprite PreviewSprite{get { return _previewSprite; }}
 
 [Header("Information")]
     [SerializeField, TextArea(10, 20)] string _enemyDescription;

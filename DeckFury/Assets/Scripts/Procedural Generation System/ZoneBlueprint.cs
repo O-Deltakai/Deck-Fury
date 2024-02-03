@@ -105,7 +105,7 @@ public class ZoneBlueprint
 
         for (int i = 0; i < NumberOfLevels; i++)
         {
-            LevelBlueprint level = new LevelBlueprint();
+            LevelBlueprint level = new();
             SetLevelDetails(level, random);
 
             level.GenerateLevel(random, this, stagesPerLevel[i]);

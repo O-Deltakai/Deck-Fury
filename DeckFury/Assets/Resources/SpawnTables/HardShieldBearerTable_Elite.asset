@@ -10,20 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9edc173047f51f4bb1cb60f3667adca, type: 3}
-  m_Name: EasyShieldBearerTable
+  m_Name: HardShieldBearerTable_Elite
   m_EditorClassIdentifier: 
   _difficultyTier: 0
-  _isElite: 0
+  _isElite: 1
   <WaveList>k__BackingField:
   - <WaveName>k__BackingField: 
     <NPCSpawns>k__BackingField:
-    - <NPCPrefab>k__BackingField: {fileID: 8583719126703540069, guid: 460e812064f29174588f7cbcea22cfa0, type: 3}
-      <SpawnCount>k__BackingField: 1
+    - <NPCPrefab>k__BackingField: {fileID: 6652887402194902474, guid: 41294f2d4f6f1994693e5f58cf7f6244, type: 3}
+      <SpawnCount>k__BackingField: 2
+      <SpawnZone>k__BackingField: 0
+      _specificSpawnLocation: {x: 0, y: 0, z: 0}
+    - <NPCPrefab>k__BackingField: {fileID: 3044666074929763327, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
+      <SpawnCount>k__BackingField: 2
       <SpawnZone>k__BackingField: 0
       _specificSpawnLocation: {x: 0, y: 0, z: 0}
   - <WaveName>k__BackingField: 
     <NPCSpawns>k__BackingField:
-    - <NPCPrefab>k__BackingField: {fileID: 3044666074929763327, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
+    - <NPCPrefab>k__BackingField: {fileID: 6652887402194902474, guid: 41294f2d4f6f1994693e5f58cf7f6244, type: 3}
+      <SpawnCount>k__BackingField: 1
+      <SpawnZone>k__BackingField: 3
+      _specificSpawnLocation: {x: 0, y: 0, z: 0}
+    - <NPCPrefab>k__BackingField: {fileID: 1343928815800035990, guid: 3eedf9e46ea002c478c3d98d20c67a63, type: 3}
       <SpawnCount>k__BackingField: 1
       <SpawnZone>k__BackingField: 3
       _specificSpawnLocation: {x: 0, y: 0, z: 0}
@@ -38,6 +46,6 @@ MonoBehaviour:
       <SpawnZone>k__BackingField: 3
       _specificSpawnLocation: {x: 0, y: 0, z: 0}
     - <NPCPrefab>k__BackingField: {fileID: 8583719126703540069, guid: 460e812064f29174588f7cbcea22cfa0, type: 3}
-      <SpawnCount>k__BackingField: 1
+      <SpawnCount>k__BackingField: 3
       <SpawnZone>k__BackingField: 3
       _specificSpawnLocation: {x: 0, y: 0, z: 0}
