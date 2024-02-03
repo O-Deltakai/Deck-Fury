@@ -114,13 +114,14 @@ public class ShieldGuy : NPC
         base.Start();
         seekerAI = GetComponent<SeekerAI>();
         seekerAI.Target = GameManager.Instance.player;
-
+        statusEffectManager.OnStunned += OnStunned;
         ShieldsUp();
     }
 
     void Update()
     {
         if(!CanAct) { return; }
+
 
 
         if(playerInRangeChecker.InRange)
@@ -134,6 +135,10 @@ public class ShieldGuy : NPC
 
         if(faceTowardsPlayerTest && !preparingAttack)
         {
+            if(!_shieldsUp)
+            {
+                ShieldsUp();
+            }
             FaceTowardsPlayer();
         }
 
@@ -142,6 +147,7 @@ public class ShieldGuy : NPC
 
     IEnumerator PrepareAttackCoroutine()
     {
+        ShieldsUp();
         seekerAI.pauseAI = true;
         preparingAttack = true;
         AbilityData shieldBash = NPCAbilities[0];
@@ -159,11 +165,11 @@ public class ShieldGuy : NPC
 
         InitiateAttack();
         yield return new WaitForSeconds(attackCooldown);
-        preparingAttack = false;
         ShieldsUp();
 
         yield return new WaitForSeconds(attackCooldown * 0.5f);
 
+        preparingAttack = false;
         CR_PrepareAttack = null;
         seekerAI.pauseAI = false;
 
@@ -196,12 +202,22 @@ public class ShieldGuy : NPC
     {
         _shieldsUp = false;
         shieldCollider.enabled = false;
+        preparingAttack = false;
 
         entityAnimator.PlayOneShotAnimation(entityAnimator.animationList[2]);
+
+
+        shieldHitboxObject.GetComponent<SpriteRenderer>().DOFade(0, 0.1f).SetEase(Ease.InOutSine);
     }
 
     void OnStunned()
     {
+        if(CR_PrepareAttack != null)
+        {
+            StopCoroutine(CR_PrepareAttack);
+            CR_PrepareAttack = null;
+        }
+        seekerAI.pauseAI = false;
         ShieldsDown();
     }
 
@@ -214,12 +230,21 @@ public class ShieldGuy : NPC
 
     protected override AttackPayload PrefixDamageCalculations(AttackPayload payload)
     {
+        if(payload.attackElement == AttackElement.Pure)
+        {
+            return payload;
+        }
+
         if(_shieldsUp)
         {
             if(CheckShieldBlock(payload))
-            {
+            {   
+
+                if(!payload.statusEffectType.Contains(StatusEffectType.Stunned))
+                {
+                    StartCoroutine(FlashShieldCoroutine());
+                }
                 BlockHitVFX();
-                StartCoroutine(FlashShieldCoroutine());
                 payload.damage = 0;
             }
         }
@@ -261,6 +286,12 @@ public class ShieldGuy : NPC
 
     public override void HurtEntity(AttackPayload payload, Color? hitFlashColor = null, EventReference? hitSFX = null)
     {
+        if(payload.attackElement == AttackElement.Pure)
+        {
+            base.HurtEntity(payload, hitFlashColor, hitSFX);
+            return;
+        }
+
         if(_shieldsUp && CheckShieldBlock(payload))
         {
             hitSFX = hitShieldSFX;
@@ -298,6 +329,26 @@ public class ShieldGuy : NPC
         yield return new WaitForSeconds(shieldAttackVelocity);
 
     }
+
+
+    protected override void AdditionalDestructionEvents(AttackPayload? killingBlow = null)
+    {
+        if(CR_PrepareAttack != null)
+        {
+            StopCoroutine(CR_PrepareAttack);
+            CR_PrepareAttack = null;
+        }
+        if(CR_ShieldBash != null)
+        {
+            StopCoroutine(CR_ShieldBash);
+            CR_ShieldBash = null;
+        }
+        entityAnimator.PlayOneShotAnimation(entityAnimator.animationList[2]);
+        shieldCollider.enabled = false;
+        shieldHitboxObject.GetComponent<SpriteRenderer>().DOFade(0, 0.1f).SetEase(Ease.Linear);
+        base.AdditionalDestructionEvents(killingBlow);
+    }
+
 
     void FaceTowardsPlayer()
     {

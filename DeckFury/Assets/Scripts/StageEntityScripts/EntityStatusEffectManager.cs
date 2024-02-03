@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using FMODUnity;
@@ -8,6 +9,7 @@ public class EntityStatusEffectManager : MonoBehaviour
 {
     public delegate void StunnedEventHandler();
     public event StunnedEventHandler OnStunned;
+    public event Action OnRecoverStunned;
 
 
 
@@ -196,7 +198,8 @@ public class EntityStatusEffectManager : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         entity.CanAct = true;
-        entity.CanInitiateMovementActions = true;        
+        entity.CanInitiateMovementActions = true;       
+        OnRecoverStunned?.Invoke(); 
     }
 
     

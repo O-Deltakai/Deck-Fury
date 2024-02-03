@@ -14,10 +14,10 @@ public class NPC : StageEntity
 
     public PlayerController player;
     [Range(1, 8)]
-    [SerializeField] int enemyTier = 1;
+    [SerializeField, Min(0)] int enemyTier = 1;
     public int EnemyTier{get{return enemyTier;}}
 
-    public int spawnPointCost {get { return enemyTier * 10; }}
+    public int spawnPointCost {get { return _enemyData.EnemyTier * 100; }}
 
     [SerializeField] protected List<AbilityData> NPCAbilities = new List<AbilityData>();
 
@@ -64,6 +64,7 @@ public class NPC : StageEntity
         ShieldHP = _enemyData.ShieldHP;
         Armor = _enemyData.Armor;
         _defense = _enemyData.Defense;
+        enemyTier = _enemyData.EnemyTier;
 
     }
 
