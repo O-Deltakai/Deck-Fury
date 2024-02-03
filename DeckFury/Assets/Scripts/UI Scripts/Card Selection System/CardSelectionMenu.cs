@@ -85,7 +85,11 @@ public class CardSelectionMenu : MonoBehaviour
 
         CardPoolManager = GameErrorHandler.NullCheck(CardPoolManager, "CardPoolManager");
 
-        originalDeckViewPanelPosition = deckViewPanel.transform.localPosition;
+        if(deckViewPanel)
+        {
+            originalDeckViewPanelPosition = deckViewPanel.transform.localPosition;
+        }
+
 
     }
 
