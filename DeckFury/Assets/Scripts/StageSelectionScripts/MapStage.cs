@@ -11,13 +11,21 @@ public class MapStage : MonoBehaviour
 {
     [field:SerializeField] public RectTransform RightPoint {get; private set;}
     [field:SerializeField] public RectTransform LeftPoint {get; private set;}
-    [field:SerializeField] public Button StageButton {get; private set;}
+    [HideInInspector] public Button StageButton {get; private set;}
 
-    [SerializeField] GameObject mapPreviewPopup;
+    [Header("Stage Preview Popup Settings")]
+    [SerializeField] GameObject StagePreviewPopup;
     [SerializeField] Image mapPreviewImage;
-    public GameObject mapLayoutPrefab;
+    [SerializeField] EnemyCountPreviewController enemyCountPreviewController;
+
+    Tween previewSlideIntoViewTween;
+    Tween previewSlideOutOfViewTween;
+    [SerializeField] Ease slideIntoViewEase;
+    [SerializeField] Ease slideOutOfViewEase;
+    [SerializeField] float previewSlideDuration = 0.15f;
 
 
+    [HideInInspector] public GameObject mapLayoutPrefab;
     public bool playerIsHere = false;
 
     [field:SerializeField] public StageType TypeOfStage {get; set;}
@@ -25,7 +33,6 @@ public class MapStage : MonoBehaviour
     public MapLevel mapLevel;
 
     public SpawnTableSO spawnTable;
-    [SerializeField] EnemyCountPreviewController enemyCountPreviewController;
     public SceneNames sceneToLoadName;
     SceneLoader sceneLoader;
     PersistentLevelController levelController;
@@ -74,6 +81,8 @@ public class MapStage : MonoBehaviour
 
         SetStageType(TypeOfStage);
 
+        StagePreviewPopup.transform.localScale = new Vector3(0, 0.9f, 0.9f);
+
     }
 
     public void GenerateStageValues()
@@ -105,10 +114,10 @@ public class MapStage : MonoBehaviour
         {
             CreateMapPreview();
             AssignPreviewElements();
-            mapPreviewPopup.SetActive(true);
+            SlidePreviewIntoView();
         }else
         {
-            mapPreviewPopup.SetActive(false);
+            SlidePreviewOutOfView();
         }
     }
 
@@ -209,6 +218,23 @@ public class MapStage : MonoBehaviour
     void SetRestStage()
     {
         TypeOfStage = StageType.RestPoint;
+    }
+
+    void SlidePreviewIntoView()
+    {
+        if(previewSlideOutOfViewTween.IsActive()){ previewSlideOutOfViewTween.Kill(); }
+
+        StagePreviewPopup.SetActive(true);
+
+        previewSlideIntoViewTween = StagePreviewPopup.transform.DOScaleX(0.9f, previewSlideDuration).SetEase(slideIntoViewEase);
+    }
+
+    void SlidePreviewOutOfView()
+    {
+        if(previewSlideIntoViewTween.IsActive()){ previewSlideIntoViewTween.Kill(); }
+
+        previewSlideOutOfViewTween = StagePreviewPopup.transform.DOScaleX(0, previewSlideDuration).SetEase(slideOutOfViewEase).OnComplete
+        (() => StagePreviewPopup.SetActive(false));
     }
 
     public void OnHover()
