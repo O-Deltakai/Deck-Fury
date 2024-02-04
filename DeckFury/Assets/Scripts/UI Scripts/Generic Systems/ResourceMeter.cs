@@ -34,6 +34,9 @@ public class ResourceMeter : MonoBehaviour
 
 #endregion
 
+    [SerializeField] string _resourceName;
+    public string ResourceName => _resourceName;
+
 [Header("Int Values")]
     [SerializeField, Min(0)] int _currentIntValue;
     public int CurrentIntValue 

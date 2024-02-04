@@ -100,6 +100,7 @@ public class StageEntity : MonoBehaviour
     /// </summary>
     [field:SerializeField] public bool CannotBeTargeted {get; private set;} = false;
 
+[Header("Primary Entity Stats")]
     [SerializeField] int currentHP = 100;
     //Publically accessible property for currentHP that when set, will set the value of the private currentHP value and raise the OnShieldHPChanged event.
     //Used for updating the shield text object when it is greater than 0.
@@ -204,6 +205,9 @@ public class StageEntity : MonoBehaviour
     [SerializeField] protected EventReference OnDamagedSFX;
     [SerializeField] protected EventReference OnDeathSFX;
 
+[Header("Movement Settings")]
+    [SerializeField] protected bool _useUnscaledTimeForMovement = false;
+    public bool UseUnscaledTimeForMovement => _useUnscaledTimeForMovement;
 
 
     //Method to intialize all common variables between StageEntities
@@ -419,16 +423,31 @@ public class StageEntity : MonoBehaviour
         currentTilePosition.Set(destination.x, destination.y, 0);
         _stageManager.SetTileEntity(this, destination);
 
-
-        worldTransform.DOMove(destination, duration).SetEase(ease);
+        if(_useUnscaledTimeForMovement)
+        {
+            worldTransform.DOMove(destination, duration).SetEase(ease).SetUpdate(true);
+        }else
+        {
+            worldTransform.DOMove(destination, duration).SetEase(ease);
+        }
 
 
         //Sets MovingCoroutine to null after some duration has passed so that another TweenMove coroutine may start.
         //Prevents too many movement inputs from happening at once, effectively limiting player mobility.
-        yield return new WaitForSeconds(duration * 0.5f);
+        if(_useUnscaledTimeForMovement)
+        {
+            yield return new WaitForSecondsRealtime(duration * 0.5f);
+        }else
+        {
+            yield return new WaitForSeconds(duration * 0.5f);
+        }
+
+
+
         MovingCoroutine = null;
 
     }
+
 
     public void TeleportToLocation(int x, int y)
     {
@@ -746,7 +765,7 @@ public class StageEntity : MonoBehaviour
 
 
 
-        int damageAfterModifiers = 0;
+        int damageToHPAfterModifiers = 0;
         //Do damage calculations for if AttackElement is breaking
         if(finalPayload.attackElement == AttackElement.Breaking)
         {
@@ -761,46 +780,46 @@ public class StageEntity : MonoBehaviour
             if(shieldHP < 0)
             {
                 //If the attack was breaking damage, half the remaining damage so that damage taken to HP is still 1x efficiency
-                damageAfterModifiers = (int)Math.Round(Math.Abs(shieldHP * 0.5), MidpointRounding.AwayFromZero);
-                UIElementAnimator.AnimateShakeNumber(HPText, damageAfterModifiers, DefaultHPTextColor, Color.red);    
+                damageToHPAfterModifiers = (int)Math.Round(Math.Abs(shieldHP * 0.5), MidpointRounding.AwayFromZero);
+                UIElementAnimator.AnimateShakeNumber(HPText, damageToHPAfterModifiers, DefaultHPTextColor, Color.red);    
                 shieldHP = 0;
                 if(originalShieldHP > 0)
                 {
                     wentThroughShields = true;
                 }
-                OnDamageTaken?.Invoke(originalShieldHP + damageAfterModifiers);
+                OnDamageTaken?.Invoke(originalShieldHP + damageToHPAfterModifiers);
             }else
             {
-                damageAfterModifiers = 0;
+                damageToHPAfterModifiers = 0;
                 OnDamageTaken?.Invoke(finalPayload.damage * 2);   
             }
 
-            if(damageAfterModifiers != 0)
+            if(damageToHPAfterModifiers != 0)
             {
-                damageAfterModifiers = (int)(damageAfterModifiers/_defense);
-                UIElementAnimator.AnimateShakeNumber(HPText, damageAfterModifiers, DefaultHPTextColor, Color.red);
+                damageToHPAfterModifiers = (int)(damageToHPAfterModifiers/_defense);
+                UIElementAnimator.AnimateShakeNumber(HPText, damageToHPAfterModifiers, DefaultHPTextColor, Color.red);
                 if(wentThroughShields)
                 {
-                    OnDamageTaken?.Invoke(originalShieldHP + damageAfterModifiers);
+                    OnDamageTaken?.Invoke(originalShieldHP + damageToHPAfterModifiers);
                 }else
                 {
-                    OnDamageTaken?.Invoke(damageAfterModifiers);
+                    OnDamageTaken?.Invoke(damageToHPAfterModifiers);
                 }                
             }
 
             //Check resist/weakness to attack element to calculate final damage
             if(CheckWeakness(finalPayload.attackElement))
             {
-                damageAfterModifiers = (int)(damageAfterModifiers * weaknessModifier);
+                damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * weaknessModifier);
                 OnTakeCritDamage?.Invoke();
             }
             if(CheckResistance(finalPayload.attackElement))
             {
-                damageAfterModifiers = (int)(damageAfterModifiers * resistModifier);
+                damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * resistModifier);
                 OnResistDamage?.Invoke();
             }
 
-            CurrentHP -= damageAfterModifiers;
+            CurrentHP -= damageToHPAfterModifiers;
             
         }else
         if(finalPayload.attackElement == AttackElement.Pure)//Pure damage bypasses all resistances and shields and deals damage straight to HP
@@ -820,7 +839,7 @@ public class StageEntity : MonoBehaviour
             UIElementAnimator.AnimateShakeNumber(ShieldsText, finalPayload.damage, DefaultShieldTextColor, Color.red);
             if(shieldHP < 0)
             {
-                damageAfterModifiers = Math.Abs(shieldHP);
+                damageToHPAfterModifiers = Math.Abs(shieldHP);
                 shieldHP = 0;
                 if(originalShieldHP > 0)
                 {
@@ -829,42 +848,41 @@ public class StageEntity : MonoBehaviour
                 
             }else
             {
-                damageAfterModifiers = 0;
+                damageToHPAfterModifiers = 0;
                 OnDamageTaken?.Invoke(finalPayload.damage);   
             }
 
-            if(damageAfterModifiers != 0)
+            if(damageToHPAfterModifiers != 0)
             {
-                damageAfterModifiers = (int)(damageAfterModifiers * ((100 - Armor) * 0.01) * _defense);
-                UIElementAnimator.AnimateShakeNumber(HPText, damageAfterModifiers, DefaultHPTextColor, Color.red);
+                damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * ((100 - Armor) * 0.01) * _defense);
+                UIElementAnimator.AnimateShakeNumber(HPText, damageToHPAfterModifiers, DefaultHPTextColor, Color.red);
                 if(wentThroughShields)
                 {
-                    OnDamageTaken?.Invoke(originalShieldHP + damageAfterModifiers);
+                    OnDamageTaken?.Invoke(originalShieldHP + damageToHPAfterModifiers);
                 }else
                 {
-                    OnDamageTaken?.Invoke(damageAfterModifiers);
+                    OnDamageTaken?.Invoke(damageToHPAfterModifiers);
                 }
             }
             
             //Check resist/weakness to attack element to calculate final damage
             if(CheckWeakness(finalPayload.attackElement))
             {
-                damageAfterModifiers = (int)(damageAfterModifiers * weaknessModifier);
+                damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * weaknessModifier);
                 OnTakeCritDamage?.Invoke();
             }
             if(CheckResistance(finalPayload.attackElement))
             {
-                damageAfterModifiers = (int)(damageAfterModifiers * resistModifier);
+                damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * resistModifier);
                 OnResistDamage?.Invoke();
             }            
 
-            CurrentHP -= damageAfterModifiers;
+            CurrentHP -= damageToHPAfterModifiers;
             
         }
-        if(damageAfterModifiers >= 1)
-        {
-            StartCoroutine(statusEffectManager.FlashColor(actualHitFlashColor, 0.025f, 0.025f));//Flash white to indicate being hit
-        }
+
+        StartCoroutine(statusEffectManager.FlashColor(actualHitFlashColor, 0.025f, 0.025f));//Flash white to indicate being hit
+        
 
         if(hitSFX.HasValue)
         {

@@ -198,7 +198,15 @@ public class PlayerDashController : MonoBehaviour
     IEnumerator DisableHitboxTimer()
     {
         player.playerCollider.enabled = false;
-        yield return new WaitForSeconds(dashSpeed * 0.9f);
+        
+        if(player.UseUnscaledTimeForMovement)
+        {
+            yield return new WaitForSecondsRealtime(dashSpeed * 0.9f);
+        }else
+        {
+            yield return new WaitForSeconds(dashSpeed * 0.9f);
+        }
+
         player.playerCollider.enabled = true;        
     }
 
@@ -206,7 +214,14 @@ public class PlayerDashController : MonoBehaviour
     {
         dashTrail.Clear();
         dashTrail.enabled = true;
-        yield return new WaitForSeconds(dashSpeed);
+        if (player.UseUnscaledTimeForMovement)
+        {
+            yield return new WaitForSecondsRealtime(dashSpeed);
+        }
+        else
+        {
+            yield return new WaitForSeconds(dashSpeed);
+        }
         dashTrail.enabled = false;
 
     }
@@ -220,12 +235,29 @@ public class PlayerDashController : MonoBehaviour
         dashIndicatorFrame.color = onCooldownFrameColor;
 
         dashIndicatorObject.SetActive(true);
-        dashIndicatorImageFillTween = dashIndicatorImage.DOFillAmount(1, dashCooldown).SetEase(Ease.Linear);
+
+        if(player.UseUnscaledTimeForMovement)
+        {
+            dashIndicatorImageFillTween = dashIndicatorImage.DOFillAmount(1, dashCooldown).SetEase(Ease.Linear).SetUpdate(true);
+        }else
+        {
+            dashIndicatorImageFillTween = dashIndicatorImage.DOFillAmount(1, dashCooldown).SetEase(Ease.Linear);
+        }
 
 
-        yield return new WaitForSeconds(dashCooldown - 0.2f);
-        dashIndicatorImageColorTween = dashIndicatorFrame.DOColor(dashReadyFrameColor, 0.2f); //Change frame color to indicate dash is ready
-        yield return new WaitForSeconds(0.2f);
+        if(player.UseUnscaledTimeForMovement)
+        {
+            yield return new WaitForSecondsRealtime(dashCooldown - 0.2f);
+            dashIndicatorImageColorTween = dashIndicatorFrame.DOColor(dashReadyFrameColor, 0.2f).SetUpdate(true); //Change frame color to indicate dash is ready
+            yield return new WaitForSecondsRealtime(0.2f);
+        }else
+        {
+            yield return new WaitForSeconds(dashCooldown - 0.2f);
+            dashIndicatorImageColorTween = dashIndicatorFrame.DOColor(dashReadyFrameColor, 0.2f); //Change frame color to indicate dash is ready
+            yield return new WaitForSeconds(0.2f);
+        }
+
+
 
         dashIndicatorObject.SetActive(false);
 
@@ -256,8 +288,14 @@ public class PlayerDashController : MonoBehaviour
         dashIndicatorFrame.color = dashReadyFrameColor; //Change frame color to indicate dash is ready
         usedDash = false;
 
-        yield return new WaitForSeconds(0.2f);
-        
+        if (player.UseUnscaledTimeForMovement)
+        {
+            yield return new WaitForSecondsRealtime(0.2f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.2f);
+        }
         dashIndicatorObject.SetActive(false);
 
         CR_RefreshCoroutine = null;

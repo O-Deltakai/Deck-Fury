@@ -123,6 +123,8 @@ public class EnergyController : MonoBehaviour
 
     }
 
+
+
     public void DisableEnergyBar()
     {
         AlwaysFullCharge = true;
@@ -209,9 +211,7 @@ public class EnergyController : MonoBehaviour
         canCharge = false;
         fullCharge = false;
 
-        if(pressTabText){ pressTabText.SetActive(false); }
-
-        
+        if(pressTabText){ pressTabText.SetActive(false); }        
     }
 
     private void CalculateEnergy()

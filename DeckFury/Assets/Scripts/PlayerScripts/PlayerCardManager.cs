@@ -176,7 +176,14 @@ public class PlayerCardManager : MonoBehaviour
 
     IEnumerator CardInUseTimer(float duration)
     {
-        yield return new WaitForSeconds(duration);
+        if(useUnscaledTime)
+        {
+            yield return new WaitForSecondsRealtime(duration);
+        }else
+        {
+            yield return new WaitForSeconds(duration);
+        }
+
         CR_CardUseInProgress = null;
     }
 

@@ -11,6 +11,7 @@ public class InputBufferHandler : MonoBehaviour
 
     float lastActionTime = -1f; //The time when the last action was performed
 
+    public bool useUnscaledTime = false;
 
     void Update()
     {
@@ -32,7 +33,14 @@ public class InputBufferHandler : MonoBehaviour
     {
         if(buffer.Count == 0) { return; }
 
-        float currentTime = Time.time;
+        float currentTime;
+        if(useUnscaledTime)
+        {
+            currentTime = Time.unscaledTime;
+        }else
+        {
+            currentTime = Time.time;
+        }
 
         int bufferCount = buffer.Count;
 

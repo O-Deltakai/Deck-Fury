@@ -16,6 +16,9 @@ public class AfterImageGenerator : MonoBehaviour
     [SerializeField, Min(0)] float fadeDuration = 0.5f;
     [SerializeField] Color afterImageColor;
 
+    [SerializeField] Ease fadeEase = Ease.Linear;
+
+
     Coroutine CR_SpawningCoroutine;
 
 
@@ -51,7 +54,7 @@ public class AfterImageGenerator : MonoBehaviour
         imageRenderer.color = afterImageColor;
 
 
-        imageRenderer.DOFade(0, fadeDuration);
+        imageRenderer.DOFade(0, fadeDuration).SetUpdate(true);
 
         destructTimer.delay = lifeTime;
         destructTimer.useUnscaledTime = useUnscaledTime;

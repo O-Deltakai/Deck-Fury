@@ -358,8 +358,12 @@ public class ShieldGuy : NPC
         Vector2Int playerDistance = (Vector2Int)GameManager.Instance.player.currentTilePosition - (Vector2Int)currentTilePosition;
         AimDirection aimDirection = CardinalAimSystem.GetClosestAimDirectionByVector(playerDistance);
 
-        if(currentAimDirection == AimDirection.Right) {transform.localScale = new Vector3(1, 1, 1);}
-        else if(currentAimDirection == AimDirection.Left) {transform.localScale = new Vector3(-1, 1, 1);}
+        if(Time.timeScale != 0)
+        {
+            if(currentAimDirection == AimDirection.Right) {transform.localScale = new Vector3(1, 1, 1);}
+            else if(currentAimDirection == AimDirection.Left) {transform.localScale = new Vector3(-1, 1, 1);}
+        }
+
 
         if(currentAimDirection == aimDirection) { return; }
 

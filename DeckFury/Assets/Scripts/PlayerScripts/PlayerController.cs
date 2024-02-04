@@ -378,7 +378,13 @@ public class PlayerController : StageEntity
     IEnumerator AutomoveTimer(float duration)
     {
         canAutoMove = false;
-        yield return new WaitForSeconds(duration);
+        if(_useUnscaledTimeForMovement)
+        {
+            yield return new WaitForSecondsRealtime(duration);
+        }else
+        {
+            yield return new WaitForSeconds(duration);
+        }
         canAutoMove = true;
         CR_AutomoveTimer = null;
     }
@@ -421,8 +427,15 @@ public class PlayerController : StageEntity
 
         if(context.performed)
         {
-            //animationController.PlayAnimationClip(animationController.basicShotAnimation);
-            bufferHandler.BufferAction(new BufferedInput(ExecuteBasicShot, context.action, animationController.basicShotAnimation.length + 0.015f, Time.time));
+            if(_useUnscaledTimeForMovement)
+            {
+                bufferHandler.BufferAction(new BufferedInput(ExecuteBasicShot, context.action, animationController.basicShotAnimation.length + 0.015f, Time.unscaledTime));
+            }else
+            {
+                bufferHandler.BufferAction(new BufferedInput(ExecuteBasicShot, context.action, animationController.basicShotAnimation.length + 0.015f, Time.time));
+
+            }
+
             OnPerformAction?.Invoke();
         }
     }
@@ -444,7 +457,15 @@ public class PlayerController : StageEntity
 
         if(context.performed)
         {
-            bufferHandler.BufferAction(new BufferedInput(ExecuteUseCard, context.action, cardManager.NextCard.cardSO.PlayerAnimation.length + 0.05f, Time.time));
+            if(_useUnscaledTimeForMovement)
+            {
+                bufferHandler.BufferAction(new BufferedInput(ExecuteUseCard, context.action, cardManager.NextCard.cardSO.PlayerAnimation.length + 0.05f, Time.unscaledTime));
+            }else
+            {
+                bufferHandler.BufferAction(new BufferedInput(ExecuteUseCard, context.action, cardManager.NextCard.cardSO.PlayerAnimation.length + 0.05f, Time.time));
+
+            }
+
             OnPerformAction?.Invoke();
             //cardManager.TriggerCard();   
         }
@@ -462,6 +483,7 @@ public class PlayerController : StageEntity
         if(!CanAct){return;}
         if(isDefeated){return;}
         if(GameManager.GameIsPaused){return;}
+        if(!cardSelectionMenu.CanBeOpened) { return; }
 
         if(cardSelectionMenu == null)
         {
