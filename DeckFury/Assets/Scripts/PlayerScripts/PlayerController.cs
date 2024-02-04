@@ -12,6 +12,9 @@ using Cinemachine;
 [RequireComponent(typeof(PlayerCardManager))]
 public class PlayerController : StageEntity
 {
+
+    public event Action OnPerformAction;
+
     CinemachineImpulseSource impulseSource;
 
 
@@ -264,6 +267,7 @@ public class PlayerController : StageEntity
             
             //Move right
             MovingCoroutine = StartCoroutine(TweenMove(1, 0, 0.1f, MovementEase));
+            OnPerformAction?.Invoke();
         }
         if(Keyboard.current.aKey.wasPressedThisFrame)
         {
@@ -278,6 +282,8 @@ public class PlayerController : StageEntity
             }
             //Move left
            MovingCoroutine = StartCoroutine(TweenMove(-1, 0, 0.1f, MovementEase)); 
+            OnPerformAction?.Invoke();
+
         }
         if(Keyboard.current.wKey.wasPressedThisFrame)
         {
@@ -292,6 +298,8 @@ public class PlayerController : StageEntity
             }
             //Move up
             MovingCoroutine = StartCoroutine(TweenMove(0, 1, 0.1f, MovementEase));     
+            OnPerformAction?.Invoke();
+
         }
         if(Keyboard.current.sKey.wasPressedThisFrame)
         {
@@ -306,6 +314,8 @@ public class PlayerController : StageEntity
             }
             //Move down
             MovingCoroutine = StartCoroutine(TweenMove(0, -1, 0.1f, MovementEase));
+            OnPerformAction?.Invoke();
+
         }
 
 
@@ -321,6 +331,8 @@ public class PlayerController : StageEntity
 
                 //Move right
                 MovingCoroutine = StartCoroutine(TweenMove(1, 0, 0.1f, MovementEase));
+                OnPerformAction?.Invoke();
+
             }
             if(Keyboard.current.aKey.isPressed)
             {
@@ -330,7 +342,9 @@ public class PlayerController : StageEntity
                 }
 
                 //Move left
-                MovingCoroutine = StartCoroutine(TweenMove(-1, 0, 0.1f, MovementEase)); 
+                MovingCoroutine = StartCoroutine(TweenMove(-1, 0, 0.1f, MovementEase));
+                OnPerformAction?.Invoke();
+
             }
             if(Keyboard.current.wKey.isPressed)
             {
@@ -339,7 +353,9 @@ public class PlayerController : StageEntity
                     CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown));
                 }
                 //Move up
-                MovingCoroutine = StartCoroutine(TweenMove(0, 1, 0.1f, MovementEase));     
+                MovingCoroutine = StartCoroutine(TweenMove(0, 1, 0.1f, MovementEase));
+                OnPerformAction?.Invoke();
+
             }
             if(Keyboard.current.sKey.isPressed)
             {
@@ -349,6 +365,8 @@ public class PlayerController : StageEntity
                 }
                 //Move down
                 MovingCoroutine = StartCoroutine(TweenMove(0, -1, 0.1f, MovementEase));
+                 OnPerformAction?.Invoke();
+
             }
         }
 
@@ -405,6 +423,7 @@ public class PlayerController : StageEntity
         {
             //animationController.PlayAnimationClip(animationController.basicShotAnimation);
             bufferHandler.BufferAction(new BufferedInput(ExecuteBasicShot, context.action, animationController.basicShotAnimation.length + 0.015f, Time.time));
+            OnPerformAction?.Invoke();
         }
     }
 
@@ -426,7 +445,7 @@ public class PlayerController : StageEntity
         if(context.performed)
         {
             bufferHandler.BufferAction(new BufferedInput(ExecuteUseCard, context.action, cardManager.NextCard.cardSO.PlayerAnimation.length + 0.05f, Time.time));
-
+            OnPerformAction?.Invoke();
             //cardManager.TriggerCard();   
         }
 
@@ -516,6 +535,7 @@ public class PlayerController : StageEntity
             {
                 _dashController.DashTowardsAim();
                 _dashController.DashReticle.SetActive(false);
+                OnPerformAction?.Invoke();
             }
 
         }
@@ -607,10 +627,10 @@ public class PlayerController : StageEntity
         base.AdditionalAfterHurtEvents(payload);
         if(ShieldHP > 0)
         {   //If player still has shields after hurt, generate a smaller impulse
-            impulseSource.GenerateImpulseWithVelocity(impulseSource.m_DefaultVelocity * 0.1f);
+            impulseSource.GenerateImpulseWithVelocity(0.1f * SettingsManager.GlobalCameraShakeMultiplier * impulseSource.m_DefaultVelocity);
         }else
         {
-            impulseSource.GenerateImpulse();
+            impulseSource.GenerateImpulseWithVelocity(impulseSource.m_DefaultVelocity * SettingsManager.GlobalCameraShakeMultiplier);
         }
     }
 

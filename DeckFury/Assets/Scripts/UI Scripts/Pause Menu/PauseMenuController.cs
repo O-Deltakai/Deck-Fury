@@ -72,7 +72,7 @@ public class PauseMenuController : MonoBehaviour
     }
 
 /// <summary>
-/// Opens the option menu without needin to open the pause menu
+/// Opens the option menu without needing to open the pause menu
 /// </summary>
     public void OpenOptionsExternal()
     {

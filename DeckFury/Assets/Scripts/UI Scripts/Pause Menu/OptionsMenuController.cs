@@ -7,6 +7,15 @@ using UnityEngine.UI;
 
 public class OptionsMenuController : MonoBehaviour
 {
+    [Serializable]
+    public class SettingsLayoutTuple
+    {
+        public string layoutName;
+        public GameObject layout;
+        public Button button;
+    }
+
+    [SerializeField] List<SettingsLayoutTuple> settingLayouts;
 
     [SerializeField] List<GameObject> menuLayouts;
     [SerializeField] List<Button> tabButtons;
@@ -26,6 +35,9 @@ public class OptionsMenuController : MonoBehaviour
     {
         sensitivtyTooltip.text = Math.Round(aimSensitivitySlider.value, 3).ToString();
         cameraShakeTooltip.text = Math.Round(cameraShakeSlider.value, 2).ToString() + "x";
+
+        SwitchLayout(menuLayouts[0]);
+
     }
 
     // Update is called once per frame
@@ -34,6 +46,12 @@ public class OptionsMenuController : MonoBehaviour
         
     }
 
+
+    public void SwitchSettingsLayout(SettingsLayoutTuple settingsLayout)
+    {
+        SwitchLayout(settingsLayout.layout);
+        ToggleTabButtonState(settingsLayout.button);
+    }
 
     public void SwitchLayout(GameObject layout)
     {

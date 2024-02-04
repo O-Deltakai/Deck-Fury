@@ -372,7 +372,7 @@ public class ShieldGuy : NPC
 
     void TriggerAttackHitbox()
     {
-        impulseSource.GenerateImpulseWithVelocity(CardinalAimSystem.GetVector3WithAimDirection(currentAimDirection) * 0.1f);
+        impulseSource.GenerateImpulseWithVelocity(0.1f * SettingsManager.GlobalCameraShakeMultiplier * CardinalAimSystem.GetVector3WithAimDirection(currentAimDirection));
 
         Collider2D[] hits = Physics2D.OverlapBoxAll(attackHitbox.transform.position, attackHitbox.size, attackHitboxAnchor.transform.eulerAngles.z, attackLayer);
         

@@ -9,50 +9,53 @@ public class TimeManager : MonoBehaviour
     static TimeManager _instance;
     public static TimeManager Instance => _instance;
 
-    static bool _timeScaleIsModified = false;
-    public static bool TimeScaleIsModified => _timeScaleIsModified;
+    private Stack<float> timeScaleStack = new Stack<float>();
 
-    [SerializeField, Min(0)] float slowMotionScale = 0.5f;
-    [SerializeField, Min(0)] float slowMotionDuration = 1.5f;
 
-    Coroutine CR_SlowMotionTimer = null;
-
-    [SerializeField] bool testButtonEnabled = false;
-
-    [SerializeField] Color originalBackgroundColor;
-    [SerializeField] Color slowedTimeBackgroundColor;
-
-    void Update()
+    void OnDestroy()
     {
-        if(testButtonEnabled)
+        _instance = null;
+    }
+
+    void Awake()
+    {
+        _instance = this;
+    }
+
+    public void PushTimeScale(float newTimeScale)
+    {
+        timeScaleStack.Push(Time.timeScale);
+        Time.timeScale = newTimeScale;
+    }
+
+    public void PopTimeScale()
+    {
+        if (timeScaleStack.Count > 0)
         {
-            if(Keyboard.current.spaceKey.wasPressedThisFrame)
-            {
-                TriggerSlowMotion();
-            }
+            Time.timeScale = timeScaleStack.Pop();
+        }
+        else
+        {
+            Debug.LogWarning("TimeScaleManager: No more time scales to pop.");
         }
     }
 
-    public void TriggerSlowMotion()
+    // Optionally, to handle specific scenarios like pausing
+    public void PauseGame()
     {
-        if(CR_SlowMotionTimer != null) { return; }
-
-        CR_SlowMotionTimer = StartCoroutine(SlowMotionTimer(slowMotionDuration));
+        PushTimeScale(0f);
     }
 
-    IEnumerator SlowMotionTimer(float duration)
+    public void ResumeGame()
     {
-        _timeScaleIsModified = true;
-        Time.timeScale = slowMotionScale;
-        Camera.main.DOColor(slowedTimeBackgroundColor, 0.5f).SetUpdate(true);
-        yield return new WaitForSecondsRealtime(duration);
-        Camera.main.DOColor(originalBackgroundColor, 0.2f).SetUpdate(true);
-
-        Time.timeScale = 1;
-        CR_SlowMotionTimer = null;
-
-
+        // Ensure that resuming actually makes sense (e.g., not in the middle of a slow-motion effect)
+        if (Time.timeScale == 0f)
+        {
+            PopTimeScale();
+        }
     }
+
+
 
 
 }
