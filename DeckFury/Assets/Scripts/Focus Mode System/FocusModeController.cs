@@ -42,6 +42,10 @@ public class FocusModeController : MonoBehaviour
 
     [SerializeField] bool testButtonQ = false;
 
+    [Header("Testing Properties")]
+    [SerializeField] float speedUpTimeDuration = 1f;
+    [SerializeField] float speedUpTimeGrowthRate = 1f;
+
     void OnDestroy()
     {
         _instance = null;
@@ -114,7 +118,7 @@ public class FocusModeController : MonoBehaviour
         player.OnPerformAction -= DecrementActions;
         player.GetComponent<AfterImageGenerator>().Stop();
 
-        TimeManager.Instance.LerpTimeToOne(2f);
+        TimeManager.Instance.LerpTimeToOne(speedUpTimeDuration, speedUpTimeGrowthRate);
 
 
         StopFocusModeTimer();

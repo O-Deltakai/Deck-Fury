@@ -88,6 +88,12 @@ public class TimeManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Gradually decrease time scale to 0 over a given duration using an exponential decay formula.
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <param name="decayRate"></param>
+    /// <returns></returns>
     public void LerpTimeToZero(float duration, float decayRate)
     {
         lerpTimeToZeroCoroutine = StartCoroutine(LerpTimeSlowCoroutine(duration, decayRate));
@@ -109,12 +115,18 @@ public class TimeManager : MonoBehaviour
         Time.timeScale = 0f; // Make sure we end at exactly 0
     }
 
-    public void LerpTimeToOne(float duration)
+    /// <summary>
+    /// Gradually increase time scale to 1 over a given duration using an exponential growth formula.
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <param name="growthRate"></param>
+    /// <returns></returns>
+    public void LerpTimeToOne(float duration, float growthRate)
     {
-        lerpTimeToOneCoroutine = StartCoroutine(LerpTimeSpeedUpCoroutine(duration));
+        lerpTimeToOneCoroutine = StartCoroutine(LerpTimeSpeedUpCoroutine(duration, growthRate));
     }
 
-    IEnumerator LerpTimeSpeedUpCoroutine(float duration)
+    IEnumerator LerpTimeSpeedUpCoroutine(float duration, float growthRate)
     {
         float elapsed = 0f;
 
@@ -122,12 +134,12 @@ public class TimeManager : MonoBehaviour
         {
             elapsed += Time.unscaledDeltaTime;
             float normalizedTime = elapsed / duration;
-            // Apply the Quadratic Easing In formula
-            Time.timeScale = normalizedTime * normalizedTime;
+            // Apply the inverted exponential growth formula
+            Time.timeScale = 1 - Mathf.Exp(-growthRate * normalizedTime);
             yield return null;
         }
 
-        Time.timeScale = 1f; // Make sure we end at exactly 1
+        Time.timeScale = 1f; // Ensure time scale is set to exactly 1 at the end
     }
 
 

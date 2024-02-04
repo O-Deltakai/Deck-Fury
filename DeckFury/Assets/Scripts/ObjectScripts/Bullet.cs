@@ -34,11 +34,12 @@ public class Bullet : MonoBehaviour
     private void FixedUpdate() 
     {
         //Move bullet with given velocity
-        rigidBody.MovePosition(rigidBody.position + velocity * Time.fixedDeltaTime * speed);    
+        rigidBody.MovePosition(rigidBody.position + speed * Time.fixedDeltaTime * velocity);    
     }
 
     void Update()
     {
+        //rigidBody.MovePosition(rigidBody.position + velocity * Time.deltaTime * speed);    
 
     }
 
