@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\PlayerDataContainer.cs" />
     <Compile Include="Assets\Scripts\StageSelectionScripts\MapZone.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\DamageBufferOnFullEnergy.cs" />
+    <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\RendererFeatures\BlitToRTHandle\BlitToRTHandlePass.cs" />
     <Compile Include="Assets\Scripts\StageEntityScripts\EntityStatusEffectManager.cs" />
     <Compile Include="Assets\Scripts\CardScripts\LightningStrike.cs" />
     <Compile Include="Assets\Scripts\StageManagerScripts\StageManager.cs" />
@@ -108,16 +109,20 @@
     <Compile Include="Assets\VolumetricLines\Scripts\VolumetricLineStripBehavior.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Magician\Magician.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Vampire\VampireBomb.cs" />
+    <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\RendererFeatures\KeepFrame\KeepFrameFeature.cs" />
     <Compile Include="Assets\Scripts\ObjectPoolManager.cs" />
+    <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\RendererFeatures\DistortTunnel\DistortTunnelPass_CopyColor.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Zombie\Zombie.cs" />
     <Compile Include="Assets\Scripts\CardScripts\Teleport.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
+    <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\RendererFeatures\DepthBlit\DepthBlitEdgePass.cs" />
     <Compile Include="Assets\Scripts\Enums\SceneNames.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CreateSinShapedLineStrip.cs" />
     <Compile Include="Assets\Scripts\Procedural Generation System\StageConcrete.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
+    <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\RendererFeatures\DepthBlit\DepthBlitFeature.cs" />
     <Compile Include="Assets\ScriptableObjects\CardSO.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\SpikeTileHazard.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Card Selection System\CardSelectionMenu.cs" />
@@ -127,6 +132,7 @@
     <Compile Include="Assets\ScriptableObjects\StageEntityVariablesSO.cs" />
     <Compile Include="Assets\Scripts\StageSpecificScripts\TutorialController.cs" />
     <Compile Include="Assets\Scripts\Procedural Generation System\LevelBlueprint.cs" />
+    <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\RendererFeatures\DistortTunnel\DistortTunnelRendererFeature.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Card Selection System\CardMagazineIndicator.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\ExplosiveBarrel.cs" />
     <Compile Include="Assets\Scripts\CardScripts\PiercingShot.cs" />
@@ -153,8 +159,8 @@
     <Compile Include="Assets\Scripts\Enums\TagNames.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerItemController.cs" />
     <Compile Include="Assets\Scripts\Finite State Machine\Transition.cs" />
-    <Compile Include="Assets\Scripts\Focus Mode System\FocusModeController.cs" />
     <Compile Include="Assets\Scripts\ToolScripts\TriggerCollider2DRelay.cs" />
+    <Compile Include="Assets\Scripts\Focus Mode System\FocusModeController.cs" />
     <Compile Include="Assets\Scripts\Enums\LayerNames.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\HintController.cs" />
     <Compile Include="Assets\Scripts\Finite State Machine\BaseState.cs" />
@@ -206,14 +212,16 @@
     <Compile Include="Assets\Scripts\Procedural Generation System\GeneratorValues.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\TransformExtensions.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
-    <Compile Include="Assets\Scripts\Enums\CardType.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Enums\CardType.cs" />
+    <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\SharedAssets\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\ScriptableObjects\DeckSO.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\CameraExtensions.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\EnemyDescriptionPanel.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\FireBombController.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\FireExplosionOnKillItem.cs" />
+    <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\SharedAssets\Scripts\AutoLoadPipelineAsset.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\Event Bus Systems\EventBus.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\NumberExtensions.cs" />
@@ -247,6 +255,7 @@
     <Compile Include="Assets\DOTween\Modules\DOTweenModulePhysics2D.cs" />
     <Compile Include="Assets\ScriptableObjects\ScoreRewardTableSO.cs" />
     <Compile Include="Assets\Scripts\StageManagerScripts\GroundTileData.cs" />
+    <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\LensFlares\Scripts\ScreenSpacePlacement.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
     <Compile Include="Assets\Scripts\Shop System\ShopItemType.cs" />
     <Compile Include="Assets\Scripts\Finite State Machine\FuncPredicate.cs" />
@@ -268,6 +277,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\FloppyDiskItem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+    <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\RendererFeatures\DistortTunnel\DistortTunnelPass_Tunnel.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\ZombieAStar\ZombieAStar.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\Vector3Extensions.cs" />
@@ -277,6 +287,7 @@
     <Compile Include="Assets\Scripts\ManagerScripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\CardinalAimSystem.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\RewardConditionChecks.cs" />
+    <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\RendererFeatures\BlitToRTHandle\BlitToRTHandleRendererFeature.cs" />
     <Compile Include="Assets\VolumetricLines\Scripts\VolumetricLineBehavior.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Singleton\Singleton.cs" />
     <Compile Include="Assets\Scripts\CardScripts\SlashBoomerang.cs" />
@@ -302,6 +313,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\RewardMenu\ItemReward.cs" />
     <Compile Include="Assets\Scripts\StageSelectionScripts\EnemyCountPreviewController.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\Campfire.cs" />
+    <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\CameraStacking\3D Skybox\Scripts\SkyboxCamera.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\EntityUIElementAnimator.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\ScriptableObjects\CardUIIconSO.cs" />
@@ -310,8 +322,8 @@
     <Compile Include="Assets\Scripts\ObjectScripts\Bazooka.cs" />
     <Compile Include="Assets\Scripts\StageSpecificScripts\PortalToStageSelect.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\ResourcesUtils.cs" />
-    <Compile Include="Assets\ScriptableObjects\SpawnTablePoolSO.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\StageStateController.cs" />
+    <Compile Include="Assets\ScriptableObjects\SpawnTablePoolSO.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\PathfindingScripts\Node.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Card Selection System\CardDescriptionPanel.cs" />
@@ -340,6 +352,7 @@
     <Compile Include="Assets\ScriptableObjects\ItemPoolSO.cs" />
     <Compile Include="Assets\Scripts\Procedural Generation System\ZoneModifier.cs" />
     <Compile Include="Assets\Scripts\Procedural Generation System\ZoneBlueprint.cs" />
+    <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\RendererFeatures\DistortTunnel\DistortTunnelPass_Distort.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\CardScripts\FreezingMine.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\ShooterFlee.cs" />
@@ -1840,6 +1853,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{0b8e6f68-b8be-463e-8ece-258be92ba366}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{26dd62c2-c6b5-45b5-8257-074bdf25ab77}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{14df2bef-d1bd-4ad7-8bd3-557a174d9aa4}.xml" />
+    <None Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\SharedAssets\Shaders\3DText.shader" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{34b81a6c-3249-4ada-9f1f-1ac244b04940}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{fc91a3e4-8db6-47d9-a3cf-7997321f5b97}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{63c5383f-2381-48ab-a6a4-89035295a149}.xml" />
@@ -3412,9 +3426,9 @@
     <ProjectReference Include="Unity.Collections.csproj" />
     <ProjectReference Include="FMODUnity.csproj" />
     <ProjectReference Include="Unity.2D.SpriteShape.Runtime.csproj" />
-    <ProjectReference Include="Unity.2D.PixelPerfect.csproj" />
-    <ProjectReference Include="PPv2URPConverters.csproj" />
     <ProjectReference Include="Unity.Collections.Editor.csproj" />
+    <ProjectReference Include="PPv2URPConverters.csproj" />
+    <ProjectReference Include="Unity.2D.PixelPerfect.csproj" />
     <ProjectReference Include="Unity.TextMeshPro.csproj" />
     <ProjectReference Include="Unity.AI.Navigation.Editor.ConversionSystem.csproj" />
     <ProjectReference Include="Unity.VSCode.Editor.csproj" />
