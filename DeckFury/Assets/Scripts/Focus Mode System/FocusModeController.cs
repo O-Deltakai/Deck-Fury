@@ -20,8 +20,14 @@ public class FocusModeController : MonoBehaviour
 
 [Header("Focus Mode Properties")]
     [Tooltip("Number of actions the player can perform while in focus mode")]
-    [SerializeField, Min(0)] int _numberOfActions = 5;
-    public int NumberOfActions => _numberOfActions;
+    [SerializeField, Min(1)] int _maxNumberOfActions = 5;
+    public int MaxNumberOfActions {get => _maxNumberOfActions; 
+    set
+    {
+        if(value < 1){value = 1;}
+        _maxNumberOfActions = value;}
+    }
+    
 
     [Tooltip("Duration of focus mode before it expires")]
     [SerializeField, Min(0)] float _focusModeDuration = 10;
@@ -55,9 +61,18 @@ public class FocusModeController : MonoBehaviour
     [SerializeField] ResourceMeter _focusModeDurationMeter;
     [SerializeField] TextMeshProUGUI _durationTimerText;
 
+    [Header("Focus Mode Bar Visuals")]
+    [SerializeField] Image _focusModeDurationBarFill;
+    [SerializeField] Color _focusModeNotFullBarColor;
+    [SerializeField] Color _focusModeFullBarColor;
+
+
     [SerializeField] GameObject _focusModeOnTextObject;
     Vector3 _focusModeOnTextStartPos;
 
+    [Header("Focus Mode Mechanics Settings")]
+    [SerializeField] float _restoreFocusAmountOnOpenCardSelect = 0.25f;
+    [SerializeField] float _restoreFocusAmountOnKillEnemy = 0.05f;
 
     [Header("Testing Properties")]
     [SerializeField] bool testButtonQ = false;
@@ -94,12 +109,26 @@ public class FocusModeController : MonoBehaviour
     {
         _focusModeDurationMeter.SetMaxFloatValue(_focusModeDuration);
         _focusModeDurationMeter.CurrentFloatValue = _focusModeDuration;
+        _focusModeDurationBarFill.color = _focusModeFullBarColor;
+
 
         _durationTimerText.gameObject.SetActive(false);
         _actionsLeftElement.SetActive(false);
         _focusModeOnTextObject.SetActive(false);
         _centerScreenBlinkerText.gameObject.SetActive(false);
 
+        CardSelectionMenu.Instance.OnMenuActivated += () => RestoreFocus(_restoreFocusAmountOnOpenCardSelect);
+        GameManager.Instance.player.OnKillSpecificEnemy += (enemy) =>
+        {
+            if(enemy.EnemyData.EnemyTier == 0)
+            {
+                RestoreFocus(_restoreFocusAmountOnKillEnemy);
+            }else
+            {
+                RestoreFocus(_restoreFocusAmountOnKillEnemy * enemy.EnemyData.EnemyTier);
+            }
+        };
+            
     }
 
     void Update()
@@ -119,8 +148,34 @@ public class FocusModeController : MonoBehaviour
         }
     }
 
+/// <summary>
+/// Restore a percentage of the focus meter with a value between 0 and 1
+/// </summary>
+/// <param name="amount"></param>
+    public void RestoreFocus(float amount)
+    {
+        if(IsFocusModeActive){ return; }
+        if(_canActivateFocusMode){ return; }
+        if(amount < 0) { return; }
+        if(amount > 1) { amount = 1; }
+
+        print("Restoring focus: " + amount);
+
+        float restoredValue = _focusModeDuration * amount;
+        _focusModeDurationMeter.CurrentFloatValue += restoredValue;
+
+        if(_focusModeDurationMeter.CurrentFloatValue >= _focusModeDuration)
+        {
+            _canActivateFocusMode = true;
+            _focusModeDurationBarFill.color = _focusModeFullBarColor;
+        }
+    }
+
+
     void BlinkActionsLeftText()
     {
+        float blinkDuration = 0.3f;
+
     //Blinker text
         if(TW_blinkerTextScaleTween.IsActive()){TW_blinkerTextScaleTween.Kill();}
         if(TW_blinkerTextFadeTween.IsActive()){TW_blinkerTextFadeTween.Kill();}
@@ -130,8 +185,8 @@ public class FocusModeController : MonoBehaviour
         _blinkerText.transform.localScale = Vector3.one;
         _blinkerText.gameObject.SetActive(true);
 
-        TW_blinkerTextScaleTween = _blinkerText.transform.DOScale(3f, 0.25f).SetUpdate(true).SetEase(Ease.OutQuint);
-        TW_blinkerTextFadeTween = _blinkerText.DOFade(0, 0.25f).SetUpdate(true).SetEase(Ease.Linear);
+        TW_blinkerTextScaleTween = _blinkerText.transform.DOScale(3f, blinkDuration).SetUpdate(true).SetEase(Ease.OutQuint);
+        TW_blinkerTextFadeTween = _blinkerText.DOFade(0, blinkDuration).SetUpdate(true).SetEase(Ease.Linear);
 
     //Center screen blinker text
         if(TW_centerScreenBlinkerTextScaleTween.IsActive()){TW_centerScreenBlinkerTextScaleTween.Kill();}
@@ -142,35 +197,32 @@ public class FocusModeController : MonoBehaviour
         _centerScreenBlinkerText.transform.localScale = Vector3.one;
         _centerScreenBlinkerText.gameObject.SetActive(true);
 
-        TW_centerScreenBlinkerTextScaleTween = _centerScreenBlinkerText.transform.DOScale(2f, 0.25f).SetUpdate(true).SetEase(Ease.OutQuint);
-        TW_centerScreenBlinkerTextFadeTween = _centerScreenBlinkerText.DOFade(0, 0.25f).SetUpdate(true).SetEase(Ease.Linear);
+        TW_centerScreenBlinkerTextScaleTween = _centerScreenBlinkerText.transform.DOScale(2f, blinkDuration).SetUpdate(true).SetEase(Ease.OutQuint);
+        TW_centerScreenBlinkerTextFadeTween = _centerScreenBlinkerText.DOFade(0, blinkDuration).SetUpdate(true).SetEase(Ease.Linear);
     }
 
     public void TriggerFocusMode()
     {
         if(_canActivateFocusMode)
         {
-            if(!IsFocusModeActive)
-            {
-                ActivateFocusMode();
-            }else
-            {
-                DeactivateFocusMode();
-            }
+            ActivateFocusMode();
+            _canActivateFocusMode = false;
         }
     }
 
     public void ActivateFocusMode()
-    {   
+    {
         //Assign states
+        _canActivateFocusMode = false;
         IsFocusModeActive = true;
-        _currentActionsRemaining = _numberOfActions;
+        _currentActionsRemaining = _maxNumberOfActions;
         _timeRemaining = _focusModeDuration;
         _focusModeDurationMeter.CurrentFloatValue = _timeRemaining;
 
         _actionsCounterText.text = _currentActionsRemaining.ToString();
         _durationTimerText.gameObject.SetActive(true);
         _actionsLeftElement.SetActive(true);
+        _focusModeDurationBarFill.color = _focusModeFullBarColor;
 
         StagePostProcessingController.Instance.TriggerFocusModePostProcessing();
 
@@ -210,6 +262,9 @@ public class FocusModeController : MonoBehaviour
         IsFocusModeActive = false;
         _focusModeDurationMeter.CurrentFloatValue = 0;
         _durationTimerText.gameObject.SetActive(false);
+        _focusModeDurationBarFill.color = _focusModeNotFullBarColor;
+
+
 
         PlayerController player = GameManager.Instance.player;
         player.OnPerformAction -= DecrementActions;

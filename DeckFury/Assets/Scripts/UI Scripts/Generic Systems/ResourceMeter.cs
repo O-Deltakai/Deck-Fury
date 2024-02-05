@@ -167,6 +167,10 @@ public class ResourceMeter : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Returns the percentage of the current value in relation to the max value.
+    /// </summary>
+    /// <returns></returns>
     public float GetIntValuePercentage()
     {
         if(ignoreMaxIntValue)
@@ -177,6 +181,10 @@ public class ResourceMeter : MonoBehaviour
         return (float)_currentIntValue / _maxIntValue;
     }
 
+    /// <summary>
+    /// Returns the percentage of the current value in relation to the max value.
+    /// </summary>
+    /// <returns></returns>
     public float GetFloatValuePercentage()
     {
         if(ignoreMaxFloatValue)
@@ -187,6 +195,10 @@ public class ResourceMeter : MonoBehaviour
         return _currentFloatValue / _maxFloatValue;
     }
 
+    /// <summary>
+    /// Returns the percentage of the current value in relation to the max value.
+    /// </summary>
+    /// <returns></returns>
     public float GetDoubleValuePercentage()
     {
         if(ignoreMaxDoubleValue)

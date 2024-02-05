@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.InputSystem;
 using FMODUnity;
+using UnityEngine.UI;
 
 //Script that handles functionality of the card selection menu
 public class CardSelectionMenu : MonoBehaviour
@@ -72,6 +73,8 @@ public class CardSelectionMenu : MonoBehaviour
     [SerializeField] EventReference unpreviewStageSFX;
     [SerializeField] EventReference onClickValidCardSlotSFX;
 
+    [Header("Focus Mode Button")]
+    [SerializeField] GameObject focusModeButton;
 
     public bool isActive{get; private set;} = false;
     public bool canUsePreviewButton = true;
@@ -375,6 +378,15 @@ public class CardSelectionMenu : MonoBehaviour
         PlayerCardManager.LoadCardMagazine(cardObjectReferencesInLoadPanel);
         RuntimeManager.PlayOneShot(clickOKSFX);
         DisableMenu();
+    }
+
+
+    public void FocusModeButton(Button button)
+    {
+        if(!FocusModeController.Instance.CanActivateFocusMode)
+        {
+            return;
+        }
     }
 
 

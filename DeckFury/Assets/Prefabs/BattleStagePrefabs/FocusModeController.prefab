@@ -1088,7 +1088,12 @@ MonoBehaviour:
   _focusMeterElement: {fileID: 2831998626732976587}
   _focusModeDurationMeter: {fileID: 1483975813097922126}
   _durationTimerText: {fileID: 5333042714282666709}
+  _focusModeDurationBarFill: {fileID: 29415571729527967}
+  _focusModeNotFullBarColor: {r: 0, g: 0.41960785, b: 0.5568628, a: 1}
+  _focusModeFullBarColor: {r: 0, g: 0.94509804, b: 0.8745098, a: 1}
   _focusModeOnTextObject: {fileID: 4824598384172321254}
+  _restoreFocusAmountOnOpenCardSelect: 0.25
+  _restoreFocusAmountOnKillEnemy: 0.05
   testButtonQ: 1
   speedUpTimeDuration: 1
   speedUpTimeGrowthRate: 0.1
@@ -1172,7 +1177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.9433962, b: 0.8731039, a: 1}
+  m_Color: {r: 0, g: 0.42017654, b: 0.5568628, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

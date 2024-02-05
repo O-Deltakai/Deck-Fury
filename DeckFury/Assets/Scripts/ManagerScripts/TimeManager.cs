@@ -9,6 +9,9 @@ public class TimeManager : MonoBehaviour
     static TimeManager _instance;
     public static TimeManager Instance => _instance;
 
+    static bool _slowMotionInProgress;
+    public static bool SlowMotionInProgress => _slowMotionInProgress;
+
     private Stack<float> timeScaleStack = new Stack<float>();
 
     [SerializeField] bool testSlowMotion = false;
@@ -85,6 +88,7 @@ public class TimeManager : MonoBehaviour
         {
             StopCoroutine(lerpTimeToOneCoroutine);
         }
+        _slowMotionInProgress = false;
         Time.timeScale = 1f;
     }
 
@@ -106,6 +110,7 @@ public class TimeManager : MonoBehaviour
 
     IEnumerator LerpTimeSlowCoroutine(float duration, float decayRate)
     {
+        _slowMotionInProgress = true;
         float elapsed = 0f;
 
         while (elapsed < duration)
@@ -119,6 +124,7 @@ public class TimeManager : MonoBehaviour
 
         Time.timeScale = 0f; // Make sure we end at exactly 0
         lerpTimeToZeroCoroutine = null;
+
     }
 
     /// <summary>
@@ -138,6 +144,8 @@ public class TimeManager : MonoBehaviour
 
     IEnumerator LerpTimeSpeedUpCoroutine(float duration, float growthRate)
     {
+        _slowMotionInProgress = true;
+
         float elapsed = 0f;
 
         while (elapsed < duration)
@@ -151,6 +159,8 @@ public class TimeManager : MonoBehaviour
 
         Time.timeScale = 1f; // Ensure time scale is set to exactly 1 at the end
         lerpTimeToOneCoroutine = null;
+
+        _slowMotionInProgress = false;
     }
 
 

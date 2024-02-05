@@ -578,8 +578,8 @@ public class PlayerController : StageEntity
 
     public void OpenPauseMenu(InputAction.CallbackContext context)
     {
+        if(TimeManager.SlowMotionInProgress) { return; }
         if(isDefeated) { return; }
-
         if (GameManager.Instance.PauseMenu.IsOpen){ return; }
 
         if(context.started)
