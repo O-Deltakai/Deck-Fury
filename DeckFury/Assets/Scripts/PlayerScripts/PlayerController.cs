@@ -378,7 +378,7 @@ public class PlayerController : StageEntity
     IEnumerator AutomoveTimer(float duration)
     {
         canAutoMove = false;
-        if(_useUnscaledTimeForMovement)
+        if(_useUnscaledTimeForActions)
         {
             yield return new WaitForSecondsRealtime(duration);
         }else
@@ -427,7 +427,7 @@ public class PlayerController : StageEntity
 
         if(context.performed)
         {
-            if(_useUnscaledTimeForMovement)
+            if(_useUnscaledTimeForActions)
             {
                 bufferHandler.BufferAction(new BufferedInput(ExecuteBasicShot, context.action, animationController.basicShotAnimation.length + 0.015f, Time.unscaledTime));
             }else
@@ -457,7 +457,7 @@ public class PlayerController : StageEntity
 
         if(context.performed)
         {
-            if(_useUnscaledTimeForMovement)
+            if(_useUnscaledTimeForActions)
             {
                 bufferHandler.BufferAction(new BufferedInput(ExecuteUseCard, context.action, cardManager.NextCard.cardSO.PlayerAnimation.length + 0.05f, Time.unscaledTime));
             }else

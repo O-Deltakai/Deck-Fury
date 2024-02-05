@@ -112,6 +112,23 @@ public class PlayerDashController : MonoBehaviour
         int y = aimpoint.GetAimVector3Int().y * dashDistance;
 
         Vector3Int destination = new Vector3Int(player.currentTilePosition.x + x, player.currentTilePosition.y + y, 0); 
+
+        void DashToLocation(Vector3Int validPosition, Vector3Int moveDistance, Ease ease = Ease.OutCubic)
+        {
+            StartCoroutine(DisableHitboxTimer());
+            player.TweenMoveSetCoroutine(moveDistance.x, moveDistance.y, dashSpeed, ease);
+            StartCoroutine(DashTrailTimer());
+
+            animationController.PlayAnimationClip(dashAnimation);
+            CR_DashCooldown = StartCoroutine(DashCooldown());
+
+            RuntimeManager.PlayOneShot(dashSFX, transform.position);
+
+            EndPosition = new Vector2(validPosition.x, validPosition.y);
+            OnDash?.Invoke();  
+        }
+
+        //Valid position checks
         if(!stageManager.CheckValidTile(destination))
         {
             //First check if the tile ahead that is in the same direction of the leap is free and go there first.
@@ -120,35 +137,16 @@ public class PlayerDashController : MonoBehaviour
                 Vector3Int validPosition = destination + aimpoint.GetAimVector3Int();
                 Vector3Int moveDistance = validPosition - player.currentTilePosition;
 
-                StartCoroutine(DisableHitboxTimer());
-                player.TweenMoveSetCoroutine(moveDistance.x, moveDistance.y, dashSpeed, Ease.OutBounce);
-                StartCoroutine(DashTrailTimer());
+                DashToLocation(validPosition, moveDistance, Ease.OutBounce);
 
-                animationController.PlayAnimationClip(dashAnimation);
-                CR_DashCooldown = StartCoroutine(DashCooldown());
-
-                RuntimeManager.PlayOneShot(dashSFX, transform.position);
-
-                EndPosition = new Vector2(validPosition.x, validPosition.y);
-                OnDash?.Invoke();
                 return;                        
             }else
             if(stageManager.CheckValidTile(destination - aimpoint.GetAimVector3Int()))
-            {//Secondly check if the tile behind that is in the same direction of the leap is free and go there second.
+            {   //Secondly check if the tile behind that is in the same direction of the leap is free and go there second.
                 Vector3Int validPosition = destination - aimpoint.GetAimVector3Int();
                 Vector3Int moveDistance = validPosition - player.currentTilePosition;
  
-                StartCoroutine(DisableHitboxTimer());
-                player.TweenMoveSetCoroutine(moveDistance.x, moveDistance.y, dashSpeed, Ease.OutBounce);
-                StartCoroutine(DashTrailTimer());
-
-
-                animationController.PlayAnimationClip(dashAnimation);
-                CR_DashCooldown = StartCoroutine(DashCooldown());
-                RuntimeManager.PlayOneShot(dashSFX, transform.position);
-
-                EndPosition = new Vector2(validPosition.x, validPosition.y);
-                OnDash?.Invoke();
+                DashToLocation(validPosition, moveDistance, Ease.OutBounce);
 
                 return; 
             }
@@ -161,33 +159,14 @@ public class PlayerDashController : MonoBehaviour
                     Vector3Int validPosition = destination + direction;
                     Vector3Int moveDistance = validPosition - player.currentTilePosition;
 
-                    StartCoroutine(DisableHitboxTimer());
-                    player.TweenMoveSetCoroutine(moveDistance.x, moveDistance.y, dashSpeed, Ease.OutBounce);
-                    StartCoroutine(DashTrailTimer());
-
-                    
-                    animationController.PlayAnimationClip(dashAnimation);
-                    CR_DashCooldown = StartCoroutine(DashCooldown());
-                    RuntimeManager.PlayOneShot(dashSFX, transform.position);
-
-                    EndPosition = new Vector2(validPosition.x, validPosition.y);
-                    OnDash?.Invoke();
+                    DashToLocation(validPosition, moveDistance, Ease.OutBounce);
 
                     return;
                 }
             }
         }else
         {
-            animationController.PlayAnimationClip(dashAnimation);            
-            player.TweenMoveSetCoroutine(x, y, dashSpeed, Ease.OutCubic);
-            StartCoroutine(DashTrailTimer());
-
-            StartCoroutine(DisableHitboxTimer());
-            CR_DashCooldown = StartCoroutine(DashCooldown());
-            RuntimeManager.PlayOneShot(dashSFX, transform.position);
-            EndPosition = new Vector2(destination.x, destination.y);
-
-            OnDash?.Invoke();
+            DashToLocation(destination, new Vector3Int (x, y, 0));
 
         }
 
@@ -199,7 +178,7 @@ public class PlayerDashController : MonoBehaviour
     {
         player.playerCollider.enabled = false;
         
-        if(player.UseUnscaledTimeForMovement)
+        if(player.UseUnscaledTimeForActions)
         {
             yield return new WaitForSecondsRealtime(dashSpeed * 0.9f);
         }else
@@ -214,7 +193,7 @@ public class PlayerDashController : MonoBehaviour
     {
         dashTrail.Clear();
         dashTrail.enabled = true;
-        if (player.UseUnscaledTimeForMovement)
+        if (player.UseUnscaledTimeForActions)
         {
             yield return new WaitForSecondsRealtime(dashSpeed);
         }
@@ -236,7 +215,7 @@ public class PlayerDashController : MonoBehaviour
 
         dashIndicatorObject.SetActive(true);
 
-        if(player.UseUnscaledTimeForMovement)
+        if(player.UseUnscaledTimeForActions)
         {
             dashIndicatorImageFillTween = dashIndicatorImage.DOFillAmount(1, dashCooldown).SetEase(Ease.Linear).SetUpdate(true);
         }else
@@ -245,7 +224,7 @@ public class PlayerDashController : MonoBehaviour
         }
 
 
-        if(player.UseUnscaledTimeForMovement)
+        if(player.UseUnscaledTimeForActions)
         {
             yield return new WaitForSecondsRealtime(dashCooldown - 0.2f);
             dashIndicatorImageColorTween = dashIndicatorFrame.DOColor(dashReadyFrameColor, 0.2f).SetUpdate(true); //Change frame color to indicate dash is ready
@@ -288,7 +267,7 @@ public class PlayerDashController : MonoBehaviour
         dashIndicatorFrame.color = dashReadyFrameColor; //Change frame color to indicate dash is ready
         usedDash = false;
 
-        if (player.UseUnscaledTimeForMovement)
+        if (player.UseUnscaledTimeForActions)
         {
             yield return new WaitForSecondsRealtime(0.2f);
         }

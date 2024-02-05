@@ -144,7 +144,7 @@ public class ResourceMeter : MonoBehaviour
         {
             if(MaxDoubleValue < CurrentDoubleValue)
             {
-                _maxDoubleValue = _currentDoubleValue;
+                _currentDoubleValue = _maxDoubleValue;
             }
         }
 
@@ -152,7 +152,7 @@ public class ResourceMeter : MonoBehaviour
         {
             if(MaxFloatValue < CurrentFloatValue)
             {
-                _maxFloatValue = _currentFloatValue;
+                _currentFloatValue = _maxFloatValue;
             }        
         }
 
@@ -160,7 +160,7 @@ public class ResourceMeter : MonoBehaviour
         {
             if(MaxIntValue < CurrentIntValue)
             {
-                _maxIntValue = _currentIntValue;
+                _currentIntValue = _maxIntValue;
             }
         }
 

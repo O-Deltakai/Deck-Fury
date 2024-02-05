@@ -113,6 +113,7 @@ public class TimeManager : MonoBehaviour
         }
 
         Time.timeScale = 0f; // Make sure we end at exactly 0
+        lerpTimeToZeroCoroutine = null;
     }
 
     /// <summary>
@@ -140,6 +141,7 @@ public class TimeManager : MonoBehaviour
         }
 
         Time.timeScale = 1f; // Ensure time scale is set to exactly 1 at the end
+        lerpTimeToOneCoroutine = null;
     }
 
 

@@ -205,9 +205,9 @@ public class StageEntity : MonoBehaviour
     [SerializeField] protected EventReference OnDamagedSFX;
     [SerializeField] protected EventReference OnDeathSFX;
 
-[Header("Movement Settings")]
-    [SerializeField] protected bool _useUnscaledTimeForMovement = false;
-    public bool UseUnscaledTimeForMovement => _useUnscaledTimeForMovement;
+[Header("Time Settings")]
+    [SerializeField] protected bool _useUnscaledTimeForActions = false;
+    public bool UseUnscaledTimeForActions => _useUnscaledTimeForActions;
 
 
     //Method to intialize all common variables between StageEntities
@@ -423,7 +423,7 @@ public class StageEntity : MonoBehaviour
         currentTilePosition.Set(destination.x, destination.y, 0);
         _stageManager.SetTileEntity(this, destination);
 
-        if(_useUnscaledTimeForMovement)
+        if(_useUnscaledTimeForActions)
         {
             worldTransform.DOMove(destination, duration).SetEase(ease).SetUpdate(true);
         }else
@@ -434,7 +434,7 @@ public class StageEntity : MonoBehaviour
 
         //Sets MovingCoroutine to null after some duration has passed so that another TweenMove coroutine may start.
         //Prevents too many movement inputs from happening at once, effectively limiting player mobility.
-        if(_useUnscaledTimeForMovement)
+        if(_useUnscaledTimeForActions)
         {
             yield return new WaitForSecondsRealtime(duration * 0.5f);
         }else
