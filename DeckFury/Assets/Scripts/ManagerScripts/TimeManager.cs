@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.InputSystem;
+using UnityUtils;
 
 public class TimeManager : MonoBehaviour
 {
@@ -18,14 +19,25 @@ public class TimeManager : MonoBehaviour
 
     Coroutine lerpTimeToZeroCoroutine;
     Coroutine lerpTimeToOneCoroutine;
-    void OnDestroy()
-    {
-        _instance = null;
-    }
+
 
     void Awake()
     {
-        _instance = this;
+        InitializePersistentSingleton();
+
+    }
+    private void InitializePersistentSingleton()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+            
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
+        }        
     }
 
     void Update()

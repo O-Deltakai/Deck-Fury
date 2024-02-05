@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class FocusModeController : MonoBehaviour
 {
+    public event Action OnFocusFullyCharged;
     public event Action OnDecrementActions;
     public event Action OnActivateFocusMode;
     public event Action OnDeactivateFocusMode;
@@ -66,6 +67,9 @@ public class FocusModeController : MonoBehaviour
     [SerializeField] Color _focusModeNotFullBarColor;
     [SerializeField] Color _focusModeFullBarColor;
 
+    [Header("Focus Mode Use Tooltip UI")]
+    [SerializeField] GameObject _focusModeTooltip;
+
 
     [SerializeField] GameObject _focusModeOnTextObject;
     Vector3 _focusModeOnTextStartPos;
@@ -82,6 +86,10 @@ public class FocusModeController : MonoBehaviour
 #region Tweens
     Tween TW_actionsLeftSlideTween;
     Vector3 actionsLeftElementStartPos;
+
+    Tween TW_focusModeTooltipTween;
+    Vector3 focusModeTooltipStartPos;
+
 
     Tween TW_focusModeOnTextTween;
 
@@ -102,7 +110,7 @@ public class FocusModeController : MonoBehaviour
         _instance = this;
         actionsLeftElementStartPos = _actionsLeftElement.transform.localPosition;
         _focusModeOnTextStartPos = _focusModeOnTextObject.transform.localPosition;
-
+        focusModeTooltipStartPos = _focusModeTooltip.transform.localPosition;
     }
     
     void Start()
@@ -111,13 +119,22 @@ public class FocusModeController : MonoBehaviour
         _focusModeDurationMeter.CurrentFloatValue = _focusModeDuration;
         _focusModeDurationBarFill.color = _focusModeFullBarColor;
 
+        _focusModeTooltip.SetActive(false);
 
         _durationTimerText.gameObject.SetActive(false);
         _actionsLeftElement.SetActive(false);
         _focusModeOnTextObject.SetActive(false);
         _centerScreenBlinkerText.gameObject.SetActive(false);
 
+        HideTooltip();
+
         CardSelectionMenu.Instance.OnMenuActivated += () => RestoreFocus(_restoreFocusAmountOnOpenCardSelect);
+        CardSelectionMenu.Instance.OnMenuActivated += HideTooltip;
+        CardSelectionMenu.Instance.OnMenuDisabled += ShowTooltip;
+        OnFocusFullyCharged += ShowTooltip;
+
+
+
         GameManager.Instance.player.OnKillSpecificEnemy += (enemy) =>
         {
             if(enemy.EnemyData.EnemyTier == 0)
@@ -128,6 +145,7 @@ public class FocusModeController : MonoBehaviour
                 RestoreFocus(_restoreFocusAmountOnKillEnemy * enemy.EnemyData.EnemyTier);
             }
         };
+        GameManager.Instance.player.OnDamageTaken += (int damage) => RestoreFocus(damage * 0.0005f);
             
     }
 
@@ -168,9 +186,26 @@ public class FocusModeController : MonoBehaviour
         {
             _canActivateFocusMode = true;
             _focusModeDurationBarFill.color = _focusModeFullBarColor;
+            OnFocusFullyCharged?.Invoke();
         }
     }
 
+    void ShowTooltip()
+    {
+        if(!_canActivateFocusMode) { return; }
+        if(TW_focusModeTooltipTween.IsActive()){TW_focusModeTooltipTween.Kill();}
+        _focusModeTooltip.transform.localPosition = new Vector3(-1000, focusModeTooltipStartPos.y, focusModeTooltipStartPos.z);
+        _focusModeTooltip.SetActive(true);
+        TW_focusModeTooltipTween = _focusModeTooltip.transform.DOLocalMoveX(focusModeTooltipStartPos.x, 0.25f).SetUpdate(true).SetEase(Ease.InOutSine);
+    }
+
+    void HideTooltip()
+    {
+        
+        if(TW_focusModeTooltipTween.IsActive()){TW_focusModeTooltipTween.Kill();}
+        TW_focusModeTooltipTween = _focusModeTooltip.transform.DOLocalMoveX(-1000, 0.25f).SetUpdate(true).SetEase(Ease.InOutSine).
+        OnComplete(() => _focusModeTooltip.SetActive(false));
+    }
 
     void BlinkActionsLeftText()
     {
@@ -218,6 +253,7 @@ public class FocusModeController : MonoBehaviour
         _currentActionsRemaining = _maxNumberOfActions;
         _timeRemaining = _focusModeDuration;
         _focusModeDurationMeter.CurrentFloatValue = _timeRemaining;
+        HideTooltip();
 
         _actionsCounterText.text = _currentActionsRemaining.ToString();
         _durationTimerText.gameObject.SetActive(true);

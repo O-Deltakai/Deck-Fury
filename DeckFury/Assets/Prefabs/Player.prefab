@@ -1647,6 +1647,7 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  _useUnscaledTimeForActions: 1
   CanFireBasicShot: 1
   mainCamera: {fileID: 0}
   cardSelectionMenu: {fileID: 0}
@@ -1900,6 +1901,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3f97aeda-198f-4ffd-8e91-846b709c0a11
     m_ActionName: KeyboardAiming/Aim
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1755202097915902243}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: TriggerFocusMode
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2727fe82-14a8-427b-8e4b-607cdebd8000
+    m_ActionName: PlayerDefault/ActivateFocusMode[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerDefault
@@ -2057,6 +2074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bufferTime: 0.2
+  useUnscaledTime: 1
 --- !u!114 &6281481823548784645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2070,11 +2088,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnStart: 0
-  useUnscaledTime: 0
-  frequency: 0.05
-  lifeTime: 0.5
-  fadeDuration: 0.5
-  afterImageColor: {r: 1, g: 1, b: 1, a: 1}
+  useUnscaledTime: 1
+  frequency: 0.06
+  lifeTime: 1
+  fadeDuration: 1
+  afterImageColor: {r: 1, g: 1, b: 1, a: 0.4117647}
+  fadeEase: 1
 --- !u!114 &5978173093845493249
 MonoBehaviour:
   m_ObjectHideFlags: 0

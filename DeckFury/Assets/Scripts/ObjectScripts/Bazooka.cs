@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 public class Bazooka : Bullet
@@ -13,6 +14,8 @@ public class Bazooka : Bullet
     [SerializeField] GameObject bazookaBullet;
     [SerializeField] Transform bazookaTransform;
 
+    [SerializeField] EventReference explosionSFX;
+ 
     bool impacted = false;
 
     //Check for collision with appropriate targets
@@ -64,6 +67,8 @@ public class Bazooka : Bullet
 
     void ActivateExplosionCollider()
     {
+        RuntimeManager.PlayOneShotAttached(explosionSFX, gameObject);
+
         int stageEntitiesLayer = LayerMask.NameToLayer("StageEntities");
         LayerMask stageEntitiesMask = 1 << stageEntitiesLayer;
 

@@ -589,6 +589,20 @@ public class PlayerController : StageEntity
 
     }
 
+    public void TriggerFocusMode(InputAction.CallbackContext context)
+    {
+        if(TimeManager.SlowMotionInProgress) { return; }
+        if(isDefeated) { return; }
+        if (GameManager.Instance.PauseMenu.IsOpen){ return; }
+        if(GameManager.GameIsPaused){return;}
+
+
+        if(context.started)
+        {
+            FocusModeController.Instance.TriggerFocusMode();
+        }
+
+    }
 
 
 #endregion
