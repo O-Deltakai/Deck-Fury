@@ -365,7 +365,7 @@ public class PlayerController : StageEntity
                 }
                 //Move down
                 MovingCoroutine = StartCoroutine(TweenMove(0, -1, 0.1f, MovementEase));
-                 OnPerformAction?.Invoke();
+                OnPerformAction?.Invoke();
 
             }
         }

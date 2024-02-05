@@ -8,46 +8,96 @@ using UnityEngine.InputSystem;
 
 public class StagePostProcessingController : MonoBehaviour
 {
-    [SerializeField] Volume globalVolume;
-    [SerializeField] List<VolumeComponent> postProcessingComponents;
+    static StagePostProcessingController _instance;
+    public static StagePostProcessingController Instance => _instance;
 
-    [SerializeField] bool testButtonU;
+
+    [SerializeField] Volume globalVolume;
+    [SerializeField] Volume focusModeVolume;
+    [SerializeField] Volume postExposureVolume;
+
+
+    [Header("Focus Mode Settings")]
+    [SerializeField] float resetFocusModeDuration = 1.5f;
+    [SerializeField] Ease resetFocusModeEase = Ease.Linear;    
+
+
+    [Header("Test Settings")]
+    [SerializeField] bool testButtonUStart_IReset;
+
+    void Awake()
+    {
+        _instance = this;
+    }
+
+    void OnDestroy()
+    {
+        _instance = null;
+    }
 
     void Start()
     {
-        postProcessingComponents = globalVolume.profile.components;
-        globalVolume.weight = 0;
+        focusModeVolume.weight = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(testButtonU)
+        if(testButtonUStart_IReset)
         {
             if(Keyboard.current.uKey.wasPressedThisFrame)
             {
-                LerpVolumeZeroToOne(0.75f);
+                TriggerFocusModePostProcessing();
+            }
+            if(Keyboard.current.iKey.wasPressedThisFrame)
+            {
+                ResetFocusModePostProcessing();
             }
         }
     }
 
-    public void SetVolumeProfile(VolumeProfile volumeProfile)
+    public void SetGlobalVolumeProfile(VolumeProfile volumeProfile)
     {
         globalVolume.profile = volumeProfile;
     }
 
-    public void LerpVolumeZeroToOne(float duration)
+    public Tween LerpVolumeToValue(Volume volume, float duration, float startValue = 0, float endValue = 1, Ease ease = Ease.Linear)
     {
-        DOTween.To(() => globalVolume.weight = 0, x => globalVolume.weight = x, 1, duration).SetEase(Ease.OutCirc).SetUpdate(true);
+        return DOTween.To(() => volume.weight = startValue, x => volume.weight = x, endValue, duration).SetEase(ease).SetUpdate(true);
     }
 
-    public void GetColorAdjustmentComponent()
+
+    Tween FlashColorAdjustmentPostExposure(float duration, float startValue, float endValue)
     {
-        if (globalVolume.profile.TryGet(out ColorAdjustments colorAdjustments))
+        if (postExposureVolume.profile.TryGet(out ColorAdjustments colorAdjustments))
         {
-            DOTween.To(() => colorAdjustments.postExposure.value = 0, (x) => colorAdjustments.postExposure.value = x, 1f, 1f);
+            return DOTween.To(() => colorAdjustments.postExposure.value = startValue, (x) => colorAdjustments.postExposure.value = x, endValue, duration);
+        }
+        else
+        {
+            Debug.LogWarning("ColorAdjustment component not found in the volume profile.");
+            return null;
         }
     }
+
+    public void TriggerFocusModePostProcessing()
+    {
+        LerpVolumeToValue(focusModeVolume ,0.55f, 0, 1);
+        FlashColorAdjustmentPostExposure(0.1f, 0, 1.9f).SetEase(Ease.InOutExpo).SetUpdate(true).OnComplete(
+            () => FlashColorAdjustmentPostExposure(0.5f, 1.9f, 0).SetEase(Ease.OutCirc).SetUpdate(true));
+
+
+    }
+
+
+    public void ResetFocusModePostProcessing()
+    {
+        LerpVolumeToValue(focusModeVolume , resetFocusModeDuration, 1, 0, resetFocusModeEase);
+        FlashColorAdjustmentPostExposure(0.1f, 0, 1f).SetEase(Ease.InOutExpo).SetUpdate(true).OnComplete(
+            () => FlashColorAdjustmentPostExposure(0.5f, 1f, 0).SetEase(Ease.OutCirc).SetUpdate(true));        
+
+    }
+
 
 
 }

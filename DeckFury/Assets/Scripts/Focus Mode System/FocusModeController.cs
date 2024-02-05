@@ -110,7 +110,7 @@ public class FocusModeController : MonoBehaviour
         _durationTimerText.gameObject.SetActive(true);
         _actionsLeftElement.SetActive(true);
 
-
+        StagePostProcessingController.Instance.TriggerFocusModePostProcessing();
 
         PlayerController player = GameManager.Instance.player;
         player.OnPerformAction += DecrementActions;
@@ -147,6 +147,7 @@ public class FocusModeController : MonoBehaviour
 
         TimeManager.Instance.LerpTimeToOne(speedUpTimeDuration, speedUpTimeGrowthRate);
 
+        StagePostProcessingController.Instance.ResetFocusModePostProcessing();
 
         StopFocusModeTimer();
 

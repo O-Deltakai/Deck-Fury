@@ -75,12 +75,19 @@ public class EnergyController : MonoBehaviour
 
     [SerializeField] Image arrowImage;
 
+[Header("Energy Bar Settings")]
+    [Tooltip("The time it takes to charge the energy bar to full")]
+    [SerializeField] float energyChargeTime = 8f;
+    [SerializeField] float timeElapsed = 0;
+    [SerializeField] ResourceMeter energyMeter;
+
 [Header("SFX")]
     [SerializeField] EventReference energyFullSFX;
 
     bool canCharge = true;
 
     Coroutine CR_EnergyNotFullTextFade = null;
+    Coroutine CR_ChargeEnergyCoroutine = null;
 
 
 
@@ -97,12 +104,12 @@ public class EnergyController : MonoBehaviour
         _instance = null;
     }
 
-    private void InitializeStartVariables(){
+    private void InitializeStartVariables()
+    {
 
         cardSelectionMenu.OnMenuDisabled += MoveIntoView;
         cardSelectionMenu.OnMenuActivated += MoveOutOfView;
 
-        //rectTransform = GetComponent<RectTransform>();
         stageManager = GameErrorHandler.NullCheck(StageManager.Instance, "Stage Manager");
 
 
@@ -246,6 +253,45 @@ public class EnergyController : MonoBehaviour
         }
         barSlider.value = currentEnergyValue/max;
     }
+
+    IEnumerator ChargeEnergyCoroutine()
+    {
+        if(fullCharge){yield break;}
+
+        while(energyMeter.CurrentFloatValue < energyMeter.MaxFloatValue)
+        {
+            energyMeter.CurrentFloatValue += Time.deltaTime * chargeRateModifier;
+            yield return null;
+        }
+        
+        fullCharge = true;
+
+        energyMeter.CurrentFloatValue = energyMeter.MaxFloatValue;
+        if(pressTabText){ pressTabText.SetActive(true); }
+        RuntimeManager.PlayOneShot(energyFullSFX);
+        StartCoroutine(FlashBarColorWhileFull());
+
+
+        CR_ChargeEnergyCoroutine = null;
+        OnFullCharge?.Invoke();
+        
+    }
+
+    void ResetEnergyMeter()
+    {
+        if(CR_ChargeEnergyCoroutine != null)
+        {
+            StopCoroutine(CR_ChargeEnergyCoroutine);
+        }
+
+        energyMeter.CurrentFloatValue = 0;
+        if(pressTabText){ pressTabText.SetActive(false); }
+
+        fullCharge = false;
+
+        CR_ChargeEnergyCoroutine = StartCoroutine(ChargeEnergyCoroutine());
+    }
+
 
     public void GrantExtraEnergy(float energy)
     {
