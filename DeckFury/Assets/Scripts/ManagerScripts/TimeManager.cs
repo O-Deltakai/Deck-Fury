@@ -27,6 +27,7 @@ public class TimeManager : MonoBehaviour
 
     void Update()
     {
+        
         if(testSlowMotion)
         {
             if(Keyboard.current.tKey.wasPressedThisFrame)
@@ -96,6 +97,10 @@ public class TimeManager : MonoBehaviour
     /// <returns></returns>
     public void LerpTimeToZero(float duration, float decayRate)
     {
+        if(lerpTimeToOneCoroutine != null)
+        {
+            StopCoroutine(lerpTimeToOneCoroutine);
+        }
         lerpTimeToZeroCoroutine = StartCoroutine(LerpTimeSlowCoroutine(duration, decayRate));
     }
 
@@ -124,6 +129,10 @@ public class TimeManager : MonoBehaviour
     /// <returns></returns>
     public void LerpTimeToOne(float duration, float growthRate)
     {
+        if(lerpTimeToZeroCoroutine != null)
+        {
+            StopCoroutine(lerpTimeToZeroCoroutine);
+        }
         lerpTimeToOneCoroutine = StartCoroutine(LerpTimeSpeedUpCoroutine(duration, growthRate));
     }
 

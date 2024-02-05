@@ -17,39 +17,9 @@ public class EnergyController : MonoBehaviour
     private static EnergyController _instance;
     public static EnergyController Instance => _instance; 
 
-    //set variable
-    //max value of enery bar
-    [SerializeField] float max;
-    public float MaxEnergy => max;
-    //duration for 1 energy charge
-    [SerializeField] float chargeTime = 2.0f;
-    //default energy
-    [SerializeField] int energy = 5;
-    //cool down
-    [SerializeField] float coolDown = 3.0f;
-    //charge time for this turn
-    [SerializeField] float currentEnergyValue = 0;
-    public float CurrentEnergy
-    {
-        get => currentEnergyValue;
-        set
-        {
-            currentEnergyValue = value;
-            if (currentEnergyValue > max)
-            {
-                currentEnergyValue = max;
-            }
-            else
-            if (currentEnergyValue < 0)
-            {
-                currentEnergyValue = 0;
-            }
-        }
-    }
-    //full charge, true when energy bar full
-    [SerializeField] bool fullCharge = false;
-    //charge for each frame
-    [SerializeField] float chargeRate = 2.0f;
+
+    [SerializeField] bool _fullCharge = false;
+
     [Min(0.01f)] public float chargeRateModifier = 1f;
 
     [SerializeField] float yAnchorPosition;
@@ -58,9 +28,9 @@ public class EnergyController : MonoBehaviour
 
     [SerializeField] bool AlwaysFullCharge;
     [SerializeField] bool disableEnergyBar;
-    StageManager stageManager;
 
-    public Slider barSlider;
+
+
     [SerializeField] Image fillImage;
     Color fillOriginalColor;
 
@@ -78,24 +48,38 @@ public class EnergyController : MonoBehaviour
 [Header("Energy Bar Settings")]
     [Tooltip("The time it takes to charge the energy bar to full")]
     [SerializeField] float energyChargeTime = 8f;
-    [SerializeField] float timeElapsed = 0;
     [SerializeField] ResourceMeter energyMeter;
+
+    public float CurrentEnergyValue
+    {
+        get => energyMeter.CurrentFloatValue;
+        set => energyMeter.CurrentFloatValue = value;
+    }
+
+    public float MaxEnergy => energyMeter.MaxFloatValue;
 
 [Header("SFX")]
     [SerializeField] EventReference energyFullSFX;
 
     bool canCharge = true;
 
-    Coroutine CR_EnergyNotFullTextFade = null;
+
     Coroutine CR_ChargeEnergyCoroutine = null;
 
+#region Tweens
+
+    Tween energyBarMovementTween;
+
+#endregion
 
 
     private void Awake() 
     {
+        _instance = this;
         if(pressTabText){ pressTabText.SetActive(false); }
 
-        _instance = this;
+
+        energyMeter.SetMaxFloatValue(energyChargeTime);
 
     }
 
@@ -110,11 +94,9 @@ public class EnergyController : MonoBehaviour
         cardSelectionMenu.OnMenuDisabled += MoveIntoView;
         cardSelectionMenu.OnMenuActivated += MoveOutOfView;
 
-        stageManager = GameErrorHandler.NullCheck(StageManager.Instance, "Stage Manager");
-
 
         yAnchorPosition = transform.parent.localPosition.y;
-        max = energy * chargeTime + coolDown;
+
 
         fillOriginalColor = fillImage.color;
  
@@ -147,34 +129,128 @@ public class EnergyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(AlwaysFullCharge)
-        {
-            barSlider.value = 1;
-            fullCharge = true;
-            return;
-        }
-        
-        //Flash
-        if(fullCharge && fullChargeEventTrigger == true)
-        {
-            StartCoroutine(FlashBarColorWhileFull());
-            highlighterBox.DOFade(1f, 0.1f);
-            fullChargeEventTrigger = false;
-            OnFullCharge?.Invoke();
-        }
 
-        if(canCharge)
+    }
+
+    public void HideEnergyBar()
+    {
+        if(energyBarMovementTween.IsActive()){energyBarMovementTween.Kill();}
+        energyBarMovementTween = anchorPoint.DOLocalMoveY(600, 0.15f).SetUpdate(true);
+    }
+
+    public void UnhideEnergyBar()
+    {
+        if(energyBarMovementTween.IsActive()){energyBarMovementTween.Kill();}
+        energyBarMovementTween = anchorPoint.DOLocalMoveY(yAnchorPosition, 0.45f).SetUpdate(true);
+    }
+
+    public void MoveIntoView()
+    {
+        if(disableEnergyBar){return;}
+
+        if(energyBarMovementTween.IsActive()){energyBarMovementTween.Kill();}
+        energyBarMovementTween = anchorPoint.DOLocalMoveY(yAnchorPosition, 0.45f).SetUpdate(true);
+        
+        ResetEnergyMeter();
+        StartCoroutine(FlashBarArrowWhileCharging());
+    }
+
+    public void MoveOutOfView()
+    {
+        if(energyBarMovementTween.IsActive()){energyBarMovementTween.Kill();}
+        energyBarMovementTween = anchorPoint.DOLocalMoveY(600, 0.15f).SetUpdate(true);
+        fillImage.color = fillOriginalColor;
+        highlighterBox.DOFade(0f, 0.1f);
+
+        _fullCharge = false;
+
+        if(pressTabText){ pressTabText.SetActive(false); }
+        StopCharging();
+    }
+
+    public void StopCharging()
+    {
+        if(CR_ChargeEnergyCoroutine != null)
         {
-            ChargeEnergyBar();
+            StopCoroutine(CR_ChargeEnergyCoroutine);
         }
     }
 
+    public void ResumeCharging()
+    {
+        if(CR_ChargeEnergyCoroutine != null)
+        {
+            StopCoroutine(CR_ChargeEnergyCoroutine);
+        }
+        CR_ChargeEnergyCoroutine = StartCoroutine(ChargeEnergyCoroutine());
+    }
+
+
+    public void ResetEnergyMeter()
+    {
+        if(CR_ChargeEnergyCoroutine != null)
+        {
+            StopCoroutine(CR_ChargeEnergyCoroutine);
+        }
+
+        energyMeter.CurrentFloatValue = 0;
+        if(pressTabText){ pressTabText.SetActive(false); }
+
+        _fullCharge = false;
+
+        CR_ChargeEnergyCoroutine = StartCoroutine(ChargeEnergyCoroutine());
+    }
+
+
+
+    Tween energyNotFullTextFadeTween;
+    //return true if energy full
+    public bool EnergyIsFull()
+    {
+        if(AlwaysFullCharge){return true;} 
+
+        if(!_fullCharge)
+        {
+            if(energyNotFullTextFadeTween.IsActive())
+            {
+                energyNotFullTextFadeTween.Kill();
+            }
+            energyNotFullTextFadeTween = energyNotFullText.DOFade(1, 0.1f).SetUpdate(true).
+            OnComplete(() => energyNotFullTextFadeTween = energyNotFullText.DOFade(0, 0.2f).SetUpdate(true).SetDelay(0.5f));
+        }
+        return _fullCharge;
+    }
+
+
+#region Coroutines
+    IEnumerator ChargeEnergyCoroutine()
+    {
+        if(_fullCharge){yield break;}
+
+        while(energyMeter.CurrentFloatValue < energyMeter.MaxFloatValue)
+        {
+            energyMeter.CurrentFloatValue += Time.deltaTime * chargeRateModifier;
+            yield return null;
+        }
+        
+        _fullCharge = true;
+
+        energyMeter.CurrentFloatValue = energyMeter.MaxFloatValue;
+        if(pressTabText){ pressTabText.SetActive(true); }
+        RuntimeManager.PlayOneShot(energyFullSFX);
+        StartCoroutine(FlashBarColorWhileFull());
+        highlighterBox.DOFade(1f, 0.1f);
+
+        CR_ChargeEnergyCoroutine = null;
+        OnFullCharge?.Invoke();
+        
+    }
 
     IEnumerator FlashBarColorWhileFull()
     {
         if(!fullChargeEventTrigger){yield break;}
 
-        while(fullCharge)
+        while(_fullCharge)
         {
             fillImage.DOColor(Color.green, 0.5f).SetUpdate(true);
             yield return new WaitForSecondsRealtime(0.5f);
@@ -188,8 +264,8 @@ public class EnergyController : MonoBehaviour
     {
         while(true)
         {
-            if(fullCharge){yield break;}
-            float flashSpeed = 1.0f/chargeRate;
+            if(_fullCharge){yield break;}
+            float flashSpeed = 1.0f/chargeRateModifier;
             arrowImage.DOFade(1, flashSpeed).SetUpdate(false);
             yield return new WaitForSecondsRealtime(flashSpeed);
             arrowImage.DOFade(0, flashSpeed).SetUpdate(false);
@@ -197,134 +273,7 @@ public class EnergyController : MonoBehaviour
         }
     }
 
-    public void MoveIntoView()
-    {
-        if(disableEnergyBar){return;}
 
-        anchorPoint.DOLocalMoveY(yAnchorPosition, 0.45f).SetUpdate(true);
-        fullChargeEventTrigger = true;
-        canCharge = true;
-        CalculateEnergy();
-        
-        StartCoroutine(FlashBarArrowWhileCharging());
-    }
-
-    public void MoveOutOfView()
-    {
-        anchorPoint.DOLocalMoveY(600, 0.15f).SetUpdate(true);
-        fillImage.color = fillOriginalColor;
-        highlighterBox.DOFade(0f, 0.1f);
-
-        canCharge = false;
-        fullCharge = false;
-
-        if(pressTabText){ pressTabText.SetActive(false); }        
-    }
-
-    private void CalculateEnergy()
-    {
-        //currentTurnDuration = max - 4 * chargeTime - coolDown;
-        //would replaced when cost system implemented in card selection menu, need public function to get consumed cost
-        currentEnergyValue = 0;
-        fillImage.color = fillOriginalColor;
-        fullCharge = false;
-
-        if(pressTabText){ pressTabText.SetActive(false); }
-
-    }
-
-    //Main method for moving the slider bar in order to fill energy
-    private void ChargeEnergyBar()
-    {
-        if(fullCharge){return;}
-        if(currentEnergyValue < max + 0.5f)
-        {
-            currentEnergyValue += Time.deltaTime * chargeRate * chargeRateModifier;
-
-            if(currentEnergyValue > max)
-            {
-                currentEnergyValue = max;
-                barSlider.value = 1;
-                fullCharge = true;
-
-                if(pressTabText){ pressTabText.SetActive(true); }
-                RuntimeManager.PlayOneShot(energyFullSFX);
-            }
-        }
-        barSlider.value = currentEnergyValue/max;
-    }
-
-    IEnumerator ChargeEnergyCoroutine()
-    {
-        if(fullCharge){yield break;}
-
-        while(energyMeter.CurrentFloatValue < energyMeter.MaxFloatValue)
-        {
-            energyMeter.CurrentFloatValue += Time.deltaTime * chargeRateModifier;
-            yield return null;
-        }
-        
-        fullCharge = true;
-
-        energyMeter.CurrentFloatValue = energyMeter.MaxFloatValue;
-        if(pressTabText){ pressTabText.SetActive(true); }
-        RuntimeManager.PlayOneShot(energyFullSFX);
-        StartCoroutine(FlashBarColorWhileFull());
-
-
-        CR_ChargeEnergyCoroutine = null;
-        OnFullCharge?.Invoke();
-        
-    }
-
-    void ResetEnergyMeter()
-    {
-        if(CR_ChargeEnergyCoroutine != null)
-        {
-            StopCoroutine(CR_ChargeEnergyCoroutine);
-        }
-
-        energyMeter.CurrentFloatValue = 0;
-        if(pressTabText){ pressTabText.SetActive(false); }
-
-        fullCharge = false;
-
-        CR_ChargeEnergyCoroutine = StartCoroutine(ChargeEnergyCoroutine());
-    }
-
-
-    public void GrantExtraEnergy(float energy)
-    {
-        currentEnergyValue += energy;
-    }
-
-
-    //return true if energy full
-    public bool EnergyIsFull()
-    {
-        if(!fullCharge)
-        {
-            
-            energyNotFullText.DOFade(1, 0.1f).SetUpdate(false);
-            fadeoutTween.Kill();
-            if(CR_EnergyNotFullTextFade != null)
-            {
-                StopCoroutine(CR_EnergyNotFullTextFade);
-            }
-            CR_EnergyNotFullTextFade = StartCoroutine(FadeInOutEnergyNotFullText());
-        }
-        return fullCharge;
-    }
-
-    Tween fadeoutTween;
-    IEnumerator FadeInOutEnergyNotFullText()
-    {
-        
-        yield return new WaitForSeconds(0.5f);
-        fadeoutTween = energyNotFullText.DOFade(0, 0.2f).SetUpdate(false);
-        
-
-
-    }
+#endregion
 
 }

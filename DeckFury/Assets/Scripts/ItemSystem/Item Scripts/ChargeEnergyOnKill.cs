@@ -27,7 +27,7 @@ public class ChargeEnergyOnKill : ItemBase
     public override void Proc()
     {
         //EventBus<ItemEvent>.Raise(new ItemEvent { itemBase = this, itemSO = itemSO, targetObject = EnergyController.Instance });
-        EnergyController.Instance.CurrentEnergy +=  EnergyController.Instance.MaxEnergy * itemSO.QuantifiableEffects[0].FloatQuantity * 0.01f ;
+        EnergyController.Instance.CurrentEnergyValue +=  EnergyController.Instance.MaxEnergy * itemSO.QuantifiableEffects[0].FloatQuantity * 0.01f ;
         base.Proc();
     }
 

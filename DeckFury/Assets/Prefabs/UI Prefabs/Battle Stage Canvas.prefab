@@ -1520,7 +1520,7 @@ MonoBehaviour:
   m_text: Energy not full!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e48463e3180208346814a9086766650b, type: 2}
-  m_sharedMaterial: {fileID: -8995054446084175832, guid: e48463e3180208346814a9086766650b, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: e9a34abf65dd11d4e9722e670bbb0e5c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4915,6 +4915,8 @@ GameObject:
   - component: {fileID: 2106385779}
   - component: {fileID: 2106385781}
   - component: {fileID: 2106385780}
+  - component: {fileID: 1921275498591006026}
+  - component: {fileID: 5885974397929556702}
   m_Layer: 5
   m_Name: EnergyBarController
   m_TagString: Untagged
@@ -5013,7 +5015,7 @@ MonoBehaviour:
   coolDown: 3
   currentEnergyValue: 0
   fullCharge: 0
-  chargeRate: 2
+  chargeRate: 10
   chargeRateModifier: 1
   yAnchorPosition: 0
   cardSelectionMenu: {fileID: 1388264035952647060}
@@ -5026,6 +5028,8 @@ MonoBehaviour:
   energyNotFullText: {fileID: 660682222}
   pressTabText: {fileID: 374821077965363420}
   arrowImage: {fileID: 1191719542318809382}
+  energyChargeTime: 8
+  energyMeter: {fileID: 0}
   energyFullSFX:
     Guid:
       Data1: 1769537412
@@ -5033,6 +5037,43 @@ MonoBehaviour:
       Data3: -1532411713
       Data4: 255512288
     Path: event:/UIEvents/UIEnergyFull
+--- !u!114 &1921275498591006026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106385778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 167c83c98868be940890ec5ac6021c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceMeter: {fileID: 0}
+  slider: {fileID: 2106385781}
+  meterType: 1
+--- !u!114 &5885974397929556702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106385778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffde62b28c57a99498cc8bd5c94ba96a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _resourceName: Energy
+  _currentIntValue: 0
+  _maxIntValue: 0
+  ignoreMaxIntValue: 0
+  _currentFloatValue: 0
+  _maxFloatValue: 0
+  ignoreMaxFloatValue: 0
+  _currentDoubleValue: 0
+  _maxDoubleValue: 0
+  ignoreMaxDoubleValue: 0
 --- !u!1 &113302409167971879
 GameObject:
   m_ObjectHideFlags: 0
