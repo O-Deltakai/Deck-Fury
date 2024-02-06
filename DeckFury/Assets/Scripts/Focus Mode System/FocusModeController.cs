@@ -70,6 +70,11 @@ public class FocusModeController : MonoBehaviour
     [SerializeField] Color _focusModeNotFullBarColor;
     [SerializeField] Color _focusModeFullBarColor;
 
+    [SerializeField] GameObject _focuBarBlinkerObject;
+    [SerializeField] Image _focusBarBlinkerImage;
+    [SerializeField] float _focusBarBlinkerScaleXAmount = 1.5f;
+    [SerializeField] float _focusBarBlinkerScaleYAmount = 1.5f;
+
     [Header("Focus Mode Use Tooltip UI")]
     [SerializeField] GameObject _focusModeTooltip;
 
@@ -110,6 +115,10 @@ public class FocusModeController : MonoBehaviour
     Tween TW_centerScreenBlinkerTextFadeTween;
 
 
+    Tween TW_focusBarBlinkerScaleXTween;
+    Tween TW_focusBarBlinkerScaleYTween;
+    Tween TW_focusBarBlinkerFadeTween;
+
 #endregion
     void OnDestroy()
     {
@@ -146,6 +155,7 @@ public class FocusModeController : MonoBehaviour
         CardSelectionMenu.Instance.OnMenuActivated += HideTooltip;
         CardSelectionMenu.Instance.OnMenuDisabled += ShowTooltip;
         OnFocusFullyCharged += ShowTooltip;
+        OnFocusFullyCharged += BlinkFocusBar;
 
 
 
@@ -249,6 +259,21 @@ public class FocusModeController : MonoBehaviour
 
         TW_centerScreenBlinkerTextScaleTween = _centerScreenBlinkerText.transform.DOScale(2f, blinkDuration).SetUpdate(true).SetEase(Ease.OutQuint);
         TW_centerScreenBlinkerTextFadeTween = _centerScreenBlinkerText.DOFade(0, blinkDuration).SetUpdate(true).SetEase(Ease.Linear);
+    }
+
+    void BlinkFocusBar()
+    {
+        if(TW_focusBarBlinkerScaleXTween.IsActive()){TW_focusBarBlinkerScaleXTween.Kill();}
+        if(TW_focusBarBlinkerFadeTween.IsActive()){TW_focusBarBlinkerFadeTween.Kill();}
+        if(TW_focusBarBlinkerScaleYTween.IsActive()){TW_focusBarBlinkerScaleYTween.Kill();}
+
+        _focusBarBlinkerImage.transform.localScale = Vector3.one;
+        _focusBarBlinkerImage.gameObject.SetActive(true);
+        _focusBarBlinkerImage.DOFade(0.7f, 0.001f).SetUpdate(true).SetEase(Ease.Linear);
+
+        TW_focusBarBlinkerScaleXTween = _focusBarBlinkerImage.transform.DOScaleX(_focusBarBlinkerScaleXAmount, 0.5f).SetUpdate(true).SetEase(Ease.OutQuint);
+        TW_focusBarBlinkerScaleYTween = _focusBarBlinkerImage.transform.DOScaleY(_focusBarBlinkerScaleYAmount, 0.5f).SetUpdate(true).SetEase(Ease.OutQuint);
+        TW_focusBarBlinkerFadeTween = _focusBarBlinkerImage.DOFade(0, 0.5f).SetUpdate(true).SetEase(Ease.Linear);
     }
 
     public void TriggerFocusMode()

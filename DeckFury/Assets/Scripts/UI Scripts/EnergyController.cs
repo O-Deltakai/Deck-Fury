@@ -20,7 +20,6 @@ public class EnergyController : MonoBehaviour
 
     [SerializeField] bool _fullCharge = false;
 
-    [Min(0.01f)] public float chargeRateModifier = 1f;
 
     [SerializeField] float yAnchorPosition;
 
@@ -49,6 +48,7 @@ public class EnergyController : MonoBehaviour
     [Tooltip("The time it takes to charge the energy bar to full")]
     [SerializeField] float energyChargeTime = 8f;
     [SerializeField] ResourceMeter energyMeter;
+    [Min(0.01f)] public float chargeRateModifier = 1f;
 
     public float CurrentEnergyValue
     {
