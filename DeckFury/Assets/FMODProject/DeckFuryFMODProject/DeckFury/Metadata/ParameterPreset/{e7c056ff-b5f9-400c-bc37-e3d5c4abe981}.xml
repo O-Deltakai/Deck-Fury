@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{e7c056ff-b5f9-400c-bc37-e3d5c4abe981}">
+		<property name="name">
+			<value>Master Pitch</value>
+		</property>
+		<relationship name="folder">
+			<destination>{c0d303b8-9419-4f51-8955-7dcfe585c9b0}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{897a7f9e-b9c1-4f85-b450-72e4fc2e1248}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{897a7f9e-b9c1-4f85-b450-72e4fc2e1248}">
+		<property name="minimum">
+			<value>-24</value>
+		</property>
+		<property name="maximum">
+			<value>24</value>
+		</property>
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>

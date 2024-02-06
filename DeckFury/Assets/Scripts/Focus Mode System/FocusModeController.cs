@@ -6,6 +6,9 @@ using DG.Tweening;
 using Unity.Mathematics;
 using System;
 using UnityEngine.UI;
+using FMODUnity;
+using FMOD.Studio;
+
 
 public class FocusModeController : MonoBehaviour
 {
@@ -78,6 +81,14 @@ public class FocusModeController : MonoBehaviour
     [SerializeField] float _restoreFocusAmountOnOpenCardSelect = 0.25f;
     [SerializeField] float _restoreFocusAmountOnKillEnemy = 0.05f;
 
+[Header("SFX")]
+    [SerializeField] EventReference focusModeActivateSFX;
+    [SerializeField] EventReference focusModeDeactivateSFX;
+    EventInstance focusModeActivateSFXInstance;
+    EventInstance focusModeDeactivateSFXInstance;
+
+    [SerializeField] GameObject focusModeAmbienceEmitterObject;
+
     [Header("Testing Properties")]
     [SerializeField] bool testButtonQ = false;
     [SerializeField] float speedUpTimeDuration = 1f;
@@ -115,6 +126,9 @@ public class FocusModeController : MonoBehaviour
     
     void Start()
     {
+        focusModeActivateSFXInstance = RuntimeManager.CreateInstance(focusModeActivateSFX);
+        focusModeDeactivateSFXInstance = RuntimeManager.CreateInstance(focusModeDeactivateSFX);
+
         _focusModeDurationMeter.SetMaxFloatValue(_focusModeDuration);
         _focusModeDurationMeter.CurrentFloatValue = _focusModeDuration;
         _focusModeDurationBarFill.color = _focusModeFullBarColor;
@@ -146,7 +160,8 @@ public class FocusModeController : MonoBehaviour
             }
         };
         GameManager.Instance.player.OnDamageTaken += (int damage) => RestoreFocus(damage * 0.0005f);
-            
+
+        _focusModeDurationMeter.CurrentFloatValue  = _focusModeDuration;       
     }
 
     void Update()
@@ -247,6 +262,11 @@ public class FocusModeController : MonoBehaviour
 
     public void ActivateFocusMode()
     {
+        //SFX stuff
+        focusModeActivateSFXInstance.start();
+        focusModeAmbienceEmitterObject.SetActive(true);
+        RuntimeManager.StudioSystem.setParameterByName("Master Pitch", -2f);
+
         //Assign states
         _canActivateFocusMode = false;
         IsFocusModeActive = true;
@@ -294,7 +314,12 @@ public class FocusModeController : MonoBehaviour
 
     public void DeactivateFocusMode()
     {
-    
+        //SFX stuff
+        focusModeDeactivateSFXInstance.start();
+        focusModeAmbienceEmitterObject.SetActive(false);
+        RuntimeManager.StudioSystem.setParameterByName("Master Pitch", 0f);
+
+
         IsFocusModeActive = false;
         _focusModeDurationMeter.CurrentFloatValue = 0;
         _durationTimerText.gameObject.SetActive(false);

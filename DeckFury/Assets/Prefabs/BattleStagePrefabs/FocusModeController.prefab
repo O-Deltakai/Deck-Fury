@@ -1163,6 +1163,69 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &5823333507888343275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7065762822119698763}
+  - component: {fileID: 1335752843420215720}
+  m_Layer: 0
+  m_Name: Focus Mode Ambience Emitter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7065762822119698763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5823333507888343275}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 396695557876897460}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1335752843420215720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5823333507888343275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2052985958
+      Data2: 1158648199
+      Data3: -643269227
+      Data4: 1336984022
+    Path: event:/FocusMode/Focus Mode Ambience
+  Event: 
+  PlayEvent: 11
+  StopEvent: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &6523532125743810320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,6 +1545,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1728101362646467333}
+  - {fileID: 7065762822119698763}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6656282575871385413
@@ -1516,6 +1580,21 @@ MonoBehaviour:
   _focusModeOnTextObject: {fileID: 4824598384172321254}
   _restoreFocusAmountOnOpenCardSelect: 0.25
   _restoreFocusAmountOnKillEnemy: 0.05
+  focusModeActivateSFX:
+    Guid:
+      Data1: 240089708
+      Data2: 1311669705
+      Data3: -1341791611
+      Data4: 2043720547
+    Path: event:/FocusMode/Focus Mode Begin
+  focusModeDeactivateSFX:
+    Guid:
+      Data1: 1213308064
+      Data2: 1233980532
+      Data3: 538851211
+      Data4: 310099522
+    Path: event:/FocusMode/Focus Mode Finish
+  focusModeAmbienceEmitterObject: {fileID: 5823333507888343275}
   testButtonQ: 0
   speedUpTimeDuration: 1
   speedUpTimeGrowthRate: 0.1
@@ -1535,8 +1614,8 @@ MonoBehaviour:
   _currentIntValue: 0
   _maxIntValue: 0
   ignoreMaxIntValue: 0
-  _currentFloatValue: 0
-  _maxFloatValue: 0
+  _currentFloatValue: 10
+  _maxFloatValue: 10
   ignoreMaxFloatValue: 0
   _currentDoubleValue: 0
   _maxDoubleValue: 0
@@ -1780,7 +1859,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.5
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -5,6 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 using System.Linq;
 using FMODUnity;
+using FMOD.Studio;
 
 
 public class ScoreMenuController : MonoBehaviour
@@ -22,11 +23,14 @@ public class ScoreMenuController : MonoBehaviour
     [SerializeField] float delayBetweenShowingScores = 0.5f;
     [SerializeField] float delayBetweenShowingBonuses = 0.2f;
 
-    [Header("SFX")]
+
+[Header("SFX")]
     [SerializeField] EventReference showScoreSFX;
     [SerializeField] EventReference showSpecialBonusSFX;
     [SerializeField] EventReference showMoneySFX;
- 
+    EventInstance showScoreSFXInstance;
+    EventInstance showSpecialBonusSFXInstance;
+    EventInstance showMoneySFXInstance;
 
 
 
@@ -90,7 +94,9 @@ public class ScoreMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        showMoneySFXInstance = RuntimeManager.CreateInstance(showMoneySFX);
+        showScoreSFXInstance = RuntimeManager.CreateInstance(showScoreSFX);
+        showSpecialBonusSFXInstance = RuntimeManager.CreateInstance(showSpecialBonusSFX);
     }
 
     // Update is called once per frame
@@ -142,7 +148,7 @@ public class ScoreMenuController : MonoBehaviour
         else
         if(bonusPanelIsOpen && hasPresentedBonuses)
         {
-            RuntimeManager.PlayOneShot(showMoneySFX);
+            showMoneySFXInstance.start();
             specialBonusesPanel.SetActive(false);
             scoreManager.AddBonusRewardsToScore();
             scoreManager.AddScoreToPlayerData(StageStateController.Instance.PlayerData);
@@ -193,7 +199,7 @@ public class ScoreMenuController : MonoBehaviour
 
         if(specialBonusSlots.Count == 0)
         {
-            RuntimeManager.PlayOneShot(showMoneySFX);
+            showMoneySFXInstance.start();
 
             SetStageScoreText(scoreManager.StageScoreTotal);
 
@@ -242,14 +248,14 @@ public class ScoreMenuController : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.4f);
         foreach(GameObject uiElement in orderOfElementsToShow)
         {
-            RuntimeManager.PlayOneShot(showScoreSFX);
+            showScoreSFXInstance.start();
             uiElement.SetActive(true);
             yield return new WaitForSecondsRealtime(delay);
         }
 
         if(specialBonusSlots.Count == 0)
         {
-            RuntimeManager.PlayOneShot(showMoneySFX);
+            showMoneySFXInstance.start();
             scoreManager.AddScoreToPlayerData(StageStateController.Instance.PlayerData);
             SetTotalScoreText(StageStateController.Instance.PlayerData.CurrentScore);
             totalScoreElement.SetActive(true);
@@ -288,7 +294,7 @@ public class ScoreMenuController : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.25f);
         foreach(SpecialBonusSlot bonusSlot in specialBonusSlots)
         {
-            RuntimeManager.PlayOneShot(showSpecialBonusSFX);
+            showSpecialBonusSFXInstance.start();
             bonusSlot.gameObject.SetActive(true);
             yield return new WaitForSecondsRealtime(delay);
         }
