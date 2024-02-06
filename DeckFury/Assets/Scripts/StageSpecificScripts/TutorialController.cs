@@ -107,6 +107,8 @@ public class TutorialController : MonoBehaviour
 
         PressBackspaceToRewind.SetActive(false);
 
+        previewStageButton.SetActive(false);
+        cardSelectionMenu.canUsePreviewButton = false;
 
         OnChangeTutorialPhase += TimerChangeTutorialPhase;
         StartCoroutine(WaitBeforeFindingSceneLoader());

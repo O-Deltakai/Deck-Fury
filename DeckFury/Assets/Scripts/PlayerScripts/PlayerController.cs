@@ -527,6 +527,8 @@ public class PlayerController : StageEntity
 
     public void Dash(InputAction.CallbackContext context)
     {
+        if(isDefeated) { return; }
+        if(statusEffectManager.Stunned) { return; }
         if(cardManager.CardInUseCoroutine != null) { return; }
         if(!CanUsePlayerInput()) { return; }
         if(MovingCoroutine != null) 
@@ -591,10 +593,17 @@ public class PlayerController : StageEntity
 
     public void TriggerFocusMode(InputAction.CallbackContext context)
     {
+        if(!FocusModeController.Instance)
+        {
+            Debug.LogError("FocusModeController could not be found in the scene, could not trigger focus mode.");
+            return;
+        }
+        if(!FocusModeController.Instance.gameObject.activeInHierarchy) {return;}
         if(TimeManager.SlowMotionInProgress) { return; }
         if(isDefeated) { return; }
         if (GameManager.Instance.PauseMenu.IsOpen){ return; }
         if(GameManager.GameIsPaused){return;}
+        if(statusEffectManager.Stunned) { return; }
 
 
         if(context.started)

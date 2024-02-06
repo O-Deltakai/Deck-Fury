@@ -50,6 +50,16 @@ public class EntityStatusEffectManager : MonoBehaviour
 
     [SerializeField] Color bleedingColor = new Color(1, 0.47f, 0.47f);
 
+[Header("Current Status Values")]
+    [SerializeField] protected bool _stunned = false;
+    public bool Stunned => _stunned;
+
+    [SerializeField] protected bool _bleeding = false;
+    public bool Bleeding => _bleeding;
+
+    [SerializeField] protected bool _armorBroken = false;
+    public bool ArmorBroken => _armorBroken;
+
 
     [Header("SFX")]
     [SerializeField] EventReference triggerMarkedSFX;
@@ -196,9 +206,11 @@ public class EntityStatusEffectManager : MonoBehaviour
     }
     IEnumerator StunnedDuration(float duration)
     {
+        _stunned = true;
         yield return new WaitForSeconds(duration);
         entity.CanAct = true;
-        entity.CanInitiateMovementActions = true;       
+        entity.CanInitiateMovementActions = true;
+        _stunned = false;       
         OnRecoverStunned?.Invoke(); 
     }
 
@@ -215,6 +227,7 @@ public class EntityStatusEffectManager : MonoBehaviour
         entitySpriteRenderer.color = bleedingColor;
 
         Coroutine bleedStack = StartCoroutine(BleedOverTime(payload, totalDamage, (float)totalDuration, (float)tickrate));
+        _bleeding = true;
         currentBleedingStacks.Add(bleedStack);
         StartCoroutine(RemoveBleedStackTimer(bleedStack, (float)totalDuration));
         
@@ -266,6 +279,7 @@ public class EntityStatusEffectManager : MonoBehaviour
         if(currentBleedingStacks.Count == 0)
         {
             if(bleedingEffectObject){ bleedingEffectObject.SetActive(false); }
+            _bleeding = false;
         }
     }
 
@@ -285,13 +299,14 @@ public class EntityStatusEffectManager : MonoBehaviour
     {
         entity.Armor = 0;
         armorbreakEffectObject.SetActive(true);
-
+        _armorBroken = true;
         yield return new WaitForSeconds(duration * strength);
 
         entity.Armor = _originalArmorValue;
         armorbreakEffectObject.SetActive(false);
 
         CR_ArmorbreakCoroutine = null;
+        _armorBroken = false;
     }
 
     void MarkedForDeathEffect(float strength = 1, float duration = 0)

@@ -30,6 +30,7 @@ public class CardSlot : MonoBehaviour
 
     void Start()
     {
+        button = GetComponent<Button>();
         if(IsEmpty())
         {
             DisableImage();
@@ -40,6 +41,7 @@ public class CardSlot : MonoBehaviour
 
     public void Initialize(CardObjectReference card)
     {
+        if(card == null){return;}
         ChangeCard(card);
     }
 
@@ -75,7 +77,7 @@ public class CardSlot : MonoBehaviour
         otherSlot.button.interactable = true; 
 
         ClearCardSlot();
-        button.interactable = false;
+        if(button) button.interactable = false;
 
 
 
@@ -91,20 +93,22 @@ public class CardSlot : MonoBehaviour
         otherSlot.button.interactable = true; 
 
         ClearCardSlot();
-        button.interactable = false;
+        if(button) button.interactable = false;
     }
 
     //Change CardObjectReference in card slot to a given card and update the image.
     public void ChangeCard(CardObjectReference card)
     {
+        if(card == null){return;}
         cardObjectReference = card;
         card.cardSlot = this;
-        button.interactable = true;
+        if(button) button.interactable = true;
         UpdateImage();
     }
 
     public void ChangeCard(CardObjectReference card, bool interactable)
     {
+        if(card == null){return;}
         cardObjectReference = card;
         card.cardSlot = this;
         button.interactable = interactable;
@@ -117,7 +121,7 @@ public class CardSlot : MonoBehaviour
         cardObjectReference = null;
         cardImage.sprite = null;
         cardImage.enabled = false;
-        button.interactable = false;
+        if(button) button.interactable = false;
     }
 
     public void UpdateImage()

@@ -173,6 +173,9 @@ public class StageEntity : MonoBehaviour
         }
     }
 
+    [SerializeField] protected bool _isDead = false;
+    public bool IsDead { get => _isDead; }
+
 /// <summary>
 /// Buffers nullify a single instance of damage per buffer
 /// </summary>
@@ -956,6 +959,7 @@ public class StageEntity : MonoBehaviour
     public virtual IEnumerator DestroyEntity(AttackPayload? killingBlow = null)
     {
         AdditionalDestructionEvents(killingBlow);
+        _isDead = true;
         CanInitiateMovementActions = false;
         CanAct = false;
         invincible = true; //Make entity invincible during its destruction to prevent additional HurtEntity calls that may break things

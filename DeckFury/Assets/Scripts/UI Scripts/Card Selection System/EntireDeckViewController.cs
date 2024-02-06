@@ -32,11 +32,16 @@ public class EntireDeckViewController : MonoBehaviour
 
     void InitializeCardSlots()
     {
+        foreach (Transform child in cardSlotsParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        cardSlots.Clear();
+
         for (int i = 0; i < cardPoolManager.CardObjectReferences.Count; i++)
         {
             GameObject newCardSlot = Instantiate(cardSlotPrefab, cardSlotsParent.transform);
             CardSlot cardSlot = newCardSlot.GetComponent<CardSlot>();
-            cardSlot.Initialize(cardPoolManager.CardObjectReferences[i]);
 
             Button cardSlotButton = cardSlot.GetComponent<Button>();
 
@@ -53,6 +58,7 @@ public class EntireDeckViewController : MonoBehaviour
             cardSlotEventTrigger.triggers.Add(pointerExitEntry);
 
 
+            cardSlot.Initialize(cardPoolManager.CardObjectReferences[i]);
 
             cardSlots.Add(cardSlot);
         }

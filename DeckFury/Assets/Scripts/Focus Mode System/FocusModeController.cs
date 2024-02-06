@@ -46,7 +46,21 @@ public class FocusModeController : MonoBehaviour
     public float TimeRemaining => _timeRemaining;
 
     [SerializeField] bool _canActivateFocusMode = true;
-    public bool CanActivateFocusMode => _canActivateFocusMode;
+    public bool CanActivateFocusMode {get => _canActivateFocusMode; 
+        set
+        {
+            if(value == true)
+            {
+                RestoreFocus(1);
+                _focusModeDurationBarFill.color = _focusModeFullBarColor;
+            }else
+            {
+                _focusModeDurationMeter.CurrentFloatValue = 0;
+                _focusModeDurationBarFill.color = _focusModeNotFullBarColor;
+            }
+            _canActivateFocusMode = value;    
+        }
+    }
 
     Coroutine CR_FocusModeTimer = null;
 
@@ -83,19 +97,25 @@ public class FocusModeController : MonoBehaviour
     Vector3 _focusModeOnTextStartPos;
 
     [Header("Focus Mode Mechanics Settings")]
+    [SerializeField] float _globalFocusRestoreMultiplier = 1;
     [SerializeField] float _restoreFocusAmountOnOpenCardSelect = 0.25f;
     [SerializeField] float _restoreFocusAmountOnKillEnemy = 0.05f;
+    [SerializeField] float _restoreFocusAmountOnDamageTakenMultiplier = 0.0005f;
+
 
 [Header("SFX")]
     [SerializeField] EventReference focusModeActivateSFX;
     [SerializeField] EventReference focusModeDeactivateSFX;
+    [SerializeField] EventReference focusFullSFX;
     EventInstance focusModeActivateSFXInstance;
     EventInstance focusModeDeactivateSFXInstance;
+    EventInstance focusFullSFXInstance;
 
     [SerializeField] GameObject focusModeAmbienceEmitterObject;
 
-    [Header("Testing Properties")]
+    [Header("Debug Properties")]
     [SerializeField] bool testButtonQ = false;
+    [SerializeField] bool _autoRefresh = false;
     [SerializeField] float speedUpTimeDuration = 1f;
     [SerializeField] float speedUpTimeGrowthRate = 1f;
 
@@ -137,6 +157,8 @@ public class FocusModeController : MonoBehaviour
     {
         focusModeActivateSFXInstance = RuntimeManager.CreateInstance(focusModeActivateSFX);
         focusModeDeactivateSFXInstance = RuntimeManager.CreateInstance(focusModeDeactivateSFX);
+        focusFullSFXInstance = RuntimeManager.CreateInstance(focusFullSFX);
+
 
         _focusModeDurationMeter.SetMaxFloatValue(_focusModeDuration);
         _focusModeDurationMeter.CurrentFloatValue = _focusModeDuration;
@@ -151,25 +173,25 @@ public class FocusModeController : MonoBehaviour
 
         HideTooltip();
 
-        CardSelectionMenu.Instance.OnMenuActivated += () => RestoreFocus(_restoreFocusAmountOnOpenCardSelect);
         CardSelectionMenu.Instance.OnMenuActivated += HideTooltip;
         CardSelectionMenu.Instance.OnMenuDisabled += ShowTooltip;
         OnFocusFullyCharged += ShowTooltip;
         OnFocusFullyCharged += BlinkFocusBar;
 
 
-
+    //Focus restore events
+        CardSelectionMenu.Instance.OnMenuActivated += () => RestoreFocus(_restoreFocusAmountOnOpenCardSelect * _globalFocusRestoreMultiplier);
         GameManager.Instance.player.OnKillSpecificEnemy += (enemy) =>
         {
             if(enemy.EnemyData.EnemyTier == 0)
             {
-                RestoreFocus(_restoreFocusAmountOnKillEnemy);
+                RestoreFocus(_restoreFocusAmountOnKillEnemy * _globalFocusRestoreMultiplier);
             }else
             {
-                RestoreFocus(_restoreFocusAmountOnKillEnemy * enemy.EnemyData.EnemyTier);
+                RestoreFocus(_restoreFocusAmountOnKillEnemy * enemy.EnemyData.EnemyTier * _globalFocusRestoreMultiplier);
             }
         };
-        GameManager.Instance.player.OnDamageTaken += (int damage) => RestoreFocus(damage * 0.0005f);
+        GameManager.Instance.player.OnDamageTaken += (int damage) => RestoreFocus(damage * _restoreFocusAmountOnDamageTakenMultiplier * _globalFocusRestoreMultiplier);
 
         _focusModeDurationMeter.CurrentFloatValue  = _focusModeDuration;       
     }
@@ -189,6 +211,21 @@ public class FocusModeController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void HideFocusModeUI()
+    {
+        _focusModeUI.SetActive(false);
+    }
+
+    public void ShowFocusModeUI()
+    {
+        _focusModeUI.SetActive(true);
+    }
+
+    public void ToggleAutoRefresh(bool condition)
+    {
+        _autoRefresh = condition;
     }
 
 /// <summary>
@@ -211,6 +248,7 @@ public class FocusModeController : MonoBehaviour
         {
             _canActivateFocusMode = true;
             _focusModeDurationBarFill.color = _focusModeFullBarColor;
+            focusFullSFXInstance.start();
             OnFocusFullyCharged?.Invoke();
         }
     }
@@ -281,6 +319,7 @@ public class FocusModeController : MonoBehaviour
         if(_canActivateFocusMode)
         {
             ActivateFocusMode();
+            BlinkFocusBar();
             _canActivateFocusMode = false;
         }
     }
@@ -362,12 +401,16 @@ public class FocusModeController : MonoBehaviour
 
         StartCoroutine(WaitUntilTimeScaleIsOne());
 
-        static IEnumerator WaitUntilTimeScaleIsOne()
+        IEnumerator WaitUntilTimeScaleIsOne()
         {
             yield return new WaitUntil(() => Time.timeScale == 1);
 
             EnergyController.Instance.UnhideEnergyBar();
             CardSelectionMenu.Instance.CanBeOpened = true;
+            if(_autoRefresh)
+            {
+                RestoreFocus(1);
+            }            
         }
 
 

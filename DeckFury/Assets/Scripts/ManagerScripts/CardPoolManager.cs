@@ -109,11 +109,13 @@ public class CardPoolManager : MonoBehaviour
     {
         defaultDeck = deck;
         RepoolObjectsFromDeck();
+
     }
     public void SetActiveGameDeck(GameDeck gameDeck)
     {
         currentActiveDeck = gameDeck;
         RepoolObjectsFromDeck();
+     
     }
 
 
@@ -141,7 +143,7 @@ public class CardPoolManager : MonoBehaviour
             PoolReticlesFromDeck(defaultDeck);
         }
         
-        OnCompletePooling?.Invoke();        
+        OnCompletePooling?.Invoke(); 
     }
 
     void CleanObjectPool()
