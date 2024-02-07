@@ -47,6 +47,9 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] int parTimeBaseScore = 500; // regular reward for if the player completes the stage within the stageParTime
     [SerializeField] float stageParTime = 60; // Expected amount of time to complete the stage
 
+[Header("Money Reward Multipliers")]
+    [SerializeField, Min(0)] float _baseMoneyMultiplier = 0.015f;
+
 
     SpawnManager spawnManager;
     RewardConditionChecks rewardConditionChecks;
@@ -392,10 +395,10 @@ public class ScoreManager : MonoBehaviour
     {
         if(StageStateController.Instance._stageType == StageType.EliteCombat)
         {
-            return (int)(score * 0.01f * 2f);
+            return (int)(score * _baseMoneyMultiplier * 2f);
         }
 
-        return (int)(score * 0.01f);
+        return (int)(score * _baseMoneyMultiplier);
     }
 
     public void AddBonusRewardsToScore()
