@@ -67,6 +67,8 @@ public class ItemUISlot : MonoBehaviour
 
     void Start()
     {
+        itemImage = GetComponent<Image>();
+
         if(_itemObjectRef)
         {
             SetItem(_itemObjectRef);
@@ -101,7 +103,24 @@ public class ItemUISlot : MonoBehaviour
         _itemObjectRef = item;
         _itemSO = item.itemSO;
 
+        if(_itemSO == null)
+        {
+            Debug.LogError("ItemSO is null for item: " + item.name);
+            return;
+        }
+        if(_itemObjectRef == null)
+        {
+            Debug.LogError("ItemObjectRef is null for item: " + item.name);
+            return;
+        }
+
         _itemObjectRef.OnProc += BlinkImageOnce;
+
+        if(!itemImage)
+        {
+            itemImage = GetComponent<Image>();
+        }
+
         itemImage.sprite = _itemSO.ItemImage;
         blinkerImage.sprite = _itemSO.ItemImage;
 
@@ -139,6 +158,10 @@ public class ItemUISlot : MonoBehaviour
         }
     }
 
+    public void FlipDescriptionPanelLocation()
+    {
+        itemDescriptionPanel.transform.localPosition = new Vector3(-itemDescriptionPanel.transform.localPosition.x, itemDescriptionPanel.transform.localPosition.y, itemDescriptionPanel.transform.localPosition.z);
+    }
 
     public void OnPointerEnter()
     {

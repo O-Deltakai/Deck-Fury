@@ -12,6 +12,9 @@ public class PlayerDataContainer
     public delegate void DataModifiedEventHandler();
     public event DataModifiedEventHandler OnPlayerDataModified;
 
+    public delegate void ItemAddedEventHandler(ItemBase item);
+    public event ItemAddedEventHandler OnAddItemToPlayer;
+
     //Current values can change during and after battle, and will remain persistent across stages.
     [SerializeField] int _currentHP = 200;
     public int CurrentHP{get{ return _currentHP; }
@@ -86,6 +89,7 @@ public class PlayerDataContainer
     public void AddItem(ItemBase item)
     {
         _items.Add(item);
+        OnAddItemToPlayer?.Invoke(item);
     }
 
     public bool RemoveItem(ItemBase item)

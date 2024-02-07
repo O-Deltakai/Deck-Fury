@@ -23,24 +23,6 @@ public class StageItemPanelUIController : MonoBehaviour
             InitializeItemList(playerItemController.ItemList);            
         }
 
-
-        // if(PersistentLevelController.Instance)
-        // {
-        //     InitializeItemList(PersistentLevelController.Instance.PlayerData.GetItemList());
-        //     PlayerItemController playerItemController = GameManager.Instance.player.GetComponent<PlayerItemController>();
-        // }else
-        // {
-        //     PlayerItemController playerItemController = GameManager.Instance.player.GetComponent<PlayerItemController>();
-        //     InitializeItemList(playerItemController.ItemList);
-        //     playerItemController.OnFinishInitialization += SubscribeToPlayer;            
-
-        // }
-          
-        // PlayerItemController playerItemController = GameManager.Instance.player.GetComponent<PlayerItemController>();
-        // InitializeItemList(playerItemController.ItemList);
-
-
-
     }
 
     void SubscribeToPlayer()

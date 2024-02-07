@@ -78,9 +78,9 @@ public class PersistentLevelController : MonoBehaviour
         //     PlayerData.CurrentDeck.CardList.Add(deckElement);
         // }
 
-        InitializePlayerData(_basePlayerDataSO);
-
         persistentItemController = GetComponent<PersistentItemController>();
+
+
         gameManager = GameErrorHandler.NullCheck(GameManager.Instance, "Game Manager");
         sceneLoader = GameErrorHandler.NullCheck(GameManager.Instance.GetComponent<SceneLoader>(), "Scene Loader");
 
@@ -119,6 +119,7 @@ public class PersistentLevelController : MonoBehaviour
 
     private void Start() 
     {
+        InitializePlayerData(_basePlayerDataSO);
         stageSelectionManager = FindObjectOfType<StageSelectionManager>();
         PlayerData.OnPlayerDataModified += SetPlayerStatText;
         SetPlayerStatText();

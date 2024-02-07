@@ -22,11 +22,11 @@ public class PersistentItemController : MonoBehaviour
     void Awake()
     {
         _instance = this;
+        playerData = GetComponent<PersistentLevelController>().PlayerData;
     }
 
     void Start()
     {
-        playerData = GetComponent<PersistentLevelController>().PlayerData;
     }
 
 /// <summary>
@@ -51,7 +51,6 @@ public class PersistentItemController : MonoBehaviour
     {
         ItemBase itemPrefab = Instantiate(itemSO.ItemPrefab, itemObjectParent.transform).GetComponent<ItemBase>();
         itemObjectsList.Add(itemPrefab);
-        playerData.AddItem(itemPrefab);
 
         if(GameManager.Instance.player)
         {
@@ -61,6 +60,7 @@ public class PersistentItemController : MonoBehaviour
 
         itemPrefab.PersistentInitialize();
 
+        playerData.AddItem(itemPrefab);
         return itemPrefab;
     }
 
