@@ -11,6 +11,8 @@ public class CardSelectionMenu : MonoBehaviour
 {
     static CardSelectionMenu _instance;
     public static CardSelectionMenu Instance {get { return _instance; }}
+    static bool _isOpen;
+    public static bool IsOpen {get { return _isOpen; }}
     
 #region Events
 
@@ -205,6 +207,8 @@ public class CardSelectionMenu : MonoBehaviour
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        _isOpen = true;
     }
 
     //Moves the menu out of view so it cannot be interacted with
@@ -217,6 +221,7 @@ public class CardSelectionMenu : MonoBehaviour
 
         GameManager.UnpauseGame();
         GameManager.currentGameState = GameManager.GameState.Realtime;
+        _isOpen = false;
     }
 
     public void PreviewButton()

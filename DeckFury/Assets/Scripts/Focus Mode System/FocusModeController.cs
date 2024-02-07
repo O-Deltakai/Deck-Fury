@@ -55,7 +55,7 @@ public class FocusModeController : MonoBehaviour
                 _focusModeDurationBarFill.color = _focusModeFullBarColor;
             }else
             {
-                _focusModeDurationMeter.CurrentFloatValue = 0;
+                _focusModeResourceMeter.CurrentFloatValue = 0;
                 _focusModeDurationBarFill.color = _focusModeNotFullBarColor;
             }
             _canActivateFocusMode = value;    
@@ -76,7 +76,7 @@ public class FocusModeController : MonoBehaviour
 
     [Header("Focus Mode Duration UI")]
     [SerializeField] GameObject _focusMeterElement;
-    [SerializeField] ResourceMeter _focusModeDurationMeter;
+    [SerializeField] ResourceMeter _focusModeResourceMeter;
     [SerializeField] TextMeshProUGUI _durationTimerText;
 
     [Header("Focus Mode Bar Visuals")]
@@ -160,8 +160,8 @@ public class FocusModeController : MonoBehaviour
         focusFullSFXInstance = RuntimeManager.CreateInstance(focusFullSFX);
 
 
-        _focusModeDurationMeter.SetMaxFloatValue(_focusModeDuration);
-        _focusModeDurationMeter.CurrentFloatValue = _focusModeDuration;
+        _focusModeResourceMeter.SetMaxFloatValue(_focusModeDuration);
+        _focusModeResourceMeter.CurrentFloatValue = _focusModeDuration;
         _focusModeDurationBarFill.color = _focusModeFullBarColor;
 
         _focusModeTooltip.SetActive(false);
@@ -193,7 +193,7 @@ public class FocusModeController : MonoBehaviour
         };
         GameManager.Instance.player.OnDamageTaken += (int damage) => RestoreFocus(damage * _restoreFocusAmountOnDamageTakenMultiplier * _globalFocusRestoreMultiplier);
 
-        _focusModeDurationMeter.CurrentFloatValue  = _focusModeDuration;       
+        _focusModeResourceMeter.CurrentFloatValue  = _focusModeDuration;       
     }
 
     void Update()
@@ -220,7 +220,14 @@ public class FocusModeController : MonoBehaviour
 
     public void ShowFocusModeUI()
     {
+        _focusMeterElement.transform.position = new Vector3(200, 0, 0);
+        if(_focusModeResourceMeter.CurrentFloatValue >= _focusModeDuration)
+        {
+            ShowTooltip();
+        }
         _focusModeUI.SetActive(true);
+        _focusMeterElement.transform.DOMoveX(0, 0.5f).SetUpdate(true).SetEase(Ease.OutCirc);
+
     }
 
     public void ToggleAutoRefresh(bool condition)
@@ -242,9 +249,9 @@ public class FocusModeController : MonoBehaviour
         print("Restoring focus: " + amount);
 
         float restoredValue = _focusModeDuration * amount;
-        _focusModeDurationMeter.CurrentFloatValue += restoredValue;
+        _focusModeResourceMeter.CurrentFloatValue += restoredValue;
 
-        if(_focusModeDurationMeter.CurrentFloatValue >= _focusModeDuration)
+        if(_focusModeResourceMeter.CurrentFloatValue >= _focusModeDuration)
         {
             _canActivateFocusMode = true;
             _focusModeDurationBarFill.color = _focusModeFullBarColor;
@@ -256,6 +263,7 @@ public class FocusModeController : MonoBehaviour
     void ShowTooltip()
     {
         if(!_canActivateFocusMode) { return; }
+        if(CardSelectionMenu.IsOpen){ return; }
         if(TW_focusModeTooltipTween.IsActive()){TW_focusModeTooltipTween.Kill();}
         _focusModeTooltip.transform.localPosition = new Vector3(-1000, focusModeTooltipStartPos.y, focusModeTooltipStartPos.z);
         _focusModeTooltip.SetActive(true);
@@ -336,7 +344,7 @@ public class FocusModeController : MonoBehaviour
         IsFocusModeActive = true;
         _currentActionsRemaining = _maxNumberOfActions;
         _timeRemaining = _focusModeDuration;
-        _focusModeDurationMeter.CurrentFloatValue = _timeRemaining;
+        _focusModeResourceMeter.CurrentFloatValue = _timeRemaining;
         HideTooltip();
 
         _actionsCounterText.text = _currentActionsRemaining.ToString();
@@ -385,7 +393,7 @@ public class FocusModeController : MonoBehaviour
 
 
         IsFocusModeActive = false;
-        _focusModeDurationMeter.CurrentFloatValue = 0;
+        _focusModeResourceMeter.CurrentFloatValue = 0;
         _durationTimerText.gameObject.SetActive(false);
         _focusModeDurationBarFill.color = _focusModeNotFullBarColor;
 
@@ -465,7 +473,7 @@ public class FocusModeController : MonoBehaviour
         while(_timeRemaining > 0)
         {
             _timeRemaining -= Time.unscaledDeltaTime;
-            _focusModeDurationMeter.CurrentFloatValue = _timeRemaining;
+            _focusModeResourceMeter.CurrentFloatValue = _timeRemaining;
             _durationTimerText.text = _timeRemaining.ToString("F2") + "s";
             yield return null;
         }

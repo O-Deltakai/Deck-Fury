@@ -68,6 +68,10 @@ public class HealingFactor : MonoBehaviour
             if(entity.CurrentHP < entityStartHP)
             {
                 entity.CurrentHP += healAmount;
+                if(entity.CurrentHP > entityStartHP)
+                {
+                    entity.CurrentHP = entityStartHP;
+                }
             }
         }
     }

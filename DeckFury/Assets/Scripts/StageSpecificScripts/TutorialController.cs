@@ -48,6 +48,7 @@ public class TutorialController : MonoBehaviour
     [SerializeField] Vector2 belowMagazineAnchorLeft;
     [SerializeField] Vector2 previewEnemyAnchor;
     [SerializeField] Vector2 dashTutorialAnchor = new Vector2(607, 376);
+    [SerializeField] Vector2 phase5TutorialAnchor;
 
 [Header("Dialogue Text")]
     [SerializeField] HintsContainerSO phase0Dialogue;
@@ -73,6 +74,9 @@ public class TutorialController : MonoBehaviour
     [SerializeField] Image energyBarHighlighterBox;
     [SerializeField] GameObject previewStageButton;
 
+
+    [Header("Phase 5 Elements")]
+    [SerializeField] DeckSO phase5Deck;
 
     HintsContainerSO currentDialogue;
 
@@ -104,6 +108,8 @@ public class TutorialController : MonoBehaviour
         cardSelectionMenu.CanBeOpened = false;
 
         energyController.DisableEnergyBar();
+
+        FocusModeController.Instance.HideFocusModeUI();
 
         PressBackspaceToRewind.SetActive(false);
 

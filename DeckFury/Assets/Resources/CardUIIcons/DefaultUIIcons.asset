@@ -27,29 +27,32 @@ MonoBehaviour:
   NeutralDescription: 'Neutral element has no special effects.
 
 
-    - <b>Marked</b>:
+    <b><u>Marked</u></b>:
     <b>2x</b> Base Damage'
   BladeDescription: '
 
-
-    - <b>Marked</b>: Inflict <b>Bleeding</b>'
+    <b><u>Marked</u></b>: Inflict <b>Bleeding</b> which deals
+    additional damage over time'
   WaterDescription: '
 
 
-    - <b>Marked</b>: Inflict <b>Frozen</b>'
+    <b><u>Marked</u></b>: Inflict <b>Frozen</b>'
   BreakingDescription: 'Breaking damage <b>ignores armor</b> and damages <b>Shields</b>
     at <b>2x</b> efficiency.
 
 
-    - Marked: Inflict <b>Armor Break</b>'
+    <b><u>Marked</u></b>: Inflict <b>Armor Break</b>
+    which removes enemy armor.'
   ElectricDescription: '
 
 
-    - <b>Marked</b>: Inflict <b>Stunned</b>'
+    <b><u>Marked</u></b>: Inflict <b>Stunned</b> which
+    prevents enemies from moving or acting.'
   FireDescription: '
 
 
-    - Marked: Trigger a <b>fire explosion</b>'
+    <b><u>Marked</u></b>: Trigger a <b>fire explosion</b>
+    that damages adjacent enemies.'
   PureDescription: 'Pure damage <b>pierces</b> <b><color=#6DEDFF>Shields</color></b>
     and <b>ignores</b> all resistances, dealing damage straight to <b>HP</b>.
 
@@ -64,6 +67,6 @@ MonoBehaviour:
 
 '
   ArmorBreakDescription: <b>Armor Broken</b> enemies have their armor stripped off
-    of them for the next <b>2</b> rounds.
+    of them for the next <b>10</b> seconds.
   MarkedForDeathDescription: <b>Marked</b> enemies suffer an additional effect based
     on the <b>Element</b> of the attacking card.

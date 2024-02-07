@@ -1646,7 +1646,7 @@ MonoBehaviour:
   _blinkerText: {fileID: 7550520892888047799}
   _centerScreenBlinkerText: {fileID: 1029995234863801080}
   _focusMeterElement: {fileID: 2831998626732976587}
-  _focusModeDurationMeter: {fileID: 1483975813097922126}
+  _focusModeResourceMeter: {fileID: 1483975813097922126}
   _durationTimerText: {fileID: 5333042714282666709}
   _focusModeDurationBarFill: {fileID: 29415571729527967}
   _focusModeNotFullBarColor: {r: 0, g: 0.41960785, b: 0.5568628, a: 1}
@@ -1657,8 +1657,10 @@ MonoBehaviour:
   _focusBarBlinkerScaleYAmount: 2
   _focusModeTooltip: {fileID: 4342416567231381618}
   _focusModeOnTextObject: {fileID: 4824598384172321254}
+  _globalFocusRestoreMultiplier: 1
   _restoreFocusAmountOnOpenCardSelect: 0.25
   _restoreFocusAmountOnKillEnemy: 0.05
+  _restoreFocusAmountOnDamageTakenMultiplier: 0.0005
   focusModeActivateSFX:
     Guid:
       Data1: 240089708
@@ -1682,6 +1684,7 @@ MonoBehaviour:
     Path: event:/FocusMode/Focus Mode Full SFX
   focusModeAmbienceEmitterObject: {fileID: 5823333507888343275}
   testButtonQ: 0
+  _autoRefresh: 0
   speedUpTimeDuration: 1
   speedUpTimeGrowthRate: 0.1
 --- !u!114 &1483975813097922126

@@ -529,54 +529,104 @@ public class SpawnManager : MonoBehaviour
     /// <param name="safetyNet"></param>
     /// <returns></returns>
    public StageEntity SpawnNPCPrefab(GameObject npcPrefab, Vector3Int position, bool safetyNet = true)
+    {
+        Vector3Int actualSpawnPosition = position;
+        if(npcPrefab.GetComponent<EntityWrapper>() == null)
         {
-            Vector3Int actualSpawnPosition = position;
-            if(npcPrefab.GetComponent<EntityWrapper>() == null)
-            {
-                Debug.LogWarning("The given npc prefab:" + npcPrefab.name + "does not have an EntityWrapper component on its root object. Aborted spawning.");
-                return null;
-            }
+            Debug.LogWarning("The given npc prefab:" + npcPrefab.name + "does not have an EntityWrapper component on its root object. Aborted spawning.");
+            return null;
+        }
 
-            if(!stageManager.CheckValidTile(position) && safetyNet == false)
+        if(!stageManager.CheckValidTile(position) && safetyNet == false)
+        {
+            Debug.LogWarning("Cannot spawn npc at position: " + position + " because it is invalid. Aborted spawning.");
+            return null;
+        }else
+        //Safety net check where if the given position isn't valid, try and find a valid position in a radius of 2 tiles and spawn the entity there instead.
+        if(!stageManager.CheckValidTile(position))
+        {
+            foreach(Vector3Int pos in VectorDirections.Vector3IntAll)
             {
-                Debug.LogWarning("Cannot spawn npc at position: " + position + " because it is invalid. Aborted spawning.");
-                return null;
-            }else
-            //Safety net check where if the given position isn't valid, try and find a valid position in a radius of 2 tiles and spawn the entity there instead.
-            if(!stageManager.CheckValidTile(position))
-            {
-                foreach(Vector3Int pos in VectorDirections.Vector3IntAll)
+                if(stageManager.CheckValidTile(actualSpawnPosition + pos))
                 {
-                    if(stageManager.CheckValidTile(actualSpawnPosition + pos))
-                    {
-                        actualSpawnPosition += pos;
-                        break;
-                    }
-                    if(stageManager.CheckValidTile(actualSpawnPosition + pos * 2))
-                    {
-                        actualSpawnPosition += pos * 2;
-                        break;
-                    }
+                    actualSpawnPosition += pos;
+                    break;
+                }
+                if(stageManager.CheckValidTile(actualSpawnPosition + pos * 2))
+                {
+                    actualSpawnPosition += pos * 2;
+                    break;
                 }
             }
+        }
 
-            if(!stageManager.CheckValidTile(actualSpawnPosition))
-            {
-                Debug.LogWarning("Could not spawn npc at or near position: " + position + ". Aborted spawning.");
-                return null;
-            }
-
-
-            GameObject npcObject = Instantiate(npcPrefab, actualSpawnPosition, Quaternion.identity, SpawnObjectParent.transform);
-            StageEntity npcEntity = npcObject.GetComponent<EntityWrapper>().stageEntity;
-            _currentActiveNPCS.Add(npcEntity);
-            npcEntity.OnDestructionEvent += RemoveNPCFromActiveList;
-            ActiveStageEntities = _currentActiveNPCS;
-            return npcEntity;
-
+        if(!stageManager.CheckValidTile(actualSpawnPosition))
+        {
+            Debug.LogWarning("Could not spawn npc at or near position: " + position + ". Aborted spawning.");
+            return null;
         }
 
 
+        GameObject npcObject = Instantiate(npcPrefab, actualSpawnPosition, Quaternion.identity, SpawnObjectParent.transform);
+        StageEntity npcEntity = npcObject.GetComponent<EntityWrapper>().stageEntity;
+        _currentActiveNPCS.Add(npcEntity);
+        npcEntity.OnDestructionEvent += RemoveNPCFromActiveList;
+        ActiveStageEntities = _currentActiveNPCS;
+        return npcEntity;
+
+    }
+
+   public StageEntity TrySpawnNPCPrefab(GameObject npcPrefab, Vector3Int position, out bool success , bool safetyNet = true)
+    {
+        Vector3Int actualSpawnPosition = position;
+        if(npcPrefab.GetComponent<EntityWrapper>() == null)
+        {
+            Debug.LogWarning("The given npc prefab:" + npcPrefab.name + "does not have an EntityWrapper component on its root object. Aborted spawning.");
+            success = false;
+            return null;
+        }
+
+        if(!stageManager.CheckValidTile(position) && safetyNet == false)
+        {
+            Debug.LogWarning("Cannot spawn npc at position: " + position + " because it is invalid. Aborted spawning.");
+            success = false;
+            return null;
+        }else
+        //Safety net check where if the given position isn't valid, try and find a valid position in a radius of 2 tiles and spawn the entity there instead.
+        if(!stageManager.CheckValidTile(position))
+        {
+            foreach(Vector3Int pos in VectorDirections.Vector3IntAll)
+            {
+                if(stageManager.CheckValidTile(actualSpawnPosition + pos))
+                {
+                    actualSpawnPosition += pos;
+                    break;
+                }
+                if(stageManager.CheckValidTile(actualSpawnPosition + pos * 2))
+                {
+                    actualSpawnPosition += pos * 2;
+                    break;
+                }
+            }
+        }
+
+        if(!stageManager.CheckValidTile(actualSpawnPosition))
+        {
+            Debug.LogWarning("Could not spawn npc at or near position: " + position + ". Aborted spawning.");
+            success = false;
+            return null;
+        }
+
+
+        GameObject npcObject = Instantiate(npcPrefab, actualSpawnPosition, Quaternion.identity, SpawnObjectParent.transform);
+        StageEntity npcEntity = npcObject.GetComponent<EntityWrapper>().stageEntity;
+        _currentActiveNPCS.Add(npcEntity);
+        npcEntity.OnDestructionEvent += RemoveNPCFromActiveList;
+        ActiveStageEntities = _currentActiveNPCS;
+        success = true;
+        return npcEntity;
+
+    }
 
 
     void SpawnNPCOnRandomPosition(NPCSpawnData npcSpawnData)
