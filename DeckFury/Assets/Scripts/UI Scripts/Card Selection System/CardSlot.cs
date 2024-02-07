@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,7 +22,8 @@ public class CardSlot : MonoBehaviour
 [Header("Audio Clips")]
     [SerializeField] EventReference onHoverSFX;
     [SerializeField] EventReference onClickSFX;
-
+    EventInstance onHoverSFXInstance;
+    EventInstance onClickSFXInstance;
 
     private void Awake()
     {
@@ -37,6 +39,8 @@ public class CardSlot : MonoBehaviour
             button.interactable = false;    
         }
 
+        onHoverSFXInstance = RuntimeManager.CreateInstance(onHoverSFX);
+        onClickSFXInstance = RuntimeManager.CreateInstance(onClickSFX);
     }
 
     public void Initialize(CardObjectReference card)
@@ -59,7 +63,7 @@ public class CardSlot : MonoBehaviour
     {
         if(button.interactable)
         {
-            RuntimeManager.PlayOneShot(onHoverSFX);
+            onHoverSFXInstance.start();
         }
 
     }

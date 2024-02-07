@@ -5,6 +5,7 @@ using DG.Tweening;
 using UnityEngine.InputSystem;
 using FMODUnity;
 using UnityEngine.UI;
+using FMOD.Studio;
 
 //Script that handles functionality of the card selection menu
 public class CardSelectionMenu : MonoBehaviour
@@ -74,6 +75,7 @@ public class CardSelectionMenu : MonoBehaviour
     [SerializeField] EventReference previewStageSFX;
     [SerializeField] EventReference unpreviewStageSFX;
     [SerializeField] EventReference onClickValidCardSlotSFX;
+    EventInstance onClickValidCardSlotSFXInstance;
 
     [Header("Focus Mode Button")]
     [SerializeField] GameObject focusModeButton;
@@ -124,6 +126,7 @@ public class CardSelectionMenu : MonoBehaviour
             ActivateMenu();
         }
 
+        onClickValidCardSlotSFXInstance = RuntimeManager.CreateInstance(onClickValidCardSlotSFX);
     }
 
     // Update is called once per frame
@@ -339,7 +342,8 @@ public class CardSelectionMenu : MonoBehaviour
 
         }
 
-        RuntimeManager.PlayOneShot(onClickValidCardSlotSFX);
+        onClickValidCardSlotSFXInstance.start();
+
 
     }
 
@@ -373,7 +377,7 @@ public class CardSelectionMenu : MonoBehaviour
            
         }
 
-        RuntimeManager.PlayOneShot(onClickValidCardSlotSFX);
+        onClickValidCardSlotSFXInstance.start();
 
     }
 

@@ -6,6 +6,7 @@ using System;
 using Random = UnityEngine.Random;
 using DG.Tweening;
 using FMODUnity;
+using FMOD.Studio;
 
 public class MapStage : MonoBehaviour
 {
@@ -54,8 +55,10 @@ public class MapStage : MonoBehaviour
     [field:SerializeField] public bool IsFinalStage { get; set; } = false;
     [SerializeField] bool IsMysteryStage;
 
-    [Header("SFX")]
+ [Header("SFX")]
     [SerializeField] EventReference hoverSFX;
+    EventInstance hoverSFXInstance;
+
     void Awake() 
     {
         mapStageIcon = GetComponent<Image>();
@@ -83,6 +86,7 @@ public class MapStage : MonoBehaviour
 
         StagePreviewPopup.transform.localScale = new Vector3(0, 0.9f, 0.9f);
 
+        hoverSFXInstance = RuntimeManager.CreateInstance(hoverSFX);
     }
 
     public void GenerateStageValues()
@@ -243,7 +247,7 @@ public class MapStage : MonoBehaviour
         whiteDropShadow.gameObject.SetActive(true);
         buttonIcon.transform.DOScale(1.2f, 0.1f);
         whiteDropShadow.transform.DOScale(1.2f, 0.1f);
-        RuntimeManager.PlayOneShot(hoverSFX);
+        hoverSFXInstance.start();
     }
 
     public void ExitHover()
