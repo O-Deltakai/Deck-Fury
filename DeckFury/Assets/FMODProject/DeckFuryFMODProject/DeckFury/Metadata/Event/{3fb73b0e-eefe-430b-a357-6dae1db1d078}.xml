@@ -131,7 +131,7 @@
 	<object class="MixerBusPanner" id="{a4776e68-e382-42f1-90ed-287fa5779517}" />
 	<object class="SingleSound" id="{9fea32f3-eb2c-4829-891a-f31f0965fd03}">
 		<property name="startOffset">
-			<value>21.5</value>
+			<value>29.5</value>
 		</property>
 		<property name="volume">
 			<value>-15.5</value>
@@ -145,7 +145,7 @@
 	</object>
 	<object class="SingleSound" id="{540f8380-0ab3-4425-81b4-949ecdc0cc51}">
 		<property name="startOffset">
-			<value>5</value>
+			<value>11</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{d010c860-7e3f-46f0-800b-95785b94a694}</destination>
@@ -155,6 +155,9 @@
 		</relationship>
 	</object>
 	<object class="SingleSound" id="{91a5a7d9-3ce0-4b56-8021-9a65dca1ae46}">
+		<property name="startOffset">
+			<value>2.5</value>
+		</property>
 		<property name="volume">
 			<value>-25.5</value>
 		</property>

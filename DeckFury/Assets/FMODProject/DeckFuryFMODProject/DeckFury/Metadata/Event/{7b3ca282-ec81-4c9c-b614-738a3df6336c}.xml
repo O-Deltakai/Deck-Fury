@@ -62,7 +62,11 @@
 			<destination>{cb596ac6-9895-48a9-8853-f9e51504b510}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{fefff639-ac6d-4cf6-bd23-67c11242fb47}" />
+	<object class="EventAutomatableProperties" id="{fefff639-ac6d-4cf6-bd23-67c11242fb47}">
+		<property name="maxVoices">
+			<value>4</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{dd77f5cb-3aa6-41ef-9d23-a829de6d8c8a}" />
 	<object class="GroupTrack" id="{3de257c7-5472-45dd-8341-eaed94a7aaf4}">
 		<relationship name="mixerGroup">
@@ -130,7 +134,11 @@
 			<destination>{d9620daa-b9c8-4204-9fce-ad3d12bf6485}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{21399992-dddb-4986-8355-b6563fec9c9f}" />
+	<object class="MixerBusPanner" id="{21399992-dddb-4986-8355-b6563fec9c9f}">
+		<relationship name="modulators">
+			<destination>{199ec9c7-ef3f-496c-99d8-18ccb9bf7cf1}</destination>
+		</relationship>
+	</object>
 	<object class="SingleSound" id="{ab9d9447-577c-48cd-8c20-13007a2d6d23}">
 		<property name="volume">
 			<value>-2.5</value>
@@ -191,10 +199,18 @@
 			<value>1</value>
 		</property>
 		<property name="soundSize">
-			<value>3.4000001</value>
+			<value>10</value>
 		</property>
 		<property name="minimumExtent">
 			<value>208</value>
+		</property>
+	</object>
+	<object class="RandomizerModulator" id="{199ec9c7-ef3f-496c-99d8-18ccb9bf7cf1}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>surroundPanDirection</value>
+		</property>
+		<property name="amount">
+			<value>6</value>
 		</property>
 	</object>
 	<object class="RandomizerModulator" id="{ba23a1c5-acb2-403a-88dc-d5b6d3d8b58e}">

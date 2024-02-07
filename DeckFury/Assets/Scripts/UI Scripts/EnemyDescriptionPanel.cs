@@ -5,6 +5,7 @@ using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
 using FMODUnity;
+using FMOD.Studio;
 
 public class EnemyDescriptionPanel : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class EnemyDescriptionPanel : MonoBehaviour
 
     [Header("SFX")]
     [SerializeField] EventReference onClickSFX;
+    EventInstance  onClickSFXInstance;
 
     bool panelIsOpen = false;
 
@@ -51,6 +53,8 @@ public class EnemyDescriptionPanel : MonoBehaviour
         cardSelectionMenu = GameErrorHandler.NullCheck(CardSelectionMenu.Instance, "CardSelectionMenu");
         AssignEvents();
         AssignDataToPanel(enemyData);
+
+        onClickSFXInstance = RuntimeManager.CreateInstance(onClickSFX);
     }
 
     void AssignEvents()
@@ -155,7 +159,7 @@ public class EnemyDescriptionPanel : MonoBehaviour
             ToggleDescriptionPanel(true);
         }
 
-        RuntimeManager.PlayOneShot(onClickSFX);
+        onClickSFXInstance.start();
     }
 
     void EnableSelectorButton()
