@@ -49,16 +49,20 @@ public class TutorialController : MonoBehaviour
     [SerializeField] Vector2 previewEnemyAnchor;
     [SerializeField] Vector2 dashTutorialAnchor = new Vector2(607, 376);
     [SerializeField] Vector2 phase5TutorialAnchor;
+    [SerializeField] Vector2 phase5OrderTutorialAnchor = new(574, 500);
 
 [Header("Dialogue Text")]
     [SerializeField] HintsContainerSO phase0Dialogue;
     [SerializeField] HintsContainerSO phase1Dialogue;
     [SerializeField] HintsContainerSO phase2Dialogue;
+    [Header("Phase 3 Dialogue")]
     [SerializeField] HintsContainerSO phase3Dialogue;
     [SerializeField] HintsContainerSO cardSelectionTutorialDialogue;
     [SerializeField] HintsContainerSO synergyTutorialDialogue;
-
     [SerializeField] HintsContainerSO phase4Dialogue;
+    [SerializeField] HintsContainerSO phase5Dialogue;
+
+
 
     [SerializeField] AimpointController playerAimpointController;
 
@@ -75,8 +79,10 @@ public class TutorialController : MonoBehaviour
     [SerializeField] GameObject previewStageButton;
 
 
-    [Header("Phase 5 Elements")]
+[Header("Phase 5 Elements")]
     [SerializeField] DeckSO phase5Deck;
+    [SerializeField] ImageBlinker statusElementBlinker;
+
 
     HintsContainerSO currentDialogue;
 
@@ -110,6 +116,7 @@ public class TutorialController : MonoBehaviour
         energyController.DisableEnergyBar();
 
         FocusModeController.Instance.HideFocusModeUI();
+        FocusModeController.Instance.FullDisableFocusMode = true;
 
         PressBackspaceToRewind.SetActive(false);
 
@@ -377,10 +384,12 @@ public class TutorialController : MonoBehaviour
     {
         cardSelectionMenu.OnMenuActivated -= InitiateSynergyTutorial;
         cardSelectionMenu.OnMenuDisabled -= CloseSynergyTutorial;
+        cardSelectionMenu.OnSelectSpecificCard -= ClickedCardSynergyTutorial;
 
         previewStageButton.SetActive(true);
 
         cardSelectionMenu.OnSelectSpecificCard -= ClickedCardSynergyTutorial;
+        cardSelectionMenu.OnPreviewStage -= TalkAboutEnemyDescriptionPanel;
         cardSelectionMenu.OnUnpreviewStage -= TalkAboutSynergy;
 
         currentDialogueIndex = 0;
@@ -393,6 +402,50 @@ public class TutorialController : MonoBehaviour
 
     }
 
+
+    void InitiatePhase_5() //Tutorial for focus mode
+    {
+        FocusModeController.Instance.FullDisableFocusMode = false;
+        cardSelectionMenu.canUsePreviewButton = true;
+        previewStageButton.SetActive(true);
+        previewStageButton.GetComponent<Button>().interactable = true;
+
+
+        statusElementBlinker.IsActive = true;
+
+        PressEnterToContinue.SetActive(false);
+        PressBackspaceToRewind.SetActive(false);
+        cardSelectionMenu.OnMenuActivated += TalkAboutCardComboes;
+        cardSelectionMenu.OnMenuDisabled += TalkAboutMiddleDummy;
+
+        cardPoolManager.SetDefaultDeck(phase5Deck);
+        currentDialogueIndex = 0;
+        currentDialogue = phase5Dialogue;
+        tutorialDialogueText.text = currentDialogue.HintList[0];
+
+        FocusModeController.Instance.ShowFocusModeUI();
+        FocusModeController.Instance.CanActivateFocusMode = true;
+
+        TalkAboutMiddleDummy();
+
+        void TalkAboutMiddleDummy()
+        {
+            SetTutorialDialogue(0);
+            TutorialDialogueBox.transform.DOLocalMove(
+                new Vector3(phase5TutorialAnchor.x, phase5TutorialAnchor.y, 0),
+                0.5f).SetUpdate(true).SetEase(Ease.InOutSine);       
+
+        }
+
+        void TalkAboutCardComboes()
+        {
+            SetTutorialDialogue(1);
+            TutorialDialogueBox.transform.DOLocalMove(
+                new Vector3(phase5OrderTutorialAnchor.x, phase5OrderTutorialAnchor.y, 0),
+                0.5f).SetUpdate(true).SetEase(Ease.InOutSine);               
+        }
+
+    }
 
 
     void RegeneratePlayerHP(int beforeDamageValue, int afterDamageValue)
@@ -508,6 +561,10 @@ public class TutorialController : MonoBehaviour
                 InitiatePhase_4();
             break;
 
+            case 5:
+                InitiatePhase_5();
+            break;
+
             default :
                 
                 break;
@@ -541,7 +598,7 @@ public class TutorialController : MonoBehaviour
         
         currentPhase++;
 
-        if(currentPhase >= 5)
+        if(currentPhase >= cameraPositionForPhase.Count)
         {
             sceneLoader.LoadScene(SceneNames.MainMenu.ToString());
             return;

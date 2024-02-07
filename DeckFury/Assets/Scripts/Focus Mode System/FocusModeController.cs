@@ -21,6 +21,7 @@ public class FocusModeController : MonoBehaviour
     public static FocusModeController Instance => _instance;
 
     public static bool IsFocusModeActive { get; private set; } = false;
+    
 
 [Header("Focus Mode Properties")]
     [Tooltip("Number of actions the player can perform while in focus mode")]
@@ -45,6 +46,8 @@ public class FocusModeController : MonoBehaviour
     [SerializeField] float _timeRemaining = 10;
     public float TimeRemaining => _timeRemaining;
 
+    [SerializeField] bool _fullDisableFocusMode = false;
+    public bool FullDisableFocusMode {get => _fullDisableFocusMode; set => _fullDisableFocusMode = value;}
     [SerializeField] bool _canActivateFocusMode = true;
     public bool CanActivateFocusMode {get => _canActivateFocusMode; 
         set
@@ -220,13 +223,13 @@ public class FocusModeController : MonoBehaviour
 
     public void ShowFocusModeUI()
     {
-        _focusMeterElement.transform.position = new Vector3(200, 0, 0);
+        _focusMeterElement.transform.localPosition = new Vector3(200, 0, 0);
         if(_focusModeResourceMeter.CurrentFloatValue >= _focusModeDuration)
         {
             ShowTooltip();
         }
         _focusModeUI.SetActive(true);
-        _focusMeterElement.transform.DOMoveX(0, 0.5f).SetUpdate(true).SetEase(Ease.OutCirc);
+        _focusMeterElement.transform.DOLocalMoveX(0, 0.5f).SetUpdate(true).SetEase(Ease.OutCirc);
 
     }
 
@@ -324,6 +327,7 @@ public class FocusModeController : MonoBehaviour
 
     public void TriggerFocusMode()
     {
+        if(FullDisableFocusMode) { return; }
         if(_canActivateFocusMode)
         {
             ActivateFocusMode();
@@ -334,6 +338,8 @@ public class FocusModeController : MonoBehaviour
 
     public void ActivateFocusMode()
     {
+        if(FullDisableFocusMode) { return; }
+
         //SFX stuff
         focusModeActivateSFXInstance.start();
         focusModeAmbienceEmitterObject.SetActive(true);

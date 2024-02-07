@@ -70,6 +70,7 @@ public class HealingFactor : MonoBehaviour
                 entity.CurrentHP += healAmount;
                 if(entity.CurrentHP > entityStartHP)
                 {
+                    yield return new WaitForSeconds(healInterval);
                     entity.CurrentHP = entityStartHP;
                 }
             }

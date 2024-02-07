@@ -17,9 +17,12 @@ public class EnemyRespawner : MonoBehaviour
 
     [SerializeField] float respawnTimer = 2f;
 
+    [SerializeField] GameObject spawnPositionParent;
+
     void Start()
     {
-        foreach (var tr in gameObject.GetComponentsInChildren<Transform>())
+        SpawnEnemies();
+        foreach (var tr in spawnPositionParent.GetComponentsInChildren<Transform>())
         {
             tr.gameObject.SetActive(false);
         }

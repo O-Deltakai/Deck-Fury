@@ -5010,7 +5010,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fullCharge: 0
-  chargeRateModifier: 1
   yAnchorPosition: 0
   cardSelectionMenu: {fileID: 1388264035952647060}
   AlwaysFullCharge: 0
@@ -5023,6 +5022,7 @@ MonoBehaviour:
   arrowImage: {fileID: 1191719542318809382}
   energyChargeTime: 8
   energyMeter: {fileID: 5885974397929556702}
+  chargeRateModifier: 1
   energyFullSFX:
     Guid:
       Data1: 1769537412
@@ -7111,7 +7111,7 @@ MonoBehaviour:
   statusName: {fileID: 8792830672154832900}
   statusPopoutIcon: {fileID: 3136586657173970428}
   <CurrentlyViewedCardSO>k__BackingField: {fileID: 0}
-  fadeoutDuration: 2
+  fadeoutDuration: 2.5
 --- !u!114 &8573467833264700722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12848,6 +12848,14 @@ PrefabInstance:
     - target: {fileID: 4258124176476825507, guid: 1d4877be05288ea40a78502f3ddfb9e4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258962359592681238, guid: 1d4877be05288ea40a78502f3ddfb9e4, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258962359592681238, guid: 1d4877be05288ea40a78502f3ddfb9e4, type: 3}
+      propertyPath: m_OverrideSorting
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7580899354096320044, guid: 1d4877be05288ea40a78502f3ddfb9e4, type: 3}
       propertyPath: m_Name
