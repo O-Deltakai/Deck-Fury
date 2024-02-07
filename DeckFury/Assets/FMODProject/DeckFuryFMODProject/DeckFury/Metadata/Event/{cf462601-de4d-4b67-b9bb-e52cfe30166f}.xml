@@ -84,6 +84,9 @@
 		<property name="volume">
 			<value>-3</value>
 		</property>
+		<property name="pitch">
+			<value>-1.80000007</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{f5825244-5bd1-4970-9c5d-f8f3b4f51fb3}</destination>
 		</relationship>
@@ -217,7 +220,7 @@
 	</object>
 	<object class="ThreeEQEffect" id="{5c247f13-cf68-45b2-bc2d-141184845bb6}">
 		<property name="lowGain">
-			<value>1.5</value>
+			<value>2.5</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{6dea857a-f32c-448b-9b9a-6197cab2b68d}" />

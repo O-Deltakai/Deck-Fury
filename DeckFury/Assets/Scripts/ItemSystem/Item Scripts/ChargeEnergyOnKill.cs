@@ -42,7 +42,7 @@ public class ChargeEnergyOnKill : ItemBase
 
     public override void Deactivate()
     {
-        EventBus<NPCKilledEvent>.Deregister(npcKilledEventBinding);
+        //EventBus<NPCKilledEvent>.Deregister(npcKilledEventBinding);
         base.Deactivate();
     }
 
