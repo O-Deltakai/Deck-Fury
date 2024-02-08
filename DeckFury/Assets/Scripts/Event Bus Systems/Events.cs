@@ -17,6 +17,13 @@ public struct NPCKilledEvent : IEvent
     public Vector3 positionAtDeath;
 }
 
+public struct NPCDamagedEvent : IEvent
+{
+    public NPC npc;
+    public int damageTaken;
+    
+}
+
 public struct UseCardEvent : IEvent
 {
     public CardObjectReference card;

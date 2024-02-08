@@ -266,7 +266,7 @@ public class FocusModeController : MonoBehaviour
     void ShowTooltip()
     {
         if(!_canActivateFocusMode) { return; }
-        if(CardSelectionMenu.IsOpen){ return; }
+        //if(CardSelectionMenu.IsOpen){ return; }
         if(TW_focusModeTooltipTween.IsActive()){TW_focusModeTooltipTween.Kill();}
         _focusModeTooltip.transform.localPosition = new Vector3(-1000, focusModeTooltipStartPos.y, focusModeTooltipStartPos.z);
         _focusModeTooltip.SetActive(true);

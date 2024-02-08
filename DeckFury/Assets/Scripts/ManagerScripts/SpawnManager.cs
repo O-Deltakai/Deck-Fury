@@ -57,7 +57,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] int roundNumber = 1;
     [SerializeField] int maxRoundNumber = 10;
     [SerializeField] bool StopRandomSpawning = false;
-
+    [SerializeField] float spawnDelay = 0.8f;
 
 
     private void Awake() 
@@ -225,38 +225,50 @@ public class SpawnManager : MonoBehaviour
     
 
         WaveTable wave = spawnTable.WaveList[actualWaveIndex];
-        SpawnWave(wave);
-    }
-    void SpawnWave(WaveTable waveTable)
-    {
-        foreach(NPCSpawnData npcSpawn in waveTable.NPCSpawns)
+        if(actualWaveIndex == 0)
         {
-            switch (npcSpawn.SpawnZone) 
+            SpawnWave(wave, false);
+        }else
+        {
+            SpawnWave(wave);
+        }
+    }
+    void SpawnWave(WaveTable waveTable, bool delayedSpawn = true)
+    {
+        for (int i = 0; i < waveTable.NPCSpawns.Count; i++)
+        {
+            NPCSpawnData npcSpawn = waveTable.NPCSpawns[i];
+            switch (npcSpawn.SpawnZone)
             {
                 case SpawnType.OuterMap:
-                SpawnNPCWithSpawnZone(npcSpawn, SpawnType.OuterMap);
-                break;
+                    SpawnNPCWithSpawnZone(npcSpawn, SpawnType.OuterMap, delayedSpawn);
+                    break;
 
                 case SpawnType.InnerMap:
-                SpawnNPCWithSpawnZone(npcSpawn, SpawnType.InnerMap);
-                break;
+                    SpawnNPCWithSpawnZone(npcSpawn, SpawnType.InnerMap, delayedSpawn);
+
+                    break;
 
                 case SpawnType.NearPlayer:
-                SpawnNPCNearOrAwayFromPlayer(npcSpawn, SpawnType.NearPlayer);
-                break;
+                    SpawnNPCNearOrAwayFromPlayer(npcSpawn, SpawnType.NearPlayer, delayedSpawn);
+
+                    break;
 
                 case SpawnType.AwayFromPlayer:
-                SpawnNPCNearOrAwayFromPlayer(npcSpawn, SpawnType.AwayFromPlayer);
-                break;
+                    SpawnNPCNearOrAwayFromPlayer(npcSpawn, SpawnType.AwayFromPlayer, delayedSpawn);
+
+                    break;
 
                 case SpawnType.Random:
-                SpawnNPCOnRandomPosition(npcSpawn);
-                break;
+                    SpawnNPCOnRandomPosition(npcSpawn, delayedSpawn);
+
+                    break;
 
                 default:
-                break;
+                    break;
             }
         }
+
         OnSpawnNewWave?.Invoke(_currentActiveNPCS);
     }
 
@@ -299,7 +311,7 @@ public class SpawnManager : MonoBehaviour
         return actualSpawnCount;
     }
 
-    void SpawnNPCNearOrAwayFromPlayer(NPCSpawnData npcSpawnData, SpawnType spawnType)
+    void SpawnNPCNearOrAwayFromPlayer(NPCSpawnData npcSpawnData, SpawnType spawnType, bool delayedSpawn = true)
     {
         if(spawnType != SpawnType.NearPlayer && spawnType != SpawnType.AwayFromPlayer)
         {
@@ -391,13 +403,22 @@ public class SpawnManager : MonoBehaviour
                  " it appears the spawn zone is full or completely invalid - skipped spawning this npc");
                 return;
             }
+            actualSpawnZone.Remove(spawnPosition);
 
-            SpawnNPCPrefab(npcSpawnData.NPCPrefab, spawnPosition);
+            if (delayedSpawn)
+            { 
+                DelayedSpawnNPCPrefab(npcSpawnData.NPCPrefab, spawnPosition, spawnDelay);
+            }else
+            {
+                SpawnNPCPrefab(npcSpawnData.NPCPrefab, spawnPosition);
+            }
+
+
                                       
         }
     }
 
-    void SpawnNPCWithSpawnZone(NPCSpawnData npcSpawnData, SpawnType spawnZone)
+    void SpawnNPCWithSpawnZone(NPCSpawnData npcSpawnData, SpawnType spawnZone, bool delayedSpawn = true)
     {
         if(OuterSpawnZoneTilemap == null || InnerSpawnZoneTilemap == null){return;}
         if(spawnZone != SpawnType.OuterMap && spawnZone != SpawnType.InnerMap)
@@ -473,8 +494,17 @@ public class SpawnManager : MonoBehaviour
             }
             
             randomTile = stageManager.groundTileDictionary[outerSpawnPositions[index]];
+            actualSpawnZone.Remove(randomTile.localCoordinates);
 
-            SpawnNPCPrefab(npcSpawnData.NPCPrefab, randomTile.localCoordinates);
+            if(delayedSpawn)
+            {
+                DelayedSpawnNPCPrefab(npcSpawnData.NPCPrefab, randomTile.localCoordinates, spawnDelay);
+            }else
+            {
+                SpawnNPCPrefab(npcSpawnData.NPCPrefab, randomTile.localCoordinates);
+            }
+            
+
 
 
         }
@@ -519,6 +549,22 @@ public class SpawnManager : MonoBehaviour
     }
 
 
+    void DelayedSpawnNPCPrefab(GameObject npcPrefab, Vector3Int position, float delay)
+    {
+        StartCoroutine(SpawnWarningTimer(npcPrefab, delay, position));        
+
+        
+
+    }
+
+    IEnumerator SpawnWarningTimer(GameObject npcPrefab, float delay, Vector3Int position)
+    {
+        stageManager.SetSpawnWarningTile(position, delay);
+
+        yield return new WaitForSeconds(delay);
+
+        SpawnNPCPrefab(npcPrefab, position);
+    }
 
     /// <summary>
     /// Spawns a given NPC prefab - this prefab must have an EntityWrapper component on the root object or it will abort spawning.
@@ -629,7 +675,7 @@ public class SpawnManager : MonoBehaviour
     }
 
 
-    void SpawnNPCOnRandomPosition(NPCSpawnData npcSpawnData)
+    void SpawnNPCOnRandomPosition(NPCSpawnData npcSpawnData, bool delayedSpawn = true)
     {
         int actualSpawnCount = ValidateSpawnCount(npcSpawnData);//Make sure the spawn count is greater than 0 but less than 51.
 
@@ -665,7 +711,14 @@ public class SpawnManager : MonoBehaviour
                 }
             }    
 
-            SpawnNPCPrefab(npcSpawnData.NPCPrefab, spawnPosition);
+            if(delayedSpawn)
+            {
+                DelayedSpawnNPCPrefab(npcSpawnData.NPCPrefab, spawnPosition, spawnDelay);
+            }else
+            {
+                SpawnNPCPrefab(npcSpawnData.NPCPrefab, spawnPosition);
+            }
+
         }
     }
 

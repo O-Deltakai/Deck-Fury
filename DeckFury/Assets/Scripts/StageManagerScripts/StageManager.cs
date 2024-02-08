@@ -28,7 +28,7 @@ public class StageManager : MonoBehaviour
     //VFXTilemap is used to for managing tile-based VFX, e.g. danger indicators
     [field:SerializeField] public Tilemap VFXTilemap{get; private set;}
     [field:SerializeField] public TileBase DangerVFXTile{get; private set;}
-
+    [SerializeField] TileBase spawnWarningTile;
 
     public Dictionary<Vector3, GroundTileData> groundTileDictionary {get; private set;}
     //Seperate list of ground tiles (uses the ground tiles defined within groundTileDictionary) for when an indexer is required
@@ -249,6 +249,14 @@ public class StageManager : MonoBehaviour
     public void SetWarningTiles(List<Vector2Int> positions, float duration)
     {
         StartCoroutine(SetVFXTileCoroutine(DangerVFXTile, positions, duration));
+    }
+    public void SetWarningTile(Vector3Int position, float duration)
+    {
+        StartCoroutine(SetVFXTileCoroutine(DangerVFXTile, position, duration));
+    }
+    public void SetSpawnWarningTile(Vector3Int position, float duration)
+    {
+        StartCoroutine(SetVFXTileCoroutine(spawnWarningTile, position, duration));
     }
 
     //Sets a tile position on the VFXTilemap to the given tile for a duration before removing the tile after said duration

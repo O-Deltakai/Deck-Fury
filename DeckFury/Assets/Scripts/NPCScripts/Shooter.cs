@@ -42,7 +42,7 @@ public class Shooter : NPC
 
     [SerializeField] EventReference prepareToFireSFX;
     [SerializeField] EventReference fireBulletSFX;
-
+    [SerializeField] float bulletSpeed = 12;
 
 
     bool isPreparedToFire;
@@ -193,7 +193,7 @@ public class Shooter : NPC
         bullet.ChangeTrailRendererColor(Color.red);
         bullet.team = EntityTeam.Enemy;
         bullet.velocity = bulletVelocity;
-        bullet.speed = 15;
+        bullet.speed = bulletSpeed;
         bullet.trailRenderer.time = 0.2f;
         bullet.attackPayload = bulletPayload;
 

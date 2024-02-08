@@ -89,6 +89,8 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] ScoreRewardTableSO bonusRewardTable;
     [field:SerializeField] public List<BonusScoreItemSO> AppliedBonusRewards { get; private set; } = new List<BonusScoreItemSO>();
 
+    EventBinding<NPCKilledEvent> npcKilledEventBinding;
+    EventBinding<NPCDamagedEvent> npcDamagedEventBinding;
 
     int playerStartingHP;
 
@@ -100,7 +102,7 @@ public class ScoreManager : MonoBehaviour
 
         if(spawnManager)
         {
-            spawnManager.OnSpawnNewWave += SubscribeEnemiesToEvents;
+            //spawnManager.OnSpawnNewWave += SubscribeEnemiesToEvents;
             spawnManager.OnAllWavesCleared += CalculateFinalStageScore;
             spawnManager.OnAllWavesCleared += UnsubscribePlayerToEvents;
         }else
@@ -127,6 +129,24 @@ public class ScoreManager : MonoBehaviour
 
         InitializeStartingVariables();
 
+
+
+    }
+
+    void OnEnable()
+    {
+        npcKilledEventBinding = new EventBinding<NPCKilledEvent>(HandleNPCKilledEventData);
+        EventBus<NPCKilledEvent>.Register(npcKilledEventBinding);
+
+        npcDamagedEventBinding = new EventBinding<NPCDamagedEvent>(HandleNPCDamagedEventData);
+        EventBus<NPCDamagedEvent>.Register(npcDamagedEventBinding);
+
+    }
+
+    void OnDisable()
+    {
+        EventBus<NPCKilledEvent>.Deregister(npcKilledEventBinding);
+        EventBus<NPCDamagedEvent>.Deregister(npcDamagedEventBinding);
     }
 
     private void Update() 
@@ -202,6 +222,18 @@ public class ScoreManager : MonoBehaviour
         }
 
     }
+
+    void HandleNPCKilledEventData(NPCKilledEvent data)
+    {
+        EnemyDeathScoreAdd(data.killingBlow, data.npc);
+        EnemyKilled(data.killingBlow, data.npc);
+    }
+
+    void HandleNPCDamagedEventData(NPCDamagedEvent data)
+    {
+        IncrementDamageDealtToEnemies(data.damageTaken);
+    }
+
 
     void EnemyDeathScoreAdd(AttackPayload? killingBlow, NPC destroyedNPC)
     {
