@@ -48,7 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 0
   force: 1
-  spriteObject: {fileID: 0}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  spriteObject: {fileID: 3138630858003465306}
 --- !u!61 &2399381012408018930
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -92,7 +95,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.4, y: 0.4}
   m_EdgeRadius: 0
 --- !u!1 &3138630858003465306
 GameObject:
@@ -120,7 +123,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3138630858003465306}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.87, y: 0.87, z: 0.87}
   m_ConstrainProportionsScale: 1

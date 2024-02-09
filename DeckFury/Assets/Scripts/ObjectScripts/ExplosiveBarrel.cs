@@ -9,7 +9,6 @@ public class ExplosiveBarrel : StageEntity
     CinemachineImpulseSourceHelper impulseSourceHelper;
 
 
-    [SerializeField] BoxCollider2D explosionCollider;
     [SerializeField] BoxCollider2D barrelCollider;
 
     [SerializeField] AttackPayload attackPayload;
@@ -17,11 +16,14 @@ public class ExplosiveBarrel : StageEntity
     [SerializeField] GameObject shadow;
     [SerializeField] float fuseTimer = 0.5f;
 
-    [SerializeField] EventReference explosionSFX;
 
     [SerializeField] Vector2 cameraShakeVelocity;
 
+[Header("Explosion Settings")]
+    [SerializeField] LayerMask targetLayer;
+    [SerializeField] BoxCollider2D explosionCollider;
 
+    [SerializeField] EventReference explosionSFX;
     bool isExploding = false;
 
     protected override void Awake()
@@ -57,6 +59,23 @@ public class ExplosiveBarrel : StageEntity
         StartCoroutine(ExplosionTimer());
     }
 
+    void TriggerExplosionHitbox()
+    {
+        Collider2D[] hits = Physics2D.OverlapBoxAll(explosionCollider.transform.position, explosionCollider.size, 0, targetLayer);
+
+        foreach(Collider2D collider2D in hits) 
+        {
+            if(!collider2D.gameObject.TryGetComponent<StageEntity>(out var entityHit))
+            {
+                print("collider did not have a StageEntity attached");
+                continue;
+            }
+
+            entityHit.HurtEntity(attackPayload);                        
+        }
+
+    }
+
     IEnumerator ExplosionTimer()
     {
         yield return new WaitForSeconds(fuseTimer + 0.05f);
@@ -65,30 +84,8 @@ public class ExplosiveBarrel : StageEntity
 
         impulseSourceHelper.ShakeCameraRandomCircle(cameraShakeVelocity * SettingsManager.GlobalCameraShakeMultiplier, 0.3f, 1.05f);
 
-        isExploding = true;
-        explosionCollider.enabled = true;
-        shadow.SetActive(false);
-        StartCoroutine(ExplosionColliderTimer());
+        TriggerExplosionHitbox();
         StartCoroutine(DestroyEntity());
-
-    }
-
-    IEnumerator ExplosionColliderTimer()
-    {
-        yield return new WaitForSeconds(0.1f);
-        explosionCollider.enabled = false;
-    }
-
-    void OnCollisionEnter2D(Collision2D other) 
-    {
-        if(!isExploding){return;}
-        StageEntity entityHit = other.gameObject.GetComponent<StageEntity>();
-        
-        if(entityHit != null)
-        {
-            print("Name of entity detected: "+ entityHit.gameObject.name);
-            entityHit.HurtEntity(attackPayload);
-        }  
 
     }
 
