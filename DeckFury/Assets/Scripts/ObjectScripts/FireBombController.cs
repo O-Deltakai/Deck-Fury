@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using FMODUnity;
 using Cinemachine;
+using UnityEngine.Rendering.Universal;
 
 public class FireBombController : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class FireBombController : MonoBehaviour
 
     bool ThrowingInProgress;
 
+    [SerializeField] Light2D explosionLight;
 
     private void Awake() 
     {
@@ -53,6 +55,7 @@ public class FireBombController : MonoBehaviour
         bombExplosionAnimEventRelay.OnAnimationEvent += ActivateExplosionCollider;
 
         impulseSourceHelper = GetComponent<CinemachineImpulseSourceHelper>();
+        explosionLight.enabled = false;
     }
 
     void Start()
@@ -151,6 +154,7 @@ public class FireBombController : MonoBehaviour
    //Called by animation event on explosion animation through the AnimationEventIntermediary
     void ActivateExplosionCollider()
     {
+        explosionLight.enabled = true;
         bombExplosionCollider.enabled = true;
 
         int stageEntitiesLayer = LayerMask.NameToLayer(LayerNames.StageEntities.ToString());
@@ -184,6 +188,8 @@ public class FireBombController : MonoBehaviour
         }
 
         StartCoroutine(ExplosionColliderDuration(0.2f));
+        DOTween.To(() => explosionLight.intensity = 0f, x => explosionLight.intensity = x, 1.18f, 0.15f).SetUpdate(true).SetEase(Ease.InOutSine)
+        .OnComplete(() => DOTween.To(() => explosionLight.intensity = 1.18f, x => explosionLight.intensity = x, 0, 0.05f).SetUpdate(true).SetEase(Ease.InOutSine));
     }
 
     IEnumerator ExplosionColliderDuration(float duration)
@@ -198,6 +204,7 @@ public class FireBombController : MonoBehaviour
         yield return new WaitForSeconds(fireBombExplosionVFX.length);
         bombExplosionCollider.gameObject.SetActive(false);
         ThrowingInProgress = false;
+        explosionLight.enabled = false;
         DisableObject();
     }
     

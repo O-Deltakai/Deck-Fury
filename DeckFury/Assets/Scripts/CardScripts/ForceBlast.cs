@@ -23,6 +23,8 @@ public class ForceBlast : CardEffect
 
     public override void ActivateCardEffect()
     {
+        StartCoroutine(DisableEffectPrefab());
+
         //StartCoroutine(HardDisableTimer());
         aimpoint = player.aimpoint;
         transform.position = player.worldTransform.position;
@@ -80,7 +82,6 @@ public class ForceBlast : CardEffect
 
         
 
-        StartCoroutine(DisableEffectPrefab());
     }
 
 

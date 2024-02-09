@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class DamageBufferOnFullEnergy : ItemBase
 {
@@ -10,6 +11,7 @@ public class DamageBufferOnFullEnergy : ItemBase
     Vector3 originalVFXScale;
     [SerializeField] SpriteRenderer bufferSpriteRenderer;
 
+    [SerializeField] Light2D bufferLight;
 
     DamageBuffer damageBuffer = new DamageBuffer();
     EnergyController energyController;
@@ -71,6 +73,7 @@ public class DamageBufferOnFullEnergy : ItemBase
     void ActivateBufferVFX()
     {
         bufferVFXObject.SetActive(true);
+        bufferLight.enabled = true;
         bufferVFXObject.transform.DOScale(originalVFXScale, dissipateSpeed);
         bufferSpriteRenderer.DOFade(1, dissipateSpeed);
 
@@ -82,6 +85,7 @@ public class DamageBufferOnFullEnergy : ItemBase
 
     void BreakBuffer()
     {
+        bufferLight.enabled = false;
         bufferVFXObject.transform.DOScale(dissipateScale, dissipateSpeed);
         bufferSpriteRenderer.DOFade(0, dissipateSpeed);
         bufferActive = false;

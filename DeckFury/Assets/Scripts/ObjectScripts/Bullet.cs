@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Bullet : MonoBehaviour
 {
@@ -16,12 +17,16 @@ public class Bullet : MonoBehaviour
 
     bool canGoThroughWalls = true;
 
+    [SerializeField] Color bulletColor;
+    Light2D bulletLight;
+
     void Awake() 
     {
         rigidBody = GetComponent<Rigidbody2D>();    
         trailRenderer = GetComponent<TrailRenderer>();
-        
+        bulletLight = GetComponent<Light2D>();
   
+        bulletLight.color = bulletColor;
     }
 
     void Start()
@@ -45,9 +50,10 @@ public class Bullet : MonoBehaviour
 
     public void ChangeTrailRendererColor(Color color)
     {
-       trailRenderer.startColor = color;
+        trailRenderer.startColor = color;
       
-       trailRenderer.endColor = Color.white;
+        trailRenderer.endColor = Color.white;
+        bulletLight.color = color;
     }
 
 
