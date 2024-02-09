@@ -24,11 +24,21 @@ public class ImageBlinker : MonoBehaviour
 
     Transform[] childrenTransforms;
 
-    void Start()
+    void Awake()
     {
         image = GetComponent<Image>();
         canvasGroup = GetComponent<CanvasGroup>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        // Get all Transform components in children, including the parent's
+        Transform[] allTransforms = GetComponentsInChildren<Transform>();
+        
+        // Exclude the parent's Transform component
+        childrenTransforms = allTransforms.Where(t => t != transform).ToArray();
+    }
+
+    void Start()
+    {
 
         if(!image && !canvasGroup && !spriteRenderer)
         {
@@ -41,11 +51,6 @@ public class ImageBlinker : MonoBehaviour
             StartBlinking();
         }
 
-        // Get all Transform components in children, including the parent's
-        Transform[] allTransforms = GetComponentsInChildren<Transform>();
-        
-        // Exclude the parent's Transform component
-        childrenTransforms = allTransforms.Where(t => t != transform).ToArray();
 
     }
 

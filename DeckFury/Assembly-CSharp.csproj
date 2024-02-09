@@ -276,6 +276,7 @@
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleSprite.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\RightClickEventTrigger.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\DashResetOnKillItem.cs" />
+    <Compile Include="Assets\Scripts\ObjectScripts\ConveyorTile.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\GenericStatModItem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\FloppyDiskItem.cs" />
@@ -1125,6 +1126,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{a50b1d99-091d-4412-866a-bf31e11b54f7}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{03fa08ac-cf5f-4e6e-9901-5311fd654b30}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{3167903e-850b-4247-81ac-b35cfbff0ccc}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Premium\Tilesets\Bar Street Tileset Pixel Art\license.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{b56d9401-b69e-45f3-ae3f-61c427b7a681}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{3d8e3cdd-5bb6-4228-a9b8-04546a946447}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\EventFolder\{feb1f28b-05d7-451b-b35d-584740dff92f}.xml" />
@@ -1196,6 +1198,7 @@
     <None Include="Assets\Sprites\Craftpix\Freebies\Cyberpunk-ProtectiveGear-Radiation-Icons\License.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{0a935b2b-403b-495a-91df-f979eb947c69}.xml" />
     <None Include="Assets\Sprites\Craftpix\Premium\Icons\Medicine Item Icons 32x32 Pixel\License.txt" />
+    <None Include="Assets\Sprites\Craftpix\Premium\Tilesets\Ghetto Tileset Pixel Art\License.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{276a7152-79e4-4a25-a153-7ac66a8e8003}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{1ea53a06-a5c1-46f7-bc97-11e004b37cb7}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{530565cb-c9e3-40c7-a45c-c319c52a35ff}.xml" />
@@ -1628,6 +1631,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{826e6033-1883-42fc-bb00-5dc31bbc54f5}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{5baedbb1-9836-48a3-b879-15c13e647449}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{b6013464-aca6-4062-b73d-969d81b9fb4f}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Premium\Tilesets\Business Center Tileset Pixel Art\License.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{0919282d-8739-4544-9d03-944170060df5}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Mixer.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{e0e57cea-91a1-44ad-9318-bf016768b4e1}.xml" />
@@ -2057,6 +2061,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{045075c7-51df-4094-9c24-c237dcc7011a}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{c14e1376-bf13-4308-8649-cb481a67c8e7}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{b905224d-3b3b-442c-9475-21005e07d154}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Premium\Tilesets\Business Center Tileset Pixel Art\Font.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{da37bdc4-04bf-44c5-83ed-035302035430}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{c0aea631-a876-41b5-858b-7835fc9c6b40}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{55638707-527a-43a7-90f4-291656e0407a}.xml" />
@@ -2487,6 +2492,8 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{5dc82296-50e7-4ab8-8e4f-a01f097497f7}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Assets\SFXPacks\Casino_sound_package_Kenney\readme.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{5de76c16-cacc-4612-9b03-198564a2b397}.xml" />
+    <None Include="Assets\Sprites\Craftpix\Premium\Tilesets\Ghetto Tileset Pixel Art\Font.txt" />
+    <None Include="Assets\Sprites\Craftpix\Premium\Tilesets\Bar Street Tileset Pixel Art\Font.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{377e0d85-43a8-4d86-bd9a-27089de44c6a}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{ccb74a41-ebf5-4bea-a2a4-b4ecabf1aae8}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{876744cc-73eb-46cd-84a5-27fcc55add35}.xml" />
