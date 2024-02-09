@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class ExplosiveBarrel : StageEntity
 {
@@ -22,8 +24,10 @@ public class ExplosiveBarrel : StageEntity
 [Header("Explosion Settings")]
     [SerializeField] LayerMask targetLayer;
     [SerializeField] BoxCollider2D explosionCollider;
-
     [SerializeField] EventReference explosionSFX;
+    [SerializeField] Light2D explosionLight;
+ 
+
     bool isExploding = false;
 
     protected override void Awake()
@@ -31,6 +35,7 @@ public class ExplosiveBarrel : StageEntity
         base.Awake();
         barrelCollider = GetComponent<BoxCollider2D>();
         explosionCollider.enabled = false;
+        explosionLight.enabled = false;
         OnHPChanged += ExplodeBarrel;
 
         impulseSourceHelper = GetComponent<CinemachineImpulseSourceHelper>();
@@ -83,7 +88,9 @@ public class ExplosiveBarrel : StageEntity
         RuntimeManager.PlayOneShot(explosionSFX, transform.position);
 
         impulseSourceHelper.ShakeCameraRandomCircle(cameraShakeVelocity * SettingsManager.GlobalCameraShakeMultiplier, 0.3f, 1.05f);
-
+        shadow.SetActive(false);
+        explosionLight.enabled = true;
+        DOTween.To(() => explosionLight.intensity, x => explosionLight.intensity = x, 0, 0.25f).SetUpdate(true).SetEase(Ease.InQuad);
         TriggerExplosionHitbox();
         StartCoroutine(DestroyEntity());
 

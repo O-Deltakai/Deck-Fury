@@ -3111,6 +3111,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6133846937175111251}
     m_Modifications:
+    - target: {fileID: 2153551871414180489, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 4687472683638389849, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3209,10 +3213,6 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2153551871414180489, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 4687472683638389849, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_RootOrder
       value: 0
