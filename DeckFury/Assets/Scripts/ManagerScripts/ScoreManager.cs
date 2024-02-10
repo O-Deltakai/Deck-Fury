@@ -246,7 +246,7 @@ public class ScoreManager : MonoBehaviour
         {
             StopCoroutine(CR_ComboTimer);
         }
-        CR_ComboTimer = StartCoroutine(MultiKillTimer(0.15f));
+        CR_ComboTimer = StartCoroutine(MultiKillTimer(0.2f));
 
         currentComboKillLength++;
 
