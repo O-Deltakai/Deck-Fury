@@ -37,7 +37,7 @@ public class MapPreviewGenerator : MonoBehaviour
 
     Texture2D RenderTextureToTexture2D(RenderTexture renderTexture)
     {
-        Texture2D texture2d = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
+        Texture2D texture2d = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGBA32, false);
 
         RenderTexture currentActiveRT = RenderTexture.active;
         RenderTexture.active = renderTexture;

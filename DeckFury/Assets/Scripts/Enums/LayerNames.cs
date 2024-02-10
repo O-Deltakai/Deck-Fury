@@ -13,4 +13,6 @@ public enum LayerNames
     Ground = 7,
     MapLayout = 8,
     Hazards = 9,
+    EntityBarrier = 10,
+    MapLayoutWalls = 11,
 }
