@@ -62,6 +62,7 @@ public class ExplosiveBarrel : StageEntity
         barrelCollider.enabled = false;
         StartCoroutine(statusEffectManager.FlashColor(Color.red, fuseTimer, 0.075f));
         StartCoroutine(ExplosionTimer());
+
     }
 
     void TriggerExplosionHitbox()
@@ -92,6 +93,7 @@ public class ExplosiveBarrel : StageEntity
         explosionLight.enabled = true;
         DOTween.To(() => explosionLight.intensity, x => explosionLight.intensity = x, 0, 0.25f).SetUpdate(true).SetEase(Ease.InQuad);
         TriggerExplosionHitbox();
+        _stageManager.SetTileEntity(null, currentTilePosition);
         StartCoroutine(DestroyEntity());
 
     }

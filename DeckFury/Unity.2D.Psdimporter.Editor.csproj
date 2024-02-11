@@ -64,37 +64,37 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.18f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\Tasks\FlattenImageTask.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDLayer.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDLayerMappingStrategy.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\ImportUtilites.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\Analytics.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDImporterAssetPostProcessor.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDImporterEditor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\UTK\ImportColumn.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\SpriteData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\UTK\LayerNameColumn.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\UTK\ImportColumnHeaderToggle.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\TexturePlatformSettingsModal.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\UTK\PSDImporterMultiColumnTreeViewUI.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDImporterDataProvider.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\TextureSettingsGUI.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\Tasks\ExtractLayerTask.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDImportData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\TextureImporterUtilities.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDGameObjectPreviewData.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDImporterEditorExternalData.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDImporterAPI.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\TextContent.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDSpriteEditorDataProvider.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\UTK\Tooltips.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDImporterEditorLayerTreeView.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDImportPostProcessor.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\TexturePlatformSettingsController.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDImporter.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\UTK\UIColumn.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\AssemblyInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\TexturePlatformSettingsView.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\Tasks\FlattenImageTask.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\ImportUtilites.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\Analytics.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\UTK\ImportColumn.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\SpriteData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\UTK\LayerNameColumn.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\TexturePlatformSettingsModal.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDImporterDataProvider.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\TextureSettingsGUI.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\Tasks\ExtractLayerTask.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\TextureImporterUtilities.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDImporterEditorExternalData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\TextContent.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDSpriteEditorDataProvider.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\UTK\Tooltips.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\PSDImporterEditorLayerTreeView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.2d.psdimporter@8.0.3\Editor\Assets\UI\PSDImporterStyleSheet.uss" />
@@ -487,6 +487,10 @@
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil@1.11.4\Mono.Cecil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Animancer.Lite">
+      <HintPath>Assets\Plugins\Animancer\Internal\Core\Animancer.Lite.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework">

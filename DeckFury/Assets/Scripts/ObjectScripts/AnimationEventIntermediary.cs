@@ -14,15 +14,16 @@ public class AnimationEventIntermediary : MonoBehaviour
     public delegate void IndexedAnimationEventHandler(int index);
     public IndexedAnimationEventHandler OnIndexedAnimationEvent;
 
-    [SerializeField] GameObject ObjectToSendMessageTo;
-
     void NotifySubscribers()
     {
         OnAnimationEvent?.Invoke();
     }
 
-    //Use this method when you have an animation that have multiple unique animation events - will require a gatekeeper (dispatcher) reciever method that
-    //can switch between different methods depending on index.
+    /// <summary>
+    ///Use this method when you have an animation that have multiple unique animation events - will require a gatekeeper (dispatcher) reciever method that
+    ///can switch between different methods depending on index.
+    /// </summary>
+    /// <param name="index"></param>
     void IndexedNotifySubscribers(int index)
     {
         OnIndexedAnimationEvent?.Invoke(index);
