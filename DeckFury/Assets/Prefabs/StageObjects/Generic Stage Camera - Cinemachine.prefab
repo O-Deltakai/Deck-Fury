@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: 2100439045779313731}
   - component: {fileID: 2100439045779313740}
   - component: {fileID: 2100439045779313741}
+  - component: {fileID: 2226263098639481573}
   m_Layer: 0
   m_Name: 2D Main Virtual Camera
   m_TagString: Untagged
@@ -388,6 +389,18 @@ MonoBehaviour:
     m_FrequencyGain: 0
     m_Duration: 0
     m_NoiseOffsets: {x: -102.37036, y: -988.41113, z: -638.9823}
+--- !u!114 &2226263098639481573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100439045779313730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3123315317139446748
 GameObject:
   m_ObjectHideFlags: 0
