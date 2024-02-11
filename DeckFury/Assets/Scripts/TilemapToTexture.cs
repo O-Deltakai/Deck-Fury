@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
-[RequireComponent(typeof(MapPreviewGenerator))]
-public class CameraRenderToMask : MonoBehaviour
+public class TilemapToTexture : MonoBehaviour
 {
+    [SerializeField] TilemapRenderer _tilemapRenderer;
+    public TilemapRenderer tilemapRenderer => _tilemapRenderer;
     [SerializeField] SpriteMask spriteMask;
     MapPreviewGenerator mapPreviewGenerator;
 

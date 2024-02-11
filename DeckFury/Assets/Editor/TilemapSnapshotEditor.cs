@@ -3,14 +3,16 @@ using UnityEditor;
 using System.IO;
 using UnityEngine.Tilemaps;
 
-[CustomEditor(typeof(TilemapRenderer))]
+[CustomEditor(typeof(TilemapToTexture))]
 public class TilemapSnapshotEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
-        TilemapRenderer tilemapRenderer = (TilemapRenderer)target;
+        TilemapToTexture tilemapToTexture = (TilemapToTexture)target;
+        TilemapRenderer tilemapRenderer = tilemapToTexture.tilemapRenderer;
+
 
         if (GUILayout.Button("Save Tilemap Snapshot"))
         {

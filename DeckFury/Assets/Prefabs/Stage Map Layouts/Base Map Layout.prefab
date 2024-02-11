@@ -1242,6 +1242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66cfddbd17fbacc46b4606d163cae6a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tilemapRenderer: {fileID: 0}
   spriteMask: {fileID: 4107915668191858514}
 --- !u!114 &8516715982269530610
 MonoBehaviour:
@@ -3527,10 +3528,6 @@ PrefabInstance:
       propertyPath: m_InstanceId
       value: -554642
       objectReference: {fileID: 0}
-    - target: {fileID: 2153551871414180489, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 4687472683638389849, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_RootOrder
       value: 1

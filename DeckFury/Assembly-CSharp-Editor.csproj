@@ -573,6 +573,10 @@
       <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil@1.11.4\Mono.Cecil.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Animancer.Lite">
+      <HintPath>Assets\Plugins\Animancer\Internal\Core\Animancer.Lite.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
       <Private>False</Private>
@@ -1106,8 +1110,10 @@
     <ProjectReference Include="Unity.Collections.Editor.csproj" />
     <ProjectReference Include="PPv2URPConverters.csproj" />
     <ProjectReference Include="Unity.2D.PixelPerfect.csproj" />
+    <ProjectReference Include="Animancer.csproj" />
     <ProjectReference Include="Unity.TextMeshPro.csproj" />
     <ProjectReference Include="Unity.2D.PixelPerfect.Samples.csproj" />
+    <ProjectReference Include="Animancer.FSM.csproj" />
     <ProjectReference Include="Unity.AI.Navigation.Editor.ConversionSystem.csproj" />
     <ProjectReference Include="Unity.VSCode.Editor.csproj" />
     <ProjectReference Include="Unity.RenderPipelines.Universal.Editor.csproj" />
@@ -1131,6 +1137,7 @@
     <ProjectReference Include="Unity.InternalAPIEngineBridge.001.csproj" />
     <ProjectReference Include="Unity.2D.Common.Runtime.csproj" />
     <ProjectReference Include="Unity.RenderPipeline.Universal.ShaderLibrary.csproj" />
+    <ProjectReference Include="Animancer.Examples.csproj" />
     <ProjectReference Include="Unity.Timeline.csproj" />
     <ProjectReference Include="Unity.InputSystem.csproj" />
     <ProjectReference Include="Unity.InputSystem.ForUI.csproj" />
