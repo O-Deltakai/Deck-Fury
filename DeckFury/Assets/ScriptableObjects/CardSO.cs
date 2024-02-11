@@ -9,6 +9,12 @@ public class QuantifiableEffect
     [field:SerializeField] public string EffectName{get; private set;}
     [field:SerializeField] public int IntegerQuantity{get; private set;}
     [field:SerializeField] public float FloatQuantity{get; private set;}
+
+    [Tooltip("This string will be evaluated as a math expression to determine the value of the effect.")]
+    [SerializeField] string _expression;
+    [Tooltip("If true, the expression will be evaluated as an int, otherwise it will be evaluated as a float")]
+    [SerializeField] bool _expressionIsInt;
+
     [field:SerializeField] public bool CanBeModified{get; private set;} = false;
     [field:SerializeField] public float ModCoefficient{get; private set;} = 1;
 
@@ -23,16 +29,49 @@ public class QuantifiableEffect
         }
     }
 
-    public object GetValueDynamic()
+    public int EvaluateExpressionInt()
     {
-        if(IntegerQuantity == 0 && FloatQuantity != 0)
-        {
-            return FloatQuantity;
-        }else
-        if(FloatQuantity == 0 && IntegerQuantity != 0)
+        if(_expression == "")
         {
             return IntegerQuantity;
         }else
+        {
+            return (int)MathExpressionEvaluator.Evaluate(_expression);
+        }
+    }
+
+    public float EvaluateExpressionFloat()
+    {
+        if(_expression == "")
+        {
+            return (int)FloatQuantity;
+        }else
+        {
+            return MathExpressionEvaluator.Evaluate(_expression);
+        }
+    }
+
+    public object GetValueDynamic()
+    {
+        if(IntegerQuantity == 0 && FloatQuantity != 0 &&  string.IsNullOrWhiteSpace(_expression))
+        {
+            return FloatQuantity;
+        }else
+        if(FloatQuantity == 0 && IntegerQuantity != 0 && string.IsNullOrWhiteSpace(_expression))
+        {
+            return IntegerQuantity;
+        }else
+        if(FloatQuantity == 0 && IntegerQuantity == 0 && !string.IsNullOrWhiteSpace(_expression))
+        {
+            if(_expressionIsInt)
+            {
+                return EvaluateExpressionInt();
+            }else
+            {
+                return EvaluateExpressionFloat();
+            }
+        }
+        else
         {
             Debug.LogWarning("Quantifiable effect for " + EffectName + " was not set properly, returned 0");
             return 0;
