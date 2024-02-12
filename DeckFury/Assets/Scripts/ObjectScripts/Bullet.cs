@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] Color bulletColor;
     Light2D bulletLight;
 
-    void Awake() 
+    protected virtual void Awake() 
     {
         rigidBody = GetComponent<Rigidbody2D>();    
         trailRenderer = GetComponent<TrailRenderer>();

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Bazooka : Bullet
 {
@@ -15,8 +17,16 @@ public class Bazooka : Bullet
     [SerializeField] Transform bazookaTransform;
 
     [SerializeField] EventReference explosionSFX;
- 
+    [SerializeField] Light2D explosionLight;
+    [SerializeField] Light2D trailLight;
     bool impacted = false;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        explosionLight.enabled = false;
+    }
+
 
     //Check for collision with appropriate targets
     //amend position of gameobject on impact
@@ -61,8 +71,10 @@ public class Bazooka : Bullet
         bazookaBullet.SetActive(false);
         explosionCollider.enabled = true;
         gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-        bombExplosionAnimator.Play("FireBombExplosionVFX", 0);
+        bombExplosionAnimator.Play(fireBombExplosionVFX.name, 0);
         ActivateExplosionCollider();
+        explosionLight.enabled = true;
+        trailLight.enabled = false;
     }
 
     void ActivateExplosionCollider()
@@ -92,15 +104,19 @@ public class Bazooka : Bullet
             }             
         }
 
+        DOTween.To(() => explosionLight.intensity = 1f, x => explosionLight.intensity = x, 0f, 0.25f).SetUpdate(true).SetEase(Ease.InOutSine);
+               
+
+
         StartCoroutine(ExplosionColliderDuration(0.1f));
     }
 
     //disable explosion and object
     IEnumerator ExplosionColliderDuration(float duration)
     {
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(fireBombExplosionVFX.length);
+        //yield return new WaitForSeconds(duration);
         explosionCollider.enabled = false;
-        yield return new WaitForSeconds(fireBombExplosionVFX.length - duration);
         DisableObject();
     }
 

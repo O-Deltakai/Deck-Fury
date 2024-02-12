@@ -147,7 +147,7 @@ public class FireBombController : MonoBehaviour
     void MoveExplosionToImpactPoint()
     {
         bombExplosionCollider.transform.localPosition = new Vector3(impactPoint.x, impactPoint.y);
-        bombExplosionAnimator.Play("FireBombExplosionVFX", 0);
+        bombExplosionAnimator.Play(fireBombExplosionVFX.name, 0);
         StartCoroutine(ExplosionVFXDuration());
     }
 
@@ -187,9 +187,9 @@ public class FireBombController : MonoBehaviour
             impulseSourceHelper.ShakeCameraRandomCircle(cameraShakeVelocity * SettingsManager.GlobalCameraShakeMultiplier, 0.25f, 1);
         }
 
-        StartCoroutine(ExplosionColliderDuration(0.2f));
-        DOTween.To(() => explosionLight.intensity = 0f, x => explosionLight.intensity = x, 0.5f, 0.15f).SetUpdate(true).SetEase(Ease.InOutSine)
-        .OnComplete(() => DOTween.To(() => explosionLight.intensity = 0.5f, x => explosionLight.intensity = x, 0, 0.05f).SetUpdate(true).SetEase(Ease.InOutSine));
+        //StartCoroutine(ExplosionColliderDuration(0.2f));
+        DOTween.To(() => explosionLight.intensity = 1.8f, x => explosionLight.intensity = x, 0f, 0.25f).SetEase(Ease.InOutSine);
+
     }
 
     IEnumerator ExplosionColliderDuration(float duration)
