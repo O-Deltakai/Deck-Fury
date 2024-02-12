@@ -229,7 +229,10 @@ public class StageManager : MonoBehaviour
     //Sets the entity for the ground tile at the given tilePosition
     public void SetTileEntity(StageEntity entity, Vector3Int tilePosition)
     {
-        GetGroundTileData(tilePosition).entity = entity;
+        if(GetGroundTileData(tilePosition) != null)
+        {
+            GetGroundTileData(tilePosition).entity = entity;
+        }
 
     }
 

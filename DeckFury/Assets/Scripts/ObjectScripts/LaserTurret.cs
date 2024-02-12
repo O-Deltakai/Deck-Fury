@@ -19,6 +19,9 @@ public class LaserTurret : StageEntity
     [SerializeField] AttackPayload attackPayload;
     [SerializeField] float damageCooldown;
 
+    [Header("Rotation Settings")]
+    [SerializeField] bool canRotate = false;
+    [SerializeField] float rotationSpeed = 10f;
 
     bool canDamage = true;
 
@@ -28,12 +31,22 @@ public class LaserTurret : StageEntity
     void Update()
     {
         DrawAndDetectLaser();
+        if(canRotate)
+        {
+            RotateObject();
+        }
     }
 
 
+    void RotateObject()
+    {
+        // Rotate the object around the Z axis according to Time.deltaTime and rotationSpeed
+        transform.Rotate(0, 0, Time.deltaTime * rotationSpeed);
+    }
+
     void DrawAndDetectLaser()
     {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(laserStartPosition.position, VectorDirections.Vector2IntCardinal[0], maxLaserDistance, targetLayer);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(laserStartPosition.position, transform.up, maxLaserDistance, targetLayer);
         float laserLength = maxLaserDistance;
 
         foreach (var hit in hits)

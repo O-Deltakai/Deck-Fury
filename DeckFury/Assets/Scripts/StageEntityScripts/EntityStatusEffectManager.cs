@@ -318,6 +318,11 @@ public class EntityStatusEffectManager : MonoBehaviour
         }
 
         MarkedForDeath = true;
+
+        if(MarkedForDeathCoroutine != null)
+        {
+            StopCoroutine(MarkedForDeathCoroutine);
+        }
         MarkedForDeathCoroutine = StartCoroutine(MarkedDuration(actualDuration));
 
         if(markedEffectObject)
