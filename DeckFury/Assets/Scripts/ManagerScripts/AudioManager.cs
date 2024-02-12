@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMOD;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
@@ -29,13 +30,13 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
+
     }
 
     void Start()
     {
         AssignBuses();
         SetInitialVolumes();
-
     }
 
     void AssignBuses()

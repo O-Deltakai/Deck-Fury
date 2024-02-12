@@ -311,7 +311,7 @@ public class SpawnManager : MonoBehaviour
         return actualSpawnCount;
     }
 
-    void SpawnNPCNearOrAwayFromPlayer(NPCSpawnData npcSpawnData, SpawnType spawnType, bool delayedSpawn = true)
+    void SpawnNPCNearOrAwayFromPlayer(NPCSpawnData npcSpawnData, SpawnType spawnType, bool delayedSpawn = true, bool tryForceSpawn = true)
     {
         if(spawnType != SpawnType.NearPlayer && spawnType != SpawnType.AwayFromPlayer)
         {
@@ -361,8 +361,15 @@ public class SpawnManager : MonoBehaviour
 
         if (actualSpawnZone.Count == 0)
         {
-            Debug.LogWarning("No valid spawn positions were found around the player. Aborted spawning " + npcSpawnData.NPCPrefab.name);
-            return;
+            if(tryForceSpawn)
+            {
+                SpawnNPCOnRandomPosition(npcSpawnData, delayedSpawn);
+                Debug.LogWarning("No valid spawn positions were found around the player, attempting to spawn in random position:" + npcSpawnData.NPCPrefab.name);
+            }else
+            {
+                Debug.LogWarning("No valid spawn positions were found around the player. Aborted spawning " + npcSpawnData.NPCPrefab.name);
+                return;
+            }
         }
 
         //Begin spawning in npcs in the actualSpawnZone

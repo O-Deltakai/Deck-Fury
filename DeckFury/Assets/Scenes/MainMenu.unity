@@ -955,7 +955,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f440855a58f2ccc4a8d75218c2454e92, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4b1550229faaff84a8754beeaf7cc9bd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1373,6 +1373,9 @@ GameObject:
   - component: {fileID: 461928418}
   - component: {fileID: 461928417}
   - component: {fileID: 461928416}
+  - component: {fileID: 461928420}
+  - component: {fileID: 461928419}
+  - component: {fileID: 461928421}
   m_Layer: 5
   m_Name: OptionsButton
   m_TagString: Untagged
@@ -1494,6 +1497,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461928414}
   m_CullTransparentMesh: 1
+--- !u!114 &461928419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461928414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8ffde07c87fb4409814027d994a1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxEvent:
+    Guid:
+      Data1: 1869936886
+      Data2: 1197765795
+      Data3: -686711109
+      Data4: -2144084959
+    Path: event:/UIEvents/Main Menu Click Button
+  _playOnEnable: 0
+  _useEventInstance: 0
+--- !u!114 &461928420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461928414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8ffde07c87fb4409814027d994a1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxEvent:
+    Guid:
+      Data1: -216827235
+      Data2: 1136133475
+      Data3: -637117291
+      Data4: 409834046
+    Path: event:/UIEvents/Menu Selection Hover
+  _playOnEnable: 0
+  _useEventInstance: 0
+--- !u!114 &461928421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461928414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 461928420}
+          m_TargetAssemblyTypeName: OneShotSFXPlayer, Assembly-CSharp
+          m_MethodName: PlaySFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &484902343
 GameObject:
   m_ObjectHideFlags: 0
@@ -2403,7 +2481,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.86
+  m_PixelsPerUnitMultiplier: 1.5
 --- !u!222 &817993714
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3050,6 +3128,9 @@ GameObject:
   - component: {fileID: 1305169972}
   - component: {fileID: 1305169971}
   - component: {fileID: 1305169970}
+  - component: {fileID: 1305169974}
+  - component: {fileID: 1305169973}
+  - component: {fileID: 1305169975}
   m_Layer: 5
   m_Name: TutorialButton
   m_TagString: Untagged
@@ -3171,6 +3252,93 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305169968}
   m_CullTransparentMesh: 1
+--- !u!114 &1305169973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305169968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8ffde07c87fb4409814027d994a1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxEvent:
+    Guid:
+      Data1: 1869936886
+      Data2: 1197765795
+      Data3: -686711109
+      Data4: -2144084959
+    Path: event:/UIEvents/Main Menu Click Button
+  _playOnEnable: 0
+  _useEventInstance: 0
+--- !u!114 &1305169974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305169968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8ffde07c87fb4409814027d994a1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxEvent:
+    Guid:
+      Data1: -216827235
+      Data2: 1136133475
+      Data3: -637117291
+      Data4: 409834046
+    Path: event:/UIEvents/Menu Selection Hover
+  _playOnEnable: 0
+  _useEventInstance: 0
+--- !u!114 &1305169975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305169968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1305169974}
+          m_TargetAssemblyTypeName: OneShotSFXPlayer, Assembly-CSharp
+          m_MethodName: PlaySFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1305169973}
+          m_TargetAssemblyTypeName: OneShotSFXPlayer, Assembly-CSharp
+          m_MethodName: PlaySFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1334003017
 GameObject:
   m_ObjectHideFlags: 0
@@ -3183,6 +3351,9 @@ GameObject:
   - component: {fileID: 1334003021}
   - component: {fileID: 1334003020}
   - component: {fileID: 1334003019}
+  - component: {fileID: 1334003023}
+  - component: {fileID: 1334003022}
+  - component: {fileID: 1334003024}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -3304,6 +3475,93 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1334003017}
   m_CullTransparentMesh: 1
+--- !u!114 &1334003022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334003017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8ffde07c87fb4409814027d994a1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxEvent:
+    Guid:
+      Data1: 1869936886
+      Data2: 1197765795
+      Data3: -686711109
+      Data4: -2144084959
+    Path: event:/UIEvents/Main Menu Click Button
+  _playOnEnable: 0
+  _useEventInstance: 0
+--- !u!114 &1334003023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334003017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8ffde07c87fb4409814027d994a1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxEvent:
+    Guid:
+      Data1: -216827235
+      Data2: 1136133475
+      Data3: -637117291
+      Data4: 409834046
+    Path: event:/UIEvents/Menu Selection Hover
+  _playOnEnable: 0
+  _useEventInstance: 0
+--- !u!114 &1334003024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334003017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1334003023}
+          m_TargetAssemblyTypeName: OneShotSFXPlayer, Assembly-CSharp
+          m_MethodName: PlaySFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1334003022}
+          m_TargetAssemblyTypeName: OneShotSFXPlayer, Assembly-CSharp
+          m_MethodName: PlaySFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1343493773
 GameObject:
   m_ObjectHideFlags: 0
