@@ -21,9 +21,17 @@ public class Bazooka : Bullet
     [SerializeField] Light2D trailLight;
     bool impacted = false;
 
+    [Header("Camera Shake Settings")]
+    [SerializeField] Vector3 cameraShakeVelocity;
+    [SerializeField] float cameraShakeDuration;
+    CinemachineImpulseSourceHelper cinemachineImpulseSourceHelper;
+
     protected override void Awake()
     {
         base.Awake();
+
+        cinemachineImpulseSourceHelper = GetComponent<CinemachineImpulseSourceHelper>();
+
         explosionLight.enabled = false;
     }
 
@@ -79,6 +87,7 @@ public class Bazooka : Bullet
 
     void ActivateExplosionCollider()
     {
+        cinemachineImpulseSourceHelper.ShakeCameraRandomCircle(cameraShakeVelocity * SettingsManager.GlobalCameraShakeMultiplier, cameraShakeDuration, 1f);
         RuntimeManager.PlayOneShotAttached(explosionSFX, gameObject);
 
         int stageEntitiesLayer = LayerMask.NameToLayer("StageEntities");
