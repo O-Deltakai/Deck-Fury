@@ -181,14 +181,14 @@ public class Shooter : NPC
 
 
 
-    //Instantiates a bullet with necessary variables set
+    // Instantiates a bullet with necessary variables set
     void FireBullet(Vector3 directionVector)
     {
         RuntimeManager.PlayOneShotAttached(fireBulletSFX, gameObject);
 
-        Bullet bullet = Instantiate(projectile, firePoint.position, transform.rotation).GetComponent<Bullet>();
+        Bullet bullet = Instantiate(projectile, firePoint.position, Quaternion.LookRotation(Vector3.forward, directionVector)).GetComponent<Bullet>();
 
-        //Set bullet variables
+        // Set bullet variables
         Vector2 bulletVelocity = new Vector2(directionVector.x, directionVector.y);
         bullet.ChangeTrailRendererColor(Color.red);
         bullet.team = EntityTeam.Enemy;
@@ -197,11 +197,7 @@ public class Shooter : NPC
         bullet.trailRenderer.time = 0.2f;
         bullet.attackPayload = bulletPayload;
 
-
-
-
-        Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>()); // ensure it doesnt hit themselves
-
+        Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>()); // ensure it doesn't hit themselves
     }
 
     IEnumerator FireCooldown()

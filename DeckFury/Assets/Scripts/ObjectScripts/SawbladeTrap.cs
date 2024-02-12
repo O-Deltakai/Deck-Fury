@@ -99,7 +99,7 @@ public class SawbladeTrap : MonoBehaviour
 
         Transform targetNode = pathNodes[currentNodeIndex];
         Vector3 direction = (targetNode.position - transform.position).normalized;
-        transform.position += direction * speed * Time.deltaTime;
+        transform.position += speed * Time.deltaTime * direction;
 
         if (Vector3.Distance(transform.position, targetNode.position) < 0.1f)
         {

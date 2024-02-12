@@ -21,8 +21,6 @@ public class RainOfBulletsEffect : MonoBehaviour
 
     [SerializeField] EventReference shotSFX;
 
-    BoxCollider2D hitboxCollider;
-    CinemachineImpulseSourceHelper impulseSourceHelper;
 
 
     [Header("Crosshair Settings")]
@@ -34,6 +32,11 @@ public class RainOfBulletsEffect : MonoBehaviour
     [Header("Camera Shake Settings")]
     [SerializeField] Vector3 cameraShakeVelocity;
     [SerializeField] float cameraShakeDuration = 0.1f;
+
+
+    BoxCollider2D hitboxCollider;
+    CinemachineImpulseSourceHelper impulseSourceHelper;
+    
     void Awake()
     {
         impulseSourceHelper = GetComponent<CinemachineImpulseSourceHelper>();
