@@ -19,7 +19,7 @@ MonoBehaviour:
 
     Turret lasts for <b>Q0</b> seconds and fire
     every <b>Q1</b> second(s).'
-  BaseDamage: 10
+  BaseDamage: 4
   <AttackElement>k__BackingField: 0
   <CardType>k__BackingField: 2
   <StatusEffect>k__BackingField: 0
@@ -32,11 +32,15 @@ MonoBehaviour:
   - <EffectName>k__BackingField: Summon Duration
     <IntegerQuantity>k__BackingField: 0
     <FloatQuantity>k__BackingField: 10
+    _expression: 
+    _expressionIsInt: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
   - <EffectName>k__BackingField: Turret Attack Speed
     <IntegerQuantity>k__BackingField: 0
-    <FloatQuantity>k__BackingField: 0.75
+    <FloatQuantity>k__BackingField: 0.25
+    _expression: 
+    _expressionIsInt: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
   CardImage: {fileID: 21300000, guid: 5ba4f899fab1642489b4f961f97ec0f3, type: 3}
@@ -52,8 +56,8 @@ MonoBehaviour:
   <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}
   _onActivationSFX:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1458326653
+      Data2: 1228424990
+      Data3: 977436305
+      Data4: 648307154
+    Path: event:/CardSFX/DaggerThrow

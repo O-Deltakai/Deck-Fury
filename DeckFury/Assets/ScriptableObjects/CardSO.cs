@@ -89,6 +89,8 @@ public class CardSO : ScriptableObject
     [field:SerializeField] public string CardName {get; private set;}
 [TextArea(10, 20)]
     [SerializeField] string CardDescription;
+    public string CardDescriptionProperty => CardDescription;
+
 
 [Header("Combat Attributes")]
     [SerializeField] int BaseDamage;

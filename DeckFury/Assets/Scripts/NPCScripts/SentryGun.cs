@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
+using DG.Tweening;
+
 
 public class SentryGun : NPC
 {
@@ -21,6 +24,8 @@ public class SentryGun : NPC
     [SerializeField] bool CanFire;
     [SerializeField] List<StageEntity> TargetsInRange = new List<StageEntity>();
 
+    [Header("SFX")]
+    [SerializeField] EventReference sentryFireSFX;
 
     protected override void Start()
     {
@@ -49,29 +54,36 @@ public class SentryGun : NPC
         }
     }
 
-
     void AimAtClosestTarget()
     {
-        //Currently just rotates the sentry turret towards the first target that enters its range and doesnt take into account distance
-        sentryTurret.transform.right = TargetsInRange[0].currentTilePosition - transform.position;
-        
-        FireBullet(sentryTurret.transform.right.normalized);
+        Vector3 direction = TargetsInRange[0].currentTilePosition - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        sentryTurret.transform.rotation = Quaternion.Slerp(sentryTurret.transform.rotation, targetRotation, 10 * Time.deltaTime);
+        FireBullet(direction.normalized);
     }
 
     void FireBullet(Vector3 directionVector)
     {
         if(!CanFire){return;}
-
-        Bullet bullet = Instantiate(projectile, firepoint.position, sentryTurret.transform.rotation).GetComponent<Bullet>();
+        RuntimeManager.PlayOneShot(sentryFireSFX, transform.position);
+        Bullet bullet = Instantiate(projectile, firepoint.position, Quaternion.LookRotation(Vector3.forward, directionVector)).GetComponent<Bullet>();
         Vector2 bulletDirection = new Vector2(directionVector.x, directionVector.y);
         bullet.team = EntityTeam.Player;
         bullet.velocity = bulletDirection;
+        bullet.speed = 45;
         bullet.attackPayload.damage = sentryDamage;
 
         CanFire = false;
         StartCoroutine(FireCooldown());
 
         muzzleFlashVFX.SetActive(true);
+    }
+
+    IEnumerator InitialCooldown()
+    {
+        yield return new WaitForSeconds(0.1f);
+        CanFire = true;
     }
 
     IEnumerator FireCooldown()
