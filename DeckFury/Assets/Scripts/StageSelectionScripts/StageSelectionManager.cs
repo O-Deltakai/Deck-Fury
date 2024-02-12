@@ -70,7 +70,7 @@ public class StageSelectionManager : MonoBehaviour
             {
                 foreach(MapStage mapStages in mapLevels[i].GetStages())
                 {
-                    mapStages.StageButton.interactable = false;
+                    mapStages.buttonIsInteractable = false;
                 }
             }    
         }
@@ -90,25 +90,25 @@ public class StageSelectionManager : MonoBehaviour
         {
             foreach(MapStage mapStages in mapLevels[mapLevel.levelIndex + 1].GetStages())
             {
-                mapStages.StageButton.interactable = true;
+                mapStages.buttonIsInteractable = true;
             }
         }
 
         DuplicateTravelIndicator();
         foreach(MapStage mapStages in mapLevel.GetStages())
         {
-            mapStages.StageButton.interactable = false;
+            mapStages.buttonIsInteractable = false;
         }
         currentPlayerLocation.playerIsHere = false;
         currentPlayerLocation = stage;
         stage.playerIsHere = true;
-        stage.StageButton.interactable = false;
+        stage.buttonIsInteractable = false;
     }
 
     //Using a manually set line ui image, automatically set the length and angle of this ui image to be a line between two map stages.
     void DrawLineBetweenStages(MapStage startLocation, MapStage destination)
     {
-        if(destination.StageButton.interactable == false)
+        if(destination.buttonIsInteractable == false)
         {
             return;
         }

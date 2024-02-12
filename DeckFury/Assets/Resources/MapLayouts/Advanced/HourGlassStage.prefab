@@ -537,7 +537,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1257485985
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.35333335, y: 0.35333335, z: 0}
@@ -1208,7 +1208,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1257485985
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.35333335, y: 0.35333335, z: 0}
@@ -1890,7 +1890,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 25988c69fa0d97749856e7f48bcf7557, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2934,7 +2934,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 25988c69fa0d97749856e7f48bcf7557, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2971,6 +2971,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3072874774537635458}
     m_Modifications:
+    - target: {fileID: 108899172552980757, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
+      propertyPath: m_InstanceId
+      value: -1034714
+      objectReference: {fileID: 0}
     - target: {fileID: 4687472683638389849, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -3037,6 +3041,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3072874774537635458}
     m_Modifications:
+    - target: {fileID: 108899172552980757, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
+      propertyPath: m_InstanceId
+      value: -1034784
+      objectReference: {fileID: 0}
     - target: {fileID: 4687472683638389849, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3235,6 +3243,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3072874774537635458}
     m_Modifications:
+    - target: {fileID: 108899172552980757, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
+      propertyPath: m_InstanceId
+      value: -1034988
+      objectReference: {fileID: 0}
     - target: {fileID: 4687472683638389849, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3499,6 +3511,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3072874774537635458}
     m_Modifications:
+    - target: {fileID: 108899172552980757, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
+      propertyPath: m_InstanceId
+      value: -1034644
+      objectReference: {fileID: 0}
     - target: {fileID: 4687472683638389849, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3565,6 +3581,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3072874774537635458}
     m_Modifications:
+    - target: {fileID: 108899172552980757, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
+      propertyPath: m_InstanceId
+      value: -1035058
+      objectReference: {fileID: 0}
     - target: {fileID: 4687472683638389849, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3631,6 +3651,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3072874774537635458}
     m_Modifications:
+    - target: {fileID: 108899172552980757, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
+      propertyPath: m_InstanceId
+      value: -1034918
+      objectReference: {fileID: 0}
     - target: {fileID: 4687472683638389849, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_RootOrder
       value: 0

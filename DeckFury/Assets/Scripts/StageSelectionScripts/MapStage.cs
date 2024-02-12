@@ -10,9 +10,19 @@ using FMOD.Studio;
 
 public class MapStage : MonoBehaviour
 {
+    event Action<bool> OnButtonSetInteractable;
+
+
     [field:SerializeField] public RectTransform RightPoint {get; private set;}
     [field:SerializeField] public RectTransform LeftPoint {get; private set;}
     [HideInInspector] public Button StageButton {get; private set;}
+    public bool buttonIsInteractable { get { return StageButton.interactable; } 
+        set 
+        {
+            StageButton.interactable = value; 
+            OnButtonSetInteractable?.Invoke(value);
+        }
+    }
 
     [Header("Stage Preview Popup Settings")]
     [SerializeField] GameObject StagePreviewPopup;
@@ -59,10 +69,27 @@ public class MapStage : MonoBehaviour
     [SerializeField] EventReference hoverSFX;
     EventInstance hoverSFXInstance;
 
+//Tweens
+    Tween scaleBackAndForthTween;
+
     void Awake() 
     {
         mapStageIcon = GetComponent<Image>();
         StageButton = GetComponent<Button>();    
+
+        ScaleBackAndForth();
+
+        OnButtonSetInteractable += (bool isInteractable) => 
+        {
+            if(isInteractable)
+            {
+                ScaleBackAndForth();   
+            }else
+            {
+                scaleBackAndForthTween.Kill();
+            }
+        };
+
     }
 
     // Start is called before the first frame update
@@ -244,6 +271,9 @@ public class MapStage : MonoBehaviour
     public void OnHover()
     {
         if(!StageButton.interactable) { return; }
+
+        if(scaleBackAndForthTween.IsActive()){ scaleBackAndForthTween.Kill(); }
+
         whiteDropShadow.gameObject.SetActive(true);
         buttonIcon.transform.DOScale(1.2f, 0.1f);
         whiteDropShadow.transform.DOScale(1.2f, 0.1f);
@@ -253,14 +283,26 @@ public class MapStage : MonoBehaviour
     public void ExitHover()
     {
         if(!StageButton.interactable) { return; }
+
+        ScaleBackAndForth();
         whiteDropShadow.gameObject.SetActive(false);
         buttonIcon.transform.DOScale(1f, 0.1f);
         whiteDropShadow.transform.DOScale(1f, 0.1f);
 
     }
 
+    void ScaleBackAndForth()
+    {
+        if(scaleBackAndForthTween.IsActive()){ scaleBackAndForthTween.Kill(); }
+        transform.localScale = new Vector3(1, 1, 1);
+        scaleBackAndForthTween = transform.DOScale(1.2f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+    }
+
+
     public void LoadStageButton()
     {
+        scaleBackAndForthTween.Kill();
+        transform.localScale = new Vector3(1, 1, 1);
         if(sceneLoader == null)
         {
             Debug.LogError("SceneLoader is null! something's gone wrong, MapStage button will not function.");

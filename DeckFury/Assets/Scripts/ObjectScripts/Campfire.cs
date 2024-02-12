@@ -59,8 +59,6 @@ public class Campfire : MonoBehaviour
     {
         if(hasHealedPlayer){ return; }
 
-        print("headled player");
-
         if(StageStateController.Instance)
         {
             if(StageStateController.Instance.PlayerData != null)
