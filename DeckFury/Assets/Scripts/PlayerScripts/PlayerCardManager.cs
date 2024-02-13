@@ -91,6 +91,7 @@ public class PlayerCardManager : MonoBehaviour
     public void TriggerCard()
     {
         if(!CanUseCards){ return; }
+        if(CardMagazine.Count == 0){ return; }
         CardObjectReference cardToUse = CardMagazine[0];
 
         //If cardToUse has UsesAnimationEvent set to true, use the animationController to play said animation, otherwise call the UseCardOneShot method.

@@ -26,7 +26,7 @@ public class CardIndicatorSlot : MonoBehaviour
 
     [Header("Tween Settings")]
     [SerializeField] float _tweenDuration = 0.25f;
-    [SerializeField] Ease _tweenEase = Ease.OutSine;
+    [SerializeField] Ease _tweenEase;
 //Tweens
     Tween currentCardTween;
     Tween nextCardTween;
@@ -42,8 +42,7 @@ public class CardIndicatorSlot : MonoBehaviour
 
     void Start()
     {
-        _alphaCardImage.sprite = null;
-        _betaCardImage.sprite = null;
+        Clear();
         _currentVisibleImage = _alphaCardImage;   
 
     }
@@ -60,6 +59,9 @@ public class CardIndicatorSlot : MonoBehaviour
         _currentVisibleImage = _alphaCardImage;
         _betaCardImage.sprite = nextCard;
 
+        _alphaCardImage.enabled = true;
+        _betaCardImage.enabled = true;
+
         _alphaCardRect.anchoredPosition = new Vector2(0, 0);
         _betaCardRect.anchoredPosition = new Vector2(0, 160);
 
@@ -71,6 +73,8 @@ public class CardIndicatorSlot : MonoBehaviour
         _alphaCardImage.sprite = currentCard;
         _currentVisibleImage = _alphaCardImage;
 
+        _alphaCardImage.enabled = true;
+
         _alphaCardRect.anchoredPosition = new Vector2(0, 0);
         _betaCardRect.anchoredPosition = new Vector2(0, 160);
     }
@@ -78,7 +82,9 @@ public class CardIndicatorSlot : MonoBehaviour
     public void Clear()
     {
         _alphaCardImage.sprite = null;
+        _alphaCardImage.enabled = false;
         _betaCardImage.sprite = null;
+        _betaCardImage.enabled = false;
 
         _alphaCardRect.anchoredPosition = new Vector2(0, 0);
         _betaCardRect.anchoredPosition = new Vector2(0, 160);        
@@ -86,7 +92,7 @@ public class CardIndicatorSlot : MonoBehaviour
 
     public void CycleImage()
     {
-        if(_index > cardMagazine.Count - 1)
+        if(_index > cardMagazine.Count)
         {
             return;
         }
@@ -99,7 +105,7 @@ public class CardIndicatorSlot : MonoBehaviour
         currentCardTween = currentImageRect.DOAnchorPosY(-160, _tweenDuration).SetUpdate(true).SetEase(_tweenEase);        
 
         //Check the next index and if it is within the bounds of the cardMagazine, move the next image into view
-        if(_index + 1 > cardMagazine.Count -1)
+        if(_index + 1 > cardMagazine.Count)
         {
             return;
         }
@@ -118,32 +124,14 @@ public class CardIndicatorSlot : MonoBehaviour
             nextImageRect = _alphaCardRect;
         }
 
-        nextVisibleImage.sprite = cardMagazine[_index + 1].cardSO.GetCardImage();
-        nextCardTween = nextImageRect.DOAnchorPosY(0, _tweenDuration).SetUpdate(true).SetEase(_tweenEase);
-
+        nextVisibleImage.sprite = cardMagazine[_index].cardSO.GetCardImage();
+        nextCardTween = nextImageRect.DOAnchorPosY(0, _tweenDuration).SetUpdate(true).SetEase(_tweenEase).OnComplete(
+            () => currentImageRect.anchoredPosition = new Vector2(0, 160));
 
         
 
-        // if(_betaCardImage != null)
-        // {
-        //     Image nextVisibleImage;
+        _currentVisibleImage = nextVisibleImage;
 
-        //     if(_currentVisibleImage == _alphaCardImage)
-        //     {
-        //         nextVisibleImage = _betaCardImage;
-        //     }
-        //     else
-        //     {
-        //         nextVisibleImage = _alphaCardImage;
-        //     }
-
-        //     RectTransform nextImageRect = nextVisibleImage.GetComponent<RectTransform>();
-        //     nextCardTween = nextImageRect.DOAnchorPosY(0, _tweenDuration).SetUpdate(true).SetEase(_tweenEase);
-        // }
-
-
-        // RectTransform currentImageRect = _currentVisibleImage.GetComponent<RectTransform>();
-        // currentCardTween = currentImageRect.DOAnchorPosY(-160, _tweenDuration).SetUpdate(true);
 
     }
 

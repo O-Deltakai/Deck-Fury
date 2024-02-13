@@ -5455,7 +5455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6346,11 +6346,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10966bf1b5f63834698328b7f1c8079a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _index: 0
+  _index: 2
   _alphaCardImage: {fileID: 5983334163727403530}
   _betaCardImage: {fileID: 7721029359146207308}
-  _tweenDuration: 0.2
-  _tweenEase: 3
+  _tweenDuration: 0.15
+  _tweenEase: 6
 --- !u!1 &1388264036438003216
 GameObject:
   m_ObjectHideFlags: 0
@@ -6923,11 +6923,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10966bf1b5f63834698328b7f1c8079a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _index: 0
+  _index: 1
   _alphaCardImage: {fileID: 6311189985713524264}
   _betaCardImage: {fileID: 1504677151145175696}
-  _tweenDuration: 0.2
-  _tweenEase: 3
+  _tweenDuration: 0.15
+  _tweenEase: 6
 --- !u!1 &1388264036865434077
 GameObject:
   m_ObjectHideFlags: 0
@@ -7971,11 +7971,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10966bf1b5f63834698328b7f1c8079a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _index: 0
+  _index: 3
   _alphaCardImage: {fileID: 3572709479915154213}
   _betaCardImage: {fileID: 3602439688258461693}
-  _tweenDuration: 0.2
-  _tweenEase: 3
+  _tweenDuration: 0.15
+  _tweenEase: 6
 --- !u!1 &1388264037566416936
 GameObject:
   m_ObjectHideFlags: 0
@@ -8080,11 +8080,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10966bf1b5f63834698328b7f1c8079a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _index: 0
+  _index: 4
   _alphaCardImage: {fileID: 3103692480833551020}
   _betaCardImage: {fileID: 7735852174607947181}
-  _tweenDuration: 0.2
-  _tweenEase: 3
+  _tweenDuration: 0.15
+  _tweenEase: 6
 --- !u!1 &1388264037863319802
 GameObject:
   m_ObjectHideFlags: 0
@@ -8793,7 +8793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9069,7 +9069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12657,7 +12657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15329,10 +15329,6 @@ PrefabInstance:
     - target: {fileID: 9187798436651791871, guid: 510170c61165bba45acb43523b0359b4, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9190520845652232914, guid: 510170c61165bba45acb43523b0359b4, type: 3}
-      propertyPath: _tweenDuration
-      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

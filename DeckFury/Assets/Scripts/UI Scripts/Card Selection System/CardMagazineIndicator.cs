@@ -26,7 +26,8 @@ public class CardMagazineIndicator : MonoBehaviour
         playerCardManager = cardSelectionMenu.PlayerCardManager;
         
         //Subscribe the RemoveCardEvent/LoadMagazineEvent from PlayerCardManager to the UpdateImages method
-        playerCardManager.OnRemoveCard += UpdateImages;
+        playerCardManager.OnRemoveCard += CycleImages;
+        playerCardManager.OnRemoveCard += UpdateFirstCardText;
         playerCardManager.OnLoadMagazine += UpdateImages;
 
         //When the card select menu is active, move out of view. Otherwise, move into view.
@@ -93,6 +94,14 @@ public class CardMagazineIndicator : MonoBehaviour
         }
 
         UpdateFirstCardText();
+    }
+
+    public void CycleImages()
+    {
+        foreach(CardIndicatorSlot slot in cardIndicatorSlots)
+        {
+            slot.CycleImage();
+        }
     }
 
     void UpdateFirstCardText()
