@@ -54,6 +54,10 @@ public class Shooter : NPC
     Coroutine AimingWindupCoroutine;
 
     Vector3 fireDirection;
+
+    [Header("Testing Settings")]
+    [SerializeField] bool _noRandomCooldowns = false;
+
     protected override void Start() 
     {
         base.Start();
@@ -208,7 +212,14 @@ public class Shooter : NPC
     }
     IEnumerator FireCooldown(float duration)
     {
+        
         float randomFloat = UnityEngine.Random.Range(-1f, 1f);
+
+        if(_noRandomCooldowns)
+        {
+            randomFloat = 0;
+        }
+
         yield return new WaitForSeconds(duration + randomFloat);
         CanFire = true;
         //OnReadyToFire?.Invoke();
@@ -238,6 +249,12 @@ public class Shooter : NPC
     IEnumerator MovementCooldown()
     {   
         float randomFloat = UnityEngine.Random.Range(0.5f, 1f);
+
+        if(_noRandomCooldowns)
+        {
+            randomFloat = 0;
+        }
+
         yield return new WaitForSeconds(movementCooldown + randomFloat);
         canAttemptMove = true;
 

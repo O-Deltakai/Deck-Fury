@@ -133,7 +133,7 @@ public class Bullet : MonoBehaviour, IReflectable
         velocity = -velocity * 2.5f;
         transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + 180);
 
-        attackPayload.damage *= 2;
+        attackPayload.damage *= 5;
         attackPayload.attacker = reflector;
 
         attackPayload.reflected = true;

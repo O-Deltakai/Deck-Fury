@@ -1230,6 +1230,7 @@ GameObject:
   - component: {fileID: 8238804233641686254}
   - component: {fileID: 8238804233641686255}
   - component: {fileID: 8238804233641686252}
+  - component: {fileID: 5510052938904964185}
   m_Layer: 6
   m_Name: WallTileMap
   m_TagString: Wall
@@ -1955,6 +1956,33 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
   m_UseDelaunayMesh: 0
+--- !u!50 &5510052938904964185
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8238804233641686242}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &8238804234788370665
 GameObject:
   m_ObjectHideFlags: 0
@@ -2973,7 +3001,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 108899172552980757, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_InstanceId
-      value: -1034714
+      value: -267936
       objectReference: {fileID: 0}
     - target: {fileID: 4687472683638389849, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_RootOrder
@@ -3043,7 +3071,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 108899172552980757, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_InstanceId
-      value: -1034784
+      value: -268096
       objectReference: {fileID: 0}
     - target: {fileID: 4687472683638389849, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_RootOrder
@@ -3245,7 +3273,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 108899172552980757, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_InstanceId
-      value: -1034988
+      value: -268186
       objectReference: {fileID: 0}
     - target: {fileID: 4687472683638389849, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_RootOrder
@@ -3513,7 +3541,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 108899172552980757, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_InstanceId
-      value: -1034644
+      value: -268026
       objectReference: {fileID: 0}
     - target: {fileID: 4687472683638389849, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_RootOrder
@@ -3583,7 +3611,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 108899172552980757, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_InstanceId
-      value: -1035058
+      value: -267826
       objectReference: {fileID: 0}
     - target: {fileID: 4687472683638389849, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_RootOrder
@@ -3653,7 +3681,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 108899172552980757, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_InstanceId
-      value: -1034918
+      value: -267756
       objectReference: {fileID: 0}
     - target: {fileID: 4687472683638389849, guid: 56a476ccec63e9249a14fc377363c6fc, type: 3}
       propertyPath: m_RootOrder

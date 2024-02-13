@@ -81,6 +81,8 @@ public class ScoreManager : MonoBehaviour
 
 
     [field:SerializeField] public int TotalDamageTaken {get; private set;} = 0;
+    [field:SerializeField] public int ReflectKills {get; private set;} = 0;
+
 
 
     public int EnemiesKilledScore { get; private set; } = 0;
@@ -317,12 +319,17 @@ public class ScoreManager : MonoBehaviour
             {
                 if(killingBlow.Value.attacker.CompareTag(Tags.ENVIRONMENT_HAZARD))
                 {
-                    TotalEnemiesKilled++;
                     EnemiesKilledWithHazards++;
-                    return;
                 }
+
+                if(killingBlow.Value.reflected)
+                {
+                    ReflectKills++;
+                }
+
             }
             
+
         }
         TotalEnemiesKilled++;
     }

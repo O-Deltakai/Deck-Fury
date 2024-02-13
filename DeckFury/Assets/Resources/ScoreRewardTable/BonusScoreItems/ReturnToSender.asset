@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ecffd271d7455b47b69bb7babf61aae, type: 3}
-  m_Name: Improvisor
+  m_Name: ReturnToSender
   m_EditorClassIdentifier: 
-  <RewardName>k__BackingField: Improvisor
-  <BaseScore>k__BackingField: 300
+  <RewardName>k__BackingField: Return To Sender
+  <BaseScore>k__BackingField: 200
   <CompareValue>k__BackingField:
     <UseCompareValue>k__BackingField: 1
-    ValueName: Enemies killed by Hazards
+    ValueName: Number of Reflect Kills
     valueType: 0
-    intValue: 2
+    intValue: 0
     floatValue: 0
     doubleValue: 0
     isGreaterThan: 1
-  rewardDescription: Kill more than 2 enemies using environmental hazards.
-  ConditionMethodName: CompareEnemiesKilledWithHazards
+  rewardDescription: Kill an enemy with a reflected attack.
+  ConditionMethodName: CompareReflectKills
   firstActionFieldName: 
   secondActionFieldName: 
   <comparisonType>k__BackingField: 0

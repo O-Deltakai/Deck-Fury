@@ -93,6 +93,15 @@ public class RewardConditionChecks : MonoBehaviour
         
     }
 
+    public void CompareReflectKills(BonusScoreItemSO bonusScoreItem)
+    {
+        int reflectKills = scoreManager.ReflectKills;
+        if(bonusScoreItem.CompareValue.Compare(reflectKills))
+        {
+            OnBonusConditionMet?.Invoke(bonusScoreItem);
+        }
+    }
+
     public void CompareCardsUsed(BonusScoreItemSO bonusScoreItem)
     {
         int value = scoreManager.NumberOfCardsUsed;
