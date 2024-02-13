@@ -26,7 +26,7 @@ public class Boomerang : MonoBehaviour
     public int damageBonusPerBounce = 25;
 
 
-    int bounces = 0;
+    [SerializeField] int bounces = 1;
 
     void Awake() 
     {
@@ -63,9 +63,9 @@ public class Boomerang : MonoBehaviour
             {
                 if (bounces < maxBounces)
                 {
-                    bounces++;
+
                     attackPayload.damage += damageBonusPerBounce;
-                    speed *= 1.1f;
+                    //speed *= 1.1f;
                 }
                 else
                 {
@@ -76,7 +76,6 @@ public class Boomerang : MonoBehaviour
             {
                 if (bounces < maxBounces)
                 {
-                    bounces++;
                     attackPayload.damage += damageBonusPerBounce;
 
                     // Calculate the new bounce angle
@@ -84,13 +83,16 @@ public class Boomerang : MonoBehaviour
                     Vector2 reflection = Vector2.Reflect(velocity, normal);
                     velocity = reflection.normalized;
 
-                    speed *= 1.1f;
+                    //speed *= 1.1f;
                 }
                 else
                 {
                     DisableObject();
                 }
             }
+
+            bounces++;
+
         }
     }
 
@@ -135,7 +137,7 @@ public class Boomerang : MonoBehaviour
     //destroys the game object after some time.
     private IEnumerator TimedDestruction()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
         Destroy(gameObject);
     }
 
