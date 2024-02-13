@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rotationAxis: 2
   _rotationDirection: 0
-  rotationSpeed: 2000
+  rotationSpeed: 500
 --- !u!1 &561233319248923547
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +343,7 @@ MonoBehaviour:
     m_Bits: 8
   maxBounces: 2
   damageBonusPerBounce: 25
+  bounces: 0
 --- !u!58 &7726852703281507619
 CircleCollider2D:
   m_ObjectHideFlags: 0

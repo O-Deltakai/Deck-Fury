@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: ForceBlast
   m_EditorClassIdentifier: 
   <CardName>k__BackingField: Force Blast
-  CardDescription: Forcefully blast enemies and objects in a <b>2x3</b> area in front
-    of you, dealing <b>BD</b> damage, <b>shoving</b> them <b>Q0</b> tiles back and
-    <b><color=yellow>stunning</color></b> them for <b>Q1</b> second(s).
+  CardDescription: 'Blast enemies and objects in a <b>2x3</b> area ahead, dealing
+    <b>BD</b> damage, <b>shoving</b> them <b>Q0</b> tiles back and <b><color=yellow>stunning</color></b>
+    them for <b>Q1</b> second(s).
+
+
+    <i>Can reflect enemy projectiles and has
+    special interactions with certain projectiles.</i> '
   BaseDamage: 20
   <AttackElement>k__BackingField: 5
   <CardType>k__BackingField: 0
@@ -29,11 +33,15 @@ MonoBehaviour:
   - <EffectName>k__BackingField: Shove Distance
     <IntegerQuantity>k__BackingField: 2
     <FloatQuantity>k__BackingField: 0
+    _expression: 
+    _expressionIsInt: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
   - <EffectName>k__BackingField: Stun Duration
     <IntegerQuantity>k__BackingField: 0
     <FloatQuantity>k__BackingField: 1.5
+    _expression: 
+    _expressionIsInt: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
   CardImage: {fileID: 21300000, guid: 8bfd4492678506d4082ee326b90d45cf, type: 3}

@@ -52,6 +52,12 @@ public class ObjectRotater : MonoBehaviour
         SetRotationDirection();
     }
 
+    void OnEnable()
+    {
+        SetRotationAxis();
+        SetRotationDirection();
+    }
+
     void SetRotationAxis()
     {
         switch(_rotationAxis)

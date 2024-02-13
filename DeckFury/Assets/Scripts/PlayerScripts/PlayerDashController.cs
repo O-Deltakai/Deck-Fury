@@ -208,12 +208,22 @@ public class PlayerDashController : MonoBehaviour
 
     IEnumerator DashCooldown()
     {
+        if(dashIndicatorImageFillTween.IsActive())
+        {
+            dashIndicatorImageFillTween.Kill();
+        }
+
+        if(dashIndicatorImageColorTween.IsActive())
+        {
+            dashIndicatorImageColorTween.Kill();
+        }
         usedDash = true;
 
         dashIndicatorImage.fillAmount = 0;
         dashIndicatorFrame.color = onCooldownFrameColor;
 
         dashIndicatorObject.SetActive(true);
+
 
         if(player.UseUnscaledTimeForActions)
         {
