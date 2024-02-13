@@ -26,6 +26,17 @@ public class Bazooka : Bullet
     [SerializeField] float cameraShakeDuration;
     CinemachineImpulseSourceHelper cinemachineImpulseSourceHelper;
 
+    [SerializeField] AttackPayload impactPayload;
+
+    [Header("Reflect Settings")]
+    [SerializeField] SpriteRenderer bazookaSprite;
+    [SerializeField] Material defaultMaterial;
+    [SerializeField] Material reflectMaterial;
+
+    [Header("Speed Settings")]
+    [SerializeField] float maxSpeed = 7.5f;
+    [SerializeField] float acceleration = 0.5f;
+
     protected override void Awake()
     {
         base.Awake();
@@ -35,18 +46,35 @@ public class Bazooka : Bullet
         explosionLight.enabled = false;
     }
 
+    void Start()
+    {
+        impactPayload = attackPayload;
+        impactPayload.canTriggerMark = false;
+        impactPayload.attackElement = AttackElement.Neutral;
+
+    }
+
+    void Update()
+    {
+        if(speed < maxSpeed)
+        {
+            speed += acceleration * Time.deltaTime;
+        }
+    }
 
     //Check for collision with appropriate targets
     //amend position of gameobject on impact
     private void OnCollisionEnter2D(Collision2D other)
     {
+
+
         if(!impacted){
             if(team == EntityTeam.Player)
             {
                 if(other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("EnvironmentalHazard"))
                 {
                     StageEntity entity = other.gameObject.GetComponent<StageEntity>();
-                    entity.HurtEntity(attackPayload);
+                    entity.HurtEntity(impactPayload);
                     bazookaTransform.position = other.gameObject.transform.position;
                     ExplosionImpact();          
                 }
@@ -56,7 +84,7 @@ public class Bazooka : Bullet
                 if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("EnvironmentalHazard")) // Added this
                 {
                     StageEntity entity = other.gameObject.GetComponent<StageEntity>();
-                    entity.HurtEntity(attackPayload);
+                    entity.HurtEntity(impactPayload);
                     bazookaTransform.position = other.gameObject.transform.position;
                     ExplosionImpact();
                 }
@@ -78,8 +106,16 @@ public class Bazooka : Bullet
         bazookaCollider.enabled = false;
         bazookaBullet.SetActive(false);
         explosionCollider.enabled = true;
+
+        if (TryGetComponent<ObjectRotater>(out ObjectRotater rotater))
+        {
+            rotater.enabled = false;
+        }
+
         gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         bombExplosionAnimator.Play(fireBombExplosionVFX.name, 0);
+
+
         ActivateExplosionCollider();
         explosionLight.enabled = true;
         trailLight.enabled = false;
@@ -140,5 +176,33 @@ public class Bazooka : Bullet
         }
 
     }
+
+    public override void Reflect(GameObject reflector)
+    {
+        if(IsReflected)
+        {
+            return;
+        }
+
+        StartCoroutine(FlashSprite());
+
+        IsReflected = true;
+
+        impactPayload.damage *= 2;
+
+        speed *= 3f;
+
+        ObjectRotater objectRotater = gameObject.AddComponent<ObjectRotater>();
+        objectRotater.rotationSpeed = 2000;
+
+    }
+
+    IEnumerator FlashSprite()
+    {
+        bazookaSprite.material = reflectMaterial;
+        yield return new WaitForSeconds(0.1f);
+        bazookaSprite.material = defaultMaterial;
+    }
+
 
 }

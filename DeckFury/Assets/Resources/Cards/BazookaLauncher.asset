@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: BazookaLauncher
   m_EditorClassIdentifier: 
   <CardName>k__BackingField: Bazooka Launcher
-  CardDescription: Fire a rocket that deals <b>BD</b> damage. Round explodes in a
-    <b>3x3</b> square when it makes contact or reach the wall, and deal <b>BD</b>
-    damage.
+  CardDescription: Fire a rocket that deals <b>BD</b> damage upon impact, and then
+    explodes in a <b>3x3</b> area dealing an additional <b>BD</b> to enemies in the
+    area.
   BaseDamage: 50
   <AttackElement>k__BackingField: 2
   <CardType>k__BackingField: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
   <EnergyCost>k__BackingField: 0
   CardTier: 2
   <QuantifiableEffects>k__BackingField: []
-  CardImage: {fileID: 21300000, guid: ccbb0b0ff38d0314082228e4747bee98, type: 3}
+  CardImage: {fileID: 21300000, guid: 6f2352a9378157546af7f3ef67aa967a, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
   <UsesAnimationEvent>k__BackingField: 1
   <EffectPrefab>k__BackingField: {fileID: 3125481600370001809, guid: c9eb19dddc3a43145ab62cd7f4e5e56d, type: 3}

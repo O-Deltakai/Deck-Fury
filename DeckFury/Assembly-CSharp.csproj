@@ -172,6 +172,7 @@
     <Compile Include="Assets\Resources\Custom Tile Scripts\PrefabTile.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\SpawnManager.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModulePhysics2D.cs" />
+    <Compile Include="Assets\Scripts\GeneralScripts\IReflectable.cs" />
     <Compile Include="Assets\Scripts\StageManagerScripts\GroundTileData.cs" />
     <Compile Include="Assets\Scripts\Shop System\ShopItemType.cs" />
     <Compile Include="Assets\Scripts\Finite State Machine\FuncPredicate.cs" />
@@ -182,8 +183,8 @@
     <Compile Include="Assets\Scripts\Card System\CardScripts\ShieldSteal.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\DashResetOnKillItem.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\FloppyDiskItem.cs" />
-    <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\RendererFeatures\DistortTunnel\DistortTunnelPass_Tunnel.cs" />
     <Compile Include="Assets\Scripts\Card System\CardScripts\FreezingMine.cs" />
+    <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\RendererFeatures\DistortTunnel\DistortTunnelPass_Tunnel.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\Vector3Extensions.cs" />
     <Compile Include="Assets\Scripts\PathfindingScripts\AStarPathfinder.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\AnimationEventIntermediary.cs" />
@@ -2963,12 +2964,12 @@
       <HintPath>Library\PackageCache\com.unity.collections@2.1.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil@1.11.4\Mono.Cecil.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Animancer.Lite">
       <HintPath>Assets\Plugins\Animancer\Internal\Core\Animancer.Lite.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil@1.11.4\Mono.Cecil.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
@@ -3487,8 +3488,8 @@
     <ProjectReference Include="Unity.2D.PixelPerfect.csproj" />
     <ProjectReference Include="Animancer.csproj" />
     <ProjectReference Include="Unity.TextMeshPro.csproj" />
-    <ProjectReference Include="Unity.2D.PixelPerfect.Samples.csproj" />
     <ProjectReference Include="Animancer.FSM.csproj" />
+    <ProjectReference Include="Unity.2D.PixelPerfect.Samples.csproj" />
     <ProjectReference Include="Unity.AI.Navigation.Editor.ConversionSystem.csproj" />
     <ProjectReference Include="Unity.VSCode.Editor.csproj" />
     <ProjectReference Include="Unity.RenderPipelines.Universal.Editor.csproj" />
@@ -3510,9 +3511,9 @@
     <ProjectReference Include="UnityEngine.UI.csproj" />
     <ProjectReference Include="Unity.Serialization.Editor.csproj" />
     <ProjectReference Include="Unity.InternalAPIEngineBridge.001.csproj" />
+    <ProjectReference Include="Animancer.Examples.csproj" />
     <ProjectReference Include="Unity.2D.Common.Runtime.csproj" />
     <ProjectReference Include="Unity.RenderPipeline.Universal.ShaderLibrary.csproj" />
-    <ProjectReference Include="Animancer.Examples.csproj" />
     <ProjectReference Include="Unity.Timeline.csproj" />
     <ProjectReference Include="Unity.InputSystem.csproj" />
     <ProjectReference Include="Unity.InputSystem.ForUI.csproj" />

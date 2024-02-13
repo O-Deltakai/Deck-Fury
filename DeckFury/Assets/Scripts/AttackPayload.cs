@@ -22,7 +22,9 @@ public struct AttackPayload
     public Sprite attackerSprite;
 
     //If this payload deals the finishing blow on the player, what does the defeat menu say the player was defeated by?
-    public string causeOfDeathNote; 
+    public string causeOfDeathNote;
+
+    public bool reflected;
 
     public AttackPayload(int damage,
                         List<StatusEffect> statusEffects,
@@ -31,7 +33,8 @@ public struct AttackPayload
                         bool canTriggerMark = false,
                         GameObject attacker = null,
                         Sprite attackerSprite = null,
-                        string deathNote = "")
+                        string deathNote = "",
+                        bool reflected = false)
     {
         this.damage = damage;
         this.attackElement = attackElement;
@@ -42,6 +45,7 @@ public struct AttackPayload
         this.attacker = attacker;
         this.attackerSprite = attackerSprite;
         causeOfDeathNote = deathNote;
+        this.reflected = reflected;
     }
     public AttackPayload(int damage)
     {
@@ -54,6 +58,7 @@ public struct AttackPayload
         attacker = null;
         attackerSprite = null;
         causeOfDeathNote = "";
+        reflected = false;
     }
 
 

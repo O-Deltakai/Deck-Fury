@@ -197,7 +197,6 @@ public class Shooter : NPC
         bullet.trailRenderer.time = 0.2f;
         bullet.attackPayload = bulletPayload;
 
-        Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>()); // ensure it doesn't hit themselves
     }
 
     IEnumerator FireCooldown()

@@ -14,6 +14,8 @@ public class CardMagazineIndicator : MonoBehaviour
     [SerializeField] CardSelectionMenu cardSelectionMenu;
     [SerializeField] List<Image> cardImages = new List<Image>();
 
+    [SerializeField] List<CardIndicatorSlot> cardIndicatorSlots = new List<CardIndicatorSlot>();
+
     [SerializeField] TextMeshProUGUI firstCardText;
 
     Tween movementTween;
@@ -30,6 +32,13 @@ public class CardMagazineIndicator : MonoBehaviour
         //When the card select menu is active, move out of view. Otherwise, move into view.
         cardSelectionMenu.OnMenuDisabled += MoveIntoView;
         cardSelectionMenu.OnMenuActivated += MoveOutOfView;
+
+        foreach(CardIndicatorSlot slot in cardIndicatorSlots)
+        {
+            slot.cardMagazine = playerCardManager.ReadyOnlyCardMagazine;
+        }
+
+
     }
 
 
@@ -62,11 +71,27 @@ public class CardMagazineIndicator : MonoBehaviour
             image.sprite = null;
         }
 
-        for(int i = 0; i < playerCardManager.CardMagazine.Count ; i++) 
+        foreach(CardIndicatorSlot slot in cardIndicatorSlots)
         {
-            
-            cardImages[i].sprite = playerCardManager.CardMagazine[i].cardSO.GetCardImage();
+            slot.Clear();
         }
+
+
+        var cardMagazine = playerCardManager.CardMagazine;
+
+        for(int i = 0; i < playerCardManager.CardMagazine.Count; i++) 
+        {
+            if (i + 1 < cardMagazine.Count)
+            {
+                cardIndicatorSlots[i].AssignImages(cardMagazine[i].cardSO.GetCardImage(), cardMagazine[i + 1].cardSO.GetCardImage());
+            }else
+            {
+                cardIndicatorSlots[i].AssignImages(cardMagazine[^1].cardSO.GetCardImage());
+            }
+
+            //cardImages[i].sprite = playerCardManager.CardMagazine[i].cardSO.GetCardImage();
+        }
+
         UpdateFirstCardText();
     }
 

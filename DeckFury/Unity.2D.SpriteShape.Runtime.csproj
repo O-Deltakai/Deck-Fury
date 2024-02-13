@@ -66,6 +66,9 @@
   <ItemGroup>
     <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\SpriteShapeGeometryCreator.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\External\LibTessDotNet\Dict.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\External\LibTessDotNet\Sweep.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\SpriteShape.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\SplineUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\External\LibTessDotNet\Geom.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\External\LibTessDotNet\MeshUtils.cs" />
@@ -76,13 +79,10 @@
     <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\External\LibTessDotNet\PriorityQueue.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\BezierUtility.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\Spline.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\External\LibTessDotNet\Dict.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\External\LibTessDotNet\Mesh.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\External\LibTessDotNet\Sweep.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\External\LibTessDotNet\Tess.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\SpriteShapeController.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\SpriteShapeGenerator.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\SpriteShape.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.2d.spriteshape@9.0.2\Runtime\External\LibTessDotNet\LICENSE.txt" />
@@ -451,6 +451,10 @@
     </Reference>
     <Reference Include="DOTweenEditor">
       <HintPath>Assets\DOTween\Editor\DOTweenEditor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Animancer.Lite">
+      <HintPath>Assets\Plugins\Animancer\Internal\Core\Animancer.Lite.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">

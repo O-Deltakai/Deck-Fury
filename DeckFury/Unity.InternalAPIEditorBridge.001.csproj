@@ -65,8 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Library\PackageCache\com.unity.2d.common@8.0.2\Editor\InternalBridge\TexturePlatformSettings\TexturePlatformSettings.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.common@8.0.2\Editor\InternalBridge\InternalEditorBridge.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.common@8.0.2\Editor\InternalBridge\AssemblyInfo.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.common@8.0.2\Editor\InternalBridge\InternalEditorBridge.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.2d.common@8.0.2\Editor\InternalBridge\InternalBridgeDef.asmdef" />
@@ -454,6 +454,10 @@
     </Reference>
     <Reference Include="DOTweenEditor">
       <HintPath>Assets\DOTween\Editor\DOTweenEditor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Animancer.Lite">
+      <HintPath>Assets\Plugins\Animancer\Internal\Core\Animancer.Lite.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">

@@ -13,6 +13,8 @@ public class ForceBlast : CardEffect
     [SerializeField] AnimationClip VFXAnimationClip;
     [SerializeField] BoxCollider2D effectCollider;
 
+    [SerializeField] LayerMask targetLayer;
+
     AimpointController aimpoint;
 
     protected override void Awake()
@@ -36,10 +38,7 @@ public class ForceBlast : CardEffect
 
         FaceTowardsAimpoint(aimpoint);
 
-        int stageEntitiesLayer = LayerMask.NameToLayer("StageEntities");
-        LayerMask stageEntitiesMask = 1 << stageEntitiesLayer;
-
-        Collider2D[] hits = Physics2D.OverlapBoxAll(effectCollider.transform.position, effectCollider.size, effectCollider.transform.eulerAngles.z, stageEntitiesMask);
+        Collider2D[] hits = Physics2D.OverlapBoxAll(effectCollider.transform.position, effectCollider.size, effectCollider.transform.eulerAngles.z, targetLayer);
         if(hits.Length == 0){return;}
         if(hits == null) { return; }
 
@@ -48,26 +47,14 @@ public class ForceBlast : CardEffect
 
         foreach(var collider2D in sortedEntities) 
         {
-            StageEntity entity;
-            if(collider2D.attachedRigidbody != null)
+            if(collider2D.TryGetComponent<IReflectable>(out IReflectable reflectable))
             {
-                if(!collider2D.attachedRigidbody.gameObject.TryGetComponent<StageEntity>(out entity))
-                {
-                    print("collider did not have a StageEntity attached");
-                    continue;
-                }
-
-            }else
-            {
-                collider2D.gameObject.TryGetComponent<StageEntity>(out entity);
+                reflectable.Reflect(player.gameObject);   
             }
-            //if(!entity.CompareTag("Enemy") || !entity.CompareTag("EnvironmentalHazard")){continue;}
-            if(entity == null)
+
+            if(collider2D.TryGetComponent<StageEntity>(out StageEntity entity))
             {
-                continue;
-            }else
-            {
-                if(entity.CompareTag("Enemy") || entity.CompareTag("EnvironmentalHazard"))
+                if(entity.CompareTag(TagNames.Enemy.ToString()) || entity.CompareTag(TagNames.EnvironmentalHazard.ToString()))
                 {
                     entity.HurtEntity(attackPayload);
                     Vector2Int shoveDirection = aimpoint.GetAimVector2Int() * (int)cardSO.QuantifiableEffects[0].GetValueDynamic();

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Linq;
 
 public class Boomerang : MonoBehaviour
 {
     public bool objectIsPooled;
-    [SerializeField] AnimationClip boomerangVFX;
-    [SerializeField] Animator boomerangAnimator;
+
     [SerializeField] GameObject boomerangSprite;
     
     Rigidbody2D rigidBody;
@@ -17,14 +17,21 @@ public class Boomerang : MonoBehaviour
     public AttackPayload attackPayload;
     public EntityTeam team = EntityTeam.Player;
 
-    bool turningBack = false;
-    public int damageMultiplier=1;
+
+    [SerializeField] CircleCollider2D searchCollider;
+    [SerializeField] LayerMask targetLayer;
+
+    [Header("Bounce Settings")]
+    [Min(1)] public int maxBounces = 2;
+    public int damageBonusPerBounce = 25;
+
+
+    int bounces = 0;
 
     void Awake() 
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        turningBack = false;
-        boomerangAnimator.Play(boomerangVFX.name, 0);
+
     }
 
     void Start()
@@ -34,66 +41,83 @@ public class Boomerang : MonoBehaviour
     }
 
     
-    private void OnEnable() 
-    {
-        //Spin the boomrang sprite
-        //boomerangSprite.transform.DOLocalRotate(new Vector3(0, 0, 360), 0.25f, RotateMode.FastBeyond360).SetLoops(20, LoopType.Restart).SetEase(Ease.Linear).SetUpdate(false);   
-    }
-
-    
     private void FixedUpdate() 
     {
         //Move object with given velocity
-        rigidBody.MovePosition(rigidBody.position + velocity * Time.fixedDeltaTime * speed);    
+        rigidBody.MovePosition(rigidBody.position + speed * Time.fixedDeltaTime * velocity);    
     }
 
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.CompareTag(TagNames.Wall.ToString()) 
+            || other.gameObject.CompareTag(TagNames.EnvironmentalHazard.ToString()) 
+            || other.gameObject.CompareTag(TagNames.Enemy.ToString()))
+        {
+            if (other.gameObject.TryGetComponent<StageEntity>(out StageEntity entity))
+            {
+                entity.HurtEntity(attackPayload);
+            }
 
-        if(team == EntityTeam.Player)
-        {
-            if(other.gameObject.CompareTag("Enemy"))
+            if (FindNearestTarget())
             {
-                StageEntity entity = other.gameObject.GetComponent<StageEntity>();
-                entity.HurtEntity(attackPayload);
-                DisableObject();
+                if (bounces < maxBounces)
+                {
+                    bounces++;
+                    attackPayload.damage += damageBonusPerBounce;
+                    speed *= 1.1f;
+                }
+                else
+                {
+                    DisableObject();
+                }
             }
-        }else
-        if(team == EntityTeam.Enemy)
-        {
-            if (other.gameObject.CompareTag("Player")) // Added this
+            else
             {
-                StageEntity entity = other.gameObject.GetComponent<StageEntity>();
-                entity.HurtEntity(attackPayload);
-                DisableObject();
+                if (bounces < maxBounces)
+                {
+                    bounces++;
+                    attackPayload.damage += damageBonusPerBounce;
+
+                    // Calculate the new bounce angle
+                    Vector2 normal = other.GetContact(0).normal;
+                    Vector2 reflection = Vector2.Reflect(velocity, normal);
+                    velocity = reflection.normalized;
+
+                    speed *= 1.1f;
+                }
+                else
+                {
+                    DisableObject();
+                }
             }
-        }else
-        {//Neutral team, can damage either player or enemy
-            if (other.gameObject.CompareTag("Player")||other.gameObject.CompareTag("Enemy")) // Added this
-            {
-                StageEntity entity = other.gameObject.GetComponent<StageEntity>();
-                entity.HurtEntity(attackPayload);
-                DisableObject();
-            }                     
         }
-
-        //turning back gimmick when reach wall or obstacle
-        if(other.gameObject.tag == "Wall" || other.gameObject.CompareTag("EnvironmentalHazard"))
-        {
-            if(turningBack){
-                DisableObject();
-            }
-            else{
-                turningBack=true;
-                velocity.x*=-1;
-                velocity.y*=-1;
-                attackPayload.damage *=damageMultiplier;
-                speed*=1.5f;
-            }
-        }
-
     }
+
+    bool FindNearestTarget()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(searchCollider.transform.position, searchCollider.radius, targetLayer);
+        if (hits.Length == 0) { return false; }
+        if (hits == null) { return false; }
+
+        var sortedEntities = hits.OrderBy(h => -Vector2.Distance(h.transform.position, transform.position)).ToList();
+
+        foreach (var collider2D in sortedEntities)
+        {
+            if (collider2D.TryGetComponent<StageEntity>(out StageEntity entity))
+            {
+                if (entity.CompareTag(TagNames.Enemy.ToString()) || entity.CompareTag(TagNames.EnvironmentalHazard.ToString()))
+                {
+                    Vector2 direction = (collider2D.transform.position - transform.position).normalized;
+                    velocity = direction;
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 
     void DisableObject()
     {

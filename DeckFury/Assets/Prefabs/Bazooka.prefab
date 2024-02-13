@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4392510951926121308}
   - component: {fileID: 5225099499534831975}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TrailLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1701761184155726490}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: 0.71030825, w: -0.70389074}
-  m_LocalPosition: {x: -0.18, y: -0.02, z: 0}
+  m_LocalPosition: {x: 0.077, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.515
   m_Color: {r: 1, g: 0.70980394, b: 0, a: 1}
-  m_Intensity: 1.87
+  m_Intensity: 1.23
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000b1f16789b15915565f490cb5
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1787193374844176071}
   - component: {fileID: 7157331608720773411}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BazookaExplosionCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4610732775886782035}
   - component: {fileID: 3900800526982149089}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BazookaSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ Transform:
   m_GameObject: {fileID: 7945907755323577099}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -213,7 +213,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 25988c69fa0d97749856e7f48bcf7557, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -231,8 +231,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1444239793
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9a397e83c4c3c994c988babb654f2b5d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 3256666159788770404}
   - component: {fileID: 541235484406267747}
   - component: {fileID: 8664833667567532739}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ExplosionAnimator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 2845800061938338048}
   - component: {fileID: 9058419635590228944}
   - component: {fileID: 1972914517108082862}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bazooka
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
-  speed: 6
+  speed: 4
   velocity: {x: 0, y: 0}
   attackPayload:
     damage: 40
@@ -525,6 +525,7 @@ MonoBehaviour:
     attacker: {fileID: 0}
     attackerSprite: {fileID: 0}
     causeOfDeathNote: 
+    reflected: 0
   trailRenderer: {fileID: 8066383521917142994}
   bulletColor: {r: 1, g: 0.7113482, b: 0, a: 1}
   objectIsPooled: 0
@@ -545,6 +546,22 @@ MonoBehaviour:
   trailLight: {fileID: 5225099499534831975}
   cameraShakeVelocity: {x: 0.05, y: 0.05, z: 0}
   cameraShakeDuration: 0.2
+  impactPayload:
+    damage: 0
+    attackElement: 0
+    statusEffectType: 
+    actualStatusEffects: []
+    canTriggerMark: 0
+    greaterMarked: 0
+    attacker: {fileID: 0}
+    attackerSprite: {fileID: 0}
+    causeOfDeathNote: 
+    reflected: 0
+  bazookaSprite: {fileID: 3900800526982149089}
+  defaultMaterial: {fileID: 2100000, guid: 25988c69fa0d97749856e7f48bcf7557, type: 2}
+  reflectMaterial: {fileID: 2100000, guid: 749b9069dc4742c5bfa5c74644049926, type: 2}
+  maxSpeed: 7.5
+  acceleration: 1
 --- !u!50 &8612935382588771894
 Rigidbody2D:
   serializedVersion: 4
@@ -606,8 +623,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -697,7 +714,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8014684973964305222}
   - component: {fileID: 8066383521917142994}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BazookaSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}

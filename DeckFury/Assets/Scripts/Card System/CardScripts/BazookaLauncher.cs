@@ -28,7 +28,7 @@ public class BazookaLauncher : CardEffect
     //set position and rotation for object
     protected void AssignVariable(Bazooka bazooka)
     {
-        bazooka.transform.position = player.currentTilePosition;
+        bazooka.transform.position = player.currentTilePosition + player.aimpoint.GetAimVector3Int();
         bazooka.attackPayload = attackPayload;
         //bazooka.speed = 10;
 

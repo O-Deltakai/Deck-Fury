@@ -34,6 +34,7 @@ public class PlayerCardManager : MonoBehaviour
 
     //The list of cards the player can use in battle. Is loaded during the Card Selection Menu.
     [field:SerializeField] public List<CardObjectReference> CardMagazine{get; private set;} = new List<CardObjectReference>(); 
+    public IReadOnlyList<CardObjectReference> ReadyOnlyCardMagazine => CardMagazine;
     public CardObjectReference NextCard {get { return CardMagazine[0]; }}
 
 
