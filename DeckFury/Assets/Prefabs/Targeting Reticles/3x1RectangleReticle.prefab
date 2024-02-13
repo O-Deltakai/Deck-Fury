@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4375997191164275180}
   - component: {fileID: 1370183334139541222}
+  - component: {fileID: -6186634412724451330}
   m_Layer: 0
   m_Name: 3x1RectangleReticle
   m_TagString: Untagged
@@ -85,6 +86,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-6186634412724451330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112342928864596503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2278dc0320b3c224991a67c80daa96ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scaleDuration: 0.3
+  _scaleAmount: 0.1
+  _multiplyScale: 0
+  _scaleX: 1
+  _scaleY: 1
+  _easeType: 4
 --- !u!1 &9149069633655121254
 GameObject:
   m_ObjectHideFlags: 0
