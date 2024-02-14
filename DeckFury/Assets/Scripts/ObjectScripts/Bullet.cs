@@ -50,7 +50,7 @@ public class Bullet : MonoBehaviour, IReflectable
         trailRenderer.startColor = color;
       
         trailRenderer.endColor = Color.white;
-        bulletLight.color = color;
+        if(bulletLight) bulletLight.color = color;
     }
 
 

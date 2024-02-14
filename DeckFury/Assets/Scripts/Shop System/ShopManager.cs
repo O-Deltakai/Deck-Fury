@@ -126,19 +126,20 @@ public class ShopManager : MonoBehaviour
             
         }
 
+        List<ItemSO> selectedItems = new();
         //Initialize purchasable items
         foreach(WorldShopItem shopItem in _purchasables.OfType<WorldShopItem>())
         {
-            //Randomize item
-
-            shopItem.ItemSO = itemPool[random.Next(0, itemPool.Count() - 1)];
-
-            while(shopItem.ItemSO.ItemPrefab == null)
+            //Randomize item and make sure it's not a duplicate
+            ItemSO pickedItem = itemPool[random.Next(0, itemPool.Count() - 1)];
+            selectedItems.Add(pickedItem);
+            while (selectedItems.Contains(pickedItem) || pickedItem.ItemPrefab == null)
             {
-                shopItem.ItemSO = itemPool[random.Next(0, itemPool.Count() - 1)];
+                pickedItem = itemPool[random.Next(0, itemPool.Count() - 1)];
             }
 
-            print("ItemPool count: " + itemPool.Count());
+            shopItem.ItemSO = pickedItem;
+
             double randomDouble = random.NextDouble();
             
 

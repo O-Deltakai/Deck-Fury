@@ -28,6 +28,14 @@ public class PersistentLevelController : MonoBehaviour
     //The starting deck shouldn't actually be modified.
     [SerializeField] DeckSO startingDeck;
 
+
+[Header("Element Pools")]
+    [SerializeField] CardPoolSO _runCardPool;
+    public CardPoolSO RunCardPool => _runCardPool;
+    [SerializeField] ItemPoolSO _runItemPool;
+    public ItemPoolSO RunItemPool => _runItemPool;
+
+
 [Header("Stage Details")]
     [SerializeField] GameObject _currentMapPrefab;
     public GameObject CurrentMapPrefab => _currentMapPrefab;

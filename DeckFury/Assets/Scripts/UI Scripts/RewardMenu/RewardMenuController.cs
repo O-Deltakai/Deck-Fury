@@ -76,11 +76,30 @@ public class RewardMenuController : MonoBehaviour
     void GenerateCardRewards()
     {
         int numberOfCardRewards = rewardSlots.Count;
-        CardSO[] cardPool = GetCardsFromResources("Cards");
+
+        List<CardSO> selectedCards = new();
+
+
+        CardSO[] cardPool;
+        if(PersistentLevelController.Instance)
+        {
+            cardPool = PersistentLevelController.Instance.RunCardPool.CardPool.ToArray();
+        }else
+        {
+            cardPool = GetCardsFromResources("Cards");
+        }
+
         for(int i = 0; i < numberOfCardRewards; i++) 
         {
-            int randomInt = random.Next(0, cardPool.Length);
-            rewardSlots[i].UpdateDescription(cardPool[randomInt]); 
+
+            selectedCards.Add(cardPool[random.Next(0, cardPool.Length)]);
+            //Make sure the card is not already in the list
+            while(selectedCards.Contains(cardPool[random.Next(0, cardPool.Length)]))
+            {
+                selectedCards.Add(cardPool[random.Next(0, cardPool.Length)]);
+            }
+
+            rewardSlots[i].UpdateDescription(selectedCards[i]); 
 
         }
     }
