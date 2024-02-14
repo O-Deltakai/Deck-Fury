@@ -2,62 +2,70 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using FMODUnity;
 
 public class Wheel : MonoBehaviour
 {
     public bool objectIsPooled;
     [SerializeField] AnimationClip wheelVFX;
-    [SerializeField] Animator wheelAnimator;
-    [SerializeField] GameObject wheelSprite;
+    [SerializeField] GameObject slashVFXParent;
     
-    Rigidbody2D rigidBody;
+    [SerializeField] BoxCollider2D hitbox;
+    [SerializeField] LayerMask targetLayer;
+
+
+    [SerializeField] AnimationEventIntermediary wheelAnimEventRelay;
+
+    public int numberOfSlashes = 2;
 
     public AttackPayload attackPayload;
     public EntityTeam team = EntityTeam.Player;
 
+    [Header("SFX")]
+    [SerializeField] EventReference slashSFX;
+
 
     void Awake() 
     {
-        rigidBody = GetComponent<Rigidbody2D>();
+        wheelAnimEventRelay.OnAnimationEvent += TriggerHitbox;
+        slashVFXParent.SetActive(false);
     }
 
     void Start()
     {
         StartCoroutine(TimedDestruction());
-
+        StartCoroutine(SlashTimer());
     }
 
-
-    private void OnCollisionEnter2D(Collision2D other)
+    IEnumerator SlashTimer()
     {
-
-        if(team == EntityTeam.Player)
+        for(int i = 0; i < numberOfSlashes; i++)
         {
-            if(other.gameObject.CompareTag("Enemy"))
-            {
-                StageEntity entity = other.gameObject.GetComponent<StageEntity>();
-                entity.HurtEntity(attackPayload);
-                //DisableObject();
-            }
-        }else
-        if(team == EntityTeam.Enemy)
-        {
-            if (other.gameObject.CompareTag("Player")) // Added this
-            {
-                StageEntity entity = other.gameObject.GetComponent<StageEntity>();
-                entity.HurtEntity(attackPayload);
-                //DisableObject();
-            }
-        }else
-        {//Neutral team, can damage either player or enemy
-            if (other.gameObject.CompareTag("Player")||other.gameObject.CompareTag("Enemy")) // Added this
-            {
-                StageEntity entity = other.gameObject.GetComponent<StageEntity>();
-                entity.HurtEntity(attackPayload);
-                //DisableObject();
-            }                     
+            slashVFXParent.transform.localScale = new Vector3(-slashVFXParent.transform.localScale.x , 1 , 1);
+            slashVFXParent.SetActive(true);
+            yield return new WaitForSeconds(wheelVFX.length);
+            slashVFXParent.SetActive(false);
         }
+    }
 
+    void TriggerHitbox()
+    {
+        RuntimeManager.PlayOneShot(slashSFX, transform.position);
+        Collider2D[] hits = Physics2D.OverlapBoxAll(hitbox.transform.position, hitbox.size, 0, targetLayer);
+
+        if(hits.Length == 0){return;}
+        if(hits == null) { return; }
+
+        foreach(var collider2D in hits) 
+        {
+            if(collider2D.TryGetComponent<StageEntity>(out StageEntity entity))
+            {
+                if(entity.CompareTag(TagNames.Enemy.ToString()) || entity.CompareTag(TagNames.EnvironmentalHazard.ToString()))
+                {
+                    entity.HurtEntity(attackPayload);
+                }
+            }
+        }
     }
 
     void DisableObject()
@@ -77,8 +85,7 @@ public class Wheel : MonoBehaviour
     //destroys the game object after some time.
     private IEnumerator TimedDestruction()
     {
-        yield return new WaitForSeconds(wheelVFX.length + 0.05f);
-        //Destroy(gameObject);
+        yield return new WaitForSeconds(wheelVFX.length * numberOfSlashes + 0.05f);
         
         DisableObject();
     }

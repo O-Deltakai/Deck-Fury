@@ -7,7 +7,6 @@ public class Reaper : CardEffect
 {
     TargetClosestToMouse targetingSystem;
 
-    List<StageEntity> currentActiveNPCS = new List<StageEntity>();
     [SerializeField] float teleportSpeed = 0.15f;
     
     [SerializeField] AnimationClip VFXAnimationClip;
@@ -22,15 +21,13 @@ public class Reaper : CardEffect
 
         targetingSystemRelayBinding = new EventBinding<RelayGameObjectEvent>(HandleEventData);
         EventBus<RelayGameObjectEvent>.Register(targetingSystemRelayBinding);
-        print("Registered event");
+
     }
 
     void HandleEventData(RelayGameObjectEvent data)
     {
-        print("Received event");
         if (data.gameObject.TryGetComponent(out TargetClosestToMouse targetSystem))
         {
-            print("Received targeting system");
             targetingSystem = targetSystem;
         }
     }
@@ -96,12 +93,15 @@ public class Reaper : CardEffect
 
     }
 
-    void CreateObject(){
+    void CreateObject()
+    {
         if(!cardSO.ObjectSummonsArePooled)
         {
             Wheel wheel = Instantiate(cardSO.ObjectSummonList[0], player.currentTilePosition,
-            new Quaternion(0, 0, (float)player.aimpoint.currentAimDirection, 0)).GetComponent<Wheel>();
+            Quaternion.identity).GetComponent<Wheel>();
             wheel.objectIsPooled = false;
+
+            wheel.numberOfSlashes = (int)cardSO.QuantifiableEffects[0].GetValueDynamic();
 
             AssignVariable(wheel);
 
@@ -115,10 +115,11 @@ public class Reaper : CardEffect
     }
 
         //set position and rotation for object
-    protected void AssignVariable(Wheel wheel){
-            wheel.transform.position = player.currentTilePosition;
-            wheel.attackPayload = attackPayload;            
-            wheel.gameObject.SetActive(true);
+    protected void AssignVariable(Wheel wheel)
+    {
+        wheel.transform.position = player.currentTilePosition;
+        wheel.attackPayload = attackPayload;            
+        wheel.gameObject.SetActive(true);
     }
 
     IEnumerator DisableHitboxTimer()

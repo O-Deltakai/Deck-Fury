@@ -17,17 +17,9 @@ public class TargetClosestToMouse : MonoBehaviour
 
     Tween reticleTween;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     void OnEnable()
     {
-        EventBus<RelayGameObjectEvent>.Raise(new RelayGameObjectEvent { gameObject = gameObject});      
-        print("Raised event");  
+        EventBus<RelayGameObjectEvent>.Raise(new RelayGameObjectEvent { gameObject = gameObject});       
 
     }
 

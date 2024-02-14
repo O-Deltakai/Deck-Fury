@@ -187,7 +187,7 @@ public class Bazooka : Bullet
 
         impactPayload.damage *= 2;
 
-        speed *= 3f;
+        speed *= 3.5f;
 
         ObjectRotater objectRotater = gameObject.AddComponent<ObjectRotater>();
         objectRotater.rotationSpeed = 2000;
