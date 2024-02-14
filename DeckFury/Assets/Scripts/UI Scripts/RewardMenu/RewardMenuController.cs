@@ -91,14 +91,14 @@ public class RewardMenuController : MonoBehaviour
 
         for(int i = 0; i < numberOfCardRewards; i++) 
         {
-
-            selectedCards.Add(cardPool[random.Next(0, cardPool.Length)]);
+            CardSO pickedCard = cardPool[random.Next(0, cardPool.Length)];
             //Make sure the card is not already in the list
-            while(selectedCards.Contains(cardPool[random.Next(0, cardPool.Length)]))
+            while(selectedCards.Contains(pickedCard))
             {
-                selectedCards.Add(cardPool[random.Next(0, cardPool.Length)]);
+                pickedCard = cardPool[random.Next(0, cardPool.Length)];
             }
 
+            selectedCards.Add(pickedCard);
             rewardSlots[i].UpdateDescription(selectedCards[i]); 
 
         }

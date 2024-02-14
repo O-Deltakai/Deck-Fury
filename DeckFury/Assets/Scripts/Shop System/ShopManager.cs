@@ -109,7 +109,7 @@ public class ShopManager : MonoBehaviour
         foreach(WorldShopCard shopCard in _purchasables.OfType<WorldShopCard>())
         {
             //Randomize card
-            shopCard.Card = cardPool[random.Next(0, cardPool.Count() - 1)];
+            shopCard.Card = cardPool[random.Next(0, cardPool.Count())];
 
             double randomDouble = random.NextDouble();
             
@@ -131,14 +131,14 @@ public class ShopManager : MonoBehaviour
 
         for(int i = 0; i < shopItemCount; i++)
         {
-            ItemSO nextItem = itemPool[random.Next(0, itemPool.Count() - 1)];
+            ItemSO nextItem = itemPool[random.Next(0, itemPool.Count())];
 
             while(selectedItems.Contains(nextItem))
             {
-                nextItem = itemPool[random.Next(0, itemPool.Count() - 1)];
+                nextItem = itemPool[random.Next(0, itemPool.Count())];
             }
 
-            selectedItems.Add(itemPool[random.Next(0, itemPool.Count() - 1)]);
+            selectedItems.Add(nextItem);
         }
 
 
