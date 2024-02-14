@@ -19,10 +19,9 @@ public class Wheel : MonoBehaviour
     void Awake() 
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        wheelAnimator.Play("wheelVFX", 0);
     }
 
-        void Start()
+    void Start()
     {
         StartCoroutine(TimedDestruction());
 

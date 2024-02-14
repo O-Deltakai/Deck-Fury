@@ -212,16 +212,16 @@ public class CardPoolManager : MonoBehaviour
         }
 
 
-            CardSO card = deckElement.card;
-            if(!card.UseTargetingReticle || card.TargetingReticle == null)
-            {return;}
+        CardSO card = deckElement.card;
+        if(!card.UseTargetingReticle || card.TargetingReticle == null)
+        {return;}
 
-            if(!ReticleDictionary.ContainsKey(card.TargetingReticle))
-            {
-                GameObject instantiatedReticle = Instantiate(card.TargetingReticle, TargetingReticlePoolParent.transform);
-                ReticleDictionary.Add(card.TargetingReticle, instantiatedReticle);
-                instantiatedReticle.SetActive(false);
-            }
+        if(!ReticleDictionary.ContainsKey(card.TargetingReticle))
+        {
+            GameObject instantiatedReticle = Instantiate(card.TargetingReticle, TargetingReticlePoolParent.transform);
+            ReticleDictionary.Add(card.TargetingReticle, instantiatedReticle);
+            instantiatedReticle.SetActive(false);
+        }
 
 
     }

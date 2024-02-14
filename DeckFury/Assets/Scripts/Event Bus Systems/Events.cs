@@ -29,3 +29,16 @@ public struct UseCardEvent : IEvent
     public CardObjectReference card;
     public CardSO cardSO;
 }
+
+/// <summary>
+/// Event used for when you want to relay a game object reference to another script
+/// </summary>
+public struct RelayGameObjectEvent : IEvent
+{
+    public GameObject gameObject;
+}
+
+public struct PlayerDamagedEvent : IEvent
+{
+    public AttackPayload attackPayload;
+}

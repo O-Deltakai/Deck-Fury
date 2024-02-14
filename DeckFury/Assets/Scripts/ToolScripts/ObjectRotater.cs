@@ -43,6 +43,8 @@ public class ObjectRotater : MonoBehaviour
     }
     public float rotationSpeed = 10f;
 
+    public bool useUnscaledTime = false;
+
     Vector3 currentRotationAxis = Vector3.zero;
     float currentRotationDirection = 1f;
 
@@ -94,7 +96,13 @@ public class ObjectRotater : MonoBehaviour
 
     void RotateObject()
     {
-        transform.Rotate(currentRotationAxis, Time.deltaTime * rotationSpeed * currentRotationDirection);
+        if (useUnscaledTime)
+        {
+            transform.Rotate(currentRotationAxis, Time.unscaledDeltaTime * rotationSpeed * currentRotationDirection);
+        }else
+        {
+            transform.Rotate(currentRotationAxis, Time.deltaTime * rotationSpeed * currentRotationDirection);
+        }
     }
 
 

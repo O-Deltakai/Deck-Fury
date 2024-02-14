@@ -26,6 +26,7 @@ public class EntityUIElementAnimator : MonoBehaviour
 
     Tween textShakeTween = null;
 
+    Coroutine CR_AnimateNumberCounter = null;
 
     void Start()
     {
@@ -40,17 +41,22 @@ public class EntityUIElementAnimator : MonoBehaviour
 
     public void AnimateNumberCounter(TextMeshPro textElement, int initialNum, int finalNum)
     {
+        if(CR_AnimateNumberCounter != null)
+        {
+            StopCoroutine(CR_AnimateNumberCounter);
+        }
+
         int difference = Math.Abs(initialNum - finalNum);
         if(difference <= thresholdForFastCount)
         {
-            StartCoroutine(AnimateNumber(textElement, initialNum, finalNum, countDuration * multiplierForFastCount));
+            CR_AnimateNumberCounter = StartCoroutine(AnimateNumber(textElement, initialNum, finalNum, countDuration * multiplierForFastCount));
         }else 
         if(difference < thresholdForSlowCount)
         {
-            StartCoroutine(AnimateNumber(textElement, initialNum, finalNum, countDuration));
+            CR_AnimateNumberCounter = StartCoroutine(AnimateNumber(textElement, initialNum, finalNum, countDuration));
         }else
         {
-            StartCoroutine(AnimateNumber(textElement, initialNum, finalNum, countDuration * multiplierForSlowCount));
+            CR_AnimateNumberCounter = StartCoroutine(AnimateNumber(textElement, initialNum, finalNum, countDuration * multiplierForSlowCount));
         }
 
     }
@@ -112,6 +118,8 @@ public class EntityUIElementAnimator : MonoBehaviour
             stepCounter = 0;
     
         }
+
+        CR_AnimateNumberCounter = null;
 
         //AnimateHPCoroutine = null;
 

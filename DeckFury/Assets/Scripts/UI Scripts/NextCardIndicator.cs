@@ -69,7 +69,12 @@ public class NextCardIndicator : MonoBehaviour
 
     void UpdateCardImage()
     {
-        if(playerCardManager.MagazineIsEmpty()){ return; }
+        if(playerCardManager.MagazineIsEmpty())
+        { 
+            _firstCardSprite.enabled = false;
+            _secondCardSprite.enabled = false;    
+            return; 
+        }
 
         _firstCardSprite.sprite = playerCardManager.CardMagazine[0].cardSO.GetCardImage();
 

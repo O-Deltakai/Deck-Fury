@@ -33,6 +33,11 @@ public class FreezeMine : MonoBehaviour
     [SerializeField] CinemachineImpulseSourceHelper impulseSourceHelper;
     [SerializeField] Vector2 cameraShakeVelocity;
 
+    [Header("Misc. Settings")]
+    [Tooltip("Time before the mine explodes after being placed if not triggered")]
+    [SerializeField] float _timeBeforeExpire = 10f;
+
+    Coroutine CR_ExpireTimer;
 
     private void Awake() 
     {
@@ -49,6 +54,7 @@ public class FreezeMine : MonoBehaviour
         mineCollider.enabled = true;
         mineSprite.SetActive(true);
         RuntimeManager.PlayOneShot(minePlacedSFX, transform.position);
+        CR_ExpireTimer = StartCoroutine(ExpireTimer());
     }
 
 
@@ -61,16 +67,26 @@ public class FreezeMine : MonoBehaviour
 
             if (entityHit != null)
             {
-                mineCollider.enabled = false;
-                mineSprite.SetActive(false);
-
-                RuntimeManager.PlayOneShot(mineTriggeredSFX, transform.position);
-
-                TriggerVFX();
-                StartCoroutine(SelfDestruct());
+                ActivateMine();
             }
         }
 
+    }
+
+    void ActivateMine()
+    {
+        if(CR_ExpireTimer != null)
+        {
+            StopCoroutine(CR_ExpireTimer);
+        }
+
+        mineCollider.enabled = false;
+        mineSprite.SetActive(false);
+
+        RuntimeManager.PlayOneShot(mineTriggeredSFX, transform.position);
+
+        TriggerVFX();
+        StartCoroutine(SelfDisable());        
     }
 
     void TriggerVFX()
@@ -117,7 +133,13 @@ public class FreezeMine : MonoBehaviour
     
     }
 
-    IEnumerator SelfDestruct()
+    IEnumerator ExpireTimer()
+    {
+        yield return new WaitForSeconds(_timeBeforeExpire);
+        ActivateMine();
+    }
+
+    IEnumerator SelfDisable()
     {
         yield return new WaitForSeconds(explsoionVFXClip.length);
         DisableObject();

@@ -17,16 +17,16 @@ public class Bazooka : Bullet
     [SerializeField] Transform bazookaTransform;
 
     [SerializeField] EventReference explosionSFX;
+    [SerializeField] EventReference boostedExplosionSFX;
     [SerializeField] Light2D explosionLight;
     [SerializeField] Light2D trailLight;
-    bool impacted = false;
 
     [Header("Camera Shake Settings")]
     [SerializeField] Vector3 cameraShakeVelocity;
     [SerializeField] float cameraShakeDuration;
     CinemachineImpulseSourceHelper cinemachineImpulseSourceHelper;
 
-    [SerializeField] AttackPayload impactPayload;
+    public AttackPayload impactPayload;
 
     [Header("Reflect Settings")]
     [SerializeField] SpriteRenderer bazookaSprite;
@@ -48,9 +48,6 @@ public class Bazooka : Bullet
 
     void Start()
     {
-        impactPayload = attackPayload;
-        impactPayload.canTriggerMark = false;
-        impactPayload.attackElement = AttackElement.Neutral;
 
     }
 
@@ -68,32 +65,33 @@ public class Bazooka : Bullet
     {
 
 
-        if(!impacted){
-            if(team == EntityTeam.Player)
+        if(team == EntityTeam.Player)
+        {
+            if(other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("EnvironmentalHazard"))
             {
-                if(other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("EnvironmentalHazard"))
-                {
-                    StageEntity entity = other.gameObject.GetComponent<StageEntity>();
-                    entity.HurtEntity(impactPayload);
-                    bazookaTransform.position = other.gameObject.transform.position;
-                    ExplosionImpact();          
-                }
-            }else
-            if(team == EntityTeam.Enemy)
-            {
-                if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("EnvironmentalHazard")) // Added this
-                {
-                    StageEntity entity = other.gameObject.GetComponent<StageEntity>();
-                    entity.HurtEntity(impactPayload);
-                    bazookaTransform.position = other.gameObject.transform.position;
-                    ExplosionImpact();
-                }
+                StageEntity entity = other.gameObject.GetComponent<StageEntity>();
+                bazookaCollider.enabled = false;
+                entity.HurtEntity(impactPayload);
+                bazookaTransform.position = other.gameObject.transform.position;
+                ExplosionImpact();          
             }
-            if(other.gameObject.tag == "Wall")
+        }else
+        if(team == EntityTeam.Enemy)
+        {
+            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("EnvironmentalHazard")) // Added this
             {
+                StageEntity entity = other.gameObject.GetComponent<StageEntity>();
+                entity.HurtEntity(impactPayload);
+                bazookaTransform.position = other.gameObject.transform.position;
+                bazookaCollider.enabled = false;
                 ExplosionImpact();
             }
         }
+        if(other.gameObject.tag == "Wall")
+        {
+            ExplosionImpact();
+        }
+        
 
     }
 
@@ -101,7 +99,6 @@ public class Bazooka : Bullet
     private void ExplosionImpact()
     {
         speed = 0.0f;
-        impacted=true;
         //disable rocket itself and make explosion active
         bazookaCollider.enabled = false;
         bazookaBullet.SetActive(false);
@@ -194,6 +191,8 @@ public class Bazooka : Bullet
 
         ObjectRotater objectRotater = gameObject.AddComponent<ObjectRotater>();
         objectRotater.rotationSpeed = 2000;
+
+        explosionSFX = boostedExplosionSFX;
 
     }
 

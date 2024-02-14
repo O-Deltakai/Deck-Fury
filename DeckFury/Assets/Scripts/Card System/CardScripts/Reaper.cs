@@ -5,39 +5,56 @@ using UnityEngine;
 
 public class Reaper : CardEffect
 {
+    TargetClosestToMouse targetingSystem;
 
-    //SpawnManager spawnManager;
     List<StageEntity> currentActiveNPCS = new List<StageEntity>();
     [SerializeField] float teleportSpeed = 0.15f;
     
     [SerializeField] AnimationClip VFXAnimationClip;
 
+    EventBinding<RelayGameObjectEvent> targetingSystemRelayBinding;
+
+    StageEntity target;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        targetingSystemRelayBinding = new EventBinding<RelayGameObjectEvent>(HandleEventData);
+        EventBus<RelayGameObjectEvent>.Register(targetingSystemRelayBinding);
+        print("Registered event");
+    }
+
+    void HandleEventData(RelayGameObjectEvent data)
+    {
+        print("Received event");
+        if (data.gameObject.TryGetComponent(out TargetClosestToMouse targetSystem))
+        {
+            print("Received targeting system");
+            targetingSystem = targetSystem;
+        }
+    }
+
     public override void ActivateCardEffect()
     {
-
-        
-        //spawnManager = FindObjectOfType<SpawnManager>();
-        currentActiveNPCS = SpawnManager.GetActiveStageEntities();
-        int enemyCount = currentActiveNPCS.Count;
-        //run if there is enemy
-        if (enemyCount>0){
-            int targetIndex = Random.Range(0, enemyCount);
-            Vector3Int? targetTiles = GetRandomValidTile(GetTilesAdjacentToEnemy(Vector3Int.FloorToInt( currentActiveNPCS[targetIndex].gameObject.transform.position)));
-            //Vector3Int? targetTiles = Vector3Int.FloorToInt( currentActiveNPCS[targetIndex].gameObject.transform.position);
-            if (targetTiles.HasValue)
-                {
-                    var xpos = targetTiles.Value.x;
-                    var ypos = targetTiles.Value.y;
-                    Vector3Int destination = new Vector3Int(xpos, ypos, 0);
-                    Vector3Int moveDistance = destination - player.currentTilePosition;
-                    StartCoroutine(player.TweenMove(moveDistance.x, moveDistance.y, teleportSpeed, Ease.OutBounce));
-                    StartCoroutine(DisableHitboxTimer());
-                    CreateObject();
-                }
-                StartCoroutine(DisableEffectPrefab());
-
-                return;   
+        if (targetingSystem != null)
+        {
+            target = targetingSystem.Target;
         }
+
+        Vector3Int? targetTiles = GetRandomValidTile(GetTilesAdjacentToEnemy(Vector3Int.FloorToInt(target.worldTransform.position)));
+
+        if (targetTiles.HasValue)
+        {
+            var xpos = targetTiles.Value.x;
+            var ypos = targetTiles.Value.y;
+            Vector3Int destination = new Vector3Int(xpos, ypos, 0);
+            Vector3Int moveDistance = destination - player.currentTilePosition;
+            StartCoroutine(player.TweenMove(moveDistance.x, moveDistance.y, teleportSpeed, Ease.OutBounce));
+            StartCoroutine(DisableHitboxTimer());
+            CreateObject();
+        }
+        StartCoroutine(DisableEffectPrefab());
 
     }
 
