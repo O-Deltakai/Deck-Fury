@@ -89,12 +89,12 @@ public class SentryGun : NPC
     IEnumerator FireCooldown()
     {
         //Waits for the muzzle flash animation to finish before attempting to fire again
-        yield return new WaitForSeconds(muzzleFlashAnimation.length);
+        //yield return new WaitForSeconds(muzzleFlashAnimation.length);
         muzzleFlashVFX.SetActive(false);
 
         //Can go below 0 if sentryFireRate is set too low, therefore hard-cap it at 0.1f so the sentry cant shoot any faster than
         //length of the muzzle flash animation.        
-        float cooldownTime = sentryFireRate - muzzleFlashAnimation.length;
+        float cooldownTime = sentryFireRate;
         if(cooldownTime <= 0.1)
         {
             cooldownTime = 0.1f;

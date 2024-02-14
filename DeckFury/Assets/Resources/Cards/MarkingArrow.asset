@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: MarkingArrow
   m_EditorClassIdentifier: 
   <CardName>k__BackingField: Marking Arrow
-  CardDescription: Let off an arrow that deals <b>BD</b> damage which ignores enemy's
-    shields and resistances, <b>marking</b> the first enemy hit for death.
+  CardDescription: Let off an arrow that deals <b>BD</b> <b>Pure</b> damage which
+    ignores enemy's shields and resistances, <b>marking</b> the first enemy hit for
+    death.
   BaseDamage: 20
   <AttackElement>k__BackingField: 6
   <CardType>k__BackingField: 0
@@ -22,7 +23,6 @@ MonoBehaviour:
   <statusEffect>k__BackingField:
     statusEffectType: 0
     effectStrength: 0
-  <EnergyCost>k__BackingField: 0
   CardTier: 1
   <QuantifiableEffects>k__BackingField: []
   CardImage: {fileID: 21300000, guid: b96a55e579e1bb9468f658f85487abb5, type: 3}

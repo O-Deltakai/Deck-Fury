@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CardName>k__BackingField: Shield Steal
   CardDescription: 'Attack in front of you in a  <b>1x1</b> square and deal <b>BD</b>
-    damage and <color=yellow><b>stuns</b></color> and the enemy.
+    damage and <color=yellow><b>stuns</b></color> the enemy.
 
 
     If the attack
@@ -26,12 +26,13 @@ MonoBehaviour:
   <statusEffect>k__BackingField:
     statusEffectType: 0
     effectStrength: 0
-  <EnergyCost>k__BackingField: 1
   CardTier: 2
   <QuantifiableEffects>k__BackingField:
   - <EffectName>k__BackingField: ShieldHP Gain
     <IntegerQuantity>k__BackingField: 20
     <FloatQuantity>k__BackingField: 0
+    _expression: 
+    _expressionIsInt: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
   CardImage: {fileID: 21300000, guid: 07d2be85719d8ee4d9ceef79c52db331, type: 3}
@@ -44,3 +45,10 @@ MonoBehaviour:
   <ReticleIsStatic>k__BackingField: 0
   <TargetingReticle>k__BackingField: {fileID: 4638606909580859982, guid: d361f42fe86b56049b8fc8aa8eae036c, type: 3}
   <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}
+  _onActivationSFX:
+    Guid:
+      Data1: -1458326653
+      Data2: 1228424990
+      Data3: 977436305
+      Data4: 648307154
+    Path: event:/CardSFX/DaggerThrow
