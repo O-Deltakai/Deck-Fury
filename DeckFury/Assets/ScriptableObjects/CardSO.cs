@@ -99,9 +99,7 @@ public class CardSO : ScriptableObject
     [field:SerializeField] public StatusEffectType StatusEffect {get; private set;}
     [field:SerializeField] public StatusEffect statusEffect {get; private set;}
 
-    [field:SerializeField] public int EnergyCost {get; private set;}
-    [Range(1,3)]
-    [SerializeField] int CardTier = 1;
+    [SerializeField, Range(1, 3)] int CardTier = 1;
     [field:SerializeField] public List<QuantifiableEffect> QuantifiableEffects {get;private set;}
 
 

@@ -38,6 +38,10 @@ public class Reaper : CardEffect
         {
             target = targetingSystem.Target;
         }
+        if(target == null)
+        {
+            return;
+        }
 
         Vector3Int? targetTiles = GetRandomValidTile(GetTilesAdjacentToEnemy(Vector3Int.FloorToInt(target.worldTransform.position)));
 
