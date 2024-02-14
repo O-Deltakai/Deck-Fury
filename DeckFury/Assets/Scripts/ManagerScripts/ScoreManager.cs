@@ -418,6 +418,11 @@ public class ScoreManager : MonoBehaviour
 
     void ApplyBonusReward(BonusScoreItemSO bonusScoreItem)
     {
+        if(AppliedBonusRewards.Contains(bonusScoreItem))
+        {
+            return;
+        }
+
         AppliedBonusRewards.Add(bonusScoreItem);
     }
 

@@ -127,16 +127,27 @@ public class ShopManager : MonoBehaviour
         }
 
         List<ItemSO> selectedItems = new();
+        int shopItemCount = _purchasables.OfType<WorldShopItem>().Count();
+
+        for(int i = 0; i < shopItemCount; i++)
+        {
+            ItemSO nextItem = itemPool[random.Next(0, itemPool.Count() - 1)];
+
+            while(selectedItems.Contains(nextItem))
+            {
+                nextItem = itemPool[random.Next(0, itemPool.Count() - 1)];
+            }
+
+            selectedItems.Add(itemPool[random.Next(0, itemPool.Count() - 1)]);
+        }
+
+
+
+        int index = 0;
         //Initialize purchasable items
         foreach(WorldShopItem shopItem in _purchasables.OfType<WorldShopItem>())
         {
-            //Randomize item and make sure it's not a duplicate
-            ItemSO pickedItem = itemPool[random.Next(0, itemPool.Count() - 1)];
-            selectedItems.Add(pickedItem);
-            while (selectedItems.Contains(pickedItem) || pickedItem.ItemPrefab == null)
-            {
-                pickedItem = itemPool[random.Next(0, itemPool.Count() - 1)];
-            }
+            ItemSO pickedItem = selectedItems[index];
 
             shopItem.ItemSO = pickedItem;
 
@@ -152,7 +163,7 @@ public class ShopManager : MonoBehaviour
             {
                 shopItem.Price = (int)(shopItem.ItemSO.Rarity * _itemBasePrice * RandomFloat(_itemPriceMinMultiplier, _itemPriceMaxMultiplier) * shopItem.ItemSO.ValueMultiplier);
             }
-            
+            index++;
         }
 
 
