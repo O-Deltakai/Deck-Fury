@@ -10,6 +10,9 @@ public class TargetClosestToMouse : MonoBehaviour
     [SerializeField] CircleCollider2D searchRadius;
     [SerializeField] GameObject reticleSprite;
 
+    public Transform virtualCursor;
+    [SerializeField] bool useVirtualCursor = false;
+
     [SerializeField] StageEntity target;
     public StageEntity Target { get { return target; } }
 
@@ -17,9 +20,15 @@ public class TargetClosestToMouse : MonoBehaviour
 
     Tween reticleTween;
 
+    void Awake()
+    {
+        SettingsManager.OnChangeAimingStyle += (bool value) => useVirtualCursor = value;
+    }
+
     void OnEnable()
     {
-        EventBus<RelayGameObjectEvent>.Raise(new RelayGameObjectEvent { gameObject = gameObject});       
+        EventBus<RelayGameObjectEvent>.Raise(new RelayGameObjectEvent { gameObject = gameObject});
+        virtualCursor = GameManager.Instance.player.aimpoint.VirtualCursorTransform;
 
     }
 
@@ -32,7 +41,7 @@ public class TargetClosestToMouse : MonoBehaviour
         {
             searchTimer = 0f;
 
-            MoveColliderToMousePosition();
+            MoveColliderToCursor();
 
             target = FindClosestTarget();
             if(target != null)
@@ -59,11 +68,20 @@ public class TargetClosestToMouse : MonoBehaviour
         reticleTween = reticleSprite.transform.DOMove(position, 0.15f).SetEase(Ease.OutExpo).SetUpdate(true);
     }
 
-    void MoveColliderToMousePosition()
+    void MoveColliderToCursor()
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePosition.z = 0;
-        searchRadius.transform.position = mousePosition;
+        Vector3 cursorPosition;
+        if(useVirtualCursor && virtualCursor)
+        {
+            cursorPosition = virtualCursor.position;
+            cursorPosition.z = 0;
+            searchRadius.transform.position = cursorPosition;
+            return;
+        }
+
+        cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        cursorPosition.z = 0;
+        searchRadius.transform.position = cursorPosition;
     }
 
 

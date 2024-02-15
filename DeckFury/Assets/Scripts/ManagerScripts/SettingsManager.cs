@@ -8,6 +8,9 @@ public class SettingsManager : MonoBehaviour
     private static SettingsManager _instance;
     public static SettingsManager Instance => _instance;
 
+    /// <summary>
+    /// Event that is called when the aiming style is changed. Returns true if relative aiming is used, false if not.
+    /// </summary>
     public static event Action<bool> OnChangeAimingStyle;
     public static event Action<float> OnChangeSensitivity; 
 

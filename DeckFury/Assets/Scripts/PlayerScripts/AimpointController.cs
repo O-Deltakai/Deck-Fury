@@ -49,6 +49,10 @@ public class AimpointController : MonoBehaviour
     [SerializeField, Range(0.001f, 1)] float cursorSensitivity = 1;
     [SerializeField, Min(1f)] float maxCursorDistance = 5f;
     [SerializeField] Transform virtualCursorTransform;
+    public Transform VirtualCursorTransform => virtualCursorTransform;
+    [SerializeField] bool _clampVirtualCursor = true;
+
+
 
     [SerializeField] Vector2 _currentAimVector;
     public Vector2 CurrentAimVector => _currentAimVector;
@@ -273,11 +277,15 @@ public class AimpointController : MonoBehaviour
 
         cursorOffset += mouseDelta * cursorSensitivity;
 
-        // Clamp the cursor offset to the maximum radius
-        if (cursorOffset.magnitude > maxCursorDistance)
+        if(_clampVirtualCursor)
         {
-            cursorOffset = cursorOffset.normalized * maxCursorDistance;
+            // Clamp the cursor offset to the maximum radius
+            if (cursorOffset.magnitude > maxCursorDistance)
+            {
+                cursorOffset = cursorOffset.normalized * maxCursorDistance;
+            }
         }
+
 
         virtualCursorTransform.position = transform.position + cursorOffset;
     }
@@ -349,6 +357,8 @@ public class AimpointController : MonoBehaviour
                 CurrentActiveReticle.SetActive(false);
                 DefaultAimPoint.SetActive(true);
                 freezeAimpoint = false;
+                _clampVirtualCursor = true;
+
             }
 
             return;
@@ -367,9 +377,11 @@ public class AimpointController : MonoBehaviour
         if(card.cardSO.ReticleIsStatic)
         {
             freezeAimpoint = true;
+            _clampVirtualCursor = false;
         }else
         {
             freezeAimpoint = false;
+            _clampVirtualCursor = true;
         }
 
         CurrentActiveReticle.SetActive(true);

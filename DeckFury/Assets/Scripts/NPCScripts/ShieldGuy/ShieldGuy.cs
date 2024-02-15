@@ -9,41 +9,9 @@ using UnityEngine;
 public class ShieldGuy : NPC
 {
 
-#region States
-
-    class ShieldsUpState : BaseState
-    {
-
-    }
-
-    class PathTowardsPlayerState : BaseState
-    {
-        SeekerAI seekerAI;
-
-        public PathTowardsPlayerState(SeekerAI seekerAI)
-        {
-            this.seekerAI = seekerAI;
-        }
-
-    }
-
-    class IdleState : BaseState
-    {
-
-    }
-
-    class AttackState : BaseState
-    {
-
-    }
-
-    #endregion
-
 
     SeekerAI seekerAI;
     StateMachine stateMachine;
-    PathTowardsPlayerState pathTowardsPlayerState;
-    AttackState attackState;
     FuncPredicate playerInRangePredicate;
 
     [Header("Shield Bearer Settings")]
@@ -93,18 +61,15 @@ public class ShieldGuy : NPC
 
     [SerializeField] bool preparingAttack;
 
+    //Tweens
+    Tween shieldColorTween;
+
+
     protected override void Awake()
     {
         base.Awake();
         impulseSource = GetComponent<CinemachineImpulseSource>();
 
-        pathTowardsPlayerState = new PathTowardsPlayerState(seekerAI);
-        //playerInRangePredicate = new FuncPredicate(PlayerInRange);
-        attackState = new AttackState();
-
-        //stateMachine = new StateMachine();
-        //stateMachine.AddTransition(pathTowardsPlayerState, attackState, playerInRangePredicate );
-        //stateMachine.AddAnyTransition(attackState, playerInRangePredicate);
 
 
     }
@@ -188,6 +153,7 @@ public class ShieldGuy : NPC
 
     void ShieldsUp()
     {
+        shieldHitboxObject.SetActive(true);
         _shieldsUp = true;
         shieldCollider.enabled = true;
         entityAnimator.PlayOneShotAnimation(entityAnimator.animationList[4]);
@@ -206,8 +172,9 @@ public class ShieldGuy : NPC
 
         entityAnimator.PlayOneShotAnimation(entityAnimator.animationList[2]);
 
-
         shieldHitboxObject.GetComponent<SpriteRenderer>().DOFade(0, 0.1f).SetEase(Ease.InOutSine);
+        shieldHitboxObject.SetActive(false);
+
     }
 
     void OnStunned()

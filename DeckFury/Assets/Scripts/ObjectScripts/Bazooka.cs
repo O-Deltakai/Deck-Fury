@@ -186,6 +186,8 @@ public class Bazooka : Bullet
         IsReflected = true;
 
         impactPayload.damage *= 2;
+        impactPayload.attackElement = AttackElement.Breaking;
+        impactPayload.actualStatusEffects.Add(new StatusEffect(StatusEffectType.Stunned, 1));
 
         speed *= 3.5f;
 
