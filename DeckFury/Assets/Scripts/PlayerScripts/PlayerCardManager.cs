@@ -136,6 +136,8 @@ public class PlayerCardManager : MonoBehaviour
         cardToUse.gameObject.SetActive(true);
         cardToUse.ActivateCardEffect();
 
+        RuntimeManager.PlayOneShot(cardToUse.cardSO.OnActivationSFX, transform.position);
+
         //If an animation is set even though UseAnimationEvent is false, it will just play the animation but the card effect
         //will trigger immediately
         if(cardToUse.cardSO.PlayerAnimation != null)
