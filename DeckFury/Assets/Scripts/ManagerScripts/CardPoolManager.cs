@@ -391,8 +391,7 @@ public class CardPoolManager : MonoBehaviour
 
             if(!ReticleDictionary.ContainsKey(card.TargetingReticle))
             {
-                GameObject instantiatedReticle = Instantiate(card.TargetingReticle, TargetingReticlePoolParent.transform, true);
-                instantiatedReticle.transform.localPosition = Vector3.zero;
+                GameObject instantiatedReticle = Instantiate(card.TargetingReticle, TargetingReticlePoolParent.transform);
                 ReticleDictionary.Add(card.TargetingReticle, instantiatedReticle);
                 instantiatedReticle.SetActive(false);
             }

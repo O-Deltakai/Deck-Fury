@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\PlayerDataContainer.cs" />
     <Compile Include="Assets\Scripts\StageEntityScripts\StageEntity.cs" />
     <Compile Include="Assets\Scripts\StageSelectionScripts\MapZone.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Starting Deck UI\DeckCardElementSlot.cs" />
     <Compile Include="Assets\Scripts\ToolScripts\ImageBlinker.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\DamageBufferOnFullEnergy.cs" />
     <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\RendererFeatures\BlitToRTHandle\BlitToRTHandlePass.cs" />
@@ -139,7 +140,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Vampire\VampireNATK.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
-    <Compile Include="Assets\Scripts\HelperClasses\GameColors.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Zombie\ZombieBasicAttack.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\PlasmaSlashEffect.cs" />
     <Compile Include="Assets\Scripts\Card System\CardScripts\Teleport.cs" />
@@ -160,6 +160,7 @@
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\MathfExtension.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Starting Deck UI\StartingDeckSlot.cs" />
     <Compile Include="Assets\Scripts\PathfindingScripts\Pathfinder.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\StageSpecificScripts\TutorialSpawnController.cs" />
@@ -351,6 +352,7 @@
     <Compile Include="Assets\Scripts\ManagerScripts\RewardConditionChecks.cs" />
     <Compile Include="Assets\VolumetricLines\Scripts\VolumetricLineBehavior.cs" />
     <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\RendererFeatures\BlitToRTHandle\BlitToRTHandleRendererFeature.cs" />
+    <Compile Include="Assets\Scripts\HelperClasses\GamePalette.cs" />
     <Compile Include="Assets\Scripts\Event Bus Systems\Events.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\ToolScripts\SpriteScaler.cs" />
