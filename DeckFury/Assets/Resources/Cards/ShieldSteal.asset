@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c923d00297c904c49922de3a336f1e5b, type: 3}
   m_Name: ShieldSteal
   m_EditorClassIdentifier: 
-  <CardName>k__BackingField: Shield Steal
+  <CardName>k__BackingField: Siphon Shield
   CardDescription: 'Attack in front of you in a  <b>1x1</b> square and deal <b>BD</b>
     damage and <color=yellow><b>stuns</b></color> the enemy.
 
@@ -26,7 +26,7 @@ MonoBehaviour:
   <statusEffect>k__BackingField:
     statusEffectType: 0
     effectStrength: 0
-  CardTier: 2
+  CardTier: 1
   <QuantifiableEffects>k__BackingField:
   - <EffectName>k__BackingField: ShieldHP Gain
     <IntegerQuantity>k__BackingField: 20

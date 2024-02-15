@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -120,7 +121,8 @@ public class CardDescriptionPanel : MonoBehaviour
 
         //Status Popout Panel
         statusPopoutIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.StatusEffect);
-        statusName.text = cardSO.StatusEffect.ToString();
+        statusName.text = cardSO.StatusEffect.ToString().Replace("_", " ");
+
         statusDescription.text = cardUIIcons.GetStatusDescription(cardSO.StatusEffect);
 
 
@@ -157,7 +159,7 @@ public class CardDescriptionPanel : MonoBehaviour
 
         //Status Popout Panel
         statusPopoutIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.StatusEffect);
-        statusName.text = cardSO.StatusEffect.ToString();
+        statusName.text = cardSO.StatusEffect.ToString().Replace("_", " ");
         statusDescription.text = cardUIIcons.GetStatusDescription(cardSO.StatusEffect);
 
 

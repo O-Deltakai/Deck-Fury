@@ -78,7 +78,7 @@ public class CardUIIconSO : ScriptableObject
             StatusEffectType.None => None,
             StatusEffectType.Stunned => Stunned,
             StatusEffectType.Bleeding => Bleeding,
-            StatusEffectType.ArmorBreak => ArmorBreak,
+            StatusEffectType.Armor_Break => ArmorBreak,
             StatusEffectType.Marked => MarkedForDeath,
             _ => None,
         };
@@ -91,7 +91,7 @@ public class CardUIIconSO : ScriptableObject
             StatusEffectType.None => NoneDescription,
             StatusEffectType.Stunned => StunnedDescription,
             StatusEffectType.Bleeding => BleedingDescription,
-            StatusEffectType.ArmorBreak => ArmorBreakDescription,
+            StatusEffectType.Armor_Break => ArmorBreakDescription,
             StatusEffectType.Marked => MarkedForDeathDescription,
             _ => NoneDescription,
         };        

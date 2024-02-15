@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c923d00297c904c49922de3a336f1e5b, type: 3}
   m_Name: ShieldBash
   m_EditorClassIdentifier: 
-  <CardName>k__BackingField: BashingShield
+  <CardName>k__BackingField: Shield Bash
   CardDescription: "Consume <b>Q0</b> Shield Points, attack in front of you in a 
     <b>1x1</b> square and deal <b>BD</b> + consumed Shield Points*<b>Q1</b> damage.
     \n\nThe attack <b>shoves</b> the enemy 2 tiles away.\n\n"
@@ -23,7 +23,7 @@ MonoBehaviour:
   <statusEffect>k__BackingField:
     statusEffectType: 0
     effectStrength: 0
-  CardTier: 2
+  CardTier: 1
   <QuantifiableEffects>k__BackingField:
   - <EffectName>k__BackingField: Consume shield
     <IntegerQuantity>k__BackingField: 10

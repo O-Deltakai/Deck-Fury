@@ -7,7 +7,7 @@ public enum StatusEffectType
     None,
     Stunned,
     Bleeding,
-    ArmorBreak,
+    Armor_Break,
     Marked
 }
 

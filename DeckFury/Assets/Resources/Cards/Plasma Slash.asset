@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c923d00297c904c49922de3a336f1e5b, type: 3}
+  m_Name: Plasma Slash
+  m_EditorClassIdentifier: 
+  <CardName>k__BackingField: Plasma Slash
+  CardDescription: Slash in a 1x3 area ahead and to your sides, dealing <b>BD</b>
+    damage to all targets hit as well as inflicting <b>Armor Break</b>.
+  BaseDamage: 75
+  <AttackElement>k__BackingField: 1
+  <CardType>k__BackingField: 0
+  <StatusEffect>k__BackingField: 3
+  <statusEffect>k__BackingField:
+    statusEffectType: 3
+    effectStrength: 1
+  CardTier: 2
+  <QuantifiableEffects>k__BackingField: []
+  CardImage: {fileID: 21300000, guid: 5de86324fa1615b478cf4d936c8e3152, type: 3}
+  <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
+  <UsesAnimationEvent>k__BackingField: 1
+  <EffectPrefab>k__BackingField: {fileID: 4126498469509693259, guid: 6930ab5cbe0d5cd4fb08cdf24b9cefc2, type: 3}
+  <ObjectSummonList>k__BackingField: []
+  <ObjectSummonsArePooled>k__BackingField: 0
+  <UseTargetingReticle>k__BackingField: 1
+  <ReticleIsStatic>k__BackingField: 0
+  <TargetingReticle>k__BackingField: {fileID: 1439322415504237026, guid: 6f64d679a9757064fa03efd9c67325ad, type: 3}
+  <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}
+  _onActivationSFX:
+    Guid:
+      Data1: -1458326653
+      Data2: 1228424990
+      Data3: 977436305
+      Data4: 648307154
+    Path: event:/CardSFX/DaggerThrow

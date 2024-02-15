@@ -110,7 +110,7 @@ public class EntityStatusEffectManager : MonoBehaviour
                 BleedingEffect(payload, duration);
                 break;
 
-            case StatusEffectType.ArmorBreak:
+            case StatusEffectType.Armor_Break:
                 ArmorBreakEffect();
                 break;
 
@@ -139,7 +139,7 @@ public class EntityStatusEffectManager : MonoBehaviour
                 BleedingEffect(payload, statusEffect.effectStrength);
                 break;
 
-            case StatusEffectType.ArmorBreak:
+            case StatusEffectType.Armor_Break:
                 ArmorBreakEffect(statusEffect.effectStrength);
                 break;
 
@@ -169,7 +169,7 @@ public class EntityStatusEffectManager : MonoBehaviour
                 BleedingEffect(payload, 1);
                 break;
 
-            case StatusEffectType.ArmorBreak:
+            case StatusEffectType.Armor_Break:
                 ArmorBreakEffect(1);
                 break;
 

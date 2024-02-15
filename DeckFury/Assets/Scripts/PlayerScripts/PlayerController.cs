@@ -675,7 +675,7 @@ public class PlayerController : StageEntity
             impulseSource.GenerateImpulseWithVelocity(0.1f * SettingsManager.GlobalCameraShakeMultiplier * impulseSource.m_DefaultVelocity);
         }else
         {
-            impulseSource.GenerateImpulseWithVelocity(impulseSource.m_DefaultVelocity * SettingsManager.GlobalCameraShakeMultiplier);
+            impulseSource.GenerateImpulseWithVelocity(0.2f * SettingsManager.GlobalCameraShakeMultiplier * impulseSource.m_DefaultVelocity);
         }
     }
 
