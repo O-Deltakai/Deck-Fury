@@ -39,7 +39,7 @@ public class PlayerCardManager : MonoBehaviour
 
 
     [Tooltip("How long the player needs to wait before they can use a new card by default.")]
-    [SerializeField] float defaultCooldown = 0.10f;
+    [SerializeField] float defaultCooldown = 0.23f;
     [SerializeField] bool useUnscaledTime;
     public bool CanUseCards = true;
 

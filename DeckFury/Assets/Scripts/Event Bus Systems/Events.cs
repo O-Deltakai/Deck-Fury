@@ -42,3 +42,8 @@ public struct PlayerDamagedEvent : IEvent
 {
     public AttackPayload attackPayload;
 }
+
+public struct ClickDeckElementEvent : IEvent
+{
+    public DeckCardElementSlot deckCardElementSlot;
+}

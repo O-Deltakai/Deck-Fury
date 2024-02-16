@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class StartingDeckSlot : MonoBehaviour
 {
+    public event Action<DeckSO> OnDeckSelected;
 
     [SerializeField] bool _unlocked = true;
     public bool Unlocked { get => _unlocked;
@@ -16,6 +19,7 @@ public class StartingDeckSlot : MonoBehaviour
     }
 
     [SerializeField] DeckSO deckSO;
+    [SerializeField] TextMeshProUGUI deckNameText;
     [SerializeField] GameObject deckElementSlotPrefab;
     [SerializeField] Transform deckElementSlotParent;
 
@@ -59,7 +63,14 @@ public class StartingDeckSlot : MonoBehaviour
 
     public void InitializeStartingDeckSlot(DeckSO deckSO)
     {
+        //If there are any deck elements in the slot, destroy them
+        foreach (Transform child in deckElementSlotParent)
+        {
+            Destroy(child.gameObject);
+        }
+
         this.deckSO = deckSO;
+        deckNameText.text = deckSO.DeckName;
 
         foreach (var deckElement in deckSO.CardList)
         {
@@ -108,7 +119,7 @@ public class StartingDeckSlot : MonoBehaviour
     public void ClickSelectButton()
     {
         if(!_unlocked){return;}
-        
+        OnDeckSelected?.Invoke(deckSO);
 
     }
 

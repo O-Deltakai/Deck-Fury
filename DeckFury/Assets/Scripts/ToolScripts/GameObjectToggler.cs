@@ -15,29 +15,14 @@ public class GameObjectToggler : MonoBehaviour
     {
         if(!toggledObject) { return; }
 
-        if(condition)
-        {
-            toggledObject.SetActive(true);
-        }else
-        {
-            toggledObject.SetActive(false);
-        }
+        toggledObject.SetActive(condition);
     }
 
    public void ToggleObjectList(bool condition)
     {
-        if(condition)
+        foreach(GameObject toggleObject in toggledObjectList)
         {
-            foreach(GameObject toggleObject in toggledObjectList)
-            {
-                toggledObject.SetActive(true);
-            }
-        }else
-        {
-            foreach(GameObject toggleObject in toggledObjectList)
-            {
-                toggledObject.SetActive(false);
-            }
+            toggledObject.SetActive(condition);
         }
     }
 
