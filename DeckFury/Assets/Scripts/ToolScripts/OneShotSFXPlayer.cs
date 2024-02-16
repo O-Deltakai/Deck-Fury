@@ -42,5 +42,10 @@ public class OneShotSFXPlayer : MonoBehaviour
         }
     }
 
+    public void PlaySFX(EventReference eventReference)
+    {
+        RuntimeManager.PlayOneShot(eventReference);
+    }
+
 
 }

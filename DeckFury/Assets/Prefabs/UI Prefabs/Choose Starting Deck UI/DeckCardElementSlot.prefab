@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3447568282640461827}
   - component: {fileID: 1446318503426454169}
   - component: {fileID: 2534086365948997739}
+  - component: {fileID: 1950411045156425054}
+  - component: {fileID: 5401734360014731707}
   m_Layer: 0
   m_Name: DeckCardElementSlot
   m_TagString: Untagged
@@ -91,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f609f934fffaf4796a29e39c74456d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSO: {fileID: 0}
+  _currentCard: {fileID: 0}
   cardFrame: {fileID: 3447568282640461827}
   cardImage: {fileID: 2673258616090937464}
   cardCountText: {fileID: 8475145695898157381}
@@ -120,6 +122,18 @@ MonoBehaviour:
         - m_Target: {fileID: 1446318503426454169}
           m_TargetAssemblyTypeName: DeckCardElementSlot, Assembly-CSharp
           m_MethodName: OnHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1950411045156425054}
+          m_TargetAssemblyTypeName: OneShotSFXPlayer, Assembly-CSharp
+          m_MethodName: PlaySFX
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -161,6 +175,60 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 5401734360014731707}
+          m_TargetAssemblyTypeName: OneShotSFXPlayer, Assembly-CSharp
+          m_MethodName: PlaySFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1950411045156425054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999433517910974004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8ffde07c87fb4409814027d994a1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxEvent:
+    Guid:
+      Data1: 427083241
+      Data2: 1152243681
+      Data3: 249787563
+      Data4: -216996842
+    Path: event:/UIEvents/UIHoverCard
+  _playOnEnable: 0
+  _useEventInstance: 1
+--- !u!114 &5401734360014731707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999433517910974004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8ffde07c87fb4409814027d994a1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxEvent:
+    Guid:
+      Data1: -1402921670
+      Data2: 1252174870
+      Data3: 1546873261
+      Data4: 915889600
+    Path: event:/UIEvents/UIClickCard
+  _playOnEnable: 0
+  _useEventInstance: 1
 --- !u!1 &4551300279021916264
 GameObject:
   m_ObjectHideFlags: 0
