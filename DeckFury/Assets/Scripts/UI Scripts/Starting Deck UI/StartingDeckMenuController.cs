@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartingDeckMenuController : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class StartingDeckMenuController : MonoBehaviour
 
     //Tweens
     Tween slideOutOfViewTween;
-
+    Tween dimmingPanelFadeTween;
 
     [Header("Debug Settings")]
     [SerializeField] bool _unlockAllDecks = false;
@@ -61,7 +62,22 @@ public class StartingDeckMenuController : MonoBehaviour
 
     public void HideMenu()
     {
-        dimmingPanel.SetActive(false);
+        if (slideOutOfViewTween.IsActive())
+        {
+            slideOutOfViewTween.Kill();
+        }
+
+        if(dimmingPanelFadeTween.IsActive())
+        {
+            dimmingPanelFadeTween.Kill();
+        }
+
+        dimmingPanelFadeTween = dimmingPanel.GetComponent<Image>().DOFade(0, slideOutOfViewDuration).SetUpdate(true).SetEase(Ease.OutSine)
+        .OnComplete(() => dimmingPanel.SetActive(false));
+        dimmingPanel.GetComponent<Image>().raycastTarget = false;
+
+        slideOutOfViewTween = transform.DOLocalMoveY(-1000, slideOutOfViewDuration).SetEase(slideOutOfViewEase).SetUpdate(true);
+
     }
 
     public void SelectDeck(DeckSO deck)

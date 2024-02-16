@@ -46,7 +46,11 @@ public class TargetClosestToMouse : MonoBehaviour
             target = FindClosestTarget();
             if(target != null)
             {
+                reticleSprite.SetActive(true);
                 TweenReticleToPosition(target.worldTransform.position);
+            }else
+            {
+                reticleSprite.SetActive(false);
             }
         }
     }
