@@ -7,9 +7,6 @@ public class DeckElement
 {
     public CardSO card;
     public int cardCount;
-
-
-
 }
 
 [CreateAssetMenu(fileName = "Deck Data", menuName = "New Deck", order = 0)]
@@ -29,4 +26,19 @@ public class DeckSO : ScriptableObject
 public class GameDeck
 {
     [field:SerializeField] public List<DeckElement> CardList {get; private set;}
+
+    public GameDeck()
+    {
+        CardList = new List<DeckElement>();
+    }
+
+    public GameDeck(DeckSO deckSO)
+    {
+        CardList = new List<DeckElement>();
+        foreach(DeckElement deckElement in deckSO.CardList)
+        {
+            CardList.Add(deckElement);
+        }
+    }
+
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,6 +7,8 @@ using UnityEngine.UI;
 
 public class DeckCardElementSlot : MonoBehaviour
 {
+    public event Action<DeckCardElementSlot> OnHoverEvent;
+
     [SerializeField] CardSO cardSO;
     [SerializeField] Image cardFrame;
     [SerializeField] Image cardImage;
@@ -17,6 +20,7 @@ public class DeckCardElementSlot : MonoBehaviour
         cardSO = deckElement.card;
         cardImage.sprite = cardSO.GetCardImage();
         cardCountText.text = deckElement.cardCount.ToString();
+        ChangeColorBasedOnCardTier(cardSO.GetCardTier());
     }
 
 
@@ -30,6 +34,14 @@ public class DeckCardElementSlot : MonoBehaviour
             _ => Color.grey,
         };
     }
+
+    public void OnHover()
+    {
+        OnHoverEvent?.Invoke(this);
+    }
+
+
+
 
 
 }

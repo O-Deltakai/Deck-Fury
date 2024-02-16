@@ -110,6 +110,16 @@ public class PlayerDataContainer
         return deckElement;
     }
 
+    /// <summary>
+    /// Assigns a new deckSO to the player's current deck, clearing the current deck and adding the cards from the deckSO
+    /// </summary>
+    /// <param name="deckSO"></param>
+    public void AssignDeck(DeckSO deckSO)
+    {
+        CurrentDeck = new GameDeck(deckSO);
+        OnPlayerDataModified?.Invoke();
+    }
+
     public void SetBaseShieldHP(int value)
     {
         _baseShieldHP = value;
