@@ -81,8 +81,7 @@ public class TrophyEnding : MonoBehaviour
     public void ReturnToMainMenu(Button button)
     {
         
-        int numberOfBeatenRuns = GlobalPlayerStatsManager.GetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.NumberOfCompletedRuns, out bool exists);
-        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.NumberOfCompletedRuns, numberOfBeatenRuns + 1);
+        GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.NumberOfCompletedRuns, 1);
 
         GameManager.Instance.MainMenuButton(button);
     }

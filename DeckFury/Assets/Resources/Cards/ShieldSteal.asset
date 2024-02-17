@@ -24,8 +24,8 @@ MonoBehaviour:
   <CardType>k__BackingField: 2
   <StatusEffect>k__BackingField: 1
   <statusEffect>k__BackingField:
-    statusEffectType: 0
-    effectStrength: 0
+    statusEffectType: 1
+    effectStrength: 1
   CardTier: 1
   <QuantifiableEffects>k__BackingField:
   - <EffectName>k__BackingField: ShieldHP Gain
@@ -42,6 +42,7 @@ MonoBehaviour:
   <ObjectSummonList>k__BackingField: []
   <ObjectSummonsArePooled>k__BackingField: 0
   <UseTargetingReticle>k__BackingField: 1
+  _dynamicReticle: 0
   <ReticleIsStatic>k__BackingField: 0
   <TargetingReticle>k__BackingField: {fileID: 4638606909580859982, guid: d361f42fe86b56049b8fc8aa8eae036c, type: 3}
   <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}

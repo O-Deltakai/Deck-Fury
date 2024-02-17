@@ -97,19 +97,22 @@ public class ScoreManager : MonoBehaviour
 
     void SavePlayerStatPrefs()
     {
-        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalEnemiesKilled, TotalEnemiesKilled);
-        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalEnemiesKilledWithHazards, EnemiesKilledWithHazards);
 
-        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalReflectKills, TotalReflectKills);
-        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalComboKills, NumberOfComboKills);
-        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.HighestComboKill, HighestComboKill);
+        GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalEnemiesKilled, TotalEnemiesKilled);
 
-        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalDamageDealt, DamageDealtToEnemies);
-        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalDamageTaken, TotalDamageTaken);
+        GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalEnemiesKilledWithHazards, EnemiesKilledWithHazards);
 
-        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.NumberOfCardsUsed, NumberOfCardsUsed);
-        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalBasicAttacks, NumberOfBasicAttacks);
-        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalNumberOfMoves, NumberOfMoves);
+        GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalReflectKills, TotalReflectKills);
+        GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalComboKills, NumberOfComboKills);
+        GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.HighestComboKill, HighestComboKill);
+
+        GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalDamageDealt, DamageDealtToEnemies);
+        GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalDamageTaken, TotalDamageTaken);
+
+        GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.NumberOfCardsUsed, NumberOfCardsUsed);
+        GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalBasicAttacks, NumberOfBasicAttacks);
+        GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalNumberOfMoves, NumberOfMoves);
+
 
 
 

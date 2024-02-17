@@ -48,19 +48,11 @@ public class EnemyRespawner : MonoBehaviour
         StageEntity entity = SpawnManager.Instance.TrySpawnNPCPrefab(enemyRespawnData.enemyPrefab, spawnPosition, out bool success);
         if(!success)
         {
-            if(respawnCoroutine != null)
-            {
-                StopCoroutine(respawnCoroutine);
-            }
             respawnCoroutine = StartCoroutine(RespawnTimer(respawnTimer * 0.5f, enemyRespawnData));
         }else
         {
             entity.OnDestructionEvent += (StageEntity destroyedEntity, Vector3Int deathPosition) =>
             {
-                if(respawnCoroutine != null)
-                {
-                    StopCoroutine(respawnCoroutine);
-                }
                 respawnCoroutine = StartCoroutine(RespawnTimer(respawnTimer, enemyRespawnData));
             };
             

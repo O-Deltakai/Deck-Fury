@@ -68,6 +68,7 @@ public class FreezeMine : MonoBehaviour
             if (entityHit != null)
             {
                 ActivateMine();
+                entityHit.HurtEntity(attackPayload);
             }
         }
 

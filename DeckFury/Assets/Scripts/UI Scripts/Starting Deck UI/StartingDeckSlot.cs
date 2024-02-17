@@ -66,23 +66,30 @@ public class StartingDeckSlot : MonoBehaviour
 
     void EvaluateUnlockConditions()
     {
-        if(unlockConditions == null || unlockConditions.Count == 0)
+        unlockConditionText.text = "";
+
+        if (unlockConditions == null || unlockConditions.Count == 0)
         {
             Unlocked = true;
             return;
         }
 
-        foreach (var condition in unlockConditions)
+        for (int i = 0; i < unlockConditions.Count; i++)
         {
+            var condition = unlockConditions[i];
+
+            unlockConditionText.text += condition.ConditionName;
+            if (i < unlockConditions.Count - 1)
+            {
+                unlockConditionText.text += ",\n\n";
+            }
+
             if (!condition.Evaluate())
             {
                 Unlocked = false;
-                unlockConditionText.text = condition.ConditionName;
-                return;
             }
         }
 
-        Unlocked = true;
     }
 
     public void InitializeStartingDeckSlot(DeckSO deckSO)

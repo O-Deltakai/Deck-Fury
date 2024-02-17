@@ -37,10 +37,34 @@ public class GlobalPlayerStatsManager : MonoBehaviour
         Instance = this;
     }
 
+    /// <summary>
+    /// Sets the player pref stat to the value
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="value"></param>
     public static void SetPlayerPrefStat(StatKey key, int value)
     {
         PlayerPrefs.SetInt(key.ToString(), value);
     }
+
+    /// <summary>
+    /// Adds to the player pref stat if it exists, otherwise it sets it to the value
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="value"></param>
+    public static void AddToPlayerPrefStat(StatKey key, int value)
+    {
+        int currentValue = GetPlayerPrefStat(key, out bool exists);
+        if(exists)
+        {
+            SetPlayerPrefStat(key, currentValue + value);
+        }else
+        {
+            SetPlayerPrefStat(key, value);
+        }
+    }
+
+
     public static int GetPlayerPrefStat(StatKey key, out bool exists)
     {
         if(PlayerPrefs.HasKey(key.ToString()))
