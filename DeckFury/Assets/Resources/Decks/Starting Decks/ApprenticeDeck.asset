@@ -26,3 +26,8 @@ MonoBehaviour:
     cardCount: 2
   - card: {fileID: 11400000, guid: fd0cf271a4e7afa4ab4d45665d9ab63f, type: 2}
     cardCount: 1
+  _unlockConditions:
+  - _conditionName: Dying Once
+    statKey: 13
+    compareValue: 0
+    isGreaterThan: 1

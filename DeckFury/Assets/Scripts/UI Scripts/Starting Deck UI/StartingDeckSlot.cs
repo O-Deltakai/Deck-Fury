@@ -23,7 +23,10 @@ public class StartingDeckSlot : MonoBehaviour
     [SerializeField] GameObject deckElementSlotPrefab;
     [SerializeField] Transform deckElementSlotParent;
 
+    [Header("Unlock Condition")]
     [SerializeField] GameObject unlockConditionPanel;
+    [SerializeField] TextMeshProUGUI unlockConditionText;
+    IReadOnlyList<DeckUnlockCondition> unlockConditions;
 
 
 [Header("Tween Settings")]
@@ -49,6 +52,7 @@ public class StartingDeckSlot : MonoBehaviour
         if (deckSO != null)
         {
             InitializeStartingDeckSlot(deckSO);
+            EvaluateUnlockConditions();
         }
     }
 
@@ -60,6 +64,26 @@ public class StartingDeckSlot : MonoBehaviour
         }
     }
 
+    void EvaluateUnlockConditions()
+    {
+        if(unlockConditions == null || unlockConditions.Count == 0)
+        {
+            Unlocked = true;
+            return;
+        }
+
+        foreach (var condition in unlockConditions)
+        {
+            if (!condition.Evaluate())
+            {
+                Unlocked = false;
+                unlockConditionText.text = condition.ConditionName;
+                return;
+            }
+        }
+
+        Unlocked = true;
+    }
 
     public void InitializeStartingDeckSlot(DeckSO deckSO)
     {
@@ -79,6 +103,8 @@ public class StartingDeckSlot : MonoBehaviour
 
             deckCardElementSlot.AssignDeckElement(deckElement);
         }
+
+        unlockConditions = deckSO.UnlockConditions;
 
     }
 

@@ -47,3 +47,9 @@ public struct ClickDeckElementEvent : IEvent
 {
     public DeckCardElementSlot deckCardElementSlot;
 }
+
+public struct ModifiedPlayerPrefEvent : IEvent
+{
+    public string key;
+    public object value;
+}

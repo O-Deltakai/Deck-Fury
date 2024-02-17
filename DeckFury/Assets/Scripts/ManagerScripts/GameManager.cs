@@ -242,7 +242,9 @@ public class GameManager : MonoBehaviour
 
 
         defeatScreen.transform.DOLocalMoveY(0, 1f).SetUpdate(true).SetEase(Ease.OutBounce);
-        
+        int currentDeaths = GlobalPlayerStatsManager.GetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.NumberOfDeaths, out bool exists);
+        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.NumberOfDeaths, currentDeaths + 1);
+        PlayerPrefsManager.SavePlayerPrefs();        
     }
 
     public void ReplayStageButton(Button button)
@@ -293,7 +295,9 @@ public class GameManager : MonoBehaviour
         currentGameState = GameState.Realtime;
         _customMapSeed = "";
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;        
+        Cursor.lockState = CursorLockMode.None;
+
+
     }
 
 

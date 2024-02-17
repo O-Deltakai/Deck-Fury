@@ -23,6 +23,9 @@ public class GlobalPlayerStatsManager : MonoBehaviour
         HighestScore,
         HighestComboKill,
         MostMoneyEarnedOnOneRun,
+
+        NumberOfDeaths,
+        NumberOfCompletedRuns,
     }
 
     public static bool HasBeatenTheGame = false;

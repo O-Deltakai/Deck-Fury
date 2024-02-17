@@ -26,3 +26,8 @@ MonoBehaviour:
     cardCount: 1
   - card: {fileID: 11400000, guid: 643703f3fbeeef443a2173482eedf533, type: 2}
     cardCount: 1
+  _unlockConditions:
+  - _conditionName: Beating the game
+    statKey: 14
+    compareValue: 0
+    isGreaterThan: 1
