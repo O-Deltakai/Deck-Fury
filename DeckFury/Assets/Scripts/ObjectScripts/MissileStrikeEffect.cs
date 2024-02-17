@@ -75,9 +75,23 @@ public class MissileStrikeEffect : MonoBehaviour
     {
     }
 
+    void Update()
+    {
+        if(Time.timeScale <= 0.5f)
+        {
+            missileLaunchInstance.setPaused(true);
+        }
+        else
+        {
+            missileLaunchInstance.setPaused(false);
+        }
+    }
+
     void OnEnable()
     {
         missileLaunchInstance.start();
+        missileLaunchInstance.setPaused(true);
+        
         _explosionLight.enabled = false;
         _explosionLight.intensity = _originalLightIntensity;
         _secondaryReticle.SetActive(true);
