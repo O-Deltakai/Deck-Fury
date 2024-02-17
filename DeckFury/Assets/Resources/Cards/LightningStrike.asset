@@ -22,7 +22,9 @@ MonoBehaviour:
   <AttackElement>k__BackingField: 4
   <CardType>k__BackingField: 0
   <StatusEffect>k__BackingField: 0
-  <EnergyCost>k__BackingField: 2
+  <statusEffect>k__BackingField:
+    statusEffectType: 0
+    effectStrength: 0
   CardTier: 2
   <QuantifiableEffects>k__BackingField: []
   CardImage: {fileID: 21300000, guid: 588c6e494e6dab1438d1fe221815be32, type: 3}
@@ -32,5 +34,14 @@ MonoBehaviour:
   <ObjectSummonList>k__BackingField: []
   <ObjectSummonsArePooled>k__BackingField: 0
   <UseTargetingReticle>k__BackingField: 0
+  _dynamicReticle: 0
+  <ReticleIsStatic>k__BackingField: 0
   <TargetingReticle>k__BackingField: {fileID: 0}
   <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}
+  _onActivationSFX:
+    Guid:
+      Data1: -1458326653
+      Data2: 1228424990
+      Data3: 977436305
+      Data4: 648307154
+    Path: event:/CardSFX/DaggerThrow
