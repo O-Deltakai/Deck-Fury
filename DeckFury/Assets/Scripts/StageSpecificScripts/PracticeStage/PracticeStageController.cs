@@ -5,6 +5,8 @@ using UnityEngine;
 public class PracticeStageController : MonoBehaviour
 {
     [SerializeField] GameObject trainingNPC;
+    [SerializeField] GameObject strongerTrainingNPC;
+    [SerializeField] GameObject strongestTrainingNPC;
 
     StageManager stageManager;
     SpawnManager spawnManager;

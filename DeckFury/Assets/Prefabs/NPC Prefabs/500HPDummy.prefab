@@ -981,7 +981,7 @@ GameObject:
   - component: {fileID: 8603392144972885620}
   - component: {fileID: 8562720932343601911}
   m_Layer: 3
-  m_Name: TrainingDummy
+  m_Name: 500HPDummy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1342,7 +1342,7 @@ MonoBehaviour:
       Data4: -91266903
     Path: event:/Characters/RobotDeath
   _useUnscaledTimeForActions: 0
-  _enemyData: {fileID: 11400000, guid: ca566c8638a3e274bad993a163834ae0, type: 2}
+  _enemyData: {fileID: 11400000, guid: 86bdd3db1c6995543b1868721b60c359, type: 2}
   player: {fileID: 0}
   enemyTier: 1
   NPCAbilities: []
@@ -1364,7 +1364,7 @@ PrefabInstance:
     - target: {fileID: 2169492944214899990, guid: 23f6f44c64a15ee46b568cd4cbf43128, type: 3}
       propertyPath: enemyData
       value: 
-      objectReference: {fileID: 11400000, guid: ca566c8638a3e274bad993a163834ae0, type: 2}
+      objectReference: {fileID: 11400000, guid: 86bdd3db1c6995543b1868721b60c359, type: 2}
     - target: {fileID: 4755351755484593653, guid: 23f6f44c64a15ee46b568cd4cbf43128, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

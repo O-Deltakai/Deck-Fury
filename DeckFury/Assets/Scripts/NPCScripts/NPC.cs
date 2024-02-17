@@ -11,7 +11,6 @@ public class NPC : StageEntity
     [SerializeField] EnemyDataSO _enemyData;
     public EnemyDataSO EnemyData => _enemyData;
 
-
     public PlayerController player;
     [Range(1, 8)]
     [SerializeField, Min(0)] int enemyTier = 1;

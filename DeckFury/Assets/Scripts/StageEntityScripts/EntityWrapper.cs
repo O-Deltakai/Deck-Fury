@@ -8,6 +8,8 @@ public class EntityWrapper : MonoBehaviour
 {
     [field:SerializeField] public StageEntity stageEntity {get; private set;}
 
+    [SerializeField] GameObject _originalPrefab;
+    public GameObject OriginalPrefab => _originalPrefab;
 
 
 
