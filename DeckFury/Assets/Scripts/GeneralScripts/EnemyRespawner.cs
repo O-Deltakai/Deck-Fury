@@ -19,6 +19,8 @@ public class EnemyRespawner : MonoBehaviour
 
     [SerializeField] GameObject spawnPositionParent;
 
+    Coroutine respawnCoroutine;
+
     void Start()
     {
         SpawnEnemies();
@@ -46,10 +48,22 @@ public class EnemyRespawner : MonoBehaviour
         StageEntity entity = SpawnManager.Instance.TrySpawnNPCPrefab(enemyRespawnData.enemyPrefab, spawnPosition, out bool success);
         if(!success)
         {
-            StartCoroutine(RespawnTimer(respawnTimer * 0.5f, enemyRespawnData));
+            if(respawnCoroutine != null)
+            {
+                StopCoroutine(respawnCoroutine);
+            }
+            respawnCoroutine = StartCoroutine(RespawnTimer(respawnTimer * 0.5f, enemyRespawnData));
         }else
         {
-            entity.OnDestructionEvent += (StageEntity destroyedEntity, Vector3Int deathPosition) => StartCoroutine(RespawnTimer(respawnTimer, enemyRespawnData));
+            entity.OnDestructionEvent += (StageEntity destroyedEntity, Vector3Int deathPosition) =>
+            {
+                if(respawnCoroutine != null)
+                {
+                    StopCoroutine(respawnCoroutine);
+                }
+                respawnCoroutine = StartCoroutine(RespawnTimer(respawnTimer, enemyRespawnData));
+            };
+            
         }
     }
 
@@ -57,7 +71,7 @@ public class EnemyRespawner : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         SelfRespawningEnemy(enemyRespawnData);
-
+        respawnCoroutine = null;
     }
 
 }
