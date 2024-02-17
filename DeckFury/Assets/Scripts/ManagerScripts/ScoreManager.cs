@@ -81,8 +81,7 @@ public class ScoreManager : MonoBehaviour
 
 
     [field:SerializeField] public int TotalDamageTaken {get; private set;} = 0;
-    [field:SerializeField] public int ReflectKills {get; private set;} = 0;
-
+    [field:SerializeField] public int TotalReflectKills {get; private set;} = 0;
 
 
     public int EnemiesKilledScore { get; private set; } = 0;
@@ -95,6 +94,28 @@ public class ScoreManager : MonoBehaviour
     EventBinding<NPCDamagedEvent> npcDamagedEventBinding;
 
     int playerStartingHP;
+
+    void SavePlayerStatPrefs()
+    {
+        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalEnemiesKilled, TotalEnemiesKilled);
+        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalEnemiesKilledWithHazards, EnemiesKilledWithHazards);
+
+        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalReflectKills, TotalReflectKills);
+        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalComboKills, NumberOfComboKills);
+        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.HighestComboKill, HighestComboKill);
+
+        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalDamageDealt, DamageDealtToEnemies);
+        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalDamageTaken, TotalDamageTaken);
+
+        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.NumberOfCardsUsed, NumberOfCardsUsed);
+        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalBasicAttacks, NumberOfBasicAttacks);
+        GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalNumberOfMoves, NumberOfMoves);
+
+
+
+        PlayerPrefsManager.SavePlayerPrefs();
+    }
+
 
     private void Awake() 
     {
@@ -324,7 +345,7 @@ public class ScoreManager : MonoBehaviour
 
                 if(killingBlow.Value.reflected)
                 {
-                    ReflectKills++;
+                    TotalReflectKills++;
                 }
 
             }
@@ -432,8 +453,13 @@ public class ScoreManager : MonoBehaviour
         AddScore(CalculateTimeTakenScore(TimeSpentOnStage));
         AddScore(EnemiesKilledScore);
         CheckApplicableBonusRewards(GlobalResourceManager.BonusScoreItems);
+
+        SavePlayerStatPrefs();
+
         OnCalculatedFinalScore?.Invoke();
     }
+
+
 
     public int CalculateMoneyEarned(int score)
     {

@@ -95,7 +95,7 @@ public class RewardConditionChecks : MonoBehaviour
 
     public void CompareReflectKills(BonusScoreItemSO bonusScoreItem)
     {
-        int reflectKills = scoreManager.ReflectKills;
+        int reflectKills = scoreManager.TotalReflectKills;
         if(bonusScoreItem.CompareValue.Compare(reflectKills))
         {
             OnBonusConditionMet?.Invoke(bonusScoreItem);
