@@ -53,10 +53,8 @@ public class PlayerPrefsManager : MonoBehaviour
     /// </summary>
     public static void ClearPlayerPrefs() => PlayerPrefs.DeleteAll();
 
-    public void SetUnlockDeck(int deckIndex)
-    {
-        PlayerPrefs.SetInt("DeckUnlock" + deckIndex, 1);
-    }
+    public static void SetStartingDeckUnlockState(string deckName, bool value) => PlayerPrefs.SetInt(deckName, value ? 1 : 0);
+    public static bool GetStartingDeckUnlockState(string deckName) => PlayerPrefs.GetInt(deckName, 0) == 1;
 
 
 }
