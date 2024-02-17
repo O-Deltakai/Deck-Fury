@@ -165,6 +165,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Starting Deck UI\StartingDeckSlot.cs" />
     <Compile Include="Assets\Scripts\PathfindingScripts\Pathfinder.cs" />
+    <Compile Include="Assets\Scripts\ObjectScripts\MissileStrikeEffect.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\StageSpecificScripts\TutorialSpawnController.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\CardPoolManager.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Assets\Scripts\Finite State Machine\StateMachine.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
     <Compile Include="Assets\Scripts\Card System\CardScripts\RainOfBullets.cs" />
+    <Compile Include="Assets\Scripts\Card System\CardScripts\MissileStrike.cs" />
     <Compile Include="Assets\ScriptableObjects\ItemPoolSO.cs" />
     <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\RendererFeatures\DistortTunnel\DistortTunnelPass_Distort.cs" />
     <Compile Include="Assets\Scripts\Procedural Generation System\ZoneBlueprint.cs" />
@@ -1040,6 +1042,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{b0e8eec7-3fd8-4791-af01-d35a5a5114c8}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{9e98a956-02d3-4e14-8303-2b2b8719e24c}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{38126e5a-2402-499a-9f4a-4e61dbe9dae7}.xml" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{e15cb0d5-a279-48d7-9b71-27a57a2a0e3b}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{4eab412d-e88a-46aa-809d-5613b07c4b0d}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Tags.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{c1aeee00-306a-45f2-a49b-0895774cdba8}.xml" />
@@ -1299,6 +1302,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{99222748-0642-4675-b3dc-0ba34bf61811}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{42fb067f-d75c-4e4a-aa3e-15bd708d85c6}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{9e4b4cb9-3233-4941-9555-38352824c50a}.xml" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{43d7b2b9-8750-48a0-92ae-cf81fce35335}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{27028fe3-d6fb-4102-8ebf-a00931299233}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{3f714b7e-38ab-4bf4-baed-da3fe8f1b887}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{6ae05f7a-2b62-4df7-a3eb-da299acea1d8}.xml" />

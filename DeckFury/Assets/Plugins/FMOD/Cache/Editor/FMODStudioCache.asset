@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638437607348816002
+  lastModified: 638438308362178619
   FileSizes:
   - Name: Desktop
-    Value: 168544
+    Value: 172448
   Exists: 1
 --- !u!114 &-9055106115180510798
 MonoBehaviour:
@@ -143,10 +143,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/CardEffects.bank
   Name: CardEffects
   StudioPath: bank:/CardEffects
-  lastModified: 638437607345987835
+  lastModified: 638438308358898139
   FileSizes:
   - Name: Desktop
-    Value: 305536
+    Value: 372416
   Exists: 1
 --- !u!114 &-7543710019174446486
 MonoBehaviour:
@@ -514,7 +514,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 638437607347564177
+  lastModified: 638438308360787152
   FileSizes:
   - Name: Desktop
     Value: 118976
@@ -585,7 +585,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638437607346468622
+  lastModified: 638438308359558119
   FileSizes:
   - Name: Desktop
     Value: 2136
@@ -686,7 +686,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Misc. SFX.bank
   Name: Misc. SFX
   StudioPath: bank:/Misc. SFX
-  lastModified: 638437607346799939
+  lastModified: 638438308359958379
   FileSizes:
   - Name: Desktop
     Value: 293152
@@ -824,13 +824,14 @@ MonoBehaviour:
   - {fileID: 6086141121910823709}
   - {fileID: -4822980644560164353}
   - {fileID: 4074110282859560293}
+  - {fileID: 8164863774099720409}
   EditorParameters:
   - {fileID: -2650378028743869751}
   MasterBanks:
   - {fileID: -1199707550411595357}
   StringsBanks:
   - {fileID: 4950714686771268432}
-  cacheTime: 638437607348816002
+  cacheTime: 638438308362178619
   cacheVersion: 131608
 --- !u!114 &791509316960225685
 MonoBehaviour:
@@ -982,7 +983,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Shop.bank
   Name: Shop
   StudioPath: bank:/Shop
-  lastModified: 638437607347876355
+  lastModified: 638438308361097690
   FileSizes:
   - Name: Desktop
     Value: 31936
@@ -1002,7 +1003,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Objects.bank
   Name: Objects
   StudioPath: bank:/Objects
-  lastModified: 638437607347117821
+  lastModified: 638438308360284386
   FileSizes:
   - Name: Desktop
     Value: 50752
@@ -1346,10 +1347,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638437607346519785
+  lastModified: 638438308359628385
   FileSizes:
   - Name: Desktop
-    Value: 4018
+    Value: 4072
   Exists: 1
 --- !u!114 &5110348535214356016
 MonoBehaviour:
@@ -1447,7 +1448,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Soundtracks.bank
   Name: Soundtracks
   StudioPath: bank:/Soundtracks
-  lastModified: 638437607348217620
+  lastModified: 638438308361447575
   FileSizes:
   - Name: Desktop
     Value: 2806464
@@ -1521,7 +1522,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Characters.bank
   Name: Characters
   StudioPath: bank:/Characters
-  lastModified: 638437607346398619
+  lastModified: 638438308359478114
   FileSizes:
   - Name: Desktop
     Value: 99712
@@ -1683,6 +1684,33 @@ MonoBehaviour:
   - {fileID: -9149604104894475035}
   IsStream: 0
   Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8164863774099720409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CardSFX/MissileFallSFX
+  m_EditorClassIdentifier: 
+  Path: event:/CardSFX/MissileFallSFX
+  Guid:
+    Data1: -514019115
+    Data2: 1222091385
+    Data3: -1524141669
+    Data4: 990784122
+  Banks:
+  - {fileID: -8042990687102530542}
+  IsStream: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
