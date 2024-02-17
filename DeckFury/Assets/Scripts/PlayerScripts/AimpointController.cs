@@ -374,15 +374,24 @@ public class AimpointController : MonoBehaviour
 
         CurrentActiveReticle = cardPoolManager.GetReticleFromPool(card.cardSO.TargetingReticle);
         AdjustReticleOffset(card.cardSO.TargetingReticleOffSet);
-        if(card.cardSO.ReticleIsStatic)
+
+        if(card.cardSO.DynamicReticle)
         {
-            freezeAimpoint = true;
             _clampVirtualCursor = false;
         }else
         {
-            freezeAimpoint = false;
             _clampVirtualCursor = true;
         }
+
+        // if(card.cardSO.ReticleIsStatic)
+        // {
+        //     freezeAimpoint = true;
+        //     _clampVirtualCursor = false;
+        // }else
+        // {
+        //     freezeAimpoint = false;
+        //     _clampVirtualCursor = true;
+        // }
 
         CurrentActiveReticle.SetActive(true);
         

@@ -123,9 +123,14 @@ public class CardSO : ScriptableObject
     //new objects during runtime or objects are pooled and then enabled via scripts.
     [field:SerializeField] public bool ObjectSummonsArePooled{get; private set;}
     [field:SerializeField] public bool UseTargetingReticle{get; private set;}
+    [Tooltip("If dynamic reticle is true, the reticle is considered to have its own targeting logic and will not use the aimpoint controller for targeting.")]
+    [SerializeField] bool _dynamicReticle = false;
+    public bool DynamicReticle => _dynamicReticle;
     [field:SerializeField] public bool ReticleIsStatic{get; private set;}
     [field:SerializeField] public GameObject TargetingReticle{get; private set;}
     [field:SerializeField] public Vector2Int TargetingReticleOffSet{get; private set;}
+
+
 
     [Header("SFX")]
 

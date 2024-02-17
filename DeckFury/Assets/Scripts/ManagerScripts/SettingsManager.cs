@@ -49,17 +49,26 @@ public class SettingsManager : MonoBehaviour
     void Awake()
     {
         _instance = this;
+        GetGameplayPrefs();
     }
 
-    void Start()
+    void GetGameplayPrefs()
     {
-        
-    }
+        UseRelativeAiming = PlayerPrefsManager.GetUseRelativeAiming();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        CursorSensitivity = PlayerPrefsManager.GetCursorSensitivity();
+        if(float.IsNaN(CursorSensitivity))
+        {
+            CursorSensitivity = 0.2f; //Default value
+        }
+
+        GlobalCameraShakeMultiplier = PlayerPrefsManager.GetGlobalCameraShakeMultiplier();
+        if(float.IsNaN(GlobalCameraShakeMultiplier))
+        {
+            GlobalCameraShakeMultiplier = 1.0f; //Default value
+        }
+
+
     }
 
     void OnDestroy()
@@ -70,16 +79,19 @@ public class SettingsManager : MonoBehaviour
     public static void ToggleRelativeAiming(bool flag)
     {
         UseRelativeAiming = flag;
+        PlayerPrefsManager.SetUseRelativeAiming(flag);
     }
 
     public static void SetCursorSensitivity(float value)
     {
         CursorSensitivity = value;
+        PlayerPrefsManager.SetCursorSensitivity(value);
     }
 
     public static void SetGlobalCameraShakeMultiplier(float value)
     {
         GlobalCameraShakeMultiplier = value;
+        PlayerPrefsManager.SetGlobalCameraShakeMultiplier(value);
     }
 
 }

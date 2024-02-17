@@ -22,7 +22,6 @@ MonoBehaviour:
   <statusEffect>k__BackingField:
     statusEffectType: 0
     effectStrength: 0
-  <EnergyCost>k__BackingField: 0
   CardTier: 3
   <QuantifiableEffects>k__BackingField:
   - <EffectName>k__BackingField: Number of slashes
@@ -40,7 +39,8 @@ MonoBehaviour:
   - {fileID: 8616204727162604067, guid: 2a7c2965389cb234b9b4eb37713d6e23, type: 3}
   <ObjectSummonsArePooled>k__BackingField: 0
   <UseTargetingReticle>k__BackingField: 1
-  <ReticleIsStatic>k__BackingField: 1
+  _dynamicReticle: 1
+  <ReticleIsStatic>k__BackingField: 0
   <TargetingReticle>k__BackingField: {fileID: 955135164601175123, guid: 4b55326f241008a4fbd159b264cf3854, type: 3}
   <TargetingReticleOffSet>k__BackingField: {x: 0, y: 2}
   _onActivationSFX:
