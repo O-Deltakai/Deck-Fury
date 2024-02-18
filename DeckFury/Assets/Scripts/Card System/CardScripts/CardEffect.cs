@@ -21,6 +21,13 @@ public abstract class CardEffect : MonoBehaviour
             ObjectSummonList = cardSO.ObjectSummonList;
         }
 
+        InitializeAttackPayload();
+
+
+    }
+
+    protected void InitializeAttackPayload()
+    {
         if(player != null)
         {
             attackPayload.attacker = player.gameObject;
@@ -38,9 +45,13 @@ public abstract class CardEffect : MonoBehaviour
             attackPayload.canTriggerMark = true;
         }
 
-
-        attackPayload.statusEffectType.Add(cardSO.StatusEffect);
-
+        if(cardSO.statusEffect.statusEffectType != StatusEffectType.None)
+        {
+            attackPayload.actualStatusEffects = new List<StatusEffect>
+            {
+                cardSO.statusEffect
+            };
+        }
     }
 
     protected virtual void Awake()

@@ -10,22 +10,24 @@ public class ShieldBash : CardEffect
     [SerializeField] BoxCollider2D attackHitbox;
     [SerializeField] Animator bashAnimator;
     AimpointController aimpoint;
-    int extraDamage=0;
+    int extraDamage = 0;
 
     public override void ActivateCardEffect()
     {
         aimpoint = player.aimpoint;
         FaceTowardsAimpoint(aimpoint);
         //if shield point more than consume
-        if(player.ShieldHP>=(int)cardSO.QuantifiableEffects[0].GetValueDynamic()){
-            player.ShieldHP-=(int)cardSO.QuantifiableEffects[0].GetValueDynamic();
-            extraDamage=(int)cardSO.QuantifiableEffects[1].GetValueDynamic()*(int)cardSO.QuantifiableEffects[0].GetValueDynamic();
+        if(player.ShieldHP >= (int)cardSO.QuantifiableEffects[0].GetValueDynamic())
+        {
+            player.ShieldHP -= (int)cardSO.QuantifiableEffects[0].GetValueDynamic();
+            extraDamage = (int)cardSO.QuantifiableEffects[1].GetValueDynamic() * (int)cardSO.QuantifiableEffects[0].GetValueDynamic();
         }
-        else{
+        else
+        {
             extraDamage = player.ShieldHP * (int)cardSO.QuantifiableEffects[1].GetValueDynamic();
-            player.ShieldHP=0;
+            player.ShieldHP = 0;
         }
-        attackPayload.damage +=extraDamage;
+        attackPayload.damage += extraDamage;
         
         bashAnimator.Play("ShieldBashVFS", 0);
 
@@ -74,5 +76,10 @@ public class ShieldBash : CardEffect
         yield return new WaitForSeconds(cardSO.PlayerAnimation.length);
         gameObject.SetActive(false);
         attackHitbox.enabled = true;
+
+        attackPayload = new AttackPayload();
+
+        InitializeAttackPayload();
+        
     }
 }
