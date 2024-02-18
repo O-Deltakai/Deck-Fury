@@ -35,6 +35,14 @@ public class StartingDeckMenuController : MonoBehaviour
         InititializeMenu();
     }
 
+    void OnValidate()
+    {
+        if (_unlockAllDecks)
+        {
+            UnlockAllDecks();
+        }
+    }
+
     void InititializeMenu()
     {
         foreach (var deck in availableStartingDecks)
