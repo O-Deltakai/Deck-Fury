@@ -95,8 +95,11 @@ public class ScoreManager : MonoBehaviour
 
     int playerStartingHP;
 
-    void SavePlayerStatPrefs()
+    bool savedPlayerStats = false;
+
+    public void SavePlayerStatPrefs()
     {
+        if(savedPlayerStats){return;} // Don't save the player stats if they've already been saved
 
         GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalEnemiesKilled, TotalEnemiesKilled);
 
@@ -113,14 +116,10 @@ public class ScoreManager : MonoBehaviour
         GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalBasicAttacks, NumberOfBasicAttacks);
         GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalNumberOfMoves, NumberOfMoves);
 
-        if(StageStateController.Instance._stageType == StageType.EliteCombat)
-        {
-            GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.NumberOfEliteStagesCompleted, 1);
-        }
-
-
 
         PlayerPrefsManager.SavePlayerPrefs();
+
+        savedPlayerStats = true;
     }
 
 
@@ -461,8 +460,13 @@ public class ScoreManager : MonoBehaviour
         AddScore(EnemiesKilledScore);
         CheckApplicableBonusRewards(GlobalResourceManager.BonusScoreItems);
 
-        SavePlayerStatPrefs();
 
+        if(StageStateController.Instance._stageType == StageType.EliteCombat)
+        {
+            GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.NumberOfEliteStagesCompleted, 1);
+        }
+
+        SavePlayerStatPrefs();
         OnCalculatedFinalScore?.Invoke();
     }
 

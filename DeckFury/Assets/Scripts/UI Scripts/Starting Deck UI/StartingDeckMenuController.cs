@@ -27,12 +27,12 @@ public class StartingDeckMenuController : MonoBehaviour
 
     void Start()
     {
+
+        InititializeMenu();
         if (_unlockAllDecks)
         {
             UnlockAllDecks();
         }
-
-        InititializeMenu();
     }
 
     void OnValidate()

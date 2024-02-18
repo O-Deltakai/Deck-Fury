@@ -52,7 +52,7 @@ public class StartingDeckSlot : MonoBehaviour
         if (deckSO != null)
         {
             InitializeStartingDeckSlot(deckSO);
-            EvaluateUnlockConditions();
+ 
         }
     }
 
@@ -112,7 +112,7 @@ public class StartingDeckSlot : MonoBehaviour
         }
 
         unlockConditions = deckSO.UnlockConditions;
-
+        EvaluateUnlockConditions();
     }
 
     void UnlockSlot(bool condition)

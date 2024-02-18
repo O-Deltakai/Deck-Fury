@@ -245,6 +245,8 @@ public class GameManager : MonoBehaviour
         int currentDeaths = GlobalPlayerStatsManager.GetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.NumberOfDeaths, out bool exists);
         GlobalPlayerStatsManager.SetPlayerPrefStat(GlobalPlayerStatsManager.StatKey.NumberOfDeaths, currentDeaths + 1);
         PlayerPrefsManager.SavePlayerPrefs();        
+
+        ScoreManager.Instance.SavePlayerStatPrefs();
     }
 
     public void ReplayStageButton(Button button)
