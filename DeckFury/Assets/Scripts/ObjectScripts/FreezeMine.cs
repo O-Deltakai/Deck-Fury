@@ -11,6 +11,7 @@ public class FreezeMine : MonoBehaviour
     BoxCollider2D mineCollider;
 
     public AttackPayload attackPayload;
+    public AttackPayload impactPayload;
     public bool objectIsPooled;
 
     [SerializeField] BoxCollider2D explosionRadius;
@@ -67,8 +68,11 @@ public class FreezeMine : MonoBehaviour
 
             if (entityHit != null)
             {
+                impactPayload = attackPayload;
+                impactPayload.actualStatusEffects.Clear();
+
                 ActivateMine();
-                entityHit.HurtEntity(attackPayload);
+                entityHit.HurtEntity(impactPayload);
             }
         }
 
