@@ -26,6 +26,7 @@ public class GlobalPlayerStatsManager : MonoBehaviour
 
         NumberOfDeaths,
         NumberOfCompletedRuns,
+        NumberOfEliteStagesCompleted,
     }
 
     public static bool HasBeatenTheGame = false;

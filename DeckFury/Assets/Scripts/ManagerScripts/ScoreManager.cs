@@ -113,6 +113,10 @@ public class ScoreManager : MonoBehaviour
         GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalBasicAttacks, NumberOfBasicAttacks);
         GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.TotalNumberOfMoves, NumberOfMoves);
 
+        if(StageStateController.Instance._stageType == StageType.EliteCombat)
+        {
+            GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.NumberOfEliteStagesCompleted, 1);
+        }
 
 
 
