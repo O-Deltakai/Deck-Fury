@@ -38,6 +38,9 @@ public class NotificationController : MonoBehaviour
 
     EventBinding<NotificationEvent> notificationEventBinding;
 
+    [Header("Debug")]
+    [SerializeField] bool testNotificationButton = false;
+
 
     private void Awake()
     {
@@ -59,6 +62,13 @@ public class NotificationController : MonoBehaviour
         {
             DisplayNotification();
         }
+
+        if(testNotificationButton)
+        {
+            testNotificationButton = false;
+            TestNotification();
+        }
+
     }
 
 
@@ -68,6 +78,7 @@ public class NotificationController : MonoBehaviour
         NotificationData notificationData = notificationEvent.notification;
 
         NotificationPopup notificationPopup = Instantiate(notificationPopupPrefab, popupAnchor).GetComponent<NotificationPopup>();
+        notificationPopup.transform.localPosition = Vector3.zero;
         Sprite icon = notificationTypeIconBinding.GetIcon(notificationData.notificationType);
         notificationPopup.Initialize(notificationData, icon);
 
@@ -109,6 +120,10 @@ public class NotificationController : MonoBehaviour
         CR_PopupDurationTimer = null; 
     }
 
-
+    void TestNotification()
+    {
+        NotificationData notificationData = new NotificationData(NotificationType.AchievementUnlock, "Test Notification", "This is a test notification");
+        EventBus<NotificationEvent>.Raise(new NotificationEvent(notificationData));
+    }
 
 }

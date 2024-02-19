@@ -805,11 +805,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01bc66b53d2beb4f95c16ee3c2fb4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notificationTypeIconBinding: {fileID: 11400000, guid: 08a106418f34e4a4f9f8f266afbbce49, type: 2}
   popupAnchor: {fileID: 2073234631}
   notificationPopupPrefab: {fileID: 7458164536140689142, guid: 96ff737cc277e8c4f99bf876af3b629d, type: 3}
   popupYEndPosition: -150
   popupDuration: 2
-  popupSpeed: 0.2
+  popupSpeed: 0.25
   popupMoveInEase: 27
   popupMoveOutEase: 26
   notificationSFX:
@@ -819,6 +820,7 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  testNotificationButton: 0
 --- !u!114 &375137549 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 527735482905856791, guid: 2213ed848aab9a542b86314234fa85e5, type: 3}
@@ -6677,6 +6679,10 @@ PrefabInstance:
     - target: {fileID: 7458164536140689142, guid: 96ff737cc277e8c4f99bf876af3b629d, type: 3}
       propertyPath: m_Name
       value: NotificationPopup
+      objectReference: {fileID: 0}
+    - target: {fileID: 7458164536140689142, guid: 96ff737cc277e8c4f99bf876af3b629d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
