@@ -42,10 +42,8 @@ public class CardPoolSO : ScriptableObject
     /// <exception cref="System.ArgumentException"></exception>
     public CardSO GetRandomCard(int tier, System.Random random = null)
     {
-        if(tier < 1 || tier > 3)
-        {
-            throw new System.ArgumentException("Tier must be between 1 and 3");
-        }
+        if(tier < 1) { tier = 1; Debug.LogWarning("Tier cannot be less than 1, defaulting to 1"); }
+        if(tier > 3) { tier = 3; Debug.LogWarning("Tier cannot be greater than 3, defaulting to 3");}
 
         if(random != null)
         {

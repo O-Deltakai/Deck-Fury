@@ -26,7 +26,7 @@ public class StartingDeckSlot : MonoBehaviour
     [Header("Unlock Condition")]
     [SerializeField] GameObject unlockConditionPanel;
     [SerializeField] TextMeshProUGUI unlockConditionText;
-    IReadOnlyList<DeckUnlockCondition> unlockConditions;
+    IReadOnlyList<UnlockCondition> unlockConditions;
 
 
 [Header("Tween Settings")]

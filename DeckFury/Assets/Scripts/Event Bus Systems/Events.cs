@@ -52,4 +52,16 @@ public struct ModifiedPlayerPrefEvent : IEvent
 {
     public string key;
     public object value;
+
+    public ModifiedPlayerPrefEvent(string key, object value)
+    {
+        this.key = key;
+        this.value = value;
+    }
+
+}
+
+public struct NotificationEvent : IEvent
+{
+    public Notification notification;
 }

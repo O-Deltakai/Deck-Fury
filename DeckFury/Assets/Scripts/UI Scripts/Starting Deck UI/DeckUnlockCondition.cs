@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class DeckUnlockCondition
+public class UnlockCondition
 {
     [SerializeField] string _conditionName;
     public string ConditionName { get => _conditionName; }

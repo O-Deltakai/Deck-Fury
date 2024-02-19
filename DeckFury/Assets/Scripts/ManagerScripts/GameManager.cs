@@ -299,7 +299,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-
+        PlayerPrefsManager.SavePlayerPrefs();
     }
 
 

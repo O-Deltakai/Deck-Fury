@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class GlobalPlayerStatsManager : MonoBehaviour
 {
+    public enum DeckKey
+    {
+        ModestMedley,
+        ExplosivesExpert,
+        SliceNDice,
+    }
+
+
     public enum StatKey
     {
         TotalEnemiesKilled,
@@ -29,7 +37,6 @@ public class GlobalPlayerStatsManager : MonoBehaviour
         NumberOfEliteStagesCompleted,
     }
 
-    public static bool HasBeatenTheGame = false;
 
     public static GlobalPlayerStatsManager Instance {get; private set;}
 
@@ -46,6 +53,7 @@ public class GlobalPlayerStatsManager : MonoBehaviour
     public static void SetPlayerPrefStat(StatKey key, int value)
     {
         PlayerPrefs.SetInt(key.ToString(), value);
+        EventBus<ModifiedPlayerPrefEvent>.Raise(new ModifiedPlayerPrefEvent(key.ToString(), value));
     }
 
     /// <summary>
@@ -75,22 +83,6 @@ public class GlobalPlayerStatsManager : MonoBehaviour
         }else
         {
             exists = false;
-            return 0;
-        }
-    }
-
-    public static void SetBeatenGameState(bool value)
-    {
-        HasBeatenTheGame = value;
-        PlayerPrefs.SetInt("HasBeatenTheGame", value ? 1 : 0);
-    }
-    public static int GetBeatenGameState()
-    {
-        if (PlayerPrefs.HasKey("HasBeatenTheGame"))
-        {
-            return PlayerPrefs.GetInt("HasBeatenTheGame");
-        }else
-        {
             return 0;
         }
     }
