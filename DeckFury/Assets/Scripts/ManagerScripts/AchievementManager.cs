@@ -98,7 +98,7 @@ public class AchievementManager : MonoBehaviour
                 async() => await CheckAchievementBatch(batch)
             );
 
-            // Optionally, await a small delay to spread out the computation
+            //await a small delay to spread out the computation
             await Task.Delay(10); // Wait for 10 milliseconds (adjust based on performance)
         }
     }

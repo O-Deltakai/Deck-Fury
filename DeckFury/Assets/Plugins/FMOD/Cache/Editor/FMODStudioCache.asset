@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638438308362178619
+  lastModified: 638440172038808726
   FileSizes:
   - Name: Desktop
-    Value: 172448
+    Value: 199808
   Exists: 1
 --- !u!114 &-9055106115180510798
 MonoBehaviour:
@@ -143,7 +143,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/CardEffects.bank
   Name: CardEffects
   StudioPath: bank:/CardEffects
-  lastModified: 638438308358898139
+  lastModified: 638440172035687845
   FileSizes:
   - Name: Desktop
     Value: 372416
@@ -514,7 +514,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 638438308360787152
+  lastModified: 638440172037403922
   FileSizes:
   - Name: Desktop
     Value: 118976
@@ -585,7 +585,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638438308359558119
+  lastModified: 638440172036225987
   FileSizes:
   - Name: Desktop
     Value: 2136
@@ -686,7 +686,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Misc. SFX.bank
   Name: Misc. SFX
   StudioPath: bank:/Misc. SFX
-  lastModified: 638438308359958379
+  lastModified: 638440172036619265
   FileSizes:
   - Name: Desktop
     Value: 293152
@@ -825,13 +825,14 @@ MonoBehaviour:
   - {fileID: -4822980644560164353}
   - {fileID: 4074110282859560293}
   - {fileID: 8164863774099720409}
+  - {fileID: 7524010730772273007}
   EditorParameters:
   - {fileID: -2650378028743869751}
   MasterBanks:
   - {fileID: -1199707550411595357}
   StringsBanks:
   - {fileID: 4950714686771268432}
-  cacheTime: 638438308362178619
+  cacheTime: 638440172038808726
   cacheVersion: 131608
 --- !u!114 &791509316960225685
 MonoBehaviour:
@@ -983,7 +984,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Shop.bank
   Name: Shop
   StudioPath: bank:/Shop
-  lastModified: 638438308361097690
+  lastModified: 638440172037723907
   FileSizes:
   - Name: Desktop
     Value: 31936
@@ -1003,7 +1004,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Objects.bank
   Name: Objects
   StudioPath: bank:/Objects
-  lastModified: 638438308360284386
+  lastModified: 638440172036928574
   FileSizes:
   - Name: Desktop
     Value: 50752
@@ -1347,10 +1348,10 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638438308359628385
+  lastModified: 638440172036282873
   FileSizes:
   - Name: Desktop
-    Value: 4072
+    Value: 4118
   Exists: 1
 --- !u!114 &5110348535214356016
 MonoBehaviour:
@@ -1448,7 +1449,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Soundtracks.bank
   Name: Soundtracks
   StudioPath: bank:/Soundtracks
-  lastModified: 638438308361447575
+  lastModified: 638440172038081521
   FileSizes:
   - Name: Desktop
     Value: 2806464
@@ -1522,7 +1523,7 @@ MonoBehaviour:
   Path: Assets/FMODProject/DeckFuryFMODProject/DeckFury/Build/Desktop/Characters.bank
   Name: Characters
   StudioPath: bank:/Characters
-  lastModified: 638438308359478114
+  lastModified: 638440172036146055
   FileSizes:
   - Name: Desktop
     Value: 99712
@@ -1653,6 +1654,33 @@ MonoBehaviour:
     Data2: 1221637724
     Data3: 529620388
     Data4: -1963097512
+  Banks:
+  - {fileID: -9149604104894475035}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7524010730772273007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UIEvents/NotificationSFX
+  m_EditorClassIdentifier: 
+  Path: event:/UIEvents/NotificationSFX
+  Guid:
+    Data1: 311368775
+    Data2: 1318938444
+    Data3: -690696548
+    Data4: -1874450581
   Banks:
   - {fileID: -9149604104894475035}
   IsStream: 0
