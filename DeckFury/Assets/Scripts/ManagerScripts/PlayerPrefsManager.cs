@@ -34,6 +34,11 @@ public class PlayerPrefsManager : MonoBehaviour
         _instance = this;
     }
 
+    void OnDestroy()
+    {
+        _instance = null;
+    }
+
     public static void SetAudioPref(AudioKeys audioKey, float value)
     {
         PlayerPrefs.SetFloat(audioKey.ToString(), value);

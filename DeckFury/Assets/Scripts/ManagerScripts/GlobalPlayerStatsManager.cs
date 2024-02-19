@@ -45,6 +45,11 @@ public class GlobalPlayerStatsManager : MonoBehaviour
         Instance = this;
     }
 
+    void OnDestroy()
+    {
+        Instance = null;
+    }
+
     /// <summary>
     /// Sets the player pref stat to the value
     /// </summary>

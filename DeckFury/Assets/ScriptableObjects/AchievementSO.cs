@@ -9,7 +9,9 @@ public class AchievementSO : ScriptableObject
     [SerializeField] string _id;
     public string ID { get => _id; }
 
-    [SerializeField] Notification _notification;
+    [SerializeField] NotificationData _notification;
+    public NotificationData Notification { get => _notification; }
+
     [SerializeField] List<UnlockCondition> unlockConditions = new ();
 
     public bool unlocked = false;

@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d4215fdd2540948bd3df470fcd216c, type: 3}
   m_Name: SliceNDice_DeckUnlock
   m_EditorClassIdentifier: 
-  _id: ExplosivesExpert_DeckUnlock
+  _id: SliceNDice_DeckUnlock
   _notification:
     notificationType: 0
     title: New Deck Unlocked
-    description: Explosives Expert
+    description: Slice N' Dice
   unlockConditions:
-  - _conditionName: Kill an enemy with a reflected attack
-    statKey: 4
+  - _conditionName: Beating the game
+    statKey: 14
     compareValue: 0
     isGreaterThan: 1
   unlocked: 0

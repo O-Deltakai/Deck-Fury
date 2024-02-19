@@ -63,5 +63,11 @@ public struct ModifiedPlayerPrefEvent : IEvent
 
 public struct NotificationEvent : IEvent
 {
-    public Notification notification;
+    public NotificationData notification;
+
+    public NotificationEvent(NotificationData notification)
+    {
+        this.notification = notification;
+    }
+
 }

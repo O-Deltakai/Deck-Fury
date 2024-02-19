@@ -5,6 +5,7 @@ using UnityEngine;
 public enum NotificationType
 {
     DeckUnlock,
-    
+    AchievementUnlock,
+
 
 }
