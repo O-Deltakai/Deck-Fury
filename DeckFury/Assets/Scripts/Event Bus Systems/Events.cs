@@ -71,3 +71,14 @@ public struct NotificationEvent : IEvent
     }
 
 }
+
+public struct AchievementUnlockedEvent : IEvent
+{
+    public AchievementSO achievement;
+
+    public AchievementUnlockedEvent(AchievementSO achievement)
+    {
+        this.achievement = achievement;
+    }
+
+}

@@ -80,6 +80,7 @@ public class NotificationController : MonoBehaviour
         NotificationPopup notificationPopup = Instantiate(notificationPopupPrefab, popupAnchor).GetComponent<NotificationPopup>();
         notificationPopup.transform.localPosition = Vector3.zero;
         Sprite icon = notificationTypeIconBinding.GetIcon(notificationData.notificationType);
+        
         notificationPopup.Initialize(notificationData, icon);
 
 

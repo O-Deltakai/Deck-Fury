@@ -96,6 +96,7 @@ public class DamageBufferOnFullEnergy : ItemBase
     {
         base.Deactivate();
         if(bufferVFXObject) bufferVFXObject.SetActive(false);
+        bufferVFXObject.transform.localScale = originalVFXScale;
         bufferActive = false;
         if(energyController)
         {

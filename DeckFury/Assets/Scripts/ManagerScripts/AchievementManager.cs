@@ -1,27 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
+/// <summary>
+/// Manages the achievements in the game. Is assumed to be placed on the GameManager object.
+/// </summary>
 public class AchievementManager : MonoBehaviour
 {
     static AchievementManager _instance;
     public static AchievementManager Instance => _instance;
 
-    static Dictionary<string, AchievementSO> _achievements = new Dictionary<string, AchievementSO>();
-    public IReadOnlyDictionary<string, AchievementSO> Achievements { get => _achievements; }
+    static Dictionary<string, AchievementSO> _achievements = new();
+    public static IReadOnlyDictionary<string, AchievementSO> Achievements { get => _achievements; }
+
+    const int BatchSize = 10;
 
 
     void Awake()
     {
-        _instance = this;
+        if(_instance == null)
+        {
+            _instance = this;
 
-        RetrieveAchievementsFromResources();
-        LoadAchievements();
-    }
-
-    void OnDestroy()
-    {
-        _instance = null;
+            RetrieveAchievementsFromResources();
+            LoadAchievements();
+        
+        }
     }
 
 
@@ -42,7 +47,6 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-
     static void SaveAchievement(string id)
     {
         AchievementSO achievement = _achievements[id];
@@ -51,8 +55,69 @@ public class AchievementManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+/// <summary>
+/// Returns a batch of achievements from the dictionary
+/// </summary>
+/// <param name="startIndex"></param>
+/// <param name="count"></param>
+/// <returns></returns>
+    private static List<AchievementSO> GetAchievementBatch(int startIndex, int count)
+    {
+        List<AchievementSO> batch = new List<AchievementSO>();
+        int endIndex = startIndex + count;
+
+        int currentIndex = 0;
+        foreach (var kvp in _achievements)
+        {
+            if (currentIndex >= startIndex && currentIndex < endIndex)
+            {
+                batch.Add(kvp.Value);
+            }
+
+            currentIndex++;
+
+            if (currentIndex >= endIndex)
+            {
+                break;
+            }
+        }
+
+        return batch;
+    }
+
+    public static async void CheckAchievementsAsync()
+    {
+        print("Checking achievements async");
+        for (int i = 0; i < _achievements.Count; i += BatchSize)
+        {
+            // Take a batch of achievements to check
+            var batch = GetAchievementBatch(i, Mathf.Min(BatchSize, _achievements.Count - i));
+
+            // Run the batch check asynchronously to avoid blocking the main thread
+            await Task.Run(
+                async() => await CheckAchievementBatch(batch)
+            );
+
+            // Optionally, await a small delay to spread out the computation
+            await Task.Delay(10); // Wait for 10 milliseconds (adjust based on performance)
+        }
+    }
+
+    private static async Task CheckAchievementBatch(List<AchievementSO> batch)
+    {
+        foreach (var achievement in batch)
+        {
+            // Perform the check
+
+            await UnityMainThreadDispatcher.Instance.EnqueueTask(() => EvaluateAchievementConditions(achievement));
+
+        }
+    }
+
+
     void RetrieveAchievementsFromResources()
     {
+        print("Retrieving achievements from resources");
         AchievementSO[] achievementArray = Resources.LoadAll<AchievementSO>("Achievements");
         foreach (var achievement in achievementArray)
         {
@@ -60,12 +125,15 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-    void EvaluateAchievementConditions(AchievementSO achievement)
+    static bool EvaluateAchievementConditions(AchievementSO achievement)
     {
         if (achievement.Evaluate())
         {
             UnlockAchievement(achievement);
+            return true;
         }
+
+        return false;
     }
 
     /// <summary>
@@ -73,6 +141,7 @@ public class AchievementManager : MonoBehaviour
     /// </summary>
     void LoadAchievements()
     {
+        print("Loading achievements");
         foreach (var achievement in _achievements.Values)
         {
             achievement.unlocked = PlayerPrefs.GetInt($"{achievement.ID}_unlocked", 0) == 1;

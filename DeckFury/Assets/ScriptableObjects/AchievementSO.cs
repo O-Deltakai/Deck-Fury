@@ -12,7 +12,7 @@ public class AchievementSO : ScriptableObject
     [SerializeField] NotificationData _notification;
     public NotificationData Notification { get => _notification; }
 
-    [SerializeField] List<UnlockCondition> unlockConditions = new ();
+    [SerializeField] List<StatUnlockCondition> unlockConditions = new ();
 
     public bool unlocked = false;
     public bool notificationShown = false;
@@ -24,7 +24,7 @@ public class AchievementSO : ScriptableObject
             return true;
         }
 
-        foreach (UnlockCondition condition in unlockConditions)
+        foreach (StatUnlockCondition condition in unlockConditions)
         {
             if (!condition.Evaluate())
             {

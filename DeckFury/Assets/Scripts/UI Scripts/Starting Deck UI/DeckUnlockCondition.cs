@@ -3,8 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A condition that must be met to unlock an achievement - based on player stats
+/// </summary>
 [Serializable]
-public class UnlockCondition
+public class StatUnlockCondition
 {
     [SerializeField] string _conditionName;
     public string ConditionName { get => _conditionName; }

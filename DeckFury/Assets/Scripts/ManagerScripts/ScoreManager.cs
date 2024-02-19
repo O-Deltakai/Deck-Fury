@@ -467,6 +467,7 @@ public class ScoreManager : MonoBehaviour
         }
 
         SavePlayerStatPrefs();
+        AchievementManager.CheckAchievementsAsync();
         OnCalculatedFinalScore?.Invoke();
     }
 

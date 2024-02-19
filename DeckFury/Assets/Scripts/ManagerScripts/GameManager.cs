@@ -247,6 +247,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefsManager.SavePlayerPrefs();        
 
         ScoreManager.Instance.SavePlayerStatPrefs();
+        AchievementManager.CheckAchievementsAsync();
     }
 
     public void ReplayStageButton(Button button)
@@ -300,6 +301,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
 
         PlayerPrefsManager.SavePlayerPrefs();
+        AchievementManager.CheckAchievementsAsync();
     }
 
 

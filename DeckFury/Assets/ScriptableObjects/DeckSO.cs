@@ -15,8 +15,8 @@ public class DeckSO : ScriptableObject
     public string DeckName;
     [field:SerializeField] public List<DeckElement> CardList {get; private set;}
 
-    [SerializeField] List<UnlockCondition> _unlockConditions;
-    public IReadOnlyList<UnlockCondition> UnlockConditions => _unlockConditions;
+    [SerializeField] List<StatUnlockCondition> _unlockConditions;
+    public IReadOnlyList<StatUnlockCondition> UnlockConditions => _unlockConditions;
 
 
 }
