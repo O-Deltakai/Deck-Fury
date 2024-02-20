@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class ShieldSteal : CardEffect
 {
@@ -10,6 +11,7 @@ public class ShieldSteal : CardEffect
 
     [SerializeField] AnimationClip VFXAnimation; //Set in inspector
     [SerializeField] BoxCollider2D attackHitbox;
+    [SerializeField] Light2D attackLight;
     AimpointController aimpoint;
 
     CinemachineImpulseSourceHelper impulseSourceHelper;
@@ -28,7 +30,8 @@ public class ShieldSteal : CardEffect
 
     public override void ActivateCardEffect()
     {
-
+        attackLight.intensity = 0.8f;
+        DOTween.To(() => attackLight.intensity, x => attackLight.intensity = x, 0, 0.25f);
         aimpoint = player.aimpoint;
         FaceTowardsAimpoint(aimpoint);
 

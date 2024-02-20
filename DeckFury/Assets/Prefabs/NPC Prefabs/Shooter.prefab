@@ -327,6 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <stageEntity>k__BackingField: {fileID: 2183058059336521967}
+  _originalPrefab: {fileID: 0}
 --- !u!1 &1680160337380763023
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,11 +894,11 @@ MonoBehaviour:
   entitySpriteRenderer: {fileID: 0}
   OnDamagedSFX:
     Guid:
-      Data1: 1006074970
-      Data2: 1116370271
-      Data3: -118895988
-      Data4: -1259254039
-    Path: event:/NPCDamaged3DPunch
+      Data1: 2067571330
+      Data2: 1285352577
+      Data3: -1972169546
+      Data4: 1815344701
+    Path: event:/Characters/RobotDamaged
   OnDeathSFX:
     Guid:
       Data1: 0
@@ -931,6 +932,7 @@ MonoBehaviour:
     attacker: {fileID: 3271430463877012518}
     attackerSprite: {fileID: 4723107735738678597, guid: f89c1690b861390458e754258101aa4b, type: 3}
     causeOfDeathNote: Bandit
+    reflected: 0
   prepareToFireSFX:
     Guid:
       Data1: 1792005856
@@ -946,6 +948,7 @@ MonoBehaviour:
       Data4: -742048082
     Path: event:/Characters/BanditShot
   bulletSpeed: 12
+  _noRandomCooldowns: 0
   references:
     version: 2
     RefIds:

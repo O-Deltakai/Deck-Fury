@@ -621,7 +621,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1257485985
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &4224279778098736861
@@ -1023,11 +1023,11 @@ MonoBehaviour:
   entitySpriteRenderer: {fileID: 0}
   OnDamagedSFX:
     Guid:
-      Data1: 1006074970
-      Data2: 1116370271
-      Data3: -118895988
-      Data4: -1259254039
-    Path: event:/NPCDamaged3DPunch
+      Data1: 2067571330
+      Data2: 1285352577
+      Data3: -1972169546
+      Data4: 1815344701
+    Path: event:/Characters/RobotDamaged
   OnDeathSFX:
     Guid:
       Data1: 0
@@ -1052,6 +1052,7 @@ MonoBehaviour:
       attacker: {fileID: 2738249535525313094}
       attackerSprite: {fileID: 4723107735738678597, guid: d29b24dcfdee96344b0d41370b2b8bc3, type: 3}
       causeOfDeathNote: Zombie
+      reflected: 0
     rangeOfInfluence:
     - {x: 0, y: -1}
   <DistanceFromPlayer>k__BackingField: {x: 0, y: 0}
@@ -1164,7 +1165,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1257485985
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8947612404291860518
@@ -1310,6 +1311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <stageEntity>k__BackingField: {fileID: 9043754737011917841}
+  _originalPrefab: {fileID: 0}
 --- !u!1 &4723327801996162716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,7 +1383,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1257485985
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9fe4fc8143d57434db5825f56d2a6da3, type: 3}
   m_Color: {r: 0.427451, g: 0.9294118, b: 1, a: 1}
@@ -1581,6 +1583,7 @@ MonoBehaviour:
       attacker: {fileID: 0}
       attackerSprite: {fileID: 0}
       causeOfDeathNote: 
+      reflected: 0
     rangeOfInfluence: []
 --- !u!1001 &4272013666286700814
 PrefabInstance:

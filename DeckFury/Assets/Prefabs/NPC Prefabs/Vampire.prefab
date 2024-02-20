@@ -76,7 +76,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1257485985
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1253911363
@@ -325,7 +325,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1257485985
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1361261307
@@ -888,6 +888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <stageEntity>k__BackingField: {fileID: 1903802421411089551}
+  _originalPrefab: {fileID: 0}
 --- !u!1 &2503849449609434482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,11 +1198,11 @@ MonoBehaviour:
   entitySpriteRenderer: {fileID: 0}
   OnDamagedSFX:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 2067571330
+      Data2: 1285352577
+      Data3: -1972169546
+      Data4: 1815344701
+    Path: event:/Characters/RobotDamaged
   OnDeathSFX:
     Guid:
       Data1: 0
@@ -1255,6 +1256,7 @@ MonoBehaviour:
     attacker: {fileID: 0}
     attackerSprite: {fileID: 0}
     causeOfDeathNote: 
+    reflected: 0
   strongATKPayload:
     damage: 15
     attackElement: 1
@@ -1267,6 +1269,7 @@ MonoBehaviour:
     attacker: {fileID: 0}
     attackerSprite: {fileID: 0}
     causeOfDeathNote: 
+    reflected: 0
   zombieBATKPayload:
     damage: 30
     attackElement: 2
@@ -1277,6 +1280,7 @@ MonoBehaviour:
     attacker: {fileID: 0}
     attackerSprite: {fileID: 0}
     causeOfDeathNote: 
+    reflected: 0
   furyATKPayload:
     damage: 10
     attackElement: 0
@@ -1287,6 +1291,7 @@ MonoBehaviour:
     attacker: {fileID: 0}
     attackerSprite: {fileID: 0}
     causeOfDeathNote: 
+    reflected: 0
   references:
     version: 2
     RefIds:
@@ -1576,7 +1581,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1257485985
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9fe4fc8143d57434db5825f56d2a6da3, type: 3}
   m_Color: {r: 0.427451, g: 0.9294118, b: 1, a: 1}
