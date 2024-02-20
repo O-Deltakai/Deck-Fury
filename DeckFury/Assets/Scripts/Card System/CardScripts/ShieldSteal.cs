@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using FMODUnity;
 using UnityEngine;
 
 public class ShieldSteal : CardEffect
@@ -11,9 +12,23 @@ public class ShieldSteal : CardEffect
     [SerializeField] BoxCollider2D attackHitbox;
     AimpointController aimpoint;
 
+    CinemachineImpulseSourceHelper impulseSourceHelper;
+    [Header("Camera Shake Settings")]
+    [SerializeField] float _shakeDuration;
+    [SerializeField] Vector3 _shakeVelocity;
+
+    [Header("SFX")]
+    [SerializeField] EventReference onHitSFX;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        impulseSourceHelper = GetComponent<CinemachineImpulseSourceHelper>();
+    }
 
     public override void ActivateCardEffect()
     {
+
         aimpoint = player.aimpoint;
         FaceTowardsAimpoint(aimpoint);
 
@@ -45,16 +60,20 @@ public class ShieldSteal : CardEffect
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        StageEntity entity = other.gameObject.GetComponent<StageEntity>();
-        if(entity == null){return;}
-        if(other.gameObject.tag == "Enemy" || other.gameObject.CompareTag("EnvironmentalHazard"))
+        if(!other.gameObject.TryGetComponent<StageEntity>(out var entity)) {return;}
+        if(other.gameObject.CompareTag(TagNames.Enemy.ToString()) || other.gameObject.CompareTag(TagNames.EnvironmentalHazard.ToString()))
         {
-            
-            player.ShieldHP+=(int)cardSO.QuantifiableEffects[0].GetValueDynamic();
-            entity.HurtEntity(attackPayload);
-            Vector2Int shoveDirection = aimpoint.GetAimVector2Int();
+            impulseSourceHelper.ShakeCameraRandomCircle(_shakeVelocity * SettingsManager.GlobalCameraShakeMultiplier, _shakeDuration, 1);
+            RuntimeManager.PlayOneShot(onHitSFX, transform.position);
 
-            //entity.AttemptMovement(shoveDirection.x, shoveDirection.y, 0.15f, Ease.OutQuart, ForceMoveMode.Forward); 
+
+            if(!other.gameObject.CompareTag(TagNames.EnvironmentalHazard.ToString()))
+            {
+                player.ShieldHP+=(int)cardSO.QuantifiableEffects[0].GetValueDynamic();
+            }
+
+            entity.HurtEntity(attackPayload);
+
             attackHitbox.enabled = false;
         }
 

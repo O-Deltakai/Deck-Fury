@@ -15,7 +15,7 @@ MonoBehaviour:
   <CardName>k__BackingField: Shield Bash
   CardDescription: "Consume <b>Q0</b> Shield Points, attack in front of you in a 
     <b>1x1</b> square and deal <b>BD</b> + consumed Shield Points*<b>Q1</b> damage.
-    \n\nThe attack <b>shoves</b> the enemy 2 tiles away.\n\n"
+    \n\nThe attack <b>shoves</b> the target 2 tiles away.\n\n"
   BaseDamage: 50
   <AttackElement>k__BackingField: 5
   <CardType>k__BackingField: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
   <ObjectSummonList>k__BackingField: []
   <ObjectSummonsArePooled>k__BackingField: 0
   <UseTargetingReticle>k__BackingField: 1
+  _dynamicReticle: 0
   <ReticleIsStatic>k__BackingField: 0
   <TargetingReticle>k__BackingField: {fileID: 4638606909580859982, guid: d361f42fe86b56049b8fc8aa8eae036c, type: 3}
   <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}
