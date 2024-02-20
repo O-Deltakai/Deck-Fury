@@ -38,6 +38,7 @@ public class UnityMainThreadDispatcher : MonoBehaviour
 
     public Task EnqueueTask(Action action)
     {
+        print("Enqueueing task...");
         var tcs = new TaskCompletionSource<bool>();
         Enqueue(() =>
         {
@@ -45,6 +46,7 @@ public class UnityMainThreadDispatcher : MonoBehaviour
             {
                 action();
                 tcs.SetResult(true); // Signal completion
+                print("Task completed");
             }
             catch (Exception ex)
             {

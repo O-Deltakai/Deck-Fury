@@ -81,7 +81,7 @@ public class StageBlueprint
                 SceneNames.ShopStage
             };
 
-            sceneToLoad = validScenes[random.Next(0, validScenes.Count() - 1)];
+            sceneToLoad = validScenes[random.Next(0, validScenes.Count())];
 
         }
 

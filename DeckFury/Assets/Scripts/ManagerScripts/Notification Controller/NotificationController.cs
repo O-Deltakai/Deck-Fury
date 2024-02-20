@@ -48,6 +48,8 @@ public class NotificationController : MonoBehaviour
 
         notificationEventBinding = new EventBinding<NotificationEvent>(RecieveNotification);
         EventBus<NotificationEvent>.Register(notificationEventBinding);
+
+        notificationTypeIconBinding.InitializeDictionary();
     }
 
     void OnDestroy()
@@ -80,7 +82,7 @@ public class NotificationController : MonoBehaviour
         NotificationPopup notificationPopup = Instantiate(notificationPopupPrefab, popupAnchor).GetComponent<NotificationPopup>();
         notificationPopup.transform.localPosition = Vector3.zero;
         Sprite icon = notificationTypeIconBinding.GetIcon(notificationData.notificationType);
-        
+
         notificationPopup.Initialize(notificationData, icon);
 
 

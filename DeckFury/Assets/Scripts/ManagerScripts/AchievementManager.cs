@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -88,27 +89,55 @@ public class AchievementManager : MonoBehaviour
     public static async void CheckAchievementsAsync()
     {
         print("Checking achievements async");
-        for (int i = 0; i < _achievements.Count; i += BatchSize)
+        if(_achievements.Count == 0)
         {
-            // Take a batch of achievements to check
-            var batch = GetAchievementBatch(i, Mathf.Min(BatchSize, _achievements.Count - i));
-
-            // Run the batch check asynchronously to avoid blocking the main thread
-            await Task.Run(
-                async() => await CheckAchievementBatch(batch)
-            );
-
-            //await a small delay to spread out the computation
-            await Task.Delay(10); // Wait for 10 milliseconds (adjust based on performance)
+            print("No achievements found, returning");
+            return;
         }
+
+        try
+        {
+            print("Trying to check achievements async");
+            for (int i = 0; i < _achievements.Count; i += BatchSize)
+            {
+                // Take a batch of achievements to check
+                print("Checking batch " + i + " to " + Mathf.Min(BatchSize, _achievements.Count - i));
+                var batch = GetAchievementBatch(i, Mathf.Min(BatchSize, _achievements.Count - i));
+
+                // Run the batch check asynchronously to avoid blocking the main thread
+                print("Running async batch check");
+                #if !UNITY_WEBGL // If not compiling for WebGL, use Task.Run
+                    await Task.Run(() => 
+                    {
+                        async() => await CheckAchievementBatch(batch)
+                    });
+                #else // For WebGL, just await the method without Task.Run
+                    await CheckAchievementBatch(batch);
+                #endif
+
+                //await a small delay to spread out the computation
+                await Task.Delay(10); // Wait for 10 milliseconds (adjust based on performance)
+            }
+        }
+        catch (Exception ex)
+        {
+            print($"Exception occurred: {ex.Message}");
+        }
+
+
     }
 
     private static async Task CheckAchievementBatch(List<AchievementSO> batch)
     {
+        if(batch.Count == 0)
+        {
+            Debug.LogWarning("Achievement batch is empty, something might have gone wrong.");
+            return;
+        }
         foreach (var achievement in batch)
         {
             // Perform the check
-
+            print("Checking achievement " + achievement.ID);
             await UnityMainThreadDispatcher.Instance.EnqueueTask(() => EvaluateAchievementConditions(achievement));
 
         }
@@ -119,6 +148,7 @@ public class AchievementManager : MonoBehaviour
     {
         print("Retrieving achievements from resources");
         AchievementSO[] achievementArray = Resources.LoadAll<AchievementSO>("Achievements");
+        print("Number of achievements found: " + achievementArray.Length);
         foreach (var achievement in achievementArray)
         {
             _achievements.Add(achievement.ID, achievement);

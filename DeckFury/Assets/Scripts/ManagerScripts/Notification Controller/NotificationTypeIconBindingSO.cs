@@ -25,8 +25,7 @@ public class NotificationTypeIconBindingSO : ScriptableObject
         InitializeDictionary();
     }
 
-
-    void InitializeDictionary()
+    public void InitializeDictionary()
     {
         noteIconTypeDictionary.Clear();
 
