@@ -168,7 +168,7 @@ public class PlayerController : StageEntity
         if(GameManager.GameIsPaused){return;}
 
 
-        //SimpleMove();
+        SimpleMove();
         AutoMove();
         if(aimpoint.UseRelativeAiming)
         {
@@ -253,8 +253,8 @@ public class PlayerController : StageEntity
         //if(MovingCoroutine != null) { return; }
         //if(cardManager.CardInUseCoroutine != null) { return; }
 
-        float moveSpeed = 0.1f;
-        float moveLockoutTime = 0.15f;
+        // float moveSpeed = 0.1f;
+        // float moveLockoutTime = 0.15f;
 
         void BeginAutomoveTimer()
         {
@@ -290,7 +290,7 @@ public class PlayerController : StageEntity
 
 
             //Move right
-            bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(1, 0, moveSpeed), moveLockoutTime, Time.unscaledTime));
+            //bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(1, 0, moveSpeed), moveLockoutTime, Time.unscaledTime));
 
             //MovingCoroutine = StartCoroutine(TweenMove(1, 0, 0.1f, MovementEase));
             //OnPerformAction?.Invoke();
@@ -303,7 +303,7 @@ public class PlayerController : StageEntity
             BeginAutomoveTimer();
             //Move left
 
-            bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(-1, 0, moveSpeed), moveLockoutTime, Time.unscaledTime));
+            //bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(-1, 0, moveSpeed), moveLockoutTime, Time.unscaledTime));
 
             //MovingCoroutine = StartCoroutine(TweenMove(-1, 0, 0.1f, MovementEase)); 
             //OnPerformAction?.Invoke();
@@ -315,7 +315,7 @@ public class PlayerController : StageEntity
             canAutoMove = false;
             BeginAutomoveTimer();
             //Move up
-            bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(0, 1, moveSpeed), moveLockoutTime, Time.unscaledTime));
+            //bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(0, 1, moveSpeed), moveLockoutTime, Time.unscaledTime));
 
             //MovingCoroutine = StartCoroutine(TweenMove(0, 1, 0.1f, MovementEase));     
             //OnPerformAction?.Invoke();
@@ -327,7 +327,7 @@ public class PlayerController : StageEntity
             canAutoMove = false;
             BeginAutomoveTimer();
             //Move down
-            bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(0, -1, moveSpeed), moveLockoutTime, Time.unscaledTime));
+            //bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(0, -1, moveSpeed), moveLockoutTime, Time.unscaledTime));
 
             //MovingCoroutine = StartCoroutine(TweenMove(0, -1, 0.1f, MovementEase));
             //OnPerformAction?.Invoke();
@@ -587,7 +587,6 @@ public class PlayerController : StageEntity
             }
 
             OnPerformAction?.Invoke();
-            //cardManager.TriggerCard();   
         }
 
     }
@@ -677,9 +676,6 @@ public class PlayerController : StageEntity
 
             if(_dashController.CanDash())
             {
-                // _dashController.DashTowardsAim();
-                // _dashController.DashReticle.SetActive(false);
-                // OnPerformAction?.Invoke();
 
                 bufferHandler.BufferAction(new BufferedInput(ExecuteDash, context.action, _dashController.DashSpeed, Time.unscaledTime));
             }else
