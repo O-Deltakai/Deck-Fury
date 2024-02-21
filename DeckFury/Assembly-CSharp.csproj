@@ -159,6 +159,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\EnemyDescriptionPanel.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\FireBombController.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\FireExplosionOnKillItem.cs" />
+    <Compile Include="Assets\Scripts\HelperClasses\UniqueFastAccessList.cs" />
     <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\SharedAssets\Scripts\AutoLoadPipelineAsset.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\NumberExtensions.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\AbilityData.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\Starting Deck UI\StartingDeckSlot.cs" />
     <Compile Include="Assets\Scripts\PathfindingScripts\Pathfinder.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\MissileStrikeEffect.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Combo Kill Announcer\KillAnnouncement.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\StageSpecificScripts\TutorialSpawnController.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\CardPoolManager.cs" />
@@ -196,6 +198,7 @@
     <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\FloppyDiskItem.cs" />
     <Compile Include="Assets\Scripts\Card System\CardScripts\FreezingMine.cs" />
     <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\RendererFeatures\DistortTunnel\DistortTunnelPass_Tunnel.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\Combo Kill Announcer\ComboKillAnnouncer.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\Vector3Extensions.cs" />
     <Compile Include="Assets\Scripts\PathfindingScripts\AStarPathfinder.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\AnimationEventIntermediary.cs" />
@@ -203,7 +206,6 @@
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Singleton\Singleton.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\ShieldGuy\ShieldGuy.cs" />
     <Compile Include="Assets\Scripts\Entity Buffs\HealingFactor.cs" />
-    <Compile Include="Assets\Scripts\HelperClasses\CustomList.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\GameManager.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\ShotBehavior.cs" />
     <Compile Include="Assets\Scripts\Input Buffering System\InputBufferHandler.cs" />
@@ -292,6 +294,7 @@
     <Compile Include="Assets\ScriptableObjects\ItemSO.cs" />
     <Compile Include="Assets\Scripts\Card System\CardScripts\CardEffect.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Stage Selection Scene Elements\StageSelectionItemPanel.cs" />
+    <Compile Include="Assets\Scripts\HelperClasses\ObservableList.cs" />
     <Compile Include="Assets\Scripts\Card System\CardScripts\SummonSentry.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\RendererExtensions.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\TrainingDummy.cs" />

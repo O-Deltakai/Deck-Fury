@@ -7,7 +7,7 @@ using UnityEngine;
 /// added/removed as the parameter.
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class EventList<T> : List<T> 
+public class ObservableList<T> : List<T> 
 {
     public delegate void AddItemEventHandler(T item);
     public event AddItemEventHandler OnAddItem;

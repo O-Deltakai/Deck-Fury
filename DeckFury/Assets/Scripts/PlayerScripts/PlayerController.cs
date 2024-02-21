@@ -168,8 +168,8 @@ public class PlayerController : StageEntity
         if(GameManager.GameIsPaused){return;}
 
 
-        SimpleMove();
-
+        //SimpleMove();
+        AutoMove();
         if(aimpoint.UseRelativeAiming)
         {
             FacePlayerTowardsCursor();
@@ -250,12 +250,14 @@ public class PlayerController : StageEntity
     {
         if(!CanInitiateMovementActions){return;}
 
-        if(MovingCoroutine != null) { return; }
-        if(cardManager.CardInUseCoroutine != null) { return; }
+        //if(MovingCoroutine != null) { return; }
+        //if(cardManager.CardInUseCoroutine != null) { return; }
 
-        if(Keyboard.current.dKey.wasPressedThisFrame)
+        float moveSpeed = 0.1f;
+        float moveLockoutTime = 0.15f;
+
+        void BeginAutomoveTimer()
         {
-            canAutoMove = false;
             if(CR_AutomoveTimer != null)
             {
                 StopCoroutine(CR_AutomoveTimer);
@@ -263,117 +265,151 @@ public class PlayerController : StageEntity
             }else
             {
                 CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
+            }            
+        }
+
+        bool CheckDestination(int x, int y)
+        {
+            Vector3Int destination;
+            destination = new Vector3Int(currentTilePosition.x + x, currentTilePosition.y + y, 0);
+
+            if(!_stageManager.CheckValidTile(destination))
+            {
+                return false;
             }
-            
+            return true;
+        }
+
+        if (Keyboard.current.dKey.wasPressedThisFrame)
+        {
+            if(!CheckDestination(1, 0)){return;}
+
+            canAutoMove = false;
+            BeginAutomoveTimer();
+
+
+
             //Move right
-            MovingCoroutine = StartCoroutine(TweenMove(1, 0, 0.1f, MovementEase));
-            OnPerformAction?.Invoke();
+            bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(1, 0, moveSpeed), moveLockoutTime, Time.unscaledTime));
+
+            //MovingCoroutine = StartCoroutine(TweenMove(1, 0, 0.1f, MovementEase));
+            //OnPerformAction?.Invoke();
         }
         if(Keyboard.current.aKey.wasPressedThisFrame)
         {
+            if(!CheckDestination(-1, 0)){return;}
+
             canAutoMove = false;
-            if(CR_AutomoveTimer != null)
-            {
-                StopCoroutine(CR_AutomoveTimer);
-                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
-            }else
-            {
-                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
-            }
+            BeginAutomoveTimer();
             //Move left
-           MovingCoroutine = StartCoroutine(TweenMove(-1, 0, 0.1f, MovementEase)); 
-            OnPerformAction?.Invoke();
+
+            bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(-1, 0, moveSpeed), moveLockoutTime, Time.unscaledTime));
+
+            //MovingCoroutine = StartCoroutine(TweenMove(-1, 0, 0.1f, MovementEase)); 
+            //OnPerformAction?.Invoke();
 
         }
         if(Keyboard.current.wKey.wasPressedThisFrame)
         {
+            if(!CheckDestination(0, 1)){return;}
             canAutoMove = false;
-            if(CR_AutomoveTimer != null)
-            {
-                StopCoroutine(CR_AutomoveTimer);
-                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
-            }else
-            {
-                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
-            }
+            BeginAutomoveTimer();
             //Move up
-            MovingCoroutine = StartCoroutine(TweenMove(0, 1, 0.1f, MovementEase));     
-            OnPerformAction?.Invoke();
+            bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(0, 1, moveSpeed), moveLockoutTime, Time.unscaledTime));
+
+            //MovingCoroutine = StartCoroutine(TweenMove(0, 1, 0.1f, MovementEase));     
+            //OnPerformAction?.Invoke();
 
         }
         if(Keyboard.current.sKey.wasPressedThisFrame)
         {
+            if(!CheckDestination(0, -1)){return;}
             canAutoMove = false;
-            if(CR_AutomoveTimer != null)
-            {
-                StopCoroutine(CR_AutomoveTimer);
-                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
-            }else
-            {
-                CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
-            }
+            BeginAutomoveTimer();
             //Move down
-            MovingCoroutine = StartCoroutine(TweenMove(0, -1, 0.1f, MovementEase));
-            OnPerformAction?.Invoke();
+            bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(0, -1, moveSpeed), moveLockoutTime, Time.unscaledTime));
+
+            //MovingCoroutine = StartCoroutine(TweenMove(0, -1, 0.1f, MovementEase));
+            //OnPerformAction?.Invoke();
 
         }
 
+        AutoMove();
 
 
+    }
+
+    void AutoMove()
+    {
         if(canAutoMove)
         {
             if(Keyboard.current.dKey.isPressed)
             {
+                if(!CheckDestination(1, 0)){return;}
+
                 if(CR_AutomoveTimer == null)
                 {
                     CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown));
                 }
 
                 //Move right
-                MovingCoroutine = StartCoroutine(TweenMove(1, 0, 0.1f, MovementEase));
-                OnPerformAction?.Invoke();
+                bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(1, 0, 0.1f), 0.1f, Time.unscaledTime));
+
+                //MovingCoroutine = StartCoroutine(TweenMove(1, 0, 0.1f, MovementEase));
+                //OnPerformAction?.Invoke();
 
             }
             if(Keyboard.current.aKey.isPressed)
-            {
+            {   
+                if(!CheckDestination(-1, 0)){return;}
+
                 if(CR_AutomoveTimer == null)
                 {
                     CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown));
                 }
 
                 //Move left
-                MovingCoroutine = StartCoroutine(TweenMove(-1, 0, 0.1f, MovementEase));
-                OnPerformAction?.Invoke();
+                bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(-1, 0, 0.1f), 0.1f, Time.unscaledTime));
+
+
+                //MovingCoroutine = StartCoroutine(TweenMove(-1, 0, 0.1f, MovementEase));
+                //OnPerformAction?.Invoke();
 
             }
             if(Keyboard.current.wKey.isPressed)
             {
+                if(!CheckDestination(0, 1)){return;}
+
                 if(CR_AutomoveTimer == null)
                 {
                     CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown));
                 }
                 //Move up
-                MovingCoroutine = StartCoroutine(TweenMove(0, 1, 0.1f, MovementEase));
-                OnPerformAction?.Invoke();
+                bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(0, 1, 0.1f), 0.1f, Time.unscaledTime));
+
+                //MovingCoroutine = StartCoroutine(TweenMove(0, 1, 0.1f, MovementEase));
+                //OnPerformAction?.Invoke();
 
             }
             if(Keyboard.current.sKey.isPressed)
             {
+                if(!CheckDestination(0, -1)){return;}
+
                 if(CR_AutomoveTimer == null)
                 {
                     CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown));
                 }
                 //Move down
-                MovingCoroutine = StartCoroutine(TweenMove(0, -1, 0.1f, MovementEase));
-                OnPerformAction?.Invoke();
+                bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(0, -1, 0.1f), 0.1f, Time.unscaledTime));
+
+                //MovingCoroutine = StartCoroutine(TweenMove(0, -1, 0.1f, MovementEase));
+                //OnPerformAction?.Invoke();
 
             }
         }
 
-
-
-
     }
+
 
     IEnumerator AutomoveTimer(float duration)
     {
@@ -405,21 +441,105 @@ public class PlayerController : StageEntity
         return true;
     }
 
-    public void Movement(InputAction.CallbackContext context)
-    {
-        if(!useInputSystemMovement) { return; }
+    float moveSpeed = 0.1f;
+    float moveLockoutTime = 0.1f;
 
-        currentInputVector = context.ReadValue<Vector2>();
-        
-        
+    bool CheckDestination(int x, int y)
+    {
+        Vector3Int destination;
+        destination = new Vector3Int(currentTilePosition.x + x, currentTilePosition.y + y, 0);
+
+        if(!_stageManager.CheckValidTile(destination))
+        {
+            return false;
+        }
+        return true;
     }
 
+    void BeginAutomoveTimer()
+    {
+        if(CR_AutomoveTimer != null)
+        {
+            StopCoroutine(CR_AutomoveTimer);
+            CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
+        }else
+        {
+            CR_AutomoveTimer = StartCoroutine(AutomoveTimer(automoveCooldown + 0.15f));
+        }            
+    }
+
+    public void MoveUp(InputAction.CallbackContext context)
+    {
+        if(!CheckDestination(0, 1)){return;}
+
+        if(context.performed)
+        {
+            canAutoMove = false;
+            BeginAutomoveTimer();
+
+            //Move right
+            bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(0, 1, moveSpeed), moveLockoutTime, Time.unscaledTime));
+        }
+    }
+
+    public void MoveDown(InputAction.CallbackContext context)
+    {
+        if(!CheckDestination(0, -1)){return;}
+
+        if(context.performed)
+        {
+            canAutoMove = false;
+            BeginAutomoveTimer();
+
+            //Move right
+            bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(0, -1, moveSpeed), moveLockoutTime, Time.unscaledTime));
+        }
+    }
+
+    public void MoveLeft(InputAction.CallbackContext context)
+    {
+        if(!CheckDestination(-1, 0)){return;}
+
+        if(context.performed)
+        {
+            canAutoMove = false;
+            BeginAutomoveTimer();
+
+            //Move right
+            bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(-1, 0, moveSpeed), moveLockoutTime, Time.unscaledTime));
+        }
+    }
+
+    public void MoveRight(InputAction.CallbackContext context)
+    {
+        if(!CheckDestination(1, 0)){return;}
+
+        if(context.performed)
+        {
+            canAutoMove = false;
+            BeginAutomoveTimer();
+
+            //Move right
+            bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(1, 0, moveSpeed), moveLockoutTime, Time.unscaledTime));
+        }
+
+    }
+
+
+    void ExecuteMove(int x, int y, float speed)
+    {
+        Vector3Int destination = new Vector3Int(currentTilePosition.x + x, currentTilePosition.y + y, 0);
+        if(!_stageManager.CheckValidTile(destination)) { return; }
+
+        MovingCoroutine = StartCoroutine(TweenMove(x, y, speed, MovementEase));
+        OnPerformAction?.Invoke();
+    }
 
     //Logic for when BasicShot input action is activated
     public void BasicShot(InputAction.CallbackContext context)
     {
-        if(cardManager.CardInUseCoroutine != null) { return; }
-        if(MovingCoroutine != null){return;}
+        //if(cardManager.CardInUseCoroutine != null) { return; }
+        //if(MovingCoroutine != null){return;}
         if(!CanFireBasicShot){return;}
         if(!CanAct){return;}
         if(isDefeated){return;}
@@ -448,7 +568,7 @@ public class PlayerController : StageEntity
     //Logic for when UseCard input action is activated
     public void UseCard(InputAction.CallbackContext context)
     {
-        if(MovingCoroutine != null){return;}
+        //if(MovingCoroutine != null){return;}
         if(!CanAct){return;}
         if(isDefeated){return;}
         if(GameManager.GameIsPaused){return;}
@@ -529,13 +649,13 @@ public class PlayerController : StageEntity
     {
         if(isDefeated) { return; }
         if(statusEffectManager.Stunned) { return; }
-        if(cardManager.CardInUseCoroutine != null) { return; }
+        //if(cardManager.CardInUseCoroutine != null) { return; }
         if(!CanUsePlayerInput()) { return; }
-        if(MovingCoroutine != null) 
-        {
-            _dashController.DashReticle.SetActive(false);
-            return; 
-        }
+        // if(MovingCoroutine != null) 
+        // {
+        //     _dashController.DashReticle.SetActive(false);
+        //     return; 
+        // }
 
         if(context.performed)
         {
@@ -557,9 +677,14 @@ public class PlayerController : StageEntity
 
             if(_dashController.CanDash())
             {
-                _dashController.DashTowardsAim();
+                // _dashController.DashTowardsAim();
+                // _dashController.DashReticle.SetActive(false);
+                // OnPerformAction?.Invoke();
+
+                bufferHandler.BufferAction(new BufferedInput(ExecuteDash, context.action, _dashController.DashSpeed, Time.unscaledTime));
+            }else
+            {
                 _dashController.DashReticle.SetActive(false);
-                OnPerformAction?.Invoke();
             }
 
         }
@@ -567,7 +692,9 @@ public class PlayerController : StageEntity
 
     void ExecuteDash()
     {
-
+        _dashController.DashTowardsAim();
+        _dashController.DashReticle.SetActive(false);
+        OnPerformAction?.Invoke();
     }
 
     public void Aim(InputAction.CallbackContext context)

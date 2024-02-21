@@ -1447,6 +1447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <stageEntity>k__BackingField: {fileID: 1755202097915902243}
+  _originalPrefab: {fileID: 0}
 --- !u!114 &880545760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2103,7 +2104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db38d92a54d063945841be1d90ac7bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bufferTime: 0.2
+  bufferTime: 0.33
   useUnscaledTime: 1
 --- !u!114 &6281481823548784645
 MonoBehaviour:
@@ -2250,6 +2251,7 @@ MonoBehaviour:
   cursorSensitivity: 0.2
   maxCursorDistance: 2
   virtualCursorTransform: {fileID: 265698596}
+  _clampVirtualCursor: 1
   _currentAimVector: {x: 0, y: 0}
   currentMouseDelta: {x: 0, y: 0, z: 0}
 --- !u!1 &2224936155556895791

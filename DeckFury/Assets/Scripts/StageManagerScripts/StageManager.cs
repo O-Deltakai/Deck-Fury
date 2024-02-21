@@ -63,6 +63,48 @@ public class StageManager : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Returns a copy of the groundTileList
+    /// </summary>
+    /// <returns></returns>
+    public List<GroundTileData> GetGroundTileListCopy()
+    {
+        return new List<GroundTileData>(groundTileList);
+    }
+
+    public LinkedList<GroundTileData> GetGroundTileLinkedListCopy()
+    {
+        return new LinkedList<GroundTileData>(groundTileList);
+    }
+
+    public UniqueFastAccessList<GroundTileData> GetGroundTileUniqueFastAccessListCopy()
+    {
+        return new UniqueFastAccessList<GroundTileData>(groundTileList); 
+    }
+
+
+    /// <summary>
+    /// Returns a list of all valid tiles on the groundTileMap at the time of calling the method.
+    /// </summary>
+    /// <returns></returns>
+    public List<Vector3Int> GetAllValidTiles()
+    {
+        List<Vector3Int> validTiles = new();
+        foreach (var tile in groundTileList)
+        {
+            if (CheckValidTile(tile.localCoordinates))
+            {
+                validTiles.Add(tile.localCoordinates);
+            }
+        }
+        return validTiles;
+    }
+
+
+    public Dictionary<Vector3, GroundTileData> GetGroundTileDictionaryCopy()
+    {
+        return new Dictionary<Vector3, GroundTileData>(groundTileDictionary);
+    }
 
     void SetTilemapsToMapLayout(MapLayoutController map)
     {

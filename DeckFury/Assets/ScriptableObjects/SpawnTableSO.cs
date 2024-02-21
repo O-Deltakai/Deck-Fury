@@ -8,7 +8,7 @@ using UnityEngine;
 public struct NPCSpawnData
 {
     [field:SerializeField] public GameObject NPCPrefab{get; private set;}
-    [field:SerializeField] public int SpawnCount{get; set;}
+    [field:SerializeField, Range(1, 50)] public int SpawnCount{get; set;}
     [field:SerializeField] public SpawnType SpawnZone{get; private set;}
 
     [Tooltip("SpawnLocation will only be used if SpawnType is set to SpecificPoint, make sure that this value is set to a valid tile on the map " 

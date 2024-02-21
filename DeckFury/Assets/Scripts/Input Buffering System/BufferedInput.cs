@@ -8,7 +8,7 @@ public struct BufferedInput
 {
     // the delegate that represents the method to be executed for an action.
     public ActionHandler actionHandler;
-    public InputAction inputAction;
+    public InputAction inputAction; // can be null
     public float actionLockoutDuration;
     public float timePressed;
 
@@ -20,5 +20,14 @@ public struct BufferedInput
         actionLockoutDuration = lockoutDuration;
         this.timePressed = timePressed;
     }
+
+    public BufferedInput(ActionHandler actionHandler, float lockoutDuration, float timePressed)
+    {
+        this.actionHandler = actionHandler;
+        inputAction = null;
+        actionLockoutDuration = lockoutDuration;
+        this.timePressed = timePressed;
+    }
+
 
 }

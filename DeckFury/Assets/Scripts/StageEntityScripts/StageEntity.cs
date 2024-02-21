@@ -437,13 +437,13 @@ public class StageEntity : MonoBehaviour
 
         //Sets MovingCoroutine to null after some duration has passed so that another TweenMove coroutine may start.
         //Prevents too many movement inputs from happening at once, effectively limiting player mobility.
-        if(_useUnscaledTimeForActions)
-        {
-            yield return new WaitForSecondsRealtime(duration * 0.5f);
-        }else
-        {
-            yield return new WaitForSeconds(duration * 0.5f);
-        }
+        // if(_useUnscaledTimeForActions)
+        // {
+        //     yield return new WaitForSecondsRealtime(duration * 0.5f);
+        // }else
+        // {
+        //     yield return new WaitForSeconds(duration * 0.5f);
+        // }
 
 
 
