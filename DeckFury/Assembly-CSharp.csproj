@@ -203,6 +203,7 @@
     <Compile Include="Assets\Scripts\PathfindingScripts\AStarPathfinder.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\AnimationEventIntermediary.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\CardinalAimSystem.cs" />
+    <Compile Include="Assets\Scripts\StageEntityScripts\EntityDamageObserver.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Singleton\Singleton.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\ShieldGuy\ShieldGuy.cs" />
     <Compile Include="Assets\Scripts\Entity Buffs\HealingFactor.cs" />
@@ -228,6 +229,7 @@
     <Compile Include="Assets\ScriptableObjects\CardPoolSO.cs" />
     <Compile Include="Assets\DOTween\Modules\DOTweenModuleEPOOutline.cs" />
     <Compile Include="Assets\Scripts\ToolScripts\CinemachineImpulseSourceHelper.cs" />
+    <Compile Include="Assets\Scripts\ToolScripts\DisableAfterFinishAnimation.cs" />
     <Compile Include="Assets\Scripts\StageSelectionScripts\MapStage.cs" />
     <Compile Include="Assets\Scripts\Procedural Generation System\LevelConcrete.cs" />
     <Compile Include="Assets\Scripts\Card System\CardScripts\ShieldBash.cs" />
@@ -295,6 +297,7 @@
     <Compile Include="Assets\Scripts\Card System\CardScripts\CardEffect.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Stage Selection Scene Elements\StageSelectionItemPanel.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\ObservableList.cs" />
+    <Compile Include="Assets\Scripts\StageEntityScripts\EntityResourceManager.cs" />
     <Compile Include="Assets\Scripts\Card System\CardScripts\SummonSentry.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\RendererExtensions.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\TrainingDummy.cs" />

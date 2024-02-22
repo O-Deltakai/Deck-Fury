@@ -91,7 +91,7 @@ public class SpawnTableSO : ScriptableObject
             {
                 if(npcSpawn.NPCPrefab.TryGetComponent<EntityWrapper>(out var entityWrapper))
                 {
-                    NPC npcComponent = (NPC)entityWrapper.stageEntity;
+                    NPC npcComponent = (NPC)entityWrapper.Entity;
                     waveScore += npcComponent.spawnPointCost * npcSpawn.SpawnCount;
                 }
             }

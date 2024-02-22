@@ -33,7 +33,7 @@ public class NPC : StageEntity
     protected void InitializeNPCStartVariables()
     {
         player = GameErrorHandler.NullCheck(GameManager.Instance.player, "Player Controller");
-        OnDamageTaken += HandleOnTakeDamageEvent;
+
     }
 
     protected override void Awake()
@@ -73,6 +73,8 @@ public class NPC : StageEntity
         base.AdditionalOnHurtEvents(payload);
         if(payload.HasValue)
         {
+            EventBus<NPCDamagedEvent>.Raise(new NPCDamagedEvent{damageTaken = payload.Value.damage, npc = this, attackPayload = payload.Value});
+
             if(payload.Value.attacker != null)
             {
                 if(payload.Value.attacker.GetComponent<PlayerController>())
@@ -84,10 +86,7 @@ public class NPC : StageEntity
         }
     }
 
-    void HandleOnTakeDamageEvent(int damageTaken)
-    {
-        EventBus<NPCDamagedEvent>.Raise(new NPCDamagedEvent{damageTaken = damageTaken, npc = this});
-    }
+
 
     protected override void AdditionalDestructionEvents(AttackPayload? killingBlow = null)
     {

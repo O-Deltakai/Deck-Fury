@@ -131,11 +131,21 @@ public class CardSO : ScriptableObject
     [field:SerializeField] public Vector2Int TargetingReticleOffSet{get; private set;}
 
 
-
     [Header("SFX")]
 
     [SerializeField] EventReference _onActivationSFX;
     public EventReference OnActivationSFX => _onActivationSFX;
+
+    void OnValidate()
+    {
+        if(!EffectPrefab) { return; }
+
+        if (!EffectPrefab.TryGetComponent<CardEffect>(out _))
+        {
+            Debug.LogError("Effect Prefab for " + CardName + " does not have a CardEffect component attached to it. Please attach a CardEffect component to the EffectPrefab.");
+        }
+    }
+
 
     public int GetBaseDamage()
     {return BaseDamage;}

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71290df93db6db8489be3cf517e396e4, type: 3}
+  m_Name: SuperZombie
+  m_EditorClassIdentifier: 
+  _enemyName: Zombie
+  _maxHP: 500
+  _shieldHP: 0
+  _armor: 0
+  _defense: 1
+  _weaknesses: 02000000
+  _resistances: 
+  _enemyTier: 1
+  _previewSprite: {fileID: 4723107735738678597, guid: 5258133e089f9374c9fb5ade40a66050, type: 3}
+  _enemyDescription: 'Basic enemy. Follows the player around and attempts to attack
+    them once adjacent to them.
+
+
+    Not much of a threat in small numbers or open
+    areas, but can become problematic in large numbers or tight spaces due to their
+    relatively high health pool.'
+  _notes: []

@@ -6,11 +6,24 @@ using UnityEngine;
 //EntityWrapper's game object children.
 public class EntityWrapper : MonoBehaviour
 {
-    [field:SerializeField] public StageEntity stageEntity {get; private set;}
+    [SerializeField] StageEntity _entity;
+    public StageEntity Entity {get => _entity; set => _entity = value;}
 
     [SerializeField] GameObject _originalPrefab;
     public GameObject OriginalPrefab => _originalPrefab;
 
+    void OnValidate()
+    {
+        Entity = GetComponentInChildren<StageEntity>();
+    }
+
+    void Awake()
+    {
+        if(Entity == null)
+        {
+            Entity = GetComponentInChildren<StageEntity>();
+        }
+    }
 
 
 }

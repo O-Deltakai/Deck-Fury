@@ -471,6 +471,9 @@ public class PlayerController : StageEntity
     public void MoveUp(InputAction.CallbackContext context)
     {
         if(!CheckDestination(0, 1)){return;}
+        if(!CanUsePlayerInput()){return;}
+        if(!CanInitiateMovementActions){return;}
+
 
         if(context.performed)
         {
@@ -485,6 +488,9 @@ public class PlayerController : StageEntity
     public void MoveDown(InputAction.CallbackContext context)
     {
         if(!CheckDestination(0, -1)){return;}
+        if(!CanUsePlayerInput()){return;}
+        if(!CanInitiateMovementActions){return;}
+
 
         if(context.performed)
         {
@@ -499,6 +505,9 @@ public class PlayerController : StageEntity
     public void MoveLeft(InputAction.CallbackContext context)
     {
         if(!CheckDestination(-1, 0)){return;}
+        if(!CanUsePlayerInput()){return;}
+        if(!CanInitiateMovementActions){return;}
+
 
         if(context.performed)
         {
@@ -513,6 +522,9 @@ public class PlayerController : StageEntity
     public void MoveRight(InputAction.CallbackContext context)
     {
         if(!CheckDestination(1, 0)){return;}
+        if(!CanUsePlayerInput()){return;}
+        if(!CanInitiateMovementActions){return;}
+
 
         if(context.performed)
         {

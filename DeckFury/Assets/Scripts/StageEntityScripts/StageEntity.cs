@@ -19,6 +19,7 @@ public enum ForceMoveMode
 [RequireComponent(typeof(EntityAnimationController))]
 [RequireComponent(typeof(EntityStatusEffectManager))]
 [RequireComponent(typeof(EntityUIElementAnimator))]
+[RequireComponent(typeof(EntityResourceManager))]
 public class StageEntity : MonoBehaviour
 {
     [SerializeField] protected Ease MovementEase;
@@ -207,6 +208,8 @@ public class StageEntity : MonoBehaviour
 [Header("SFX")]
     [SerializeField] protected EventReference OnDamagedSFX;
     [SerializeField] protected EventReference OnDeathSFX;
+    [SerializeField] protected EventReference OnTakeCritDamageSFX;
+    [SerializeField] protected EventReference OnResistDamageSFX;
 
 [Header("Time Settings")]
     [SerializeField] protected bool _useUnscaledTimeForActions = false;

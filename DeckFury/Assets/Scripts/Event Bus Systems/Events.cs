@@ -19,9 +19,9 @@ public struct NPCKilledEvent : IEvent
 
 public struct NPCDamagedEvent : IEvent
 {
+    public AttackPayload? attackPayload;
     public NPC npc;
     public int damageTaken;
-    
 }
 
 public struct UseCardEvent : IEvent

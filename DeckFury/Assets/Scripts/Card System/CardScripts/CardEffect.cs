@@ -11,6 +11,7 @@ public abstract class CardEffect : MonoBehaviour
     public List<GameObject> ObjectSummonList = new List<GameObject>();
     public AttackPayload attackPayload = new AttackPayload();
 
+    public bool greaterMark = false;
 
     protected void InitializeAwakeVariables()
     {

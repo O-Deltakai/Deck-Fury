@@ -36,7 +36,7 @@ public class TutorialSpawnController : MonoBehaviour
     {
 
         GameObject spawnedPrefab = Instantiate(prefab, spawnPosition, Quaternion.identity);
-        StageEntity prefabEntity = spawnedPrefab.GetComponent<EntityWrapper>().stageEntity;
+        StageEntity prefabEntity = spawnedPrefab.GetComponent<EntityWrapper>().Entity;
         prefabEntity.OnDestructionEvent += StartTimerForRespawn;
 
     }

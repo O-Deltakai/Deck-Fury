@@ -621,7 +621,7 @@ public class SpawnManager : MonoBehaviour
 
 
         GameObject npcObject = Instantiate(npcPrefab, actualSpawnPosition, Quaternion.identity, SpawnObjectParent.transform);
-        StageEntity npcEntity = npcObject.GetComponent<EntityWrapper>().stageEntity;
+        StageEntity npcEntity = npcObject.GetComponent<EntityWrapper>().Entity;
         _currentActiveNPCS.Add(npcEntity);
         npcEntity.OnDestructionEvent += RemoveNPCFromActiveList;
         ActiveStageEntities = _currentActiveNPCS;
@@ -672,7 +672,7 @@ public class SpawnManager : MonoBehaviour
 
 
         GameObject npcObject = Instantiate(npcPrefab, actualSpawnPosition, Quaternion.identity, SpawnObjectParent.transform);
-        StageEntity npcEntity = npcObject.GetComponent<EntityWrapper>().stageEntity;
+        StageEntity npcEntity = npcObject.GetComponent<EntityWrapper>().Entity;
         _currentActiveNPCS.Add(npcEntity);
         npcEntity.OnDestructionEvent += RemoveNPCFromActiveList;
         ActiveStageEntities = _currentActiveNPCS;
@@ -752,7 +752,7 @@ public class SpawnManager : MonoBehaviour
             int randomIndex = Random.Range(0, NPCSpawnTable.Count);
             GameObject npcObject = Instantiate(NPCSpawnTable[randomIndex], randomTile.localCoordinates, Quaternion.identity, SpawnObjectParent.transform);
 
-            _currentActiveNPCS.Add(npcObject.GetComponent<EntityWrapper>().stageEntity);
+            _currentActiveNPCS.Add(npcObject.GetComponent<EntityWrapper>().Entity);
             ActiveStageEntities = _currentActiveNPCS;
         }
 

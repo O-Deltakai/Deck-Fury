@@ -1716,7 +1716,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IdleAnimation>k__BackingField: {fileID: 7400000, guid: bc1214d5fa168694fb796162a7ff33b3, type: 2}
   <DefeatAnimation>k__BackingField: {fileID: 7400000, guid: 28addbb279d670f4c9d731be81883c15, type: 2}
-  <animationList>k__BackingField: []
+  <animationList>k__BackingField:
+  - {fileID: 7400000, guid: 80c190a7c917ae0488e23592d143f725, type: 2}
+  - {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
+  - {fileID: 7400000, guid: f37e4a1759be2134ab38de8ca34cd30c, type: 2}
+  - {fileID: 7400000, guid: 28addbb279d670f4c9d731be81883c15, type: 2}
+  - {fileID: 7400000, guid: d0845d5cedb237e4ca64c0bcee392b58, type: 2}
+  - {fileID: 7400000, guid: 768a52aa1f77a2f4a9cce60972a5adb8, type: 2}
+  - {fileID: 7400000, guid: 1d9ca5d1640f96e44bf510f7b26c1ebe, type: 2}
   useUnscaledTime: 1
   isAnimating: 0
   <basicShotAnimation>k__BackingField: {fileID: 7400000, guid: 80c190a7c917ae0488e23592d143f725, type: 2}
@@ -2104,7 +2111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db38d92a54d063945841be1d90ac7bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bufferTime: 0.33
+  bufferTime: 0.5
   useUnscaledTime: 1
 --- !u!114 &6281481823548784645
 MonoBehaviour:

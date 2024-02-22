@@ -49,6 +49,10 @@ public class PlayerCardManager : MonoBehaviour
     [SerializeField] int _maxCards = 5;
     public int MaxCards => _maxCards;
 
+    /// <summary>
+    /// A special bool used specifically for the MarkAmp item which ticks the Greater Mark bool on each card used.
+    /// </summary>
+    public bool MarkAmp = false;
 
     private void Awake()
     {
@@ -93,6 +97,8 @@ public class PlayerCardManager : MonoBehaviour
         if(!CanUseCards){ return; }
         if(CardMagazine.Count == 0){ return; }
         CardObjectReference cardToUse = CardMagazine[0];
+
+
 
         //If cardToUse has UsesAnimationEvent set to true, use the animationController to play said animation, otherwise call the UseCardOneShot method.
         if(!cardToUse.cardSO.UsesAnimationEvent)
