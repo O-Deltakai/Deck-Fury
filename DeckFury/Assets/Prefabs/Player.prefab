@@ -1446,7 +1446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f2eb3b17365d34d967dc132f0a491f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <stageEntity>k__BackingField: {fileID: 1755202097915902243}
+  _entity: {fileID: 1755202097915902243}
   _originalPrefab: {fileID: 0}
 --- !u!114 &880545760
 MonoBehaviour:
@@ -1485,6 +1485,7 @@ GameObject:
   - component: {fileID: 6281481823548784645}
   - component: {fileID: 5978173093845493249}
   - component: {fileID: 2021088723547532855}
+  - component: {fileID: 4929001231300008691}
   m_Layer: 3
   m_Name: PlayerObject
   m_TagString: Player
@@ -1669,6 +1670,20 @@ MonoBehaviour:
       Data4: -1844868644
     Path: event:/Player/PlayerDamaged
   OnDeathSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  OnTakeCritDamageSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  OnResistDamageSFX:
     Guid:
       Data1: 0
       Data2: 0
@@ -1952,6 +1967,70 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2727fe82-14a8-427b-8e4b-607cdebd8000
     m_ActionName: PlayerDefault/ActivateFocusMode[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1755202097915902243}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: MoveRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2a3df129-a47c-46f4-a0ab-a49e0b266cff
+    m_ActionName: PlayerDefault/MoveRight[/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1755202097915902243}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: MoveLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4551e8e1-72f6-480d-9610-a2ea572c6b1c
+    m_ActionName: PlayerDefault/MoveLeft[/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1755202097915902243}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: MoveUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d6745923-299a-4130-9b87-427ab41953a8
+    m_ActionName: PlayerDefault/MoveUp[/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1755202097915902243}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: MoveDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b1aa92b9-2dcb-4ea3-a2a8-2252a7d9b315
+    m_ActionName: PlayerDefault/MoveDown[/Keyboard/s]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerDefault
@@ -2001,6 +2080,7 @@ MonoBehaviour:
   useUnscaledTime: 1
   CanUseCards: 1
   _maxCards: 5
+  MarkAmp: 0
 --- !u!114 &8764667573492651437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2198,6 +2278,57 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0.2, y: 0, z: 0}
+--- !u!114 &4929001231300008691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755202097915902248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52ca3b56f4b9cc40b35988c2542bb90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entitySpawnVFX: {fileID: 0}
+  _takeCritVFX: {fileID: 0}
+  _resistDamageVFX: {fileID: 0}
+  _entitySpawnSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _entityDeathSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _entityHurtSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _entityTakeCritSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _entityResistDamageSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _markedFireExplosion: {fileID: 0}
 --- !u!1 &1755202098436831244
 GameObject:
   m_ObjectHideFlags: 0

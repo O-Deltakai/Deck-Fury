@@ -9,6 +9,8 @@ public class OneShotSFXPlayer : MonoBehaviour
     [SerializeField] EventReference _sfxEvent;
     EventInstance sfxInstance;
 
+    [SerializeField] List<EventReference> _sfxList;
+
     [SerializeField] bool _playOnEnable = false;
     [SerializeField] bool _useEventInstance = false;
 
@@ -41,6 +43,12 @@ public class OneShotSFXPlayer : MonoBehaviour
             RuntimeManager.PlayOneShot(_sfxEvent);
         }
     }
+
+    public void PlaySFXIndex(int index)
+    {
+        RuntimeManager.PlayOneShot(_sfxList[index]);
+    }
+
 
     public void PlaySFX(EventReference eventReference)
     {

@@ -436,6 +436,7 @@ public class PlayerController : StageEntity
     {
         if(GameManager.GameIsPaused){ return false; }
         if(isDefeated){return false;}
+        if(GameManager.currentGameState == GameManager.GameState.InMenu){return false;}
 
 
         return true;
@@ -556,6 +557,7 @@ public class PlayerController : StageEntity
         if(!CanAct){return;}
         if(isDefeated){return;}
         if(GameManager.GameIsPaused){return;}
+        if(!CanUsePlayerInput()) { return; }
 
         if(context.performed)
         {
@@ -586,6 +588,7 @@ public class PlayerController : StageEntity
         if(GameManager.GameIsPaused){return;}
         //if(!cardManager.CanUseCards){return;}
         if(cardManager.MagazineIsEmpty()){return;}//Check if magazine is empty
+        if(!CanUsePlayerInput()) { return; }
 
         if(context.performed)
         {

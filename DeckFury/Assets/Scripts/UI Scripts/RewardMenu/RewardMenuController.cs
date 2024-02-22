@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using System.Linq;
+using FMODUnity;
 
 public class RewardMenuController : MonoBehaviour
 {
@@ -31,6 +32,10 @@ public class RewardMenuController : MonoBehaviour
     [SerializeField] Sprite moneyRewardSprite;
 
     [SerializeField] List<RewardableElement> additionalRewards = new List<RewardableElement>();
+
+    [Header("SFX")]
+    [SerializeField] EventReference rewardMenuOpenSFX;
+
 
     System.Random random;
 

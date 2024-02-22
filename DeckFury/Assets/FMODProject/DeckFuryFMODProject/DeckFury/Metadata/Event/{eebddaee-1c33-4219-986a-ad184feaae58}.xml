@@ -81,7 +81,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{5ad31e14-2325-49a9-a713-87837e42c4c0}">
 		<property name="volume">
-			<value>-7.5</value>
+			<value>-8.5</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{7ebde0ea-b263-47f2-b369-5fd498d9450b}</destination>
@@ -103,6 +103,7 @@
 			<destination>{d2fcf210-8d5e-4f93-8398-9439baac5210}</destination>
 			<destination>{aa19ebdc-35df-4d6e-9918-96e3b18160a4}</destination>
 			<destination>{46c15852-8dcb-4dd5-be4b-feee54ccb3df}</destination>
+			<destination>{34543dcd-188d-413a-9fcc-987517fcf23e}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{7f578d85-b133-4a2b-b3d5-2c58472e044e}">
@@ -172,10 +173,10 @@
 	</object>
 	<object class="SingleSound" id="{aa19ebdc-35df-4d6e-9918-96e3b18160a4}">
 		<property name="volume">
-			<value>-15.5</value>
+			<value>-19</value>
 		</property>
 		<property name="pitch">
-			<value>12</value>
+			<value>13</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{a027b743-e8d8-4fc4-bf21-0812ba54bb6a}</destination>
@@ -187,6 +188,23 @@
 		</property>
 		<relationship name="audioFile">
 			<destination>{fc7be801-a6c5-45d2-be83-237651faaf9b}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{34543dcd-188d-413a-9fcc-987517fcf23e}">
+		<property name="startOffset">
+			<value>4.5</value>
+		</property>
+		<property name="volume">
+			<value>-15.5</value>
+		</property>
+		<property name="pitch">
+			<value>0.300000012</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{fc111d9a-da1a-430e-9650-d10c2b1e478b}</destination>
+		</relationship>
+		<relationship name="audioFile">
+			<destination>{66e0123b-56bf-4dc5-b21f-387d23eae5c4}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{f6620fc6-bed2-41d2-87e8-6f0213ef07a7}" />
@@ -211,6 +229,14 @@
 		</property>
 		<property name="amount">
 			<value>2</value>
+		</property>
+	</object>
+	<object class="RandomizerModulator" id="{fc111d9a-da1a-430e-9650-d10c2b1e478b}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>1.5</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{0f20cad0-07ab-420f-980d-859e77c4ac7b}" />

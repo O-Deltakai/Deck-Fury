@@ -740,6 +740,10 @@ PrefabInstance:
       propertyPath: <stageEntity>k__BackingField
       value: 
       objectReference: {fileID: 144242304015738641}
+    - target: {fileID: 9077940161009767953, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
+      propertyPath: _entityResistDamageSFX.Path
+      value: event:/BlockDamageSFX
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5752088670026388777, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
     m_RemovedGameObjects: []
@@ -951,7 +955,7 @@ MonoBehaviour:
       Data2: 1288555917
       Data3: 1863064972
       Data4: -364712824
-    Path: event:/ResistDamageSFX
+    Path: event:/BlockDamageSFX
   faceTowardsPlayerTest: 1
   preparingAttack: 0
   references:

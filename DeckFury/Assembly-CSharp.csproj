@@ -119,6 +119,7 @@
     <Compile Include="Assets\Scripts\Finite State Machine\IPredicate.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\TimeManager.cs" />
     <Compile Include="Assets\Scripts\Reticle Scripts\ReticleSummoner.cs" />
+    <Compile Include="Assets\Scripts\ObjectScripts\TreasureChest.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Pause Menu\GameplayLayoutController.cs" />
     <Compile Include="Assets\Scripts\Enums\LayerNames.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\HintController.cs" />
@@ -793,6 +794,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{b8163750-a41a-4eea-95ef-014776d2477f}.xml" />
     <None Include="Assets\Sprites\Craftpix\Premium\Icons\Pocket Things Icons 32x32 Pixel\License.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{4f222af4-1a15-45cf-8183-a115c899dff2}.xml" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Bank\{b162a3bd-8e51-419e-b604-80e7c6771c93}.xml" />
     <None Include="Assets\Sprites\Craftpix\Premium\Industrial Zone Bosses Pixel Art\Font.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{972706f1-8e4e-4da0-ab9f-b41c2e2f7900}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\DataFile\{068faffb-3f23-4a88-b794-dec8b23bdc25}.xml" />
@@ -1357,6 +1359,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{bae63a03-b15c-4fa5-a93b-d18a8705fc73}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{4effecec-06d3-42a8-a606-f6079c8fd76e}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{cd94a7ca-dbf2-4d69-8d57-496d6b1b851a}.xml" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\EventFolder\{b1fc90db-fc35-4477-b725-794494b4e7a1}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{237db7e8-a028-47d4-bdd7-f04f67640ab6}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{a4576584-2280-4d89-9005-80b54295bb1c}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{7fcfebe8-f688-42ee-abbc-30b2e62ab077}.xml" />
@@ -1396,6 +1399,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{40083317-6c5c-4c33-90cf-27c9e9b7d73c}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{d96d3dd6-3a32-478a-86dc-d39a9e8e1cf3}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{cd0b0ba0-21f0-483d-bc6a-78b3b2bb63a6}.xml" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{2abf804a-2f73-4648-a267-f82be2314804}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Asset\{3ee7b71a-0bca-4182-b794-3eca5c690bc5}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{615ede1c-b5ea-478c-85df-4b99e55706f4}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{9688d8fa-07e3-49df-9e80-d3b9331312b3}.xml" />
@@ -2631,6 +2635,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{99e18ca3-4d5a-400b-8594-78bd15bb2fbe}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{8f830ad5-0323-4fdb-82e9-7f25b9a946cd}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{50a47a1a-8574-4f48-ae1a-9b6bc8af4a05}.xml" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{23dace3c-ed14-4615-b99e-258a855405d5}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{9996b686-ca4a-41c0-9dc2-a9e3e81b3dac}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{0d5e6aa2-9183-4528-92f9-1c9f2f478b21}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{0400ff0e-bf31-48bb-9533-3a841c577142}.xml" />
