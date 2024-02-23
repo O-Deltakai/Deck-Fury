@@ -69,10 +69,10 @@ public class FreezeMine : MonoBehaviour
             if (entityHit != null)
             {
                 impactPayload = attackPayload;
-                impactPayload.actualStatusEffects.Clear();
+                
+                entityHit.HurtEntity(impactPayload);
 
                 ActivateMine();
-                entityHit.HurtEntity(impactPayload);
             }
         }
 

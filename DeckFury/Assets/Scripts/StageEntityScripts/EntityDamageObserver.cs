@@ -32,6 +32,12 @@ public class EntityDamageObserver : MonoBehaviour
 
     void Awake()
     {
+
+    }
+
+
+    void Start()
+    {
         if (_entity == null)
         {
             _entity = GetComponentInParent<StageEntity>();
@@ -40,10 +46,13 @@ public class EntityDamageObserver : MonoBehaviour
                 Debug.LogError("EntityDamageObserver must be a child of a StageEntity.");
             }
         }
-    }
 
-    void Start()
-    {
+        if(_entity)
+        {
+            takeCritSFX = _entity.GetComponent<EntityResourceManager>().EntityTakeCritSFX;
+            resistDamageSFX = _entity.GetComponent<EntityResourceManager>().EntityResistDamageSFX;
+        }  
+
         _entity.OnTakeCritDamage += TakeCritDamage;
         _entity.OnResistDamage += ResistDamage;
     }

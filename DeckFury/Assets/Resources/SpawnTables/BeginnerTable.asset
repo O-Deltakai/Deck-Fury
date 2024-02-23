@@ -12,22 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9edc173047f51f4bb1cb60f3667adca, type: 3}
   m_Name: BeginnerTable
   m_EditorClassIdentifier: 
+  _difficultyTier: 0
+  _isElite: 0
   <WaveList>k__BackingField:
   - <WaveName>k__BackingField: Zombies
     <NPCSpawns>k__BackingField:
-    - <NPCPrefab>k__BackingField: {fileID: 3044666074929763327, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
+    - <NPCPrefab>k__BackingField: {fileID: 1434089815010678243, guid: 17d9b13564f6fa6409a1849432efaeba, type: 3}
       <SpawnCount>k__BackingField: 1
       <SpawnZone>k__BackingField: 0
+      _specificSpawnLocation: {x: 0, y: 0, z: 0}
   - <WaveName>k__BackingField: 'Zombies x2 '
     <NPCSpawns>k__BackingField:
-    - <NPCPrefab>k__BackingField: {fileID: 3044666074929763327, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
+    - <NPCPrefab>k__BackingField: {fileID: 1434089815010678243, guid: 17d9b13564f6fa6409a1849432efaeba, type: 3}
       <SpawnCount>k__BackingField: 2
       <SpawnZone>k__BackingField: 0
+      _specificSpawnLocation: {x: 0, y: 0, z: 0}
   - <WaveName>k__BackingField: Zombies x1 Shooter x1
     <NPCSpawns>k__BackingField:
-    - <NPCPrefab>k__BackingField: {fileID: 3044666074929763327, guid: 1fd758b63c3e9dd41a3d8c943ac3082d, type: 3}
+    - <NPCPrefab>k__BackingField: {fileID: 1434089815010678243, guid: 17d9b13564f6fa6409a1849432efaeba, type: 3}
       <SpawnCount>k__BackingField: 1
       <SpawnZone>k__BackingField: 3
+      _specificSpawnLocation: {x: 0, y: 0, z: 0}
     - <NPCPrefab>k__BackingField: {fileID: 1343928815800035990, guid: 3eedf9e46ea002c478c3d98d20c67a63, type: 3}
       <SpawnCount>k__BackingField: 1
       <SpawnZone>k__BackingField: 3
+      _specificSpawnLocation: {x: 0, y: 0, z: 0}

@@ -29,13 +29,20 @@ public class SpikeTileHazard : MonoBehaviour
     private void Awake() 
     {
         spikesCollider = GetComponent<BoxCollider2D>();
+        spikesCollider.enabled = false;
         spikesAnimator = GetComponent<Animator>();
 
     }
 
+    IEnumerator DelayBeforeStart()
+    {
+        yield return new WaitForSeconds(0.1f);
+        spikesCollider.enabled = true;
+    }
+
     void Start()
     {
-
+        StartCoroutine(DelayBeforeStart());
 
     }
 
@@ -51,19 +58,25 @@ public class SpikeTileHazard : MonoBehaviour
     {
         if(hasAttacked){return;}
 
-        StageEntity entityHit = other.gameObject.GetComponent<StageEntity>();
-
-        if (entityHit != null)
+        
+        if (other.gameObject.TryGetComponent<StageEntity>(out var entityHit))
         {
-            PlayTrapAnimation(SPIKETRAP_EXTEND_ANIM);
-            RuntimeManager.PlayOneShotAttached(spikesExtendSFX, gameObject);
-            hasAttacked = true;
-
-            entityHit.HurtEntity(attackPayload);
-            if(entityHit.CurrentHP <= 0)
+            if(entityHit.CompareTag(TagNames.Player.ToString()) 
+            || entityHit.CompareTag(TagNames.Enemy.ToString()) 
+            || entityHit.CompareTag(TagNames.EnvironmentalHazard.ToString()))
             {
-                StartCoroutine(ReverseSpike());
+                PlayTrapAnimation(SPIKETRAP_EXTEND_ANIM);
+                RuntimeManager.PlayOneShotAttached(spikesExtendSFX, gameObject);
+                hasAttacked = true;
+
+                entityHit.HurtEntity(attackPayload);
+                if(entityHit.CurrentHP <= 0)
+                {
+                    StartCoroutine(ReverseSpike());
+                }
             }
+
+
             
 
         }

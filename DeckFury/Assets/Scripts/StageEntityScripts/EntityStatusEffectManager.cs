@@ -73,6 +73,8 @@ public class EntityStatusEffectManager : MonoBehaviour
 
 
     Coroutine CR_ArmorbreakCoroutine = null;
+    Coroutine CR_StunnedDurationCoroutine = null;
+    Coroutine CR_StunFlashCoroutine = null;
 
     int _originalArmorValue;
 
@@ -198,11 +200,24 @@ public class EntityStatusEffectManager : MonoBehaviour
 
         actualDuration *= strength; 
 
-        ColorFlashCoroutine = StartCoroutine(FlashColor(Color.yellow, actualDuration));
+        if(CR_StunnedDurationCoroutine != null)
+        {
+            StopCoroutine(CR_StunnedDurationCoroutine);
+        }
+        if(CR_StunFlashCoroutine != null)
+        {
+            StopCoroutine(CR_StunFlashCoroutine);
+            CR_StunFlashCoroutine = null;
+        }
+
+
+        CR_StunFlashCoroutine = StartCoroutine(FlashColor(Color.yellow, actualDuration));
+
         entity.CanAct = false;
         entity.CanInitiateMovementActions = false;
         OnStunned?.Invoke();
-        StartCoroutine(StunnedDuration(actualDuration));
+
+        CR_StunnedDurationCoroutine = StartCoroutine(StunnedDuration(actualDuration));
     }
     IEnumerator StunnedDuration(float duration)
     {
@@ -212,6 +227,8 @@ public class EntityStatusEffectManager : MonoBehaviour
         entity.CanInitiateMovementActions = true;
         _stunned = false;       
         OnRecoverStunned?.Invoke(); 
+
+        CR_StunnedDurationCoroutine = null;
     }
 
     
