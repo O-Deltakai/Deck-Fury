@@ -662,7 +662,7 @@ public class PlayerController : StageEntity
     public void Dash(InputAction.CallbackContext context)
     {
         if(isDefeated) { return; }
-        if(statusEffectManager.Stunned) { return; }
+        if(_statusEffectManager.Stunned) { return; }
         //if(cardManager.CardInUseCoroutine != null) { return; }
         if(!CanUsePlayerInput()) { return; }
         // if(MovingCoroutine != null) 
@@ -741,7 +741,7 @@ public class PlayerController : StageEntity
         if(isDefeated) { return; }
         if (GameManager.Instance.PauseMenu.IsOpen){ return; }
         if(GameManager.GameIsPaused){return;}
-        if(statusEffectManager.Stunned) { return; }
+        if(_statusEffectManager.Stunned) { return; }
 
 
         if(context.started)
@@ -827,10 +827,10 @@ public class PlayerController : StageEntity
         HPText.gameObject.SetActive(false);
         ShieldsText.gameObject.SetActive(false);
 
-        if(entityAnimator.DefeatAnimation != null)
+        if(_entityAnimator.DefeatAnimation != null)
         {
-            entityAnimator.PlayOneShotAnimation(entityAnimator.DefeatAnimation); //Play defeat animation
-            yield return new WaitForSeconds(entityAnimator.DefeatAnimation.length);
+            _entityAnimator.PlayOneShotAnimation(_entityAnimator.DefeatAnimation); //Play defeat animation
+            yield return new WaitForSeconds(_entityAnimator.DefeatAnimation.length);
         }
         
         yield return new WaitForSeconds(2f);

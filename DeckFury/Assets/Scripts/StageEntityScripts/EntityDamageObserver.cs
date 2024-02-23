@@ -66,10 +66,8 @@ public class EntityDamageObserver : MonoBehaviour
             _takeCritVFX.SetActive(true);
         }
 
-        if (!takeCritSFX.IsNull)
-        {
-            RuntimeManager.PlayOneShot(takeCritSFX, _entity.transform.position);
-        }
+
+        RuntimeManager.PlayOneShot(takeCritSFX, _entity.transform.position);
     }
 
     void ResistDamage()
@@ -80,12 +78,9 @@ public class EntityDamageObserver : MonoBehaviour
             _resistDamageVFX.SetActive(true);
         }
 
-        if (!resistDamageSFX.IsNull)
-        {
-            RuntimeManager.PlayOneShot(resistDamageSFX, _entity.transform.position);
-        }
 
-
+        RuntimeManager.PlayOneShot(resistDamageSFX, _entity.transform.position);
+    
     }
 
 }

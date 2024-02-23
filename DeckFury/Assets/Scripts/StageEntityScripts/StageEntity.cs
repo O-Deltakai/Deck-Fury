@@ -46,6 +46,8 @@ public class StageEntity : MonoBehaviour
     public delegate void DamageTakenEventHandler(int damageTaken);
     public event DamageTakenEventHandler OnDamageTaken;
 
+    public event Action OnFinishHurtEntity;
+    public event Action OnBeginHurtEntity;
 
     public delegate void ShieldHPChangedHandler(int oldValue, int newValue);
     public event ShieldHPChangedHandler OnShieldHPChanged;
@@ -68,16 +70,25 @@ public class StageEntity : MonoBehaviour
     //The transform that will be used when doing calculations/methods involving moving the entity from cell to cell.
     //Should normally be the EntityWrapper game object that is parented to this game object.
     [field:SerializeField] public Transform worldTransform {get; private set;}
+    [SerializeField] Transform _centerPoint;
+    public Transform CenterPoint => _centerPoint;
+
 
     //A calculated variable meant to define the INTENDED tile position of the entity, not its real-time world position
     //Use this when making movement-related methods to prevent rounding issues with using the real-time world position
     public Vector3Int currentTilePosition;
 
     protected StageManager _stageManager;
-    public StageManager EntityStageManager{get { return _stageManager; }}
-    protected EntityAnimationController entityAnimator;
-    protected EntityStatusEffectManager statusEffectManager;
-    protected EntityUIElementAnimator UIElementAnimator;
+    public StageManager EntityStageManager => _stageManager;
+
+    protected EntityAnimationController _entityAnimator;
+    public EntityAnimationController EntityAnimator => _entityAnimator;
+
+    protected EntityStatusEffectManager _statusEffectManager;
+    public EntityStatusEffectManager StatusEffectManager => _statusEffectManager;
+    
+    protected EntityUIElementAnimator _UIElementAnimator;
+    public EntityUIElementAnimator UIElementAnimator => _UIElementAnimator;
 
     //Coroutine object used to prevent too many instances of the TweenMove coroutine being started at once.
     protected Coroutine MovingCoroutine;
@@ -184,8 +195,11 @@ public class StageEntity : MonoBehaviour
     public DamageBufferList BufferList => _bufferList;
 
     [SerializeField] protected List<AttackElement> weaknesses; // What attack elements is this entity weak to (take bonus damage from)?
+    public List<AttackElement> Weaknesses => weaknesses;
     [SerializeField] protected double weaknessModifier = 1.5f;
+
     [SerializeField] protected List<AttackElement> resistances; // What attack elements is this entity resistant to?
+    public List<AttackElement> Resistances => resistances;
     [SerializeField] protected double resistModifier = 0.5f;
 
 
@@ -220,10 +234,9 @@ public class StageEntity : MonoBehaviour
     protected virtual void IntializeAwakeVariables()
     {
 
-
-        entityAnimator = GetComponent<EntityAnimationController>();
-        statusEffectManager = GetComponent<EntityStatusEffectManager>();
-        UIElementAnimator = GetComponent<EntityUIElementAnimator>();
+        _entityAnimator = GetComponent<EntityAnimationController>();
+        _statusEffectManager = GetComponent<EntityStatusEffectManager>();
+        _UIElementAnimator = GetComponent<EntityUIElementAnimator>();
         if(entitySpriteRenderer == null)
         {
             entitySpriteRenderer = GetComponent<SpriteRenderer>();
@@ -316,7 +329,7 @@ public class StageEntity : MonoBehaviour
             ShieldsText.gameObject.SetActive(true);
         }
 
-        UIElementAnimator.AnimateNumberCounter(ShieldsText, oldValue, newValue);
+        _UIElementAnimator.AnimateNumberCounter(ShieldsText, oldValue, newValue);
     
     }
 
@@ -331,7 +344,7 @@ public class StageEntity : MonoBehaviour
         {
             HPText.gameObject.SetActive(true);
         }
-        UIElementAnimator.AnimateNumberCounter(HPText, oldValue, newValue);
+        _UIElementAnimator.AnimateNumberCounter(HPText, oldValue, newValue);
     }
 
 
@@ -724,13 +737,14 @@ public class StageEntity : MonoBehaviour
             return;
         }
 
+        OnBeginHurtEntity?.Invoke();
         AdditionalOnHurtEvents(payload);
 
         AttackPayload finalPayload = PrefixDamageCalculations(payload);
 
-        if(statusEffectManager.MarkedForDeath && payload.canTriggerMark)
+        if(_statusEffectManager.MarkedForDeath && payload.canTriggerMark)
         {
-            statusEffectManager.TriggerMarkEffect(payload);
+            _statusEffectManager.TriggerMarkEffect(payload);
         }
 
         Color actualHitFlashColor;
@@ -751,7 +765,7 @@ public class StageEntity : MonoBehaviour
                 {
                     continue;
                 }
-                statusEffectManager.TriggerStatusEffect(finalPayload, statusEffect);
+                _statusEffectManager.TriggerStatusEffect(finalPayload, statusEffect);
             }
 
         }
@@ -764,7 +778,7 @@ public class StageEntity : MonoBehaviour
                 {
                     continue;
                 }
-                statusEffectManager.TriggerStatusEffect(finalPayload, statusEffect);
+                _statusEffectManager.TriggerStatusEffect(finalPayload, statusEffect);
             }
         }
 
@@ -780,14 +794,14 @@ public class StageEntity : MonoBehaviour
             //Check shield damage - shields do not inherit armor or defense or weaknesses/resists on entity so shields will always take normal/full damage from payload.
             //However, breaking attacks deal damage to shields at 2x efficiency
             ShieldHP -= finalPayload.damage * 2;
-            UIElementAnimator.AnimateShakeNumber(ShieldsText, finalPayload.damage * 2, DefaultShieldTextColor, Color.red);
+            _UIElementAnimator.AnimateShakeNumber(ShieldsText, finalPayload.damage * 2, DefaultShieldTextColor, Color.red);
 
             //If damage taken is greater than shieldHP, then the remaining damage is taken to the current HP.
             if(shieldHP < 0)
             {
                 //If the attack was breaking damage, half the remaining damage so that damage taken to HP is still 1x efficiency
                 damageToHPAfterModifiers = (int)Math.Round(Math.Abs(shieldHP * 0.5), MidpointRounding.AwayFromZero);
-                UIElementAnimator.AnimateShakeNumber(HPText, damageToHPAfterModifiers, DefaultHPTextColor, Color.red);    
+                _UIElementAnimator.AnimateShakeNumber(HPText, damageToHPAfterModifiers, DefaultHPTextColor, Color.red);    
                 shieldHP = 0;
                 if(originalShieldHP > 0)
                 {
@@ -803,7 +817,7 @@ public class StageEntity : MonoBehaviour
             if(damageToHPAfterModifiers != 0)
             {
                 damageToHPAfterModifiers = (int)(damageToHPAfterModifiers/_defense);
-                UIElementAnimator.AnimateShakeNumber(HPText, damageToHPAfterModifiers, DefaultHPTextColor, Color.red);
+                _UIElementAnimator.AnimateShakeNumber(HPText, damageToHPAfterModifiers, DefaultHPTextColor, Color.red);
                 if(wentThroughShields)
                 {
                     OnDamageTaken?.Invoke(originalShieldHP + damageToHPAfterModifiers);
@@ -830,7 +844,7 @@ public class StageEntity : MonoBehaviour
         }else
         if(finalPayload.attackElement == AttackElement.Pure)//Pure damage bypasses all resistances and shields and deals damage straight to HP
         {   
-            UIElementAnimator.AnimateShakeNumber(HPText, finalPayload.damage, DefaultHPTextColor, Color.red);    
+            _UIElementAnimator.AnimateShakeNumber(HPText, finalPayload.damage, DefaultHPTextColor, Color.red);    
             CurrentHP -= finalPayload.damage;
             OnDamageTaken?.Invoke(finalPayload.damage);
 
@@ -842,7 +856,7 @@ public class StageEntity : MonoBehaviour
             bool wentThroughShields = false;
 
             ShieldHP -= finalPayload.damage;
-            UIElementAnimator.AnimateShakeNumber(ShieldsText, finalPayload.damage, DefaultShieldTextColor, Color.red);
+            _UIElementAnimator.AnimateShakeNumber(ShieldsText, finalPayload.damage, DefaultShieldTextColor, Color.red);
             if(shieldHP < 0)
             {
                 damageToHPAfterModifiers = Math.Abs(shieldHP);
@@ -861,7 +875,7 @@ public class StageEntity : MonoBehaviour
             if(damageToHPAfterModifiers != 0)
             {
                 damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * ((100 - Armor) * 0.01) * _defense);
-                UIElementAnimator.AnimateShakeNumber(HPText, damageToHPAfterModifiers, DefaultHPTextColor, Color.red);
+                _UIElementAnimator.AnimateShakeNumber(HPText, damageToHPAfterModifiers, DefaultHPTextColor, Color.red);
                 if(wentThroughShields)
                 {
                     OnDamageTaken?.Invoke(originalShieldHP + damageToHPAfterModifiers);
@@ -887,7 +901,7 @@ public class StageEntity : MonoBehaviour
             
         }
 
-        StartCoroutine(statusEffectManager.FlashColor(actualHitFlashColor, 0.025f, 0.025f));//Flash white to indicate being hit
+        StartCoroutine(_statusEffectManager.FlashColor(actualHitFlashColor, 0.025f, 0.025f));//Flash white to indicate being hit
         
 
         if(hitSFX.HasValue)
@@ -903,12 +917,13 @@ public class StageEntity : MonoBehaviour
 
 
         AdditionalAfterHurtEvents(payload);
+        OnFinishHurtEntity?.Invoke();
 
         if(currentHP <= 0) //Begin destruction once HP goes to at or below 0
         {
             CanInitiateMovementActions = false;
             CanAct = false;
-            entityAnimator.StopAllCoroutines();
+            _entityAnimator.StopAllCoroutines();
             StartCoroutine(DestroyEntity(payload));
             OnCauseOfDeath?.Invoke(payload.causeOfDeathNote, payload, this);
         }
@@ -976,10 +991,10 @@ public class StageEntity : MonoBehaviour
         }
 
 
-        if(entityAnimator.DefeatAnimation != null)
+        if(_entityAnimator.DefeatAnimation != null)
         {
-            entityAnimator.PlayLockedAnimation(entityAnimator.DefeatAnimation); //Play defeat animation
-            yield return new WaitForSeconds(entityAnimator.DefeatAnimation.length);
+            _entityAnimator.PlayLockedAnimation(_entityAnimator.DefeatAnimation); //Play defeat animation
+            yield return new WaitForSeconds(_entityAnimator.DefeatAnimation.length);
         }
 
         _stageManager.SetTileEntity(null, currentTilePosition);

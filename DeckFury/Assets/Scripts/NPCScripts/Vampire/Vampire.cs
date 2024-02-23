@@ -93,8 +93,8 @@ public class Vampire : NPC
     {
         base.Start();
         spawnManager = FindObjectOfType<SpawnManager>();
-        statusEffectManager.OnStunned += StunnedATKCounter;
-        statusEffectManager.OnStunned += CancelAttack;
+        _statusEffectManager.OnStunned += StunnedATKCounter;
+        _statusEffectManager.OnStunned += CancelAttack;
         OnDamageTaken += CheckHP;
         lowHP = CurrentHP * lowHPRate;
         StartCoroutine(ATKCooldown()); 
@@ -238,9 +238,9 @@ public class Vampire : NPC
 
         Debug.Log("NORMALATK");
 
-        var animation = entityAnimator.animationList[(int)VampireAnims.Vampire_Attack];
+        var animation = _entityAnimator.animationList[(int)VampireAnims.Vampire_Attack];
         float animationDuration = animation.length;
-        entityAnimator.PlayOneShotAnimationReturnIdle(animation);
+        _entityAnimator.PlayOneShotAnimationReturnIdle(animation);
         yield return new WaitForSeconds(animationDuration-0.1f);
         SummonSnapThunder();
         yield return new WaitForSeconds(normalATKWindupDuration);
@@ -285,7 +285,7 @@ public class Vampire : NPC
         canSpawn = false;
         isAttacking = true;
 
-        var animation = entityAnimator.animationList[(int)VampireAnims.Vampire_Spawn];
+        var animation = _entityAnimator.animationList[(int)VampireAnims.Vampire_Spawn];
         float animationDuration = animation.length;
         
         // Spawn zombies on adjacent valid tiles
@@ -305,7 +305,7 @@ public class Vampire : NPC
             _stageManager.SetVFXTile(_stageManager.DangerVFXTile, tileList, spawnWindupDuration);
             yield return new WaitForSeconds(spawnWindupDuration);
 
-            entityAnimator.PlayOneShotAnimationReturnIdle(animation);
+            _entityAnimator.PlayOneShotAnimationReturnIdle(animation);
             yield return new WaitForSeconds(animationDuration/2);
             SummonZombie();
             yield return new WaitForSeconds(animationDuration/2);
@@ -360,9 +360,9 @@ public class Vampire : NPC
 
         yield return new WaitForSeconds(strongATKWindupDuration);//Wait for aiming to complete before firing a bullet
 
-        var animation = entityAnimator.animationList[(int)VampireAnims.Vampire_StrongATK];
+        var animation = _entityAnimator.animationList[(int)VampireAnims.Vampire_StrongATK];
         float animationDuration = animation.length;
-        entityAnimator.PlayOneShotAnimationReturnIdle(animation);
+        _entityAnimator.PlayOneShotAnimationReturnIdle(animation);
 
         isAiming = false;
         targetingReticle.SetActive(false);
@@ -434,13 +434,13 @@ public class Vampire : NPC
         }
 
         ShieldHP+=50;
-        var animation = entityAnimator.animationList[(int)VampireAnims.Vampire_Spawn];
+        var animation = _entityAnimator.animationList[(int)VampireAnims.Vampire_Spawn];
         float animationDuration = animation.length;
 
         Debug.Log("FURYATK");
 
         //start charge
-        StartCoroutine(statusEffectManager.FlashColor(new Color (41/255f, 9/255f, 22/255f), furyCharge));
+        StartCoroutine(_statusEffectManager.FlashColor(new Color (41/255f, 9/255f, 22/255f), furyCharge));
         yield return new WaitForSeconds(furyCharge);
         
         //atk after charge
@@ -454,7 +454,7 @@ public class Vampire : NPC
             FuryBlastSet(tile);
         }
 
-        entityAnimator.PlayOneShotAnimation(animation);
+        _entityAnimator.PlayOneShotAnimation(animation);
         yield return new WaitForSeconds(animationDuration);
 
         for (int i = 0; i < furyCount; i++)
@@ -464,7 +464,7 @@ public class Vampire : NPC
             yield return new WaitForSeconds(0.1f);
         }
 
-        entityAnimator.PlayOneShotAnimationReturnIdle(animation);
+        _entityAnimator.PlayOneShotAnimationReturnIdle(animation);
         yield return new WaitForSeconds(animationDuration+ furyATKWindupDuration);
         
         isAttacking = false;

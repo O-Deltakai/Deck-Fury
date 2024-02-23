@@ -236,6 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementEase: 4
   <worldTransform>k__BackingField: {fileID: 1682984668417086254}
+  _centerPoint: {fileID: 4854026117731280930}
   currentTilePosition: {x: 0, y: 0, z: 0}
   CanInitiateMovementActions: 1
   CanAct: 1
@@ -340,6 +341,11 @@ MonoBehaviour:
   movementTime: 0.1
   waitTime: 0.6
   pauseAI: 0
+--- !u!4 &4854026117731280930 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8861621398603296318, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
+  m_PrefabInstance: {fileID: 4154072299389617692}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5010945817517325882 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8947612404291860518, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}

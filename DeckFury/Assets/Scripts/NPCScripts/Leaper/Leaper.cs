@@ -101,7 +101,7 @@ public class Leaper : NPC
     {
         _stageManager.SetVFXTile(_stageManager.DangerVFXTile, GetAdjacentTiles(), attackWindupDelay);
         yield return new WaitForSeconds(attackWindupDelay);
-        entityAnimator.PlayAnimationClip(entityAnimator.animationList[0]);
+        _entityAnimator.PlayAnimationClip(_entityAnimator.animationList[0]);
 
         yield return StartCoroutine(attackController.TriggerAttackHitBoxes());
 

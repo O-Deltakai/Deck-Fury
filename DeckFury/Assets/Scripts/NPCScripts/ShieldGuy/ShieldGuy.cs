@@ -64,6 +64,8 @@ public class ShieldGuy : NPC
     //Tweens
     Tween shieldColorTween;
 
+    float updateRate = 0.1f;
+    float timer = 0;
 
     protected override void Awake()
     {
@@ -79,12 +81,21 @@ public class ShieldGuy : NPC
         base.Start();
         seekerAI = GetComponent<SeekerAI>();
         seekerAI.Target = GameManager.Instance.player;
-        statusEffectManager.OnStunned += OnStunned;
+        _statusEffectManager.OnStunned += OnStunned;
         ShieldsUp();
     }
 
     void Update()
     {
+        timer += Time.deltaTime;
+        if(timer > updateRate)
+        {
+            timer = 0;
+        }else
+        {
+            return;
+        }
+
         if(!CanAct) { return; }
 
 
@@ -147,7 +158,7 @@ public class ShieldGuy : NPC
 
     void InitiateAttack()
     {
-        entityAnimator.PlayOneShotAnimationReturnIdle(entityAnimator.animationList[0]);
+        _entityAnimator.PlayOneShotAnimationReturnIdle(_entityAnimator.animationList[0]);
         
     }
 
@@ -156,7 +167,7 @@ public class ShieldGuy : NPC
         shieldHitboxObject.SetActive(true);
         _shieldsUp = true;
         shieldCollider.enabled = true;
-        entityAnimator.PlayOneShotAnimation(entityAnimator.animationList[4]);
+        _entityAnimator.PlayOneShotAnimation(_entityAnimator.animationList[4]);
         shieldHitboxObject.transform.localScale = normalShieldScale;
         shieldHitboxObject.GetComponent<SpriteRenderer>().DOColor(shieldColor, 0.1f).SetEase(Ease.InOutSine);
         shieldHitboxObject.transform.DOLocalMove(Vector3.zero, 0.1f).SetEase(Ease.InOutSine);
@@ -170,7 +181,7 @@ public class ShieldGuy : NPC
         shieldCollider.enabled = false;
         preparingAttack = false;
 
-        entityAnimator.PlayOneShotAnimation(entityAnimator.animationList[2]);
+        _entityAnimator.PlayOneShotAnimation(_entityAnimator.animationList[2]);
 
         shieldHitboxObject.GetComponent<SpriteRenderer>().DOFade(0, 0.1f).SetEase(Ease.InOutSine);
         shieldHitboxObject.SetActive(false);
@@ -300,7 +311,7 @@ public class ShieldGuy : NPC
 
     protected override void AdditionalDestructionEvents(AttackPayload? killingBlow = null)
     {
-        entityAnimator.StopAllCoroutines();
+        _entityAnimator.StopAllCoroutines();
         CanAct = false;
         CanInitiateMovementActions = false;
         if(CR_PrepareAttack != null)

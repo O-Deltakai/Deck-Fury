@@ -765,18 +765,18 @@ MonoBehaviour:
   _resistDamageVFX: {fileID: 1854807460158180510}
   takeCritSFX:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 601542204
+      Data2: 1175842068
+      Data3: -1977246023
+      Data4: -721070971
+    Path: event:/GenericSFX/CritDamageSFX
   resistDamageSFX:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1943598383
+      Data2: 1288555917
+      Data3: 1863064972
+      Data4: -364712824
+    Path: event:/BlockDamageSFX
 --- !u!1 &2738249535525313094
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,6 +817,7 @@ Transform:
   m_Children:
   - {fileID: 1390645032838499248}
   - {fileID: 8247686988136033202}
+  - {fileID: 8861621398603296318}
   m_Father: {fileID: 3385883509507052850}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6526638188837054628
@@ -1061,6 +1062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementEase: 4
   <worldTransform>k__BackingField: {fileID: 3385883509507052850}
+  _centerPoint: {fileID: 8861621398603296318}
   currentTilePosition: {x: 0, y: 0, z: 0}
   CanInitiateMovementActions: 1
   CanAct: 1
@@ -1651,6 +1653,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6650188579412152458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8861621398603296318}
+  m_Layer: 3
+  m_Name: CenterPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8861621398603296318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6650188579412152458}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.059, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 53479994270109109}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &17775154573940447
 PrefabInstance:
   m_ObjectHideFlags: 0

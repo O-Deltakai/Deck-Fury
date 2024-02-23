@@ -28,7 +28,7 @@ public class ZombieAStar : NPC
     {
         base.Awake();
         seekerAI = GetComponent<SeekerAI>();
-        statusEffectManager.OnStunned += CancelAttack;
+        _statusEffectManager.OnStunned += CancelAttack;
     }
 
     protected override void Start()
@@ -180,7 +180,7 @@ public class ZombieAStar : NPC
     IEnumerator AttackWindup()
     {
         yield return new WaitForSeconds(attackWindupDuration);
-        entityAnimator.PlayAnimationClip(BasicAttack.abilityData.animationToUse);
+        _entityAnimator.PlayAnimationClip(BasicAttack.abilityData.animationToUse);
         yield return new WaitForSeconds(BasicAttack.abilityData.animationToUse.length - 0.125f);
         //BasicAttack.gameObject.SetActive(true);
 

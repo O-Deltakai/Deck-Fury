@@ -157,7 +157,7 @@ public class Zombie : NPC
     IEnumerator AttackWindup()
     {
         yield return new WaitForSeconds(attackWindupDuration);
-        entityAnimator.PlayAnimationClip(BasicAttack.abilityData.animationToUse);
+        _entityAnimator.PlayAnimationClip(BasicAttack.abilityData.animationToUse);
         // yield return new WaitForSeconds(BasicAttack.abilityData.animationToUse.length - 0.125f);
         // BasicAttack.gameObject.SetActive(true);
         // attackWindUpCoroutine = null;

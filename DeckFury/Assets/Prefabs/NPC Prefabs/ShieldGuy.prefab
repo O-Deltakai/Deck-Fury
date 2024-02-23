@@ -688,6 +688,46 @@ PrefabInstance:
       propertyPath: _entity
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5195590973069662773, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
+      propertyPath: takeCritSFX.Path
+      value: event:/GenericSFX/CritDamageSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195590973069662773, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
+      propertyPath: resistDamageSFX.Path
+      value: event:/BlockDamageSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195590973069662773, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
+      propertyPath: takeCritSFX.Guid.Data1
+      value: 601542204
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195590973069662773, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
+      propertyPath: takeCritSFX.Guid.Data2
+      value: 1175842068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195590973069662773, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
+      propertyPath: takeCritSFX.Guid.Data3
+      value: -1977246023
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195590973069662773, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
+      propertyPath: takeCritSFX.Guid.Data4
+      value: -721070971
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195590973069662773, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
+      propertyPath: resistDamageSFX.Guid.Data1
+      value: 1943598383
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195590973069662773, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
+      propertyPath: resistDamageSFX.Guid.Data2
+      value: 1288555917
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195590973069662773, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
+      propertyPath: resistDamageSFX.Guid.Data3
+      value: 1863064972
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195590973069662773, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
+      propertyPath: resistDamageSFX.Guid.Data4
+      value: -364712824
+      objectReference: {fileID: 0}
     - target: {fileID: 5696354937781580143, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
       propertyPath: m_Size.x
       value: 0.58437675
@@ -740,6 +780,14 @@ PrefabInstance:
       propertyPath: <stageEntity>k__BackingField
       value: 
       objectReference: {fileID: 144242304015738641}
+    - target: {fileID: 8861621398603296318, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.014
+      objectReference: {fileID: 0}
+    - target: {fileID: 8861621398603296318, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.456
+      objectReference: {fileID: 0}
     - target: {fileID: 9077940161009767953, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
       propertyPath: _entityResistDamageSFX.Path
       value: event:/BlockDamageSFX
@@ -790,6 +838,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &2856796254959368868 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8861621398603296318, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
+  m_PrefabInstance: {fileID: 6728286278233298074}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6728286277766659354 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1683073408, guid: 25cc72e348e5f674f9d8eaf2ca7de49f, type: 3}
@@ -840,6 +893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementEase: 4
   <worldTransform>k__BackingField: {fileID: 8332432971722015144}
+  _centerPoint: {fileID: 2856796254959368868}
   currentTilePosition: {x: 0, y: 0, z: 0}
   CanInitiateMovementActions: 1
   CanAct: 1

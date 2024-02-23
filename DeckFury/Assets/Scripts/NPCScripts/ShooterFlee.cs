@@ -58,7 +58,7 @@ public class ShooterFlee : NPC
         fleeAI = GetComponent<FleeAI>();
         fleeAI.Target = GameManager.Instance.player;
 
-        statusEffectManager.OnStunned += CancelFiring;
+        _statusEffectManager.OnStunned += CancelFiring;
         //OnReadyToFire += PrepareToFire;
 
 
@@ -112,7 +112,7 @@ public class ShooterFlee : NPC
         {
             StopCoroutine(AimingWindupCoroutine);
         }
-        entityAnimator.PlayAnimationClip(entityAnimator.animationList[(int)ShooterAnims.Shooter_Idle]);
+        _entityAnimator.PlayAnimationClip(_entityAnimator.animationList[(int)ShooterAnims.Shooter_Idle]);
         isAiming = false;
         targetingReticle.SetActive(false);
         // FiringCooldownCoroutine = StartCoroutine(FireCooldown());
@@ -169,7 +169,7 @@ public class ShooterFlee : NPC
     {
         canAttemptMove = false;//Shooter should not be able to move while aiming
         CanFire = false;
-        entityAnimator.PlayOneShotAnimation(entityAnimator.animationList[(int)ShooterAnims.Shooter_Aim]);
+        _entityAnimator.PlayOneShotAnimation(_entityAnimator.animationList[(int)ShooterAnims.Shooter_Aim]);
         if (MovementCooldownCoroutine != null)
         {
             StopCoroutine(MovementCooldownCoroutine);
@@ -181,7 +181,7 @@ public class ShooterFlee : NPC
         isAiming = true;
 
         yield return new WaitForSeconds(duration);//Wait for aiming to complete before firing a bullet
-        entityAnimator.PlayOneShotAnimationReturnIdle(entityAnimator.animationList[(int)ShooterAnims.Shooter_Fire]);
+        _entityAnimator.PlayOneShotAnimationReturnIdle(_entityAnimator.animationList[(int)ShooterAnims.Shooter_Fire]);
         fireDirection = (player.currentTilePosition - transform.position).normalized;
         Vector3 direction = player.currentTilePosition - transform.position;
         FireBullet(direction.normalized);

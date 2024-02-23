@@ -60,7 +60,7 @@ public class ExplosiveBarrel : StageEntity
     void ExplodeBarrel(int oldValue, int newValue)
     {
         barrelCollider.enabled = false;
-        StartCoroutine(statusEffectManager.FlashColor(Color.red, fuseTimer, 0.075f));
+        StartCoroutine(_statusEffectManager.FlashColor(Color.red, fuseTimer, 0.075f));
         StartCoroutine(ExplosionTimer());
 
     }
