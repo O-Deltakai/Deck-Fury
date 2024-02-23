@@ -48,29 +48,33 @@ public class ThreeWaysDagger : CardEffect
         switch (player.aimpoint.currentAimDirection) 
         {
             case AimDirection.Up:
-                dagger.transform.rotation = Quaternion.Euler(0, 0, 180-index*45);
+                //dagger.transform.rotation = Quaternion.Euler(0, 0, 180-index*45);
                 dagger.velocity.x = 0 + index*0.5f;
                 dagger.velocity.y = 1;
                 break;
 
             case AimDirection.Down:
-                dagger.transform.rotation = Quaternion.Euler(0, 0, index*45);
+                //dagger.transform.rotation = Quaternion.Euler(0, 0, index*45);
                 dagger.velocity.x = 0 + index*0.5f;
                 dagger.velocity.y = -1;
                 break; 
             case AimDirection.Left:
-                dagger.transform.rotation = Quaternion.Euler(0, 0, -90-index*45);
+                //dagger.transform.rotation = Quaternion.Euler(0, 0, -90-index*45);
                 dagger.velocity.x = -1;
                 dagger.velocity.y = 0 + index*0.5f;
                 break;
 
             case AimDirection.Right:
-                dagger.transform.rotation = Quaternion.Euler(0, 0, 90+index*45);
+                //dagger.transform.rotation = Quaternion.Euler(0, 0, 90+index*45);
                 dagger.velocity.x = 1;
                 dagger.velocity.y = 0 + index*0.5f;
                 break;
         }
         
+        float angle = Mathf.Atan2(dagger.velocity.y, dagger.velocity.x) * Mathf.Rad2Deg;
+        dagger.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+
         dagger.gameObject.SetActive(true);
     }
 
