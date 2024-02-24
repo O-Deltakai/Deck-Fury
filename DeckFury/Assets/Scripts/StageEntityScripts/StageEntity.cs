@@ -90,6 +90,8 @@ public class StageEntity : MonoBehaviour
     protected EntityUIElementAnimator _UIElementAnimator;
     public EntityUIElementAnimator UIElementAnimator => _UIElementAnimator;
 
+    protected EntityDamageBuilder damageBuilder;
+
     //Coroutine object used to prevent too many instances of the TweenMove coroutine being started at once.
     protected Coroutine MovingCoroutine;
 
@@ -316,6 +318,11 @@ public class StageEntity : MonoBehaviour
     protected virtual void Start()
     {
         InitializeStartingStates();   
+    }
+
+    public void OverrideDamageBuilder(EntityDamageBuilder newDamageBuilder)
+    {
+        damageBuilder = newDamageBuilder;
     }
 
     protected void UpdateShieldValue(int oldValue, int newValue)

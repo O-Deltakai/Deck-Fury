@@ -11,7 +11,7 @@ public struct DamageContext
 }
 
 [Serializable]
-public class DamageBuilder
+public class EntityDamageBuilder
 {
 
     /// <summary>
@@ -27,21 +27,48 @@ public class DamageBuilder
     Color? hitFlashColor;
     EventReference? hitSFX;
 
-    public DamageBuilder OverrideHitFlashColor(Color color)
+    public EntityDamageBuilder OverrideHitFlashColor(Color color)
     {
         hitFlashColor = color;
         return this;
     }
 
-    public DamageBuilder AddPreDamageActions(DamageContext context)
+    public EntityDamageBuilder OverrideHitSFX(EventReference sfx)
+    {
+        hitSFX = sfx;
+        return this;
+    }
+
+    public EntityDamageBuilder AddPreDamageActions(DamageContext context)
     {
         preDamageActions.AddRange(context.actionHandlers);
         return this;
     }
-    public DamageBuilder AddPostDamageActions(DamageContext context)
+    public EntityDamageBuilder AddPostDamageActions(DamageContext context)
     {
         postDamageActions.AddRange(context.actionHandlers);
         return this;
+    }
+
+    /// <summary>
+    /// Builds the final damage calculation. Should always be called last in the DamageBuilder chain.
+    /// </summary>
+    public void Build(StageEntity entity, AttackPayload attackPayload)
+    {
+        foreach (var action in preDamageActions)
+        {
+            action.Invoke();
+        }
+
+        sourceAttackPayload = attackPayload;
+
+
+        foreach (var action in postDamageActions)
+        {
+            action.Invoke();
+        }
+
+        Reset();
     }
 
 
@@ -49,8 +76,6 @@ public class DamageBuilder
     {
         hitFlashColor = null;
         hitSFX = null;
-        preDamageActions = new();
-        postDamageActions = new();
     }
 
 
