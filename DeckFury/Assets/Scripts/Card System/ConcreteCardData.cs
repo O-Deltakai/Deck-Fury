@@ -17,7 +17,7 @@ public class ConcreteCardData
         attackElement = cardSO.AttackElement;
         cardType = cardSO.CardType;
 
-        statusEffectType = cardSO.StatusEffect;
+        statusEffectType = cardSO.oldStatusEffectType;
         statusEffect = cardSO.statusEffect;
 
         //Make deep copy of quantifiable effects

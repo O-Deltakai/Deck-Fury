@@ -33,7 +33,7 @@ public class BazookaLauncher : CardEffect
         bazooka.impactPayload = attackPayload;
         bazooka.impactPayload.canTriggerMark = false;
         bazooka.impactPayload.attackElement = AttackElement.Fire;
-        bazooka.impactPayload.actualStatusEffects.Clear();       
+        bazooka.impactPayload.statusEffects.Clear();       
         //bazooka.speed = 10;
 
         switch (player.aimpoint.currentAimDirection) 

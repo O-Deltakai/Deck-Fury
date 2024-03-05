@@ -187,7 +187,7 @@ public class Bazooka : Bullet
 
         impactPayload.damage *= 2;
         impactPayload.attackElement = AttackElement.Fire;
-        impactPayload.actualStatusEffects.Add(new StatusEffect(StatusEffectType.Stunned, 1));
+        impactPayload.statusEffects.Add(new StatusEffect(StatusEffectType.Stunned, 1));
 
         speed *= 3.5f;
 

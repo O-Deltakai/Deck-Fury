@@ -48,7 +48,7 @@ public abstract class CardEffect : MonoBehaviour
 
         if(cardSO.statusEffect.statusEffectType != StatusEffectType.None)
         {
-            attackPayload.actualStatusEffects = new List<StatusEffect>
+            attackPayload.statusEffects = new List<StatusEffect>
             {
                 cardSO.statusEffect
             };

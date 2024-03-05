@@ -109,7 +109,7 @@ public class CardDescriptionPanel : MonoBehaviour
         cardName.text = cardSO.CardName;
         cardImage.sprite = cardSO.GetCardImage();
         elementIcon.sprite = cardUIIcons.GetElementIcon(cardSO.AttackElement);
-        statusIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.StatusEffect);
+        statusIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.statusEffect.statusEffectType);
         ChangeColorBasedOnCardTier(cardSO.GetCardTier());
 
     //Set values for popout panels
@@ -120,10 +120,10 @@ public class CardDescriptionPanel : MonoBehaviour
         elementDescription.text = cardUIIcons.GetElementDescription(cardSO.AttackElement);
 
         //Status Popout Panel
-        statusPopoutIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.StatusEffect);
-        statusName.text = cardSO.StatusEffect.ToString().Replace("_", " ");
+        statusPopoutIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.statusEffect.statusEffectType);
+        statusName.text = cardSO.oldStatusEffectType.ToString().Replace("_", " ");
 
-        statusDescription.text = cardUIIcons.GetStatusDescription(cardSO.StatusEffect);
+        statusDescription.text = cardUIIcons.GetStatusDescription(cardSO.statusEffect.statusEffectType);
 
 
         if(cardSO.GetBaseDamage() <= 0)
@@ -147,7 +147,7 @@ public class CardDescriptionPanel : MonoBehaviour
         cardName.text = CurrentlyViewedCardSO.CardName;
         cardImage.sprite = CurrentlyViewedCardSO.GetCardImage();
         elementIcon.sprite = cardUIIcons.GetElementIcon(CurrentlyViewedCardSO.AttackElement);
-        statusIcon.sprite = cardUIIcons.GetStatusIcon(CurrentlyViewedCardSO.StatusEffect);
+        statusIcon.sprite = cardUIIcons.GetStatusIcon(CurrentlyViewedCardSO.statusEffect.statusEffectType);
         ChangeColorBasedOnCardTier(CurrentlyViewedCardSO.GetCardTier());
 
     //Set values for popout panels
@@ -158,9 +158,9 @@ public class CardDescriptionPanel : MonoBehaviour
         elementDescription.text = cardUIIcons.GetElementDescription(cardSO.AttackElement);
 
         //Status Popout Panel
-        statusPopoutIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.StatusEffect);
-        statusName.text = cardSO.StatusEffect.ToString().Replace("_", " ");
-        statusDescription.text = cardUIIcons.GetStatusDescription(cardSO.StatusEffect);
+        statusPopoutIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.statusEffect.statusEffectType);
+        statusName.text = cardSO.oldStatusEffectType.ToString().Replace("_", " ");
+        statusDescription.text = cardUIIcons.GetStatusDescription(cardSO.statusEffect.statusEffectType);
 
 
         if(cardSO.GetBaseDamage() <= 0)

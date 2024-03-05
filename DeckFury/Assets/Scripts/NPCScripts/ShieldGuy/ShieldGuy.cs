@@ -218,7 +218,7 @@ public class ShieldGuy : NPC
             if(CheckShieldBlock(payload))
             {   
 
-                if(!payload.statusEffectType.Contains(StatusEffectType.Stunned))
+                if(!payload.oldStatusEffectType.Contains(StatusEffectType.Stunned))
                 {
                     StartCoroutine(FlashShieldCoroutine());
                 }

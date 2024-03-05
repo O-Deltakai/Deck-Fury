@@ -155,36 +155,6 @@ public class EntityStatusEffectManager : MonoBehaviour
         }
     }
 
-    public void TriggerStatusEffect(AttackPayload payload, StatusEffectType statusEffect)
-    {
-        if(!CanBeAffectedByStatusEffects){return;}
-        switch (statusEffect) 
-        {
-            case StatusEffectType.None :
-                break;
-
-            case StatusEffectType.Stunned :
-                StunnedEffect(BaseStunDuration, 1);
-                break;
-
-            case StatusEffectType.Bleeding :
-                BleedingEffect(payload, 1);
-                break;
-
-            case StatusEffectType.Armor_Break:
-                ArmorBreakEffect(1);
-                break;
-
-            case StatusEffectType.Marked:
-                MarkedForDeathEffect(1);
-                break;
-
-
-            default :
-                break;
-        }
-    }
-
     void StunnedEffect(float duration = 0, float strength = 1)
     {
         if(!CanBeStunned){return;}
@@ -200,6 +170,7 @@ public class EntityStatusEffectManager : MonoBehaviour
 
         actualDuration *= strength; 
 
+        //If the entity is already stunned, reset the duration
         if(CR_StunnedDurationCoroutine != null)
         {
             StopCoroutine(CR_StunnedDurationCoroutine);

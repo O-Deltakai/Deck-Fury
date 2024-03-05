@@ -199,10 +199,12 @@ public class StageEntity : MonoBehaviour
     [SerializeField] protected List<AttackElement> weaknesses; // What attack elements is this entity weak to (take bonus damage from)?
     public List<AttackElement> Weaknesses => weaknesses;
     [SerializeField] protected double weaknessModifier = 1.5f;
+    public double WeaknessModifier => weaknessModifier;
 
     [SerializeField] protected List<AttackElement> resistances; // What attack elements is this entity resistant to?
     public List<AttackElement> Resistances => resistances;
     [SerializeField] protected double resistModifier = 0.5f;
+    public double ResistModifier => resistModifier;
 
 
 [Header("Entity Stat UI Elements")]
@@ -763,23 +765,23 @@ public class StageEntity : MonoBehaviour
             actualHitFlashColor = Color.white;
         }
 
-        if(finalPayload.statusEffectType != null)
-        {
-            //Iterate over all status effects in the attack payload and trigger each status effect sequentially
-            foreach(StatusEffectType statusEffect in finalPayload.statusEffectType)
-            {
-                if(statusEffect == StatusEffectType.None)
-                {
-                    continue;
-                }
-                _statusEffectManager.TriggerStatusEffect(finalPayload, statusEffect);
-            }
+        // if(finalPayload.oldStatusEffectType != null)
+        // {
+        //     //Iterate over all status effects in the attack payload and trigger each status effect sequentially
+        //     foreach(StatusEffectType statusEffect in finalPayload.oldStatusEffectType)
+        //     {
+        //         if(statusEffect == StatusEffectType.None)
+        //         {
+        //             continue;
+        //         }
+        //         _statusEffectManager.TriggerStatusEffect(finalPayload, statusEffect);
+        //     }
 
-        }
+        // }
 
-        if(finalPayload.actualStatusEffects != null)
+        if(finalPayload.statusEffects != null)
         {
-            foreach(StatusEffect statusEffect in finalPayload.actualStatusEffects)
+            foreach(StatusEffect statusEffect in finalPayload.statusEffects)
             {
                 if(statusEffect.statusEffectType == StatusEffectType.None)
                 {
@@ -936,7 +938,7 @@ public class StageEntity : MonoBehaviour
         }
     }
 
-    bool CheckWeakness(AttackElement attackElement)
+    public bool CheckWeakness(AttackElement attackElement)
     {
         for (int i = 0; i < weaknesses.Count; i++)
         {
@@ -949,7 +951,7 @@ public class StageEntity : MonoBehaviour
         return false;
     }
 
-    bool CheckResistance(AttackElement attackElement)
+    public bool CheckResistance(AttackElement attackElement)
     {
         for (int i = 0; i < resistances.Count; i++)
         {

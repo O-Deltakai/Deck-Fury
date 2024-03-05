@@ -96,7 +96,7 @@ public class CardSO : ScriptableObject
     [SerializeField] int BaseDamage;
     [field:SerializeField] public AttackElement AttackElement {get; private set;}
     [field:SerializeField] public CardType CardType {get; private set;}
-    [field:SerializeField] public StatusEffectType StatusEffect {get; private set;}
+    [field:SerializeField] public StatusEffectType oldStatusEffectType {get; private set;}
     [field:SerializeField] public StatusEffect statusEffect {get; private set;}
 
     [SerializeField, Range(1, 3)] int CardTier = 1;
