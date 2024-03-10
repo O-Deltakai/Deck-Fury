@@ -89,6 +89,7 @@ public class EntityDamageBuilder
 
         int damageToHPAfterModifiers = 0;
 
+    //Damage Calculation Algorithms
         int CalculateBreakingDamage()
         {
             int originalShieldHP = entity.ShieldHP;
@@ -114,7 +115,14 @@ public class EntityDamageBuilder
             //Breaking damage ignores armor but not defense
             if(damageToHPAfterModifiers != 0)
             {
-                damageToHPAfterModifiers = (int)(damageToHPAfterModifiers/entity.Defense);                
+                damageToHPAfterModifiers = (int)(damageToHPAfterModifiers/entity.Defense);
+                if(wentThroughShields)
+                {
+
+                }else
+                {
+
+                }             
             }
 
             //Calculate damage after weakness/resistance modifiers
@@ -127,16 +135,77 @@ public class EntityDamageBuilder
                 damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * entity.ResistModifier);
             }
 
+            entity.CurrentHP -= damageToHPAfterModifiers;
             return damageToHPAfterModifiers;
         }
 
         int CalculatePureDamage()
         {
             damageToHPAfterModifiers = payload.damage;
-
+            entity.CurrentHP -= damageToHPAfterModifiers;
             return damageToHPAfterModifiers;
         }
 
+        int CalculateRegularDamage()
+        {
+            int originalShieldHP = entity.ShieldHP;
+            bool wentThroughShields = false;
+
+            entity.ShieldHP -= payload.damage;
+            if(entity.ShieldHP < 0)
+            {
+                damageToHPAfterModifiers = Math.Abs(entity.ShieldHP);
+                entity.ShieldHP = 0;
+                if(originalShieldHP > 0)
+                {
+                    wentThroughShields = true;
+                }
+            }else
+            {
+                damageToHPAfterModifiers = 0;
+            }
+
+            if(damageToHPAfterModifiers != 0)
+            {
+                damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * ((100 - entity.Armor) * 0.01) * entity.Defense);
+                if(wentThroughShields)
+                {
+                    //OnDamageTaken?.Invoke(originalShieldHP + damageToHPAfterModifiers);
+                }else
+                {
+                    //OnDamageTaken?.Invoke(damageToHPAfterModifiers);
+                }
+            }
+            
+            //Check resist/weakness to attack element to calculate final damage
+            if(entity.CheckWeakness(payload.attackElement))
+            {
+                damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * entity.WeaknessModifier);
+                //OnTakeCritDamage?.Invoke();
+            }
+            if(entity.CheckResistance(payload.attackElement))
+            {
+                damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * entity.ResistModifier);
+                //OnResistDamage?.Invoke();
+            }            
+
+            entity.CurrentHP -= damageToHPAfterModifiers;
+            return damageToHPAfterModifiers;
+        }
+    //End of Damage Calculation Algorithms
+
+
+    //Actual damage application
+        if(payload.attackElement == AttackElement.Breaking)
+        {
+            CalculateBreakingDamage();
+        }else if (payload.attackElement == AttackElement.Pure)
+        {
+            CalculatePureDamage();
+        }else
+        {
+            CalculateRegularDamage();
+        }
 
 
 

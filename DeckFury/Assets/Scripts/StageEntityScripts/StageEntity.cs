@@ -339,7 +339,13 @@ public class StageEntity : MonoBehaviour
         }
 
         _UIElementAnimator.AnimateNumberCounter(ShieldsText, oldValue, newValue);
-    
+
+        //If the shield value has decreased, shake the shield text to indicate the change.
+        if(oldValue > newValue)
+        {
+            int difference = Math.Abs(newValue - oldValue);
+            _UIElementAnimator.AnimateShakeNumber(ShieldsText, difference, DefaultShieldTextColor, Color.red);
+        }
     }
 
     protected void UpdateHPValue(int oldValue, int newValue)
@@ -354,6 +360,14 @@ public class StageEntity : MonoBehaviour
             HPText.gameObject.SetActive(true);
         }
         _UIElementAnimator.AnimateNumberCounter(HPText, oldValue, newValue);
+
+        //If the HP value has decreased, shake the HP text to indicate the change.
+        if(oldValue > newValue)
+        {
+            int difference = Math.Abs(newValue - oldValue);
+            _UIElementAnimator.AnimateShakeNumber(HPText, difference, DefaultHPTextColor, Color.red);
+        }
+
     }
 
 
@@ -803,14 +817,14 @@ public class StageEntity : MonoBehaviour
             //Check shield damage - shields do not inherit armor or defense or weaknesses/resists on entity so shields will always take normal/full damage from payload.
             //However, breaking attacks deal damage to shields at 2x efficiency
             ShieldHP -= finalPayload.damage * 2;
-            _UIElementAnimator.AnimateShakeNumber(ShieldsText, finalPayload.damage * 2, DefaultShieldTextColor, Color.red);
+            //_UIElementAnimator.AnimateShakeNumber(ShieldsText, finalPayload.damage * 2, DefaultShieldTextColor, Color.red);
 
             //If damage taken is greater than shieldHP, then the remaining damage is taken to the current HP.
             if(shieldHP < 0)
             {
                 //If the attack was breaking damage, half the remaining damage so that damage taken to HP is still 1x efficiency
                 damageToHPAfterModifiers = (int)Math.Round(Math.Abs(shieldHP * 0.5), MidpointRounding.AwayFromZero);
-                _UIElementAnimator.AnimateShakeNumber(HPText, damageToHPAfterModifiers, DefaultHPTextColor, Color.red);    
+                //_UIElementAnimator.AnimateShakeNumber(HPText, damageToHPAfterModifiers, DefaultHPTextColor, Color.red);    
                 shieldHP = 0;
                 if(originalShieldHP > 0)
                 {
@@ -826,7 +840,7 @@ public class StageEntity : MonoBehaviour
             if(damageToHPAfterModifiers != 0)
             {
                 damageToHPAfterModifiers = (int)(damageToHPAfterModifiers/_defense);
-                _UIElementAnimator.AnimateShakeNumber(HPText, damageToHPAfterModifiers, DefaultHPTextColor, Color.red);
+                //_UIElementAnimator.AnimateShakeNumber(HPText, damageToHPAfterModifiers, DefaultHPTextColor, Color.red);
                 if(wentThroughShields)
                 {
                     OnDamageTaken?.Invoke(originalShieldHP + damageToHPAfterModifiers);
@@ -853,7 +867,7 @@ public class StageEntity : MonoBehaviour
         }else
         if(finalPayload.attackElement == AttackElement.Pure)//Pure damage bypasses all resistances and shields and deals damage straight to HP
         {   
-            _UIElementAnimator.AnimateShakeNumber(HPText, finalPayload.damage, DefaultHPTextColor, Color.red);    
+            //_UIElementAnimator.AnimateShakeNumber(HPText, finalPayload.damage, DefaultHPTextColor, Color.red);    
             CurrentHP -= finalPayload.damage;
             OnDamageTaken?.Invoke(finalPayload.damage);
 
@@ -865,7 +879,7 @@ public class StageEntity : MonoBehaviour
             bool wentThroughShields = false;
 
             ShieldHP -= finalPayload.damage;
-            _UIElementAnimator.AnimateShakeNumber(ShieldsText, finalPayload.damage, DefaultShieldTextColor, Color.red);
+            //_UIElementAnimator.AnimateShakeNumber(ShieldsText, finalPayload.damage, DefaultShieldTextColor, Color.red);
             if(shieldHP < 0)
             {
                 damageToHPAfterModifiers = Math.Abs(shieldHP);
@@ -884,7 +898,7 @@ public class StageEntity : MonoBehaviour
             if(damageToHPAfterModifiers != 0)
             {
                 damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * ((100 - Armor) * 0.01) * _defense);
-                _UIElementAnimator.AnimateShakeNumber(HPText, damageToHPAfterModifiers, DefaultHPTextColor, Color.red);
+                //_UIElementAnimator.AnimateShakeNumber(HPText, damageToHPAfterModifiers, DefaultHPTextColor, Color.red);
                 if(wentThroughShields)
                 {
                     OnDamageTaken?.Invoke(originalShieldHP + damageToHPAfterModifiers);
