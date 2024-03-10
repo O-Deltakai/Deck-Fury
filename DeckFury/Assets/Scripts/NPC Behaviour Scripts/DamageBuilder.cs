@@ -108,7 +108,7 @@ public class EntityDamageBuilder
                     wentThroughShields = true;
                 }
             }else
-            {
+            {   //Shield took all the damage, no damage to HP
                 damageToHPAfterModifiers = 0;
             }
 
@@ -161,7 +161,7 @@ public class EntityDamageBuilder
                     wentThroughShields = true;
                 }
             }else
-            {
+            {//Shield took all the damage, no damage to HP
                 damageToHPAfterModifiers = 0;
             }
 
