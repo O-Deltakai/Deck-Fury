@@ -4,17 +4,28 @@ using System.Collections.Generic;
 using FMODUnity;
 using UnityEngine;
 
-public delegate void DamageActionHandler(StageEntity entity, AttackPayload payload);
+public delegate void DamageActionHandler(EntityDamageBuilder damageBuilder, StageEntity entity, ref AttackPayload? payload);
 
 public struct DamageContext
 {
-    public AttackPayload attackPayload;
     public List<DamageActionHandler> actionHandlers;
 }
 
 [Serializable]
 public class EntityDamageBuilder
 {
+#region Events
+
+    /// <summary>
+    /// Event that is triggered when the entity takes damage. The first parameter is the attack payload that caused the damage, the second parameter is the amount of damage taken
+    /// </summary>
+    public event Action<AttackPayload, int> OnDamageTaken;
+    
+    public event Action OnTakeCritDamage;
+    public event Action OnResistDamage;
+
+
+#endregion
 
     /// <summary>
     /// List of actions that will be performed before main damage calculation begins
@@ -25,21 +36,25 @@ public class EntityDamageBuilder
     /// </summary>
     List<DamageActionHandler> postDamageActions = new();
 
-    [SerializeField] Color baseHitFlashColor = Color.white;
-    [SerializeField] EventReference basehitSFX;
+    /// <summary>
+    /// The current attack payload that is being processed
+    /// </summary>
+    AttackPayload? _currentPayload;
+    public AttackPayload CurrentPayload => _currentPayload.Value;
 
-    AttackPayload? sourceAttackPayload;
-    public AttackPayload? SourceAttackPayload => sourceAttackPayload;
+
     Color? hitFlashColor;
+    public Color? HitFlashColor => hitFlashColor;
     EventReference? hitSFX;
+    public EventReference? HitSFX => hitSFX;
 
-    public EntityDamageBuilder OverrideHitFlashColor(Color color)
+    public EntityDamageBuilder SetHitFlashColor(Color color)
     {
         hitFlashColor = color;
         return this;
     }
 
-    public EntityDamageBuilder OverrideHitSFX(EventReference sfx)
+    public EntityDamageBuilder SetHitSFX(EventReference sfx)
     {
         hitSFX = sfx;
         return this;
@@ -57,46 +72,45 @@ public class EntityDamageBuilder
     }
 
     /// <summary>
-    /// Builds the final damage calculation. Should always be called last in the DamageBuilder chain.
+    /// Applies the final damage calculation. Should always be called last in the DamageBuilder chain.
     /// </summary>
-    public void Build(StageEntity entity, AttackPayload payload)
+    public void Apply(StageEntity entity, AttackPayload payload)
     {
         EntityStatusEffectManager statusEffectManager = entity.StatusEffectManager;
+        _currentPayload = payload;
 
-        sourceAttackPayload = payload;
-
+        //Trigger pre-damage calculation actions
         foreach (var action in preDamageActions)
         {
-            action.Invoke(entity, payload);
+            action.Invoke(this, entity, ref _currentPayload);
         }
 
-        if(statusEffectManager.MarkedForDeath && payload.canTriggerMark)
+        if(statusEffectManager.MarkedForDeath && CurrentPayload.canTriggerMark)
         {
-            statusEffectManager.TriggerMarkEffect(payload);
+            statusEffectManager.TriggerMarkEffect(CurrentPayload);
         }
 
-        if(payload.statusEffects != null)
+        if(_currentPayload.Value.statusEffects != null)
         {
-            foreach(StatusEffect statusEffect in payload.statusEffects)
+            foreach(StatusEffect statusEffect in CurrentPayload.statusEffects)
             {
                 if(statusEffect.statusEffectType == StatusEffectType.None)
                 {
                     continue;
                 }
-                statusEffectManager.TriggerStatusEffect(payload, statusEffect);
+                statusEffectManager.TriggerStatusEffect(CurrentPayload, statusEffect);
             }
         }
 
         int damageToHPAfterModifiers = 0;
-
-    //Damage Calculation Algorithms
-        int CalculateBreakingDamage()
+    #region Damage Calculation Algorithms
+        int ApplyBreakingDamage()
         {
             int originalShieldHP = entity.ShieldHP;
             int shieldDamageMultiplier = 2;
             bool wentThroughShields = false;
 
-            entity.ShieldHP -= payload.damage * shieldDamageMultiplier;
+            entity.ShieldHP -= CurrentPayload.damage * shieldDamageMultiplier;
 
             if(entity.ShieldHP < 0)
             {
@@ -110,48 +124,51 @@ public class EntityDamageBuilder
             }else
             {   //Shield took all the damage, no damage to HP
                 damageToHPAfterModifiers = 0;
+                OnDamageTaken?.Invoke(CurrentPayload, originalShieldHP);
+                return 0;
             }
 
-            //Breaking damage ignores armor but not defense
-            if(damageToHPAfterModifiers != 0)
-            {
-                damageToHPAfterModifiers = (int)(damageToHPAfterModifiers/entity.Defense);
-                if(wentThroughShields)
-                {
-
-                }else
-                {
-
-                }             
-            }
-
+        
             //Calculate damage after weakness/resistance modifiers
-            if(entity.CheckWeakness(payload.attackElement))
+            if(entity.CheckWeakness(CurrentPayload.attackElement))
             {
                 damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * entity.WeaknessModifier);
             }
-            if(entity.CheckResistance(payload.attackElement))
+            if(entity.CheckResistance(CurrentPayload.attackElement))
             {
                 damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * entity.ResistModifier);
             }
 
+            //Breaking damage ignores armor but not defense
+            damageToHPAfterModifiers = (int)(damageToHPAfterModifiers/entity.Defense);
+            if(wentThroughShields)
+            {
+                OnDamageTaken?.Invoke(CurrentPayload, damageToHPAfterModifiers + originalShieldHP);
+            }else
+            {
+                OnDamageTaken?.Invoke(CurrentPayload, damageToHPAfterModifiers);
+            }             
+            
+
             entity.CurrentHP -= damageToHPAfterModifiers;
             return damageToHPAfterModifiers;
         }
 
-        int CalculatePureDamage()
+        int ApplyPureDamage()
         {
-            damageToHPAfterModifiers = payload.damage;
+            damageToHPAfterModifiers = CurrentPayload.damage;
+            OnDamageTaken?.Invoke(CurrentPayload, damageToHPAfterModifiers);     
+
             entity.CurrentHP -= damageToHPAfterModifiers;
             return damageToHPAfterModifiers;
         }
 
-        int CalculateRegularDamage()
+        int ApplyRegularDamage()
         {
             int originalShieldHP = entity.ShieldHP;
             bool wentThroughShields = false;
 
-            entity.ShieldHP -= payload.damage;
+            entity.ShieldHP -= CurrentPayload.damage;
             if(entity.ShieldHP < 0)
             {
                 damageToHPAfterModifiers = Math.Abs(entity.ShieldHP);
@@ -163,56 +180,54 @@ public class EntityDamageBuilder
             }else
             {//Shield took all the damage, no damage to HP
                 damageToHPAfterModifiers = 0;
+                OnDamageTaken?.Invoke(CurrentPayload, originalShieldHP);
+                return 0;                
             }
 
-            if(damageToHPAfterModifiers != 0)
-            {
-                damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * ((100 - entity.Armor) * 0.01) * entity.Defense);
-                if(wentThroughShields)
-                {
-                    //OnDamageTaken?.Invoke(originalShieldHP + damageToHPAfterModifiers);
-                }else
-                {
-                    //OnDamageTaken?.Invoke(damageToHPAfterModifiers);
-                }
-            }
-            
             //Check resist/weakness to attack element to calculate final damage
-            if(entity.CheckWeakness(payload.attackElement))
+            if(entity.CheckWeakness(CurrentPayload.attackElement))
             {
                 damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * entity.WeaknessModifier);
-                //OnTakeCritDamage?.Invoke();
+                OnTakeCritDamage?.Invoke();
             }
-            if(entity.CheckResistance(payload.attackElement))
+            if(entity.CheckResistance(CurrentPayload.attackElement))
             {
                 damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * entity.ResistModifier);
-                //OnResistDamage?.Invoke();
-            }            
+                OnResistDamage?.Invoke();
+            }       
+
+            damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * ((100 - entity.Armor) * 0.01) * entity.Defense);
+            if(wentThroughShields)
+            {
+                OnDamageTaken?.Invoke(CurrentPayload, originalShieldHP + damageToHPAfterModifiers);
+            }else
+            {
+                OnDamageTaken?.Invoke(CurrentPayload, damageToHPAfterModifiers);
+            }
+            
 
             entity.CurrentHP -= damageToHPAfterModifiers;
             return damageToHPAfterModifiers;
         }
-    //End of Damage Calculation Algorithms
+    #endregion End of Damage Calculation Algorithms
 
 
     //Actual damage application
-        if(payload.attackElement == AttackElement.Breaking)
+        if(CurrentPayload.attackElement == AttackElement.Breaking)
         {
-            CalculateBreakingDamage();
-        }else if (payload.attackElement == AttackElement.Pure)
+            ApplyBreakingDamage();
+        }else if (CurrentPayload.attackElement == AttackElement.Pure)
         {
-            CalculatePureDamage();
+            ApplyPureDamage();
         }else
         {
-            CalculateRegularDamage();
+            ApplyRegularDamage();
         }
 
-
-
-
+    //Trigger post-damage calculation actions
         foreach (var action in postDamageActions)
         {
-            action.Invoke(entity, payload);
+            action.Invoke(this, entity, ref _currentPayload);
         }
 
         Reset();
@@ -221,9 +236,16 @@ public class EntityDamageBuilder
 
     void Reset()
     {
-        sourceAttackPayload = null;
+        _currentPayload = null;
         hitFlashColor = null;
         hitSFX = null;
+    }
+
+    public void UnsubscribeAll()
+    {
+        OnDamageTaken = null;
+        OnTakeCritDamage = null;
+        OnResistDamage = null;
     }
 
 

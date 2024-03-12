@@ -6,13 +6,11 @@ using DG.Tweening;
 using FMODUnity;
 using UnityEngine;
 
-public class ShieldGuy : NPC
+[RequireComponent(typeof(SeekerAI))]
+[RequireComponent(typeof(NPC))]
+public class ShieldBearerController : MonoBehaviour
 {
-
-
     SeekerAI seekerAI;
-    StateMachine stateMachine;
-    FuncPredicate playerInRangePredicate;
 
     [Header("Shield Bearer Settings")]
     [SerializeField] PlayerInRangeChecker playerInRangeChecker;
@@ -61,30 +59,31 @@ public class ShieldGuy : NPC
 
     [SerializeField] bool preparingAttack;
 
-    //Tweens
-    Tween shieldColorTween;
+
 
     float updateRate = 0.1f;
     float timer = 0;
 
-    protected override void Awake()
+    NPC npc;
+
+    void Awake()
     {
-        base.Awake();
+        seekerAI = GetComponent<SeekerAI>();
+        npc = GetComponent<NPC>();
         impulseSource = GetComponent<CinemachineImpulseSource>();
-
-
-
     }
 
-    protected override void Start()
+
+    // Start is called before the first frame update
+    void Start()
     {
-        base.Start();
         seekerAI = GetComponent<SeekerAI>();
         seekerAI.Target = GameManager.Instance.player;
-        _statusEffectManager.OnStunned += OnStunned;
-        ShieldsUp();
+        //npc.StatusEffectManager.OnStunned += OnStunned;
+        ShieldsUp();        
     }
 
+    // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
@@ -96,7 +95,7 @@ public class ShieldGuy : NPC
             return;
         }
 
-        if(!CanAct) { return; }
+        //if(!CanAct) { return; }
 
 
 
@@ -118,7 +117,7 @@ public class ShieldGuy : NPC
             FaceTowardsPlayer();
         }
 
-
+        
     }
 
     IEnumerator PrepareAttackCoroutine()
@@ -126,20 +125,20 @@ public class ShieldGuy : NPC
         ShieldsUp();
         seekerAI.pauseAI = true;
         preparingAttack = true;
-        AbilityData shieldBash = NPCAbilities[0];
+        //AbilityData shieldBash = NPCAbilities[0];
 
-        Vector2Int playerDistance = (Vector2Int)GameManager.Instance.player.currentTilePosition - (Vector2Int)currentTilePosition;
-        AimDirection aimDirection = CardinalAimSystem.GetClosestAimDirectionByVector(playerDistance);
-        currentAimDirection = aimDirection;
+        //Vector2Int playerDistance = (Vector2Int)GameManager.Instance.player.currentTilePosition - (Vector2Int)currentTilePosition;
+        //AimDirection aimDirection = CardinalAimSystem.GetClosestAimDirectionByVector(playerDistance);
+        //currentAimDirection = aimDirection;
 
-        _stageManager.SetWarningTiles(CardinalAimSystem.AnchoredAimTowardsDirection
-        (aimDirection, shieldBash.rangeOfInfluence, currentTilePosition), prepareAttackTime);
+        //_stageManager.SetWarningTiles(CardinalAimSystem.AnchoredAimTowardsDirection
+        //(aimDirection, shieldBash.rangeOfInfluence, currentTilePosition), prepareAttackTime);
         FaceTowardsPlayer();
 
         yield return new WaitForSeconds(prepareAttackTime);
 
 
-        InitiateAttack();
+        //InitiateAttack();
         yield return new WaitForSeconds(attackCooldown);
         ShieldsUp();
 
@@ -151,23 +150,12 @@ public class ShieldGuy : NPC
 
     }
 
-    void PrepareAttack()
-    {
-
-    }
-
-    void InitiateAttack()
-    {
-        _entityAnimator.PlayOneShotAnimationReturnIdle(_entityAnimator.animationList[0]);
-        
-    }
-
     void ShieldsUp()
     {
         shieldHitboxObject.SetActive(true);
         _shieldsUp = true;
         shieldCollider.enabled = true;
-        _entityAnimator.PlayOneShotAnimation(_entityAnimator.animationList[4]);
+        npc.EntityAnimator.PlayOneShotAnimation(npc.EntityAnimator.animationList[4]);
         shieldHitboxObject.transform.localScale = normalShieldScale;
         shieldHitboxObject.GetComponent<SpriteRenderer>().DOColor(shieldColor, 0.1f).SetEase(Ease.InOutSine);
         shieldHitboxObject.transform.DOLocalMove(Vector3.zero, 0.1f).SetEase(Ease.InOutSine);
@@ -181,58 +169,67 @@ public class ShieldGuy : NPC
         shieldCollider.enabled = false;
         preparingAttack = false;
 
-        _entityAnimator.PlayOneShotAnimation(_entityAnimator.animationList[2]);
+        npc.EntityAnimator.PlayOneShotAnimation(npc.EntityAnimator.animationList[2]);
 
         shieldHitboxObject.GetComponent<SpriteRenderer>().DOFade(0, 0.1f).SetEase(Ease.InOutSine);
         shieldHitboxObject.SetActive(false);
 
     }
 
-    void OnStunned()
+
+
+
+
+    void InitializeDamageBuilder()
     {
-        if(CR_PrepareAttack != null)
-        {
-            StopCoroutine(CR_PrepareAttack);
-            CR_PrepareAttack = null;
-        }
-        seekerAI.pauseAI = false;
-        ShieldsDown();
+        //Create a new damage builder
+        EntityDamageBuilder damageBuilder = new EntityDamageBuilder();
+        //Create a new damage context
+        DamageContext context = new DamageContext();
+
+        context.actionHandlers.Add(PrefixDamageAction);
+
+
+        damageBuilder.AddPreDamageActions(context);
     }
 
-
-    void TriggerShieldBashAnimation()
+    void PrefixDamageAction(EntityDamageBuilder damageBuilder, StageEntity _, ref AttackPayload? payload)
     {
-
-        CR_ShieldBash = StartCoroutine(ShieldBashCoroutine());
-    }
-
-    protected override AttackPayload PrefixDamageCalculations(AttackPayload payload)
-    {
-        if(payload.attackElement == AttackElement.Pure)
+        if(payload.Value.attackElement == AttackElement.Pure)
         {
-            return payload;
+            return;
         }
 
         if (_shieldsUp)
         {
-            if (CheckShieldBlock(payload))
+            if (CheckShieldBlock(payload.Value))
             {
-                if (!payload.statusEffects.Where(se => se.statusEffectType == StatusEffectType.Stunned).Any())
+                if (!payload.Value.statusEffects.Where(se => se.statusEffectType == StatusEffectType.Stunned).Any())
                 {
                     StartCoroutine(FlashShieldCoroutine());
                 }
                 BlockHitVFX();
-                payload.damage = 0;
+
+                var modifiedPayload = payload.Value;
+                modifiedPayload.damage = 0;
+                payload = modifiedPayload;
+
+                damageBuilder.SetHitSFX(hitShieldSFX);
             }
         }
-        return payload;
-    }
 
+    }    
+
+    /// <summary>
+    /// Checks if an attack is blocked by looking at the attacker of the payload and then casting a ray from the attacker to the shield layer. If the shield is hit, the attack is blocked.
+    /// </summary>
+    /// <param name="payload"></param>
+    /// <returns></returns>
     bool CheckShieldBlock(AttackPayload payload)
     {
         if(payload.attacker != null)
         {
-            RaycastHit2D hit = Physics2D.Raycast(payload.attacker.transform.position, (worldTransform.position - payload.attacker.transform.position).normalized, Mathf.Infinity, shieldLayer);
+            RaycastHit2D hit = Physics2D.Raycast(payload.attacker.transform.position, (npc.worldTransform.position - payload.attacker.transform.position).normalized, Mathf.Infinity, shieldLayer);
 
             if(hit.collider == shieldCollider)
             {
@@ -243,6 +240,16 @@ public class ShieldGuy : NPC
         return false;
     }
 
+    IEnumerator FlashShieldCoroutine()
+    {
+        yield return shieldHitboxObject.GetComponent<SpriteRenderer>().DOColor(hitShieldColor, shieldFlashDuration).SetEase(shieldFlashEase).WaitForCompletion();
+
+        yield return shieldHitboxObject.GetComponent<SpriteRenderer>().DOColor(shieldColor, shieldFlashDuration).SetEase(shieldFlashEase).WaitForCompletion();
+    }
+
+    /// <summary>
+    /// Used to play the vfx when the shield blocks an attack
+    /// </summary>
     void BlockHitVFX()
     {
         if(CR_ShieldBlockHitVFX != null)
@@ -261,78 +268,10 @@ public class ShieldGuy : NPC
         CR_ShieldBlockHitVFX = null;
     }
 
-    public override void HurtEntity(AttackPayload payload, Color? hitFlashColor = null, EventReference? hitSFX = null)
-    {
-        if(payload.attackElement == AttackElement.Pure)
-        {
-            base.HurtEntity(payload, hitFlashColor, hitSFX);
-            return;
-        }
-
-        if(_shieldsUp && CheckShieldBlock(payload))
-        {
-            hitSFX = hitShieldSFX;
-        }
-
-        base.HurtEntity(payload, hitFlashColor, hitSFX);
-    }
-
-
-    IEnumerator FlashShieldCoroutine()
-    {
-        yield return shieldHitboxObject.GetComponent<SpriteRenderer>().DOColor(hitShieldColor, shieldFlashDuration).SetEase(shieldFlashEase).WaitForCompletion();
-
-        yield return shieldHitboxObject.GetComponent<SpriteRenderer>().DOColor(shieldColor, shieldFlashDuration).SetEase(shieldFlashEase).WaitForCompletion();
-    }
-
-    IEnumerator ShieldBashCoroutine()
-    {
-        shieldCollider.enabled = false;
-        _shieldsUp = false;
-
-        TriggerAttackHitbox();
-
-        shieldHitboxObject.transform.localScale = normalShieldScale;
-        shieldHitboxObject.GetComponent<SpriteRenderer>().color = shieldColor;
-        shieldHitboxObject.transform.localPosition = Vector3.zero;
-
-
-
-        shieldHitboxObject.transform.DOScale(attackingShieldScale, shieldAttackVelocity).SetEase(shieldAnimationEase);
-        shieldHitboxObject.GetComponent<SpriteRenderer>().DOColor(shieldAttackColor, shieldAttackVelocity * 0.75f).SetEase(Ease.Linear);
-        shieldHitboxObject.transform.DOLocalMove(CardinalAimSystem.GetVector3WithAimDirection(currentAimDirection), shieldAttackVelocity).SetEase(shieldAnimationEase);
-        shieldHitboxObject.GetComponent<SpriteRenderer>().DOFade(0, shieldAttackVelocity).SetEase(Ease.Linear);
-
-        yield return new WaitForSeconds(shieldAttackVelocity);
-
-    }
-
-
-    protected override void AdditionalDestructionEvents(AttackPayload? killingBlow = null)
-    {
-        _entityAnimator.StopAllCoroutines();
-        CanAct = false;
-        CanInitiateMovementActions = false;
-        if(CR_PrepareAttack != null)
-        {
-            StopCoroutine(CR_PrepareAttack);
-            CR_PrepareAttack = null;
-        }
-        if(CR_ShieldBash != null)
-        {
-            StopCoroutine(CR_ShieldBash);
-            CR_ShieldBash = null;
-        }
-        //entityAnimator.PlayOneShotAnimation(entityAnimator.animationList[2]);
-        shieldCollider.enabled = false;
-        shieldHitboxObject.GetComponent<SpriteRenderer>().DOFade(0, 0.1f).SetEase(Ease.Linear);
-        base.AdditionalDestructionEvents(killingBlow);
-    }
-
 
     void FaceTowardsPlayer()
     {
-        Vector2Int playerDistance = (Vector2Int)GameManager.Instance.player.currentTilePosition - (Vector2Int)currentTilePosition;
+        Vector2Int playerDistance = (Vector2Int)GameManager.Instance.player.currentTilePosition - (Vector2Int)npc.currentTilePosition;
         AimDirection aimDirection = CardinalAimSystem.GetClosestAimDirectionByVector(playerDistance);
 
         if(Time.timeScale != 0)
@@ -383,7 +322,7 @@ public class ShieldGuy : NPC
             {
                 if (entity.CompareTag(TagNames.Player.ToString()) || entity.CompareTag(TagNames.EnvironmentalHazard.ToString()))
                 {
-                    entity.HurtEntity(NPCAbilities[0].attackPayload);
+                    //entity.HurtEntity(NPCAbilities[0].attackPayload);
                     Vector2Int shoveDirection = Vector2Int.RoundToInt(CardinalAimSystem.GetVector3WithAimDirection(currentAimDirection)) * 2;
                     entity.AttemptMovement(shoveDirection.x, shoveDirection.y, 0.15f, Ease.OutQuart, ForceMoveMode.Forward);    
                 }

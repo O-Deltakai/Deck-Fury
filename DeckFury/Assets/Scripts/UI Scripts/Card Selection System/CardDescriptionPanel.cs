@@ -121,7 +121,7 @@ public class CardDescriptionPanel : MonoBehaviour
 
         //Status Popout Panel
         statusPopoutIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.statusEffect.statusEffectType);
-        statusName.text = cardSO.oldStatusEffectType.ToString().Replace("_", " ");
+        statusName.text = cardSO.statusEffect.statusEffectType.ToString().Replace("_", " ");
 
         statusDescription.text = cardUIIcons.GetStatusDescription(cardSO.statusEffect.statusEffectType);
 
@@ -159,7 +159,7 @@ public class CardDescriptionPanel : MonoBehaviour
 
         //Status Popout Panel
         statusPopoutIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.statusEffect.statusEffectType);
-        statusName.text = cardSO.oldStatusEffectType.ToString().Replace("_", " ");
+        statusName.text = cardSO.statusEffect.statusEffectType.ToString().Replace("_", " ");
         statusDescription.text = cardUIIcons.GetStatusDescription(cardSO.statusEffect.statusEffectType);
 
 

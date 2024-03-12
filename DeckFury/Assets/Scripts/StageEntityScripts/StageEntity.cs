@@ -15,7 +15,6 @@ public enum ForceMoveMode
 }
 
 
-
 [RequireComponent(typeof(EntityAnimationController))]
 [RequireComponent(typeof(EntityStatusEffectManager))]
 [RequireComponent(typeof(EntityUIElementAnimator))]
@@ -25,7 +24,6 @@ public class StageEntity : MonoBehaviour
     [SerializeField] protected Ease MovementEase;
 
 #region Events and Delegates
-
 
     public delegate void TweenMoveEventHandler(Vector3Int startPosition, Vector3Int destination);
     public event TweenMoveEventHandler OnTweenMove;
@@ -42,6 +40,10 @@ public class StageEntity : MonoBehaviour
     /// </summary>
     public event Action OnDestroyed;
 
+    /// <summary>
+    /// No parameter event that is triggered when the entity is attacked - the attack does not have to deal damage for this event to trigger
+    /// </summary>
+    public event Action OnAttacked;
 
     public delegate void DamageTakenEventHandler(int damageTaken);
     public event DamageTakenEventHandler OnDamageTaken;
@@ -90,6 +92,10 @@ public class StageEntity : MonoBehaviour
     protected EntityUIElementAnimator _UIElementAnimator;
     public EntityUIElementAnimator UIElementAnimator => _UIElementAnimator;
 
+    protected EntityResourceManager _resourceManager;
+    public EntityResourceManager ResourceManager => _resourceManager;
+
+
     protected EntityDamageBuilder damageBuilder;
 
     //Coroutine object used to prevent too many instances of the TweenMove coroutine being started at once.
@@ -129,7 +135,6 @@ public class StageEntity : MonoBehaviour
                 OnHPChanged?.Invoke(oldValue, currentHP);
             }
         }
-
     }
 
 
@@ -137,7 +142,7 @@ public class StageEntity : MonoBehaviour
     //Publically accessible property for shieldHP that when set, will set the value of the private shieldHP value and raise the OnShieldHPChanged event.
     //Used for updating the shield text object when it is greater than 0.
     public int ShieldHP {
-        get{return shieldHP;}
+        get{ return shieldHP; }
         set
         {
             if(shieldHP != value)
@@ -151,7 +156,7 @@ public class StageEntity : MonoBehaviour
     
 
     [SerializeField, Range(0, 100)] int _armor = 0;
-    public int Armor {get { return _armor; } 
+    public int Armor { get { return _armor; } 
         set
         {
             if(value < 0)
@@ -169,7 +174,7 @@ public class StageEntity : MonoBehaviour
         }
     }
 
-    [Range(0.1f, 10f)] public double _defense = 1;
+    [SerializeField, Range(0.1f, 10f)] double _defense = 1;
     public double Defense {get{ return _defense; }
         set
         {
@@ -322,9 +327,14 @@ public class StageEntity : MonoBehaviour
         InitializeStartingStates();   
     }
 
-    public void OverrideDamageBuilder(EntityDamageBuilder newDamageBuilder)
+    public void AssignDamageBuilder(EntityDamageBuilder newDamageBuilder)
     {
+        damageBuilder?.UnsubscribeAll();
+
         damageBuilder = newDamageBuilder;
+        
+        damageBuilder.OnTakeCritDamage += () => RuntimeManager.PlayOneShotAttached(_resourceManager.EntityTakeCritSFX, gameObject);
+        damageBuilder.OnResistDamage += () => RuntimeManager.PlayOneShotAttached(_resourceManager.EntityResistDamageSFX, gameObject);
     }
 
     protected void UpdateShieldValue(int oldValue, int newValue)
@@ -490,25 +500,9 @@ public class StageEntity : MonoBehaviour
 
     }
 
-
-    public void TeleportToLocation(int x, int y)
-    {
-        Vector3Int destination = new Vector3Int(x, y, 0);
-        
-        if(!_stageManager.CheckValidTile(destination)) { return; }
-
-        _stageManager.SetTileEntity(null, currentTilePosition);
-
-        worldTransform.position = destination;
-        currentTilePosition.Set((int)worldTransform.position.x, (int)worldTransform.position.y, 0);
-
-        _stageManager.SetTileEntity(this, destination);
-
-    }
-
     public void TeleportToLocation(Vector3 location)
     {
-        Vector3Int destination = new Vector3Int((int)location.x, (int)location.y, (int)location.z);
+        Vector3Int destination = new((int)location.x, (int)location.y, (int)location.z);
 
         print("destination: " + destination);
 
@@ -528,17 +522,7 @@ public class StageEntity : MonoBehaviour
         _stageManager.SetTileEntity(this, destination);
     }
 
-    public void TeleportToLocation(Vector3Int destination)
-    {
-        
-        if(!_stageManager.CheckValidTile(destination)) { return; }
 
-        _stageManager.SetTileEntity(null, currentTilePosition);
-        currentTilePosition.Set(destination.x, destination.y, 0);
-        _stageManager.SetTileEntity(this, destination);
-
-        worldTransform.position = destination;
-    }
 
     //Tries to find a valid destination by counting backwards from the destination until finds the first valid position (currently untested)
     Vector3Int FindValidDestinationReverseCheck(int x, int y, Vector3Int destination)
@@ -779,20 +763,6 @@ public class StageEntity : MonoBehaviour
             actualHitFlashColor = Color.white;
         }
 
-        // if(finalPayload.oldStatusEffectType != null)
-        // {
-        //     //Iterate over all status effects in the attack payload and trigger each status effect sequentially
-        //     foreach(StatusEffectType statusEffect in finalPayload.oldStatusEffectType)
-        //     {
-        //         if(statusEffect == StatusEffectType.None)
-        //         {
-        //             continue;
-        //         }
-        //         _statusEffectManager.TriggerStatusEffect(finalPayload, statusEffect);
-        //     }
-
-        // }
-
         if(finalPayload.statusEffects != null)
         {
             foreach(StatusEffect statusEffect in finalPayload.statusEffects)
@@ -952,6 +922,56 @@ public class StageEntity : MonoBehaviour
         }
     }
 
+    public void HurtEntityDamageBuilder(AttackPayload payload, Color? hitFlashColor = null, EventReference? hitSFX = null)
+    {
+        //If the entity is not assigned a damage builder, assign a new default one.
+        if(damageBuilder == null)
+        {
+            AssignDamageBuilder(new EntityDamageBuilder());
+        }
+
+        OnAttacked?.Invoke();
+
+        if(CannotBeTargeted){return;}
+        if(invincible){return;}
+        if(_bufferList.DamageBuffers.Count > 0)
+        {
+            _bufferList.Remove(_bufferList.DamageBuffers[0]);
+            return;
+        }
+
+        damageBuilder.Apply(this, payload);
+
+        if (hitFlashColor.HasValue)
+        {
+            StartCoroutine(_statusEffectManager.FlashColor(hitFlashColor.Value, 0.025f, 0.025f));
+        }
+        else
+        if (damageBuilder.HitFlashColor.HasValue)
+        {
+            StartCoroutine(_statusEffectManager.FlashColor(damageBuilder.HitFlashColor.Value, 0.025f, 0.025f));
+        }else
+        {
+            StartCoroutine(_statusEffectManager.FlashColor(Color.white, 0.025f, 0.025f));//Flash white to indicate being hit
+        }
+
+        if (hitSFX.HasValue)
+        {
+            RuntimeManager.PlayOneShot(hitSFX.Value, transform.position);
+        }
+        else
+        if (damageBuilder.HitSFX.HasValue)
+        {
+            RuntimeManager.PlayOneShot(damageBuilder.HitSFX.Value, transform.position);
+        }else
+        {
+            RuntimeManager.PlayOneShot(_resourceManager.EntityHurtSFX, transform.position);
+        }
+
+
+    }
+
+
     public bool CheckWeakness(AttackElement attackElement)
     {
         for (int i = 0; i < weaknesses.Count; i++)
@@ -976,16 +996,6 @@ public class StageEntity : MonoBehaviour
         }
 
         return false;        
-    }
-
-    //TODO: Method which calculates the final damage output of an attack payload given this entity's stats. Also handles the
-    //triggering of MarkedForDeath interactions. 
-    private int CalculateDamageAndOtherEffects(AttackPayload payload)
-    {
-        int damageAfterModifiers = 0;
-        AttackPayload tempPayload = payload;
-
-        return damageAfterModifiers;
     }
 
 

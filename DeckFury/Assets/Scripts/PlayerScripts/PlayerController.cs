@@ -191,7 +191,7 @@ public class PlayerController : StageEntity
         CurrentHP = givenPlayerData.CurrentHP;
         ShieldHP = givenPlayerData.BaseShieldHP;
 
-        _defense = givenPlayerData.BaseDefense;
+        Defense = givenPlayerData.BaseDefense;
         Armor = givenPlayerData.BaseArmor;
 
         playerData = givenPlayerData;

@@ -12,7 +12,6 @@ public struct AttackPayload
 
     public int damage;
     public AttackElement attackElement;
-    public List<StatusEffectType> oldStatusEffectType;
     public List<StatusEffect> statusEffects;
     public bool canTriggerMark; //Can this attack payload trigger interactions with the MarkedForDeath status effect?
     public bool greaterMarked;
@@ -28,7 +27,6 @@ public struct AttackPayload
 
     public AttackPayload(int damage,
                         List<StatusEffect> statusEffects,
-                        List<StatusEffectType> statusEffectTypes,
                         AttackElement attackElement = AttackElement.Neutral,
                         bool canTriggerMark = false,
                         GameObject attacker = null,
@@ -39,7 +37,6 @@ public struct AttackPayload
         this.damage = damage;
         this.attackElement = attackElement;
         this.statusEffects = statusEffects;
-        this.oldStatusEffectType = statusEffectTypes;
         this.canTriggerMark = canTriggerMark;
         this.greaterMarked = false; // Assign default value to 'greaterMarked' field
         this.attacker = attacker;
@@ -52,7 +49,6 @@ public struct AttackPayload
         this.damage = damage;
         attackElement = AttackElement.Neutral;
         statusEffects = new List<StatusEffect>();
-        oldStatusEffectType = new List<StatusEffectType>();
         canTriggerMark = false;
         greaterMarked = false; // Assign default value to 'greaterMarked' field
         attacker = null;
