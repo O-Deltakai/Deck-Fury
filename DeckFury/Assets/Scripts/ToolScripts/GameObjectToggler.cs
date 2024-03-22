@@ -11,11 +11,26 @@ public class GameObjectToggler : MonoBehaviour
     [SerializeField] List<GameObject> toggledObjectList = new List<GameObject>();
 
 
+    public void ToggleObject()
+    {
+        if(!toggledObject) { return; }
+
+        toggledObject.SetActive(!toggledObject.activeSelf);
+    }
+
     public void ToggleObject(bool condition)
     {
         if(!toggledObject) { return; }
 
         toggledObject.SetActive(condition);
+    }
+
+    public void ToggleObjectList()
+    {
+        foreach(GameObject toggleObject in toggledObjectList)
+        {
+            toggledObject.SetActive(!toggledObject.activeSelf);
+        }
     }
 
    public void ToggleObjectList(bool condition)
