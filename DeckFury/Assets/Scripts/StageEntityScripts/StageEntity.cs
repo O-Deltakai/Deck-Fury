@@ -249,7 +249,7 @@ public class StageEntity : MonoBehaviour
 
         DefaultHPTextColor = Color.white;
         DefaultShieldTextColor = GamePalette.shieldHPColor;
-        
+
         if(entitySpriteRenderer == null)
         {
             entitySpriteRenderer = GetComponent<SpriteRenderer>();
@@ -826,12 +826,18 @@ public class StageEntity : MonoBehaviour
             if(CheckWeakness(finalPayload.attackElement))
             {
                 damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * weaknessModifier);
-                OnTakeCritDamage?.Invoke();
+                if(damageToHPAfterModifiers > 0)
+                {
+                    OnTakeCritDamage?.Invoke();
+                }
             }
             if(CheckResistance(finalPayload.attackElement))
             {
                 damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * resistModifier);
-                OnResistDamage?.Invoke();
+                if(damageToHPAfterModifiers > 0)
+                {
+                    OnResistDamage?.Invoke();
+                }
             }
 
             CurrentHP -= damageToHPAfterModifiers;
@@ -884,12 +890,18 @@ public class StageEntity : MonoBehaviour
             if(CheckWeakness(finalPayload.attackElement))
             {
                 damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * weaknessModifier);
-                OnTakeCritDamage?.Invoke();
+                if(damageToHPAfterModifiers > 0)
+                {
+                    OnTakeCritDamage?.Invoke();
+                }
             }
             if(CheckResistance(finalPayload.attackElement))
             {
                 damageToHPAfterModifiers = (int)(damageToHPAfterModifiers * resistModifier);
-                OnResistDamage?.Invoke();
+                if(damageToHPAfterModifiers > 0)
+                {
+                    OnResistDamage?.Invoke();
+                }
             }            
 
             CurrentHP -= damageToHPAfterModifiers;

@@ -10,13 +10,25 @@ public class LightningStrike : CardEffect
     //Set this in the inspector (The prefabs in here should be the same ones that are attached on the EffectPrefab itself)
     [SerializeField] List<GameObject> lightningVFXPool = new List<GameObject>();
 
-
+    [SerializeField] LayerMask stageEntitiesMask;
 
 
     public override void ActivateCardEffect()
     {
-        List<StageEntity> entities = SpawnManager.GetActiveStageEntities();
+        List<StageEntity> entities = new();
         
+        //Just creates a big box around the player and checks for any entities in that box
+        Collider2D[] hits = Physics2D.OverlapBoxAll(player.worldTransform.position, new Vector2(20, 20), 0, stageEntitiesMask);
+        foreach(var hit in hits)
+        {
+            if(hit.gameObject.CompareTag(TagNames.Enemy.ToString()) && hit.TryGetComponent(out StageEntity stageEntity))
+            {
+                entities.Add(stageEntity);
+            }
+        }
+        
+
+
         //What do you do if the number of entities on the board is greater than the number of VFX prefabs?
         while(entities.Count > lightningVFXPool.Count)
         {
