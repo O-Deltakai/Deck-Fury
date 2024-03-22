@@ -81,9 +81,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{86754605-e3b2-46d3-bc4b-01b1f64a6a91}">
-		<property name="volume">
-			<value>-3</value>
-		</property>
 		<relationship name="effectChain">
 			<destination>{f5825244-5bd1-4970-9c5d-f8f3b4f51fb3}</destination>
 		</relationship>
@@ -139,6 +136,9 @@
 		<property name="timelockedOffset">
 			<value>1</value>
 		</property>
+		<property name="volume">
+			<value>-6.5</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{55638707-527a-43a7-90f4-291656e0407a}</destination>
 		</relationship>
@@ -147,6 +147,9 @@
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{22fbc772-ce92-4a8b-8932-7a74e0ac4032}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{0a227548-4cf4-4cb9-b187-41c728694b52}</destination>
 		</relationship>
@@ -204,6 +207,17 @@
 			<destination>{c2fe83b3-a7ff-47e2-acc7-49cffe5c7fad}</destination>
 		</relationship>
 	</object>
+	<object class="ADSRModulator" id="{22fbc772-ce92-4a8b-8932-7a74e0ac4032}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="initialValue">
+			<value>-80</value>
+		</property>
+		<property name="finalValue">
+			<value>-80</value>
+		</property>
+	</object>
 	<object class="MixerBusEffectChain" id="{0a227548-4cf4-4cb9-b187-41c728694b52}">
 		<relationship name="effects">
 			<destination>{abdbaad4-590c-487e-9b81-fc47baa98ee3}</destination>
@@ -221,11 +235,7 @@
 			<destination>{bdef1524-7bb7-480a-adbf-2b36cad64917}</destination>
 		</relationship>
 	</object>
-	<object class="ThreeEQEffect" id="{5c247f13-cf68-45b2-bc2d-141184845bb6}">
-		<property name="lowGain">
-			<value>2.5</value>
-		</property>
-	</object>
+	<object class="ThreeEQEffect" id="{5c247f13-cf68-45b2-bc2d-141184845bb6}" />
 	<object class="MixerBusFader" id="{6dea857a-f32c-448b-9b9a-6197cab2b68d}" />
 	<object class="AutomationPoint" id="{c6376dda-b585-4dee-a5e3-29a3a3b4689e}">
 		<property name="position">

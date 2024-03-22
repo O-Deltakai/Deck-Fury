@@ -246,6 +246,10 @@ public class StageEntity : MonoBehaviour
         _entityAnimator = GetComponent<EntityAnimationController>();
         _statusEffectManager = GetComponent<EntityStatusEffectManager>();
         _UIElementAnimator = GetComponent<EntityUIElementAnimator>();
+
+        DefaultHPTextColor = Color.white;
+        DefaultShieldTextColor = GamePalette.shieldHPColor;
+        
         if(entitySpriteRenderer == null)
         {
             entitySpriteRenderer = GetComponent<SpriteRenderer>();
@@ -282,15 +286,13 @@ public class StageEntity : MonoBehaviour
 
         if(!CannotBeTargeted || !DoNotShowHP)
         {
-            if(HPText != null)
+            if (HPText != null)
             {
                 HPText.text = currentHP.ToString();
-                DefaultHPTextColor = HPText.color;  
             }
             if(ShieldsText != null)
             {
                 ShieldsText.text = shieldHP.ToString();
-                DefaultShieldTextColor = ShieldsText.color;
                 
                 if(shieldHP <= 0)
                 {

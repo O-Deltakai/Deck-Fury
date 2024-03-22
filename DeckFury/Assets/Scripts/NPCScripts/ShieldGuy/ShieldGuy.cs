@@ -151,11 +151,6 @@ public class ShieldGuy : NPC
 
     }
 
-    void PrepareAttack()
-    {
-
-    }
-
     void InitiateAttack()
     {
         _entityAnimator.PlayOneShotAnimationReturnIdle(_entityAnimator.animationList[0]);
@@ -171,8 +166,7 @@ public class ShieldGuy : NPC
         shieldHitboxObject.transform.localScale = normalShieldScale;
         shieldHitboxObject.GetComponent<SpriteRenderer>().DOColor(shieldColor, 0.1f).SetEase(Ease.InOutSine);
         shieldHitboxObject.transform.DOLocalMove(Vector3.zero, 0.1f).SetEase(Ease.InOutSine);
-
-        //Armor = 100;       
+    
     }
 
     void ShieldsDown()

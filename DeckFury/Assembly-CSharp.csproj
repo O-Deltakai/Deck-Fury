@@ -59,7 +59,7 @@
     <UnityVersion>2022.3.18f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\Matthew Qiu\.vscode\extensions\visualstudiotoolsforunity.vstuc-0.9.4\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\Matthew Qiu\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.0.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.18f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.18f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
@@ -107,6 +107,7 @@
     <Compile Include="Assets\Scripts\UI Scripts\NextCardIndicator.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Card Selection System\CardSlot.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\VectorDirections.cs" />
+    <Compile Include="Assets\Scripts\GeneralScripts\MainMenuBGMController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\StageSelectionScripts\PracticeStageButton.cs" />
     <Compile Include="Assets\Scripts\Event Bus Systems\EventBusUtil.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\SharedAssets\Scripts\AutoLoadPipelineAsset.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\NumberExtensions.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\AbilityData.cs" />
+    <Compile Include="Assets\Scripts\ManagerScripts\BGMManager.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\MathfExtension.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\ShieldGuy\ShieldBearerController.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\Notification Controller\NotificationType.cs" />
@@ -307,6 +309,7 @@
     <Compile Include="Assets\Scripts\Card System\CardScripts\SummonSentry.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\RendererExtensions.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\TrainingDummy.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\URLLinker.cs" />
     <Compile Include="Assets\Scripts\Enums\TagNames.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerItemController.cs" />
     <Compile Include="Assets\Scripts\Finite State Machine\Transition.cs" />
@@ -1496,6 +1499,7 @@
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{31246dcd-3960-472f-8a23-09619dfa6aba}.xml" />
     <None Include="Assets\Sprites\Itchio - Asset Packs\unTied Games - FX Packs\Super Pixel Sci-fi FX Pack 1\spritesheet\scifx1_boost_small_yellow\spritesheet.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\Event\{2060cea1-d306-4558-be70-05479a7fe596}.xml" />
+    <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{79bb7c26-ec99-4e8a-bbaa-9bfd8a35dd33}.xml" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{845414a5-32fe-4a98-9817-2c1cf611339e}.xml" />
     <None Include="Assets\Sprites\Craftpix\Freebies\Cyberpunk-Skill-Icons-32x32\Font.txt" />
     <None Include="Assets\FMODProject\DeckFuryFMODProject\DeckFury\Metadata\AudioFile\{a6ae06f9-a729-4445-a380-d5b74dc751fd}.xml" />

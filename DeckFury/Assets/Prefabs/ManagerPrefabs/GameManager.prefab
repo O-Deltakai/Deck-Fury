@@ -10374,6 +10374,7 @@ GameObject:
   - component: {fileID: 1890859192}
   - component: {fileID: 5582581219200194018}
   - component: {fileID: 8230161288189804019}
+  - component: {fileID: 7933715379386555244}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -10453,7 +10454,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreRewardTable: {fileID: 11400000, guid: 3c8072a846bf78640841dc21e0b8dab6, type: 2}
   bonusScoreItems: []
-  _mapPool: {fileID: 11400000, guid: 776025cfa18c2dc41aeca981d6d645cb, type: 2}
 --- !u!114 &2501403657564188926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10520,6 +10520,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7712f1968710d46875f24a686ab234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7933715379386555244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6903021188174652529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &7715281357461202580
 GameObject:
   m_ObjectHideFlags: 0

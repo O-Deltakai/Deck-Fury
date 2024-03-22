@@ -23,6 +23,12 @@ public class PlayerPrefsManager : MonoBehaviour
         CameraShakeMultiplier
     }
 
+    public enum SpecialKeys
+    {
+        FirstTimePlaying,
+        TutorialPlayed,
+    }
+
     static PlayerPrefsManager _instance;
     public static PlayerPrefsManager Instance => _instance;
 
@@ -66,6 +72,21 @@ public class PlayerPrefsManager : MonoBehaviour
         EventBus<ModifiedPlayerPrefEvent>.Raise(new ModifiedPlayerPrefEvent(GameplayKeys.CameraShakeMultiplier.ToString(), value));
     }
     public static float GetGlobalCameraShakeMultiplier() => PlayerPrefs.GetFloat(GameplayKeys.CameraShakeMultiplier.ToString(), float.NaN);
+
+    public static void SetFirstTimePlaying(bool value)
+    {
+        PlayerPrefs.SetInt(SpecialKeys.FirstTimePlaying.ToString(), value ? 1 : 0);
+        EventBus<ModifiedPlayerPrefEvent>.Raise(new ModifiedPlayerPrefEvent(SpecialKeys.FirstTimePlaying.ToString(), value ? 1 : 0));
+    }
+    public static bool GetFirstTimePlaying() => PlayerPrefs.GetInt(SpecialKeys.FirstTimePlaying.ToString(), 1) == 1;
+
+    public static void SetTutorialPlayed(bool value)
+    {
+        PlayerPrefs.SetInt(SpecialKeys.TutorialPlayed.ToString(), value ? 1 : 0);
+        EventBus<ModifiedPlayerPrefEvent>.Raise(new ModifiedPlayerPrefEvent(SpecialKeys.TutorialPlayed.ToString(), value ? 1 : 0));
+    }
+    public static bool GetTutorialPlayed() => PlayerPrefs.GetInt(SpecialKeys.TutorialPlayed.ToString(), 0) == 1;
+
 
     public static void SavePlayerPrefs()
     {

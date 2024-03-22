@@ -96,8 +96,7 @@ MonoBehaviour:
     attackPayload:
       damage: 0
       attackElement: 0
-      statusEffectType: 
-      actualStatusEffects: []
+      statusEffects: []
       canTriggerMark: 0
       greaterMarked: 0
       attacker: {fileID: 0}
@@ -251,7 +250,7 @@ MonoBehaviour:
   _bufferList:
     rid: 183167044923162629
   weaknesses: 
-  weaknessModifier: 1.5
+  weaknessModifier: 2
   resistances: 
   resistModifier: 0.5
   HPText: {fileID: 5010945817517325882}
@@ -297,8 +296,7 @@ MonoBehaviour:
     attackPayload:
       damage: 30
       attackElement: 0
-      statusEffectType: 
-      actualStatusEffects: []
+      statusEffects: []
       canTriggerMark: 0
       greaterMarked: 0
       attacker: {fileID: 2280525442261048410}

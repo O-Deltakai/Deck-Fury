@@ -26,7 +26,7 @@ public class LightningStrike : CardEffect
         int index = 0;  
         foreach(var entity in entities)
         {
-            if(entity.gameObject.CompareTag("Enemy"))
+            if(entity.gameObject.CompareTag(TagNames.Enemy.ToString()))
             {
                 
                 lightningVFXPool[index].transform.position = entity.currentTilePosition;

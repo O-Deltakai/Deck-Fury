@@ -31,6 +31,7 @@ public class MainMenuController : MonoBehaviour
 
     public void LoadTutorial()
     {
+        PlayerPrefsManager.SetTutorialPlayed(true);
         sceneLoader.LoadScene(SceneNames.TutorialStage_New);
     }
 
@@ -52,10 +53,11 @@ public class MainMenuController : MonoBehaviour
 
     public void ShowDeveloperNote()
     {
-        if(!GameManager.DeveloperNoteHasBeenShown)
+        if(!PlayerPrefsManager.GetTutorialPlayed())
         {
             developerNote.SetActive(true);
-            GameManager.DeveloperNoteHasBeenShown = true;
+            PlayerPrefsManager.SetFirstTimePlaying(false);
+            PlayerPrefsManager.SetTutorialPlayed(true);
         }else
         {
             LoadStageSelect();

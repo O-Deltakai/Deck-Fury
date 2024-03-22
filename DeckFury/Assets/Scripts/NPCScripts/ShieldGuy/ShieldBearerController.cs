@@ -45,6 +45,9 @@ public class ShieldBearerController : MonoBehaviour
     [SerializeField] LayerMask attackLayer;
     CinemachineImpulseSource impulseSource;
 
+    [SerializeField] List<AbilityData> NPCAbilities;
+
+
     [Header("SFX")]
     [SerializeField] EventReference shieldBashSFX;
     [SerializeField] EventReference hitShieldSFX;
@@ -59,7 +62,7 @@ public class ShieldBearerController : MonoBehaviour
 
     [SerializeField] bool preparingAttack;
 
-
+    StageManager stageManager;
 
     float updateRate = 0.1f;
     float timer = 0;
@@ -71,6 +74,7 @@ public class ShieldBearerController : MonoBehaviour
         seekerAI = GetComponent<SeekerAI>();
         npc = GetComponent<NPC>();
         impulseSource = GetComponent<CinemachineImpulseSource>();
+        stageManager = StageManager.Instance;
     }
 
 
@@ -79,7 +83,7 @@ public class ShieldBearerController : MonoBehaviour
     {
         seekerAI = GetComponent<SeekerAI>();
         seekerAI.Target = GameManager.Instance.player;
-        //npc.StatusEffectManager.OnStunned += OnStunned;
+        npc.StatusEffectManager.OnStunned += OnStunned;
         ShieldsUp();        
     }
 
@@ -125,20 +129,20 @@ public class ShieldBearerController : MonoBehaviour
         ShieldsUp();
         seekerAI.pauseAI = true;
         preparingAttack = true;
-        //AbilityData shieldBash = NPCAbilities[0];
+        AbilityData shieldBash = NPCAbilities[0];
 
-        //Vector2Int playerDistance = (Vector2Int)GameManager.Instance.player.currentTilePosition - (Vector2Int)currentTilePosition;
-        //AimDirection aimDirection = CardinalAimSystem.GetClosestAimDirectionByVector(playerDistance);
-        //currentAimDirection = aimDirection;
+        Vector2Int playerDistance = (Vector2Int)GameManager.Instance.player.currentTilePosition - (Vector2Int)npc.currentTilePosition;
+        AimDirection aimDirection = CardinalAimSystem.GetClosestAimDirectionByVector(playerDistance);
+        currentAimDirection = aimDirection;
 
-        //_stageManager.SetWarningTiles(CardinalAimSystem.AnchoredAimTowardsDirection
-        //(aimDirection, shieldBash.rangeOfInfluence, currentTilePosition), prepareAttackTime);
+        stageManager.SetWarningTiles(CardinalAimSystem.AnchoredAimTowardsDirection
+        (aimDirection, shieldBash.rangeOfInfluence, npc.currentTilePosition), prepareAttackTime);
         FaceTowardsPlayer();
 
         yield return new WaitForSeconds(prepareAttackTime);
 
 
-        //InitiateAttack();
+        InitiateAttack();
         yield return new WaitForSeconds(attackCooldown);
         ShieldsUp();
 
@@ -150,6 +154,26 @@ public class ShieldBearerController : MonoBehaviour
 
     }
 
+    void InitiateAttack()
+    {
+        npc.EntityAnimator.PlayOneShotAnimationReturnIdle(npc.EntityAnimator.animationList[0]);
+        
+    }
+
+
+    void OnStunned()
+    {
+        if(CR_PrepareAttack != null)
+        {
+            StopCoroutine(CR_PrepareAttack);
+            CR_PrepareAttack = null;
+        }
+        seekerAI.pauseAI = false;
+        ShieldsDown();
+    }
+
+
+
     void ShieldsUp()
     {
         shieldHitboxObject.SetActive(true);
@@ -159,8 +183,7 @@ public class ShieldBearerController : MonoBehaviour
         shieldHitboxObject.transform.localScale = normalShieldScale;
         shieldHitboxObject.GetComponent<SpriteRenderer>().DOColor(shieldColor, 0.1f).SetEase(Ease.InOutSine);
         shieldHitboxObject.transform.DOLocalMove(Vector3.zero, 0.1f).SetEase(Ease.InOutSine);
-
-        //Armor = 100;       
+    
     }
 
     void ShieldsDown()

@@ -1018,7 +1018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f2eb3b17365d34d967dc132f0a491f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <stageEntity>k__BackingField: {fileID: 2603598690643224100}
+  _entity: {fileID: 2603598690643224100}
   _originalPrefab: {fileID: 8603392144972885623}
 --- !u!1 &8603392145581742693
 GameObject:
@@ -1037,6 +1037,7 @@ GameObject:
   - component: {fileID: 2998017032565343938}
   - component: {fileID: 3637428331803564350}
   - component: {fileID: 2603598690643224100}
+  - component: {fileID: 4638587218578162695}
   m_Layer: 3
   m_Name: TrainingRobotObject
   m_TagString: Enemy
@@ -1249,7 +1250,7 @@ MonoBehaviour:
   fireExplosionPrefab: {fileID: 3983791032476274815, guid: df027b999d3ae624da77ed34b70eee8d, type: 3}
   MarkedForDeath: 0
   BaseStunDuration: 1.5
-  BaseMarkedDuration: 3
+  BaseMarkedDuration: 5
   BaseArmorbreakDuration: 10
   stunStrengthMod: 1
   markedStrengthMod: 1
@@ -1305,6 +1306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementEase: 4
   <worldTransform>k__BackingField: {fileID: 8603392144972885620}
+  _centerPoint: {fileID: 0}
   currentTilePosition: {x: 0, y: 0, z: 0}
   CanInitiateMovementActions: 1
   CanAct: 1
@@ -1319,7 +1321,7 @@ MonoBehaviour:
   _bufferList:
     rid: 1000
   weaknesses: 
-  weaknessModifier: 1.5
+  weaknessModifier: 2
   resistances: 
   resistModifier: 0.5
   HPText: {fileID: 6186281624174535764}
@@ -1341,6 +1343,20 @@ MonoBehaviour:
       Data3: 1078106512
       Data4: -91266903
     Path: event:/Characters/RobotDeath
+  OnTakeCritDamageSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  OnResistDamageSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   _useUnscaledTimeForActions: 0
   _enemyData: {fileID: 11400000, guid: ca566c8638a3e274bad993a163834ae0, type: 2}
   player: {fileID: 0}
@@ -1353,6 +1369,57 @@ MonoBehaviour:
     - rid: 1000
       type: {class: DamageBufferList, ns: , asm: Assembly-CSharp}
       data: 
+--- !u!114 &4638587218578162695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8603392145581742693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52ca3b56f4b9cc40b35988c2542bb90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entitySpawnVFX: {fileID: 0}
+  _takeCritVFX: {fileID: 0}
+  _resistDamageVFX: {fileID: 0}
+  _entitySpawnSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _entityDeathSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _entityHurtSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _entityTakeCritSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _entityResistDamageSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _markedFireExplosion: {fileID: 0}
 --- !u!1001 &8811858555735231513
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,14 +16,13 @@ MonoBehaviour:
   CardDescription: Throw a fire bomb <b>4</b> tiles forward which explodes in a <b>3x3</b>
     square after a short delay, dealing <b>BD</b> damage to all enemies within the
     explosion.
-  BaseDamage: 100
+  BaseDamage: 75
   <AttackElement>k__BackingField: 2
   <CardType>k__BackingField: 0
-  <StatusEffect>k__BackingField: 0
+  <oldStatusEffectType>k__BackingField: 0
   <statusEffect>k__BackingField:
     statusEffectType: 0
     effectStrength: 0
-  <EnergyCost>k__BackingField: 0
   CardTier: 1
   <QuantifiableEffects>k__BackingField: []
   CardImage: {fileID: 21300000, guid: 0ad7d05259814e747bcdb06df060245f, type: 3}
@@ -34,6 +33,7 @@ MonoBehaviour:
   - {fileID: 561233319248923547, guid: d6a09b9f2987dcb4e8d2e7d93bed3273, type: 3}
   <ObjectSummonsArePooled>k__BackingField: 1
   <UseTargetingReticle>k__BackingField: 1
+  _dynamicReticle: 0
   <ReticleIsStatic>k__BackingField: 0
   <TargetingReticle>k__BackingField: {fileID: 7364548408100860759, guid: 2af39de2bf15a734897b26482d28b1d2, type: 3}
   <TargetingReticleOffSet>k__BackingField: {x: 0, y: -2}

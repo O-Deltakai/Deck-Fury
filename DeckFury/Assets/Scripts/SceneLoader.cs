@@ -43,22 +43,26 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadScene(int levelIndex)
     {
+        EventBus<SceneBeginChangeEvent>.Raise(new SceneBeginChangeEvent{});
         GameManager.currentGameState = GameManager.GameState.Realtime;
         StartCoroutine(LoadSceneAsynchronously(levelIndex));
     }
     public void LoadScene(string sceneName)
     {
+        EventBus<SceneBeginChangeEvent>.Raise(new SceneBeginChangeEvent{sceneName = sceneName});
         GameManager.currentGameState = GameManager.GameState.Realtime;
         StartCoroutine(LoadSceneAsynchronously(sceneName));
     }
     public void LoadScene(SceneNames sceneName)
     {
+        EventBus<SceneBeginChangeEvent>.Raise(new SceneBeginChangeEvent{sceneName = sceneName.ToString()});
         GameManager.currentGameState = GameManager.GameState.Realtime;
         StartCoroutine(LoadSceneAsynchronously(sceneName.ToString()));
 
     }
     public void LoadSceneAdditive(string sceneName)
     {
+        EventBus<SceneBeginChangeEvent>.Raise(new SceneBeginChangeEvent{sceneName = sceneName});
         GameManager.currentGameState = GameManager.GameState.Realtime;
         StartCoroutine(LoadSceneAsyncAdditive(sceneName));
     }
@@ -133,6 +137,8 @@ public class SceneLoader : MonoBehaviour
         loadingBar.gameObject.SetActive(false);
         yield return new WaitForSecondsRealtime(fadeToBlackTime);
         FadeToTransparent();
+        EventBus<SceneFinishChangeEvent>.Raise(new SceneFinishChangeEvent{sceneName = sceneName});
+
 
     }
 
@@ -140,9 +146,6 @@ public class SceneLoader : MonoBehaviour
     {
         FadeToBlack();
         yield return new WaitForSecondsRealtime(fadeToBlackTime);
-
-
-
 
 
         AsyncOperation loadSceneOperation = SceneManager.LoadSceneAsync(sceneToAdd, LoadSceneMode.Additive);
@@ -173,6 +176,9 @@ public class SceneLoader : MonoBehaviour
         yield return new WaitForSecondsRealtime(fadeToBlackTime);
         FadeToTransparent();
 
+        EventBus<SceneFinishChangeEvent>.Raise(new SceneFinishChangeEvent{sceneName = sceneToAdd});
+
+
 
     }
 
@@ -195,6 +201,12 @@ public class SceneLoader : MonoBehaviour
             }          
     }
 
+/// <summary>
+/// Unload the current active scene which is assumed to be additive and then set another already existing scene to be the active one.
+/// </summary>
+/// <param name="unloadSceneName"></param>
+/// <param name="sceneToActivateName"></param>
+/// <returns></returns>
     IEnumerator UnloadSceneAsyncAdditive(string unloadSceneName, string sceneToActivateName)
     {
         FadeToBlack();
@@ -218,10 +230,17 @@ public class SceneLoader : MonoBehaviour
         loadingBar.gameObject.SetActive(false);
         yield return new WaitForSecondsRealtime(fadeToBlackTime);
         FadeToTransparent();
+        EventBus<SceneFinishChangeEvent>.Raise(new SceneFinishChangeEvent{sceneName = sceneToActivateName});
 
 
     }
 
+/// <summary>
+/// Unload the currently active scene and then load another scene additively which becomes the active scene.
+/// </summary>
+/// <param name="unloadSceneName"></param>
+/// <param name="nextSceneToLoad"></param>
+/// <returns></returns>
     IEnumerator UnloadSceneAdditiveThenChange(string unloadSceneName, string nextSceneToLoad)
     {
         FadeToBlack();
@@ -239,6 +258,7 @@ public class SceneLoader : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(fadeToBlackTime);
         LoadSceneAdditive(nextSceneToLoad);
+        EventBus<SceneFinishChangeEvent>.Raise(new SceneFinishChangeEvent{sceneName = nextSceneToLoad});
 
 
 

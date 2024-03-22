@@ -908,7 +908,7 @@ MonoBehaviour:
   _bufferList:
     rid: 6099647018559340584
   weaknesses: 
-  weaknessModifier: 1.5
+  weaknessModifier: 2
   resistances: 
   resistModifier: 0.5
   HPText: {fileID: 2410519452199873724}
@@ -954,10 +954,7 @@ MonoBehaviour:
     attackPayload:
       damage: 50
       attackElement: 5
-      statusEffectType: 
-      actualStatusEffects:
-      - statusEffectType: 1
-        effectStrength: 1
+      statusEffects: []
       canTriggerMark: 0
       greaterMarked: 0
       attacker: {fileID: 8889995477284966108}

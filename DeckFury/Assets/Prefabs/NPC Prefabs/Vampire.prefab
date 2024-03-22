@@ -887,7 +887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f2eb3b17365d34d967dc132f0a491f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <stageEntity>k__BackingField: {fileID: 1903802421411089551}
+  _entity: {fileID: 1903802421411089551}
   _originalPrefab: {fileID: 0}
 --- !u!1 &2503849449609434482
 GameObject:
@@ -906,6 +906,7 @@ GameObject:
   - component: {fileID: 8953453783316089301}
   - component: {fileID: 7467156849739552297}
   - component: {fileID: 1903802421411089551}
+  - component: {fileID: 4178672547502241940}
   m_Layer: 3
   m_Name: VampireObject
   m_TagString: Enemy
@@ -1118,7 +1119,7 @@ MonoBehaviour:
   fireExplosionPrefab: {fileID: 3983791032476274815, guid: df027b999d3ae624da77ed34b70eee8d, type: 3}
   MarkedForDeath: 0
   BaseStunDuration: 1.5
-  BaseMarkedDuration: 3
+  BaseMarkedDuration: 5
   BaseArmorbreakDuration: 10
   stunStrengthMod: 1
   markedStrengthMod: 1
@@ -1174,6 +1175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementEase: 4
   <worldTransform>k__BackingField: {fileID: 2503849447942824291}
+  _centerPoint: {fileID: 0}
   currentTilePosition: {x: 0, y: 0, z: 0}
   CanInitiateMovementActions: 1
   CanAct: 1
@@ -1188,7 +1190,7 @@ MonoBehaviour:
   _bufferList:
     rid: 183166750918967518
   weaknesses: 
-  weaknessModifier: 1.5
+  weaknessModifier: 2
   resistances: 
   resistModifier: 0.5
   HPText: {fileID: 1253911363}
@@ -1204,6 +1206,20 @@ MonoBehaviour:
       Data4: 1815344701
     Path: event:/Characters/RobotDamaged
   OnDeathSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  OnTakeCritDamageSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  OnResistDamageSFX:
     Guid:
       Data1: 0
       Data2: 0
@@ -1247,10 +1263,7 @@ MonoBehaviour:
   normalATKPayload:
     damage: 20
     attackElement: 0
-    statusEffectType: 01000000
-    actualStatusEffects:
-    - statusEffectType: 1
-      effectStrength: 10
+    statusEffects: []
     canTriggerMark: 0
     greaterMarked: 0
     attacker: {fileID: 0}
@@ -1260,10 +1273,7 @@ MonoBehaviour:
   strongATKPayload:
     damage: 15
     attackElement: 1
-    statusEffectType: 02000000
-    actualStatusEffects:
-    - statusEffectType: 2
-      effectStrength: 10
+    statusEffects: []
     canTriggerMark: 0
     greaterMarked: 0
     attacker: {fileID: 0}
@@ -1273,8 +1283,7 @@ MonoBehaviour:
   zombieBATKPayload:
     damage: 30
     attackElement: 2
-    statusEffectType: 
-    actualStatusEffects: []
+    statusEffects: []
     canTriggerMark: 0
     greaterMarked: 0
     attacker: {fileID: 0}
@@ -1284,8 +1293,7 @@ MonoBehaviour:
   furyATKPayload:
     damage: 10
     attackElement: 0
-    statusEffectType: 
-    actualStatusEffects: []
+    statusEffects: []
     canTriggerMark: 0
     greaterMarked: 0
     attacker: {fileID: 0}
@@ -1298,6 +1306,57 @@ MonoBehaviour:
     - rid: 183166750918967518
       type: {class: DamageBufferList, ns: , asm: Assembly-CSharp}
       data: 
+--- !u!114 &4178672547502241940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2503849449609434482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52ca3b56f4b9cc40b35988c2542bb90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entitySpawnVFX: {fileID: 0}
+  _takeCritVFX: {fileID: 0}
+  _resistDamageVFX: {fileID: 0}
+  _entitySpawnSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _entityDeathSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _entityHurtSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _entityTakeCritSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _entityResistDamageSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _markedFireExplosion: {fileID: 0}
 --- !u!1 &7782283871511555325
 GameObject:
   m_ObjectHideFlags: 0

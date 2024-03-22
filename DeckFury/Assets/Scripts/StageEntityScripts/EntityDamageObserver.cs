@@ -22,10 +22,10 @@ public class EntityDamageObserver : MonoBehaviour
     {
         _entity = GetComponentInParent<StageEntity>();
 
-        if(_entity)
+        if(_entity && TryGetComponent(out EntityResourceManager resourceManager))
         {
-            takeCritSFX = _entity.GetComponent<EntityResourceManager>().EntityTakeCritSFX;
-            resistDamageSFX = _entity.GetComponent<EntityResourceManager>().EntityResistDamageSFX;
+            takeCritSFX = resourceManager.EntityTakeCritSFX;
+            resistDamageSFX = resourceManager.EntityResistDamageSFX;
         }
 
     }

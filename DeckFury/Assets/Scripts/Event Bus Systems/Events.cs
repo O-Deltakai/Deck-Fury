@@ -82,3 +82,19 @@ public struct AchievementUnlockedEvent : IEvent
     }
 
 }
+
+/// <summary>
+/// Event used for when a scene begins to load
+/// </summary>
+public struct SceneBeginChangeEvent : IEvent
+{
+    public string sceneName;
+}
+
+/// <summary>
+/// Event used for when a scene finishes loading
+/// </summary>
+public struct SceneFinishChangeEvent : IEvent
+{
+    public string sceneName;
+}

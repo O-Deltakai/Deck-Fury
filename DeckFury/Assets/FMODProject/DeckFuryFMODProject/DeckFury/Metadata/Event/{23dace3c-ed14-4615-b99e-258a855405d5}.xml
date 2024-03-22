@@ -85,8 +85,11 @@
 	</object>
 	<object class="EventMixerMaster" id="{a1ce7431-2320-48fd-80c8-300fea562bbb}">
 		<property name="volume">
-			<value>-8.5</value>
+			<value>-10</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{d95f585d-4093-4bbc-aaa8-c98c1ac20ee5}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{107a77c8-489c-4501-9907-031fd5a568ce}</destination>
 		</relationship>
@@ -130,6 +133,14 @@
 		<relationship name="output">
 			<destination>{a1ce7431-2320-48fd-80c8-300fea562bbb}</destination>
 		</relationship>
+	</object>
+	<object class="RandomizerModulator" id="{d95f585d-4093-4bbc-aaa8-c98c1ac20ee5}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>2.5</value>
+		</property>
 	</object>
 	<object class="MixerBusEffectChain" id="{107a77c8-489c-4501-9907-031fd5a568ce}">
 		<relationship name="effects">
@@ -193,7 +204,7 @@
 			<value>10</value>
 		</property>
 		<property name="volume">
-			<value>-10</value>
+			<value>-6.5</value>
 		</property>
 		<property name="pitch">
 			<value>8</value>
@@ -211,10 +222,10 @@
 			<value>17.5</value>
 		</property>
 		<property name="volume">
-			<value>-12</value>
+			<value>-8</value>
 		</property>
 		<relationship name="modulators">
-			<destination>{2940b3bb-14cd-45c0-83c0-e25564450239}</destination>
+			<destination>{4fafa11a-003d-4e14-924e-07963178966b}</destination>
 		</relationship>
 		<relationship name="audioFile">
 			<destination>{50dc2bae-5c7d-40f5-9817-3900ea86ddb7}</destination>
@@ -239,7 +250,7 @@
 	</object>
 	<object class="SingleSound" id="{08b5ce66-ffb1-47e4-80fd-4a96777a388e}">
 		<property name="volume">
-			<value>-14</value>
+			<value>-10.5</value>
 		</property>
 		<property name="pitch">
 			<value>1.20000005</value>
@@ -278,7 +289,7 @@
 			<value>1.5</value>
 		</property>
 		<property name="highGain">
-			<value>4</value>
+			<value>6</value>
 		</property>
 	</object>
 	<object class="RandomizerModulator" id="{b151e0fe-8bba-4268-bab0-a9df84acf119}">
@@ -329,12 +340,12 @@
 			<value>1</value>
 		</property>
 	</object>
-	<object class="RandomizerModulator" id="{2940b3bb-14cd-45c0-83c0-e25564450239}">
+	<object class="RandomizerModulator" id="{4fafa11a-003d-4e14-924e-07963178966b}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>pitch</value>
 		</property>
 		<property name="amount">
-			<value>2</value>
+			<value>3</value>
 		</property>
 	</object>
 	<object class="RandomizerModulator" id="{1bfeb7ab-a719-40bd-a949-d7ff66e6ecc8}">
