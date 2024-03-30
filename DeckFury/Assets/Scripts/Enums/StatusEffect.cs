@@ -8,7 +8,8 @@ public enum StatusEffectType
     Stunned,
     Bleeding,
     Armor_Break,
-    Marked
+    Marked,
+    NotApplicable
 }
 
 [System.Serializable]

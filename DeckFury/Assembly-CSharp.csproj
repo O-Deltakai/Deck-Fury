@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\ObjectPoolManager.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Zombie\Zombie.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Card Selection System\CardIndicatorSlot.cs" />
+    <Compile Include="Assets\Samples\Newgrounds.io\2.0.2\Example\Scripts\TestSceneBehaviour.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\UnityMainThreadDispatcher.cs" />
     <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\RendererFeatures\DepthBlit\DepthBlitEdgePass.cs" />
     <Compile Include="Assets\Scripts\Enums\SceneNames.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Singleton\PersistentSingleton.cs" />
     <Compile Include="Assets\Scripts\AttackPayload.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\AdjustTimeScale.cs" />
+    <Compile Include="Assets\Samples\Newgrounds.io\2.0.2\Example\Scripts\CustomEventTest.cs" />
     <Compile Include="Assets\Scripts\Enums\StatusEffect.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\Wheel.cs" />
@@ -167,6 +169,7 @@
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\NumberExtensions.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\AbilityData.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\BGMManager.cs" />
+    <Compile Include="Assets\Samples\Newgrounds.io\2.0.2\Example\Scripts\ScoreBoard.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\MathfExtension.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\ShieldGuy\ShieldBearerController.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\Notification Controller\NotificationType.cs" />
@@ -176,12 +179,14 @@
     <Compile Include="Assets\Scripts\PathfindingScripts\Pathfinder.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\MissileStrikeEffect.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Combo Kill Announcer\KillAnnouncement.cs" />
+    <Compile Include="Assets\Samples\Newgrounds.io\2.0.2\Example\Scripts\SaveSlot.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\GameObjectExtensions.cs" />
     <Compile Include="Assets\Scripts\StageSpecificScripts\TutorialSpawnController.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\CardPoolManager.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\HPToShieldConverterItem.cs" />
     <Compile Include="Assets\Scripts\Card System\CardScripts\LongSword.cs" />
     <Compile Include="Assets\Scripts\Card System\CardScripts\PiercingShot.cs" />
+    <Compile Include="Assets\Samples\Newgrounds.io\2.0.2\Example\Scripts\MedalUnlock.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\RainOfBulletsEffect.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Leaper\Leaper.cs" />
@@ -210,6 +215,7 @@
     <Compile Include="Assets\Scripts\HelperClasses\CardinalAimSystem.cs" />
     <Compile Include="Assets\Scripts\StageEntityScripts\EntityDamageObserver.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Singleton\Singleton.cs" />
+    <Compile Include="Assets\Samples\Newgrounds.io\2.0.2\Example\Scripts\SaveMenu.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\ShieldGuy\ShieldGuy.cs" />
     <Compile Include="Assets\Scripts\Entity Buffs\HealingFactor.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\GameManager.cs" />
@@ -267,8 +273,10 @@
     <Compile Include="Assets\Scripts\Card System\CardScripts\ScissorSlash.cs" />
     <Compile Include="Assets\Scripts\Procedural Generation System\ZoneConcrete.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\IEnumeratorExtensions.cs" />
+    <Compile Include="Assets\Samples\Newgrounds.io\2.0.2\Example\Scripts\Spinner.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\LaserTurret.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\ItemBase.cs" />
+    <Compile Include="Assets\Samples\Newgrounds.io\2.0.2\Example\Scripts\SaveSlotData.cs" />
     <Compile Include="Assets\Scripts\Enums\StageType.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\FreezeMine.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\VolumetricMultiLineBehavior.cs" />
@@ -323,6 +331,7 @@
     <Compile Include="Assets\ScriptableObjects\BonusScoreItemSO.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Generic Systems\ResourceBar.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\IPoolable.cs" />
+    <Compile Include="Assets\Samples\Newgrounds.io\2.0.2\Example\Scripts\NgioAppConnector.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Leaper\LeaperAttackController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\Shooter.cs" />
@@ -356,6 +365,7 @@
     <Compile Include="Assets\ScriptableObjects\ScoreRewardTableSO.cs" />
     <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\LensFlares\Scripts\ScreenSpacePlacement.cs" />
     <Compile Include="Assets\UnityTechnologies\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
+    <Compile Include="Assets\Scripts\Card System\Card Upgrade System\CardUpgradeData.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\ObjectTags.cs" />
     <Compile Include="Assets\Scripts\Card System\CardScripts\LightningStrike.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
@@ -373,6 +383,7 @@
     <Compile Include="Assets\Scripts\ItemSystem\Item Scripts\GenericStatModItem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\Scripts\ToolScripts\ScaleBackAndForth.cs" />
+    <Compile Include="Assets\Samples\Newgrounds.io\2.0.2\Example\Scripts\TitleScreenBehaviour.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\EnemyRespawner.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\ZombieAStar\ZombieAStar.cs" />
@@ -4325,6 +4336,10 @@
       <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil@1.11.4\Mono.Cecil.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.18f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
       <Private>False</Private>
@@ -4846,6 +4861,7 @@
     <ProjectReference Include="Unity.AI.Navigation.Editor.ConversionSystem.csproj" />
     <ProjectReference Include="Unity.VSCode.Editor.csproj" />
     <ProjectReference Include="Unity.RenderPipelines.Universal.Editor.csproj" />
+    <ProjectReference Include="Newgrounds.Editor.csproj" />
     <ProjectReference Include="Unity.MemoryProfiler.csproj" />
     <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj" />
     <ProjectReference Include="Unity.EditorCoroutines.Editor.csproj" />
@@ -4870,6 +4886,7 @@
     <ProjectReference Include="Unity.Timeline.csproj" />
     <ProjectReference Include="Unity.InputSystem.csproj" />
     <ProjectReference Include="Unity.InputSystem.ForUI.csproj" />
+    <ProjectReference Include="Newgrounds.Runtime.csproj" />
     <ProjectReference Include="Unity.Serialization.csproj" />
     <ProjectReference Include="Unity.MemoryProfiler.Editor.csproj" />
     <ProjectReference Include="Unity.InternalAPIEditorBridge.001.csproj" />

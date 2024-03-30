@@ -22,12 +22,26 @@ MonoBehaviour:
   BaseDamage: 50
   <AttackElement>k__BackingField: 2
   <CardType>k__BackingField: 0
-  <StatusEffect>k__BackingField: 0
+  <oldStatusEffectType>k__BackingField: 0
   <statusEffect>k__BackingField:
     statusEffectType: 0
     effectStrength: 0
   CardTier: 2
   <QuantifiableEffects>k__BackingField: []
+  upgrades:
+  - upgradePrefix: Deadly
+    upgradeDescription: 
+    useOriginalDescription: 1
+    baseDamageOverride: 60
+    useOriginalDamage: 0
+    attackElementOverride: 7
+    useOriginalElement: 1
+    statusEffectOverride:
+      statusEffectType: 5
+      effectStrength: 0
+    useOriginalStatusEffect: 1
+    upgradeQuanitifiableEffects: []
+    targetingReticleOverride: {fileID: 0}
   CardImage: {fileID: 21300000, guid: 6f2352a9378157546af7f3ef67aa967a, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
   <UsesAnimationEvent>k__BackingField: 1
@@ -36,6 +50,7 @@ MonoBehaviour:
   - {fileID: 8612935382588771889, guid: b87fea12a191fb540a8f14e7104326da, type: 3}
   <ObjectSummonsArePooled>k__BackingField: 0
   <UseTargetingReticle>k__BackingField: 0
+  _dynamicReticle: 0
   <ReticleIsStatic>k__BackingField: 0
   <TargetingReticle>k__BackingField: {fileID: 0}
   <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}

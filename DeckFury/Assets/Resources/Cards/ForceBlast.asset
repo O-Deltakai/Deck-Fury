@@ -23,7 +23,7 @@ MonoBehaviour:
   BaseDamage: 20
   <AttackElement>k__BackingField: 5
   <CardType>k__BackingField: 0
-  <StatusEffect>k__BackingField: 1
+  <oldStatusEffectType>k__BackingField: 0
   <statusEffect>k__BackingField:
     statusEffectType: 1
     effectStrength: 1
@@ -43,6 +43,45 @@ MonoBehaviour:
     _expressionIsInt: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
+  upgrades:
+  - upgradePrefix: Huge
+    upgradeDescription: 'Blast enemies and objects in a <b><color=green>3x3</color></b>
+      area ahead, dealing <b>BD</b> damage, <b>shoving</b> them <b>Q0</b> tiles back
+      and <b><color=yellow>stunning</color></b> them for <b>Q1</b> second(s).
+
+
+      <i>Can
+      <b>reflect</b> enemy projectiles and <b>boost</b> certain friendly projectiles.</i> '
+    useOriginalDescription: 0
+    baseDamageOverride: 0
+    useOriginalDamage: 1
+    attackElementOverride: 0
+    useOriginalElement: 1
+    statusEffectOverride:
+      statusEffectType: 0
+      effectStrength: 0
+    useOriginalStatusEffect: 1
+    upgradeQuanitifiableEffects: []
+    targetingReticleOverride: {fileID: 7364548408100860759, guid: 2af39de2bf15a734897b26482d28b1d2, type: 3}
+  - upgradePrefix: Breaking
+    upgradeDescription: 'Blast enemies and objects in a <b>2x3</b> area ahead, dealing
+      <b>BD</b> damage, <b>shoving</b> them <b>Q0</b> tiles back and <b><color=yellow>stunning</color></b>
+      them for <b>Q1</b> second(s). <color=green>Hit enemies are also <b>Armor Broken</b></color>
+
+
+      <i>Can
+      <b>reflect</b> enemy projectiles and <b>boost</b> certain friendly projectiles.</i> '
+    useOriginalDescription: 0
+    baseDamageOverride: 0
+    useOriginalDamage: 1
+    attackElementOverride: 0
+    useOriginalElement: 1
+    statusEffectOverride:
+      statusEffectType: 3
+      effectStrength: 1
+    useOriginalStatusEffect: 0
+    upgradeQuanitifiableEffects: []
+    targetingReticleOverride: {fileID: 0}
   CardImage: {fileID: 21300000, guid: 8bfd4492678506d4082ee326b90d45cf, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
   <UsesAnimationEvent>k__BackingField: 1

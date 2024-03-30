@@ -25,6 +25,20 @@ MonoBehaviour:
     effectStrength: 0
   CardTier: 1
   <QuantifiableEffects>k__BackingField: []
+  upgrades:
+  - upgradePrefix: Deadly
+    upgradeDescription: 
+    useOriginalDescription: 1
+    baseDamageOverride: 100
+    useOriginalDamage: 0
+    attackElementOverride: 0
+    useOriginalElement: 1
+    statusEffectOverride:
+      statusEffectType: 0
+      effectStrength: 0
+    useOriginalStatusEffect: 1
+    upgradeQuanitifiableEffects: []
+    targetingReticleOverride: {fileID: 0}
   CardImage: {fileID: 21300000, guid: 0ad7d05259814e747bcdb06df060245f, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
   <UsesAnimationEvent>k__BackingField: 1

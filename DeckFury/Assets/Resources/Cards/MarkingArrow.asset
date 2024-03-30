@@ -19,12 +19,38 @@ MonoBehaviour:
   BaseDamage: 20
   <AttackElement>k__BackingField: 6
   <CardType>k__BackingField: 0
-  <StatusEffect>k__BackingField: 4
+  <oldStatusEffectType>k__BackingField: 0
   <statusEffect>k__BackingField:
     statusEffectType: 4
     effectStrength: 1
   CardTier: 1
   <QuantifiableEffects>k__BackingField: []
+  upgrades:
+  - upgradePrefix: Piercing
+    upgradeDescription: 'Let off an arrow that deals <b>BD</b> <b>Pure</b> damage
+      which ignores enemy''s shields and resistances, <b>marking</b> the first enemy
+      hit for death.
+
+
+      <color=green>The arrow pierces up to <b>Q0</b> enemies</color>.'
+    useOriginalDescription: 0
+    baseDamageOverride: 0
+    useOriginalDamage: 1
+    attackElementOverride: 0
+    useOriginalElement: 1
+    statusEffectOverride:
+      statusEffectType: 0
+      effectStrength: 0
+    useOriginalStatusEffect: 1
+    upgradeQuanitifiableEffects:
+    - <EffectName>k__BackingField: Number of pierces
+      <IntegerQuantity>k__BackingField: 2
+      <FloatQuantity>k__BackingField: 0
+      _expression: 
+      _expressionIsInt: 0
+      <CanBeModified>k__BackingField: 0
+      <ModCoefficient>k__BackingField: 0
+    targetingReticleOverride: {fileID: 0}
   CardImage: {fileID: 21300000, guid: b96a55e579e1bb9468f658f85487abb5, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
   <UsesAnimationEvent>k__BackingField: 1

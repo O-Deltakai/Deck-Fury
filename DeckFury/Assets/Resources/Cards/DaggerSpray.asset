@@ -24,18 +24,20 @@ MonoBehaviour:
   BaseDamage: 35
   <AttackElement>k__BackingField: 1
   <CardType>k__BackingField: 0
-  <StatusEffect>k__BackingField: 0
+  <oldStatusEffectType>k__BackingField: 0
   <statusEffect>k__BackingField:
     statusEffectType: 0
     effectStrength: 0
-  <EnergyCost>k__BackingField: 1
   CardTier: 1
   <QuantifiableEffects>k__BackingField:
   - <EffectName>k__BackingField: Number of Daggers
     <IntegerQuantity>k__BackingField: 3
     <FloatQuantity>k__BackingField: 0
+    _expression: 
+    _expressionIsInt: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
+  upgrades: []
   CardImage: {fileID: 21300000, guid: 7dc554f07fd49df41a9c9b4f37e52625, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
   <UsesAnimationEvent>k__BackingField: 1
@@ -43,6 +45,7 @@ MonoBehaviour:
   <ObjectSummonList>k__BackingField: []
   <ObjectSummonsArePooled>k__BackingField: 0
   <UseTargetingReticle>k__BackingField: 1
+  _dynamicReticle: 0
   <ReticleIsStatic>k__BackingField: 0
   <TargetingReticle>k__BackingField: {fileID: 7375573702016473279, guid: b476345a43b3ab44887b7f68a6b13dab, type: 3}
   <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}

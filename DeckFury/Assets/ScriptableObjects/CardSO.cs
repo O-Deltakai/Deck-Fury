@@ -102,6 +102,10 @@ public class CardSO : ScriptableObject
     [SerializeField, Range(1, 3)] int CardTier = 1;
     [field:SerializeField] public List<QuantifiableEffect> QuantifiableEffects {get;private set;}
 
+    [Header("Upgrades")]
+    [SerializeField] List<CardUpgradeData> upgrades;
+    public List<CardUpgradeData> Upgrades => upgrades;
+
 
 [Header("Advanced Properties")]
     [SerializeField] Sprite CardImage;
