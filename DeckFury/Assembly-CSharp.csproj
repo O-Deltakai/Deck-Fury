@@ -59,7 +59,7 @@
     <UnityVersion>2022.3.18f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\Matthew Qiu\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.0.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\Matthew Qiu\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.0.1\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.18f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.18f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
@@ -107,8 +107,8 @@
     <Compile Include="Assets\Scripts\UI Scripts\RewardMenu\RewardMenuController.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\NextCardIndicator.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Card Selection System\CardSlot.cs" />
-    <Compile Include="Assets\Scripts\HelperClasses\VectorDirections.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\MainMenuBGMController.cs" />
+    <Compile Include="Assets\Scripts\HelperClasses\VectorDirections.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\StageSelectionScripts\PracticeStageButton.cs" />
     <Compile Include="Assets\Scripts\Event Bus Systems\EventBusUtil.cs" />
@@ -167,8 +167,8 @@
     <Compile Include="Assets\Scripts\HelperClasses\UniqueFastAccessList.cs" />
     <Compile Include="Assets\Samples\Universal RP\14.0.10\URP Package Samples\SharedAssets\Scripts\AutoLoadPipelineAsset.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\NumberExtensions.cs" />
-    <Compile Include="Assets\Scripts\NPCScripts\AbilityData.cs" />
     <Compile Include="Assets\Scripts\ManagerScripts\BGMManager.cs" />
+    <Compile Include="Assets\Scripts\NPCScripts\AbilityData.cs" />
     <Compile Include="Assets\Samples\Newgrounds.io\2.0.2\Example\Scripts\ScoreBoard.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\MathfExtension.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\ShieldGuy\ShieldBearerController.cs" />
@@ -272,8 +272,8 @@
     <Compile Include="Assets\Scripts\ManagerScripts\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\Card System\CardScripts\ScissorSlash.cs" />
     <Compile Include="Assets\Scripts\Procedural Generation System\ZoneConcrete.cs" />
-    <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\IEnumeratorExtensions.cs" />
     <Compile Include="Assets\Samples\Newgrounds.io\2.0.2\Example\Scripts\Spinner.cs" />
+    <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\IEnumeratorExtensions.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\LaserTurret.cs" />
     <Compile Include="Assets\Scripts\ItemSystem\ItemBase.cs" />
     <Compile Include="Assets\Samples\Newgrounds.io\2.0.2\Example\Scripts\SaveSlotData.cs" />
@@ -413,8 +413,8 @@
     <Compile Include="Assets\Scripts\PathfindingScripts\OptimizedPriorityQueue.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\UnityUtils\Extensions\ResourcesUtils.cs" />
     <Compile Include="Assets\Scripts\PathfindingScripts\Node.cs" />
-    <Compile Include="Assets\Scripts\ManagerScripts\AchievementManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Card Selection System\CardDescriptionPanel.cs" />
+    <Compile Include="Assets\Scripts\ManagerScripts\AchievementManager.cs" />
     <Compile Include="Assets\Scripts\StageSelectionScripts\StageSelectionManager.cs" />
     <Compile Include="Assets\Scripts\HelperClasses\MapHelperFunctions.cs" />
     <Compile Include="Assets\Scripts\Finite State Machine\ITransition.cs" />
@@ -4332,12 +4332,12 @@
       <HintPath>Assets\Plugins\Animancer\Internal\Core\Animancer.Lite.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Mono.Cecil">
-      <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil@1.11.4\Mono.Cecil.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.2.1\Runtime\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil@1.11.4\Mono.Cecil.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
