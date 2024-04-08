@@ -1103,6 +1103,7 @@ GameObject:
   - component: {fileID: 1755202097211759979}
   - component: {fileID: 1755202097211759977}
   - component: {fileID: 1755202097211759978}
+  - component: {fileID: 143404719818737175}
   m_Layer: 3
   m_Name: HPText
   m_TagString: Untagged
@@ -1265,6 +1266,24 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1755202097211759977}
   m_maskType: 0
+--- !u!114 &143404719818737175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755202097211759988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8020271a855dbc48b6eb61625887459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textElement: {fileID: 1755202097211759978}
+  shakeDuration: 0.12
+  baseShakeStrength: 0.2
+  shakeVibrato: 500
+  shakeRandomness: 90
+  resetShake: 0
 --- !u!1 &1755202097329986838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1640,6 +1659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementEase: 4
   <worldTransform>k__BackingField: {fileID: 1755202097491930492}
+  _centerPoint: {fileID: 0}
   currentTilePosition: {x: 0, y: 0, z: 0}
   CanInitiateMovementActions: 1
   CanAct: 1
@@ -1692,6 +1712,7 @@ MonoBehaviour:
     Path: 
   _useUnscaledTimeForActions: 1
   CanFireBasicShot: 1
+  MaxHP: 200
   mainCamera: {fileID: 0}
   cardSelectionMenu: {fileID: 0}
   <aimpoint>k__BackingField: {fileID: 1755202098436831234}
@@ -1711,6 +1732,7 @@ MonoBehaviour:
     Path: event:/Player/PlayerBasicShot
   automoveCooldown: 0.15
   canAutoMove: 1
+  hpTextShaker: {fileID: 143404719818737175}
   references:
     version: 2
     RefIds:

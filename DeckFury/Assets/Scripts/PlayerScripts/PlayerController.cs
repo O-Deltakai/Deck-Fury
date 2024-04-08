@@ -39,6 +39,8 @@ public class PlayerController : StageEntity
     public bool CanFireBasicShot = true;
 
     PlayerDataContainer playerData;
+    public int MaxHP;
+    public float PercentHPRemaining => (float)CurrentHP / MaxHP;
     [SerializeField] Camera mainCamera;
     [SerializeField] CardSelectionMenu cardSelectionMenu;
     [field:SerializeField] public AimpointController aimpoint{get;private set;}
@@ -112,6 +114,10 @@ public class PlayerController : StageEntity
     [SerializeField] bool canAutoMove = true;
     Coroutine CR_AutomoveTimer;
 
+    //Used to make hp text shake when hp is low
+    [SerializeField] TextShaker hpTextShaker;
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -176,6 +182,14 @@ public class PlayerController : StageEntity
         }else
         {
             FacePlayerTowardsMouse();
+        }
+
+        if(PercentHPRemaining <= 0.40f)
+        {
+            hpTextShaker.StartShaking();
+        }else
+        {
+            hpTextShaker.StopShaking();
         }
 
  
@@ -798,7 +812,7 @@ public class PlayerController : StageEntity
 
     }
 
-    #endregion
+#endregion
 
     protected override void AdditionalOnHurtEvents(AttackPayload? payload = null)
     {
@@ -815,6 +829,7 @@ public class PlayerController : StageEntity
         {
             impulseSource.GenerateImpulseWithVelocity(0.2f * SettingsManager.GlobalCameraShakeMultiplier * impulseSource.m_DefaultVelocity);
         }
+
     }
 
 

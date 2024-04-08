@@ -148,7 +148,7 @@ public class SeekerAI : MonoBehaviour
     {
         Vector3Int diff = moveLocation - attacker.currentTilePosition;
         yield return attacker.TweenMove(diff.x, diff.y, movementTime, movementType);
-        float randomFloat = Random.Range(waitTime * -0.5f, waitTime * 0.4f);
+        float randomFloat = Random.Range(waitTime * -0.1f, waitTime * 0.4f);
         yield return new WaitForSeconds(waitTime + randomFloat);
         isMoving = false;
     }

@@ -228,7 +228,7 @@ public class ZombieAStar : NPC
 
     IEnumerator MovementCooldown()
     {
-        float randomFloat = UnityEngine.Random.Range(0.2f, 1f);
+        float randomFloat = UnityEngine.Random.Range(0.8f, 1f);
         yield return new WaitForSeconds(movementCooldown + randomFloat);
         canAttemptMove = true;
     }
