@@ -72,6 +72,7 @@ public class EnergyController : MonoBehaviour
 
 #endregion
 
+    EventBinding<OnWaveEndEvent> waveEndEventBinding;
 
     private void Awake() 
     {
@@ -81,6 +82,16 @@ public class EnergyController : MonoBehaviour
 
         energyMeter.SetMaxFloatValue(energyChargeTime);
 
+        //Fully recharge the energy bar when the wave ends
+        waveEndEventBinding = new EventBinding<OnWaveEndEvent>(FullyChargeBar);
+        EventBus<OnWaveEndEvent>.Register(waveEndEventBinding);
+        
+
+    }
+
+    public void FullyChargeBar()
+    {
+        energyMeter.CurrentFloatValue = energyMeter.MaxFloatValue;
     }
 
     void OnDestroy()

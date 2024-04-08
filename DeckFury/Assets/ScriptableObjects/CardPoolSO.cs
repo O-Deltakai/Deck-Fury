@@ -5,6 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Card Pool Data", menuName = "New Card Pool", order = 0)]
 public class CardPoolSO : ScriptableObject
 {
+    [SerializeField] string _poolName;
+    [SerializeField] bool autoRemoveDuplicates = true;
+
+    // List of all cards in the pool
     [SerializeField] List<CardSO> _cardPool;
     public IReadOnlyList<CardSO> CardPool { get { return _cardPool; } }
 
@@ -17,6 +21,34 @@ public class CardPoolSO : ScriptableObject
     [SerializeField] List<CardSO> _tier3Cards;
     public IReadOnlyList<CardSO> Tier3Cards { get { return _tier3Cards; } }
 
+    public void OnValidate()
+    {
+        CheckForDuplicates();
+        SortCardsByTier();
+    }
+
+    void CheckForDuplicates()
+    {
+        for (int i = 0; i < _cardPool.Count; i++)
+        {
+            for (int j = i + 1; j < _cardPool.Count; j++)
+            {
+                if (_cardPool[i] == _cardPool[j])
+                {
+                    if(autoRemoveDuplicates)
+                    {
+                        _cardPool.RemoveAt(j);
+                        j--;
+                        Debug.LogWarning("Duplicate card found in pool: " + _cardPool[i].name + " at index " + i + " and " + j + ". Removing duplicate.");
+                    
+                    }else
+                    {
+                        Debug.LogWarning("Duplicate card found in pool: " + _cardPool[i].name + " at index " + i + " and " + j + ". Leaving duplicate.");
+                    }
+                }
+            }
+        }
+    }
 
     /// <summary>
     /// Returns a random card from the pool. Can be given a System.Random for seeded randomness.

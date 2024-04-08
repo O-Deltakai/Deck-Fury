@@ -22,6 +22,7 @@ public class SpawnManager : MonoBehaviour
     public event WaveEndEventHandler OnWaveEnd;
 
 
+
     //Inputs the current round
     public delegate void RoundCounterChangeEvent(int round);
     public event RoundCounterChangeEvent OnRoundChange;
@@ -109,11 +110,16 @@ public class SpawnManager : MonoBehaviour
         if(UseSpawnTable)
         {
             OnWaveEnd += SendNextWave;
+            OnWaveEnd += RaiseWaveEndEvent;
             BeginWave();
         }
-
-
     }
+
+    void RaiseWaveEndEvent(int waveNumber)
+    {
+        EventBus<OnWaveEndEvent>.Raise(new OnWaveEndEvent{waveNumber = waveNumber});
+    }
+
 
     //Adds in all the tile positions that have been painted in the OuterSpawnZoneTilemap and InnerSpawnZoneTilemap to lists of
     //Vector3Ints for use when spawning enemies

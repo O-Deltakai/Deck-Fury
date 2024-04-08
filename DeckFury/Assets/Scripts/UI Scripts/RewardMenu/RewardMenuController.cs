@@ -64,7 +64,7 @@ public class RewardMenuController : MonoBehaviour
 
         if(StageStateController.Instance)
         {
-            if(StageStateController.Instance._stageType == StageType.EliteCombat)
+            if(StageStateController.Instance.stageType == StageType.EliteCombat)
             {
                 CreateItemReward(GetRandomItemFromResources(random));
             }

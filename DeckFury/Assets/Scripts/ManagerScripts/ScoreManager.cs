@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -28,9 +29,12 @@ public class ScoreManager : MonoBehaviour
 
     PlayerController player;
     PlayerCardManager playerCardManager;
-    PersistentLevelController levelController;
+    StageStateController levelController;
 
     public bool StopRecordingEvents = false;
+
+    [SerializeField] TextMeshProUGUI stageTimerText;
+
 
 [Header("Base Score Rewards")]
     [SerializeField] int killEnemyReward = 100; // base score reward for killing an enemy, is modified by the enemy's tier (higher tier enemies give more score)
@@ -156,6 +160,24 @@ public class ScoreManager : MonoBehaviour
     {
         if(!UseScoreManager){return;}
 
+        if(StageStateController.Instance)
+        {
+            levelController = StageStateController.Instance;
+            if(levelController.stageType == StageType.Combat || levelController.stageType == StageType.EliteCombat)
+            {
+                StopRecordingEvents = false;
+                if(stageTimerText){stageTimerText.gameObject.SetActive(true);}
+            }else
+            {
+                StopRecordingEvents = true;
+                if(stageTimerText){stageTimerText.gameObject.SetActive(false);}
+            }
+        }else
+        {
+            if(stageTimerText){stageTimerText.gameObject.SetActive(false);}
+        }
+
+
         InitializeStartingVariables();
 
 
@@ -184,15 +206,16 @@ public class ScoreManager : MonoBehaviour
 
 
 
-        TimeSpentOnStage += Time.deltaTime;    
+        TimeSpentOnStage += Time.deltaTime;
+        if(stageTimerText)
+        {
+            stageTimerText.text = TimeSpentOnStage.ToString("F1") + "s";
+        }
     }
 
 
     void InitializeStartingVariables()
     {
-
-
-        //levelController = GameErrorHandler.NullCheck(PersistentLevelController.Instance, "PersistenLevelController");
 
 
         player = GameErrorHandler.NullCheck(GameManager.Instance.player, "PlayerController");
@@ -461,7 +484,7 @@ public class ScoreManager : MonoBehaviour
         CheckApplicableBonusRewards(GlobalResourceManager.BonusScoreItems);
 
 
-        if(StageStateController.Instance._stageType == StageType.EliteCombat)
+        if(StageStateController.Instance.stageType == StageType.EliteCombat)
         {
             GlobalPlayerStatsManager.AddToPlayerPrefStat(GlobalPlayerStatsManager.StatKey.NumberOfEliteStagesCompleted, 1);
         }
@@ -475,7 +498,7 @@ public class ScoreManager : MonoBehaviour
 
     public int CalculateMoneyEarned(int score)
     {
-        if(StageStateController.Instance._stageType == StageType.EliteCombat)
+        if(StageStateController.Instance.stageType == StageType.EliteCombat)
         {
             return (int)(score * _baseMoneyMultiplier * 2f);
         }

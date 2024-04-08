@@ -85,18 +85,19 @@ public class ShopManager : MonoBehaviour
 
     void InitializeShop()
     {
-        //Placeholder for now - just gets all the cards available from the Resources folder
-        CardSO[] cardPool = GetCardsFromResources("Cards");
-        //Placeholder for now - just gets all the items available from the Resources folder
-        ItemSO[] itemPool = GetItemsFromResources("Items");
-
+        CardSO[] cardPool;
+        ItemSO[] itemPool;
 
         if(PersistentLevelController.Instance)
         {
             random = PersistentLevelController.Instance.runRandomGenerator;
+            cardPool = PersistentLevelController.Instance.RunCardPool.CardPool.ToArray();
+            itemPool = PersistentLevelController.Instance.RunItemPool.ItemPool.ToArray();
         }else
         {
             random = new System.Random();
+            cardPool = GetCardsFromResources("Cards");
+            itemPool = GetItemsFromResources("Items");
         }
 
         foreach(ShopPurchasable purchasable in purchasablesParentObject.GetComponentsInChildren<ShopPurchasable>())

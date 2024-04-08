@@ -98,3 +98,11 @@ public struct SceneFinishChangeEvent : IEvent
 {
     public string sceneName;
 }
+
+/// <summary>
+/// Used by SpawnManager to signal that a wave has ended
+/// </summary>
+public struct OnWaveEndEvent : IEvent
+{
+    public int waveNumber; //The wave number that just ended
+}
