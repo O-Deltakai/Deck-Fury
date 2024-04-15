@@ -10,36 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c923d00297c904c49922de3a336f1e5b, type: 3}
-  m_Name: SerratedSlash
+  m_Name: LightningOrb
   m_EditorClassIdentifier: 
-  <CardName>k__BackingField: Serrated Slash
-  CardDescription: Slash all targets <b>3</b> tiles ahead of you, dealing <b>BD</b>
-    damage to hit targets and inflicting <color=red><b>bleeding</b></color>.
-  BaseDamage: 40
-  <AttackElement>k__BackingField: 1
+  <CardName>k__BackingField: Lightning Orb
+  CardDescription: 'Fire off a lightning orb which deals <b>BD</b> damage and stuns
+    the first enemy hit.
+
+
+    <i>The orb can be <b>boosted</b></i>'
+  BaseDamage: 20
+  <AttackElement>k__BackingField: 4
   <CardType>k__BackingField: 0
   <oldStatusEffectType>k__BackingField: 0
   <statusEffect>k__BackingField:
-    statusEffectType: 2
+    statusEffectType: 1
     effectStrength: 1
-  CardTier: 2
+  CardTier: 1
   <QuantifiableEffects>k__BackingField: []
   upgrades: []
-  CardImage: {fileID: 21300000, guid: af0954eda7b0c6d47a691ff241df5cc0, type: 3}
+  CardImage: {fileID: 21300000, guid: ef4a69f60b427fb42a8ebe5b5bbf0da8, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
-  <UsesAnimationEvent>k__BackingField: 1
-  <EffectPrefab>k__BackingField: {fileID: 5462300724236939183, guid: 8a3b4549bcc8ee447ae04c82c77e4b7d, type: 3}
+  <UsesAnimationEvent>k__BackingField: 0
+  <EffectPrefab>k__BackingField: {fileID: 0}
   <ObjectSummonList>k__BackingField: []
   <ObjectSummonsArePooled>k__BackingField: 0
-  <UseTargetingReticle>k__BackingField: 1
+  <UseTargetingReticle>k__BackingField: 0
   _dynamicReticle: 0
   <ReticleIsStatic>k__BackingField: 0
-  <TargetingReticle>k__BackingField: {fileID: 4112342928864596503, guid: 937c24ab3fe2a9b4288381c9141079df, type: 3}
+  <TargetingReticle>k__BackingField: {fileID: 0}
   <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}
   _onActivationSFX:
     Guid:
-      Data1: -391774663
-      Data2: 1243185257
-      Data3: 1660733599
-      Data4: 1517062491
-    Path: event:/CardSFX/SwordSlash
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

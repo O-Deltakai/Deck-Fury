@@ -115,5 +115,16 @@ namespace UnityUtils {
             gameObject.layer = layer;
             gameObject.transform.ForEveryChild(child => child.gameObject.SetLayersRecursively(layer));
         }
+
+        /// <summary>
+        /// Extension method for GameObject to use enum directly in CompareTag; this is specifically only for the TagNames enum
+        /// </summary>
+        /// <param name="gameObject"></param>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public static bool CompareTag(this GameObject gameObject, TagNames tag)
+        {
+            return gameObject.CompareTag(tag.ToString());
+        }        
     }
 }

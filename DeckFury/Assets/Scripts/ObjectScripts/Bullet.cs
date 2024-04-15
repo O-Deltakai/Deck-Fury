@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityUtils;
 
 public class Bullet : MonoBehaviour, IReflectable
 {
@@ -18,7 +19,7 @@ public class Bullet : MonoBehaviour, IReflectable
     bool canGoThroughWalls = true;
 
     [SerializeField] Color bulletColor;
-    Light2D bulletLight;
+    [SerializeField] Light2D bulletLight;
 
     public bool IsReflected { get; set; } = false;
 
@@ -26,9 +27,15 @@ public class Bullet : MonoBehaviour, IReflectable
     {
         rigidBody = GetComponent<Rigidbody2D>();    
         trailRenderer = GetComponent<TrailRenderer>();
-        bulletLight = GetComponent<Light2D>();
+        if(!bulletLight)
+        {
+            bulletLight = GetComponent<Light2D>();
+        }
   
-        bulletLight.color = bulletColor;
+        if(bulletLight)
+        {
+            bulletLight.color = bulletColor;
+        }
     }
 
     void Start()
@@ -60,7 +67,7 @@ public class Bullet : MonoBehaviour, IReflectable
 
         if(team == EntityTeam.Player)
         {
-            if(other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("EnvironmentalHazard"))
+            if(other.gameObject.CompareTag(TagNames.Enemy) || other.gameObject.CompareTag(TagNames.EnvironmentalHazard))
             {
                 StageEntity entity = other.gameObject.GetComponent<StageEntity>();
                 entity.HurtEntity(attackPayload);
@@ -69,7 +76,7 @@ public class Bullet : MonoBehaviour, IReflectable
         }else
         if(team == EntityTeam.Enemy)
         {
-            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("EnvironmentalHazard")) // Added this
+            if (other.gameObject.CompareTag(TagNames.Player) || other.gameObject.CompareTag(TagNames.EnvironmentalHazard)) // Added this
             {
                 StageEntity entity = other.gameObject.GetComponent<StageEntity>();
                 entity.HurtEntity(attackPayload);
@@ -78,14 +85,14 @@ public class Bullet : MonoBehaviour, IReflectable
             }
         }else
         {//Neutral team, can damage either player or enemy
-            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("EnvironmentalHazard")) // Added this
+            if (other.gameObject.CompareTag(TagNames.Player) || other.gameObject.CompareTag(TagNames.EnvironmentalHazard)) // Added this
             {
                 StageEntity entity = other.gameObject.GetComponent<StageEntity>();
                 entity.HurtEntity(attackPayload);
                 Destroy(gameObject);            
 
             }
-            if(other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("EnvironmentalHazard"))
+            if(other.gameObject.CompareTag(TagNames.Enemy) || other.gameObject.CompareTag(TagNames.EnvironmentalHazard))
             {
                 StageEntity entity = other.gameObject.GetComponent<StageEntity>();
                 entity.HurtEntity(attackPayload);
@@ -96,7 +103,7 @@ public class Bullet : MonoBehaviour, IReflectable
 
 
 
-        if(other.gameObject.tag == "Wall" && !canGoThroughWalls)
+        if(other.gameObject.CompareTag(TagNames.Wall) && !canGoThroughWalls)
         {
             Destroy(gameObject);
         }
@@ -117,7 +124,7 @@ public class Bullet : MonoBehaviour, IReflectable
     //destroys the game object after some time.
     private IEnumerator TimedDestruction()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         Destroy(gameObject);
     }
 
