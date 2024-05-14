@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ using UnityUtils;
 
 public class Bullet : MonoBehaviour, IReflectable
 {
+
+    public Action OnImpact;
 
     public EntityTeam team = EntityTeam.Player;
     Rigidbody2D rigidBody;
@@ -62,8 +65,9 @@ public class Bullet : MonoBehaviour, IReflectable
 
 
     //Check for collision with appropriate targets
-    private void OnCollisionEnter2D(Collision2D other)
+    protected virtual void OnCollisionEnter2D(Collision2D other)
     {
+        
 
         if(team == EntityTeam.Player)
         {
@@ -71,6 +75,7 @@ public class Bullet : MonoBehaviour, IReflectable
             {
                 StageEntity entity = other.gameObject.GetComponent<StageEntity>();
                 entity.HurtEntity(attackPayload);
+                OnImpact?.Invoke();
                 Destroy(gameObject);            
             }
         }else
@@ -80,6 +85,7 @@ public class Bullet : MonoBehaviour, IReflectable
             {
                 StageEntity entity = other.gameObject.GetComponent<StageEntity>();
                 entity.HurtEntity(attackPayload);
+                OnImpact?.Invoke();
                 Destroy(gameObject);            
 
             }
@@ -89,6 +95,7 @@ public class Bullet : MonoBehaviour, IReflectable
             {
                 StageEntity entity = other.gameObject.GetComponent<StageEntity>();
                 entity.HurtEntity(attackPayload);
+                OnImpact?.Invoke();
                 Destroy(gameObject);            
 
             }
@@ -96,6 +103,7 @@ public class Bullet : MonoBehaviour, IReflectable
             {
                 StageEntity entity = other.gameObject.GetComponent<StageEntity>();
                 entity.HurtEntity(attackPayload);
+                OnImpact?.Invoke();
                 Destroy(gameObject);          
 
             }                        
@@ -105,6 +113,7 @@ public class Bullet : MonoBehaviour, IReflectable
 
         if(other.gameObject.CompareTag(TagNames.Wall) && !canGoThroughWalls)
         {
+            OnImpact?.Invoke();
             Destroy(gameObject);
         }
 

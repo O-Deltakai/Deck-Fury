@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 198988539904366251}
   - component: {fileID: 981010265534096697}
   - component: {fileID: 1973831328614924843}
+  - component: {fileID: 8304807678265356073}
+  - component: {fileID: 8186621040871121972}
   m_Layer: 0
   m_Name: ElectricBurstVFX
   m_TagString: Untagged
@@ -137,6 +139,69 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Animancer: {fileID: 198988539904366251}
   _Animation: {fileID: 7400000, guid: 24b834554e23b1e42a74658ab5e40c9b, type: 2}
+--- !u!114 &8304807678265356073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811801745160219699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ad7ea312b8d3a4c932795e215bb6ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beginCountdownOnStart: 1
+  delay: 0.4
+  useUnscaledTime: 0
+--- !u!114 &8186621040871121972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811801745160219699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b9b747d587c1b43881bfa4a49758af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightDimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0011463435
+      value: 1.0394711
+      inSlope: 0.16136566
+      outSlope: 0.16136566
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.47673815
+    - serializedVersion: 3
+      time: 0.7895321
+      value: 0.40294194
+      inSlope: -1.9560056
+      outSlope: -1.9560056
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.23520479
+      outWeight: 0.25320485
+    - serializedVersion: 3
+      time: 1.0297346
+      value: 0.0006805435
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  light2D: {fileID: 9208106770931540590}
+  duration: 0.4
+  dimOnStart: 1
 --- !u!1 &5811072038340011579
 GameObject:
   m_ObjectHideFlags: 0
