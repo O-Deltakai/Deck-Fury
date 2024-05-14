@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1219518878270390650}
   - component: {fileID: 8796362350859172443}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1095132610487866161}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.151, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 0.88
+  m_PointLightOuterRadius: 1.15
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7703975358941603312}
   - component: {fileID: 1914856872171878275}
   - component: {fileID: 1787472024331348348}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LightningOrb_Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
-  speed: 25
+  speed: 20
   velocity: {x: 0, y: 0}
   attackPayload:
     damage: 0
@@ -155,6 +155,31 @@ MonoBehaviour:
       Data3: -183188803
       Data4: 1870104544
     Path: event:/CardSFX/ShockBlast 2
+  accelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.009292603
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  accelerationDuration: 0.4
 --- !u!58 &1914856872171878275
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -230,7 +255,7 @@ GameObject:
   - component: {fileID: 6975642119238273092}
   - component: {fileID: 8266579944817852726}
   - component: {fileID: 5570386938627861997}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +388,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7357369213899918274}
   - component: {fileID: 445884019412403892}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +452,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.15
+  m_Time: 0.12
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -437,7 +462,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.5673815
+        value: 0.4828707
         inSlope: 0
         outSlope: 0
         tangentMode: 0

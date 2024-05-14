@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour, IReflectable
         }
     }
 
-    void Start()
+    protected virtual void Start()
     {
         StartCoroutine(GoThroughWallsTimer()); 
         StartCoroutine(TimedDestruction());

@@ -8,7 +8,7 @@ public class LightningOrb : CardEffect
 
     public override void ActivateCardEffect()
     {
-        LightningOrbProjectile lightningOrb = Instantiate(lightningOrbPrefab, player.currentTilePosition,
+        LightningOrbProjectile lightningOrb = Instantiate(lightningOrbPrefab, player.currentTilePosition + player.aimpoint.GetAimVector3Int(),
             new Quaternion(0, 0, (float)player.aimpoint.currentAimDirection, 0)).GetComponent<LightningOrbProjectile>();
 
         lightningOrb.attackPayload = attackPayload;
