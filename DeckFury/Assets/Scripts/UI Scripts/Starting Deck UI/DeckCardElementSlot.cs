@@ -24,6 +24,7 @@ public class DeckCardElementSlot : MonoBehaviour
     [SerializeField] Ease scaleForwardEase = Ease.OutBack;
     [SerializeField] Ease scaleBackwardEase = Ease.OutBack;
 
+
     //Tweens
     Tween scaleForwardTween;
     Tween scaleBackwardTween;
