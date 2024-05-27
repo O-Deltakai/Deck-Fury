@@ -8,6 +8,21 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerDataContainer
 {
+    /// <summary>
+    /// Enum used to specify the type of player data that is being modified
+    /// </summary>
+    public enum PlayerDataType
+    {
+        CurrentHP,
+        CurrentMoney,
+        BaseShieldHP,
+        BaseArmor,
+        BaseDefense,
+        MaxHP,
+        CurrentScore,
+        CurrentDeck
+    }
+
 
     public delegate void DataModifiedEventHandler();
     public event DataModifiedEventHandler OnPlayerDataModified;
@@ -33,6 +48,8 @@ public class PlayerDataContainer
                 _currentHP = value;
             }
             OnPlayerDataModified?.Invoke();
+            EventBus<PlayerDataModifiedEvent>.Raise(new PlayerDataModifiedEvent(this, PlayerDataType.CurrentHP));
+
         }
     
     }
@@ -52,6 +69,7 @@ public class PlayerDataContainer
                 _currentMoney = value;
             }
             OnPlayerDataModified?.Invoke();
+            EventBus<PlayerDataModifiedEvent>.Raise(new PlayerDataModifiedEvent(this, PlayerDataType.CurrentMoney));
         }
     }
 
@@ -75,8 +93,6 @@ public class PlayerDataContainer
     public int MaxHP => _maxHP;
 
     public int CurrentScore = 0;
-
-    public int CurrentStageLevelIndex = 0;
 
     [SerializeField] List<ItemBase> _items = new List<ItemBase>();
     public IReadOnlyList<ItemBase> Items => _items;
@@ -107,6 +123,7 @@ public class PlayerDataContainer
         };
         CurrentDeck.CardList.Add(deckElement);
         OnPlayerDataModified?.Invoke();
+        EventBus<PlayerDataModifiedEvent>.Raise(new PlayerDataModifiedEvent(this, PlayerDataType.CurrentDeck));
         return deckElement;
     }
 
@@ -118,13 +135,14 @@ public class PlayerDataContainer
     {
         CurrentDeck = new GameDeck(deckSO);
         OnPlayerDataModified?.Invoke();
+        EventBus<PlayerDataModifiedEvent>.Raise(new PlayerDataModifiedEvent(this, PlayerDataType.CurrentDeck));
     }
 
     public void SetBaseShieldHP(int value)
     {
         _baseShieldHP = value;
         OnPlayerDataModified?.Invoke();
-
+        EventBus<PlayerDataModifiedEvent>.Raise(new PlayerDataModifiedEvent(this, PlayerDataType.BaseShieldHP));
     }
     public void SetBaseArmor(int value)
     {
@@ -141,6 +159,7 @@ public class PlayerDataContainer
         }
 
         OnPlayerDataModified?.Invoke();
+        EventBus<PlayerDataModifiedEvent>.Raise(new PlayerDataModifiedEvent(this, PlayerDataType.BaseArmor));
 
     }
     public void SetBaseDefense(double value)
@@ -158,6 +177,7 @@ public class PlayerDataContainer
         }
 
         OnPlayerDataModified?.Invoke();
+        EventBus<PlayerDataModifiedEvent>.Raise(new PlayerDataModifiedEvent(this, PlayerDataType.BaseDefense));
 
     }
     public void SetMaxHP(int value)
@@ -176,6 +196,7 @@ public class PlayerDataContainer
         }
 
         OnPlayerDataModified?.Invoke();
+        EventBus<PlayerDataModifiedEvent>.Raise(new PlayerDataModifiedEvent(this, PlayerDataType.MaxHP));
 
     }
 

@@ -46,6 +46,8 @@ public class CardDescriptionPanel : MonoBehaviour
     Tween fadeoutTween;
     Coroutine CR_FadeoutTimer = null;
 
+    public bool disableFade = false;
+    public bool forceEnableFade = false;
 
     private void Awake() 
     {
@@ -67,6 +69,10 @@ public class CardDescriptionPanel : MonoBehaviour
                 UpdateDescription(CurrentlyViewedCardSO);
                 if(lockedIcon) lockedIcon.enabled = false;
 
+            }else
+            {
+                lockedIcon.enabled = false;
+                gameObject.SetActive(false);
             }
         }
     }
@@ -101,8 +107,22 @@ public class CardDescriptionPanel : MonoBehaviour
         if(lockedInPlace){return;}
         if(cardSlot.IsEmpty()){return;}
 
-        CardSO cardSO = cardSlot.cardObjectReference.cardSO;
+        CardSO cardSO;
+        if(cardSlot.cardObjectReference.cardSO != null)
+        {
+            cardSO = cardSlot.cardObjectReference.cardSO;
+        }else
+        {
+            cardSO = cardSlot.cardSO;
+        }
+
         CurrentlyViewedCardSO = cardSO;
+        if(cardSO == null)
+        {
+            Debug.LogError("CardSO from cardSlot is null");
+            return;
+        }
+
 
         //Set values for main panel
         textDescription.text = cardSO.GetFormattedDescription();
@@ -213,7 +233,12 @@ public class CardDescriptionPanel : MonoBehaviour
 
     public void RefreshFadeOut()
     {
-        if(!cardSelectionMenu){ return; }
+        if(!forceEnableFade)
+        {
+            if(disableFade) { return; }
+            if(!cardSelectionMenu){ return; }
+        }
+
         if(CR_FadeoutTimer != null)
         {
             StopCoroutine(CR_FadeoutTimer);
@@ -228,7 +253,11 @@ public class CardDescriptionPanel : MonoBehaviour
 
     public void BeginFadeOut()
     {
-        if(!cardSelectionMenu){ return; }
+        if(!forceEnableFade)
+        {
+            if(disableFade) { return; }
+            if(!cardSelectionMenu){ return; }
+        }
 
         if(!gameObject.activeInHierarchy) { return; }
         if(lockedInPlace) { return; }

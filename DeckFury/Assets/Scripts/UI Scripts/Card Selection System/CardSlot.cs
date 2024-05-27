@@ -12,6 +12,9 @@ public class CardSlot : MonoBehaviour
     public int slotIndex;
 
     public CardObjectReference cardObjectReference;
+    public CardSO cardSO;
+
+    public bool initializedWithCardSO {get; private set;} = false;
 
     [SerializeField] Image cardImage;
 
@@ -33,7 +36,7 @@ public class CardSlot : MonoBehaviour
     void Start()
     {
         button = GetComponent<Button>();
-        if(IsEmpty())
+        if(IsEmpty() && !initializedWithCardSO)
         {
             DisableImage();
             button.interactable = false;    
@@ -46,6 +49,17 @@ public class CardSlot : MonoBehaviour
     public void Initialize(CardObjectReference card)
     {
         if(card == null){return;}
+        ChangeCard(card);
+    }
+
+    public void Initialize(CardSO card)
+    {
+        if(card == null)
+        {
+            Debug.LogWarning("Attemtped to initialize null CardSO in CardSlot. Aborting...");    
+            return;
+        }
+        initializedWithCardSO = true;
         ChangeCard(card);
     }
 
@@ -110,6 +124,14 @@ public class CardSlot : MonoBehaviour
         UpdateImage();
     }
 
+    public void ChangeCard(CardSO otherCard)
+    {
+        cardSO = otherCard;
+        if(button) button.interactable = true;
+        UpdateImage(otherCard);
+    }
+
+
     public void ChangeCard(CardObjectReference card, bool interactable)
     {
         if(card == null){return;}
@@ -134,6 +156,14 @@ public class CardSlot : MonoBehaviour
         cardImage.sprite = cardObjectReference.cardSO.GetCardImage();
     }
 
+    public void UpdateImage(CardSO otherCardSO)
+    {
+        cardImage.sprite = otherCardSO.GetCardImage();
+        cardImage.enabled = true;
+        print("Updated image");
+
+    }
+
     public void DisableImage()
     {
         cardImage.enabled = false;
@@ -141,6 +171,17 @@ public class CardSlot : MonoBehaviour
 
     public bool IsEmpty()
     {
+        if(initializedWithCardSO)
+        {
+            if(cardSO == null)
+            {
+                return true;
+            }else
+            {
+                return false;
+            }
+        }
+
         if(cardObjectReference == null)
         {
             return true;
@@ -149,7 +190,6 @@ public class CardSlot : MonoBehaviour
         {
             return true;
         }
-
 
         return false;
     }

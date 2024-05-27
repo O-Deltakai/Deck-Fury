@@ -30,6 +30,24 @@ public class GameDeck
 {
     [field:SerializeField] public List<DeckElement> CardList {get; private set;}
 
+    /// <summary>
+    /// Total number of non-unique cards in the deck
+    /// </summary>
+    public int TotalCards {get 
+    {
+        int total = 0;
+        foreach(DeckElement deckElement in CardList)
+        {
+            total += deckElement.cardCount;
+        }
+        return total;
+    }}
+
+    /// <summary>
+    /// Total number of unique cards in the deck
+    /// </summary>
+    public int TotalUniqueCards {get => CardList.Count;}
+
     public GameDeck()
     {
         CardList = new List<DeckElement>();

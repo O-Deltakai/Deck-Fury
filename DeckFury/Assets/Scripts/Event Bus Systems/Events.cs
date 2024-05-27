@@ -106,3 +106,29 @@ public struct OnWaveEndEvent : IEvent
 {
     public int waveNumber; //The wave number that just ended
 }
+
+/// <summary>
+/// This event is raised when the player selects a starting deck at the start of a run
+/// </summary>
+public struct SelectStartingDeckEvent : IEvent
+{
+    public SelectStartingDeckEvent(DeckSO deckSO)
+    {
+        this.deckSO = deckSO;
+    }
+
+    public DeckSO deckSO;
+} 
+
+public struct PlayerDataModifiedEvent : IEvent
+{
+    public PlayerDataModifiedEvent(PlayerDataContainer playerData, PlayerDataContainer.PlayerDataType dataType)
+    {
+        this.playerData = playerData;
+        this.dataType = dataType;
+    }
+
+    public PlayerDataContainer playerData {get; private set;}
+    public PlayerDataContainer.PlayerDataType dataType {get; private set;}
+
+}

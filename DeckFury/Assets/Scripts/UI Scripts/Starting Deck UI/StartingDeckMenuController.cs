@@ -97,7 +97,14 @@ public class StartingDeckMenuController : MonoBehaviour
             persistentLevelController.PlayerData.AssignDeck(deck);
         }
 
+        RaiseDeckSelectedEvent(deck);
+
         HideMenu();
+    }
+
+    void RaiseDeckSelectedEvent(DeckSO deck)
+    {
+        EventBus<SelectStartingDeckEvent>.Raise(new SelectStartingDeckEvent(deck));
     }
 
 
