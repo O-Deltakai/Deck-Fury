@@ -31,8 +31,6 @@ public class ChangelogManager : MonoBehaviour
     [SerializeField] TextAsset changelogFile;
     [SerializeField] TextMeshProUGUI changelogText;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         if(changelogFile == null)

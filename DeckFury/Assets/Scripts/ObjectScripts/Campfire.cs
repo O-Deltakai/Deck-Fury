@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 public class Campfire : MonoBehaviour
 {
-
+    [SerializeField] Sprite campfireUnlit;
+    [SerializeField] Animator campfireAnimator;
+    [SerializeField] SpriteRenderer campfireSpriteRenderer;
     [SerializeField] GameObject contextPopup;
+
+    [SerializeField] Light2D campfireLight;
+
 
 [Range(0.1f, 1)]
     [SerializeField] double baseHealAmount;
@@ -75,6 +81,9 @@ public class Campfire : MonoBehaviour
                 }
 
                 hasHealedPlayer = true;
+                campfireAnimator.enabled = false;
+                campfireSpriteRenderer.sprite = campfireUnlit;
+                campfireLight.enabled = false;
             }
         }
 
