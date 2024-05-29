@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
 /// <summary>
 /// Manages the upgrade view in the upgrade screen
@@ -17,6 +18,13 @@ public class UpgradeViewManager : MonoBehaviour
     [SerializeField] List<CardDescriptionPanel> cardUpgradePanels = new List<CardDescriptionPanel>();
 
     public CardSO SelectedUpgradeCard{get; private set;}
+    CardDescriptionPanel SelectedUpgradePanel;
+
+    [Header("Selector Indicator Settings")]
+    [SerializeField] GameObject selectorIndicator;
+    [SerializeField] float moveSpeed = 0.1f;
+    [SerializeField] Ease easeType = Ease.OutCirc;
+    Tween currentMoveTween;
 
     void Start()
     {
@@ -26,6 +34,8 @@ public class UpgradeViewManager : MonoBehaviour
 
     public void DisplayUpgradesForCard(CardSO cardSO)
     {
+        selectorIndicator.transform.SetParent(transform);
+
         foreach (Transform child in cardUpgradePanelsParent.transform)
         {
             Destroy(child.gameObject);
@@ -35,6 +45,10 @@ public class UpgradeViewManager : MonoBehaviour
         {
             BuildNewCardUpgradePanel(upgrade);
         }
+
+        SelectedUpgradeCard = null;
+        SelectedUpgradePanel = null;
+        selectorIndicator.SetActive(false);
     }
 
     public void DisplayUpgrades()
@@ -107,7 +121,46 @@ public class UpgradeViewManager : MonoBehaviour
 
     public void SelectUpgradePanel(CardDescriptionPanel upgradePanel)
     {
+        if(SelectedUpgradePanel == upgradePanel)
+        {
+            return;
+        }
+
+        if(SelectedUpgradePanel != null)
+        {
+            ScaleBackAndForth panelScaler = SelectedUpgradePanel.gameObject.GetComponent<ScaleBackAndForth>();
+            panelScaler.Unlock();
+            panelScaler.ScaleBack();
+        }
+
+        SelectedUpgradePanel = upgradePanel;
         SelectedUpgradeCard = upgradePanel.CurrentlyViewedCardSO;
+
+        ScaleBackAndForth panelScaler2 = SelectedUpgradePanel.gameObject.GetComponent<ScaleBackAndForth>();
+        panelScaler2.LockScaleAtMax();
+        
+        MoveSelectorIndicator(SelectedUpgradePanel.gameObject);
+    }
+
+    public void MoveSelectorIndicator(Vector3 targetPosition)
+    {
+        if(currentMoveTween != null && currentMoveTween.IsActive())
+        {
+            currentMoveTween.Kill();
+        }
+        selectorIndicator.SetActive(true);
+        currentMoveTween = selectorIndicator.transform.DOMove(targetPosition, moveSpeed).SetEase(easeType);
+    }
+
+    public void MoveSelectorIndicator(GameObject targetObject)
+    {
+        if(currentMoveTween != null && currentMoveTween.IsActive())
+        {
+            currentMoveTween.Kill();
+        }
+        selectorIndicator.SetActive(true);
+        selectorIndicator.transform.SetParent(targetObject.transform);
+        currentMoveTween = selectorIndicator.transform.DOMove(targetObject.transform.position, moveSpeed).SetEase(easeType);
     }
 
 }

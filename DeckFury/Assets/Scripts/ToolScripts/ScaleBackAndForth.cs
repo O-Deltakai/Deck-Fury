@@ -26,6 +26,7 @@ public class ScaleBackAndForth : MonoBehaviour
     [Tooltip("If true, the object will scale back and forth automatically when enabled.")]
     public bool autoScale = true;
 
+    public bool locked = false;
 
     void Awake()
     {
@@ -46,8 +47,21 @@ public class ScaleBackAndForth : MonoBehaviour
         transform.localScale = _initialScale;
     }
 
+    public void LockScaleAtMax()
+    {
+        if (scaleTween.IsActive()){ scaleTween.Kill(); }
+        locked = true;
+        transform.localScale = _initialScale + new Vector3(_scaleX ? scaleAmount : 0, _scaleY ? scaleAmount : 0, 0);
+    }
+
+    public void Unlock()
+    {
+        locked = false;
+    }
+
     public void ScaleForth()
     {
+        if(locked){ return; }
         if (scaleTween.IsActive()){ scaleTween.Kill(); }
 
         Vector3 vectorScaleAmount = new(_scaleX ? scaleAmount : 0, _scaleY ? scaleAmount : 0, 0);
@@ -64,6 +78,7 @@ public class ScaleBackAndForth : MonoBehaviour
 
     public void ScaleBack()
     {
+        if(locked){ return; }
         if (scaleTween.IsActive()){ scaleTween.Kill(); }
 
         scaleTween = transform.DOScale(_initialScale, scaleDuration).SetEase(_easeType);
@@ -71,6 +86,7 @@ public class ScaleBackAndForth : MonoBehaviour
 
     void ScaleForthThenBack()
     {
+        if(locked){ return; }
         if (scaleTween.IsActive()){ scaleTween.Kill(); }
 
         Vector3 vectorScaleAmount = new(_scaleX ? scaleAmount : 0, _scaleY ? scaleAmount : 0, 0);
@@ -87,6 +103,7 @@ public class ScaleBackAndForth : MonoBehaviour
 
     void ScaleBackThenForth()
     {
+        if(locked){ return; }
         if (scaleTween.IsActive()){ scaleTween.Kill(); } 
 
         scaleTween = transform.DOScale(_initialScale, scaleDuration).SetEase(_easeType).OnComplete(ScaleForthThenBack);

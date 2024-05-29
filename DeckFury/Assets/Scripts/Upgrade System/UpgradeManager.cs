@@ -15,7 +15,7 @@ public class UpgradeManager : MonoBehaviour
     void Awake()
     {
         upgradeViewManager.selectedCardDescriptionPanel = selectedCardDescriptionPanel;
-        deckViewManager.selectedCardPanel = selectedCardDescriptionPanel;
+        deckViewManager.selectedCardDescriptionPanel = selectedCardDescriptionPanel;
     }
 
     public void OnClickUpgradeButton()

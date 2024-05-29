@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
 /// <summary>
 /// Manages the deck view in the upgrade screen
@@ -14,12 +15,19 @@ public class DeckViewManager : MonoBehaviour
     [SerializeField] GameObject cardSlotsParent;
     [SerializeField] List<CardSlot> cardSlots = new List<CardSlot>();
 
-    public CardDescriptionPanel selectedCardPanel;
+    public CardDescriptionPanel selectedCardDescriptionPanel;
 
     PersistentLevelController PLC;
 
     [SerializeField] bool stageDebugMode = false;
+    CardSlot currentlySelectedSlot;
 
+
+    [Header("Selector Indicator Settings")]
+    [SerializeField] GameObject selectorIndicator;
+    [SerializeField] float moveSpeed = 0.1f;
+    [SerializeField] Ease easeType = Ease.OutCirc;
+    Tween currentMoveTween;
     void Start()
     {
         if(stageDebugMode)
@@ -91,7 +99,8 @@ public class DeckViewManager : MonoBehaviour
         EventTrigger cardSlotEventTrigger = cardSlot.GetComponent<EventTrigger>();
 
         EventTrigger.Entry pointerClickEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerClick };
-        pointerClickEntry.callback.AddListener((data) => { selectedCardPanel.UpdateDescription(cardSlot); });
+        pointerClickEntry.callback.AddListener((data) => { selectedCardDescriptionPanel.UpdateDescription(cardSlot); });
+        pointerClickEntry.callback.AddListener((data) => { MoveSelectorIndicator(cardSlot); });
         cardSlotEventTrigger.triggers.Add(pointerClickEntry);      
 
         cardSlots.Add(cardSlot);
@@ -105,6 +114,15 @@ public class DeckViewManager : MonoBehaviour
         return cardSlot;
     }
 
+    public void MoveSelectorIndicator(CardSlot cardSlot)
+    {
+        if(currentMoveTween.IsActive())
+        {
+            currentMoveTween.Kill();
+        }
+        selectorIndicator.SetActive(true);
+        currentMoveTween = selectorIndicator.transform.DOMove(cardSlot.transform.position, moveSpeed).SetEase(easeType).SetUpdate(true);
+    }
 
 
 }
