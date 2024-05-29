@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
+using FMODUnity;
 
 /// <summary>
 /// Manages the deck view in the upgrade screen
@@ -28,6 +29,11 @@ public class DeckViewManager : MonoBehaviour
     [SerializeField] float moveSpeed = 0.1f;
     [SerializeField] Ease easeType = Ease.OutCirc;
     Tween currentMoveTween;
+
+    [Header("SFX")]
+    [SerializeField] EventReference onPointerClickSFX;
+
+
     void Start()
     {
         if(stageDebugMode)
@@ -122,6 +128,7 @@ public class DeckViewManager : MonoBehaviour
         }
         selectorIndicator.SetActive(true);
         currentMoveTween = selectorIndicator.transform.DOMove(cardSlot.transform.position, moveSpeed).SetEase(easeType).SetUpdate(true);
+        RuntimeManager.PlayOneShot(onPointerClickSFX);
     }
 
 

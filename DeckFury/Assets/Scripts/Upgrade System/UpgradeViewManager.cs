@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
+using FMODUnity;
 
 /// <summary>
 /// Manages the upgrade view in the upgrade screen
@@ -25,6 +26,11 @@ public class UpgradeViewManager : MonoBehaviour
     [SerializeField] float moveSpeed = 0.1f;
     [SerializeField] Ease easeType = Ease.OutCirc;
     Tween currentMoveTween;
+
+    [Header("SFX")]
+    [SerializeField] EventReference onPointerEnterSFX;
+    [SerializeField] EventReference onPointerExitSFX;
+    [SerializeField] EventReference onPointerClickSFX;
 
     void Start()
     {
@@ -110,12 +116,14 @@ public class UpgradeViewManager : MonoBehaviour
     {
         ScaleBackAndForth panelScaler = upgradePanel.gameObject.GetComponent<ScaleBackAndForth>();
         panelScaler.ScaleForth();
+        RuntimeManager.PlayOneShot(onPointerEnterSFX);
     }
 
     public void PonterExitUpgradePanel(CardDescriptionPanel upgradePanel)
     {
         ScaleBackAndForth panelScaler = upgradePanel.gameObject.GetComponent<ScaleBackAndForth>();
         panelScaler.ScaleBack();
+        //RuntimeManager.PlayOneShot(onPointerExitSFX);
     }
 
 
@@ -140,6 +148,8 @@ public class UpgradeViewManager : MonoBehaviour
         panelScaler2.LockScaleAtMax();
         
         MoveSelectorIndicator(SelectedUpgradePanel.gameObject);
+
+        RuntimeManager.PlayOneShot(onPointerClickSFX);
     }
 
     public void MoveSelectorIndicator(Vector3 targetPosition)
@@ -160,6 +170,7 @@ public class UpgradeViewManager : MonoBehaviour
         }
         selectorIndicator.SetActive(true);
         selectorIndicator.transform.SetParent(targetObject.transform);
+        selectorIndicator.transform.SetAsFirstSibling();
         currentMoveTween = selectorIndicator.transform.DOMove(targetObject.transform.position, moveSpeed).SetEase(easeType);
     }
 

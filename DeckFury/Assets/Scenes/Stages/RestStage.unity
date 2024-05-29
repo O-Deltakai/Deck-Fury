@@ -949,7 +949,7 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 1
+  m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
@@ -5908,6 +5908,27 @@ MonoBehaviour:
   selectorIndicator: {fileID: 134693895}
   moveSpeed: 0.1
   easeType: 21
+  onPointerEnterSFX:
+    Guid:
+      Data1: 2016139575
+      Data2: 1204759029
+      Data3: -860394613
+      Data4: -214855874
+    Path: event:/UIEvents/ButtonHover
+  onPointerExitSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  onPointerClickSFX:
+    Guid:
+      Data1: 1068972814
+      Data2: 1124855550
+      Data3: -1368565853
+      Data4: 2026942749
+    Path: event:/UIEvents/UIClick_1
 --- !u!1 &1869139242
 GameObject:
   m_ObjectHideFlags: 0
@@ -6006,6 +6027,13 @@ MonoBehaviour:
   selectorIndicator: {fileID: 1999161830}
   moveSpeed: 0.1
   easeType: 21
+  onPointerClickSFX:
+    Guid:
+      Data1: -1402921670
+      Data2: 1252174870
+      Data3: 1546873261
+      Data4: 915889600
+    Path: event:/UIEvents/UIClickCard
 --- !u!1 &1936508828
 GameObject:
   m_ObjectHideFlags: 0
