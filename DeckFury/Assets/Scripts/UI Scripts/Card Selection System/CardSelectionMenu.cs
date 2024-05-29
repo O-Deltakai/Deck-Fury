@@ -294,9 +294,13 @@ public class CardSelectionMenu : MonoBehaviour
         //Randomization of card hand logic
 
         List<CardObjectReference> tempDeck = new List<CardObjectReference>();
-        foreach(CardObjectReference card in currentDeck)
+        foreach(CardObjectReference cardReference in currentDeck)
         {
-            tempDeck.Add(card);
+            if(cardReference.invisible)
+            {
+                continue;
+            }
+            tempDeck.Add(cardReference);
         }
 
         foreach(CardSlot cardSlot in selectableCardSlots)

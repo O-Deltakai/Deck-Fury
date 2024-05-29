@@ -9,6 +9,8 @@ using UnityEngine.UI;
 //Panel that pops up when the user hovers over card slot - should display information on the card like its name, damage and description
 public class CardDescriptionPanel : MonoBehaviour
 {
+    public event Action OnCardUpdated;
+
     [SerializeField] CardSelectionMenu cardSelectionMenu;
     [SerializeField] CardUIIconSO cardUIIcons;
 
@@ -116,6 +118,12 @@ public class CardDescriptionPanel : MonoBehaviour
             cardSO = cardSlot.cardSO;
         }
 
+        bool updatedCard = false;
+        if(CurrentlyViewedCardSO != cardSO)
+        {
+            updatedCard = true;
+        }
+
         CurrentlyViewedCardSO = cardSO;
         if(cardSO == null)
         {
@@ -155,11 +163,20 @@ public class CardDescriptionPanel : MonoBehaviour
         }
         RefreshFadeOut();
         gameObject.SetActive(true);
+
+        if(updatedCard)
+        {
+            OnCardUpdated?.Invoke();
+        }
     }
     //Overload for taking in just a specific CardSO
     public void UpdateDescription(CardSO cardSO)
     {
-
+        bool updatedCard = false;
+        if(CurrentlyViewedCardSO != cardSO)
+        {
+            updatedCard = true;
+        }
         CurrentlyViewedCardSO = cardSO;
 
         //Set values for main panel
@@ -192,6 +209,11 @@ public class CardDescriptionPanel : MonoBehaviour
         }
         RefreshFadeOut();
         gameObject.SetActive(true);
+
+        if(updatedCard)
+        {
+            OnCardUpdated?.Invoke();
+        }
     }
 
 

@@ -24,6 +24,7 @@ public class CardPoolManager : MonoBehaviour
 
 
     [SerializeField] DeckSO defaultDeck;
+    public DeckSO DefaultDeck => defaultDeck;
 
     GameDeck currentActiveDeck;
 
@@ -154,6 +155,7 @@ public class CardPoolManager : MonoBehaviour
         }
         PooledObjects.Clear();
     }
+
 
     /// <summary>
     /// Adds a single deck element to the object pool

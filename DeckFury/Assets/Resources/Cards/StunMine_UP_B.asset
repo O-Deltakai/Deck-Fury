@@ -10,22 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c923d00297c904c49922de3a336f1e5b, type: 3}
-  m_Name: StunMine
+  m_Name: StunMine_UP_B
   m_EditorClassIdentifier: 
-  <CardName>k__BackingField: Stun Mine
-  CardDescription: 'Set a mine 1 tile ahead which explodes in a <b>3x3</b> area upon
-    contact with an enemy, dealing <b>BD</b> damage and <b><color=yellow>stunning</color></b>
-    all targets in the area. The enemy that triggered the mine takes an additional
-    <b>BD</b> damage.
-
-
-    The mine explodes after <b>Q0</b> seconds if not triggered.'
+  <CardName>k__BackingField: Proximity Mine
+  CardDescription: "Set a mine 1 tile ahead which explodes in a <b>3x3</b> area upon
+    detecting an adjacent enemy, dealing <b>BD</b> damage and inflicting <b><color=red>bleed</color></b>
+    to all targets in the area. \n\nThe mine explodes after <b>Q0</b> seconds if
+    not triggered."
   BaseDamage: 50
   <AttackElement>k__BackingField: 0
   <CardType>k__BackingField: 0
   <oldStatusEffectType>k__BackingField: 0
   <statusEffect>k__BackingField:
-    statusEffectType: 1
+    statusEffectType: 2
     effectStrength: 1
   CardTier: 1
   <QuantifiableEffects>k__BackingField:
@@ -36,9 +33,7 @@ MonoBehaviour:
     _expressionIsInt: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
-  upgrades:
-  - _upgradedCard: {fileID: 11400000, guid: 51b364ec46e74a141ba3ce6098009c52, type: 2}
-  - _upgradedCard: {fileID: 11400000, guid: 9457476b7f36a7d4a93aa925543cd4d9, type: 2}
+  upgrades: []
   CardImage: {fileID: 21300000, guid: 7c79a44f7ab54a3419eb7d230524bd96, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
   <UsesAnimationEvent>k__BackingField: 1

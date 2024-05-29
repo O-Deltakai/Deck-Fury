@@ -10,23 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c923d00297c904c49922de3a336f1e5b, type: 3}
-  m_Name: ShockBlast
+  m_Name: ShockBlast_UP_B
   m_EditorClassIdentifier: 
-  <CardName>k__BackingField: Shock Blast
+  <CardName>k__BackingField: Stunning Shock Blast
   CardDescription: Fire a shock blast that hits a <b>3x3</b> square in front of you
-    that deals <b>BD</b> damage to all enemies in the area.
-  BaseDamage: 50
+    that stuns and deals <b>BD</b> damage to all enemies in the area.
+  BaseDamage: 25
   <AttackElement>k__BackingField: 4
   <CardType>k__BackingField: 0
   <oldStatusEffectType>k__BackingField: 0
   <statusEffect>k__BackingField:
-    statusEffectType: 0
-    effectStrength: 0
+    statusEffectType: 1
+    effectStrength: 1
   CardTier: 1
   <QuantifiableEffects>k__BackingField: []
-  upgrades:
-  - _upgradedCard: {fileID: 11400000, guid: bf222e96c94c2234f930fb627fe3b04d, type: 2}
-  - _upgradedCard: {fileID: 11400000, guid: 7a38ef47d1c3c3b4f88cd8018e6c72e7, type: 2}
+  upgrades: []
   CardImage: {fileID: 21300000, guid: 3afe75708cae6254a9015196cab9824d, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
   <UsesAnimationEvent>k__BackingField: 1

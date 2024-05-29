@@ -16,6 +16,10 @@ public class CardObjectReference
     //meant to be on the menu.
     public CardSlot cardSlot;
 
+    /// <summary>
+    /// If true, the card will not show up in the card selection menu.
+    /// </summary>
+    public bool invisible = false;
 
     public void ClearReferences()
     {

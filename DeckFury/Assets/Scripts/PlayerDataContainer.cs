@@ -127,6 +127,25 @@ public class PlayerDataContainer
         return deckElement;
     }
 
+    public void RemoveCardFromDeck(CardSO card, int amountToRemove)
+    {
+        DeckElement deckElement = CurrentDeck.CardList.Find(x => x.card == card);
+        if(deckElement != null)
+        {
+            deckElement.cardCount -= amountToRemove;
+            if(deckElement.cardCount <= 0)
+            {
+                CurrentDeck.CardList.Remove(deckElement);
+            }
+            OnPlayerDataModified?.Invoke();
+            EventBus<PlayerDataModifiedEvent>.Raise(new PlayerDataModifiedEvent(this, PlayerDataType.CurrentDeck));
+        }else
+        {
+            Debug.LogWarning("Tried to remove card: " + card.CardName + " from deck, but it was not found in the deck");
+        }
+    }
+
+
     /// <summary>
     /// Assigns a new deckSO to the player's current deck, clearing the current deck and adding the cards from the deckSO
     /// </summary>

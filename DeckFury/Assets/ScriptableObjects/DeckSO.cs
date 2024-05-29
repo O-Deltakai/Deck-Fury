@@ -15,6 +15,20 @@ public class DeckSO : ScriptableObject
     public string DeckName;
     [field:SerializeField] public List<DeckElement> CardList {get; private set;}
 
+    public List<DeckElement> GetUpgradableCards()
+    {
+        List<DeckElement> upgradableCards = new List<DeckElement>();
+        foreach(DeckElement deckElement in CardList)
+        {
+            if(deckElement.card.HasUpgrades)
+            {
+                upgradableCards.Add(deckElement);
+            }
+        }
+        return upgradableCards;
+    }
+
+
     [SerializeField] List<StatUnlockCondition> _unlockConditions;
     public IReadOnlyList<StatUnlockCondition> UnlockConditions => _unlockConditions;
 
@@ -43,10 +57,36 @@ public class GameDeck
         return total;
     }}
 
+    public int TotalUpgradableCards {get 
+    {
+        int total = 0;
+        foreach(DeckElement deckElement in CardList)
+        {
+            if(deckElement.card.HasUpgrades)
+            {
+                total += deckElement.cardCount;
+            }
+        }
+        return total;
+    }}
+
     /// <summary>
     /// Total number of unique cards in the deck
     /// </summary>
     public int TotalUniqueCards {get => CardList.Count;}
+
+    public List<DeckElement> GetUpgradableCards()
+    {
+        List<DeckElement> upgradableCards = new List<DeckElement>();
+        foreach(DeckElement deckElement in CardList)
+        {
+            if(deckElement.card.HasUpgrades)
+            {
+                upgradableCards.Add(deckElement);
+            }
+        }
+        return upgradableCards;
+    }
 
     public GameDeck()
     {

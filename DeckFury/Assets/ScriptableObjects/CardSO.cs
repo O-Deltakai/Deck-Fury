@@ -105,6 +105,7 @@ public class CardSO : ScriptableObject
     [Header("Upgrades")]
     [SerializeField] List<CardUpgradeData> upgrades;
     public List<CardUpgradeData> Upgrades => upgrades;
+    public bool HasUpgrades => upgrades.Count > 0;
 
 
 [Header("Advanced Properties")]
