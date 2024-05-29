@@ -106,7 +106,7 @@ public class UpgradeViewManager : MonoBehaviour
         panelScaler.StopScaling();
         panelScaler.scaleAmount = 0.1f;
         panelScaler.scaleDuration = 0.1f;
-        panelScaler._easeType = DG.Tweening.Ease.InOutSine;
+        panelScaler.easeType = Ease.InOutSine;
 
         cardUpgradePanels.Add(upgradePanel);
         
@@ -159,7 +159,7 @@ public class UpgradeViewManager : MonoBehaviour
             currentMoveTween.Kill();
         }
         selectorIndicator.SetActive(true);
-        currentMoveTween = selectorIndicator.transform.DOMove(targetPosition, moveSpeed).SetEase(easeType);
+        currentMoveTween = selectorIndicator.transform.DOMove(targetPosition, moveSpeed).SetEase(easeType).SetUpdate(true);
     }
 
     public void MoveSelectorIndicator(GameObject targetObject)
@@ -171,7 +171,7 @@ public class UpgradeViewManager : MonoBehaviour
         selectorIndicator.SetActive(true);
         selectorIndicator.transform.SetParent(targetObject.transform);
         selectorIndicator.transform.SetAsFirstSibling();
-        currentMoveTween = selectorIndicator.transform.DOMove(targetObject.transform.position, moveSpeed).SetEase(easeType);
+        currentMoveTween = selectorIndicator.transform.DOMove(targetObject.transform.position, moveSpeed).SetEase(easeType).SetUpdate(true);
     }
 
 }

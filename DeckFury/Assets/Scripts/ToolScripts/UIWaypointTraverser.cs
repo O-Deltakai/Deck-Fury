@@ -11,20 +11,25 @@ public class UIWaypointTraverser : MonoBehaviour
     {
         public string name;
         public Vector2 position;
+        public bool useCustomEase;
+        public Ease customEase;
         public bool setStateAtStart;
         public bool activeState;
     }
 
 
-    [SerializeField] List<Waypoint> waypoints;
-    [SerializeField] float tweenDuration = 1f;
-    [SerializeField] Ease tweenEase = Ease.Linear;
+    public List<Waypoint> waypoints;
+    public float tweenDuration = 1f;
+    public Ease tweenEase = Ease.Linear;
+    public bool ignoreTimeScale = true;
 
     int currentWaypointIndex = 0;
 
     RectTransform rectTransform;
 
     Tween currentTween;
+
+
 
     void Awake()
     {
@@ -59,12 +64,21 @@ public class UIWaypointTraverser : MonoBehaviour
         if(waypoints[waypointIndex].setStateAtStart)
         {
             gameObject.SetActive(waypoints[waypointIndex].activeState);
-            currentTween = transform.DOLocalMove(waypoints[waypointIndex].position, tweenDuration).SetEase(tweenEase);
+            currentTween = transform.DOLocalMove(waypoints[waypointIndex].position, tweenDuration).SetUpdate(ignoreTimeScale);
         }else
         {
-            currentTween = transform.DOLocalMove(waypoints[waypointIndex].position, tweenDuration).SetEase(tweenEase)
-            .OnComplete(() => gameObject.SetActive(waypoints[waypointIndex].activeState));
+            currentTween = transform.DOLocalMove(waypoints[waypointIndex].position, tweenDuration)
+            .OnComplete(() => gameObject.SetActive(waypoints[waypointIndex].activeState)).SetUpdate(ignoreTimeScale);
         }
+
+        if(waypoints[waypointIndex].useCustomEase)
+        {
+            currentTween.SetEase(waypoints[waypointIndex].customEase);
+        }else
+        {
+            currentTween.SetEase(tweenEase);
+        }
+
     }
 
     public void CycleWaypoint()
@@ -103,11 +117,21 @@ public class UIWaypointTraverser : MonoBehaviour
         if(waypoint.setStateAtStart)
         {
             gameObject.SetActive(waypoint.activeState);
-            currentTween = transform.DOLocalMove(waypoint.position, tweenDuration).SetEase(tweenEase);
+            currentTween = transform.DOLocalMove(waypoint.position, tweenDuration).SetUpdate(ignoreTimeScale);
         }else
         {
-            currentTween = transform.DOLocalMove(waypoint.position, tweenDuration).SetEase(tweenEase).OnComplete(() => gameObject.SetActive(waypoint.activeState));
+            currentTween = transform.DOLocalMove(waypoint.position, tweenDuration).OnComplete(() => gameObject.SetActive(waypoint.activeState))
+            .SetUpdate(ignoreTimeScale);
         }
+
+        if(waypoint.useCustomEase)
+        {
+            currentTween.SetEase(waypoint.customEase);
+        }else
+        {
+            currentTween.SetEase(tweenEase);
+        }
+
 
     }
 

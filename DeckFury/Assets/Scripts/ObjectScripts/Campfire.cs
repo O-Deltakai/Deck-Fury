@@ -19,6 +19,8 @@ public class Campfire : MonoBehaviour
 
     public bool hasHealedPlayer = false;
 
+    public bool playerInRange = false;
+
     private void Awake() 
     {
         contextPopup.SetActive(false);    
@@ -35,8 +37,11 @@ public class Campfire : MonoBehaviour
     {
         if(Keyboard.current.eKey.wasPressedThisFrame)
         {
-            HealPlayer();
-            contextPopup.SetActive(false);
+            if(playerInRange)
+            {
+                HealPlayer();
+                contextPopup.SetActive(false);
+            }
         }        
     }
 
@@ -46,6 +51,7 @@ public class Campfire : MonoBehaviour
 
         if (other.CompareTag(TagNames.Player.ToString()))
         {
+            playerInRange = true;
             contextPopup.SetActive(true);
         }
 
@@ -55,6 +61,7 @@ public class Campfire : MonoBehaviour
     {
         if (other.CompareTag(TagNames.Player.ToString()))
         {
+            playerInRange = false;
             contextPopup.SetActive(false);
         }            
     }

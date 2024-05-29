@@ -400,13 +400,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56682367}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1749745982}
-  m_Father: {fileID: 1383446662}
+  m_Father: {fileID: 2039355472}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -891,12 +891,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleDuration: 0.5
   scaleAmount: 0.04
-  _multiplyScale: 0
-  _scaleX: 1
-  _scaleY: 1
-  _easeType: 4
+  multiplyScale: 0
+  scaleX: 1
+  scaleY: 1
+  easeType: 1
   autoScale: 1
   locked: 0
+  ignoreTimeScale: 1
 --- !u!114 &134693898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1940,12 +1941,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574596130}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1383446662}
+  m_Father: {fileID: 2039355472}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2507,6 +2508,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 814237814}
+  - component: {fileID: 814237815}
+  - component: {fileID: 814237816}
   m_Layer: 0
   m_Name: Anvil
   m_TagString: Untagged
@@ -2531,6 +2534,65 @@ Transform:
   - {fileID: 401713403}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &814237815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814237813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60793e1e97aaad9419bb7c6ab85260d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeManager: {fileID: 871573416}
+  contextPopup: {fileID: 26153784}
+--- !u!61 &814237816
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814237813}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.49813783}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.9962757}
+  m_EdgeRadius: 0
 --- !u!1 &840259519
 GameObject:
   m_ObjectHideFlags: 0
@@ -2702,6 +2764,12 @@ MonoBehaviour:
   selectedCardDescriptionPanel: {fileID: 2146986421}
   <UpgradeCardButton>k__BackingField: {fileID: 56682369}
   cancelButton: {fileID: 1735872977}
+  deckViewWaypointTraverser: {fileID: 1869139247}
+  upgradeViewWaypointTraverser: {fileID: 1866324412}
+  centerUIWaypointTraverser: {fileID: 2039355473}
+  dimmingPanel: {fileID: 1780756091}
+  upgradeCanvas: {fileID: 1383446661}
+  upgradeCanvasGraphicRaycaster: {fileID: 1383446659}
 --- !u!43 &903079687
 Mesh:
   m_ObjectHideFlags: 0
@@ -3826,11 +3894,7 @@ RectTransform:
   - {fileID: 871573415}
   - {fileID: 1869139243}
   - {fileID: 1866324408}
-  - {fileID: 2146986420}
-  - {fileID: 56682368}
-  - {fileID: 1735872976}
-  - {fileID: 574596131}
-  - {fileID: 1999161831}
+  - {fileID: 2039355472}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5070,13 +5134,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735872975}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2143904696}
-  m_Father: {fileID: 1383446662}
+  m_Father: {fileID: 2039355472}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5541,7 +5605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.4}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5822,6 +5886,7 @@ GameObject:
   - component: {fileID: 1866324410}
   - component: {fileID: 1866324409}
   - component: {fileID: 1866324411}
+  - component: {fileID: 1866324412}
   m_Layer: 0
   m_Name: UpgradeViewPanel
   m_TagString: Untagged
@@ -5848,7 +5913,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 637.08, y: 0}
+  m_AnchoredPosition: {x: 637, y: 0}
   m_SizeDelta: {x: 645.8306, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1866324409
@@ -5929,6 +5994,34 @@ MonoBehaviour:
       Data3: -1368565853
       Data4: 2026942749
     Path: event:/UIEvents/UIClick_1
+--- !u!114 &1866324412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866324407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f28bc7f954e0004f9adf29f3ba79a29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints:
+  - name: In view
+    position: {x: 637, y: 0}
+    useCustomEase: 1
+    customEase: 27
+    setStateAtStart: 1
+    activeState: 1
+  - name: Out of view
+    position: {x: 1300, y: 0}
+    useCustomEase: 1
+    customEase: 26
+    setStateAtStart: 0
+    activeState: 0
+  tweenDuration: 0.3
+  tweenEase: 4
+  ignoreTimeScale: 1
 --- !u!1 &1869139242
 GameObject:
   m_ObjectHideFlags: 0
@@ -5941,6 +6034,7 @@ GameObject:
   - component: {fileID: 1869139245}
   - component: {fileID: 1869139244}
   - component: {fileID: 1869139246}
+  - component: {fileID: 1869139247}
   m_Layer: 0
   m_Name: DeckViewPanel
   m_TagString: Untagged
@@ -5962,11 +6056,12 @@ RectTransform:
   m_Children:
   - {fileID: 923397768}
   - {fileID: 238579941}
+  - {fileID: 1999161831}
   m_Father: {fileID: 1383446662}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -637.08, y: 0.00021362}
+  m_AnchoredPosition: {x: -637, y: 0}
   m_SizeDelta: {x: 645.8306, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1869139244
@@ -6034,6 +6129,34 @@ MonoBehaviour:
       Data3: 1546873261
       Data4: 915889600
     Path: event:/UIEvents/UIClickCard
+--- !u!114 &1869139247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869139242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f28bc7f954e0004f9adf29f3ba79a29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints:
+  - name: In view
+    position: {x: -637, y: 0}
+    useCustomEase: 1
+    customEase: 27
+    setStateAtStart: 1
+    activeState: 1
+  - name: Out of view
+    position: {x: -1300, y: 0}
+    useCustomEase: 1
+    customEase: 26
+    setStateAtStart: 0
+    activeState: 0
+  tweenDuration: 0.3
+  tweenEase: 4
+  ignoreTimeScale: 1
 --- !u!1 &1936508828
 GameObject:
   m_ObjectHideFlags: 0
@@ -6421,6 +6544,7 @@ GameObject:
   - component: {fileID: 1999161834}
   - component: {fileID: 1999161833}
   - component: {fileID: 1999161832}
+  - component: {fileID: 1999161835}
   m_Layer: 0
   m_Name: SelectCardIndicator
   m_TagString: Untagged
@@ -6435,16 +6559,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999161830}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1383446662}
+  m_Father: {fileID: 1869139243}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -872.76, y: 373.3}
+  m_AnchoredPosition: {x: -235.76001, y: 373.3}
   m_SizeDelta: {x: 174.4729, y: 174.4729}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1999161832
@@ -6461,12 +6585,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleDuration: 0.5
   scaleAmount: 0.1
-  _multiplyScale: 0
-  _scaleX: 1
-  _scaleY: 1
-  _easeType: 4
+  multiplyScale: 0
+  scaleX: 1
+  scaleY: 1
+  easeType: 4
   autoScale: 1
   locked: 0
+  ignoreTimeScale: 1
 --- !u!114 &1999161833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6483,7 +6608,7 @@ MonoBehaviour:
   m_Color: {r: 0, g: 0.9573493, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6505,6 +6630,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999161830}
   m_CullTransparentMesh: 1
+--- !u!223 &1999161835
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999161830}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 2
+  m_TargetDisplay: 0
 --- !u!43 &2015436297
 Mesh:
   m_ObjectHideFlags: 0
@@ -6670,6 +6818,74 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &2039355471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2039355472}
+  - component: {fileID: 2039355473}
+  m_Layer: 0
+  m_Name: Center UI Elements
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2039355472
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039355471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2146986420}
+  - {fileID: 56682368}
+  - {fileID: 1735872976}
+  - {fileID: 574596131}
+  m_Father: {fileID: 1383446662}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2039355473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039355471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f28bc7f954e0004f9adf29f3ba79a29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints:
+  - name: In view
+    position: {x: 0, y: 0}
+    useCustomEase: 1
+    customEase: 27
+    setStateAtStart: 1
+    activeState: 1
+  - name: Out of view
+    position: {x: 0, y: -1000}
+    useCustomEase: 1
+    customEase: 26
+    setStateAtStart: 0
+    activeState: 0
+  tweenDuration: 0.25
+  tweenEase: 4
+  ignoreTimeScale: 1
 --- !u!1 &2047684875 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2047684875, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}
@@ -7046,7 +7262,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1383446662}
+    m_TransformParent: {fileID: 2039355472}
     m_Modifications:
     - target: {fileID: 1146255196480403732, guid: 5a3fa75786537a24aa00b36915e7541d, type: 3}
       propertyPath: m_OverrideSorting

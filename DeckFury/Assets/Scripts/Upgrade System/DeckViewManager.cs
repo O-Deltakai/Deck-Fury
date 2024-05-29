@@ -55,6 +55,9 @@ public class DeckViewManager : MonoBehaviour
 
     void InitializeCardSlots()
     {
+        selectorIndicator.transform.SetParent(transform);
+        selectorIndicator.SetActive(false);
+
         foreach (Transform child in cardSlotsParent.transform)
         {
             Destroy(child.gameObject);
@@ -127,6 +130,10 @@ public class DeckViewManager : MonoBehaviour
             currentMoveTween.Kill();
         }
         selectorIndicator.SetActive(true);
+
+        selectorIndicator.transform.SetParent(cardSlot.transform);
+        selectorIndicator.transform.SetAsFirstSibling();
+
         currentMoveTween = selectorIndicator.transform.DOMove(cardSlot.transform.position, moveSpeed).SetEase(easeType).SetUpdate(true);
         RuntimeManager.PlayOneShot(onPointerClickSFX);
     }
