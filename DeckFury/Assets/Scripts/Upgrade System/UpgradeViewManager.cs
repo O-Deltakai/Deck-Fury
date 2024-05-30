@@ -5,12 +5,15 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
 using FMODUnity;
+using System;
 
 /// <summary>
 /// Manages the upgrade view in the upgrade screen
 /// </summary>
 public class UpgradeViewManager : MonoBehaviour
 {
+    public event Action OnUpgradeCardSelected;
+
     [SerializeField] GameObject cardUpgradePanelPrefab;
     [SerializeField] GameObject cardUpgradePanelsParent;
 
@@ -150,6 +153,8 @@ public class UpgradeViewManager : MonoBehaviour
         MoveSelectorIndicator(SelectedUpgradePanel.gameObject);
 
         RuntimeManager.PlayOneShot(onPointerClickSFX);
+
+        OnUpgradeCardSelected?.Invoke();
     }
 
     public void MoveSelectorIndicator(Vector3 targetPosition)

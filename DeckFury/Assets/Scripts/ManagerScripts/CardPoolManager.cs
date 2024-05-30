@@ -156,6 +156,14 @@ public class CardPoolManager : MonoBehaviour
         PooledObjects.Clear();
     }
 
+    /// <summary>
+    /// Sets the first found given CardSO in the CardObjectReference list to invisible, so that it will not be displayed in the card selection menu.
+    /// </summary>
+    /// <param name="cardSO"></param>
+    public void SetCardReferenceInvisible(CardSO cardSO)
+    {
+        CardObjectReferences.Find(x => x.cardSO == cardSO).invisible = true;
+    }
 
     /// <summary>
     /// Adds a single deck element to the object pool

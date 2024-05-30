@@ -5887,6 +5887,7 @@ GameObject:
   - component: {fileID: 1866324409}
   - component: {fileID: 1866324411}
   - component: {fileID: 1866324412}
+  - component: {fileID: 1866324413}
   m_Layer: 0
   m_Name: UpgradeViewPanel
   m_TagString: Untagged
@@ -6022,6 +6023,20 @@ MonoBehaviour:
   tweenDuration: 0.3
   tweenEase: 4
   ignoreTimeScale: 1
+  initializeMode: 2
+  initialWaypointIndex: 0
+--- !u!225 &1866324413
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866324407}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1869139242
 GameObject:
   m_ObjectHideFlags: 0
@@ -6035,6 +6050,7 @@ GameObject:
   - component: {fileID: 1869139244}
   - component: {fileID: 1869139246}
   - component: {fileID: 1869139247}
+  - component: {fileID: 1869139248}
   m_Layer: 0
   m_Name: DeckViewPanel
   m_TagString: Untagged
@@ -6157,6 +6173,20 @@ MonoBehaviour:
   tweenDuration: 0.3
   tweenEase: 4
   ignoreTimeScale: 1
+  initializeMode: 2
+  initialWaypointIndex: 0
+--- !u!225 &1869139248
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869139242}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1936508828
 GameObject:
   m_ObjectHideFlags: 0
@@ -6886,6 +6916,8 @@ MonoBehaviour:
   tweenDuration: 0.25
   tweenEase: 4
   ignoreTimeScale: 1
+  initializeMode: 2
+  initialWaypointIndex: 0
 --- !u!1 &2047684875 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2047684875, guid: 8fba082f9c89546499774dc27a3b3b01, type: 3}

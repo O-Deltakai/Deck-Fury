@@ -5,12 +5,14 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
 using FMODUnity;
+using System;
 
 /// <summary>
 /// Manages the deck view in the upgrade screen
 /// </summary>
 public class DeckViewManager : MonoBehaviour
 {
+    public event Action OnCardSlotSelected;
 
     [SerializeField] GameObject cardSlotPrefab;
     [SerializeField] GameObject cardSlotsParent;
@@ -83,6 +85,7 @@ public class DeckViewManager : MonoBehaviour
             Destroy(child.gameObject);
         }
         cardSlots.Clear();
+        currentlySelectedSlot = null;
 
         List<DeckElement> upgradeableCards = deckSO.GetUpgradableCards();
 
@@ -96,6 +99,23 @@ public class DeckViewManager : MonoBehaviour
         }
     }
 
+    public void RemoveCardSlot(CardSlot cardSlot)
+    {
+        cardSlots.Remove(cardSlot);
+        Destroy(cardSlot.gameObject);
+    }
+
+    public void RemoveCurrentCardSlot()
+    {
+        if(currentlySelectedSlot != null)
+        {
+            RemoveCardSlot(currentlySelectedSlot);
+            currentlySelectedSlot = null;
+            selectorIndicator.transform.SetParent(transform);
+            selectorIndicator.SetActive(false);
+            OnCardSlotSelected?.Invoke();
+        }
+    }
 
     CardSlot BuildNewCardSlot(CardSO cardSO = null)
     {
@@ -109,7 +129,7 @@ public class DeckViewManager : MonoBehaviour
 
         EventTrigger.Entry pointerClickEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerClick };
         pointerClickEntry.callback.AddListener((data) => { selectedCardDescriptionPanel.UpdateDescription(cardSlot); });
-        pointerClickEntry.callback.AddListener((data) => { MoveSelectorIndicator(cardSlot); });
+        pointerClickEntry.callback.AddListener((data) => { SelectCardSlot(cardSlot); });
         cardSlotEventTrigger.triggers.Add(pointerClickEntry);      
 
         cardSlots.Add(cardSlot);
@@ -123,8 +143,15 @@ public class DeckViewManager : MonoBehaviour
         return cardSlot;
     }
 
-    public void MoveSelectorIndicator(CardSlot cardSlot)
+    public void SelectCardSlot(CardSlot cardSlot)
     {
+        if(currentlySelectedSlot == cardSlot)
+        {
+            return;
+        }
+
+        currentlySelectedSlot = cardSlot;
+
         if(currentMoveTween.IsActive())
         {
             currentMoveTween.Kill();
@@ -136,6 +163,8 @@ public class DeckViewManager : MonoBehaviour
 
         currentMoveTween = selectorIndicator.transform.DOMove(cardSlot.transform.position, moveSpeed).SetEase(easeType).SetUpdate(true);
         RuntimeManager.PlayOneShot(onPointerClickSFX);
+
+        OnCardSlotSelected?.Invoke();
     }
 
 

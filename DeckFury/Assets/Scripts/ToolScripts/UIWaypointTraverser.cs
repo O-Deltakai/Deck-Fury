@@ -17,6 +17,13 @@ public class UIWaypointTraverser : MonoBehaviour
         public bool activeState;
     }
 
+    public enum InitializeMode
+    {
+        OnStart,
+        OnAwake,
+        Manual
+    }
+
 
     public List<Waypoint> waypoints;
     public float tweenDuration = 1f;
@@ -24,27 +31,52 @@ public class UIWaypointTraverser : MonoBehaviour
     public bool ignoreTimeScale = true;
 
     int currentWaypointIndex = 0;
-
-    RectTransform rectTransform;
-
     Tween currentTween;
 
-
+    [Tooltip("Determines if and when the object should be set at the initial waypoint")]
+    public InitializeMode initializeMode = InitializeMode.Manual;
+    [Tooltip("The waypoint to set the object at when initialize mode is set to OnStart or OnAwake. Ignored if initialize mode is set to Manual")]
+    [SerializeField] public int initialWaypointIndex;
 
     void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
+        if(initializeMode == InitializeMode.OnAwake)
+        {
+            SetAtWaypoint(initialWaypointIndex);
+        }
     }
 
     void Start()
     {
-        
+        if(initializeMode == InitializeMode.OnStart)
+        {
+            SetAtWaypoint(initialWaypointIndex);
+        }
     }
 
-
-    void Update()
+    public void SetAtWaypoint(Waypoint waypoint)
     {
-        
+        if(currentTween.IsActive())
+        {
+            currentTween.Kill();
+        }
+        transform.localPosition = waypoint.position;
+    }
+
+    public void SetAtWaypoint(int waypointIndex)
+    {
+        if(currentTween.IsActive())
+        {
+            currentTween.Kill();
+        }
+
+        if(waypointIndex < 0 || waypointIndex >= waypoints.Count)
+        {
+            Debug.LogError("Invalid waypoint index");
+            return;
+        }
+
+        transform.localPosition = waypoints[waypointIndex].position;
     }
 
     public void TraverseToWaypoint(int waypointIndex)
@@ -79,6 +111,39 @@ public class UIWaypointTraverser : MonoBehaviour
             currentTween.SetEase(tweenEase);
         }
 
+    }
+
+    public void TraverseToWaypoint(Waypoint waypoint)
+    {
+        if(currentTween.IsActive())
+        {
+            return;
+        }
+
+        if(waypoint == null)
+        {
+            Debug.LogError("Invalid waypoint");
+            return;
+        }
+
+        //Move the object to the waypoint with tweening
+        if(waypoint.setStateAtStart)
+        {
+            gameObject.SetActive(waypoint.activeState);
+            currentTween = transform.DOLocalMove(waypoint.position, tweenDuration).SetUpdate(ignoreTimeScale);
+        }else
+        {
+            currentTween = transform.DOLocalMove(waypoint.position, tweenDuration)
+            .OnComplete(() => gameObject.SetActive(waypoint.activeState)).SetUpdate(ignoreTimeScale);
+        }
+
+        if(waypoint.useCustomEase)
+        {
+            currentTween.SetEase(waypoint.customEase);
+        }else
+        {
+            currentTween.SetEase(tweenEase);
+        }
     }
 
     public void CycleWaypoint()

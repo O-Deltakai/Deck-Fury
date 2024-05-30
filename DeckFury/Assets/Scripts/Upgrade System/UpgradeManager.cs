@@ -21,6 +21,8 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] Canvas upgradeCanvas;
     [SerializeField] GraphicRaycaster upgradeCanvasGraphicRaycaster;
 
+    PersistentLevelController PLC;
+
     void Awake()
     {
         upgradeViewManager.selectedCardDescriptionPanel = selectedCardDescriptionPanel;
@@ -30,6 +32,11 @@ public class UpgradeManager : MonoBehaviour
 
         UpgradeCardButton.onClick.AddListener(OnClickUpgradeButton);
         cancelButton.onClick.AddListener(OnClickCancelButton);
+
+        PLC = PersistentLevelController.Instance;
+
+        upgradeViewManager.OnUpgradeCardSelected += CheckUpgradeButtonInteractable;
+        deckViewManager.OnCardSlotSelected += CheckUpgradeButtonInteractable;
     }
 
     void Start()
@@ -47,7 +54,7 @@ public class UpgradeManager : MonoBehaviour
             Debug.LogError("Selected upgrade card or selected card is null");
             return;
         }
-        UpgradeCard(selectedCardDescriptionPanel.CurrentlyViewedCardSO, upgradeViewManager.SelectedUpgradeCard);
+        UpgradeCard();
     }
 
     public void OnClickCancelButton()
@@ -72,35 +79,69 @@ public class UpgradeManager : MonoBehaviour
         deckViewWaypointTraverser.TraverseToWaypoint(1);
         upgradeViewWaypointTraverser.TraverseToWaypoint(1);
         centerUIWaypointTraverser.TraverseToWaypoint(1);
-        
+
         dimmingPanel.DOFade(0, 0.35f).OnComplete(() => upgradeCanvas.gameObject.SetActive(false)).SetUpdate(true);
+        UpgradeCardButton.interactable = false;
+
     }
 
-
-    void UpgradeCard(CardSO card, CardSO upgradedCard)
+    void UpgradeCard()
     {
-        if(card == null || upgradedCard == null)
+        if(!CheckValidUpgrade())
         {
-            Debug.LogError("Card or upgraded card is null");
-            return;
-        }
-        if(card == upgradedCard)
-        {
-            Debug.LogError("Card and upgraded card are the same");
-            return;
-        }
-        if(!card.HasUpgrades)
-        {
-            Debug.LogWarning("Card does not have any upgrades");
-            return;
-        }
-        // Check if the given upgraded card is a valid upgrade for the given card
-        if(card.Upgrades.Find(x => x.UpgradedCard == upgradedCard) == null)
-        {
-            Debug.LogError("The given upgraded card: " + upgradedCard.name + " is not a valid upgrade for the given card: " + card.name);
+            Debug.LogError("Invalid upgrade");
             return;
         }
 
+        if(PLC)
+        {
+            PLC.PlayerData.AddCardToDeck(upgradeViewManager.SelectedUpgradeCard, 1);
+            PLC.PlayerData.RemoveCardFromDeck(selectedCardDescriptionPanel.CurrentlyViewedCardSO, 1);
+        }
+
+        if(CardPoolManager.Instance)
+        {
+            DeckElement upgradeDeckElement = new DeckElement()
+            {
+                card = upgradeViewManager.SelectedUpgradeCard,
+                cardCount = 1
+            };
+            CardPoolManager.Instance.AddDeckElementToPool(upgradeDeckElement);
+            CardPoolManager.Instance.SetCardReferenceInvisible(selectedCardDescriptionPanel.CurrentlyViewedCardSO);
+        }
+        
+        deckViewManager.RemoveCurrentCardSlot();
+
+        UpgradeCardButton.interactable = false;
+
+    }
+
+    void CheckUpgradeButtonInteractable()
+    {
+        if(CheckValidUpgrade())
+        {
+            UpgradeCardButton.interactable = true;
+        }else
+        {
+            UpgradeCardButton.interactable = false;
+        }
+    }
+
+    bool CheckValidUpgrade()
+    {
+        CardSO targetCard = selectedCardDescriptionPanel.CurrentlyViewedCardSO;
+        CardSO upgradeCard = upgradeViewManager.SelectedUpgradeCard;
+
+        if(!targetCard) {return false;}
+        if(!upgradeCard) {return false;}  
+
+        if(targetCard.Upgrades.Find(x => x.UpgradedCard == upgradeCard) == null)
+        {
+            Debug.LogError("The given upgraded card: " + upgradeCard.name + " is not a valid upgrade for the given card: " + targetCard.name);
+            return false;
+        }
+
+        return true;
     }
 
 

@@ -7,6 +7,7 @@ public class DeckElement
 {
     public CardSO card;
     public int cardCount;
+
 }
 
 [CreateAssetMenu(fileName = "Deck Data", menuName = "New Deck", order = 0)]
