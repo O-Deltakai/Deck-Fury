@@ -109,10 +109,11 @@ public class DeckViewManager : MonoBehaviour
     {
         if(currentlySelectedSlot != null)
         {
-            RemoveCardSlot(currentlySelectedSlot);
-            currentlySelectedSlot = null;
             selectorIndicator.transform.SetParent(transform);
             selectorIndicator.SetActive(false);
+            
+            RemoveCardSlot(currentlySelectedSlot);
+            currentlySelectedSlot = null;
             OnCardSlotSelected?.Invoke();
         }
     }

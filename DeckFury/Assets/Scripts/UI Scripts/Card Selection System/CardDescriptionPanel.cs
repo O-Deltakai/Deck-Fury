@@ -22,6 +22,8 @@ public class CardDescriptionPanel : MonoBehaviour
     [SerializeField] Image statusIcon;
     [SerializeField] Image lockedIcon;
 
+    [SerializeField] Color upgradedCardTitleColor = Color.green;
+
 [Header("Element Popout Panel")]
     [SerializeField] GameObject elementDescriptionPanel;
     [SerializeField] TextMeshProUGUI elementDescription;
@@ -59,6 +61,8 @@ public class CardDescriptionPanel : MonoBehaviour
 
     void Start()
     {
+        upgradedCardTitleColor = Color.green;
+
         if(cardSelectionMenu)
         {
             gameObject.SetActive(false);
@@ -135,6 +139,7 @@ public class CardDescriptionPanel : MonoBehaviour
         //Set values for main panel
         textDescription.text = cardSO.GetFormattedDescription();
         cardName.text = cardSO.CardName;
+        cardName.color = cardSO.IsUpgraded ? upgradedCardTitleColor : Color.white;
         cardImage.sprite = cardSO.GetCardImage();
         elementIcon.sprite = cardUIIcons.GetElementIcon(cardSO.AttackElement);
         statusIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.statusEffect.statusEffectType);
@@ -182,6 +187,7 @@ public class CardDescriptionPanel : MonoBehaviour
         //Set values for main panel
         textDescription.text = CurrentlyViewedCardSO.GetFormattedDescription();
         cardName.text = CurrentlyViewedCardSO.CardName;
+        cardName.color = cardSO.IsUpgraded ? upgradedCardTitleColor : Color.white;
         cardImage.sprite = CurrentlyViewedCardSO.GetCardImage();
         elementIcon.sprite = cardUIIcons.GetElementIcon(CurrentlyViewedCardSO.AttackElement);
         statusIcon.sprite = cardUIIcons.GetStatusIcon(CurrentlyViewedCardSO.statusEffect.statusEffectType);

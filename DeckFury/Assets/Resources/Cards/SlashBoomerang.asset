@@ -19,11 +19,10 @@ MonoBehaviour:
   BaseDamage: 25
   <AttackElement>k__BackingField: 1
   <CardType>k__BackingField: 0
-  <StatusEffect>k__BackingField: 0
+  <oldStatusEffectType>k__BackingField: 0
   <statusEffect>k__BackingField:
     statusEffectType: 0
     effectStrength: 0
-  <EnergyCost>k__BackingField: 0
   CardTier: 1
   <QuantifiableEffects>k__BackingField:
   - <EffectName>k__BackingField: Max Bounces
@@ -40,6 +39,9 @@ MonoBehaviour:
     _expressionIsInt: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
+  _isUpgraded: 0
+  upgrades:
+  - _upgradedCard: {fileID: 11400000, guid: 40a6465e57712f944a245b1997d74b60, type: 2}
   CardImage: {fileID: 21300000, guid: bf63baaa4eab5e84cb748502ee136063, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
   <UsesAnimationEvent>k__BackingField: 1
@@ -48,6 +50,7 @@ MonoBehaviour:
   - {fileID: 561233319248923547, guid: 085af3a8bfa643d4f8bef2ca88e47064, type: 3}
   <ObjectSummonsArePooled>k__BackingField: 0
   <UseTargetingReticle>k__BackingField: 0
+  _dynamicReticle: 0
   <ReticleIsStatic>k__BackingField: 0
   <TargetingReticle>k__BackingField: {fileID: 0}
   <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}

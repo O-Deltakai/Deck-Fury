@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c923d00297c904c49922de3a336f1e5b, type: 3}
+  m_Name: Reaper_UP_B
+  m_EditorClassIdentifier: 
+  <CardName>k__BackingField: Heavy Reaper
+  CardDescription: Jump to a selected enemy and slash adjacent tiles <color=green><b>Q0</b></color>
+    times for <b>BD</b> damage per slash.
+  BaseDamage: 120
+  <AttackElement>k__BackingField: 1
+  <CardType>k__BackingField: 0
+  <oldStatusEffectType>k__BackingField: 0
+  <statusEffect>k__BackingField:
+    statusEffectType: 0
+    effectStrength: 0
+  CardTier: 3
+  <QuantifiableEffects>k__BackingField:
+  - <EffectName>k__BackingField: Number of slashes
+    <IntegerQuantity>k__BackingField: 1
+    <FloatQuantity>k__BackingField: 0
+    _expression: 
+    _expressionIsInt: 0
+    <CanBeModified>k__BackingField: 0
+    <ModCoefficient>k__BackingField: 0
+  _isUpgraded: 1
+  upgrades: []
+  CardImage: {fileID: 21300000, guid: 011a14d694c6b974e9f55d11d3a33d4d, type: 3}
+  <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
+  <UsesAnimationEvent>k__BackingField: 1
+  <EffectPrefab>k__BackingField: {fileID: 7443828175484122623, guid: 1bb7bb5494489b140aa8553ddc6a0ce4, type: 3}
+  <ObjectSummonList>k__BackingField:
+  - {fileID: 8616204727162604067, guid: 2a7c2965389cb234b9b4eb37713d6e23, type: 3}
+  <ObjectSummonsArePooled>k__BackingField: 0
+  <UseTargetingReticle>k__BackingField: 1
+  _dynamicReticle: 1
+  <ReticleIsStatic>k__BackingField: 0
+  <TargetingReticle>k__BackingField: {fileID: 955135164601175123, guid: 4b55326f241008a4fbd159b264cf3854, type: 3}
+  <TargetingReticleOffSet>k__BackingField: {x: 0, y: 2}
+  _onActivationSFX:
+    Guid:
+      Data1: -1458326653
+      Data2: 1228424990
+      Data3: 977436305
+      Data4: 648307154
+    Path: event:/CardSFX/DaggerThrow

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c923d00297c904c49922de3a336f1e5b, type: 3}
   m_Name: ShockBlast_UP_A
   m_EditorClassIdentifier: 
-  <CardName>k__BackingField: Deadly Shock Blast
+  <CardName>k__BackingField: Shock Blast+
   CardDescription: Fire a shock blast that hits a <b>3x3</b> square in front of you
     that deals <b>BD</b> damage to all enemies in the area.
   BaseDamage: 75
@@ -24,6 +24,7 @@ MonoBehaviour:
     effectStrength: 0
   CardTier: 1
   <QuantifiableEffects>k__BackingField: []
+  _isUpgraded: 1
   upgrades: []
   CardImage: {fileID: 21300000, guid: 3afe75708cae6254a9015196cab9824d, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}

@@ -4,6 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 
+/// <summary>
+/// A generic component that allows an object to traverse between waypoints with tweening
+/// </summary>
 public class UIWaypointTraverser : MonoBehaviour
 {
     [Serializable]

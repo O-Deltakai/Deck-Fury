@@ -103,6 +103,12 @@ public class CardSO : ScriptableObject
     [field:SerializeField] public List<QuantifiableEffect> QuantifiableEffects {get;private set;}
 
     [Header("Upgrades")]
+    [Tooltip("Determines if the card is an upgraded variant of another card.")]
+    [SerializeField] bool _isUpgraded = false;
+    /// <summary>
+    /// Determines if the card is an upgraded variant of another card.
+    /// </summary>
+    public bool IsUpgraded => _isUpgraded;
     [SerializeField] List<CardUpgradeData> upgrades;
     public List<CardUpgradeData> Upgrades => upgrades;
     public bool HasUpgrades => upgrades.Count > 0;

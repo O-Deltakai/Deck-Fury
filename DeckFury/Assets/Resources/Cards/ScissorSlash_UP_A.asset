@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c923d00297c904c49922de3a336f1e5b, type: 3}
+  m_Name: ScissorSlash_UP_A
+  m_EditorClassIdentifier: 
+  <CardName>k__BackingField: Scissor Slash+
+  CardDescription: Slash in a <b>2x3</b> area ahead, dealing <b>BD</b> damage, with
+    enemies caught in the middle being hit <b>twice</b>.
+  BaseDamage: 60
+  <AttackElement>k__BackingField: 1
+  <CardType>k__BackingField: 0
+  <oldStatusEffectType>k__BackingField: 0
+  <statusEffect>k__BackingField:
+    statusEffectType: 0
+    effectStrength: 0
+  CardTier: 1
+  <QuantifiableEffects>k__BackingField: []
+  _isUpgraded: 1
+  upgrades: []
+  CardImage: {fileID: 21300000, guid: 7fa4cc59aba735e41bc56bd254ba35aa, type: 3}
+  <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
+  <UsesAnimationEvent>k__BackingField: 1
+  <EffectPrefab>k__BackingField: {fileID: 748351540389780624, guid: e9ea980f3e55b514cbecb88b026f2151, type: 3}
+  <ObjectSummonList>k__BackingField: []
+  <ObjectSummonsArePooled>k__BackingField: 0
+  <UseTargetingReticle>k__BackingField: 1
+  _dynamicReticle: 0
+  <ReticleIsStatic>k__BackingField: 0
+  <TargetingReticle>k__BackingField: {fileID: 1080049922054932918, guid: 7e6dcf4781bb902438da6e00ab286eb1, type: 3}
+  <TargetingReticleOffSet>k__BackingField: {x: 0, y: -2}
+  _onActivationSFX:
+    Guid:
+      Data1: -1458326653
+      Data2: 1228424990
+      Data3: 977436305
+      Data4: 648307154
+    Path: event:/CardSFX/DaggerThrow

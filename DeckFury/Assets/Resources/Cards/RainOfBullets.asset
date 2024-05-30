@@ -33,40 +33,7 @@ MonoBehaviour:
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
   upgrades:
-  - upgradePrefix: Stunning
-    upgradeDescription: 'After a short delay, summon a rain of bullets <b>3</b> tiles
-      ahead which hits a single target <b>7</b> times, dealing a total of <b>7 *
-      BD (Q0)</b> damage.
-
-
-      The bullets now inflict <b><color=yellow>Stunned</color></b>
-      on hit targets.'
-    useOriginalDescription: 0
-    baseDamageOverride: 40
-    useOriginalDamage: 0
-    attackElementOverride: 0
-    useOriginalElement: 0
-    statusEffectOverride:
-      statusEffectType: 1
-      effectStrength: 1
-    useOriginalStatusEffect: 0
-    upgradeQuanitifiableEffects: []
-    targetingReticleOverride: {fileID: 0}
-  - upgradePrefix: Deadly
-    upgradeDescription: After a short delay, summon a rain of bullets <b>3</b> tiles
-      ahead which hits a single target <b>7</b> times, dealing a total of <b>7 *
-      BD (Q0)</b> damage.
-    useOriginalDescription: 0
-    baseDamageOverride: 50
-    useOriginalDamage: 0
-    attackElementOverride: 7
-    useOriginalElement: 0
-    statusEffectOverride:
-      statusEffectType: 5
-      effectStrength: 0
-    useOriginalStatusEffect: 0
-    upgradeQuanitifiableEffects: []
-    targetingReticleOverride: {fileID: 0}
+  - _upgradedCard: {fileID: 11400000, guid: a0060477a92f3ef4685c3ed80985d2d9, type: 2}
   CardImage: {fileID: 21300000, guid: cb4a13db241a3f04f94eadb9a05aa2b1, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
   <UsesAnimationEvent>k__BackingField: 1

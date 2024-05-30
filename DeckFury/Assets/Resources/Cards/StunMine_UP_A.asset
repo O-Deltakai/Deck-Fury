@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c923d00297c904c49922de3a336f1e5b, type: 3}
   m_Name: StunMine_UP_A
   m_EditorClassIdentifier: 
-  <CardName>k__BackingField: Deadly Stun Mine
+  <CardName>k__BackingField: Stun Mine+
   CardDescription: 'Set a mine 1 tile ahead which explodes in a <b>3x3</b> area upon
     contact with an enemy, dealing <b>BD</b> damage and <b><color=yellow>stunning</color></b>
     all targets in the area. The enemy that triggered the mine takes an additional
@@ -36,6 +36,7 @@ MonoBehaviour:
     _expressionIsInt: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
+  _isUpgraded: 1
   upgrades: []
   CardImage: {fileID: 21300000, guid: 7c79a44f7ab54a3419eb7d230524bd96, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}

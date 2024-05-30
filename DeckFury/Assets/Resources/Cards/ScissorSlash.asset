@@ -18,12 +18,14 @@ MonoBehaviour:
   BaseDamage: 40
   <AttackElement>k__BackingField: 1
   <CardType>k__BackingField: 0
-  <StatusEffect>k__BackingField: 0
+  <oldStatusEffectType>k__BackingField: 0
   <statusEffect>k__BackingField:
     statusEffectType: 0
     effectStrength: 0
   CardTier: 1
   <QuantifiableEffects>k__BackingField: []
+  upgrades:
+  - _upgradedCard: {fileID: 11400000, guid: edb7901dfcc9e0e42a9b4386448826ca, type: 2}
   CardImage: {fileID: 21300000, guid: 7fa4cc59aba735e41bc56bd254ba35aa, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
   <UsesAnimationEvent>k__BackingField: 1

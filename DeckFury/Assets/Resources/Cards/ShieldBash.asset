@@ -19,7 +19,7 @@ MonoBehaviour:
   BaseDamage: 50
   <AttackElement>k__BackingField: 5
   <CardType>k__BackingField: 0
-  <StatusEffect>k__BackingField: 0
+  <oldStatusEffectType>k__BackingField: 0
   <statusEffect>k__BackingField:
     statusEffectType: 0
     effectStrength: 0
@@ -39,6 +39,8 @@ MonoBehaviour:
     _expressionIsInt: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
+  upgrades:
+  - _upgradedCard: {fileID: 11400000, guid: 5fa359c005424a14aba9387418b18046, type: 2}
   CardImage: {fileID: 21300000, guid: 42e1f0f4ad4d7034a83b5e07bbc91bc2, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
   <UsesAnimationEvent>k__BackingField: 1
