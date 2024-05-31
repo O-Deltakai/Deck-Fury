@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using FMODUnity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,6 +37,12 @@ public class UpgradeManager : MonoBehaviour
     [Min(0)] public int numberOfUpgrades = 1;
     int currentUpgradeCount = 0;
 
+    [Header("SFX")]
+    [SerializeField] EventReference onUpgradeSFX;
+
+    [Header("Debug Options")]
+    [SerializeField] bool debugMode = false;
+
     void Awake()
     {
         upgradeAnimationManager = GetComponent<UpgradeAnimationManager>();
@@ -55,7 +62,7 @@ public class UpgradeManager : MonoBehaviour
 
         //When the upgrade animation is complete, take the CardSO from the animated panel and swap it with the selected card description panel
         //then disable the animated panel
-        upgradeAnimationManager.OnUpgradeAnimationComplete += () => SwapCardDescriptionPanelCardSO(upgradeAnimationManager.PanelToAnimate);
+        upgradeAnimationManager.OnUpgradeAnimationComplete += UpgradeAnimationCompletePostEvents;
     }
 
     void Start()
@@ -70,6 +77,15 @@ public class UpgradeManager : MonoBehaviour
         upgradeCanvas.gameObject.SetActive(false);
         MoveUIOutOfView();
 
+    }
+
+    void UpgradeAnimationCompletePostEvents()
+    {
+        SwapCardDescriptionPanelCardSO(upgradeAnimationManager.PanelToAnimate);
+        deckViewCanvasGroup.interactable = true;
+        upgradeViewCanvasGroup.interactable = true;
+        deckViewCanvasGroup.blocksRaycasts = true;
+        upgradeViewCanvasGroup.blocksRaycasts = true;
     }
 
     void SwapCardDescriptionPanelCardSO(CardDescriptionPanel otherPanel)
@@ -107,6 +123,10 @@ public class UpgradeManager : MonoBehaviour
 
     public void MoveUiIntoView()
     {
+        GameManager.currentGameState = GameManager.GameState.InMenu;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         upgradeCanvas.gameObject.SetActive(true);
 
         deckViewWaypointTraverser.TraverseToWaypoint(0);
@@ -119,6 +139,8 @@ public class UpgradeManager : MonoBehaviour
 
     public void MoveUIOutOfView()
     {
+        GameManager.currentGameState = GameManager.GameState.Realtime;
+        
         deckViewWaypointTraverser.TraverseToWaypoint(1);
         upgradeViewWaypointTraverser.TraverseToWaypoint(1);
         centerUIWaypointTraverser.TraverseToWaypoint(1);
@@ -141,7 +163,7 @@ public class UpgradeManager : MonoBehaviour
             return;
         }
 
-        if(currentUpgradeCount >= numberOfUpgrades)
+        if(currentUpgradeCount >= numberOfUpgrades && !debugMode)
         {
             print("Upgrade count exceeded");
             return;
@@ -167,7 +189,11 @@ public class UpgradeManager : MonoBehaviour
         
         deckViewManager.RemoveCurrentCardSlot();
 
-
+        //Prevent the player from interacting with the UI while the upgrade animation is playing
+        deckViewCanvasGroup.interactable = false;
+        deckViewCanvasGroup.blocksRaycasts = false;
+        upgradeViewCanvasGroup.interactable = false;
+        upgradeViewCanvasGroup.blocksRaycasts = false;
         upgradeAnimationManager.InitiateUpgradeAnimation();
 
         upgradeViewManager.ClearUpgrades();
@@ -192,7 +218,7 @@ public class UpgradeManager : MonoBehaviour
 
     bool CheckValidUpgrade()
     {
-        if(currentUpgradeCount >= numberOfUpgrades)
+        if(currentUpgradeCount >= numberOfUpgrades && !debugMode)
         {
             return false;
         }
