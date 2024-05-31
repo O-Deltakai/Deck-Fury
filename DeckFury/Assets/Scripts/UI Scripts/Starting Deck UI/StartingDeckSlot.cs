@@ -103,7 +103,7 @@ public class StartingDeckSlot : MonoBehaviour
         this.deckSO = deckSO;
         deckNameText.text = deckSO.DeckName;
 
-        foreach (var deckElement in deckSO.CardList)
+        foreach (var deckElement in deckSO.CardListReadOnly)
         {
             DeckCardElementSlot deckCardElementSlot = Instantiate(deckElementSlotPrefab, deckElementSlotParent)
                 .GetComponent<DeckCardElementSlot>();

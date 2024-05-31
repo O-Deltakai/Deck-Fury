@@ -103,7 +103,7 @@ public class PersistentLevelController : MonoBehaviour
         PlayerData.CurrentHP = playerDataSO.MaxHP;
         PlayerData.CurrentMoney = playerDataSO.StartingMoney;
 
-        foreach(DeckElement deckElement in playerDataSO.StartingDeck.CardList)
+        foreach(DeckElement deckElement in playerDataSO.StartingDeck.CardListReadOnly)
         {
             PlayerData.CurrentDeck.CardList.Add(deckElement);
         }        

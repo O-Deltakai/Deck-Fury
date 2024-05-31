@@ -61,6 +61,13 @@ public class CardPoolManager : MonoBehaviour
 
     private void OnDestroy() 
     {
+        foreach(CardObjectReference cardObjectReference in CardObjectReferences)
+        {
+            cardObjectReference.invisible = false;
+        }
+
+        CardObjectReferences = null;
+
         _instance = null;
         GameManager.Instance.OnSetCriticalReferences -= InitializePooling;
     }
@@ -240,7 +247,7 @@ public class CardPoolManager : MonoBehaviour
     private void PoolObjectsFromDeck(DeckSO deck)
     {
 
-        foreach(DeckElement deckElement in deck.CardList)
+        foreach(DeckElement deckElement in deck.CardListReadOnly)
         {
             //If the deck element has less than or equal to 0 card count, issue a warning and continue to the next deck element.
             if(deckElement.cardCount <= 0)
@@ -375,7 +382,7 @@ public class CardPoolManager : MonoBehaviour
     /// <param name="deck"></param>
     void PoolReticlesFromDeck(DeckSO deck)
     {
-        foreach(DeckElement deckElement in deck.CardList)
+        foreach(DeckElement deckElement in deck.CardListReadOnly)
         {
             CardSO card = deckElement.card;
             if(!card.UseTargetingReticle || card.TargetingReticle == null)

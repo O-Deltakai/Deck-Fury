@@ -14,7 +14,8 @@ public class DeckElement
 public class DeckSO : ScriptableObject
 {
     public string DeckName;
-    [field:SerializeField] public List<DeckElement> CardList {get; private set;}
+    [field:SerializeField] List<DeckElement> CardList {get; set;}
+    public IReadOnlyList<DeckElement> CardListReadOnly => CardList;
 
     public List<DeckElement> GetUpgradableCards()
     {
@@ -97,9 +98,15 @@ public class GameDeck
     public GameDeck(DeckSO deckSO)
     {
         CardList = new List<DeckElement>();
-        foreach(DeckElement deckElement in deckSO.CardList)
+        foreach(DeckElement deckElement in deckSO.CardListReadOnly)
         {
-            CardList.Add(deckElement);
+            DeckElement newDeckElement = new DeckElement()
+            {
+                card = deckElement.card,
+                cardCount = deckElement.cardCount
+            };
+
+            CardList.Add(newDeckElement);
         }
     }
 

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: FireBomb_UP_A
   m_EditorClassIdentifier: 
   <CardName>k__BackingField: Fire Bomb+
-  CardDescription: Throw an inferno bomb <b>4</b> tiles forward which explodes in
-    a <b>3x3</b> square after a short delay, dealing <b>BD</b> damage to all enemies
+  CardDescription: Throw an fire bomb <b>4</b> tiles forward which explodes in a
+    <b>3x3</b> square after a short delay, dealing <b>BD</b> damage to all enemies
     within the explosion.
   BaseDamage: 100
   <AttackElement>k__BackingField: 2
@@ -26,6 +26,7 @@ MonoBehaviour:
   CardTier: 1
   <QuantifiableEffects>k__BackingField: []
   _isUpgraded: 1
+  baseCard: {fileID: 0}
   upgrades: []
   CardImage: {fileID: 21300000, guid: 0ad7d05259814e747bcdb06df060245f, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
