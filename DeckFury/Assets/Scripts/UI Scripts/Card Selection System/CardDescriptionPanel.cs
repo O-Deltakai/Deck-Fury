@@ -167,12 +167,14 @@ public class CardDescriptionPanel : MonoBehaviour
             damageText.text = cardSO.GetBaseDamage().ToString();
         }
         RefreshFadeOut();
-        gameObject.SetActive(true);
 
-        if(updatedCard)
+        if(updatedCard || !gameObject.activeInHierarchy)
         {
             OnCardUpdated?.Invoke();
         }
+
+        gameObject.SetActive(true);
+
     }
     //Overload for taking in just a specific CardSO
     public void UpdateDescription(CardSO cardSO)
@@ -214,12 +216,14 @@ public class CardDescriptionPanel : MonoBehaviour
             damageText.text = cardSO.GetBaseDamage().ToString();
         }
         RefreshFadeOut();
-        gameObject.SetActive(true);
-
-        if(updatedCard)
+        
+        if(updatedCard || !gameObject.activeInHierarchy)
         {
             OnCardUpdated?.Invoke();
         }
+
+        gameObject.SetActive(true);
+
     }
 
 

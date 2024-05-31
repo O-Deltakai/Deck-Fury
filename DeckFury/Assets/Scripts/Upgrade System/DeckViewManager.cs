@@ -55,16 +55,22 @@ public class DeckViewManager : MonoBehaviour
         
     }
 
-    void InitializeCardSlots()
+    public void ResetSelectorIndicator()
     {
         selectorIndicator.transform.SetParent(transform);
         selectorIndicator.SetActive(false);
+    }
+
+    void InitializeCardSlots()
+    {
+        ResetSelectorIndicator();
 
         foreach (Transform child in cardSlotsParent.transform)
         {
             Destroy(child.gameObject);
         }
         cardSlots.Clear();
+        currentlySelectedSlot = null;
 
         List<DeckElement> upgradeableCards = PLC.PlayerData.CurrentDeck.GetUpgradableCards();
 
@@ -80,6 +86,8 @@ public class DeckViewManager : MonoBehaviour
 
     void InitializeCardSlots(DeckSO deckSO)
     {
+        ResetSelectorIndicator();
+
         foreach (Transform child in cardSlotsParent.transform)
         {
             Destroy(child.gameObject);
@@ -111,7 +119,7 @@ public class DeckViewManager : MonoBehaviour
         {
             selectorIndicator.transform.SetParent(transform);
             selectorIndicator.SetActive(false);
-            
+
             RemoveCardSlot(currentlySelectedSlot);
             currentlySelectedSlot = null;
             OnCardSlotSelected?.Invoke();

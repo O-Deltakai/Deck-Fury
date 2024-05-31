@@ -22,7 +22,7 @@ public class UpgradeViewManager : MonoBehaviour
     [SerializeField] List<CardDescriptionPanel> cardUpgradePanels = new List<CardDescriptionPanel>();
 
     public CardSO SelectedUpgradeCard{get; private set;}
-    CardDescriptionPanel SelectedUpgradePanel;
+    public CardDescriptionPanel SelectedUpgradePanel {get; private set;}
 
     [Header("Selector Indicator Settings")]
     [SerializeField] GameObject selectorIndicator;
@@ -40,10 +40,15 @@ public class UpgradeViewManager : MonoBehaviour
         selectedCardDescriptionPanel.OnCardUpdated += DisplayUpgrades;
     }
 
+    public void ResetSelectorIndicator()
+    {
+        selectorIndicator.transform.SetParent(transform);
+        selectorIndicator.SetActive(false);
+    }
 
     public void DisplayUpgradesForCard(CardSO cardSO)
     {
-        selectorIndicator.transform.SetParent(transform);
+        ResetSelectorIndicator();
 
         foreach (Transform child in cardUpgradePanelsParent.transform)
         {
@@ -57,7 +62,6 @@ public class UpgradeViewManager : MonoBehaviour
 
         SelectedUpgradeCard = null;
         SelectedUpgradePanel = null;
-        selectorIndicator.SetActive(false);
     }
 
     public void DisplayUpgrades()
@@ -71,11 +75,14 @@ public class UpgradeViewManager : MonoBehaviour
 
     public void ClearUpgrades()
     {
+        ResetSelectorIndicator();
+
         foreach (Transform child in cardUpgradePanelsParent.transform)
         {
             Destroy(child.gameObject);
         }
         SelectedUpgradeCard = null;
+        SelectedUpgradePanel = null;
     }
 
 

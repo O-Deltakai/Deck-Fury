@@ -1,13 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour
 {
-    [SerializeField] UpgradeViewManager upgradeViewManager;
+    UpgradeAnimationManager upgradeAnimationManager;
+
     [SerializeField] DeckViewManager deckViewManager;
+    [SerializeField] CanvasGroup deckViewCanvasGroup;
+
+    [SerializeField] UpgradeViewManager upgradeViewManager;
+    [SerializeField] CanvasGroup upgradeViewCanvasGroup;
+
+
     [SerializeField] CardDescriptionPanel selectedCardDescriptionPanel;
 
     [field:SerializeField] public Button UpgradeCardButton {get; private set;}
@@ -23,8 +31,15 @@ public class UpgradeManager : MonoBehaviour
 
     PersistentLevelController PLC;
 
+    [Header("Upgrade Mechanics")]
+    [SerializeField] TextMeshProUGUI instructionText;
+    [Min(0)] public int numberOfUpgrades = 1;
+    int currentUpgradeCount = 0;
+
     void Awake()
     {
+        upgradeAnimationManager = GetComponent<UpgradeAnimationManager>();
+
         upgradeViewManager.selectedCardDescriptionPanel = selectedCardDescriptionPanel;
         deckViewManager.selectedCardDescriptionPanel = selectedCardDescriptionPanel;
 
@@ -37,15 +52,43 @@ public class UpgradeManager : MonoBehaviour
 
         upgradeViewManager.OnUpgradeCardSelected += CheckUpgradeButtonInteractable;
         deckViewManager.OnCardSlotSelected += CheckUpgradeButtonInteractable;
+
+        //When the upgrade animation is complete, take the CardSO from the animated panel and swap it with the selected card description panel
+        //then disable the animated panel
+        upgradeAnimationManager.OnUpgradeAnimationComplete += () => SwapCardDescriptionPanelCardSO(upgradeAnimationManager.PanelToAnimate);
     }
 
     void Start()
     {
+        if(numberOfUpgrades < 0)
+        {
+            Debug.LogWarning("Number of upgrades is less than 0, setting to 0");
+            numberOfUpgrades = 0;
+        }
+
+        UpdateInstructionText();
         upgradeCanvas.gameObject.SetActive(false);
         MoveUIOutOfView();
 
     }
 
+    void SwapCardDescriptionPanelCardSO(CardDescriptionPanel otherPanel)
+    {
+        selectedCardDescriptionPanel.UpdateDescription(otherPanel.CurrentlyViewedCardSO);
+        otherPanel.gameObject.SetActive(false);
+
+    }
+
+    void UpdateInstructionText()
+    {
+        if(numberOfUpgrades - currentUpgradeCount > 0)
+        {
+            instructionText.text = "Number of upgrades available: " +"<color=green><u><size=150%>"+ (numberOfUpgrades - currentUpgradeCount) + "</color></size></u>";
+        }else
+        {
+            instructionText.text = "Number of upgrades available: " +"<color=red><u><size=150%>"+ (numberOfUpgrades - currentUpgradeCount) + "</color></size></u>";
+        }
+    }
 
     public void OnClickUpgradeButton()
     {
@@ -83,6 +126,11 @@ public class UpgradeManager : MonoBehaviour
         dimmingPanel.DOFade(0, 0.35f).OnComplete(() => upgradeCanvas.gameObject.SetActive(false)).SetUpdate(true);
         UpgradeCardButton.interactable = false;
 
+        selectedCardDescriptionPanel.gameObject.SetActive(false);
+
+        upgradeViewManager.ClearUpgrades();
+        deckViewManager.ResetSelectorIndicator();
+
     }
 
     void UpgradeCard()
@@ -90,6 +138,12 @@ public class UpgradeManager : MonoBehaviour
         if(!CheckValidUpgrade())
         {
             Debug.LogError("Invalid upgrade");
+            return;
+        }
+
+        if(currentUpgradeCount >= numberOfUpgrades)
+        {
+            print("Upgrade count exceeded");
             return;
         }
 
@@ -110,14 +164,23 @@ public class UpgradeManager : MonoBehaviour
             CardPoolManager.Instance.SetCardReferenceInvisible(selectedCardDescriptionPanel.CurrentlyViewedCardSO);
         }
         
+        
         deckViewManager.RemoveCurrentCardSlot();
 
+
+        upgradeAnimationManager.InitiateUpgradeAnimation();
+
+        upgradeViewManager.ClearUpgrades();
         UpgradeCardButton.interactable = false;
 
+        currentUpgradeCount++;
+
+        UpdateInstructionText();
     }
 
     void CheckUpgradeButtonInteractable()
     {
+
         if(CheckValidUpgrade())
         {
             UpgradeCardButton.interactable = true;
@@ -129,6 +192,11 @@ public class UpgradeManager : MonoBehaviour
 
     bool CheckValidUpgrade()
     {
+        if(currentUpgradeCount >= numberOfUpgrades)
+        {
+            return false;
+        }
+
         CardSO targetCard = selectedCardDescriptionPanel.CurrentlyViewedCardSO;
         CardSO upgradeCard = upgradeViewManager.SelectedUpgradeCard;
 
