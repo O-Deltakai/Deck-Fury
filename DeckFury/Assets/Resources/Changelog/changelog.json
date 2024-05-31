@@ -1,12 +1,26 @@
 {
-    "changelog": [
+    "changelog": 
+    [
+        {
+            "version":"1.8.0-alpha",
+            "date":"2024-06-01",
+            "entries":
+            [
+                {
+                    "type":"Major Feature: Upgradeable Cards",
+                    "description":"There is a new upgrade system in the game! You can now find anvils on Rest Stages which will allow you to upgrade your cards. At the moment most cards have a single upgrade path with simple stat improvements though I plan to add more interesting upgrades in the future."
+                    
+                }
+            ]
+        },
+
         {
             "version": "1.7.4-alpha",
             "date": "2024-05-28",
             "entries": [
                 {
-                    "type": "New Card",
-                    "description": "Electro Orb. Fire an electric orb in a straight line which deals damage and stuns the first enemy hit"
+                    "type": "New Card : Electro Orb",
+                    "description": "Fire an electric orb in a straight line which deals damage and stuns the first enemy hit"
                 },
                 {
                     "type": "QOL",
@@ -17,11 +31,14 @@
                     "description": "Added the ability to view your deck whilst in the Stage Select screen."
                 },
                 {
-                    "type": "New Feature",
+                    "type": "New Feature: Changelog",
                     "description":"Added this, the changelog! Now you can see what's new in the game in the main menu!"
                 }
             ]
+            
+
         }
+
 
     ]
 }

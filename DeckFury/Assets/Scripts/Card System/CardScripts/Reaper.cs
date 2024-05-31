@@ -18,7 +18,6 @@ public class Reaper : CardEffect
     protected override void Awake()
     {
         base.Awake();
-
         targetingSystemRelayBinding = new EventBinding<RelayGameObjectEvent>(HandleEventData);
         EventBus<RelayGameObjectEvent>.Register(targetingSystemRelayBinding);
 
@@ -104,7 +103,7 @@ public class Reaper : CardEffect
             Wheel wheel = Instantiate(cardSO.ObjectSummonList[0], player.currentTilePosition,
             Quaternion.identity).GetComponent<Wheel>();
             wheel.objectIsPooled = false;
-
+            wheel.attackPayload = attackPayload;
             wheel.numberOfSlashes = (int)cardSO.QuantifiableEffects[0].GetValueDynamic();
 
             AssignVariable(wheel);

@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &748351540389780624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9111786842465293702}
+  - component: {fileID: 4695969352593413015}
+  m_Layer: 0
+  m_Name: ScissorSlash_EffectPrefab_UP_A
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9111786842465293702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748351540389780624}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4695969352593413015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748351540389780624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d3289eacbf7b84b97bee7a5d60daa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageManager: {fileID: 0}
+  player: {fileID: 0}
+  cardSO: {fileID: 11400000, guid: edb7901dfcc9e0e42a9b4386448826ca, type: 2}
+  ObjectSummonList: []
+  attackPayload:
+    damage: 0
+    attackElement: 0
+    statusEffects: []
+    canTriggerMark: 0
+    greaterMarked: 0
+    attacker: {fileID: 0}
+    attackerSprite: {fileID: 0}
+    causeOfDeathNote: 
+    reflected: 0
+  greaterMark: 0
+  scissorSlashPrefab: {fileID: 9188186410507847291, guid: 309de17aa8e6fb04da212195ab216b9e, type: 3}

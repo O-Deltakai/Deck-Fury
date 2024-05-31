@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4126498469509693259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7764215959123389412}
+  - component: {fileID: 2417095375738025773}
+  m_Layer: 0
+  m_Name: PlasmaSlash_EffectPrefab_UP_A
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7764215959123389412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126498469509693259}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2417095375738025773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126498469509693259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ff86dddb602c6419fd6867b2d86dff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageManager: {fileID: 0}
+  player: {fileID: 0}
+  cardSO: {fileID: 11400000, guid: 3bd0267863dc15541b2bd47887ae47a8, type: 2}
+  ObjectSummonList: []
+  attackPayload:
+    damage: 0
+    attackElement: 0
+    statusEffects: []
+    canTriggerMark: 0
+    greaterMarked: 0
+    attacker: {fileID: 0}
+    attackerSprite: {fileID: 0}
+    causeOfDeathNote: 
+    reflected: 0
+  greaterMark: 0
+  slashEffectPrefab: {fileID: 3639713849087793578, guid: 011ddb4c185397a4dadfb55c4ff1489c, type: 3}
