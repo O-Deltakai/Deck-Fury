@@ -40,6 +40,9 @@ public class FreezeMine : MonoBehaviour
 
     Coroutine CR_ExpireTimer;
 
+    public bool proximityFuse = false;
+
+
     private void Awake() 
     {
 
@@ -52,12 +55,24 @@ public class FreezeMine : MonoBehaviour
 
     void OnEnable()
     {
+
         mineCollider.enabled = true;
         mineSprite.SetActive(true);
         RuntimeManager.PlayOneShot(minePlacedSFX, transform.position);
         CR_ExpireTimer = StartCoroutine(ExpireTimer());
     }
 
+    public void SetProximityFuse(bool value)
+    {
+        proximityFuse = value;
+        if(value)
+        {
+            mineCollider.size = explosionRadius.size;
+        }else
+        {
+            mineCollider.size = new Vector2(0.5f, 0.5f);
+        }
+    }
 
     //What happens if an entity walks into the collider of the trap?
     private void OnCollisionEnter2D(Collision2D other) 
@@ -70,7 +85,10 @@ public class FreezeMine : MonoBehaviour
             {
                 impactPayload = attackPayload;
                 
-                entityHit.HurtEntity(impactPayload);
+                if(!proximityFuse)
+                {
+                    entityHit.HurtEntity(impactPayload);
+                }
 
                 ActivateMine();
             }

@@ -109,6 +109,8 @@ public class CardSO : ScriptableObject
     /// Determines if the card is an upgraded variant of another card.
     /// </summary>
     public bool IsUpgraded => _isUpgraded;
+    [SerializeField] CardSO baseCard;
+    public CardSO BaseCard => baseCard;
     [SerializeField] List<CardUpgradeData> upgrades;
     public List<CardUpgradeData> Upgrades => upgrades;
     public bool HasUpgrades => upgrades.Count > 0;

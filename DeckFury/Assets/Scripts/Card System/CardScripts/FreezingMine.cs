@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FreezingMine : CardEffect
 {
+    public bool proximityFuse = false;
+
     public override void ActivateCardEffect()
     {
         AimpointController aimpoint = player.aimpoint;
@@ -32,8 +34,15 @@ public class FreezingMine : CardEffect
     void CreateMine(Vector3Int position)
     {
         FreezeMine mine = Instantiate(cardSO.ObjectSummonList[0], position, Quaternion.identity).GetComponent<FreezeMine>();
+        if(proximityFuse)
+        {
+            mine.SetProximityFuse(true);
+        }
+
         mine.attackPayload = attackPayload;
         mine.gameObject.SetActive(true);
+
+
     }
 
     protected override IEnumerator DisableEffectPrefab()
