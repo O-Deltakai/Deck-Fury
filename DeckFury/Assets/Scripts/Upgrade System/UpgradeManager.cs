@@ -38,7 +38,7 @@ public class UpgradeManager : MonoBehaviour
     int currentUpgradeCount = 0;
 
     [Header("SFX")]
-    [SerializeField] EventReference onUpgradeSFX;
+    [SerializeField] EventReference openUpgradeMenuSFX;
 
     [Header("Debug Options")]
     [SerializeField] bool debugMode = false;
@@ -135,6 +135,8 @@ public class UpgradeManager : MonoBehaviour
 
         dimmingPanel.gameObject.SetActive(true);
         dimmingPanel.DOFade(0.4f, 0.25f).SetUpdate(true);
+
+        RuntimeManager.PlayOneShot(openUpgradeMenuSFX);
     }
 
     public void MoveUIOutOfView()

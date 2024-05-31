@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using System;
+using FMODUnity;
 
 public class UpgradeAnimationManager : MonoBehaviour
 {
@@ -52,6 +53,10 @@ public class UpgradeAnimationManager : MonoBehaviour
     [SerializeField] Ease brighteningPanelEase;
     [SerializeField] Ease fadeoutPanelEase;
 
+    [Header("SFX")]
+    [SerializeField] EventReference riserSFX;
+    [SerializeField] EventReference slamSFX;
+
     public bool IsAnimating {get; private set;}
 
     void Start()
@@ -83,12 +88,14 @@ public class UpgradeAnimationManager : MonoBehaviour
 
     IEnumerator UpgradeAnimationCoroutine()
     {
+        RuntimeManager.PlayOneShot(riserSFX);
         MoveToCenter();
         ExpandPanel();
         yield return new WaitForSecondsRealtime(panelExpansionDuration * 0.4f);
         BrightenPanel();
         yield return new WaitForSecondsRealtime(panelExpansionDuration * 0.4f);
 
+        //Cue 2 0.84s in
         ShakePanel().OnComplete(() => 
         {
             SlamDown();
@@ -97,6 +104,7 @@ public class UpgradeAnimationManager : MonoBehaviour
             {
                 IsAnimating = false;
                 OnUpgradeAnimationComplete?.Invoke();
+                RuntimeManager.PlayOneShot(slamSFX);
             });
             
         });        
