@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DevConsoleManager : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI consoleText; // Reference to the UI Text component to display the logs
+    [SerializeField] TMP_InputField consoleText; // Reference to the UI Text component to display the logs
     [SerializeField] GameObject devConsoleObject; // Reference to the GameObject containing the consoleText
     public int maxLogCount = 100; // Maximum number of logs to display
 

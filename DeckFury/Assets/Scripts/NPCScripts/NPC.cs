@@ -95,7 +95,7 @@ public class NPC : StageEntity
 
         if(killingBlow.HasValue && killingBlow.Value.attacker != null)
         {
-            print("Killing blow has value, attacker: " + killingBlow.Value.attacker.name);
+            //print("Killing blow has value, attacker: " + killingBlow.Value.attacker.name);
             if(killingBlow.Value.attacker.CompareTag(TagNames.Player.ToString()))
             {
                 player.KillEnemyTrigger(this, killingBlow);

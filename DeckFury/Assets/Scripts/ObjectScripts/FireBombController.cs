@@ -161,7 +161,7 @@ public class FireBombController : MonoBehaviour
         LayerMask stageEntitiesMask = 1 << stageEntitiesLayer;
 
         Collider2D[] hits = Physics2D.OverlapBoxAll(bombExplosionCollider.transform.position, bombExplosionCollider.size, 0, stageEntitiesMask);
-        print("number of hits in fire bomb explosion: " + hits.Length);
+        //print("number of hits in fire bomb explosion: " + hits.Length);
 
         foreach(Collider2D collider2D in hits) 
         {
@@ -169,7 +169,7 @@ public class FireBombController : MonoBehaviour
 
             if(entityHit == null)
             {
-                print("collider did not have a StageEntity attached");
+                //print("collider did not have a StageEntity attached");
                 continue;
             }
 
