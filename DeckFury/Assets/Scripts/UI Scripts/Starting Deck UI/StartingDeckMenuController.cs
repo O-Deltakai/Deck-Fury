@@ -90,7 +90,7 @@ public class StartingDeckMenuController : MonoBehaviour
 
     public void SelectDeck(DeckSO deck)
     {
-        Debug.Log("Deck Selected: " + deck.name);
+        //Debug.Log("Deck Selected: " + deck.name);
 
         if (persistentLevelController)
         {
