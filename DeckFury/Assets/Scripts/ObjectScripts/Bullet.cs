@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityUtils;
 
+/// <summary>
+/// The base class for most physics based projectiles in the game. Handles movement, collision, and damage.
+/// </summary>
 public class Bullet : MonoBehaviour, IReflectable
 {
 
@@ -25,6 +28,11 @@ public class Bullet : MonoBehaviour, IReflectable
     [SerializeField] Light2D bulletLight;
 
     public bool IsReflected { get; set; } = false;
+
+    [Header("Piercing Setttings")]
+    public bool canPierce = false;
+    [Min(0)] public int maxPierceCount = 1;
+    int currentPierceCount = 0;
 
     protected virtual void Awake() 
     {
@@ -67,8 +75,7 @@ public class Bullet : MonoBehaviour, IReflectable
     //Check for collision with appropriate targets
     protected virtual void OnCollisionEnter2D(Collision2D other)
     {
-        
-
+    
         if(team == EntityTeam.Player)
         {
             if(other.gameObject.CompareTag(TagNames.Enemy) || other.gameObject.CompareTag(TagNames.EnvironmentalHazard))
@@ -76,7 +83,15 @@ public class Bullet : MonoBehaviour, IReflectable
                 StageEntity entity = other.gameObject.GetComponent<StageEntity>();
                 entity.HurtEntity(attackPayload);
                 OnImpact?.Invoke();
-                Destroy(gameObject);            
+
+                if(canPierce && currentPierceCount >= maxPierceCount)
+                {
+                    Destroy(gameObject);
+                }else if (!canPierce)
+                {
+                    Destroy(gameObject);            
+                }
+
             }
         }else
         if(team == EntityTeam.Enemy)
@@ -86,8 +101,13 @@ public class Bullet : MonoBehaviour, IReflectable
                 StageEntity entity = other.gameObject.GetComponent<StageEntity>();
                 entity.HurtEntity(attackPayload);
                 OnImpact?.Invoke();
-                Destroy(gameObject);            
-
+                if(canPierce && currentPierceCount >= maxPierceCount)
+                {
+                    Destroy(gameObject);
+                }else if (!canPierce)
+                {
+                    Destroy(gameObject);            
+                }
             }
         }else
         {//Neutral team, can damage either player or enemy
@@ -96,7 +116,13 @@ public class Bullet : MonoBehaviour, IReflectable
                 StageEntity entity = other.gameObject.GetComponent<StageEntity>();
                 entity.HurtEntity(attackPayload);
                 OnImpact?.Invoke();
-                Destroy(gameObject);            
+                if(canPierce && currentPierceCount >= maxPierceCount)
+                {
+                    Destroy(gameObject);
+                }else if (!canPierce)
+                {
+                    Destroy(gameObject);            
+                }       
 
             }
             if(other.gameObject.CompareTag(TagNames.Enemy) || other.gameObject.CompareTag(TagNames.EnvironmentalHazard))
@@ -104,12 +130,20 @@ public class Bullet : MonoBehaviour, IReflectable
                 StageEntity entity = other.gameObject.GetComponent<StageEntity>();
                 entity.HurtEntity(attackPayload);
                 OnImpact?.Invoke();
-                Destroy(gameObject);          
-
+                if(canPierce && currentPierceCount >= maxPierceCount)
+                {
+                    Destroy(gameObject);
+                }else if (!canPierce)
+                {
+                    Destroy(gameObject);            
+                }        
             }                        
         }
 
-
+        if(canPierce)
+        {
+            currentPierceCount++;
+        }
 
         if(other.gameObject.CompareTag(TagNames.Wall) && !canGoThroughWalls)
         {

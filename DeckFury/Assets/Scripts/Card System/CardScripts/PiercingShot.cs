@@ -5,10 +5,13 @@ using UnityEngine;
 public class PiercingShot : CardEffect
 {
     
-    //[SerializeField] GameObject VFXPrefabToUse; //Set in inspector
+    [SerializeField] bool arrowCanPierce = false;
+    [SerializeField] int maxPierceCount = 3;
 
     public override void ActivateCardEffect()
     {
+        maxPierceCount = cardSO.QuantifiableEffects[0].IntegerQuantity;
+
         if(!cardSO.ObjectSummonsArePooled)
         {
             Bullet arrow = Instantiate(cardSO.ObjectSummonList[0], player.currentTilePosition,
@@ -27,38 +30,39 @@ public class PiercingShot : CardEffect
         StartCoroutine(DisableEffectPrefab());
     }
 
-    //design for 3s way and 5 ways
-    protected void AssignVariable(Bullet arrow){
-            arrow.transform.position = player.currentTilePosition;
-            arrow.attackPayload = attackPayload;
-            //arrow.speed = 20;
+    protected void AssignVariable(Bullet arrow)
+    {
+        arrow.transform.position = player.currentTilePosition;
+        arrow.attackPayload = attackPayload;
+        arrow.canPierce = arrowCanPierce;
+        arrow.maxPierceCount = maxPierceCount;
 
-            switch (player.aimpoint.currentAimDirection) 
-            {
-                case AimDirection.Up:
-                    arrow.transform.rotation = Quaternion.Euler(0, 0, 180);
-                    arrow.velocity.x = 0;
-                    arrow.velocity.y = 1;
-                    break;
+        switch (player.aimpoint.currentAimDirection) 
+        {
+            case AimDirection.Up:
+                arrow.transform.rotation = Quaternion.Euler(0, 0, 180);
+                arrow.velocity.x = 0;
+                arrow.velocity.y = 1;
+                break;
 
-                case AimDirection.Down:
-                    arrow.transform.rotation = Quaternion.Euler(0, 0, 0);
-                    arrow.velocity.x = 0;
-                    arrow.velocity.y = -1;
-                    break; 
-                case AimDirection.Left:
-                    arrow.transform.rotation = Quaternion.Euler(0, 0, -90);
-                    arrow.velocity.x = -1;
-                    arrow.velocity.y = 0;
-                    break;
+            case AimDirection.Down:
+                arrow.transform.rotation = Quaternion.Euler(0, 0, 0);
+                arrow.velocity.x = 0;
+                arrow.velocity.y = -1;
+                break; 
+            case AimDirection.Left:
+                arrow.transform.rotation = Quaternion.Euler(0, 0, -90);
+                arrow.velocity.x = -1;
+                arrow.velocity.y = 0;
+                break;
 
-                case AimDirection.Right:
-                    arrow.transform.rotation = Quaternion.Euler(0, 0, 90);
-                    arrow.velocity.x = 1;
-                    arrow.velocity.y = 0;
-                    break;
-            }
-            arrow.gameObject.SetActive(true);
+            case AimDirection.Right:
+                arrow.transform.rotation = Quaternion.Euler(0, 0, 90);
+                arrow.velocity.x = 1;
+                arrow.velocity.y = 0;
+                break;
+        }
+        arrow.gameObject.SetActive(true);
     }
 
 
