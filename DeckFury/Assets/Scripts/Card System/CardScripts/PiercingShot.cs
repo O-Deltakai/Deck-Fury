@@ -10,7 +10,10 @@ public class PiercingShot : CardEffect
 
     public override void ActivateCardEffect()
     {
-        maxPierceCount = cardSO.QuantifiableEffects[0].IntegerQuantity;
+        if(arrowCanPierce)
+        {
+            maxPierceCount = cardSO.QuantifiableEffects[0].IntegerQuantity;
+        }
 
         if(!cardSO.ObjectSummonsArePooled)
         {

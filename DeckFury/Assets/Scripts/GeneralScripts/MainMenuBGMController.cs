@@ -1,17 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 public class MainMenuBGMController : MonoBehaviour
 {
+    [SerializeField] StudioEventEmitter mainMenuBGM;
+
 
     EventBinding<SceneBeginChangeEvent> sceneChangeEventBinding;
 
-    // Start is called before the first frame update
-    // Update is called once per frame
+    void Start()
+    {
+
+        StartCoroutine(DelayBeforePlayingBGM());
+    }
+
+
     void Update()
     {
         
+    }
+
+    IEnumerator DelayBeforePlayingBGM()
+    {
+        yield return new WaitForSeconds(1f);
+        mainMenuBGM.Play();
     }
 
 

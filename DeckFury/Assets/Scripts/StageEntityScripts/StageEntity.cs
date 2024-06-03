@@ -214,9 +214,9 @@ public class StageEntity : MonoBehaviour
 
 [Header("Entity Stat UI Elements")]
     [SerializeField] protected TextMeshPro HPText;
-    public Color DefaultHPTextColor {get; private set;}
+    public Color DefaultHPTextColor {get; protected set;}
     [SerializeField] protected TextMeshPro ShieldsText;
-    public Color DefaultShieldTextColor {get; private set;}
+    public Color DefaultShieldTextColor {get; protected set;}
 
     [SerializeField] protected SpriteRenderer _armorIcon;
     public SpriteRenderer ArmorIcon => _armorIcon;
@@ -339,7 +339,7 @@ public class StageEntity : MonoBehaviour
         damageBuilder.OnResistDamage += () => RuntimeManager.PlayOneShotAttached(_resourceManager.EntityResistDamageSFX, gameObject);
     }
 
-    protected void UpdateShieldValue(int oldValue, int newValue)
+    protected virtual void UpdateShieldValue(int oldValue, int newValue)
     {
         if(DoNotShowHP){return;}
         if(shieldHP <= 0)
@@ -360,7 +360,7 @@ public class StageEntity : MonoBehaviour
         }
     }
 
-    protected void UpdateHPValue(int oldValue, int newValue)
+    protected virtual void UpdateHPValue(int oldValue, int newValue)
     {
         if(DoNotShowHP){return;}
 

@@ -46,11 +46,6 @@ public class Bazooka : Bullet
         explosionLight.enabled = false;
     }
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if(speed < maxSpeed)
@@ -61,10 +56,8 @@ public class Bazooka : Bullet
 
     //Check for collision with appropriate targets
     //amend position of gameobject on impact
-    private void OnCollisionEnter2D(Collision2D other)
+    protected override void OnCollisionEnter2D(Collision2D other)
     {
-
-
         if(team == EntityTeam.Player)
         {
             if(other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("EnvironmentalHazard"))
@@ -87,7 +80,7 @@ public class Bazooka : Bullet
                 ExplosionImpact();
             }
         }
-        if(other.gameObject.tag == "Wall")
+        if(other.gameObject.CompareTag("Wall"))
         {
             ExplosionImpact();
         }
@@ -186,7 +179,7 @@ public class Bazooka : Bullet
         IsReflected = true;
 
         impactPayload.damage *= 2;
-        impactPayload.attackElement = AttackElement.Fire;
+        impactPayload.attackElement = attackPayload.attackElement;
         impactPayload.statusEffects.Add(new StatusEffect(StatusEffectType.Stunned, 1));
 
         speed *= 3.5f;

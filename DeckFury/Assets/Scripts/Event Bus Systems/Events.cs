@@ -132,3 +132,13 @@ public struct PlayerDataModifiedEvent : IEvent
     public PlayerDataContainer.PlayerDataType dataType {get; private set;}
 
 }
+
+public struct ComboKillEvent : IEvent
+{
+    public ComboKillEvent(int comboCount)
+    {
+        this.comboCount = comboCount;
+    }
+
+    public int comboCount;
+}

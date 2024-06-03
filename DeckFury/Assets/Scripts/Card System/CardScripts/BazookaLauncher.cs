@@ -32,7 +32,7 @@ public class BazookaLauncher : CardEffect
         bazooka.attackPayload = attackPayload;
         bazooka.impactPayload = attackPayload;
         bazooka.impactPayload.canTriggerMark = false;
-        bazooka.impactPayload.attackElement = AttackElement.Fire;
+        bazooka.impactPayload.attackElement = attackPayload.attackElement;
         bazooka.impactPayload.statusEffects = new List<StatusEffect>();     
         //bazooka.speed = 10;
 

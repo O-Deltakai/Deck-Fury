@@ -7,6 +7,10 @@ using UnityEngine;
 public class TextShaker : MonoBehaviour
 {
     [SerializeField] TextMeshPro textElement;
+    [SerializeField] TextMeshProUGUI textElementUGUI;
+
+    [SerializeField] bool useUGUI = false;
+
 
     public float shakeDuration = 0.12f;
     public float baseShakeStrength = 0.2f;
@@ -15,6 +19,7 @@ public class TextShaker : MonoBehaviour
 
     Tween shakeTween = null;
 
+    public bool ignoreTimeScale = true;
     [SerializeField] bool resetShake = false;
 
     bool isShaking = false;
@@ -30,6 +35,7 @@ public class TextShaker : MonoBehaviour
         if(resetShake)
         {
             resetShake = false;
+            StopShaking();
             StartShaking();
         }   
     }
@@ -40,7 +46,17 @@ public class TextShaker : MonoBehaviour
         isShaking = true;
 
         if(shakeTween.IsActive()){shakeTween.Kill();}
-        shakeTween = textElement.transform.DOShakePosition(shakeDuration, baseShakeStrength, shakeVibrato, 90, false, true).SetLoops(-1);
+
+        if(useUGUI)
+        {
+            shakeTween = textElementUGUI.transform.DOShakePosition(shakeDuration, baseShakeStrength, shakeVibrato, shakeRandomness, false, true)
+            .SetLoops(-1).SetUpdate(ignoreTimeScale);
+        }else
+        {
+            shakeTween = textElement.transform.DOShakePosition(shakeDuration, baseShakeStrength, shakeVibrato, shakeRandomness, false, true)
+            .SetLoops(-1).SetUpdate(ignoreTimeScale);
+        }
+
     }
 
     public void StopShaking()

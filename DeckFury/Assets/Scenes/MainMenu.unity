@@ -8782,7 +8782,7 @@ MonoBehaviour:
       Data4: 1863725310
     Path: event:/Soundtracks/MainMenu-BGM Alt
   Event: 
-  PlayEvent: 1
+  PlayEvent: 0
   StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
@@ -8819,6 +8819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6943021c6b2584ba9a28e1bc46f542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenuBGM: {fileID: 1777732433}
 --- !u!1 &1789803428
 GameObject:
   m_ObjectHideFlags: 0

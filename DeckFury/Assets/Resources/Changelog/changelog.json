@@ -2,6 +2,29 @@
     "changelog": 
     [
         {
+            "version":"1.8.2-alpha",
+            "date":"2024-06-03",
+            "entries":
+            [
+                {
+                    "type": "New Feature: Combo Kill Announcer",
+                    "description": "Added a combo kill announcer which will display the number of enemies killed in a 0.25s period."
+                },
+                {
+                    "type":"New Upgrade : Shrapnel Bazooka Launcher",
+                    "description":"Bazooka Launcher has a new upgrade which deals bleed damage to enemies hit by the explosion."
+                },
+                {
+                    "type":"QOL",
+                    "description":"Reduced the amount of shake on the player's HP text when low HP, made the text color orange when at low hp."   
+                },
+                {
+                    "type":"Bug Fix",
+                    "description":"Fixed issue where neutral element cards would apply their status effect twice when hitting a marked target"
+                }
+            ]
+        },
+        {
             "version":"1.8.1-alpha",
             "date":"2024-06-02",
             "entries":

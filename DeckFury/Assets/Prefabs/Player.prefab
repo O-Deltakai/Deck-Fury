@@ -1279,10 +1279,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textElement: {fileID: 1755202097211759978}
-  shakeDuration: 0.12
-  baseShakeStrength: 0.2
+  shakeDuration: 0.1
+  baseShakeStrength: 0.04
   shakeVibrato: 500
-  shakeRandomness: 90
+  shakeRandomness: 360
   resetShake: 0
 --- !u!1 &1755202097329986838
 GameObject:
@@ -1404,12 +1404,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2278dc0320b3c224991a67c80daa96ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scaleDuration: 0.35
-  _scaleAmount: 0.25
-  _multiplyScale: 0
-  _scaleX: 1
-  _scaleY: 1
-  _easeType: 4
+  scaleDuration: 0.5
+  scaleAmount: 0.1
+  multiplyScale: 0
+  scaleX: 1
+  scaleY: 1
+  easeType: 1
+  autoScale: 1
+  locked: 0
+  ignoreTimeScale: 1
 --- !u!1 &1755202097491930493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,6 +1736,7 @@ MonoBehaviour:
   automoveCooldown: 0.15
   canAutoMove: 1
   hpTextShaker: {fileID: 143404719818737175}
+  lowHPTextColor: {r: 1, g: 0.90741044, b: 0.23113209, a: 1}
   references:
     version: 2
     RefIds:

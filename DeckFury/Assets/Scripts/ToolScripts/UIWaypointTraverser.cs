@@ -14,10 +14,10 @@ public class UIWaypointTraverser : MonoBehaviour
     {
         public string name;
         public Vector2 position;
-        public bool useCustomEase;
-        public Ease customEase;
-        public bool setStateAtStart;
-        public bool activeState;
+        public bool useCustomEase = false;
+        public Ease customEase = Ease.Linear;
+        public bool setStateAtStart = false;
+        public bool activeState = false;
     }
 
     public enum InitializeMode
@@ -33,13 +33,16 @@ public class UIWaypointTraverser : MonoBehaviour
     public Ease tweenEase = Ease.Linear;
     public bool ignoreTimeScale = true;
 
-    int currentWaypointIndex = 0;
+    int _currentWaypointIndex = 0;
+    public int CurrentWaypointIndex => _currentWaypointIndex;
     Tween currentTween;
 
     [Tooltip("Determines if and when the object should be set at the initial waypoint")]
     public InitializeMode initializeMode = InitializeMode.Manual;
     [Tooltip("The waypoint to set the object at when initialize mode is set to OnStart or OnAwake. Ignored if initialize mode is set to Manual")]
     [SerializeField] public int initialWaypointIndex;
+
+    public bool IsTweening => currentTween.IsActive();
 
     void Awake()
     {
@@ -149,6 +152,9 @@ public class UIWaypointTraverser : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Cycles through the waypoints in the waypoints list
+    /// </summary>
     public void CycleWaypoint()
     {
         if(currentTween.IsActive())
@@ -156,8 +162,26 @@ public class UIWaypointTraverser : MonoBehaviour
             return;
         }
 
-        currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Count;
-        TraverseToWaypoint(currentWaypointIndex);
+        _currentWaypointIndex = (_currentWaypointIndex + 1) % waypoints.Count;
+        TraverseToWaypoint(_currentWaypointIndex);
+    }
+
+    /// <summary>
+    /// Reverses the cycle through the waypoints in the waypoints list
+    /// </summary>
+    public void ReverseCycleWaypoint()
+    {
+        if(currentTween.IsActive())
+        {
+            return;
+        }
+
+        _currentWaypointIndex = (_currentWaypointIndex - 1) % waypoints.Count;
+        if(_currentWaypointIndex < 0)
+        {
+            _currentWaypointIndex = waypoints.Count - 1;
+        }
+        TraverseToWaypoint(_currentWaypointIndex);
     }
 
 

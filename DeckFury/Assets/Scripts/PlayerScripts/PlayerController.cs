@@ -114,9 +114,10 @@ public class PlayerController : StageEntity
     [SerializeField] bool canAutoMove = true;
     Coroutine CR_AutomoveTimer;
 
+[Header("HP VFX Settings")]
     //Used to make hp text shake when hp is low
     [SerializeField] TextShaker hpTextShaker;
-
+    [SerializeField] Color lowHPTextColor = Color.red;
 
     protected override void Awake()
     {
@@ -187,9 +188,17 @@ public class PlayerController : StageEntity
         if(PercentHPRemaining <= 0.40f)
         {
             hpTextShaker.StartShaking();
+            if(DefaultHPTextColor != lowHPTextColor)
+            {
+                DefaultHPTextColor = lowHPTextColor;
+            }
         }else
         {
             hpTextShaker.StopShaking();
+            if(DefaultHPTextColor != Color.white)
+            {
+                DefaultHPTextColor = Color.white;
+            }
         }
 
  
@@ -264,12 +273,6 @@ public class PlayerController : StageEntity
     {
         if(!CanInitiateMovementActions){return;}
 
-        //if(MovingCoroutine != null) { return; }
-        //if(cardManager.CardInUseCoroutine != null) { return; }
-
-        // float moveSpeed = 0.1f;
-        // float moveLockoutTime = 0.15f;
-
         void BeginAutomoveTimer()
         {
             if(CR_AutomoveTimer != null)
@@ -301,13 +304,6 @@ public class PlayerController : StageEntity
             canAutoMove = false;
             BeginAutomoveTimer();
 
-
-
-            //Move right
-            //bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(1, 0, moveSpeed), moveLockoutTime, Time.unscaledTime));
-
-            //MovingCoroutine = StartCoroutine(TweenMove(1, 0, 0.1f, MovementEase));
-            //OnPerformAction?.Invoke();
         }
         if(Keyboard.current.aKey.wasPressedThisFrame)
         {
@@ -315,12 +311,6 @@ public class PlayerController : StageEntity
 
             canAutoMove = false;
             BeginAutomoveTimer();
-            //Move left
-
-            //bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(-1, 0, moveSpeed), moveLockoutTime, Time.unscaledTime));
-
-            //MovingCoroutine = StartCoroutine(TweenMove(-1, 0, 0.1f, MovementEase)); 
-            //OnPerformAction?.Invoke();
 
         }
         if(Keyboard.current.wKey.wasPressedThisFrame)
@@ -328,11 +318,7 @@ public class PlayerController : StageEntity
             if(!CheckDestination(0, 1)){return;}
             canAutoMove = false;
             BeginAutomoveTimer();
-            //Move up
-            //bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(0, 1, moveSpeed), moveLockoutTime, Time.unscaledTime));
 
-            //MovingCoroutine = StartCoroutine(TweenMove(0, 1, 0.1f, MovementEase));     
-            //OnPerformAction?.Invoke();
 
         }
         if(Keyboard.current.sKey.wasPressedThisFrame)
@@ -340,11 +326,7 @@ public class PlayerController : StageEntity
             if(!CheckDestination(0, -1)){return;}
             canAutoMove = false;
             BeginAutomoveTimer();
-            //Move down
-            //bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(0, -1, moveSpeed), moveLockoutTime, Time.unscaledTime));
 
-            //MovingCoroutine = StartCoroutine(TweenMove(0, -1, 0.1f, MovementEase));
-            //OnPerformAction?.Invoke();
 
         }
 
@@ -369,9 +351,6 @@ public class PlayerController : StageEntity
                 //Move right
                 bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(1, 0, 0.1f), 0.1f, Time.unscaledTime));
 
-                //MovingCoroutine = StartCoroutine(TweenMove(1, 0, 0.1f, MovementEase));
-                //OnPerformAction?.Invoke();
-
             }
             if(Keyboard.current.aKey.isPressed)
             {   
@@ -386,9 +365,6 @@ public class PlayerController : StageEntity
                 bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(-1, 0, 0.1f), 0.1f, Time.unscaledTime));
 
 
-                //MovingCoroutine = StartCoroutine(TweenMove(-1, 0, 0.1f, MovementEase));
-                //OnPerformAction?.Invoke();
-
             }
             if(Keyboard.current.wKey.isPressed)
             {
@@ -400,9 +376,6 @@ public class PlayerController : StageEntity
                 }
                 //Move up
                 bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(0, 1, 0.1f), 0.1f, Time.unscaledTime));
-
-                //MovingCoroutine = StartCoroutine(TweenMove(0, 1, 0.1f, MovementEase));
-                //OnPerformAction?.Invoke();
 
             }
             if(Keyboard.current.sKey.isPressed)
@@ -416,8 +389,6 @@ public class PlayerController : StageEntity
                 //Move down
                 bufferHandler.BufferAction(new BufferedInput(() => ExecuteMove(0, -1, 0.1f), 0.1f, Time.unscaledTime));
 
-                //MovingCoroutine = StartCoroutine(TweenMove(0, -1, 0.1f, MovementEase));
-                //OnPerformAction?.Invoke();
 
             }
         }
@@ -565,8 +536,7 @@ public class PlayerController : StageEntity
     //Logic for when BasicShot input action is activated
     public void BasicShot(InputAction.CallbackContext context)
     {
-        //if(cardManager.CardInUseCoroutine != null) { return; }
-        //if(MovingCoroutine != null){return;}
+
         if(!CanFireBasicShot){return;}
         if(!CanAct){return;}
         if(isDefeated){return;}
@@ -642,7 +612,6 @@ public class PlayerController : StageEntity
         if(context.performed)
         {
             
-            //implement for energy system
             if(energyController != null)
             {
                 if(!energyController.EnergyIsFull())
@@ -650,7 +619,7 @@ public class PlayerController : StageEntity
                     return;
                 }
             }
-            //end for energy system
+
             
             cardSelectionMenu.ActivateMenu();
         }
@@ -677,13 +646,8 @@ public class PlayerController : StageEntity
     {
         if(isDefeated) { return; }
         if(_statusEffectManager.Stunned) { return; }
-        //if(cardManager.CardInUseCoroutine != null) { return; }
         if(!CanUsePlayerInput()) { return; }
-        // if(MovingCoroutine != null) 
-        // {
-        //     _dashController.DashReticle.SetActive(false);
-        //     return; 
-        // }
+
 
         if(context.performed)
         {

@@ -351,6 +351,7 @@ public class EntityStatusEffectManager : MonoBehaviour
         {
             case AttackElement.Neutral:
                 markedPayload.canTriggerMark = false;
+                markedPayload.statusEffects.Clear();
                 entity.HurtEntity(markedPayload);    
             break;
 

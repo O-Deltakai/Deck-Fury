@@ -45,6 +45,11 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] int quadraKillReward = 200;
     [SerializeField] int quadraPlusKillReward = 500;
 
+    /// <summary>
+    /// Time threshold for a multi-kill to be considered a multi-kill - any kills made after this period of time will not be considered part of the multi-kill.
+    /// </summary>
+    [Tooltip("Time threshold for a multi-kill to be considered a multi-kill - any kills made after this period of time will not be considered part of the multi-kill.")]
+    [SerializeField] float multiKillTimeThreshold = 0.2f;
 
 
 
@@ -237,7 +242,8 @@ public class ScoreManager : MonoBehaviour
             if (methodToAssign != null)
             {
                 // Create a delegate from the method and add it as a listener
-                UnityAction<BonusScoreItemSO> action = (UnityAction<BonusScoreItemSO>)Delegate.CreateDelegate(typeof(UnityAction<BonusScoreItemSO>), rewardConditionChecks, methodToAssign);
+                UnityAction<BonusScoreItemSO> action = (UnityAction<BonusScoreItemSO>)Delegate.CreateDelegate(typeof(UnityAction<BonusScoreItemSO>),
+                rewardConditionChecks, methodToAssign);
                 runtimeBonusScoreItem.RewardCondition.AddListener(action);
             }
             else
@@ -298,7 +304,7 @@ public class ScoreManager : MonoBehaviour
         {
             StopCoroutine(CR_ComboTimer);
         }
-        CR_ComboTimer = StartCoroutine(MultiKillTimer(0.2f));
+        CR_ComboTimer = StartCoroutine(MultiKillTimer(multiKillTimeThreshold));
 
         currentComboKillLength++;
 
@@ -335,6 +341,11 @@ public class ScoreManager : MonoBehaviour
         if(currentComboKillLength > 4)
         {
             QuadraPlusKills++;
+        }
+
+        if(currentComboKillLength > 1)
+        {
+            EventBus<ComboKillEvent>.Raise(new ComboKillEvent(currentComboKillLength));
         }
 
         currentComboKillLength = 0;

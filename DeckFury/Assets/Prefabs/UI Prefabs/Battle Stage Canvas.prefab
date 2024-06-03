@@ -4847,6 +4847,7 @@ MonoBehaviour:
   cardSlotPrefab: {fileID: 8121768675598124532, guid: 62979053a3a3bfd4daf4415bb13ccaf4, type: 3}
   cardSlotsParent: {fileID: 2865551430283665004}
   cardSlots: []
+  useCardPoolManager: 1
 --- !u!114 &4817652051891486466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5774,12 +5775,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 310240014}
   - {fileID: 1388264035952647063}
   - {fileID: 1388264036865434066}
   - {fileID: 656948377}
   - {fileID: 1243879035}
   - {fileID: 2584455885269444588}
-  - {fileID: 310240014}
   - {fileID: 3599513476679597082}
   - {fileID: 1655029128}
   - {fileID: 164311915}
