@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+/// <summary>
+/// A targeting algorithm that finds the closest target to the mouse cursor within a certain radius
+/// </summary>
 public class TargetClosestToMouse : MonoBehaviour
 {
     [SerializeField] float searchInterval = 0.1f;

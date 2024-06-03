@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Class used to store information within the individual tiles of the GroundTileMap
+/// <summary>
+///Class used to store information within the individual tiles of the GroundTileMap
+/// </summary>
+[System.Serializable]
 public class GroundTileData 
 {
     //The coordinates of this tile on the tilemap

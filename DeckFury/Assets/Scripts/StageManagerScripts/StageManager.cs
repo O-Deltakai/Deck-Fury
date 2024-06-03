@@ -35,6 +35,8 @@ public class StageManager : MonoBehaviour
     //in certain operations, like selecting a random tile on the board.
     public List<GroundTileData> groundTileList {get; private set;}
 
+    KDTree2D tileKDTree;
+
     MapLoader mapLoader;
 
     private void Awake()
@@ -127,7 +129,7 @@ public class StageManager : MonoBehaviour
     {
         if(!mapLayout.SetSpawnPosition) { return; }
 
-        print("Attempting to set play position to: " + mapLayout.PlayerSpawnPosition);
+        print("Attempting to set player position to: " + mapLayout.PlayerSpawnPosition);
         //GameManager.Instance.player.worldTransform.position = mapLayout.PlayerSpawnPosition;
         GameManager.Instance.player.TeleportToLocation(mapLayout.PlayerSpawnPosition);
 
@@ -197,6 +199,10 @@ public class StageManager : MonoBehaviour
 
         }
 
+        // Initialize the KDTree2D with the keys from the dictionary
+        List<Vector3> keys = new List<Vector3>(groundTileDictionary.Keys);
+        tileKDTree = new KDTree2D(keys);
+
         OnFinishInitializingTiles?.Invoke();
 
     }
@@ -213,7 +219,11 @@ public class StageManager : MonoBehaviour
         return groundTileDictionary[GroundTileMap.CellToWorld(tilePosition)];
     }
 
-
+    public GroundTileData FindClosestGroundTileData(Vector3 inputPosition)
+    {
+        Vector3 closestPosition = tileKDTree.FindNearest(inputPosition);
+        return groundTileDictionary[closestPosition];        
+    }
 
     //Checks if the given coordinates are valid based on a number conditions. Returns true if conditions are passed,
     //false otherwise.

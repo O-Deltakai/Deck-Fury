@@ -33,6 +33,8 @@ public class ChargeEnergyOnKill : ItemBase
 
     void HandleEventData(NPCKilledEvent npcKilledEvent)
     {
+        if(!Initialized) {return;}
+
         if(npcKilledEvent.killingBlow.attacker = player.gameObject)
         {
             //print("ChargeEnergyOnKill: Player killed an NPC, charging energy.");

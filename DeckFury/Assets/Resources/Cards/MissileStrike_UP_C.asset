@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c923d00297c904c49922de3a336f1e5b, type: 3}
-  m_Name: MissileStrike
+  m_Name: MissileStrike_UP_C
   m_EditorClassIdentifier: 
-  <CardName>k__BackingField: Missile Strike
-  CardDescription: "Call down a missile <b>4</b> tiles ahead which after a <b>Q0s</b>
-    delay explodes in a <b>3x3</b> area, dealing <b>BD</b> damage to all enemies
-    in the area. \n\nEnemies on the center tile take an additional <b>BD</b> damage."
-  BaseDamage: 75
+  <CardName>k__BackingField: Guided Missile Strike
+  CardDescription: "Call down a missile <color=green><b>at a selected tile</b></color>
+    which after <b>Q0s</b> delay explodes in a <b>3x3</b> area, dealing <b>BD</b>
+    damage to all enemies in the area. \n\nEnemies on the center tile take an additional
+    <b>BD</b> damage."
+  BaseDamage: 50
   <AttackElement>k__BackingField: 0
   <CardType>k__BackingField: 0
   <oldStatusEffectType>k__BackingField: 0
@@ -32,23 +33,20 @@ MonoBehaviour:
     _expressionIsInt: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
-  _isUpgraded: 0
+  _isUpgraded: 1
   baseCard: {fileID: 0}
-  upgrades:
-  - _upgradedCard: {fileID: 11400000, guid: f8c431ae05082f44bb071555971dea2a, type: 2}
-  - _upgradedCard: {fileID: 11400000, guid: 88bc1d8b3a6366841ba59f09f0d33582, type: 2}
-  - _upgradedCard: {fileID: 11400000, guid: 8f4bd4b6b37a3894894cffc94b69a033, type: 2}
+  upgrades: []
   CardImage: {fileID: 21300000, guid: ed50e38e91bf6ab44bb96f23dd8ac881, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
   <UsesAnimationEvent>k__BackingField: 1
-  <EffectPrefab>k__BackingField: {fileID: 7805592675170215389, guid: 14096123e3a903749ac91f19949aff13, type: 3}
+  <EffectPrefab>k__BackingField: {fileID: 7805592675170215389, guid: 72e192cf0f659ba4fbde8ca0f056faa7, type: 3}
   <ObjectSummonList>k__BackingField: []
   <ObjectSummonsArePooled>k__BackingField: 0
   <UseTargetingReticle>k__BackingField: 1
-  _dynamicReticle: 0
+  _dynamicReticle: 1
   <ReticleIsStatic>k__BackingField: 0
-  <TargetingReticle>k__BackingField: {fileID: 6488817306040691782, guid: 9d50f115023c50b4e930f42215c2ab11, type: 3}
-  <TargetingReticleOffSet>k__BackingField: {x: 0, y: -4}
+  <TargetingReticle>k__BackingField: {fileID: 955135164601175123, guid: a3fafd8936815104eb97e4f7d8f55a9f, type: 3}
+  <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}
   _onActivationSFX:
     Guid:
       Data1: -1458326653

@@ -290,6 +290,11 @@ public class AimpointController : MonoBehaviour
         virtualCursorTransform.position = transform.position + cursorOffset;
     }
 
+    void UpdateVirtualCursorAbsolute()
+    {
+        virtualCursorTransform.position = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+    }
+
     void FaceAimpointTowardsMouseRelative()
     {
 

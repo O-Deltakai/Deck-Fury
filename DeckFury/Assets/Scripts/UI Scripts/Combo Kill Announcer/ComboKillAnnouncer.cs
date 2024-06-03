@@ -167,7 +167,9 @@ public class ComboKillAnnouncer : MonoBehaviour
 
     }
 
-
+/// <summary>
+/// Updates the positions of the popups in the queue as the popups come and go.
+/// </summary>
     void UpdatePopupPositions()
     {
         if(popupQueue.Count == 0)
