@@ -1267,6 +1267,8 @@ MonoBehaviour:
       Data3: 1445076153
       Data4: -441680986
     Path: event:/CardSFX/TriggerMarkSFX
+  LeftOverBleedDamage: 0
+  testExsanguiate: 0
 --- !u!114 &3637428331803564350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1306,7 +1308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementEase: 4
   <worldTransform>k__BackingField: {fileID: 8603392144972885620}
-  _centerPoint: {fileID: 0}
+  _centerPoint: {fileID: 8603392145581742682}
   currentTilePosition: {x: 0, y: 0, z: 0}
   CanInitiateMovementActions: 1
   CanAct: 1

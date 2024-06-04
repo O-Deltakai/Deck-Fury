@@ -76,7 +76,7 @@ public class EntityDamageBuilder
     /// </summary>
     public void Apply(StageEntity entity, AttackPayload payload)
     {
-        EntityStatusEffectManager statusEffectManager = entity.StatusEffectManager;
+        EntityStatusEffectManager statusEffectManager = entity.StatusManager;
         _currentPayload = payload;
 
         //Trigger pre-damage calculation actions

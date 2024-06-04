@@ -83,7 +83,7 @@ public class ShieldBearerController : MonoBehaviour
     {
         seekerAI = GetComponent<SeekerAI>();
         seekerAI.Target = GameManager.Instance.player;
-        npc.StatusEffectManager.OnStunned += OnStunned;
+        npc.StatusManager.OnStunned += OnStunned;
         ShieldsUp();        
     }
 

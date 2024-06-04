@@ -69,7 +69,13 @@ public class EntityStatusEffectManager : MonoBehaviour
     Coroutine ColorFlashCoroutine;
 
 
+//Bleeding Mechanics
     List<Coroutine> currentBleedingStacks = new List<Coroutine>();
+    public double LeftOverBleedDamage = 0;
+
+    [Header("Debug Options")]
+    [SerializeField] bool testExsanguiate = false;
+
 
 
     Coroutine CR_ArmorbreakCoroutine = null;
@@ -91,11 +97,15 @@ public class EntityStatusEffectManager : MonoBehaviour
         _originalArmorValue = entity.Armor;
     }
 
-
     void Update()
     {
-        
+        if(testExsanguiate)
+        {
+            Exsanguinate();
+            testExsanguiate = false;
+        }
     }
+
 
     public void TriggerStatusEffect(StatusEffectType statusEffect, AttackPayload payload, float duration = 0)
     {
@@ -226,7 +236,8 @@ public class EntityStatusEffectManager : MonoBehaviour
 
     IEnumerator BleedOverTime(AttackPayload payload, int totalDamage, float duration, float tickRate)
     {
-        
+        LeftOverBleedDamage += totalDamage;
+
         double damagePerTick = totalDamage / (duration / tickRate);
 
         int totalTicks = Mathf.FloorToInt(duration / tickRate);
@@ -250,14 +261,12 @@ public class EntityStatusEffectManager : MonoBehaviour
             entity.HurtEntity(bleedDamage, Color.red);
 
             // Reduce the accumulated damage by the applied amount
+            LeftOverBleedDamage -= damageToApply;
             accumulatedDamage -= damageToApply;
 
 
             yield return new WaitForSeconds(tickRate);
-        }
-
-
-        
+        }        
     }
 
     IEnumerator RemoveBleedStackTimer(Coroutine bleedStack, float duration)
@@ -269,6 +278,37 @@ public class EntityStatusEffectManager : MonoBehaviour
             if(bleedingEffectObject){ bleedingEffectObject.SetActive(false); }
             _bleeding = false;
         }
+    }
+
+/// <summary>
+/// Stops all bleeding stacks and applies the remaining damage to the entity
+/// </summary>
+    public void Exsanguinate()
+    {
+        if(currentBleedingStacks.Count == 0)
+        {
+            return;
+        }
+
+        foreach (Coroutine stack in currentBleedingStacks)
+        {
+            StopCoroutine(stack);
+        }
+        currentBleedingStacks.Clear();
+
+        int damageToApply = (int)Mathf.Floor((float)LeftOverBleedDamage);
+        AttackPayload bleedDamage = new AttackPayload(damageToApply)
+        {
+            attackElement = AttackElement.Pure,
+            attacker = null,
+            canTriggerMark = false
+        };
+
+        entity.HurtEntity(bleedDamage, Color.red);
+
+        LeftOverBleedDamage = 0;
+        _bleeding = false;
+        if(bleedingEffectObject){ bleedingEffectObject.SetActive(false); }
     }
 
     void ArmorBreakEffect(float strength = 1)

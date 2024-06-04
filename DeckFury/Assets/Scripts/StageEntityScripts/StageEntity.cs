@@ -87,7 +87,7 @@ public class StageEntity : MonoBehaviour
     public EntityAnimationController EntityAnimator => _entityAnimator;
 
     protected EntityStatusEffectManager _statusEffectManager;
-    public EntityStatusEffectManager StatusEffectManager => _statusEffectManager;
+    public EntityStatusEffectManager StatusManager => _statusEffectManager;
     
     protected EntityUIElementAnimator _UIElementAnimator;
     public EntityUIElementAnimator UIElementAnimator => _UIElementAnimator;

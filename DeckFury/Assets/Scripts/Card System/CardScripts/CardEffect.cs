@@ -95,7 +95,10 @@ public abstract class CardEffect : MonoBehaviour
 
 
     //Method to call when it is time to disable the effect prefab
-    protected abstract IEnumerator DisableEffectPrefab();
+    protected virtual IEnumerator DisableEffectPrefab()
+    {
+        yield break;
+    }
 
 
 }
