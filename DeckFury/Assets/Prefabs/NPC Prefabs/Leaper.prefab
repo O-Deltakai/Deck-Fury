@@ -840,7 +840,9 @@ MonoBehaviour:
   payload:
     damage: 15
     attackElement: 4
-    statusEffects: []
+    statusEffects:
+    - statusEffectType: 1
+      effectStrength: 1
     canTriggerMark: 0
     greaterMarked: 0
     attacker: {fileID: 6652887403877378520}
@@ -1154,6 +1156,8 @@ MonoBehaviour:
       Data3: 1445076153
       Data4: -441680986
     Path: event:/CardSFX/TriggerMarkSFX
+  LeftOverBleedDamage: 0
+  testExsanguiate: 0
 --- !u!114 &1822853394068859523
 MonoBehaviour:
   m_ObjectHideFlags: 0

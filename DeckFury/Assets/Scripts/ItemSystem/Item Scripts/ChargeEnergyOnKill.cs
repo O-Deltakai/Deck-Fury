@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ChargeEnergyOnKill : ItemBase
 {
-     
     EventBinding<NPCKilledEvent> npcKilledEventBinding;
 
     void OnEnable()
@@ -26,7 +25,6 @@ public class ChargeEnergyOnKill : ItemBase
 
     public override void Proc()
     {
-        //EventBus<ItemEvent>.Raise(new ItemEvent { itemBase = this, itemSO = itemSO, targetObject = EnergyController.Instance });
         EnergyController.Instance.CurrentEnergyValue +=  EnergyController.Instance.MaxEnergy * itemSO.QuantifiableEffects[0].FloatQuantity * 0.01f ;
         base.Proc();
     }
@@ -37,14 +35,12 @@ public class ChargeEnergyOnKill : ItemBase
 
         if(npcKilledEvent.killingBlow.attacker = player.gameObject)
         {
-            //print("ChargeEnergyOnKill: Player killed an NPC, charging energy.");
             Proc();
         }
     }
 
     public override void Deactivate()
     {
-        //EventBus<NPCKilledEvent>.Deregister(npcKilledEventBinding);
         base.Deactivate();
     }
 

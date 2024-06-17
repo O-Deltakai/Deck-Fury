@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +28,10 @@ public class CardSlot : MonoBehaviour
     [SerializeField] EventReference onClickSFX;
     EventInstance onHoverSFXInstance;
     EventInstance onClickSFXInstance;
+
+[Header("Ammo Status Elements")]
+    [SerializeField] TextMeshProUGUI _currentAmmoText;
+    [SerializeField] TextMeshProUGUI _rechargeTimerText;
 
     private void Awake()
     {
@@ -56,7 +61,7 @@ public class CardSlot : MonoBehaviour
     {
         if(card == null)
         {
-            Debug.LogWarning("Attemtped to initialize null CardSO in CardSlot. Aborting...");    
+            Debug.LogWarning("Attempted to initialize null CardSO in CardSlot. Aborting...");    
             return;
         }
         initializedWithCardSO = true;

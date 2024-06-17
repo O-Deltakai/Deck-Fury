@@ -51,31 +51,28 @@ public class Exsanguinate : CardEffect
         int index = 0;  
         foreach(var entity in entities)
         {
-            if(entity.gameObject.CompareTag(TagNames.Enemy.ToString()))
+            if(entity.StatusManager.Bleeding)
             {
-                if(entity.StatusManager.Bleeding)
+                entity.StatusManager.Exsanguinate();
+
+                if(entity.CenterPoint)
                 {
-                    entity.StatusManager.Exsanguinate();
-
-                    if(entity.CenterPoint)
-                    {
-                        exsanguinateVFXPool[index].transform.position = entity.CenterPoint.position;
-                    }else
-                    {
-                        exsanguinateVFXPool[index].transform.position = entity.currentTilePosition;
-                    }
-
-                    exsanguinateVFXPool[index].SetActive(true);
-                    index++;
-
-                    entity.HurtEntity(attackPayload);
-                    numberOfBleedingEnemies++;
-                    RuntimeManager.PlayOneShotAttached(exsanguinateSFX, entity.gameObject);
+                    exsanguinateVFXPool[index].transform.position = entity.CenterPoint.position;
+                }else
+                {
+                    exsanguinateVFXPool[index].transform.position = entity.currentTilePosition;
                 }
+
+                exsanguinateVFXPool[index].SetActive(true);
+                index++;
+
+                entity.HurtEntity(attackPayload);
+                numberOfBleedingEnemies++;
+                RuntimeManager.PlayOneShotAttached(exsanguinateSFX, entity.gameObject);
             }
         }
         
-        cinemachineImpulseSourceHelper.ShakeCameraRandomCircle((numberOfBleedingEnemies * 0.5f) * SettingsManager.GlobalCameraShakeMultiplier * cameraShakeVelocity,
+        cinemachineImpulseSourceHelper.ShakeCameraRandomCircle(numberOfBleedingEnemies * 0.5f * SettingsManager.GlobalCameraShakeMultiplier * cameraShakeVelocity,
         cameraShakeDuration, 1f);
 
 

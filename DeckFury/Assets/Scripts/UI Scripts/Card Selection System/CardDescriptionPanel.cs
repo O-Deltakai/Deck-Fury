@@ -36,6 +36,12 @@ public class CardDescriptionPanel : MonoBehaviour
     [SerializeField] TextMeshProUGUI statusName;
     [SerializeField] Image statusPopoutIcon;
 
+[Header("Ammo Stats Elements")]
+    [SerializeField] TextMeshProUGUI ammoCounter;
+    [SerializeField] TextMeshProUGUI rechargeRateCounter;
+    [SerializeField] TextMeshProUGUI rechargeAmountCounter;
+
+
     Image descriptionPanelImage;
 
     bool lockedInPlace = false;    
@@ -105,6 +111,45 @@ public class CardDescriptionPanel : MonoBehaviour
         };
     }
 
+    void SetAmmoStatElements(CardSO cardSO)
+    {
+        //Ammo Counter
+        if(ammoCounter)
+        {
+            if(cardSO.BaseAmmo == -1)
+            {
+                ammoCounter.text = "INF";
+            }else
+            {
+                ammoCounter.text = cardSO.BaseAmmo.ToString();
+            }
+        }
+
+        //Recharge Rate Counter
+        if(rechargeRateCounter)
+        {
+            if(cardSO.RechargeRate == 0)
+            {
+                rechargeRateCounter.text = "N/A";
+            }else
+            {
+                rechargeRateCounter.text = cardSO.RechargeRate.ToString();
+            }
+        }
+
+        //Recharge Amount Counter
+        if(rechargeAmountCounter)
+        {
+            if(cardSO.RechargeAmount == 0)
+            {
+                rechargeAmountCounter.text = "N/A";
+            }else
+            {
+                rechargeAmountCounter.text = cardSO.RechargeAmount.ToString();
+            }
+        }
+
+    }
 
 
     //Take in a card slot and update the panel based on the cardSO stored within the card slot.
@@ -158,6 +203,8 @@ public class CardDescriptionPanel : MonoBehaviour
 
         statusDescription.text = cardUIIcons.GetStatusDescription(cardSO.statusEffect.statusEffectType);
 
+        SetAmmoStatElements(cardSO);
+
 
         if(cardSO.GetBaseDamage() <= 0)
         {
@@ -207,6 +254,7 @@ public class CardDescriptionPanel : MonoBehaviour
         statusName.text = cardSO.statusEffect.statusEffectType.ToString().Replace("_", " ");
         statusDescription.text = cardUIIcons.GetStatusDescription(cardSO.statusEffect.statusEffectType);
 
+        SetAmmoStatElements(cardSO);
 
         if(cardSO.GetBaseDamage() <= 0)
         {

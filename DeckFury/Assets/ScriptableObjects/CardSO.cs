@@ -99,6 +99,29 @@ public class CardSO : ScriptableObject
     [field:SerializeField] public StatusEffectType oldStatusEffectType {get; private set;}
     [field:SerializeField] public StatusEffect statusEffect {get; private set;}
 
+    [Tooltip("The base ammo of the card. If the card has a base ammo of -1, it has infinite ammo.")]
+    [SerializeField, Min(-1)] int _baseAmmo = -1;
+    /// <summary>
+    /// The base ammo of the card. If the card has a base ammo of -1, it has infinite ammo. Minimum value is -1.
+    /// </summary>
+    public int BaseAmmo => _baseAmmo;
+
+    [Tooltip("The number of turns it takes for the card to recharge ammo. If set to 0, the card cannot recharge normally.")]
+    [SerializeField, Min(0)] int _rechargeRate = 1;
+    /// <summary>
+    /// The number of turns it takes for the card to recharge ammo. If set to 0, the card cannot recharge normally. Minimum value is 0.
+    /// </summary>
+    public int RechargeRate => _rechargeRate;
+
+    [Tooltip("The amount of ammo the card restores to its base ammo when it recharges. If set to 0 then the card cannot recharge normally. Minumum value is 0.")]
+    [SerializeField, Min(0)] int _rechargeAmount = 1;
+    /// <summary>
+    /// The amount of ammo the card restores to its base ammo when it recharges. If set to 0 then the card cannot recharge normally. Minumum value is 0.
+    /// </summary>
+    public int RechargeAmount => _rechargeAmount;
+
+
+
     [SerializeField, Range(1, 3)] int CardTier = 1;
     [field:SerializeField] public List<QuantifiableEffect> QuantifiableEffects {get;private set;}
 
