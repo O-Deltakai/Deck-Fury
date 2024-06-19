@@ -178,18 +178,8 @@ public class CardPoolManager : MonoBehaviour
     /// <param name="deckElement"></param>
     public void AddDeckElementToPool(DeckElement deckElement)
     {
-        //If the deck element has less than or equal to 0 card count, issue a warning and continue to the next deck element.
-        if(deckElement.cardCount <= 0)
+        if(!VerifyDeckElement(deckElement))
         {
-            Debug.LogWarning("Deck element of card: " + deckElement.card.CardName + "in player deck " 
-            + "has a card count of less then or equal to 0, which should not happen. Remove the offending deck"
-            + "element or increase its count past 0 to fix this warning.");
-            return;
-        }
-        //Make sure that the card has an EffectPrefab defined in its cardSO, otherwise continue to the next deck element
-        if(deckElement.card.EffectPrefab == null)
-        {
-            Debug.LogWarning("Card: " + deckElement.card.CardName + " does not have an EffectPrefab defined in its CardSO, card will not work.");
             return;
         }
 
@@ -218,13 +208,8 @@ public class CardPoolManager : MonoBehaviour
             PooledObjects.Add(effectPrefab.gameObject);
 
             //Create a new CardObjectReference that references the instantiated EffectPrefab and its ObjectSummons
-            CardObjectReference cardObjectReference = new CardObjectReference
-            {
-                cardSO = deckElement.card,
-                effectPrefab = effectPrefab.gameObject,
-                objectSummonPrefabs = effectPrefab.ObjectSummonList
-            };
-
+            CardObjectReference cardObjectReference = new();
+            cardObjectReference.InitializeCardObjectReference(deckElement.card, effectPrefab);
             CardObjectReferences.Add(cardObjectReference);
         }
 
@@ -243,24 +228,43 @@ public class CardPoolManager : MonoBehaviour
 
     }
 
+    bool VerifyDeckElement(DeckElement deckElement, DeckSO deck = null)
+    {
+        //If the deck element has less than or equal to 0 card count, issue a warning and continue to the next deck element.
+        if(deckElement.cardCount <= 0)
+        {
+            if(deck)
+            {
+                Debug.LogWarning("Deck element of card: " + deckElement.card.CardName + "in Deck: " + deck.DeckName
+                + "has a card count of less then or equal to 0, which should not happen. Remove the offending deck"
+                + "element or increase its count past 0 to fix this warning.");
+            }else
+            {
+                Debug.LogWarning("Deck element of card: " + deckElement.card.CardName + "in player deck " 
+                + "has a card count of less then or equal to 0, which should not happen. Remove the offending deck"
+                + "element or increase its count past 0 to fix this warning.");
+            }
+
+            return false;
+        }
+        //Make sure that the card has an EffectPrefab defined in its cardSO, otherwise continue to the next deck element
+        if(deckElement.card.EffectPrefab == null)
+        {
+            Debug.LogWarning("Card: " + deckElement.card.CardName + " does not have an EffectPrefab defined in its CardSO, card will not work.");
+            return false;
+        }
+
+        return true;
+    }
+
     //Primary method for pooling all effect prefabs/object summons from a given deck
     private void PoolObjectsFromDeck(DeckSO deck)
     {
 
         foreach(DeckElement deckElement in deck.CardListReadOnly)
         {
-            //If the deck element has less than or equal to 0 card count, issue a warning and continue to the next deck element.
-            if(deckElement.cardCount <= 0)
+            if(!VerifyDeckElement(deckElement, deck))
             {
-                Debug.LogWarning("Deck element of card: " + deckElement.card.CardName + "in Deck: " + deck.DeckName
-                + "has a card count of less then or equal to 0, which should not happen. Remove the offending deck"
-                + "element or increase its count past 0 to fix this warning.");
-                continue;
-            }
-            //Make sure that the card has an EffectPrefab defined in its cardSO, otherwise continue to the next deck element
-            if(deckElement.card.EffectPrefab == null)
-            {
-                Debug.LogWarning("Card: " + deckElement.card.CardName + " does not have an EffectPrefab defined in its CardSO, card will not work.");
                 continue;
             }
 
@@ -286,13 +290,8 @@ public class CardPoolManager : MonoBehaviour
                 PooledObjects.Add(effectPrefab.gameObject);
 
                 //Create a new CardObjectReference that references the instantiated EffectPrefab and its ObjectSummons
-                CardObjectReference cardObjectReference = new CardObjectReference
-                {
-                    cardSO = deckElement.card,
-                    effectPrefab = effectPrefab.gameObject,
-                    objectSummonPrefabs = effectPrefab.ObjectSummonList
-
-                };
+                CardObjectReference cardObjectReference = new();
+                cardObjectReference.InitializeCardObjectReference(deckElement.card, effectPrefab);
 
                 CardObjectReferences.Add(cardObjectReference);
 
@@ -314,18 +313,8 @@ public class CardPoolManager : MonoBehaviour
 
         foreach(DeckElement deckElement in deck.CardList)
         {
-            //If the deck element has less than or equal to 0 card count, issue a warning and continue to the next deck element.
-            if(deckElement.cardCount <= 0)
+            if(!VerifyDeckElement(deckElement))
             {
-                Debug.LogWarning("Deck element of card: " + deckElement.card.CardName + "in player deck " 
-                + "has a card count of less then or equal to 0, which should not happen. Remove the offending deck"
-                + "element or increase its count past 0 to fix this warning.");
-                continue;
-            }
-            //Make sure that the card has an EffectPrefab defined in its cardSO, otherwise continue to the next deck element
-            if(deckElement.card.EffectPrefab == null)
-            {
-                Debug.LogWarning("Card: " + deckElement.card.CardName + " does not have an EffectPrefab defined in its CardSO, card will not work.");
                 continue;
             }
 
@@ -351,13 +340,8 @@ public class CardPoolManager : MonoBehaviour
                 PooledObjects.Add(effectPrefab.gameObject);
 
                 //Create a new CardObjectReference that references the instantiated EffectPrefab and its ObjectSummons
-                CardObjectReference cardObjectReference = new CardObjectReference
-                {
-                    cardSO = deckElement.card,
-                    effectPrefab = effectPrefab.gameObject,
-                    objectSummonPrefabs = effectPrefab.ObjectSummonList
-
-                };
+                CardObjectReference cardObjectReference = new();
+                cardObjectReference.InitializeCardObjectReference(deckElement.card, effectPrefab);
 
                 CardObjectReferences.Add(cardObjectReference);
 
