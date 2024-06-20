@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using FMODUnity;
 using UnityEngine.UI;
 using FMOD.Studio;
+using UnityEngine.EventSystems;
 
 //Script that handles functionality of the card selection menu
 public class CardSelectionMenu : MonoBehaviour
@@ -68,6 +69,16 @@ public class CardSelectionMenu : MonoBehaviour
     [SerializeField] float PreviewInViewYAnchor;
     [SerializeField] RectTransform PreviewArrowIcon;
     bool isPreviewing = false;
+
+[Header("Slot Prefabs")]
+    [SerializeField] GameObject _selectionSlotPrefab;
+    [SerializeField] GameObject _loadSlotPrefab;
+    [SerializeField] int _maxSelectionSlots = 10;
+    [SerializeField] int _maxLoadSlots = 5;
+    [SerializeField] float _secondaryLoadSlotScaleMultiplier = 0.85f;
+    [SerializeField] List<SelectionSlot> _selectionSlots;
+    [SerializeField] List<LoadSlot> _loadSlots;
+
 
     [Header("SFX")]
     [SerializeField] EventReference activateMenuSFX;
@@ -275,6 +286,51 @@ public class CardSelectionMenu : MonoBehaviour
 
     }
 
+    void InitializeSelectionSlots()
+    {
+        for(int i = 0; i < _maxSelectionSlots; i++)
+        {
+            GameObject selectionSlotInstance = Instantiate(_selectionSlotPrefab, cardSelectPanel.transform);
+            SelectionSlot selectionSlot = selectionSlotInstance.GetComponent<SelectionSlot>();
+
+        }
+    }
+
+    void SetupSelectionSlots()
+    {
+        foreach(SelectionSlot selectionSlot in _selectionSlots)
+        {
+            EventTrigger eventTrigger;
+            if(selectionSlot.TryGetComponent<EventTrigger>(out eventTrigger) == false)
+            {
+                eventTrigger = selectionSlot.gameObject.AddComponent<EventTrigger>();
+            }
+
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            EventTrigger.Entry pointerEnterEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+            EventTrigger.Entry pointerExitEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+
+        }
+    }
+
+    void SetupLoadSlots()
+    {
+
+    }
+
+    void InitializeLoadSlots()
+    {
+        for(int i = 0; i < _maxLoadSlots; i++)
+        {
+            GameObject loadSlotInstance = Instantiate(_loadSlotPrefab, cardLoadPanel.transform);
+            LoadSlot loadSlot = loadSlotInstance.GetComponent<LoadSlot>();
+            loadSlot.slotIndex = i;
+            if(loadSlot.slotIndex > 0)
+            {
+                loadSlotInstance.transform.localScale *= _secondaryLoadSlotScaleMultiplier;
+            }
+        }
+    }
 
     //Populates the Card Selection Panel with CardObjectReferences from the CardPoolManager. Uses a random index to grab a random card
     //from the CardObjectReferences and updates each of the card slots with said CardObjectReference

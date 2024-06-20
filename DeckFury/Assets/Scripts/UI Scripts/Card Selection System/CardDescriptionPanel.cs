@@ -153,6 +153,37 @@ public class CardDescriptionPanel : MonoBehaviour
 
     }
 
+    void SetMainPanelValues(CardSO cardSO)
+    {
+        textDescription.text = cardSO.GetFormattedDescription();
+        cardName.text = cardSO.CardName;
+        cardName.color = cardSO.IsUpgraded ? upgradedCardTitleColor : Color.white;
+        cardImage.sprite = cardSO.GetCardImage();
+        elementIcon.sprite = cardUIIcons.GetElementIcon(cardSO.AttackElement);
+        statusIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.statusEffect.statusEffectType);
+        ChangeColorBasedOnCardTier(cardSO.GetCardTier());
+
+        if(cardSO.GetBaseDamage() <= 0)
+        {
+            damageText.text = "N/A";
+        }else
+        {
+            damageText.text = cardSO.GetBaseDamage().ToString();
+        }
+    }
+
+    void SetPopoutPanelValues(CardSO cardSO)
+    {
+        //Element Popout Panel
+        elementPopoutIcon.sprite = cardUIIcons.GetElementIcon(cardSO.AttackElement);
+        elementName.text = cardSO.AttackElement.ToString();
+        elementDescription.text = cardUIIcons.GetElementDescription(cardSO.AttackElement);
+
+        //Status Popout Panel
+        statusPopoutIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.statusEffect.statusEffectType);
+        statusName.text = cardSO.statusEffect.statusEffectType.ToString().Replace("_", " ");
+        statusDescription.text = cardUIIcons.GetStatusDescription(cardSO.statusEffect.statusEffectType);
+    }
 
     //Take in a card slot and update the panel based on the cardSO stored within the card slot.
     public void UpdateDescription(CardSlot cardSlot)
@@ -183,38 +214,10 @@ public class CardDescriptionPanel : MonoBehaviour
         }
 
 
-        //Set values for main panel
-        textDescription.text = cardSO.GetFormattedDescription();
-        cardName.text = cardSO.CardName;
-        cardName.color = cardSO.IsUpgraded ? upgradedCardTitleColor : Color.white;
-        cardImage.sprite = cardSO.GetCardImage();
-        elementIcon.sprite = cardUIIcons.GetElementIcon(cardSO.AttackElement);
-        statusIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.statusEffect.statusEffectType);
-        ChangeColorBasedOnCardTier(cardSO.GetCardTier());
-
-    //Set values for popout panels
-
-        //Element Popout Panel
-        elementPopoutIcon.sprite = cardUIIcons.GetElementIcon(cardSO.AttackElement);
-        elementName.text = cardSO.AttackElement.ToString();
-        elementDescription.text = cardUIIcons.GetElementDescription(cardSO.AttackElement);
-
-        //Status Popout Panel
-        statusPopoutIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.statusEffect.statusEffectType);
-        statusName.text = cardSO.statusEffect.statusEffectType.ToString().Replace("_", " ");
-
-        statusDescription.text = cardUIIcons.GetStatusDescription(cardSO.statusEffect.statusEffectType);
-
+        SetMainPanelValues(cardSO);
+        SetPopoutPanelValues(cardSO);
         SetAmmoStatElements(cardSO);
 
-
-        if(cardSO.GetBaseDamage() <= 0)
-        {
-            damageText.text = "N/A";
-        }else
-        {
-            damageText.text = cardSO.GetBaseDamage().ToString();
-        }
         RefreshFadeOut();
 
         if(updatedCard || !gameObject.activeInHierarchy)
@@ -225,6 +228,7 @@ public class CardDescriptionPanel : MonoBehaviour
         gameObject.SetActive(true);
 
     }
+
     //Overload for taking in just a specific CardSO
     public void UpdateDescription(CardSO cardSO)
     {
@@ -235,36 +239,10 @@ public class CardDescriptionPanel : MonoBehaviour
         }
         CurrentlyViewedCardSO = cardSO;
 
-        //Set values for main panel
-        textDescription.text = CurrentlyViewedCardSO.GetFormattedDescription();
-        cardName.text = CurrentlyViewedCardSO.CardName;
-        cardName.color = cardSO.IsUpgraded ? upgradedCardTitleColor : Color.white;
-        cardImage.sprite = CurrentlyViewedCardSO.GetCardImage();
-        elementIcon.sprite = cardUIIcons.GetElementIcon(CurrentlyViewedCardSO.AttackElement);
-        statusIcon.sprite = cardUIIcons.GetStatusIcon(CurrentlyViewedCardSO.statusEffect.statusEffectType);
-        ChangeColorBasedOnCardTier(CurrentlyViewedCardSO.GetCardTier());
-
-    //Set values for popout panels
-
-        //Element Popout Panel
-        elementPopoutIcon.sprite = cardUIIcons.GetElementIcon(cardSO.AttackElement);
-        elementName.text = cardSO.AttackElement.ToString();
-        elementDescription.text = cardUIIcons.GetElementDescription(cardSO.AttackElement);
-
-        //Status Popout Panel
-        statusPopoutIcon.sprite = cardUIIcons.GetStatusIcon(cardSO.statusEffect.statusEffectType);
-        statusName.text = cardSO.statusEffect.statusEffectType.ToString().Replace("_", " ");
-        statusDescription.text = cardUIIcons.GetStatusDescription(cardSO.statusEffect.statusEffectType);
-
+        SetMainPanelValues(cardSO);
+        SetPopoutPanelValues(cardSO);
         SetAmmoStatElements(cardSO);
 
-        if(cardSO.GetBaseDamage() <= 0)
-        {
-            damageText.text = "N/A";
-        }else
-        {
-            damageText.text = cardSO.GetBaseDamage().ToString();
-        }
         RefreshFadeOut();
         
         if(updatedCard || !gameObject.activeInHierarchy)
@@ -273,9 +251,35 @@ public class CardDescriptionPanel : MonoBehaviour
         }
 
         gameObject.SetActive(true);
-
     }
 
+    public void UpdateDescription(CardObjectReference cardObjectReference)
+    {
+        if(cardObjectReference == null) { return; }
+        if(cardObjectReference.cardSO == null) { return; }
+
+        CardSO cardSO = cardObjectReference.cardSO;
+
+        bool updatedCard = false;
+        if(CurrentlyViewedCardSO != cardSO)
+        {
+            updatedCard = true;
+        }
+        CurrentlyViewedCardSO = cardSO;
+
+        SetMainPanelValues(cardSO);
+        SetPopoutPanelValues(cardSO);
+        SetAmmoStatElements(cardSO);
+
+        RefreshFadeOut();
+
+        if(updatedCard || !gameObject.activeInHierarchy)
+        {
+            OnCardUpdated?.Invoke();
+        }
+
+        gameObject.SetActive(true);
+    }
 
     public void DisablePanel()
     {
