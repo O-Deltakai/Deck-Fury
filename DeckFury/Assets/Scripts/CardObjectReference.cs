@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +8,17 @@ using UnityEngine;
 [System.Serializable]
 public class CardObjectReference
 {
+    public Action OnBeginRecharge;
+    public Action OnCycleRechargeCounter;
+    public Action OnFinishRecharge;
+
     public CardSO cardSO;
     public GameObject effectPrefab;
     public CardEffect CardEffect{get => effectPrefab.GetComponent<CardEffect>();}
     public List<GameObject> objectSummonPrefabs = new List<GameObject>();
 
     public int MaxAmmoCount {get; private set;}
-    public int currentAmmoCount;
+    public int CurrentAmmoCount {get; private set;}
 
     public int RechargeRate {get; private set;}
     public int RechargeAmount {get; private set;}
@@ -22,8 +27,7 @@ public class CardObjectReference
     /// How many turns have passed since the card began recharging.
     /// </summary>
     public int CurrentRechargeTurns {get; private set;} = 0;
-
-    public bool ReloadInProgress { get; private set; } = false;
+    public bool RechargeInProgress { get; private set; } = false;
 
     //Reference to which card slot on the card selection menu this CardObjectReference belongs to. Should only be set if the card is
     //meant to be on the menu.
@@ -45,35 +49,61 @@ public class CardObjectReference
         RechargeRate = cardSO.RechargeRate;
         RechargeAmount = cardSO.RechargeAmount;
 
-        currentAmmoCount = cardSO.BaseAmmo;
-        ReloadInProgress = false;
+        CurrentAmmoCount = cardSO.BaseAmmo;
+        RechargeInProgress = false;
         invisible = false;
     }
 
-    public void BeginReload()
+    public void BeginRecharge()
     {
-        ReloadInProgress = true;
+        if(RechargeInProgress) { return; }
+        if(CurrentAmmoCount == -1) { return; }
+
+        RechargeInProgress = true;
         CurrentRechargeTurns = 0;
+        OnBeginRecharge?.Invoke();
     }
 
     /// <summary>
-    /// Cycles the reload counter of the card. If the card is not currently reloading, this method does nothing.
+    /// Cycles the recharge counter of the card. If the card is not currently recharging, this method does nothing.
     /// </summary>
-    public void CycleReloadCounter()
+    public void CycleRechargeCounter()
     {
-        if(!ReloadInProgress) { return; }
+        if(!RechargeInProgress) { return; }
 
         CurrentRechargeTurns++;
         if(CurrentRechargeTurns >= RechargeRate)
         {
-            FinishReload();
+            FinishRecharge();
+        }else
+        {
+            OnCycleRechargeCounter?.Invoke();
         }
     }
 
-    public void FinishReload()
+    public void FinishRecharge()
     {
-        ReloadInProgress = false;
-        currentAmmoCount += RechargeAmount;
+        RechargeInProgress = false;
+        CurrentAmmoCount += RechargeAmount;
+        OnFinishRecharge?.Invoke();
+    }
+
+    public void DecrementAmmoCount()
+    {
+        if(CurrentAmmoCount == -1) { return; }
+        if(RechargeInProgress) { return; }
+        if(CurrentAmmoCount == 0) { return; }  //If the card has infinite ammo, it will not be affected by this check.
+
+        CurrentAmmoCount--;
+    }
+
+    public void IncrementAmmoCount()
+    {
+        if(CurrentAmmoCount == -1) { return; }
+        if(RechargeInProgress) { return; }
+        if(CurrentAmmoCount == MaxAmmoCount) { return; }
+
+        CurrentAmmoCount++;
     }
 
     public void ClearReferences()

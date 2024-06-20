@@ -8,6 +8,11 @@ public class DeckElement
     public CardSO card;
     public int cardCount;
 
+    /// <summary>
+    /// This property should only be set if the DeckElement is part of the GameDeck.
+    /// </summary>
+    public bool InLoadout {get; set;} = false;
+
 }
 
 [CreateAssetMenu(fileName = "Deck Data", menuName = "New Deck", order = 0)]
@@ -45,6 +50,14 @@ public class DeckSO : ScriptableObject
 public class GameDeck
 {
     [field:SerializeField] public List<DeckElement> CardList {get; private set;}
+
+    [SerializeField] List<DeckElement> _reserveCards = new();
+    [SerializeField] List<DeckElement> _loadOut = new();
+    public IReadOnlyList<DeckElement> ReserveCards => _reserveCards;
+    public IReadOnlyList<DeckElement> LoadOut => _loadOut;
+
+    [SerializeField] int _maxLoadOutSize = 10;
+    public int MaxLoadOutSize => _maxLoadOutSize;
 
     /// <summary>
     /// Total number of non-unique cards in the deck
@@ -90,6 +103,23 @@ public class GameDeck
         return upgradableCards;
     }
 
+    /// <summary>
+    /// Adds a new card to the deck as a DeckElement
+    /// </summary>
+    /// <param name="card"></param>
+    /// <param name="cardCount"></param>
+    public void AddCard(CardSO card, int cardCount)
+    {
+        DeckElement deckElement = new DeckElement()
+        {
+            card = card,
+            cardCount = cardCount
+        };
+        CardList.Add(deckElement);
+        _reserveCards.Add(deckElement);
+    }
+
+
     public GameDeck()
     {
         CardList = new List<DeckElement>();
@@ -108,6 +138,29 @@ public class GameDeck
 
             CardList.Add(newDeckElement);
         }
+
+        if(_maxLoadOutSize > CardList.Count)
+        {
+            for(int i = 0; i < CardList.Count; i++)
+            {
+                _loadOut.Add(CardList[i]);
+            }
+        }else
+        {
+            for(int i = 0; i < _maxLoadOutSize; i++)
+            {
+                _loadOut.Add(CardList[i]);
+            }
+
+            if(CardList.Count > _maxLoadOutSize)
+            {
+                for(int i = _maxLoadOutSize; i < CardList.Count; i++)
+                {
+                    _reserveCards.Add(CardList[i]);
+                }
+            }
+        }
+
     }
 
 }
