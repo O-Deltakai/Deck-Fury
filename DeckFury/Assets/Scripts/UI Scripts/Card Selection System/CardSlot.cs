@@ -68,11 +68,6 @@ public class CardSlot : MonoBehaviour
         ChangeCard(card);
     }
 
-    void Update()
-    {
-        
-    }
-
     public void OnClick()
     {
         

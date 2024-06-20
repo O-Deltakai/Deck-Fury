@@ -14,6 +14,7 @@ public class CardDescriptionPanel : MonoBehaviour
     [SerializeField] CardSelectionMenu cardSelectionMenu;
     [SerializeField] CardUIIconSO cardUIIcons;
 
+[Header("Main Panel")]
     [SerializeField] TextMeshProUGUI textDescription;
     [SerializeField] TextMeshProUGUI cardName;
     [SerializeField] Image cardImage;
@@ -22,6 +23,7 @@ public class CardDescriptionPanel : MonoBehaviour
     [SerializeField] Image statusIcon;
     [SerializeField] Image lockedIcon;
 
+    [Tooltip("Color of the card title when the card is upgraded")]
     [SerializeField] Color upgradedCardTitleColor = Color.green;
 
 [Header("Element Popout Panel")]
