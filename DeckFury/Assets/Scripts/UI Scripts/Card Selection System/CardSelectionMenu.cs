@@ -44,6 +44,8 @@ public class CardSelectionMenu : MonoBehaviour
 
     [field:SerializeField] public CardPoolManager CardPoolManager{get; private set;} //Should be set in inspector to improve performance
     [field:SerializeField] public PlayerCardManager PlayerCardManager {get;private set;} //Should be set in inspector to improve performance
+    [SerializeField] CardDescriptionPanel cardDescriptionPanel; //Must be set in inspector
+
 
     [SerializeField] GameObject deckViewPanel; //Must be set in inspector
     [SerializeField] Vector3 originalDeckViewPanelPosition;
@@ -94,6 +96,8 @@ public class CardSelectionMenu : MonoBehaviour
     public bool isActive{get; private set;} = false;
     public bool canUsePreviewButton = true;
 
+    [SerializeField] bool testSystemOverhaul;
+
     private void Awake() 
     {
         _instance = this;
@@ -127,17 +131,29 @@ public class CardSelectionMenu : MonoBehaviour
             }
         }
 
+        onClickValidCardSlotSFXInstance = RuntimeManager.CreateInstance(onClickValidCardSlotSFX);
         
-        CardPoolManager.OnCompletePooling += PopulateCardSelect;
 
-        InitializeMenu();
+        if(testSystemOverhaul)
+        {
+            CardPoolManager.OnCompletePooling += PopulateCardSelectOverhaul;
+
+            InitMenuOverhaul();
+
+        }else
+        {
+            CardPoolManager.OnCompletePooling += PopulateCardSelect;
+
+            InitializeMenu();
+        }
+
+
 
         if(BeginActivated)
         {
             ActivateMenu();
         }
 
-        onClickValidCardSlotSFXInstance = RuntimeManager.CreateInstance(onClickValidCardSlotSFX);
     }
 
     // Update is called once per frame
@@ -192,6 +208,14 @@ public class CardSelectionMenu : MonoBehaviour
             cardLoadSlots[i].slotIndex = i;
         }
 
+    }
+
+    void InitMenuOverhaul()
+    {
+        InitializeSelectionSlots();
+        SetupSelectionSlots();
+        InitializeLoadSlots();
+        SetupLoadSlots();
     }
 
     //Method for activating the menu and moving it into view. Will repopulate the card select with fresh cards on activation.
@@ -292,7 +316,7 @@ public class CardSelectionMenu : MonoBehaviour
         {
             GameObject selectionSlotInstance = Instantiate(_selectionSlotPrefab, cardSelectPanel.transform);
             SelectionSlot selectionSlot = selectionSlotInstance.GetComponent<SelectionSlot>();
-
+            _selectionSlots.Add(selectionSlot);
         }
     }
 
@@ -306,16 +330,44 @@ public class CardSelectionMenu : MonoBehaviour
                 eventTrigger = selectionSlot.gameObject.AddComponent<EventTrigger>();
             }
 
-            EventTrigger.Entry entry = new EventTrigger.Entry();
+            //Add event triggers for pointer enter and exit to display card description
             EventTrigger.Entry pointerEnterEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
-            EventTrigger.Entry pointerExitEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+            pointerEnterEntry.callback.AddListener((data) => { cardDescriptionPanel.UpdateDescription(selectionSlot.CardObjectReference); });
+            eventTrigger.triggers.Add(pointerEnterEntry);
 
+            EventTrigger.Entry pointerExitEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+            pointerExitEntry.callback.AddListener((data) => { cardDescriptionPanel.BeginFadeOut();});
+            eventTrigger.triggers.Add(pointerExitEntry);
+
+            //Add on click event for slot button
+            Button slotButton = selectionSlot.SlotButton;
+            slotButton.onClick.AddListener(() => {ClickSelectionSlot(selectionSlot);});
         }
     }
 
     void SetupLoadSlots()
     {
+        foreach(LoadSlot loadSlot in _loadSlots)
+        {
+            EventTrigger eventTrigger;
+            if(loadSlot.TryGetComponent<EventTrigger>(out eventTrigger) == false)
+            {
+                eventTrigger = loadSlot.gameObject.AddComponent<EventTrigger>();
+            }
 
+            //Add event triggers for pointer enter and exit to display card description
+            EventTrigger.Entry pointerEnterEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+            pointerEnterEntry.callback.AddListener((data) => { cardDescriptionPanel.UpdateDescription(loadSlot.CardObjectReference); });
+            eventTrigger.triggers.Add(pointerEnterEntry);
+
+            EventTrigger.Entry pointerExitEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+            pointerExitEntry.callback.AddListener((data) => { cardDescriptionPanel.BeginFadeOut();});
+            eventTrigger.triggers.Add(pointerExitEntry);
+
+            //Add on click event for slot button
+            Button slotButton = loadSlot.SlotButton;
+            slotButton.onClick.AddListener(() => {ClickLoadSlot(loadSlot);});
+        }
     }
 
     void InitializeLoadSlots()
@@ -329,6 +381,7 @@ public class CardSelectionMenu : MonoBehaviour
             {
                 loadSlotInstance.transform.localScale *= _secondaryLoadSlotScaleMultiplier;
             }
+            _loadSlots.Add(loadSlot);
         }
     }
 
@@ -373,6 +426,25 @@ public class CardSelectionMenu : MonoBehaviour
 
     }
 
+    void PopulateCardSelectOverhaul()
+    {
+        foreach(SelectionSlot selectionSlot in _selectionSlots)
+        {
+            selectionSlot.SetCardObjectReference(CardPoolManager.CardObjectReferences[Random.Range(0, CardPoolManager.CardObjectReferences.Count)]); //Placeholder
+        }
+    }
+
+    //Logic for what happens when clicking on a selection slot in the cardSelectPanel
+    public void ClickSelectionSlot(SelectionSlot selectionSlot)
+    {
+        
+    }
+
+    //Logic for what happens when clicking on a load slot in the cardLoadPanel
+    public void ClickLoadSlot(LoadSlot loadSlot)
+    {
+
+    }
 
     //Logic for what happens when clicking on a card slot in the cardSelectPanel
     //Clicking on a slot in the load panel should return the card within the card slot to the previous select slot that it was originally taken from.
@@ -418,10 +490,6 @@ public class CardSelectionMenu : MonoBehaviour
             Debug.LogWarning("loadSlot is empty but still interactable, which shouldn't be happening - something may have gone wrong.", selectSlot);
             return;
         }
-
-        //print("Clicked card: " + selectSlot.cardObjectReference.cardSO.CardName);
-
-
 
         if(cardObjectReferencesInLoadPanel.Count < cardLoadSlots.Count)//Prevent user from selecting more cards than there is capacity in the load panel
         {

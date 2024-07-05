@@ -5569,6 +5569,7 @@ MonoBehaviour:
   CanBeOpened: 1
   <CardPoolManager>k__BackingField: {fileID: 0}
   <PlayerCardManager>k__BackingField: {fileID: 0}
+  cardDescriptionPanel: {fileID: 1388264037259245109}
   deckViewPanel: {fileID: 113302409167971879}
   originalDeckViewPanelPosition: {x: 0, y: 0, z: 0}
   cardSelectPanel: {fileID: 1388264036903302742}
@@ -5597,6 +5598,13 @@ MonoBehaviour:
   PreviewOutOfViewYAnchor: 850
   PreviewInViewYAnchor: 0
   PreviewArrowIcon: {fileID: 1526870771}
+  _selectionSlotPrefab: {fileID: 0}
+  _loadSlotPrefab: {fileID: 0}
+  _maxSelectionSlots: 10
+  _maxLoadSlots: 5
+  _secondaryLoadSlotScaleMultiplier: 0.85
+  _selectionSlots: []
+  _loadSlots: []
   activateMenuSFX:
     Guid:
       Data1: 1282027219
@@ -5634,6 +5642,7 @@ MonoBehaviour:
     Path: event:/UIEvents/UIClickCard
   focusModeButton: {fileID: 0}
   canUsePreviewButton: 1
+  testSystemOverhaul: 0
 --- !u!1 &1388264036044233212
 GameObject:
   m_ObjectHideFlags: 0

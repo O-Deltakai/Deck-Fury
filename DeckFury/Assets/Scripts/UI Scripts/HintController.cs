@@ -13,7 +13,6 @@ public class HintController : MonoBehaviour
 
     bool firstPanelOpen = true;
 
-    // Start is called before the first frame update
     void Start()
     {
         firstPanelOpen = true;
@@ -21,7 +20,6 @@ public class HintController : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         

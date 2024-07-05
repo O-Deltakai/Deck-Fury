@@ -28,6 +28,9 @@ MonoBehaviour:
   <statusEffect>k__BackingField:
     statusEffectType: 0
     effectStrength: 0
+  _baseAmmo: -1
+  _rechargeRate: 0
+  _rechargeAmount: 0
   CardTier: 1
   <QuantifiableEffects>k__BackingField:
   - <EffectName>k__BackingField: Number of Daggers
@@ -37,6 +40,8 @@ MonoBehaviour:
     _expressionIsInt: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
+  _isUpgraded: 0
+  baseCard: {fileID: 0}
   upgrades:
   - _upgradedCard: {fileID: 11400000, guid: 5f8881c2d47c4414386d3bdc9b8a4613, type: 2}
   CardImage: {fileID: 21300000, guid: 7dc554f07fd49df41a9c9b4f37e52625, type: 3}

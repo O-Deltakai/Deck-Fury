@@ -89,12 +89,8 @@ public class ZoneBlueprint
 
         //Randomise expected values
         NumberOfLevels = random.Next(GeneratorValues.MIN_LEVELS_PER_ZONE, GeneratorValues.MAX_LEVELS_PER_ZONE);
-        //_totalNumberOfStages = GenerateAverageWeightedRandomInt(random, minTotalStagesInZone, maxTotalStagesInZone, 30);
         _totalNumberOfStages = GenerateSkewedWeightedRandom(random, minTotalStagesInZone, maxTotalStagesInZone, 17, 23, 20, 0.5);
         _numberOfStages = _totalNumberOfStages;
-
-        //SimulateWeightingAlgorithm(random, minTotalStagesInZone, maxTotalStagesInZone, 20);
-
 
         AllocateMandatoryStageTypes();
         RandomlyDistributeStageTypes(random);

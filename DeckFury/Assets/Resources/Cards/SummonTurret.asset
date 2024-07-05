@@ -22,10 +22,13 @@ MonoBehaviour:
   BaseDamage: 5
   <AttackElement>k__BackingField: 0
   <CardType>k__BackingField: 2
-  <StatusEffect>k__BackingField: 0
+  <oldStatusEffectType>k__BackingField: 0
   <statusEffect>k__BackingField:
     statusEffectType: 0
     effectStrength: 0
+  _baseAmmo: 1
+  _rechargeRate: 3
+  _rechargeAmount: 1
   CardTier: 2
   <QuantifiableEffects>k__BackingField:
   - <EffectName>k__BackingField: Summon Duration
@@ -42,6 +45,9 @@ MonoBehaviour:
     _expressionIsInt: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
+  _isUpgraded: 0
+  baseCard: {fileID: 0}
+  upgrades: []
   CardImage: {fileID: 21300000, guid: 5ba4f899fab1642489b4f961f97ec0f3, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
   <UsesAnimationEvent>k__BackingField: 1
@@ -50,6 +56,7 @@ MonoBehaviour:
   - {fileID: 583723702644002033, guid: bf00e32581e88374c8e6fa876131f156, type: 3}
   <ObjectSummonsArePooled>k__BackingField: 0
   <UseTargetingReticle>k__BackingField: 1
+  _dynamicReticle: 0
   <ReticleIsStatic>k__BackingField: 0
   <TargetingReticle>k__BackingField: {fileID: 4638606909580859982, guid: d361f42fe86b56049b8fc8aa8eae036c, type: 3}
   <TargetingReticleOffSet>k__BackingField: {x: 0, y: 0}

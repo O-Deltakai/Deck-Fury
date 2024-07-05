@@ -22,9 +22,13 @@ MonoBehaviour:
   <statusEffect>k__BackingField:
     statusEffectType: 0
     effectStrength: 0
+  _baseAmmo: -1
+  _rechargeRate: 0
+  _rechargeAmount: 0
   CardTier: 1
   <QuantifiableEffects>k__BackingField: []
   _isUpgraded: 1
+  baseCard: {fileID: 0}
   upgrades: []
   CardImage: {fileID: 21300000, guid: 7fa4cc59aba735e41bc56bd254ba35aa, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}

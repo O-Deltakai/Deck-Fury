@@ -8,6 +8,7 @@ using UnityEngine.UI;
 /// <summary>
 /// This is the script that conrtols the selection card slots in Card Selection section of the card selection menu.
 /// </summary>
+[RequireComponent(typeof(Button))]
 public class SelectionSlot : MonoBehaviour
 {
     [SerializeReference] CardObjectReference _cardObjectReference;
@@ -24,6 +25,11 @@ public class SelectionSlot : MonoBehaviour
     [SerializeField] Button _button;
     public Button SlotButton {get => _button;}
 
+    public void Awake()
+    {
+        _cardImage.enabled = false;
+        _button.interactable = false;
+    }
 
     public void SetCardObjectReference(CardObjectReference cardObjectReference)
     {
@@ -34,6 +40,8 @@ public class SelectionSlot : MonoBehaviour
 
         _cardObjectReference = cardObjectReference;
         _cardImage.sprite = cardObjectReference.cardSO.GetCardImage();
+        _cardImage.enabled = true;
+        _button.interactable = true;
 
         SubToRechargeEvents(true);
 

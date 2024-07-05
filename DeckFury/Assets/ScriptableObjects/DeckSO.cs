@@ -22,6 +22,8 @@ public class DeckSO : ScriptableObject
     [field:SerializeField] List<DeckElement> CardList {get; set;}
     public IReadOnlyList<DeckElement> CardListReadOnly => CardList;
 
+    
+
     public List<DeckElement> GetUpgradableCards()
     {
         List<DeckElement> upgradableCards = new List<DeckElement>();

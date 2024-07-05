@@ -27,6 +27,9 @@ MonoBehaviour:
   <statusEffect>k__BackingField:
     statusEffectType: 0
     effectStrength: 0
+  _baseAmmo: 1
+  _rechargeRate: 2
+  _rechargeAmount: 1
   CardTier: 2
   <QuantifiableEffects>k__BackingField:
   - <EffectName>k__BackingField: Trap Duration
@@ -37,6 +40,7 @@ MonoBehaviour:
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
   _isUpgraded: 0
+  baseCard: {fileID: 0}
   upgrades:
   - _upgradedCard: {fileID: 11400000, guid: 303cf1210214c0347bcd4bcdd2117d89, type: 2}
   CardImage: {fileID: 21300000, guid: 7e9e51c3904cf5a4ba17c13080eb0ae6, type: 3}

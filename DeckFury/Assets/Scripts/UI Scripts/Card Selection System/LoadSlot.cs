@@ -6,6 +6,7 @@ using UnityEngine.UI;
 /// <summary>
 /// This script controls the card slots in the Card Magazine section of the card selection menu.
 /// </summary>
+[RequireComponent(typeof(Button))]
 public class LoadSlot : MonoBehaviour
 {
     public int slotIndex;
@@ -23,6 +24,11 @@ public class LoadSlot : MonoBehaviour
     [SerializeField] Button _button;
     public Button SlotButton {get => _button;}
 
+    void Awake()
+    {
+        _cardImage.enabled = false;
+        _button.interactable = false;
+    }
 
     public void SetLoadSlot(SelectionSlot selectionSlot)
     {

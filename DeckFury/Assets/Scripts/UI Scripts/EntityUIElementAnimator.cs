@@ -121,8 +121,6 @@ public class EntityUIElementAnimator : MonoBehaviour
 
         CR_AnimateNumberCounter = null;
 
-        //AnimateHPCoroutine = null;
-
     }
 
 

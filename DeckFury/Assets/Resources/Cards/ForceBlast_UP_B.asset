@@ -27,6 +27,9 @@ MonoBehaviour:
   <statusEffect>k__BackingField:
     statusEffectType: 4
     effectStrength: 1
+  _baseAmmo: 2
+  _rechargeRate: 2
+  _rechargeAmount: 2
   CardTier: 2
   <QuantifiableEffects>k__BackingField:
   - <EffectName>k__BackingField: Shove Distance
@@ -44,6 +47,7 @@ MonoBehaviour:
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
   _isUpgraded: 1
+  baseCard: {fileID: 0}
   upgrades: []
   CardImage: {fileID: 21300000, guid: 8bfd4492678506d4082ee326b90d45cf, type: 3}
   <PlayerAnimation>k__BackingField: {fileID: 7400000, guid: 08eccce3decec8541941c74b68becd4c, type: 2}
