@@ -25,6 +25,9 @@ public class SelectionSlot : MonoBehaviour
     [SerializeField] Button _button;
     public Button SlotButton {get => _button;}
 
+    bool CurrentlyTransferring = false;
+    LoadSlot currentLoadSlot; // The load slot that this selection slot is currently transferring its card to.
+
     public void Awake()
     {
         _cardImage.enabled = false;
@@ -140,14 +143,25 @@ public class SelectionSlot : MonoBehaviour
 
         if(_cardObjectReference.CurrentAmmoCount == 0)
         {
-            _grayoutOverlay.enabled = true;
-            _button.interactable = false;
+            ToggleInteractable(false);
         }else
         {
-            _grayoutOverlay.enabled = false;
-            _button.interactable = true;
+            // If the card is not currently transferring to a load slot, then the slot should be interactable as long as it still has ammo.
+            if(!CurrentlyTransferring)
+            {
+                ToggleInteractable(true);
+            }else
+            {
+                ToggleInteractable(false);
+            }
         }
 
+    }
+
+    public void ToggleInteractable(bool condition)
+    {
+        _button.interactable = condition;
+        _grayoutOverlay.gameObject.SetActive(!condition);
     }
 
     public void TransferToLoadSlot(LoadSlot loadSlot)
@@ -157,10 +171,41 @@ public class SelectionSlot : MonoBehaviour
 
         loadSlot.SetLoadSlot(this);
         _cardObjectReference.DecrementAmmoCount();
+
+        currentLoadSlot = loadSlot;
+        CurrentlyTransferring = true;
         UpdateUIElements();
     }
 
-    
+    public void RescindCardTransfer()
+    {
+        if(!CurrentlyTransferring)
+        {
+            Debug.LogWarning("Cannot rescind card transfer. No card is currently transferring.");
+            return;
+        }
 
+        CurrentlyTransferring = false;
+        currentLoadSlot = null;
+
+        _cardObjectReference.IncrementAmmoCount();
+        UpdateUIElements();
+    }
+    
+    /// <summary>
+    /// Completes the transfer to the current load slot and severs connection to the load slot.
+    /// </summary>
+    public void CompleteTransfer()
+    {
+        if(!CurrentlyTransferring)
+        {
+            Debug.LogWarning("Cannot complete card transfer. No card is currently transferring.");
+            return;
+        }
+        currentLoadSlot.ClearSlot();
+        CurrentlyTransferring = false;
+        currentLoadSlot = null;
+        UpdateUIElements();
+    }
 
 }

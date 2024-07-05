@@ -428,22 +428,60 @@ public class CardSelectionMenu : MonoBehaviour
 
     void PopulateCardSelectOverhaul()
     {
+        int index = 0;
+        //Placeholder - just takes the first 10 cards from the card pool manager, or less if there are less than 10 cards
         foreach(SelectionSlot selectionSlot in _selectionSlots)
         {
-            selectionSlot.SetCardObjectReference(CardPoolManager.CardObjectReferences[Random.Range(0, CardPoolManager.CardObjectReferences.Count)]); //Placeholder
+            if(index < CardPoolManager.CardObjectReferences.Count)
+            {
+                selectionSlot.SetCardObjectReference(CardPoolManager.CardObjectReferences[index]);
+                index++;
+            }else
+            {
+                selectionSlot.ClearSlot();
+            }
         }
     }
 
     //Logic for what happens when clicking on a selection slot in the cardSelectPanel
     public void ClickSelectionSlot(SelectionSlot selectionSlot)
     {
-        
+        //Find the first unloaded loadslot in loadSlots and transfer the card in the selectionSlot to that loadslot
+        foreach(LoadSlot loadSlot in _loadSlots)
+        {
+            if(loadSlot.IsEmpty())
+            {
+                selectionSlot.TransferToLoadSlot(loadSlot);
+                return;
+            }
+        }
     }
 
     //Logic for what happens when clicking on a load slot in the cardLoadPanel
     public void ClickLoadSlot(LoadSlot loadSlot)
     {
+        loadSlot.ReturnCardToSelectionSlot();
+        OrderLoadSlotCards();
+    }
 
+    //Orders the cards of the load slots such that all cards are moved to the front of the list and all empty slots are moved to the back
+    void OrderLoadSlotCards()
+    {
+        for(int i = 0; i < _loadSlots.Count; i++)
+        {
+            if(_loadSlots[i].IsEmpty())
+            {
+                for(int j = i + 1; j < _loadSlots.Count; j++)
+                {
+                    if(!_loadSlots[j].IsEmpty())
+                    {
+                        _loadSlots[j].TransferToOtherLoadSlot(_loadSlots[i]);
+                        _loadSlots[j].ClearSlot();
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     //Logic for what happens when clicking on a card slot in the cardSelectPanel
@@ -512,7 +550,23 @@ public class CardSelectionMenu : MonoBehaviour
     //Logic for what happens when clicking the OK button
     public void OnClickOKButton()
     {
-        PlayerCardManager.LoadCardMagazine(cardObjectReferencesInLoadPanel);
+        if(testSystemOverhaul)
+        {
+            List<CardObjectReference> cards = new();
+            foreach(LoadSlot loadSlot in _loadSlots)
+            {
+                if(!loadSlot.IsEmpty())
+                {
+                    cards.Add(loadSlot.CardObjectReference);
+                    loadSlot.CurrentTransferringSelectionSlot.CompleteTransfer();
+                }
+            }
+            PlayerCardManager.LoadCardMagazine(cards);
+        }else
+        {
+            PlayerCardManager.LoadCardMagazine(cardObjectReferencesInLoadPanel);
+        }
+
         RuntimeManager.PlayOneShot(clickOKSFX);
         DisableMenu();
     }

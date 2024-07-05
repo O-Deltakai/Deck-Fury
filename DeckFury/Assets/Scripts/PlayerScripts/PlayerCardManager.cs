@@ -81,6 +81,8 @@ public class PlayerCardManager : MonoBehaviour
 
     }
 
+
+
     //Loads a single card into the bottom of the magazine - returns if the card magazine is already full
     public void LoadOneCard(CardObjectReference card)
     {

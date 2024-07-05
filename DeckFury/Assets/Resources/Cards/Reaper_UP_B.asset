@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Reaper_UP_B
   m_EditorClassIdentifier: 
   <CardName>k__BackingField: Heavy Reaper
-  CardDescription: Jump to a selected enemy and slash adjacent tiles <color=green><b>Q0</b></color>
+  CardDescription: 'Jump to a selected enemy and slash adjacent tiles <color=green><b>Q0</b></color>
     times for <b>BD</b> damage per slash.
+
+
+    <i><b>This card cannot recharge.</i></b>'
   BaseDamage: 120
   <AttackElement>k__BackingField: 1
   <CardType>k__BackingField: 0
@@ -22,9 +25,9 @@ MonoBehaviour:
   <statusEffect>k__BackingField:
     statusEffectType: 0
     effectStrength: 0
-  _baseAmmo: 2
-  _rechargeRate: 3
-  _rechargeAmount: 1
+  _baseAmmo: 3
+  _rechargeRate: 0
+  _rechargeAmount: 0
   CardTier: 3
   <QuantifiableEffects>k__BackingField:
   - <EffectName>k__BackingField: Number of slashes

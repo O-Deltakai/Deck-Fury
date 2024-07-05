@@ -27,6 +27,9 @@ MonoBehaviour:
   <statusEffect>k__BackingField:
     statusEffectType: 1
     effectStrength: 1
+  _baseAmmo: -1
+  _rechargeRate: 0
+  _rechargeAmount: 0
   CardTier: 1
   <QuantifiableEffects>k__BackingField:
   - <EffectName>k__BackingField: Duration Before Expiry
@@ -36,6 +39,8 @@ MonoBehaviour:
     _expressionIsInt: 0
     <CanBeModified>k__BackingField: 0
     <ModCoefficient>k__BackingField: 0
+  _isUpgraded: 0
+  baseCard: {fileID: 0}
   upgrades:
   - _upgradedCard: {fileID: 11400000, guid: 51b364ec46e74a141ba3ce6098009c52, type: 2}
   - _upgradedCard: {fileID: 11400000, guid: 9457476b7f36a7d4a93aa925543cd4d9, type: 2}

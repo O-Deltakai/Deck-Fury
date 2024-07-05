@@ -15,6 +15,7 @@ public class LoadSlot : MonoBehaviour
 
     [Tooltip("The selection slot that is currently transferring its card to this load slot.")]
     [SerializeReference] SelectionSlot _transferringSelectionSlot;
+    public SelectionSlot CurrentTransferringSelectionSlot {get => _transferringSelectionSlot;}
 
     public CardObjectReference CardObjectReference {get => _cardObjectReference;}
     CardSO CardSO => _cardObjectReference.cardSO;
@@ -30,6 +31,15 @@ public class LoadSlot : MonoBehaviour
         _button.interactable = false;
     }
 
+    public bool IsEmpty()
+    {
+        return _cardObjectReference == null;
+    }
+
+    /// <summary>
+    /// Sets the card in this loadslot to the card in the given selection slot.
+    /// </summary>
+    /// <param name="selectionSlot"></param>
     public void SetLoadSlot(SelectionSlot selectionSlot)
     {
         _transferringSelectionSlot = selectionSlot;
@@ -57,8 +67,7 @@ public class LoadSlot : MonoBehaviour
         if(_transferringSelectionSlot == null) { return; }
         if(_cardObjectReference == null) { return; } 
 
-        _cardObjectReference.IncrementAmmoCount();
-        _transferringSelectionSlot.UpdateUIElements();
+        _transferringSelectionSlot.RescindCardTransfer();
         ClearSlot();
     }
 
