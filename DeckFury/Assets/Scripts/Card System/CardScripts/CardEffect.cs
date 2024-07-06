@@ -5,6 +5,14 @@ using UnityEngine;
 //Abstract class containing common functionality and variables between all EffectPrefabs for cards
 public abstract class CardEffect : MonoBehaviour
 {
+    /// <summary>
+    /// <para>The cardObjectReference that this effect is attached to. This is used by some cards to relay information to the 
+    /// cardObjectReference in order to trigger certain effects like restoring ammo on kill etc.</para>
+    /// 
+    /// <para> This is normally set by the cardObjectReference when the effect is instantiated.</para>
+    /// </summary>
+    [HideInInspector] public CardObjectReference cardObjectReference;
+
     public StageManager stageManager;
     public PlayerController player;
     public CardSO cardSO;

@@ -452,6 +452,7 @@ public class CardSelectionMenu : MonoBehaviour
             if(loadSlot.IsEmpty())
             {
                 selectionSlot.TransferToLoadSlot(loadSlot);
+                onClickValidCardSlotSFXInstance.start();
                 return;
             }
         }
@@ -462,6 +463,8 @@ public class CardSelectionMenu : MonoBehaviour
     {
         loadSlot.ReturnCardToSelectionSlot();
         OrderLoadSlotCards();
+        onClickValidCardSlotSFXInstance.start();
+
     }
 
     //Orders the cards of the load slots such that all cards are moved to the front of the list and all empty slots are moved to the back

@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
 /// This script controls the card slots in the Card Magazine section of the card selection menu.
 /// </summary>
 [RequireComponent(typeof(Button))]
+[RequireComponent(typeof(OneShotSFXPlayer))]
+[RequireComponent(typeof(EventTrigger))]
 public class LoadSlot : MonoBehaviour
 {
     public int slotIndex;
@@ -25,8 +28,16 @@ public class LoadSlot : MonoBehaviour
     [SerializeField] Button _button;
     public Button SlotButton {get => _button;}
 
+
+    OneShotSFXPlayer _oneShotSFXPlayer;
+
+    //These should correspond to the indexes of the SFX in the OneShotSFXPlayer component.
+    [SerializeField] int _hoverSFXIndex;
+    [SerializeField] int _clickSFXIndex;
+
     void Awake()
     {
+        _oneShotSFXPlayer = GetComponent<OneShotSFXPlayer>();
         _cardImage.enabled = false;
         _button.interactable = false;
     }
@@ -79,6 +90,18 @@ public class LoadSlot : MonoBehaviour
         _cardImage.enabled = false;
 
         _button.interactable = false;
+    }
+
+    public void OnPointerEnter()
+    {
+        if(!_button.interactable) {return;}
+        _oneShotSFXPlayer.PlaySFXIndex(_hoverSFXIndex);
+    }
+
+    public void OnPointerClick()
+    {
+        if(!_button.interactable) {return;}
+        _oneShotSFXPlayer.PlaySFXIndex(_clickSFXIndex);
     }
 
 }

@@ -30,6 +30,7 @@ public class ScoreManager : MonoBehaviour
     PlayerController player;
     PlayerCardManager playerCardManager;
     StageStateController levelController;
+    CardSelectionMenu cardSelectionMenu;
 
     public bool StopRecordingEvents = false;
 
@@ -92,6 +93,8 @@ public class ScoreManager : MonoBehaviour
     [field:SerializeField] public int TotalDamageTaken {get; private set;} = 0;
     [field:SerializeField] public int TotalReflectKills {get; private set;} = 0;
 
+    [field:SerializeField] public int NumberOfTurns {get; private set;} = 0;
+
 
     public int EnemiesKilledScore { get; private set; } = 0;
 
@@ -137,6 +140,7 @@ public class ScoreManager : MonoBehaviour
         _instance = this;
 
         spawnManager = FindObjectOfType<SpawnManager>();
+        cardSelectionMenu = CardSelectionMenu.Instance;
 
         if(spawnManager)
         {
@@ -259,6 +263,7 @@ public class ScoreManager : MonoBehaviour
         player.OnBasicAttack += IncrementBasicAttackCounter;
         player.OnDamageTaken += IncrementDamageTaken;
         playerCardManager.OnRemoveCard += IncrementCardsUsedCounter;
+        cardSelectionMenu.OnMenuDisabled += IncrementTurnCounter;
     }
     void UnsubscribePlayerToEvents()
     {
@@ -266,6 +271,8 @@ public class ScoreManager : MonoBehaviour
         player.OnBasicAttack -= IncrementBasicAttackCounter;
         player.OnDamageTaken -= IncrementDamageTaken;
         playerCardManager.OnRemoveCard -= IncrementCardsUsedCounter;
+        cardSelectionMenu.OnMenuDisabled -= IncrementTurnCounter;
+
         StopRecordingEvents = true;        
     }
 
@@ -395,6 +402,10 @@ public class ScoreManager : MonoBehaviour
         TotalEnemiesKilled++;
     }
 
+    void IncrementTurnCounter()
+    {
+        NumberOfTurns++;
+    }
 
     public int CalculateHPDamageTakenScore(int startingHP, int endingHP)
     {

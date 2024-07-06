@@ -238,6 +238,8 @@ GameObject:
   - component: {fileID: 3589884949977709236}
   - component: {fileID: 753213359626644641}
   - component: {fileID: 7569595791054111911}
+  - component: {fileID: 7386702958804276363}
+  - component: {fileID: 1812282681490269006}
   m_Layer: 5
   m_Name: LoadSlot
   m_TagString: Untagged
@@ -293,6 +295,8 @@ MonoBehaviour:
   _transferringSelectionSlot: {fileID: 0}
   _cardImage: {fileID: 859054790782127073}
   _button: {fileID: 753213359626644641}
+  _hoverSFXIndex: 0
+  _clickSFXIndex: 1
   references:
     version: 2
     RefIds:
@@ -354,3 +358,70 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &7386702958804276363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6300567006849485239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8ffde07c87fb4409814027d994a1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _sfxList:
+  - Guid:
+      Data1: 427083241
+      Data2: 1152243681
+      Data3: 249787563
+      Data4: -216996842
+    Path: event:/UIEvents/UIHoverCard
+  - Guid:
+      Data1: -1402921670
+      Data2: 1252174870
+      Data3: 1546873261
+      Data4: 915889600
+    Path: event:/UIEvents/UIClickCard
+  _playOnEnable: 0
+  _useEventInstance: 0
+--- !u!114 &1812282681490269006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6300567006849485239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3589884949977709236}
+          m_TargetAssemblyTypeName: LoadSlot, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls: []

@@ -120,9 +120,16 @@ public class Reaper : CardEffect
         //set position and rotation for object
     protected void AssignVariable(Wheel wheel)
     {
+        wheel.parentObject = gameObject;
         wheel.transform.position = player.currentTilePosition;
-        wheel.attackPayload = attackPayload;            
+        wheel.attackPayload = attackPayload;
+        wheel.OnKill += RestoreAmmoOnKill;            
         wheel.gameObject.SetActive(true);
+    }
+
+    void RestoreAmmoOnKill()
+    {
+        cardObjectReference.ForceRestoreAmmo(cardSO.QuantifiableEffects[1].IntegerQuantity);
     }
 
     IEnumerator DisableHitboxTimer()

@@ -3,9 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using FMODUnity;
+using System;
 
 public class Wheel : MonoBehaviour
 {
+
+    public event Action OnKill; //Event that is triggered when the wheel kills an enemy.
+
+    /// <summary>
+    /// The parent object is the object that instantiated the wheel object.
+    /// </summary>
+    public GameObject parentObject;
+
+
+
     public bool objectIsPooled;
     [SerializeField] AnimationClip wheelVFX;
     [SerializeField] GameObject slashVFXParent;
@@ -62,11 +73,26 @@ public class Wheel : MonoBehaviour
             {
                 if(entity.CompareTag(TagNames.Enemy.ToString()) || entity.CompareTag(TagNames.EnvironmentalHazard.ToString()))
                 {
+                    attackPayload.triggerObject = gameObject;
+                    entity.OnCauseOfDeath += CheckKillingBlow;
                     entity.HurtEntity(attackPayload);
+
+                    //Unsubscribe from the event after striking the enemy
+                    entity.OnCauseOfDeath -= CheckKillingBlow;
                 }
             }
         }
     }
+
+    void CheckKillingBlow(string unused, AttackPayload payload, StageEntity unused2)
+    {
+        if(payload.triggerObject == gameObject)
+        {
+            OnKill?.Invoke();
+        }
+    }
+
+
 
     void DisableObject()
     {

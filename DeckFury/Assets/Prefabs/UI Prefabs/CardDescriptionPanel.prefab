@@ -819,8 +819,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 207.69, y: 38.4}
-  m_SizeDelta: {x: 207.9171, y: 68.2578}
+  m_AnchoredPosition: {x: 207.69, y: -23.680016}
+  m_SizeDelta: {x: 207.9171, y: 56.0697}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4702735347200108854
 CanvasRenderer:
@@ -1845,8 +1845,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 103.95855, y: -57.395752}
-  m_SizeDelta: {x: 190.8278, y: 65.389}
+  m_AnchoredPosition: {x: 103.95855, y: -40.63065}
+  m_SizeDelta: {x: 195.41, y: 35.6949}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7342318525184870202
 CanvasRenderer:
@@ -1876,8 +1876,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The amount of ammo that is restored upon recharging. Can only restore up
-    to the original ammo count.
+  m_text: The amount of ammo that is restored upon recharging.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1904,10 +1903,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 10
   m_fontSizeMax: 14
   m_fontStyle: 0
@@ -2520,7 +2519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 103.95855, y: -12.030951}
+  m_AnchoredPosition: {x: 103.95855, y: -11.3916}
   m_SizeDelta: {x: 200, y: 22.7832}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5030573971995959797
@@ -2922,8 +2921,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 103.95855, y: -55.4777}
-  m_SizeDelta: {x: 194.7426, y: 65.389}
+  m_AnchoredPosition: {x: 103.95855, y: -40.6306}
+  m_SizeDelta: {x: 201.33, y: 35.6948}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &833269423167419004
 CanvasRenderer:
@@ -2980,8 +2979,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3060,8 +3059,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 207.69, y: 57.8}
-  m_SizeDelta: {x: 207.9171, y: 99.7296}
+  m_AnchoredPosition: {x: 207.69, y: -25.979988}
+  m_SizeDelta: {x: 207.9171, y: 60.4283}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2742869373369660124
 CanvasRenderer:
@@ -3323,8 +3322,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 103.95855, y: -55.4777}
-  m_SizeDelta: {x: 192.74, y: 65.389}
+  m_AnchoredPosition: {x: 103.95855, y: -63.62905}
+  m_SizeDelta: {x: 200, y: 81.6917}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6470877650695354605
 CanvasRenderer:
@@ -3354,7 +3353,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The number of turns it takes to recharge ammo on this card.
+  m_text: 'The number of turns it takes to recharge ammo for this card.
+
+
+    Cards
+    only begin recharging upon running out of ammo.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3381,8 +3384,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3749,8 +3752,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 207.69, y: 37.9}
-  m_SizeDelta: {x: 207.9171, y: 67.6321}
+  m_AnchoredPosition: {x: 207.69, y: -58.87999}
+  m_SizeDelta: {x: 207.9171, y: 102.8365}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2270686021276856992
 CanvasRenderer:

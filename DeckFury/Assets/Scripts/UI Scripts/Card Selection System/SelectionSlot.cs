@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
 /// This is the script that conrtols the selection card slots in Card Selection section of the card selection menu.
 /// </summary>
 [RequireComponent(typeof(Button))]
+[RequireComponent(typeof(OneShotSFXPlayer))]
+[RequireComponent(typeof(EventTrigger))]
 public class SelectionSlot : MonoBehaviour
 {
     [SerializeReference] CardObjectReference _cardObjectReference;
@@ -25,11 +28,18 @@ public class SelectionSlot : MonoBehaviour
     [SerializeField] Button _button;
     public Button SlotButton {get => _button;}
 
+    OneShotSFXPlayer _oneShotSFXPlayer;
+
+    //These should correspond to the indexes of the SFX in the OneShotSFXPlayer component.
+    [SerializeField] int _hoverSFXIndex;
+    [SerializeField] int _clickSFXIndex;
+
     bool CurrentlyTransferring = false;
     LoadSlot currentLoadSlot; // The load slot that this selection slot is currently transferring its card to.
 
     public void Awake()
     {
+        _oneShotSFXPlayer = GetComponent<OneShotSFXPlayer>();
         _cardImage.enabled = false;
         _button.interactable = false;
     }
@@ -58,25 +68,27 @@ public class SelectionSlot : MonoBehaviour
             _cardObjectReference.OnBeginRecharge += BeginRecharge;
             _cardObjectReference.OnCycleRechargeCounter += CycleRechargeCounter;
             _cardObjectReference.OnFinishRecharge += FinishRecharge;
+            _cardObjectReference.OnAmmoChange += UpdateUIElements;
         }else
         {
             _cardObjectReference.OnBeginRecharge -= BeginRecharge;
             _cardObjectReference.OnCycleRechargeCounter -= CycleRechargeCounter;
             _cardObjectReference.OnFinishRecharge -= FinishRecharge;
+            _cardObjectReference.OnAmmoChange -= UpdateUIElements;
         }
     }
 
     private void BeginRecharge()
     {
         _rechargeIndicator.fillAmount = 1;
-        _rechargeCounter.text = _cardObjectReference.CurrentRechargeTurns.ToString();
+        _rechargeCounter.text = _cardObjectReference.RechargeTurnsRemaining.ToString();
         _rechargeCounter.gameObject.SetActive(true);
     }
 
     private void CycleRechargeCounter()
     {
-        _rechargeIndicator.fillAmount = 1 - ((float)_cardObjectReference.CurrentRechargeTurns / _cardObjectReference.RechargeRate);
-        _rechargeCounter.text = _cardObjectReference.CurrentRechargeTurns.ToString();
+        _rechargeIndicator.fillAmount = (float)_cardObjectReference.RechargeTurnsRemaining / _cardObjectReference.RechargeRate;
+        _rechargeCounter.text = _cardObjectReference.RechargeTurnsRemaining.ToString();
     }
 
     private void FinishRecharge()
@@ -84,6 +96,7 @@ public class SelectionSlot : MonoBehaviour
         _rechargeIndicator.fillAmount = 0;
         _rechargeCounter.gameObject.SetActive(false);
         _ammoCounter.text = _cardObjectReference.CurrentAmmoCount.ToString();
+        UpdateUIElements();
     }
 
     public void ClearSlot()
@@ -132,8 +145,8 @@ public class SelectionSlot : MonoBehaviour
 
         if(_cardObjectReference.RechargeInProgress)
         {
-            _rechargeIndicator.fillAmount = 1 - ((float)_cardObjectReference.CurrentRechargeTurns / _cardObjectReference.RechargeRate);
-            _rechargeCounter.text = _cardObjectReference.CurrentRechargeTurns.ToString();
+            _rechargeIndicator.fillAmount = (float)_cardObjectReference.RechargeTurnsRemaining / _cardObjectReference.RechargeRate;
+            _rechargeCounter.text = _cardObjectReference.RechargeTurnsRemaining.ToString();
             _rechargeCounter.gameObject.SetActive(true);
         }else
         {
@@ -206,6 +219,18 @@ public class SelectionSlot : MonoBehaviour
         CurrentlyTransferring = false;
         currentLoadSlot = null;
         UpdateUIElements();
+    }
+
+    public void OnPointerEnter()
+    {
+        if(!_button.interactable){return;}
+        _oneShotSFXPlayer.PlaySFXIndex(_hoverSFXIndex);
+    }
+
+    public void OnPointerClick()
+    {
+        if(!_button.interactable){return;}
+        _oneShotSFXPlayer.PlaySFXIndex(_clickSFXIndex);
     }
 
 }

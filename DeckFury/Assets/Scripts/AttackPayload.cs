@@ -17,6 +17,17 @@ public struct AttackPayload
     public bool greaterMarked;
     public GameObject attacker;
 
+    /// <summary>
+    /// <para>This is the object that instantiated this specific attack payload. 
+    /// This is different from the attacker field, which is the object that is responsible for the attack. </para>
+    /// 
+    /// <para>For example, if a bullet prefab is instantiated by a turret, the attacker field would be the turret,
+    /// while the triggerObject would (normally) be the bullet prefab. </para>
+    /// 
+    /// <para>However, this field does not always have to be set. It is only used in specific cases where the triggerObject is needed. </para>
+    /// </summary>
+    public GameObject triggerObject;
+
     //The sprite used to show the player who or what they were defeated by if this attack payload deals the finishing blow.
     public Sprite attackerSprite;
 
@@ -32,7 +43,8 @@ public struct AttackPayload
                         GameObject attacker = null,
                         Sprite attackerSprite = null,
                         string deathNote = "",
-                        bool reflected = false)
+                        bool reflected = false,
+                        GameObject triggerObject = null)
     {
         this.damage = damage;
         this.attackElement = attackElement;
@@ -43,8 +55,9 @@ public struct AttackPayload
         this.attackerSprite = attackerSprite;
         causeOfDeathNote = deathNote;
         this.reflected = reflected;
+        this.triggerObject = triggerObject;
     }
-    public AttackPayload(int damage)
+    public AttackPayload(int damage, GameObject triggerObject = null)
     {
         this.damage = damage;
         attackElement = AttackElement.Neutral;
@@ -55,6 +68,7 @@ public struct AttackPayload
         attackerSprite = null;
         causeOfDeathNote = "";
         reflected = false;
+        this.triggerObject = null;
     }
 
 

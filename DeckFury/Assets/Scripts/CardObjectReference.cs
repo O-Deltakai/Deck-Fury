@@ -12,21 +12,31 @@ public class CardObjectReference
     public Action OnCycleRechargeCounter;
     public Action OnFinishRecharge;
 
+    public Action OnAmmoChange;
+
     public CardSO cardSO;
     public GameObject effectPrefab;
     public CardEffect CardEffect{get => effectPrefab.GetComponent<CardEffect>();}
     public List<GameObject> objectSummonPrefabs = new List<GameObject>();
 
     public int MaxAmmoCount {get; private set;}
-    public int CurrentAmmoCount {get; private set;}
+    int _currentAmmoCount;
+    public int CurrentAmmoCount {get{return _currentAmmoCount;} 
+        private set
+        {
+            if(_currentAmmoCount == value) { return; }
+            _currentAmmoCount = value;
+            OnAmmoChange?.Invoke();
+        }
+    }
 
     public int RechargeRate {get; private set;}
     public int RechargeAmount {get; private set;}
 
     /// <summary>
-    /// How many turns have passed since the card began recharging.
+    /// The remaining number of turns until the card is recharged.
     /// </summary>
-    public int CurrentRechargeTurns {get; private set;} = 0;
+    public int RechargeTurnsRemaining {get; private set;} = 0;
     public bool RechargeInProgress { get; private set; } = false;
 
     //Reference to which card slot on the card selection menu this CardObjectReference belongs to. Should only be set if the card is
@@ -38,10 +48,22 @@ public class CardObjectReference
     /// </summary>
     public bool invisible = false;
 
+    bool outOfAmmo = false;
+
+    CardSelectionMenu cardSelectionMenu;
+
     public void InitializeCardObjectReference(CardSO card, CardEffect concreteEffectPrefab)
     {
+        if(cardSelectionMenu)
+        {
+            cardSelectionMenu.OnMenuDisabled -= TryRecharge;
+        }
+
         cardSO = card;
         effectPrefab = concreteEffectPrefab.gameObject;
+        CardEffect cardEffect = effectPrefab.GetComponent<CardEffect>();
+        cardEffect.cardObjectReference = this;
+
         objectSummonPrefabs = cardSO.ObjectSummonList;
 
         //Ammo Stats
@@ -52,6 +74,24 @@ public class CardObjectReference
         CurrentAmmoCount = cardSO.BaseAmmo;
         RechargeInProgress = false;
         invisible = false;
+        
+        cardSelectionMenu = CardSelectionMenu.Instance;
+        cardSelectionMenu.OnMenuDisabled += TryRecharge;
+    }
+
+    void TryRecharge()
+    {
+        if(CurrentAmmoCount == -1) { return; }
+        if(RechargeAmount == 0) { return; }  //If the card has infinite ammo, it will not be affected by this check.
+        if(RechargeRate == 0) { return; }
+
+        if(outOfAmmo && !RechargeInProgress)
+        {
+            BeginRecharge();
+        }else if(outOfAmmo && RechargeInProgress)
+        {
+            CycleRechargeCounter();
+        }
     }
 
     public void BeginRecharge()
@@ -60,7 +100,7 @@ public class CardObjectReference
         if(CurrentAmmoCount == -1) { return; }
 
         RechargeInProgress = true;
-        CurrentRechargeTurns = 0;
+        RechargeTurnsRemaining = RechargeRate;
         OnBeginRecharge?.Invoke();
     }
 
@@ -71,8 +111,8 @@ public class CardObjectReference
     {
         if(!RechargeInProgress) { return; }
 
-        CurrentRechargeTurns++;
-        if(CurrentRechargeTurns >= RechargeRate)
+        RechargeTurnsRemaining--;
+        if(RechargeTurnsRemaining == 0)
         {
             FinishRecharge();
         }else
@@ -85,6 +125,14 @@ public class CardObjectReference
     {
         RechargeInProgress = false;
         CurrentAmmoCount += RechargeAmount;
+        outOfAmmo = false;
+        OnFinishRecharge?.Invoke();
+    }
+
+    void CancelRecharge()
+    {
+        RechargeInProgress = false;
+        RechargeTurnsRemaining = 0;
         OnFinishRecharge?.Invoke();
     }
 
@@ -95,6 +143,10 @@ public class CardObjectReference
         if(CurrentAmmoCount == 0) { return; }  //If the card has infinite ammo, it will not be affected by this check.
 
         CurrentAmmoCount--;
+        if(CurrentAmmoCount == 0)
+        {
+            outOfAmmo = true;
+        }
     }
 
     public void IncrementAmmoCount()
@@ -104,6 +156,25 @@ public class CardObjectReference
         if(CurrentAmmoCount == MaxAmmoCount) { return; }
 
         CurrentAmmoCount++;
+        outOfAmmo = false;
+    }
+
+    public void ForceRestoreAmmo(int amount)
+    {
+        if(CurrentAmmoCount == -1) { return; }
+        if(amount < 1) { return; }
+
+        if(RechargeInProgress)
+        {
+            CancelRecharge();
+        }
+
+        CurrentAmmoCount += amount;
+        if(CurrentAmmoCount > MaxAmmoCount)
+        {
+            CurrentAmmoCount = MaxAmmoCount;
+        }
+        outOfAmmo = false;
     }
 
     public void ClearReferences()

@@ -448,6 +448,8 @@ GameObject:
   - component: {fileID: 8258661886673832379}
   - component: {fileID: 753213359626644641}
   - component: {fileID: 8704261693685209624}
+  - component: {fileID: 2964668298320333232}
+  - component: {fileID: 127643408675537428}
   m_Layer: 5
   m_Name: SelectionSlot
   m_TagString: Untagged
@@ -470,10 +472,10 @@ RectTransform:
   - {fileID: 2261839897615836878}
   - {fileID: 1948351716917288621}
   - {fileID: 1800281977168201087}
-  - {fileID: 115737627608838357}
   - {fileID: 189230396538020640}
   - {fileID: 542220283896742623}
   - {fileID: 509347213448537623}
+  - {fileID: 115737627608838357}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -509,6 +511,8 @@ MonoBehaviour:
   _rechargeCounter: {fileID: 7405377597824673893}
   _grayoutOverlay: {fileID: 4103368067959005273}
   _button: {fileID: 753213359626644641}
+  _hoverSFXIndex: 0
+  _clickSFXIndex: 1
   references:
     version: 2
     RefIds:
@@ -570,6 +574,73 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &2964668298320333232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6300567006849485239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8ffde07c87fb4409814027d994a1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _sfxList:
+  - Guid:
+      Data1: 427083241
+      Data2: 1152243681
+      Data3: 249787563
+      Data4: -216996842
+    Path: event:/UIEvents/UIHoverCard
+  - Guid:
+      Data1: -1402921670
+      Data2: 1252174870
+      Data3: 1546873261
+      Data4: 915889600
+    Path: event:/UIEvents/UIClickCard
+  _playOnEnable: 0
+  _useEventInstance: 0
+--- !u!114 &127643408675537428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6300567006849485239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8258661886673832379}
+          m_TargetAssemblyTypeName: SelectionSlot, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &6621444980925820653
 GameObject:
   m_ObjectHideFlags: 0
